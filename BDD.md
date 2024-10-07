@@ -1,4 +1,4 @@
-Script SQL de la base de donnée : 07/10/2024
+Script SQL de la base de donnée : à jour du 07/10/2024
 
 CREATE TABLE Oeuvre(
    id_produit INT,
