@@ -1,2 +1,2 @@
 # ProjetAPPInfo
-Vente aux enchères d’œuvres d’art
+Vente aux enchères d’œuvres d’art Grp1E
