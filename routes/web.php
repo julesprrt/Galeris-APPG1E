@@ -1,6 +1,10 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\HomeController;
-
-Route::get('/', [HomeController::class, 'HomePage']);
+switch($_SERVER['REQUEST_URI']) {
+    case 'controller/accueil':
+        echo 'ok';
+        break;
+    default:
+        $method = 'notFound';
+        break;
+}
