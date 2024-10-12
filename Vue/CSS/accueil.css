@@ -1,0 +1,113 @@
+.header {
+    display: flex;
+    border: 1px solid #000;
+    flex-direction: row; 
+    flex-wrap:wrap;
+    padding-right : 20px;
+    padding-left : 20px;
+}
+
+.navbar {
+    display: flex;
+    align-items: center;
+}
+
+nav ul{
+    list-style-type: none;
+}
+
+.navbar-item-first {
+    font-size: 18px;
+    color: #474747
+}
+
+.navbar-item {
+    padding-left: 20px;
+    font-size: 18px;
+    color: #474747
+}
+
+.navbar ul li{
+    float: left;
+    position: relative;
+}
+
+nav a{
+    text-decoration: none;
+}
+
+.dropdown{
+    display: none;
+    background-color: white;
+    position: absolute;
+}
+
+nav > ul li:hover .dropdown{
+    display: block;
+}
+
+.dropdown li{
+    float: none;
+    padding: 10px;
+    text-align: left;
+}
+
+.dropdown a{
+    padding: 10px;
+    color: #474747;
+    font-size: 18px;
+}
+
+.dropdown a:hover{
+    background-color: RGBa(200,200,200,0.1);
+}
+.deroulant .navbar-item::after{
+    content:" ▼";
+    font-size: 12px;
+}
+
+.searchBar {
+    display: flex;
+    align-items: center;
+    padding-left: 25px;
+}
+input[type="search"] {
+    border: 1px solid black;
+    padding: 7px 8px;
+    border-radius: 5px;
+}
+  
+input[type="search"]::placeholder {
+    color: #bbb;
+}
+
+button[type="submit"] {
+    border: none;
+    text-indent: -999px;
+    overflow: hidden;
+    width: 40px;
+    background: transparent url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' class='bi bi-search' viewBox='0 0 16 16'%3E%3Cpath d='M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z'%3E%3C/path%3E%3C/svg%3E") no-repeat center;
+    cursor: pointer;
+}
+
+.user {
+    display: flex;
+    align-items: center;
+    padding-left: 20px;
+}
+
+.icon {
+    padding-left: 5px;
+}
+
+.icon-user {
+    border : 1px solid black;
+    text-decoration: none;
+    color: black;
+    padding: 4px 4px 0px 4px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+
+
