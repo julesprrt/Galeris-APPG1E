@@ -1,0 +1,40 @@
+.titre {
+    text-align: center;
+}
+
+.conteneur {
+    display: flex;
+    height: 100vh;
+    
+}
+
+.gauche {
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    padding: 10px;
+}
+
+.gauche a {
+    color: white;
+    padding: 10px;
+    text-decoration: none;
+    margin: 5px ;
+    background-color: #d32032;
+    text-align: center;
+    
+}
+
+.gauche a:hover { 
+    opacity: 0.8;
+}
+
+.droite {
+
+    justify-content: center;
+    
+    padding: 200px;
+
+    
+}
