@@ -16,6 +16,7 @@
             <div class="header">
                 <img src="../../images/logo.png" alt="logo" width="120px">
 
+                <!-- La Barre de navigation -->
                 <nav class="navbar">
                     <ul>
                         <li><a class="navbar-item-first" href="">Vente</a></li>
@@ -30,6 +31,7 @@
                         </li>
                     </ul>
                 </nav>
+                
                 <div class="end-container">
                     <div class="searchBar">
                         <form>
@@ -37,6 +39,9 @@
                             <button type="submit">Rechercher</button>
                         </form>
                     </div>
+
+                    <!-- les différents icon utilisateur (pour se diriger vers la page favoris, se connecter ...) -->
+                    
                     <div class="user">
                         <div class="icon">
                             <a class="icon-user" href="#"><svg width="18" height="18" viewBox="0 0 27 32" fill="none"
@@ -92,6 +97,8 @@
                 </div>
             </div>
         </header>
+
+        <!-- Contenu de la page d'accueil -->
         <div class="page-content">
             <div class="contentbase">
                 <button type="button" class="sellproduct">Vendre une oeuvre</button>
@@ -105,7 +112,10 @@
                 </div>
             </div>
         </div>
+
         <footer>
+
+            <!-- icones réseaux sociaux -->
             <div class="social-network">
                 <a href="#"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"
                         xmlns="http://www.w3.org/2000/svg">
@@ -135,6 +145,8 @@
                     </svg>
                 </a>
             </div>
+
+            <!-- infos footer (aide, contact ...) -->
             <div class="container-footer">
                 <a class="title-footer">Qui sommes nous</a>
                 <a class="item-footer" href="#">NovArt</a>
@@ -150,6 +162,7 @@
                 <a class="item-footer" href="#">Conditions d'utilisations</a>
                 <a class="item-footer" href="#">Mentions légales</a>
             </div>
+
         </footer>
     </div>
 </body>
