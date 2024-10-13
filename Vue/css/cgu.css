@@ -1,6 +1,34 @@
+body {
+    font-family: 'Open Sans', sans-serif;
+    background-color: #f8f8f8; /*color grisée*/
+    color: #333;
+    line-height: 1.6;
+}
+
+
+
 .titre {
-    text-align: center;
+    display: flex;
+    justify-content: center; /* Centre le contenu horizontalement */
+    align-items: center; /* Centre le texte et l'image verticalement */
     
+}
+
+
+
+.titre .photo {
+    position: absolute;
+    right: 20px; /* Espace entre le bord gauche et l'image */
+    width: 30px; /* Taille de l'image */
+    height: auto; /* Garde les proportions */
+    
+}
+.premiere{
+    text-align: center;
+}
+.date{
+    
+    font-weight: bold;
 }
 
 .conteneur {
@@ -10,45 +38,63 @@
 }
 
 .gauche {
-    width: 500px; /* largeur texte */
+    width: fit-content; 
+    height: fit-content; /* gere la hauteur du texte en fonction de ce que ca prends */
+    margin-left: 10px;
+    padding : 30px ;
     display: flex;
     flex-direction: column;
-    padding : 20px ;
-    margin-left: 100px;
+    background-color: #fff;
     
+}
 
-}
-h2 {
-    color: aquamarine;
-}
-img {
-    width: 25px;
-}
-.image{
-    text-align: end;
-}
-/* Style des liens de la barre de gauche */
+
 .gauche a {
-    color: black;
-    padding: 10px; /* marge interieure */
-    text-decoration: none;
-    font-family: none ;/* cache que c'est un lien hypertexte */
-    font-family: Georgia, 'Times New Roman', Times, serif;
-    
-    text-align: center;
-    
-    
+    display: block;
+    color: #333;
+    padding: 10px 15px;
+    margin-bottom: 10px;
+    text-decoration: none; /*permet de pas avoir lien hyper texte*/
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 5px;
+    background-color: #f0f0f0; 
 }
 
 .gauche a:hover { 
     background-color: azure;
-    opacity: 0.8; 
-    border: 2px solid gray;
-}
+    opacity: 0.8; }
 
-/* Contenu de droite : occupe l'espace restant */
-.droite {
-    padding-right: 300px;
+h2 {
+    color: #333;
     text-align: justify;
+}
+.droite {
+    background-color: #fff;
+    padding-left: 80px; 
+    padding-right: 200px;
+    margin: 50px;
+    text-align: justify;
+
     
 }
+.bas {
+    display: flex;
+    justify-content: center;
+}
+.haut a {
+    display: flex;
+    justify-content: center; /*centre horizontalement*/
+    align-items: center; /*centre verticalement*/
+    text-decoration: none;
+    color: black;
+    font-size: 18px;
+    width: 1000px;
+    border-radius: 5px;
+    
+}
+
+.haut a:hover {
+   background-color: azure;
+    opacity: 0.8; 
+    border: 2px solid gray;}
