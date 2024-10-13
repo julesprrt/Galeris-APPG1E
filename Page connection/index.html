@@ -1,1 +1,149 @@
-<!DOCTYPE html><html><head><link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet" /><link href="./css/main.css" rel="stylesheet" /><title>Document</title></head><body><div class="v17_142"><div class="v17_117"><div class="v1_922"><div class="name"></div><div class="v1_907"></div></div></div><div class="v74_117"><div class="v206_441"></div><div class="v203_449"></div><div class="v74_118"><div class="v74_119"><div class="v74_120"><span class="v74_121">Connectez-vous à </span><span class="v74_122">Galeris</span></div><div class="v203_440"><span class="v203_441">Si vous n’avez pas de compte vous </span><span class="v203_443">pouvez vous Inscrire ici !</span></div></div></div><div class="v74_128"><div class="name"></div><div class="v74_134"><div class="v74_135"><div class="v74_136"><div class="v74_137"></div><span class="v74_138">Mot de passe </span></div><div class="v74_139"><div class="v74_140"><div class="v74_141"><div class="v74_142"><div class="v74_143"></div><div class="v74_144"></div><div class="v74_145"></div></div></div></div></div></div><span class="v74_146">Mot de passe oublié ?</span></div><div class="name"></div><span class="v74_165">Connectez-vous</span></div><div class="name"></div><div class="name"></div><div class="name"></div><div class="v162_431"></div><div class="v203_496"></div></div><div class="name"></div></div></body></html>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, initial-scale=1, maximum-scale=1, user-scalable=no"><!--no big or small-->
+    <link
+      href="https://fonts.googleapis.com/css?family=Poppins&display=swap"
+      rel="stylesheet"
+    />
+    <link href="./css/main.css" rel="stylesheet" />
+    <title>Se connecter</title>
+    
+  </head>
+  
+  <body>
+
+    <div class="background">
+
+    <div class="white-background">
+      <!--all change!!!!!!!!!!!-->
+      <a href="changer a page x">
+        <button class="x-button"></button>
+      </a>
+
+      <a href="changer a page ins">
+        <button class="ins-button"></button>
+      </a>
+
+      <a href="changer a page youtube">
+        <button class="youtube-button"></button>
+      </a>
+
+      <a href="changer a page linkin">
+        <button class="linkin-button"></button>
+      </a>
+
+      <div class="qui-sommes-nous">
+        Qui sommes nous
+      </div>
+      
+      <a href="changer a lien de novart" class="novart-link">NovArt</a>
+
+      <a href="changer a lien de galeris" class="galeris-link">Galeris</a>
+
+      <div class="aide">
+        Aide
+      </div>
+      
+      <a href="changer a lien de foire aux questions" class="faq-link">FAQ</a>
+
+      <a href="changer a lien de foire aux contacts" class="contact-link">Contacts</a>
+
+      <div class="infolega">
+        Informations légales
+      </div>
+
+      <a href="changer a lien de conditions d'utilisations" class="cdu-link">Conditions d'utilisations</a>
+
+      <a href="changer a lien de Mentions légales" class="menlega-link">Mentions légales</a>
+
+    </div>
+
+    <div class="v206_441"></div><!--bacground photo-->
+
+    <div class="v203_449"></div> <!--back du text"connecter vous a galeris-->
+
+    <div class="connectez-vous">Connectez-vous à</div>
+
+    <div class="galeris">Galeris</div>
+
+    <span class="si-vous-avez">Si vous n’avez pas de compte vous </span>
+    
+    <!--changer!!!!!!!!!!!!!!!!-->
+    <span class="pouvez-vous">pouvez vous <a href="changer a lien de inscription" class="inscrire-link">Inscrire ici</a> ! </span>
+
+    <div class="input-container">
+     <input type="text" class="custom-input" placeholder="Entrez votre email ou username">
+    </div>
+
+    <div class="mdp">
+      <input type="password" id="passwordInput" class="password-input" placeholder="Entrez votre mot de passe">
+        <button type="button" class="toggle-password" id="togglePassword"></button>
+    </div>
+            
+    <a href="changer a lien de mdpo" class="mdpo">Mot de passe oublié ?</a>
+          
+    <div class="connectez">Connectez-vous</div>
+
+    <div class="logo"></div>
+
+    <!--changer!!!!!!!!!!!!!!!!-->
+    <a href="changer a page aceuil">
+      <button class="button-connection"></button>
+    </a>
+
+
+    
+  </body>
+</html>
+
+
+
+
+
+<!--Désactiver le zoom:-->
+<script>
+    
+// 禁用键盘缩放
+document.addEventListener('keydown', function(event) {
+    if (event.ctrlKey && (event.key === '+' || event.key === '-')) {
+      event.preventDefault(); // 禁用 Ctrl + 或 Ctrl -
+    }
+  });
+
+  // 禁用触摸手势缩放
+  document.addEventListener('wheel', function(event) {
+    if (event.ctrlKey) {
+      event.preventDefault(); // 禁用触摸板或鼠标的缩放
+    }
+  }, { passive: false });
+    
+
+
+
+  
+  document.addEventListener("DOMContentLoaded", function() {
+    const togglePassword = document.getElementById("togglePassword");
+    const passwordInput = document.getElementById("passwordInput");
+  
+    // 监听按钮点击事件
+    togglePassword.addEventListener("click", function () {
+      // 切换输入框的类型 'password' <-> 'text'
+      const type = passwordInput.getAttribute("type") === "password" ? "text" : "password";
+      passwordInput.setAttribute("type", type);
+  
+      // 切换类，控制图标的显示
+      togglePassword.classList.toggle("show-password");
+    });
+  });
+  
+
+
+
+
+  </script>
+
+
+  
+  
+  
