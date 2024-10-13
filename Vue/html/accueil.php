@@ -18,7 +18,7 @@
 
             <nav class="navbar">
                 <ul>
-                    <li><a class="navbar-item-first">Vente</a></li>
+                    <li><a class="navbar-item-first" href="">Vente</a></li>
                     <li><a class="navbar-item" href="">Exposition</a></li>
                     <li><a class="navbar-item" href="">News</a></li>
                     <li class="deroulant"><a class="navbar-item" href="">Plus</a>
