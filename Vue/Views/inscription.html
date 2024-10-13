@@ -3,10 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Inscription - Galeris</title>
+    <link href="style.css" rel="stylesheet">
 </head>
 <body>
-    
+    <div class="right-section">
+        <h2>Inscrivez-vous à Galeris</h2>
+        <p>Si vous avez déjà un compte, vous pouvez vous connecter <a href="#">ici</a></p>
+        <form action="#">
+            <input type="text" placeholder="Nom" required>
+            <input type="text" placeholder="Prénom" required>
+            <input type="text" placeholder="Nom d'utilisateur" required>
+            <input type="email" placeholder="Email" required>
+            <input type="tel" placeholder="Numéro de téléphone" required>
+            <input type="password" placeholder="Mot de passe" required>
+            <input type="password" placeholder="Confirmer votre mot de passe" required>
+            <button type="submit">S'inscrire</button>
+            <div class="captcha">
+                <p>reCAPTCHA</p> <!-- Utiliser un vrai widget reCAPTCHA -->
+            </div>
+        </form>
+    </div>
 </body>
 </html>
 <footer></footer>
