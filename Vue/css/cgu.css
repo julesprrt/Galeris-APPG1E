@@ -1,40 +1,54 @@
 .titre {
     text-align: center;
+    
 }
 
 .conteneur {
     display: flex;
-    height: 100vh;
+    
     
 }
 
 .gauche {
-    width: 200px;
+    width: 500px; /* largeur texte */
     display: flex;
     flex-direction: column;
-    justify-content: start;
-    padding: 10px;
-}
+    padding : 20px ;
+    margin-left: 100px;
+    
 
+}
+h2 {
+    color: aquamarine;
+}
+img {
+    width: 25px;
+}
+.image{
+    text-align: end;
+}
+/* Style des liens de la barre de gauche */
 .gauche a {
-    color: white;
-    padding: 10px;
+    color: black;
+    padding: 10px; /* marge interieure */
     text-decoration: none;
-    margin: 5px ;
-    background-color: #d32032;
+    font-family: none ;/* cache que c'est un lien hypertexte */
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    
     text-align: center;
+    
     
 }
 
 .gauche a:hover { 
-    opacity: 0.8;
+    background-color: azure;
+    opacity: 0.8; 
+    border: 2px solid gray;
 }
 
+/* Contenu de droite : occupe l'espace restant */
 .droite {
-
-    justify-content: center;
-    
-    padding: 200px;
-
+    padding-right: 300px;
+    text-align: justify;
     
 }
