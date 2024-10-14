@@ -17,6 +17,7 @@ body {
     border-radius: 15px;
     overflow: hidden;
 }
+<<<<<<< Updated upstream
 .container_gauche {
     display: flex;
     width: 30%;
@@ -35,6 +36,10 @@ body {
     border-radius: 20px;
 }
 .section-gauche {
+=======
+
+.right-section {
+>>>>>>> Stashed changes
     width: 40%;
     padding: 40px;
     display: flex;
