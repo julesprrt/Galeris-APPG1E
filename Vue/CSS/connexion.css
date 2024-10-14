@@ -16,7 +16,7 @@ body {
 .v206_441 {
   width: 100vw;
   height: calc(959 / 1729 * 100vw);
-  background: url("../images/v206_441.png");
+  background: url("../../images/v206_441.png");
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
@@ -46,7 +46,7 @@ body {
 .x-button {
   width: 24px; /* 按钮宽度 */
   height: 24px; /* 按钮高度 */
-  background-image: url('../images/x.png'); /* 背景图片路径 */
+  background-image: url('../../images/x.png'); /* 背景图片路径 */
   background-size: cover; /* 确保图片覆盖整个按钮 */
   background-repeat: no-repeat; /* 不重复背景图 */
   background-position: center; /* 居中显示图片 */
@@ -61,7 +61,7 @@ body {
 .ins-button{
   width: 24px; /* 按钮宽度 */
   height: 24px; /* 按钮高度 */
-  background-image: url('../images/ins.png'); /* 背景图片路径 */
+  background-image: url('../../images/ins.png'); /* 背景图片路径 */
   background-size: cover; /* 确保图片覆盖整个按钮 */
   background-repeat: no-repeat; /* 不重复背景图 */
   background-position: center; /* 居中显示图片 */
@@ -76,7 +76,7 @@ body {
 .youtube-button{
   width: 24px; /* 按钮宽度 */
   height: 24px; /* 按钮高度 */
-  background-image: url('../images/youtube.png'); /* 背景图片路径 */
+  background-image: url('../../images/youtube.png'); /* 背景图片路径 */
   background-size: cover; /* 确保图片覆盖整个按钮 */
   background-repeat: no-repeat; /* 不重复背景图 */
   background-position: center; /* 居中显示图片 */
@@ -91,7 +91,7 @@ body {
 .linkin-button{
   width: 24px; /* 按钮宽度 */
   height: 24px; /* 按钮高度 */
-  background-image: url('../images/linkin.png'); /* 背景图片路径 */
+  background-image: url('../../images/linkin.png'); /* 背景图片路径 */
   background-size: cover; /* 确保图片覆盖整个按钮 */
   background-repeat: no-repeat; /* 不重复背景图 */
   background-position: center; /* 居中显示图片 */
@@ -379,7 +379,7 @@ body {
   transform: translateY(-50%);
   width: 17px; /* 按钮宽度 */
   height: 17px; /* 按钮高度 */
-  background-image: url('../images/eye.png'); /* 背景图片路径 */
+  background-image: url('../../images/eye.png'); /* 背景图片路径 */
   background-size: contain; /* 确保图片完整显示 */
   background-repeat: no-repeat; /* 防止图片重复 */
   background-position: center; /* 居中显示图片 */
@@ -388,7 +388,7 @@ body {
   cursor: pointer; /* 鼠标手势 */
 }
 .show-password {
-  background-image: url('../images/eyes.png'); /* 睁眼图标 */
+  background-image: url('../../images/eyes.png'); /* 睁眼图标 */
 }
 
 /* 针对“Mot de passe oublié ?”链接的容器 */
@@ -430,7 +430,7 @@ body {
 .logo {
   width: 170px;
   height: 146px;
-  background: url("../images/v203_496.png");
+  background: url("../../images/v203_496.png");
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
@@ -452,7 +452,7 @@ body {
   background-color: rgba(255, 255, 255, 0.7); /* 背景颜色为白色，透明度70% */
   border: 1px solid #000000; /* 黑色边框 */
   border-radius: 15px; /* 圆角边框 */
-  background-image: url('../images/co.png'); /* 使用相对路径加载背景图片 */
+  background-image: url('../../images/co.png'); /* 使用相对路径加载背景图片 */
   background-repeat: no-repeat; /* 不重复背景图 */
   background-size: 369px 59px; /* 确保背景图片完整显示 */
   background-position: center; /* 居中显示背景图 */

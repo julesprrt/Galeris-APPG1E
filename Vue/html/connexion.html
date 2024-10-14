@@ -6,7 +6,9 @@
       href="https://fonts.googleapis.com/css?family=Poppins&display=swap"
       rel="stylesheet"
     />
-    <link href="./css/main.css" rel="stylesheet" />
+    <link href="../CSS/connexion.css" rel="stylesheet" />
+    <script src="../JS/event.js"></script>
+    <script src="../JS/connexion.js"></script>
     <title>Se connecter</title>
     
   </head>
@@ -101,47 +103,6 @@
 
 
 
-<!--Désactiver le zoom:-->
-<script>
-    
-// 禁用键盘缩放
-document.addEventListener('keydown', function(event) {
-    if (event.ctrlKey && (event.key === '+' || event.key === '-')) {
-      event.preventDefault(); // 禁用 Ctrl + 或 Ctrl -
-    }
-  });
-
-  // 禁用触摸手势缩放
-  document.addEventListener('wheel', function(event) {
-    if (event.ctrlKey) {
-      event.preventDefault(); // 禁用触摸板或鼠标的缩放
-    }
-  }, { passive: false });
-    
-
-
-
-  
-  document.addEventListener("DOMContentLoaded", function() {
-    const togglePassword = document.getElementById("togglePassword");
-    const passwordInput = document.getElementById("passwordInput");
-  
-    // 监听按钮点击事件
-    togglePassword.addEventListener("click", function () {
-      // 切换输入框的类型 'password' <-> 'text'
-      const type = passwordInput.getAttribute("type") === "password" ? "text" : "password";
-      passwordInput.setAttribute("type", type);
-  
-      // 切换类，控制图标的显示
-      togglePassword.classList.toggle("show-password");
-    });
-  });
-  
-
-
-
-
-  </script>
 
 
   
