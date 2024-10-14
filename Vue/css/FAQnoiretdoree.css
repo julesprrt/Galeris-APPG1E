@@ -3,37 +3,31 @@ body {
     font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #ffffff; /* Fond blanc */
+    background-color: #f4f4f4;
     color: #333;
 }
 
 header {
     text-align: center;
-    background-color: #ffffff; /* Fond blanc */
-    color: #000000; /* Écriture noire */
+    background-color: #bca657;
+    color: white;
     padding: 20px;
 }
 
 header h2 {
     margin: 0;
     font-size: 2rem;
-    color: #000000; /* Écriture noire */
 }
-
 .logo{
     position: absolute;
     top: 0;
     right: 0;
     width: 158px; /* Ajuste la taille du logo si nécessaire */
     height: auto;
-        border-radius: 5px;
-
 }
-
 header p {
     font-size: 1.2rem;
     margin-top: 10px;
-    color: #000000; /* Écriture noire */
 }
 
 /* Style des sections */
@@ -41,9 +35,9 @@ il {
     display: block;
     font-size: 1.3rem;
     font-weight: bold;
-    color: #000000; /* Écriture noire */
+    color: #bca657;
     margin: 20px 0 10px;
-    padding-left: 440px;
+    padding-left: 10px;
 }
 
 /* Style des détails et questions */
@@ -54,26 +48,23 @@ details {
     padding: 10px;
     margin-bottom: 10px;
     transition: all 0.3s ease;
-    max-width: 600px;
-    margin-left: 440px;
 }
 
 summary {
     font-size: 1.1rem;
     font-weight: bold;
-    color: #000000; /* Écriture noire */
+    color: #FFFFFF;
     cursor: pointer;
 }
 
 details[open] summary {
-    color: #000000; /* Écriture noire */
+    color: #333;
 }
 
 details p {
     font-size: 1rem;
     color: #555;
     margin-top: 10px;
-    text-align: justify;
 }
 
 details ul {
