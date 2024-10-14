@@ -12,9 +12,25 @@
     <p>Trouvez toutes les réponses à vos questions !</p>
     <p>
         <img src="/images/logo.png" class="logo"/>
-
+<!-- <a>href lien page d'accueil sur le logo (ajouter le texte "Retournez à l'accueil" en passant la souris sur le logo) </a> -->
+ 
     </p>
    </header> 
+
+   <img src="/images/sculpture2.png" class="image1"/>
+  
+  
+  <script>
+    // Fonction simple pour déplacer l'image au scroll
+    window.onscroll = function() {
+        var scrollPosition = window.scrollY; // Récupère la position actuelle du scroll
+        var image = document.querySelector('.image1'); // Sélectionne l'image
+
+        // Déplace l'image de façon proportionnelle au scroll
+        image.style.top = scrollPosition * 0.5 + 'px'; // Ajuste la position verticale
+    }
+</script>
+
 
 <il>Général</il><br>
 
