@@ -43,7 +43,7 @@ body {
     border-radius: 20px;
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5), -5px -5px 20px rgba(0, 0, 0, 0.1);
 }
-.connectez-vous {
+.inscrivez-vous {
   font-family: 'Poppins', sans-serif;
   font-weight: 600; 
   font-size: 50px;
@@ -100,6 +100,13 @@ body {
   text-align: left; 
   opacity: 100%; 
 }
+.lien-connexion {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600; /* SemiBold */
+    font-size: 16px;
+    color: #D9A36A; /* 第二张图的颜色 */
+    text-decoration: none; /* 去掉下划线 */
+  }
 h2 {
     font-size: 28px;
     font-weight: bold;
