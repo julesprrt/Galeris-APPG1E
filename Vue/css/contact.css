@@ -2,3 +2,58 @@
   color: black;
   opacity: 1; /* Firefox */
 }
+
+/*--CONTACT--*/
+section#contact .container {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
+  padding: 30px 10px;
+  box-sizing: border-box;
+  border-radius: 15px;
+  box-shadow: 0px 10px 50px -10px #d6d6d6;
+}
+
+section#contact .container .title {
+  text-align: center;
+  color: #2a2a2a;
+  margin-bottom: 50px;
+}
+
+section#contact .container .title h6 {
+  font-size: 1em;
+}
+
+section#contact .container .title h3 {
+  font-size: 2.2em;
+}
+
+section#contact .container form {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  max-width: 600px;
+}
+
+section#contact .container form input {
+  width: 47%;
+}
+
+section#contact .container form input,
+section#contact .container form textarea {
+  margin: 10px 0;
+  padding: 10px;
+  box-sizing: border-box;
+  border: none;
+  outline: none;
+  border-bottom: 2px solide #e4e4ec;
+  transition: 0.2s;
+}
+
+section#contact .container form textarea {
+  width: 100%;
+}
