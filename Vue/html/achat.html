@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="..\css\achat.css">
+    <title>Page d'Achat</title>
+</head>
+
+<body>
+    <header>
+        <div class="logo"> <img src="..\..\images\logo.png"></div>
+        <nav class="menu">
+            <ul>
+                <li><a href="#">Accueil</a></li>
+                <li><a href="#">Vente</a></li>
+                <li><a href="#">Exposition</a></li>
+                <li><a href="#">News</a></li>
+                <li><a href="#">Plus</a></li>
+            </ul>
+        </nav>
+        <div class="barre_recherche">
+            <!-- Barre de recherche, les emojis sont responsives si on clique dessus -->
+            <input type="text" placeholder="Rechercher...">
+            <div class="favori"> <a href="favoris.html">❤️ </a></div>
+            <div class="panier"> <a href="panier.html"> 🛒 </a></div>
+            <div class="utilisateur"><a href="panier.html"> 👤 </a></div>
+        </div>
+    </header>
+
+    <main>
+        <section class="gauche">
+            <section class="art-details">
+                <div class="carousel-container">
+                    <!-- Flèche gauche -->
+                    <button class="carousel-fleche gauche" onclick="changeImage(-1)">&#10094; <!-- Les nombres chelous represente la flèche en Unicode --> </button>
+        
+                    <!-- Images que on va faire défiler avec les flèches, pour l'instant juste des exemples.-->
+                    <div class="art-image">
+                        <img src="..\..\images\oeuvre1-1.jpg" class="carousel-image active" alt="Photo Oeuvre 1"> <!-- La classe active est pour dire que c'est l'image affichée. -->
+                        <img src="..\..\images\oeuvre1-2.jpg" class="carousel-image" alt="Photo Oeuvre 2">
+                        <img src="..\..\images\oeuvre1-3.jpg" class="carousel-image" alt="Photo Oeuvre 3">
+                    </div>
+        
+                    <!-- Flèche droite -->
+                    <button class="carousel-fleche droite" onclick="changeImage(1)">&#10095;</button>
+                </div>
+        
+                <div class="art-info">
+                    <h1>Peinture acrylique</h1>
+                    <p>Peinte en 2020.<br>60 x 80 cm.</p>
+                </div>
+            </section>
+     
+        
+
+
+            <section class="art-image-similaire">
+                <!-- Voir comment faire pr afficher tableaux similaires, manque fonction en php -->
+                <h2>Oeuvres similaires</h2>
+                <div class="tableau-similaire">
+                    <!-- A améliorer car les images renvoie à rien, alors c'est censé renvoyer à la page. -->
+                    <img src="..\..\images\oeuvresim-1.png" alt="Tableau similaire 1">
+                    <img src="..\..\images\oeuvresim-2.jpg" alt="Tableau similaire 2">
+                    <img src="..\..\images\oeuvresim-3.jpg" alt="Tableau similaire 3">
+                </div>
+            </section>
+        </section>
+
+        <section class="droite">
+            <section class="profil-section">
+                <div class="profil-info">
+                    <img src="https://via.placeholder.com/50" alt="Photo de profil" class="photo-profil">
+                    <div class="profil-nom">
+                        <!-- Tout est exemple ici, manque les fonctions PHP pour récupérer tout ce qui est nom, prix et tt les infos. -->
+                        <strong>PIERRE PAUL</strong>
+                    </div>
+                    <div class="note">
+                        ★★★★★<span class="valeur-note">4/5</span>
+                        <!-- A améliorer, ici juste logo pour que le HTML sois beau pr l'instant, manque encore des infos à recup en PHP.-->
+                    </div>
+                </div>
+
+                <div class="actions">
+                    <button class="boutton-acheter">Acheter</button>
+                    <button class="boutton-message-vendeur">Message</button>
+                </div>
+
+                <div class="info-prix">
+                    <div class="prix">
+                        <span>€ 100</span>
+                        <!-- Prix de l'oeuvre, encore une fois, juste à titre d'exemple pr l'instant.  -->
+                        <div class="réduction">Réduction 25%</div>
+                        <!-- Ici par exemple, le 25 sera à recuperer dans le DB.-->
+                        <p class="eco-info">Fait avec matériaux éco-responsables</p>
+                    </div>
+                </div>
+
+                <div class="details">
+                    <div class="publication">
+                        <span>Publié le <strong>18/09/2024</strong></span>
+                    </div>
+                    <div class="livraison">
+                        <span>Livraison à partir de <strong>2.99€</strong></span>
+                    </div>
+                </div>
+            </section>
+
+
+            <section class="map">
+                <!-- Map ou on veut afficher l'endroit ou l'article est stocké.  A revoir pr l'instant juste pluggin Google Maps-->
+                <div class="map-Maps">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2624.4667632450124!2d2.334453415674848!3d48.85950827928717!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e66fc3e55aa8a1%3A0x7fcb8cf23a5d4f80!2sLouvre%20Museum!5e0!3m2!1sen!2sfr!4v1633345612345!5m2!1sen!2sfr"
+                        width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+            </section>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-liens">
+            <a href="#">Qui sommes nous</a>
+            <a href="#">Aide</a>
+            <a href="#">Informations légales</a>
+            <a href="#">Conditions d'utilisation</a>
+            <a href="#">Mentions légales</a>
+        </div>
+    </footer>
+
+    <script src="..\JS\achat.js"></script>
+</body>
+
+</html>
