@@ -1,0 +1,39 @@
+body {
+    height: 100%;
+}
+
+.page-content {
+    display: flex;
+    flex-grow: 1;
+}
+
+.description {
+    padding: 0px 200px 0px 200px;
+}
+
+.contentbase {
+    text-align: center;
+}
+
+.sellproduct{
+    border: none;
+    background-color: #D9A36A;
+    padding: 15px;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+}
+
+.sellproduct:hover{
+    opacity: 0.9;
+}
+
+.content-description{
+    padding-top: 10px;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
