@@ -11,16 +11,16 @@
     <h2>Foire Aux Questions</h2>
     <p>Trouvez toutes les réponses à vos questions !</p>
     <p>
-        <img src="/images/logo.png" class="logo"/>
+        <img src="/images/Logo_Galeris_(sans_fond).png" class="logo"/>
 <!-- <a>href lien page d'accueil sur le logo (ajouter le texte "Retournez à l'accueil" en passant la souris sur le logo) </a> -->
- 
+        <img src="/images/tableau.png" class="tableau"/>
+        <img src="/images/tableau2.png" class="tableau2"/>
     </p>
+    
    </header> 
 
    <img src="/images/sculpture2.png" class="image1"/>
-  
-  
-  <script>
+   <script>
     // Fonction simple pour déplacer l'image au scroll
     window.onscroll = function() {
         var scrollPosition = window.scrollY; // Récupère la position actuelle du scroll
@@ -28,6 +28,20 @@
 
         // Déplace l'image de façon proportionnelle au scroll
         image.style.top = scrollPosition * 0.6 + 'px'; // Ajuste la position verticale
+   
+        // Fonction simple pour déplacer l'image au scroll
+        var scrollPosition = window.scrollY; // Récupère la position actuelle du scroll
+        var image = document.querySelector('.tableau'); // Sélectionne l'image
+
+        // Déplace l'image de façon proportionnelle au scroll
+        image.style.top = scrollPosition * 0.4 + 'px'; // Ajuste la position verticale
+
+         // Fonction simple pour déplacer l'image au scroll
+         var scrollPosition = window.scrollY; // Récupère la position actuelle du scroll
+        var image = document.querySelector('.tableau2'); // Sélectionne l'image
+
+        // Déplace l'image de façon proportionnelle au scroll
+        image.style.top = scrollPosition * 0.4 + 'px'; // Ajuste la position verticale
     }
 </script>
 

@@ -30,23 +30,43 @@ header h2 {
 
 .logo{
     position: absolute;
-    top: 0;
-    right: 0;
-    width: 158px; /* Ajuste la taille du logo si nécessaire */
+    top: 20px;
+    right: 45px;
+    width: 145px; /* Ajuste la taille du logo si nécessaire */
     height: auto;
-        border-radius: 5px;
+    border-radius: 5px;
 
 }
 
 .image1{
     position: absolute;
-    margin-top: 100px;
-    padding: 15px;
-    top: 10;
+    margin-top: 107px;
+    padding: 35px;
+    top: 0;
     right: 10;
     width: 350px; /* Ajuste la taille du logo si nécessaire */
     height: auto;
-    border-radius: 20px;
+    border-radius: 50px;
+}
+
+.tableau {
+    position: absolute;
+    margin-top: 170px;
+    top: 20;
+    right: 60px;
+    width: 350px; /* Ajuste la taille du logo si nécessaire */
+    height: auto;
+    border-radius: 15px;
+}
+
+.tableau2 {
+    position: absolute;
+    margin-top: 530px;
+    top: 20;
+    right: 60px;
+    width: 350px; /* Ajuste la taille du logo si nécessaire */
+    height: auto;
+    border-radius: 15px;
 }
 
 header p {
