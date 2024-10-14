@@ -63,8 +63,8 @@ button:hover {
 }
 .logo {
     position: absolute;
-    top: 20px;
-    right: 20px;
+    top: 10px;
+    right: 10px;
 }
 .logo img {
     width: 80px;
