@@ -249,22 +249,3 @@ main {
     border-radius: 4px;
 }
 
-/* Footer */
-
-footer {
-    padding: 20px;
-    background-color: #fff;
-    border-top: 1px solid #ccc;
-    text-align: center;
-}
-
-.footer-liens a {
-    color: #333;
-    text-decoration: none;
-    margin: 0 10px;
-    font-size: 14px;
-}
-
-.footer-liens a:hover {
-    text-decoration: underline;
-}

@@ -1,118 +1,49 @@
-.header {
+header {
     display: flex;
-    flex-direction: row; 
-    flex-wrap:wrap;
-    padding-right : 20px;
-    padding-left : 20px;
-}
-
-.navbar {
-    display: flex;
+    justify-content: space-between;
     align-items: center;
+    padding: 20px;
+    background-color: #fff;
+    border-bottom: 1px solid #ccc;
 }
 
-nav ul{
-    list-style-type: none;
+.logo img {
+    width: 100px;
+    height: auto;
 }
 
-.navbar-item-first {
-    font-size: 18px;
-    color: #474747
+.menu ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
 }
 
-.navbar-item {
-    padding-left: 30px;
-    font-size: 18px;
-    color: #474747
+.menu ul li {
+    margin-right: 70px;
 }
 
-.navbar ul li{
-    float: left;
-    position: relative;
-}
-
-nav a{
+.menu ul li a {
     text-decoration: none;
+    color: #333;
+    font-weight: bold;
+    font-size: 16px;
 }
 
-.dropdown{
-    display: none;
-    background-color: white;
-    position: absolute;
-}
-
-nav > ul li:hover .dropdown{
-    display: block;
-}
-
-.dropdown li{
-    float: none;
-    padding: 10px;
-    text-align: left;
-}
-
-.dropdown a{
-    padding: 10px;
-    color: #474747;
-    font-size: 18px;
-}
-
-.dropdown a:hover{
-    background-color: RGBa(200,200,200,0.1);
-}
-.deroulant .navbar-item::after{
-    content:" ▼";
-    font-size: 12px;
-}
-
-.searchBar {
+.barre_recherche {
     display: flex;
     align-items: center;
-    padding-left: 25px;
-}
-input[type="search"] {
-    border: 1px solid black;
-    padding: 7px 8px;
-    border-radius: 5px;
-}
-  
-input[type="search"]::placeholder {
-    color: #bbb;
 }
 
-button[type="submit"] {
-    border: none;
-    text-indent: -999px;
-    overflow: hidden;
-    width: 40px;
-    background: transparent url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' class='bi bi-search' viewBox='0 0 16 16'%3E%3Cpath d='M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z'%3E%3C/path%3E%3C/svg%3E") no-repeat center;
-    cursor: pointer;
+.barre_recherche input[type="text"] {
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
 }
 
-.user {
-    display: flex;
-    align-items: center;
-    padding-left: 20px;
-}
-
-.icon {
-    padding-left: 10px;
-}
-
-.icon-trad {
-    padding-left: 20px;
-}
-
-.icon-user {
-    border : 1px solid black;
+.barre_recherche a {
     text-decoration: none;
-    color: black;
-    padding: 4px 4px 0px 4px;
-    border-radius: 5px;
-    text-align: center;
-}
-.end-container {
-    display: flex;
-    flex-grow: 1;
-    justify-content: end;
+    font-size: 20px;
+    margin-left: 15px;
+    color: #333;
 }
