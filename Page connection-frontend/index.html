@@ -59,7 +59,7 @@
 
     </div>
 
-    <div class="v206_441"></div><!--bacground photo-->
+    <div class="bacground"></div><!--bacground photo-->
 
     <div class="v203_449"></div> <!--back du text"connecter vous a galeris-->
 
@@ -104,17 +104,17 @@
 <!--Désactiver le zoom:-->
 <script>
     
-// 禁用键盘缩放
+// Désactiver le zoom du clavier
 document.addEventListener('keydown', function(event) {
     if (event.ctrlKey && (event.key === '+' || event.key === '-')) {
-      event.preventDefault(); // 禁用 Ctrl + 或 Ctrl -
+      event.preventDefault(); // Désactiver Ctrl + ou Ctrl -
     }
   });
 
-  // 禁用触摸手势缩放
+  // Désactiver le zoom par gestes tactiles
   document.addEventListener('wheel', function(event) {
     if (event.ctrlKey) {
-      event.preventDefault(); // 禁用触摸板或鼠标的缩放
+      event.preventDefault(); // Désactiver le zoom du pavé tactile ou de la souris
     }
   }, { passive: false });
     
@@ -126,13 +126,13 @@ document.addEventListener('keydown', function(event) {
     const togglePassword = document.getElementById("togglePassword");
     const passwordInput = document.getElementById("passwordInput");
   
-    // 监听按钮点击事件
+    // Écouter l'événement de clic sur le bouton
     togglePassword.addEventListener("click", function () {
-      // 切换输入框的类型 'password' <-> 'text'
+      // Basculer le type de champ de saisie 'password' <-> 'text'.
       const type = passwordInput.getAttribute("type") === "password" ? "text" : "password";
       passwordInput.setAttribute("type", type);
   
-      // 切换类，控制图标的显示
+      // Basculer la classe pour contrôler l'affichage de l'icône
       togglePassword.classList.toggle("show-password");
     });
   });

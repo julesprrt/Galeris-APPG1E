@@ -5,18 +5,17 @@ body {
   font-size: 14px;
   margin: 0;
   padding: 0;
-  width: 100vw;  /* 宽度设置为视口宽度的 100% */
-  height: 100vh; /* 高度设置为视口高度的 100% */
-  
-  /*overflow: hidden;  discuter!!!!!!!!!*/ 
+  width: 100vw;  /* Définir la largeur à 100% de la largeur de la fenêtre (viewport).*/
+  height: 100vh; 
+  overflow: hidden;
   
 }
 
 /*bacground photo*/
-.v206_441 {
+.bacground {
   width: 100vw;
   height: calc(959 / 1729 * 100vw);
-  background: url("../images/v206_441.png");
+  background: url("../images/bg.png");
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
@@ -29,192 +28,192 @@ body {
 }
 
 .white-background {
-  width: 100vw; /* 宽度 */
-  height: 153px; /* 高度 */
-  background-color: #FFFFFF; /* 背景颜色为白色 */
-  position: fixed; /* 固定在页面底部 */
-  bottom: 0; /* 将其固定在页面底部 */
-  left: 0; /* 左侧对齐页面 */
-  padding-top: 32px; /* 上内边距 */
-  padding-bottom: 32px; /* 下内边距 */
-  padding-left: 32px; /* 左内边距 */
-  padding-right: 160px; /* 右内边距 */
-  box-sizing: border-box; /* 包括内边距在内的尺寸计算 */
-  z-index: 1000; /* 保证其位于其他内容的上方 */
+  width: 100vw; 
+  height: 153px; 
+  background-color: #FFFFFF; /* bacground white */
+  position: fixed; /* fix */
+  bottom: 0; 
+  left: 0; 
+  padding-top: 32px; 
+  padding-bottom: 32px; 
+  padding-left: 32px; 
+  padding-right: 160px; 
+  box-sizing: border-box; /* Calcul des dimensions en incluant le padding.包括内边距在内的尺寸计算 */
+  z-index: 1000; /* S'assurer qu'il est au-dessus des autres contenus保证其位于其他内容的上方 */
 }
 
 .x-button {
-  width: 24px; /* 按钮宽度 */
-  height: 24px; /* 按钮高度 */
-  background-image: url('../images/x.png'); /* 背景图片路径 */
-  background-size: cover; /* 确保图片覆盖整个按钮 */
-  background-repeat: no-repeat; /* 不重复背景图 */
-  background-position: center; /* 居中显示图片 */
-  border: none; /* 去掉按钮的默认边框 */
-  position: absolute; /* 绝对定位按钮 */
-  top: 60px; /* 距离背景条顶部32px，和背景条的内边距匹配 */
-  left: 32px; /* 距离背景条右侧32px，和背景条的内边距匹配 */
-  cursor: pointer; /* 鼠标悬停时显示手势 */
-  z-index: 1001; /* 确保按钮显示在背景条上方 */
+  width: 24px; /* button width 按钮宽度 */
+  height: 24px; /* button width 按钮高度 */
+  background-image: url('../images/x.png'); 
+  background-size: cover; 
+  background-repeat: no-repeat; 
+  background-position: center; 
+  border: none; 
+  position: absolute;
+  top: 60px; 
+  left: 32px; 
+  cursor: pointer; /* Afficher le curseur en forme de main lors du survol de la souris鼠标悬停时显示手势 */
+  z-index: 1001; /* S'assurer que le bouton est affiché au-dessus de la barre d'arrière-plan.确保按钮显示在背景条上方 */
 }
 
 .ins-button{
-  width: 24px; /* 按钮宽度 */
-  height: 24px; /* 按钮高度 */
-  background-image: url('../images/ins.png'); /* 背景图片路径 */
-  background-size: cover; /* 确保图片覆盖整个按钮 */
-  background-repeat: no-repeat; /* 不重复背景图 */
-  background-position: center; /* 居中显示图片 */
-  border: none; /* 去掉按钮的默认边框 */
-  position: absolute; /* 绝对定位按钮 */
-  top: 60px; /* 距离背景条顶部32px，和背景条的内边距匹配 */
-  left: 72px; /* 距离背景条右侧32px，和背景条的内边距匹配 */
-  cursor: pointer; /* 鼠标悬停时显示手势 */
-  z-index: 1001; /* 确保按钮显示在背景条上方 */
+  width: 24px; 
+  height: 24px; 
+  background-image: url('../images/ins.png'); 
+  background-size: cover; 
+  background-repeat: no-repeat; 
+  background-position: center; 
+  border: none; 
+  position: absolute; 
+  top: 60px; 
+  left: 72px; 
+  cursor: pointer; 
+  z-index: 1001; 
 }
 
 .youtube-button{
-  width: 24px; /* 按钮宽度 */
-  height: 24px; /* 按钮高度 */
-  background-image: url('../images/youtube.png'); /* 背景图片路径 */
-  background-size: cover; /* 确保图片覆盖整个按钮 */
-  background-repeat: no-repeat; /* 不重复背景图 */
-  background-position: center; /* 居中显示图片 */
-  border: none; /* 去掉按钮的默认边框 */
-  position: absolute; /* 绝对定位按钮 */
-  top: 60px; /* 距离背景条顶部32px，和背景条的内边距匹配 */
-  left: 112px; /* 距离背景条右侧32px，和背景条的内边距匹配 */
-  cursor: pointer; /* 鼠标悬停时显示手势 */
-  z-index: 1001; /* 确保按钮显示在背景条上方 */
+  width: 24px;
+  height: 24px; 
+  background-image: url('../images/youtube.png'); 
+  background-size: cover; 
+  background-repeat: no-repeat; 
+  background-position: center; 
+  border: none; 
+  position: absolute; 
+  top: 60px; 
+  left: 112px; 
+  cursor: pointer;
+  z-index: 1001; 
 }
 
 .linkin-button{
-  width: 24px; /* 按钮宽度 */
-  height: 24px; /* 按钮高度 */
-  background-image: url('../images/linkin.png'); /* 背景图片路径 */
-  background-size: cover; /* 确保图片覆盖整个按钮 */
-  background-repeat: no-repeat; /* 不重复背景图 */
-  background-position: center; /* 居中显示图片 */
-  border: none; /* 去掉按钮的默认边框 */
-  position: absolute; /* 绝对定位按钮 */
-  top: 60px; /* 距离背景条顶部32px，和背景条的内边距匹配 */
-  left: 152px; /* 距离背景条右侧32px，和背景条的内边距匹配 */
-  cursor: pointer; /* 鼠标悬停时显示手势 */
-  z-index: 1001; /* 确保按钮显示在背景条上方 */
+  width: 24px; 
+  height: 24px; 
+  background-image: url('../images/linkin.png'); 
+  background-size: cover; 
+  background-repeat: no-repeat; 
+  background-position: center; 
+  border: none; 
+  position: absolute; 
+  top: 60px; 
+  left: 152px; 
+  cursor: pointer; 
+  z-index: 1001; 
 }
 
 .qui-sommes-nous {
-  font-family: 'Body Strong', sans-serif; /* 使用 Body Strong 字体 */
-  font-size: 16px; /* 字体大小可根据需要调整 */
-  font-weight: 700; /* 粗体 */
-  color: #000000; /* 字体颜色为黑色 */
-  position: absolute; /* 绝对定位按钮 */
-  top: 20px; /* 距离背景条顶部32px，和背景条的内边距匹配 */
-  left: 400px; /* 距离背景条右侧32px，和背景条的内边距匹配 */
+  font-family: 'Body Strong', sans-serif; 
+  font-size: 16px; 
+  font-weight: 700; 
+  color: #000000; 
+  position: absolute; 
+  top: 20px; 
+  left: 400px; 
 }
 
 .novart-link{
-  font-family: 'Body Strong', sans-serif; /* 使用 Body Strong 字体 */
-  font-size: 16px; /* 字体大小可根据需要调整 */
-  font-weight: 400; /* 粗体 */
-  position: absolute; /* 绝对定位按钮 */
-  top: 50px; /* 距离背景条顶部32px，和背景条的内边距匹配 */
-  left: 400px; /* 距离背景条右侧32px，和背景条的内边距匹配 */
-  color: #000000; /* 字体颜色为黑色 */
-  text-decoration: none; /* 去掉下划线 */
+  font-family: 'Body Strong', sans-serif; 
+  font-size: 16px; 
+  font-weight: 400; 
+  position: absolute; 
+  top: 50px; 
+  left: 400px; 
+  color: #000000; 
+  text-decoration: none;
 }
 .novart-link:hover {
-  text-decoration: underline; /* 鼠标悬停时显示下划线 */
+  text-decoration: underline; 
 }
 
 .galeris-link{
-  font-family: 'Body Strong', sans-serif; /* 使用 Body Strong 字体 */
-  font-size: 16px; /* 字体大小可根据需要调整 */
-  font-weight: 400; /* 粗体 */
-  position: absolute; /* 绝对定位按钮 */
-  top: 80px; /* 距离背景条顶部32px，和背景条的内边距匹配 */
-  left: 400px; /* 距离背景条右侧32px，和背景条的内边距匹配 */
-  color: #000000; /* 字体颜色为黑色 */
-  text-decoration: none; /* 去掉下划线 */
+  font-family: 'Body Strong', sans-serif; 
+  font-size: 16px; 
+  font-weight: 400; 
+  position: absolute; 
+  top: 80px; 
+  left: 400px; 
+  color: #000000; 
+  text-decoration: none; 
 }
 .galeris-link:hover {
-  text-decoration: underline; /* 鼠标悬停时显示下划线 */
+  text-decoration: underline; 
 }
 
 .aide{
-  font-family: 'Body Strong', sans-serif; /* 使用 Body Strong 字体 */
-  font-size: 16px; /* 字体大小可根据需要调整 */
-  font-weight: 700; /* 粗体 */
-  color: #000000; /* 字体颜色为黑色 */
-  position: absolute; /* 绝对定位按钮 */
+  font-family: 'Body Strong', sans-serif; 
+  font-size: 16px; 
+  font-weight: 700; 
+  color: #000000; 
+  position: absolute; 
   top: 20px; 
   left: 900px; 
 }
 
 .faq-link{
-  font-family: 'Body Strong', sans-serif; /* 使用 Body Strong 字体 */
-  font-size: 16px; /* 字体大小可根据需要调整 */
-  font-weight: 400; /* 粗体 */
-  position: absolute; /* 绝对定位按钮 */
-  top: 50px; /* 距离背景条顶部32px，和背景条的内边距匹配 */
-  left: 900px; /* 距离背景条右侧32px，和背景条的内边距匹配 */
-  color: #000000; /* 字体颜色为黑色 */
-  text-decoration: none; /* 去掉下划线 */
+  font-family: 'Body Strong', sans-serif; 
+  font-size: 16px; 
+  font-weight: 400; 
+  position: absolute; 
+  top: 50px; 
+  left: 900px;
+  color: #000000; 
+  text-decoration: none;
 }
 .faq-link:hover {
-  text-decoration: underline; /* 鼠标悬停时显示下划线 */
+  text-decoration: underline; 
 }
 
 .contact-link{
-  font-family: 'Body Strong', sans-serif; /* 使用 Body Strong 字体 */
-  font-size: 16px; /* 字体大小可根据需要调整 */
-  font-weight: 400; /* 粗体 */
-  position: absolute; /* 绝对定位按钮 */
-  top: 80px; /* 距离背景条顶部32px，和背景条的内边距匹配 */
-  left: 900px; /* 距离背景条右侧32px，和背景条的内边距匹配 */
-  color: #000000; /* 字体颜色为黑色 */
-  text-decoration: none; /* 去掉下划线 */
+  font-family: 'Body Strong', sans-serif; 
+  font-size: 16px; 
+  font-weight: 400; 
+  position: absolute; 
+  top: 80px; 
+  left: 900px; 
+  color: #000000; 
+  text-decoration: none; 
 }
 .contact-link:hover {
-  text-decoration: underline; /* 鼠标悬停时显示下划线 */
+  text-decoration: underline; 
 }
 
 .infolega{
-  font-family: 'Body Strong', sans-serif; /* 使用 Body Strong 字体 */
-  font-size: 16px; /* 字体大小可根据需要调整 */
-  font-weight: 700; /* 粗体 */
-  color: #000000; /* 字体颜色为黑色 */
-  position: absolute; /* 绝对定位按钮 */
+  font-family: 'Body Strong', sans-serif; 
+  font-size: 16px;
+  font-weight: 700; 
+  color: #000000; 
+  position: absolute; 
   top: 20px; 
   left: 1400px;
 }
 
 .cdu-link{
-  font-family: 'Body Strong', sans-serif; /* 使用 Body Strong 字体 */
-  font-size: 16px; /* 字体大小可根据需要调整 */
-  font-weight: 400; /* 粗体 */
-  position: absolute; /* 绝对定位按钮 */
-  top: 50px; /* 距离背景条顶部32px，和背景条的内边距匹配 */
-  left: 1400px; /* 距离背景条右侧32px，和背景条的内边距匹配 */
-  color: #000000; /* 字体颜色为黑色 */
-  text-decoration: none; /* 去掉下划线 */
+  font-family: 'Body Strong', sans-serif; 
+  font-size: 16px;
+  font-weight: 400; 
+  position: absolute; 
+  top: 50px; 
+  left: 1400px; 
+  color: #000000; 
+  text-decoration: none; 
 }
 .cdu-link:hover {
-  text-decoration: underline; /* 鼠标悬停时显示下划线 */
+  text-decoration: underline; 
 }
 
 .menlega-link{
-  font-family: 'Body Strong', sans-serif; /* 使用 Body Strong 字体 */
-  font-size: 16px; /* 字体大小可根据需要调整 */
-  font-weight: 400; /* 粗体 */
-  position: absolute; /* 绝对定位按钮 */
-  top: 80px; /* 距离背景条顶部32px，和背景条的内边距匹配 */
-  left: 1400px; /* 距离背景条右侧32px，和背景条的内边距匹配 */
-  color: #000000; /* 字体颜色为黑色 */
-  text-decoration: none; /* 去掉下划线 */
+  font-family: 'Body Strong', sans-serif; 
+  font-size: 16px; 
+  font-weight: 400; 
+  position: absolute; 
+  top: 80px; 
+  left: 1400px; 
+  color: #000000; 
+  text-decoration: none; 
 }
 .menlega-link:hover {
-  text-decoration: underline; /* 鼠标悬停时显示下划线 */
+  text-decoration: underline; 
 }
 
 /*back du text"connecter vous a galeris*/
@@ -251,15 +250,15 @@ body {
 /* “Galeris” */
 .galeris {
   font-family: 'Poppins', sans-serif;
-  font-weight: 500; /* 中等粗细（Medium） */
+  font-weight: 500; 
   font-size: 35px;
   line-height: auto;
   letter-spacing: 0%;
-  color: #000000; /* 黑色 */
+  color: #000000; 
   position: absolute;
-  top: 374px; /* Y坐标 */
-  left: 175px; /* X坐标 */
-  text-align: left; /* 左对齐 */
+  top: 374px; /* Y */
+  left: 175px; /* X */
+  text-align: left; 
 }
 
 /* “Si vous n’avez pas de compte vous” */
@@ -269,14 +268,14 @@ body {
   font-size: 16px;
   line-height: auto;
   letter-spacing: 0%;
-  color: #000000; /* 黑色 */
+  color: #000000; 
   position: absolute;
-  top: 480px; /* Y坐标 */
-  left: 179px; /* X坐标 */
-  width: 308px; /* 宽度 */
-  height: 24px; /* 高度 */
-  text-align: left; /* 左对齐 */
-  opacity: 100%; /* 不透明度 */
+  top: 480px; 
+  left: 179px; 
+  width: 308px; 
+  height: 24px; 
+  text-align: left; 
+  opacity: 100%; 
 }
 
 /* 针对“pouvez vous”的样式 */
@@ -286,14 +285,14 @@ body {
   font-size: 16px;
   line-height: auto;
   letter-spacing: 0%;
-  color: #000000; /* 黑色 */
+  color: #000000; 
   position: absolute;
-  top: 510px; /* Y坐标 */
-  left: 179px; /* X坐标 */
-  width: 308px; /* 宽度 */
-  height: 24px; /* 高度 */
-  text-align: left; /* 左对齐 */
-  opacity: 100%; /* 不透明度 */
+  top: 510px; 
+  left: 179px; 
+  width: 308px; 
+  height: 24px; 
+  text-align: left; 
+  opacity: 100%; 
 }
 
 /* 针对“Inscrire ici”链接的样式 */
@@ -301,130 +300,122 @@ body {
   font-family: 'Poppins', sans-serif;
   font-weight: 600; /* SemiBold */
   font-size: 16px;
-  color: #D9A36A; /* 第二张图的颜色 */
-  text-decoration: none; /* 去掉下划线 */
+  color: #D9A36A; 
+  text-decoration: none; 
 }
 
 .inscrire-link:hover {
-  text-decoration: underline; /* 鼠标悬停时显示下划线 */
+  text-decoration: underline; 
 }
 
 
 
 
-/* 针对第一个输入框的容器 */
+/* Cibler le conteneur du premier champ de saisie */
 .input-container {
-  width: 369px; /* 宽度 */
-  height: 62px; /* 高度 */
+  width: 369px; 
+  height: 62px; 
   position: absolute;
-  top: 312px; /* 调整Y坐标 */
-  left: 879px; /* 调整X坐标 */
+  top: 312px; 
+  left: 879px; 
 }
-
-/* 针对第一个输入框 */
 .custom-input {
-  width: 100%; /* 宽度为容器的100% */
-  height: 100%; /* 高度为容器的100% */
-  padding: 10px; /* 输入框内边距 */
-  font-size: 16px; /* 字体大小 */
-  border: 1px solid #000000; /* 黑色边框 */
-  background-color: rgba(217, 163, 106, 0.7); /* 背景颜色，70%透明度 */
-  border-radius: 15px; /* 圆角边框 */
-  box-sizing: border-box; /* 确保 padding 和 border 不影响宽度 */
-  outline: none; /* 移除默认聚焦边框 */
-  border: none; /* 去除黑色边框 */
+  width: 100%; 
+  height: 100%; 
+  padding: 10px; 
+  font-size: 16px; 
+  border: 1px solid #000000; 
+  background-color: rgba(217, 163, 106, 0.7); 
+  border-radius: 15px; 
+  box-sizing: border-box; 
+  outline: none; 
+  border: none; 
   
 }
-
-/* 第一个输入框的占位符样式 */
 .custom-input::placeholder {
-  color: #333; /* 占位符文字颜色 */
+  color: #333; 
 }
 
-/* 针对第二个输入框的容器 */
+/* Cibler le conteneur du 2eme champ de saisie针对第二个输入框的容器 */
 .mdp {
-  width: 369px; /* 宽度 */
-  height: 62px; /* 高度 */
+  width: 369px; 
+  height: 62px; 
   position: absolute;
-  top: 412px; /* 调整Y坐标 */
-  left: 879px; /* 调整X坐标 */
+  top: 412px; 
+  left: 879px; 
 }
-
-/* 针对第二个输入框 */
 .password-input {
-  width: 100%; /* 宽度为容器的100% */
-  height: 100%; /* 高度为容器的100% */
-  padding: 10px; /* 输入框内边距 */
-  font-size: 16px; /* 字体大小 */
-  border: 1px solid #080808; /* 黑色边框 */
-  background-color: rgba(217, 163, 106, 0.7); /* 背景颜色，70%透明度 */
-  border-radius: 15px; /* 圆角边框 */
-  box-sizing: border-box; /* 确保 padding 和 border 不影响宽度 */
-  outline: none; /* 移除默认聚焦边框 */
-  color: #000000; /* 输入框文字颜色 */
-  border: none; /* 去除黑色边框 */
-  padding-right: 40px; /* 给按钮留出空间 */
+  width: 100%; 
+  height: 100%; 
+  padding: 10px; 
+  font-size: 16px; 
+  border: 1px solid #080808; 
+  background-color: rgba(217, 163, 106, 0.7); 
+  border-radius: 15px; 
+  box-sizing: border-box; 
+  outline: none; 
+  color: #000000; 
+  border: none; 
+  padding-right: 40px; 
 }
-
-/* 第二个输入框的占位符样式 */
 .password-input::placeholder {
-  color: #333; /* 占位符文字颜色 */
+  color: #333;
 }
 
-/* 显示/隐藏密码按钮 */
+/* Bouton afficher/masquer le mot de passe显示/隐藏密码按钮 */
 .toggle-password {
   position: absolute;
-  right: 10px; /* 距离输入框右侧10px */
-  top: 50%; /* 垂直居中 */
+  right: 10px; 
+  top: 50%; 
   transform: translateY(-50%);
-  width: 17px; /* 按钮宽度 */
-  height: 17px; /* 按钮高度 */
-  background-image: url('../images/eye.png'); /* 背景图片路径 */
-  background-size: contain; /* 确保图片完整显示 */
-  background-repeat: no-repeat; /* 防止图片重复 */
-  background-position: center; /* 居中显示图片 */
-  background-color: transparent; /* 背景颜色透明 */
-  border: none; /* 去除按钮默认的边框 */
-  cursor: pointer; /* 鼠标手势 */
+  width: 17px; 
+  height: 17px; 
+  background-image: url('../images/eye.png'); 
+  background-size: contain; 
+  background-repeat: no-repeat; 
+  background-position: center; 
+  background-color: transparent; 
+  border: none; 
+  cursor: pointer; 
 }
 .show-password {
-  background-image: url('../images/eyes.png'); /* 睁眼图标 */
+  background-image: url('../images/eyes.png'); /* Icône d'œil ouvert睁眼图标 */
 }
 
-/* 针对“Mot de passe oublié ?”链接的容器 */
+/* 'Mot de passe oublié ?' */
 .mdpo {
   font-family: 'Poppins', sans-serif;
   font-weight: 400; /* Regular */
-  font-size: 13px; /* 字体大小 */
-  color: #B0B0B0; /* 字体颜色 */
-  text-decoration: none; /* 去掉默认下划线 */
+  font-size: 13px; 
+  color: #B0B0B0; 
+  text-decoration: none; 
   position: absolute;
-  top: 494px; /* Y坐标 */
-  left: 1107px; /* X坐标 */
-  width: 141px; /* 宽度 */
-  height: 19px; /* 高度 */
-  text-align: left; /* 左对齐 */
-  opacity: 100%; /* 不透明度 */
+  top: 494px; 
+  left: 1107px; 
+  width: 141px; 
+  height: 19px; 
+  text-align: left; 
+  opacity: 100%; 
 }
 .mdpo:hover {
-  text-decoration: underline; /* 鼠标悬停时显示下划线 */
+  text-decoration: underline; 
 }
 
-/* 针对“Connectez-vous”的样式 */
+/* “Connectez-vous” */
 .connectez {
   font-family: 'Poppins', sans-serif;
   font-weight: 500; /* Medium */
-  font-size: 30px; /* 字体大小 */
+  font-size: 30px; 
   line-height: auto;
   letter-spacing: 0%;
-  color: #000000; /* 黑色字体 */
+  color: #000000; 
   position: absolute;
-  top: 239px; /* Y坐标 */
-  left: 879px; /* X坐标 */
-  width: 252px; /* 宽度 */
-  height: 45px; /* 高度 */
-  text-align: left; /* 左对齐 */
-  opacity: 100%; /* 不透明度 */
+  top: 239px; 
+  left: 879px; 
+  width: 252px;
+  height: 45px; 
+  text-align: left; 
+  opacity: 100%; 
 }
 
 .logo {
@@ -442,23 +433,23 @@ body {
   overflow: hidden;
 }
 
-/* 按钮样式 */
+
 .button-connection {
-  width: 369px; /* 按钮宽度 */
-  height: 59px; /* 按钮高度 */
+  width: 369px; 
+  height: 59px; 
   position: absolute;
-  top: 539px; /* Y 坐标 */
-  left: 879px; /* X 坐标 */
-  background-color: rgba(255, 255, 255, 0.7); /* 背景颜色为白色，透明度70% */
-  border: 1px solid #000000; /* 黑色边框 */
-  border-radius: 15px; /* 圆角边框 */
-  background-image: url('../images/co.png'); /* 使用相对路径加载背景图片 */
-  background-repeat: no-repeat; /* 不重复背景图 */
-  background-size: 369px 59px; /* 确保背景图片完整显示 */
-  background-position: center; /* 居中显示背景图 */
-  box-sizing: border-box; /* 包括内边距在内的尺寸计算 */
-  cursor: pointer; /* 鼠标悬停时显示手势 */
-  border: none; /* 去除黑色边框 */
+  top: 539px; 
+  left: 879px; 
+  background-color: rgba(255, 255, 255, 0.7); 
+  border: 1px solid #000000; 
+  border-radius: 15px; 
+  background-image: url('../images/co.png'); 
+  background-repeat: no-repeat; 
+  background-size: 369px 59px; 
+  background-position: center; 
+  box-sizing: border-box; 
+  cursor: pointer; 
+  border: none; 
 }
 
 
