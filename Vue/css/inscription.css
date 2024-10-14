@@ -14,6 +14,7 @@ body {
     display: flex;
     width: 30%;
     height: 90vh;
+    padding-right:80px;
     border-radius: 15px;
     overflow: hidden;
 }
@@ -25,8 +26,8 @@ body {
     overflow: hidden;
 }
 .section-droite {
-    width: 40%;
-    padding: 40px;
+    width: 60%;
+    padding-top: 125px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -34,12 +35,12 @@ body {
     border-radius: 20px;
 }
 .section-gauche {
-    width: 70%;
+    width: 60%;
     padding: 20px;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    background-color: rgba(255, 255, 255, 0.8);
+    background-color:#d9d9d9be;
     border-radius: 20px;
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5), -5px -5px 20px rgba(0, 0, 0, 0.1);
 }
@@ -84,7 +85,7 @@ body {
   opacity: 100%; 
 }
 
-/* 针对“pouvez vous”的样式 */
+
 .pouvez-vous {
   font-family: 'Poppins', sans-serif;
   font-weight: 400;
@@ -102,13 +103,13 @@ body {
 }
 .lien-connexion {
     font-family: 'Poppins', sans-serif;
-    font-weight: 600; /* SemiBold */
+    font-weight: 600; 
     font-size: 16px;
-    color: #D9A36A; /* 第二张图的颜色 */
-    text-decoration: none; /* 去掉下划线 */
+    color: blue; 
+    text-decoration: none;
   }
 
-.Inscrivez {
+.inscription{
     font-family: 'Poppins', sans-serif;
     font-weight: 500; 
     font-size: 30px; 
@@ -116,7 +117,7 @@ body {
     letter-spacing: 0%;
     color: #000000;
     position: absolute;
-    top: 239px;
+    top: 140px;
     left: 879px; 
     width: 252px;
     height: 45px; 
@@ -141,11 +142,14 @@ input {
     color: rgb(0, 0, 0);
     border-radius: 5px;
 }
+input::placeholder{/*changer la couleur de l'intérieur de la case  */
+    color:black;
+}
 input:focus{
     outline:none;/* désactive la bordure lorsqu'une case est selectionnée*/
 }
 button {
-    width: 112%;
+    width: 107%;
     font-family: Poppins;
     padding: 12px;
     background-color: #D9A36A;
@@ -160,8 +164,11 @@ button:hover {
 }
 .captcha {
     margin-top: 20px;
+    padding-left:20px;
+    object-fit: cover;
     display: flex;
     justify-content: center;
+    align-items: center;
 }
 .logo {
     position: absolute;
