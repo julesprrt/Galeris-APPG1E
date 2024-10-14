@@ -20,7 +20,7 @@ body {
 .container_gauche {
     display: flex;
     width: 40%;
-    height: 30vh;
+    height: 50vh;
     border-radius: 20px;
     overflow: hidden;
 }
@@ -34,13 +34,14 @@ body {
     border-radius: 20px;
 }
 .section-gauche {
-    width: 40%;
+    width: 60%;
     padding: 40px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     background-color: rgba(255, 255, 255, 0.8);
     border-radius: 20px;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5), -5px -5px 20px rgba(0, 0, 0, 0.1);
 }
 h2 {
     font-size: 28px;
@@ -54,17 +55,22 @@ input {
     width: 100%;
     padding: 10px;
     margin-bottom: 15px;
-    border: 1px solid #ccc;
+    background-color:#d9a36a93 ;
+    border: 1px solid #d9a36a93;
+    font-family: Poppins;
+    color: rgb(0, 0, 0);
     border-radius: 5px;
 }
 button {
+    width: 112%;
+    font-family: Poppins;
     padding: 12px;
-    background-color: #d9a678;
+    background-color: #D9A36A;
     border: none;
-    color: white;
+    color: rgb(0, 0, 0);
     font-size: 16px;
     cursor: pointer;
-    border-radius: 5px;
+    border-radius: 20px;
 }
 button:hover {
     background-color: #c48a5f;
