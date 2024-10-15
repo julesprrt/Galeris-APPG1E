@@ -1,0 +1,110 @@
+body {
+    font-family: 'Open Sans', sans-serif;
+    background-color: #f8f8f8; /*color grisée*/
+    color: #333;
+    line-height: 1.6;
+}
+
+
+
+.titre {
+    display: flex;
+    justify-content: center; /* Centre le contenu horizontalement */
+    align-items: center; /* Centre le texte et l'image verticalement */
+    
+}
+
+
+.titre .photo {
+    position: absolute;
+    right: 20px; /* Espace entre le bord gauche et l'image */
+    width: 30px; /* Taille de l'image */
+    height: auto; /* Garde les proportions */
+    
+}
+.premiere{
+    text-align: center;
+}
+.date{
+    
+    font-weight: bold;
+}
+
+.conteneur {
+    display: flex;
+    
+    
+}
+
+.gauche {
+    width: fit-content; 
+    height: fit-content; /* gere la hauteur du texte en fonction de ce que ca prends */
+    margin-left: 10px;
+    padding : 30px ;
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    
+}
+.fleche {
+    display: inline-block;
+    width: 0;
+    height: 0;
+    border-top: 6px solid transparent;
+    border-bottom: 6px solid transparent;
+    border-left: 6px solid currentColor;
+    margin-left: 10px;
+}
+
+
+.gauche a {
+    display: flex; /* Utilise flexbox pour aligner le texte et la flèche sur une seule ligne */
+    justify-content: space-between; /* Place le texte à gauche et la flèche à droite */
+    align-items: center; /* Centre verticalement le texte et la flèche */
+    color: #333;
+    padding: 10px 15px;
+    margin-bottom: 10px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 5px;
+    background-color: #f0f0f0;
+}
+
+.gauche a:hover { 
+    background-color: azure;
+    opacity: 0.8; }
+
+h2 {
+    color: #333;
+    text-align: justify;
+}
+.droite {
+    background-color: #fff;
+    padding-left: 80px; 
+    padding-right: 200px;
+    margin: 50px;
+    text-align: justify;
+
+    
+}
+.bas {
+    display: flex;
+    justify-content: center;
+}
+.haut a {
+    display: flex;
+    justify-content: center; /*centre horizontalement*/
+    align-items: center; /*centre verticalement*/
+    text-decoration: none;
+    color: black;
+    font-size: 18px;
+    width: 1000px;
+    border-radius: 5px;
+    
+}
+
+.haut a:hover {
+   background-color: azure;
+    opacity: 0.8; 
+    border: 2px solid gray;}
