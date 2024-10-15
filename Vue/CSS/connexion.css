@@ -28,10 +28,8 @@
 }
 
 .connexion-content {
-  
   padding: 40px 75px 80px 75px;
   opacity: 1;
-  
 }
 
 .text-connexion {
@@ -156,10 +154,3 @@ form {
     padding-top: 20px;
     opacity: 100%; /* 不透明度 */
   }
-
-footer {
-  background-color: white;
-}
-
-
-

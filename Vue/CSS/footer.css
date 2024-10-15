@@ -3,6 +3,7 @@ footer {
     display: flex;
     margin-bottom: 2%;
     padding: 30px 15px 15px 15px;
+    background-color: white;
 }
 
 .social-network {
