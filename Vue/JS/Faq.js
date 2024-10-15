@@ -1,5 +1,9 @@
+window.onscroll = ()=>{
+    MovePicture() //FAQ
+}
+
 // Fonction simple pour déplacer l'image au scroll
-window.onscroll = function() {
+function MovePicture() {
     var scrollPosition = window.scrollY; 
     var image = document.querySelector('.image1');
 

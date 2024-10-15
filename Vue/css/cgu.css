@@ -20,7 +20,7 @@ body {
     right: 20px; /* Espace entre le bord gauche et l'image */
     width: 30px; /* Taille de l'image */
     height: auto; /* Garde les proportions */
-    
+    cursor: pointer;
 }
 .premiere{
     text-align: center;
