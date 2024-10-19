@@ -11,7 +11,5 @@
             "email": "65364908+Akashos23@users.noreply.github.com"
         }
     ],
-    "require": {
-        "phpmailer/phpmailer": "^6.9"
-    }
+    "require": {}
 }

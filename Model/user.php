@@ -1,6 +1,5 @@
 <?php
 require_once('Database/Database.php');
-require_once('Model/codeSender.php');
 
 Class User {
     private $name;
@@ -10,7 +9,6 @@ Class User {
     private $telephone;
     private $password;
     private $confirmPassword;
-    private $sendCode;
     public function __construct($name, $firstName, $userName, $email, $telephone, $password, $confirmPassword) {//Constructeur -> Initialisation des données
         $this->name = $name;
         $this->firstName = $firstName;
@@ -19,7 +17,6 @@ Class User {
         $this->telephone = $telephone;
         $this->password = $password;
         $this->confirmPassword = $confirmPassword;
-        $this->sendCode = new CodeSender();
     }
     /**
      * Summary of registerVerification
@@ -44,8 +41,7 @@ Class User {
         }
         else{
             //Envoie d'un code a usage unique
-            $_SESSION["usersession"] = array("name" => $this->name, "firstname" => $this->firstName, "username" => $this->userName,"email" => $this->email,"telephone" => $this->telephone, "password" => $this->password);//Mettre monatenement dans la session pour les enregistrer dans la bd après que l'utilisateur rentre le code à usage unique
-            $this->sendCode->sendCode($this->email);
+            $_SESSION["usersession"] = array($this->name,$this->firstName,$this->userName,$this->email,$this->telephone,$this->password);//Mettre monatenement dans la session pour les enregistrer dans la bd après que l'utilisateur rentre le code à usage unique
             return true;
         }
     }
