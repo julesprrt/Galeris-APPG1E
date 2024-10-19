@@ -1,0 +1,156 @@
+.Page {
+  background: url('../../images/fondecran.png') no-repeat center center;
+  display: flex;
+  background-size: cover; /* Fait en sorte que l'image couvre toute la page */
+  min-height: 100vh;
+  color: #333;
+}
+
+.Page-content {
+  display: flex;
+  flex-direction:row;
+  align-items: center;
+}
+
+
+.infos-connexion {
+ display: flex;
+ padding-left: 90px;
+ padding-right: 30px;
+ width: 600px;
+ height: 375px;
+}
+
+.inscrivez-vous {
+  border-radius: 30px;
+  box-shadow: 2px 2px;
+  background:rgba(217,217,217,0.8);
+}
+
+.connexion-content {
+  padding: 40px 75px 80px 75px;
+  opacity: 1;
+}
+
+.text-connexion {
+ font-weight: bold;
+ font-size: 50px;
+ color: black;
+ font-family: 'Poppins', sans-serif;
+}
+
+.text-inscription {
+  font-size: 16px;
+  color: black;
+  font-weight: 300;
+  font-family: 'Poppins', sans-serif;
+}
+
+.text-connexion a{
+  text-decoration: none;
+  color: #D9A36A;
+  font-weight: 300;
+}
+
+.text-galeris {
+  color: black;
+  font-family: 'Poppins', sans-serif;
+}
+
+.form-connexion {
+  border-radius: 10px; 
+  padding-left: 100px;
+  padding-right: 30px;
+  width: 600px;
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+}
+form {
+  display: flex;
+  flex-direction: column; 
+  width: 100%; 
+}
+.Title-connexion{
+  font-size: 30px;
+  font-weight: 600;
+  font-family: 'Poppins', sans-serif;
+}
+
+.input-connexion{
+  background:rgba(217,163,106,0.7);
+  border: none;
+  padding: 15px;
+  width: 40%;
+  border-radius: 5px;
+  margin-top: 30px;
+}
+
+.input-connexion-first{
+  border: none;
+  padding: 15px;
+  width: 40%;
+  border-radius: 5px;
+  background:rgba(217,163,106,0.7);
+}
+
+.input-connexion-first::placeholder {
+  color: black;
+  opacity: 1; 
+}
+
+.input-connexion::placeholder {
+  color: black;
+  opacity: 1; 
+}
+
+.submit-button {
+  background-color: #D9A36A;
+  border: none;
+  padding: 15px;
+  width: 45%;
+  border-radius: 5px;
+  margin-top: 20px;
+  cursor: pointer;
+  font-family: 'Poppins', sans-serif;
+  font-size: 16;
+}
+
+.submit-button:hover {
+  opacity: 0.75;
+}
+
+.logo-galeris {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+}
+
+.button-connection {
+  width: 275px; /* 按钮宽度 */
+  margin-top: 20px;
+  height: 60px;
+  border-radius: 15px; /* 圆角边框 */
+  background-image: url('../../images/co.png'); /* 使用相对路径加载背景图片 */
+  background-repeat: no-repeat; /* 不重复背景图 */
+  background-size: 369px 59px; /* 确保背景图片完整显示 */
+  background-position: center; /* 居中显示背景图 */
+  cursor: pointer; /* 鼠标悬停时显示手势 */
+  border: none; /* 去除黑色边框 */
+}
+
+.button-connection:hover {
+  opacity: 0.8;
+}
+
+.mdpo {
+    width: 275px;
+    text-align: end;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400; /* Regular */
+    font-size: 13px; /* 字体大小 */
+    color: #B0B0B0; /* 字体颜色 */
+    text-decoration: none; /* 去掉默认下划线 */
+    padding-top: 20px;
+    opacity: 100%; /* 不透明度 */
+  }
