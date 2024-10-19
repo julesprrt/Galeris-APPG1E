@@ -9,7 +9,7 @@ Class User {
     private $telephone;
     private $password;
     private $confirmPassword;
-    public function __construct($name, $firstName, $userName, $email, $telephone, $password, $confirmPassword) {
+    public function __construct($name, $firstName, $userName, $email, $telephone, $password, $confirmPassword) {//Constructeur -> Initialisation des données
         $this->name = $name;
         $this->firstName = $firstName;
         $this->userName = $userName;
@@ -18,7 +18,11 @@ Class User {
         $this->password = $password;
         $this->confirmPassword = $confirmPassword;
     }
-
+    /**
+     * Summary of registerVerification
+     * Verifier les données utilisateur
+     * @return bool|string
+     */
     public function registerVerification(){
         if($this->name === "" || $this->firstName === "" || $this->userName === "" || $this->email === "" || $this->telephone === "" || $this->password === "" || $this->confirmPassword === ""){
             return "Vous devez remplir l'ensemble des champs du formulaire";
@@ -37,11 +41,17 @@ Class User {
         }
         else{
             //Envoie d'un code a usage unique
-            $_SESSION["usersession"] = array($this->name,$this->firstName,$this->userName,$this->email,$this->telephone,$this->password);
+            $_SESSION["usersession"] = array($this->name,$this->firstName,$this->userName,$this->email,$this->telephone,$this->password);//Mettre monatenement dans la session pour les enregistrer dans la bd après que l'utilisateur rentre le code à usage unique
             return true;
         }
     }
 
+    /**
+     * Summary of passwordComposition
+     * @param mixed $password
+     * @return bool
+     * Composition du mot de passe (8 caractère au minimum, 1maj, 1 min, 1 caractère spec)
+     */
     public function passwordComposition($password) {
         $majuscule = preg_match('@[A-Z]@', $password);
         $minucule = preg_match('@[a-z]@', $password);
@@ -55,6 +65,12 @@ Class User {
         }
     }
 
+    /**
+     * Summary of telComposition
+     * @param mixed $tel
+     * @return bool
+     * Composition du telephone -> 10 caractère ne contenant que des chiffres
+     */
     public function telComposition($tel){
         $telWithoutSpace = trim($tel);
         $containOnlyNumber = preg_match('/^\d+$/', $telWithoutSpace);
@@ -66,6 +82,12 @@ Class User {
         }
     }
 
+    /**
+     * *
+     * @param mixed $email
+     * @return mixed
+     * Composition du mail via le filtre proposé par PHP
+     */
     public function emailComposition($email){
         return filter_var($email, FILTER_VALIDATE_EMAIL);
     }
