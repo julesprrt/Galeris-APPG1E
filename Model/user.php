@@ -23,7 +23,7 @@ Class User {
      * Verifier les données utilisateur
      * @return bool|string
      */
-    public function registerVerification(){
+    public function registerVerification(Database $db){
         if($this->name === "" || $this->firstName === "" || $this->userName === "" || $this->email === "" || $this->telephone === "" || $this->password === "" || $this->confirmPassword === ""){
             return "Vous devez remplir l'ensemble des champs du formulaire";
         }
@@ -38,6 +38,9 @@ Class User {
         }
         else if($this->password !== $this->confirmPassword){
             return "Les deux mots de passe ne sont pas identiques";
+        }
+        else if($this->VerifyExistMail($db) > 0){
+            return "Vous avez déja un compte";
         }
         else{
             //Envoie d'un code a usage unique
@@ -90,5 +93,22 @@ Class User {
      */
     public function emailComposition($email){
         return filter_var($email, FILTER_VALIDATE_EMAIL);
+    }
+    /**
+     * Summary of VerifyExistMail
+     * @param Database $db
+     * @return mixed
+     * Verifier dans la bd si l'utilisateur existe ou non
+     */
+    public function VerifyExistMail(Database $db){
+        $conn = $db->connect();
+        $sql = "SELECT count(*) as total FROM utilisateur where email = ?" ;
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param('s',$this->email);
+        $stmt->execute();
+        $stmt->bind_result($total);
+        $stmt->fetch();
+        $stmt->close();
+        return $total;
     }
 }

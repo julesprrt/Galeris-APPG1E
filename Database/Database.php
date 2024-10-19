@@ -5,7 +5,7 @@
          * @return bool|mysqli
          */
         public function connect(){
-            $env = parse_ini_file('../.env');//init fichier .env
+            $env = parse_ini_file('.env');//init fichier .env
             $host =  $env['HOST'];
             $user = $env['USER'];
             $pass = $env['PASSWORD'];
