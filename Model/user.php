@@ -37,6 +37,7 @@ Class User {
         }
         else{
             //Envoie d'un code a usage unique
+            $_SESSION["usersession"] = array($this->name,$this->firstName,$this->userName,$this->email,$this->telephone,$this->password);
             return true;
         }
     }
