@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mot de Passe Oublié</title>
-    <link rel="stylesheet" href="..\css\motdepasseoublie.css">
+    <base href="/Vue/">
+    <link rel="stylesheet" href="\css\motdepasseoublie.css">
 </head>
 <header></header>
 <h1>Mot de Passe Oublié</h1>
