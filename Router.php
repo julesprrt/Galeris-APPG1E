@@ -34,4 +34,6 @@ class Router {
         }
     }
 }
-    
+/**connection router */
+$router = new Router();
+$router->addRoute('/login', 'UserController', 'connexion');

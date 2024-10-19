@@ -1,0 +1,15 @@
+{
+    "name": "wendi/connection",
+    "autoload": {
+        "psr-4": {
+            "Wendi\\Connection\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Wendi",
+            "email": "wendihan03@gmail.com"
+        }
+    ],
+    "require": {}
+}

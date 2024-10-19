@@ -24,4 +24,43 @@ Class UserController extends Controller{
             $this->render('inscription', ['message' => '']);
         }
     }
+
+
+    //user connection
+    public function connexion() {
+        // check if there is a POST request data for log in 
+        if (isset($_POST['email']) && isset($_POST['password'])) {
+            
+            // Obtenir une connexion à la base de données
+            $db = Database::connect();
+
+            // Récupérer l'email et le mot de passe saisis par l'utilisateur
+            $email = $_POST['email'];
+            $password = $_POST['password'];
+
+            // Interroger les données utilisateur dans la base de données
+            $query = "SELECT * FROM users WHERE email = '$email'";
+            $result = mysqli_query($db, $query);
+
+            if (mysqli_num_rows($result) > 0) {
+                // Obtenir les données utilisateur
+                $user = mysqli_fetch_assoc($result);
+
+                // Vérifier le mot de passe
+                if (password_verify($password, $user['password'])) {
+                    // successful
+                    echo "Login successful!";
+                } else {
+                    // wrong password
+                    echo "Invalid password!";
+                }
+            } else {
+                // no user
+                echo "No user found with this email!";
+            }
+
+            // close connection with database
+            mysqli_close($db);
+        }
+    }
 }
