@@ -4,8 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inscription - Galeris</title>
-    <link href="../css/inscription.css" rel="stylesheet">
-    <link href="../css/footer.css" rel="stylesheet">
+    <base href="/Vue/">
+    <link href="css/inscription.css" rel="stylesheet">
+    <link href="css/footer.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
 </head>
 <body>
     <div class="Page">
@@ -25,15 +27,20 @@
         </div>
         <div class="form-inscription">
             <p class="Title-inscription">Inscription</p>
-            <form>
-                <input type="text" class="input-inscription-first" placeholder="Nom" />
-                <input type="text" class="input-inscription" placeholder="Prénom" />
-                <input type="text" class="input-inscription" placeholder="Nom utilisateur" />
-                <input type="email" class="input-inscription" placeholder="Email" />
-                <input type="tel" class="input-inscription" placeholder="Numéro de téléphone" />
-                <input type="password" class="input-inscription" placeholder="Mot de passe" />
-                <input type="password" class="input-inscription" placeholder="Confirmer votre mot de passe" />
+            <form method="post" action="http://localhost:8080/inscription">
+                <input type="text" class="input-inscription-first" name="name" placeholder="Nom" />
+                <input type="text" class="input-inscription" name="firstName" placeholder="Prénom" />
+                <input type="text" class="input-inscription" name="userName" placeholder="Nom utilisateur" />
+                <input type="email" class="input-inscription"name="email" placeholder="Email" />
+                <input type="tel" class="input-inscription" name="telephone" placeholder="Numéro de téléphone" title="exemple format : 0647892314" />
+                <input type="password" class="input-inscription" name="password" placeholder="Mot de passe"  title="Veuillez rentrez un mot de passe contenant plus de 8 caractères avec au minumum une majucule, une minuscule, un chiffre et un caractère spéciale" />
+                <input type="password" class="input-inscription" name="confirmPassword" placeholder="Confirmer votre mot de passe" />
                 <input class="submit-button" type="submit" value="S’inscrire"/>
+                <?php if(isset($message) && ($message !== null)): ?>
+                <p class="error-message"><?php echo $message; ?></p>
+                <?php else: ?>
+                    <p></p>
+                <?php endif; ?>
             </form>
         </div>
         </div>
