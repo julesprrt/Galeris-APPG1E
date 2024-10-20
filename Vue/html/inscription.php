@@ -27,7 +27,7 @@
         </div>
         <div class="form-inscription">
             <p class="Title-inscription">Inscription</p>
-            <form method="post" action="http://localhost:8080/inscription">
+            <form method="post" action="http://localhost:80/inscription">
                 <input type="text" class="input-inscription-first" name="name" placeholder="Nom" />
                 <input type="text" class="input-inscription" name="firstName" placeholder="Prénom" />
                 <input type="text" class="input-inscription" name="userName" placeholder="Nom utilisateur" />
