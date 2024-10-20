@@ -126,9 +126,10 @@ Class User {
     public function saveUser(Database $db){
         $conn = $db->connect();
         $date = date('Y/m/d');
+        $hashPassword = password_hash($_SESSION["usersession"]["password"], PASSWORD_DEFAULT);
         $sql = "Insert into utilisateur (nom, prenom, email, mot_de_passe, date_creation) Values (?,?,?,?,?)" ;
         $stmt = $conn->prepare($sql);
-        $stmt->bind_param('sssss',$_SESSION["usersession"]["name"], $_SESSION["usersession"]["firstname"], $_SESSION["usersession"]["email"],$_SESSION["usersession"]["password"],$date);
+        $stmt->bind_param('sssss',$_SESSION["usersession"]["name"], $_SESSION["usersession"]["firstname"], $_SESSION["usersession"]["email"],$hashPassword,$date);
         $stmt->execute();
         $stmt->close();
         $emailSession = $_SESSION["usersession"]["email"];

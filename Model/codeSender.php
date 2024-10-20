@@ -12,7 +12,7 @@ Class CodeSender {
 
     public function sendCode($to) {
         $code = rand(100000,999999);
-        $this->sendMail->sendMail($to,title, "Voici le code à usage unique à entrer : " . $code);
+        $this->sendMail->sendMail($to,title_Code_unique, message_Code_unique . $code);
     }
     
 }
