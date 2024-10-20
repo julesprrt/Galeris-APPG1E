@@ -17,7 +17,7 @@ Class UserController extends Controller{
                 //$this->render('code', ['message' => $user->"Un code vous à été envoyé sur votre adresse mail"]);
             }
             else{//Sinon affiché le message d'erreur sur la vue
-                $this->render('inscription', ['message' => $user->registerVerification($db)]);
+                $this->render('inscription', ['message' => $result]);
             }
         }
         else{//Premier affichage sans les données Post
