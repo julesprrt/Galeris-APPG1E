@@ -34,10 +34,10 @@ CREATE TABLE `utilisateur` (
   `email` varchar(100) NOT NULL,
   `description` varchar(250) DEFAULT NULL,
   `adresse` varchar(100) DEFAULT NULL,
-  `roles` tinyint(1) NOT NULL DEFAULT 0,
+  `roles` enum('Utilisateur', 'Admin') Default 'Utilisateur',
   `mot_de_passe` varchar(100) NOT NULL,
   `date_creation` date NOT NULL,
-  `newsletter` tinyint(1) NOT NULL
+  `newsletter` tinyint(1) NOT NULL Default 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
