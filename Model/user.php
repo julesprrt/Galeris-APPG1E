@@ -47,6 +47,7 @@ Class User {
         }
         else{
             //Envoie d'un code a usage unique
+            session_start();
             $_SESSION["usersession"] = array("name" => $this->name, "firstname" => $this->firstName, "username" => $this->userName,"email" => $this->email,"telephone" => $this->telephone, "password" => $this->password);//Mettre monatenement dans la session pour les enregistrer dans la bd après que l'utilisateur rentre le code à usage unique
             $this->sendCode->sendCode($this->email);
             return true;
@@ -114,5 +115,25 @@ Class User {
         $stmt->fetch();
         $stmt->close();
         return $total;
+    }
+
+    /**
+     * Summary of saveUser
+     * @param Database $db
+     * @return void
+     * Ajouter l'utilisateur dans la base de données
+     */
+    public function saveUser(Database $db){
+        $conn = $db->connect();
+        $date = date('Y/m/d');
+        $sql = "Insert into utilisateur (nom, prenom, email, mot_de_passe, date_creation) Values (?,?,?,?,?)" ;
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param('sssss',$_SESSION["usersession"]["name"], $_SESSION["usersession"]["firstname"], $_SESSION["usersession"]["email"],$_SESSION["usersession"]["password"],$date);
+        $stmt->execute();
+        $stmt->close();
+        $emailSession = $_SESSION["usersession"]["email"];
+        session_destroy();
+        session_start();
+        $_SESSION["usersession"] = $emailSession;
     }
 }
