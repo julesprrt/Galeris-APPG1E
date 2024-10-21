@@ -4,9 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FAQ Galeris</title>
-    <link rel="stylesheet" href="../css/FAQ.css">
-    <link rel="stylesheet" href="../css/footer.css">
-    <script src="../JS/Faq.js" defer></script>
+    <base href="/Vue/">
+    <link rel="stylesheet" href="CSS/FAQ.css">
+    <link rel="stylesheet" href="CSS/footer.css">
+    <script src="JS/Faq.js" defer></script>
 </head>
 <body>
    <header>

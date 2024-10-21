@@ -5,11 +5,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mot de Passe Oublié</title>
-    <link rel="stylesheet" href="..\css\motdepasseoublie.css">
+    <base href="/Vue/">
+    <link rel="stylesheet" href="CSS\motdepasseoublie.css">
 </head>
 <header></header>
 <h1>Mot de Passe Oublié</h1>
-<a href="../html/accueil.html"><img src="..\..\images\logo.png" alt="Logo de Galeris" style="display: block; margin: 0 auto;" ></a>
+<a href="./html/accueil.php"><img src="..\..\images\logo.png" alt="Logo de Galeris" style="display: block; margin: 0 auto;" ></a>
 </header>
 <main>
     <form action="/reset-password" method="post">

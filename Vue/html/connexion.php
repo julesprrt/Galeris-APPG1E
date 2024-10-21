@@ -4,9 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Connexion - Galeris</title>
-    <link href="../css/connexion.css" rel="stylesheet">
-    <link href="../css/footer.css" rel="stylesheet">
-    <script src="../JS/connexion.js" defer></script>
+    <base href="/Vue/">
+    <link href="CSS/connexion.css" rel="stylesheet">
+    <link href="CSS/footer.css" rel="stylesheet">
+    <script src="JS/connexion.js" defer></script>
 </head>
 <body>
     <div class="Page">

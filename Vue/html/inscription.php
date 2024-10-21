@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inscription - Galeris</title>
     <base href="/Vue/">
-    <link href="css/inscription.css" rel="stylesheet">
-    <link href="css/footer.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
+    <link href="CSS/inscription.css" rel="stylesheet">
+    <link href="CSS/footer.css" rel="stylesheet">
+    <link href="CSS/style.css" rel="stylesheet">
 </head>
 <body>
     <div class="Page">
