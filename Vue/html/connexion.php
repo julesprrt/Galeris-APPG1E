@@ -7,6 +7,7 @@
     <base href="/Vue/">
     <link href="CSS/connexion.css" rel="stylesheet">
     <link href="CSS/footer.css" rel="stylesheet">
+    <link href="CSS/style.css" rel="stylesheet">
     <script src="JS/connexion.js" defer></script>
 </head>
 <body>
@@ -27,11 +28,16 @@
         </div>
         <div class="form-connexion">
             <p class="Title-connexion">Connectez-vous</p>
-            <form>
-                <input type="text" class="input-connexion-first" placeholder="Entrez votre mail ou username" />
-                <input type="password" class="input-connexion" placeholder="Mot de passe" />
+            <form method="post" action="http://localhost:80/connexion">
+                <input name="email" type="text" class="input-connexion-first" placeholder="Entrez votre mail" />
+                <input name="password" type="password" class="input-connexion" placeholder="Mot de passe" />
                 <a href="changer a lien de mdpo" class="mdpo">Mot de passe oublié ?</a>
                 <button class="button-connection"></button>
+                <?php if(isset($message) && ($message !== null)): ?>
+                <p class="error-message"><?php echo $message; ?></p>
+                <?php else: ?>
+                    <p></p>
+                <?php endif; ?>
             </form>
         </div>
         </div>

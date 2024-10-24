@@ -24,4 +24,22 @@ Class UserController extends Controller{
             $this->render('inscription', ['message' => '']);
         }
     }
+
+    //Connexion de l'utilisateur
+    public function connexion(Database $db) {
+        if (isset($_POST['email']) && isset($_POST['password'])) {
+            $user = new User(null,null,null,$_POST['email'], null,$_POST['password'], null);
+            // Obtenir une connexion à la base de données
+            $result = $user-> connectUser($db);
+            if($result === true){
+                header("Location: http://localhost:80/");
+            }
+            else{
+                $this->render('connexion', ['message' => $result]);
+            }
+        }
+        else{
+            $this->render('connexion', ['message' => '']);
+        }
+    }
 }

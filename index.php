@@ -13,7 +13,7 @@ $router = new Router();
 //Les routes avec le controller associé et la méthode associé 
 $router->addRoute('/', HomeController::class, action: 'home');
 $router->addRoute('/inscription', UserController::class, action: 'inscription');
-
+$router->addRoute('/connexion', UserController::class, 'connexion');
 
 
 $router->dispatch($uri);//Appel a la méthode du controller dedié
