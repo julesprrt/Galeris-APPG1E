@@ -1,17 +1,15 @@
 {
-    "name": "akash/projet-app-info",
+    "name": "antoi/projet-app-info",
     "autoload": {
         "psr-4": {
-            "Akash\\ProjetAppInfo\\": "src/"
+            "Antoi\\ProjetAppInfo\\": "src/"
         }
     },
     "authors": [
         {
-            "name": "akash47",
-            "email": "65364908+Akashos23@users.noreply.github.com"
+            "name": "antoineclz",
+            "email": "antoine.caliez@eleve.isep.fr"
         }
     ],
-    "require": {
-        "phpmailer/phpmailer": "^6.9"
-    }
+    "require": {}
 }

@@ -19,11 +19,11 @@
                 <h3 class="title3"> Contactez-nous </h3>
             </div>
     
-            <form action="#" method="post">
-                <input type="text" name="firstname" placeholder="Prénom" required="">
-                <input type="text" name="name" placeholder="Nom de famille" required="">
-                <input type="text" name="email" placeholder="Adresse mail" required="">
-                <input type="text" name="subject" placeholder="Sujet du message" required="">
+            <form action="http://localhost:80/contact" method="post">
+                <input type="text" name="firstname" placeholder="Prénom" required>
+                <input type="text" name="name" placeholder="Nom de famille" required>
+                <input type="text" name="email" placeholder="Adresse mail" required>
+                <input type="text" name="subject" placeholder="Sujet du message" required>
                 <textarea name="message" id="" cols="30" rows="10" placeholder="Message"></textarea>
                 <button type="submit" class="">Envoyer</button>
     

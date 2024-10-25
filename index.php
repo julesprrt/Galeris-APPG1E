@@ -14,6 +14,7 @@ $router = new Router();
 $router->addRoute('/', HomeController::class, action: 'home');
 $router->addRoute('/inscription', UserController::class, action: 'inscription');
 $router->addRoute('/connexion', UserController::class, 'connexion');
+$router->addRoute('/contact', ContactController::class, 'contact');
 
 
 $router->dispatch($uri);//Appel a la méthode du controller dedié
