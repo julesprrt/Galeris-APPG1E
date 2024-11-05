@@ -20,7 +20,7 @@
             </div>
     
             <form action="http://localhost:80/contact" method="post">
-                <input type="text" name="firstname" placeholder="Prénom" required>
+                <input type="text" name="firstName" placeholder="Prénom" required>
                 <input type="text" name="name" placeholder="Nom de famille" required>
                 <input type="text" name="email" placeholder="Adresse mail" required>
                 <input type="text" name="subject" placeholder="Sujet du message" required>
