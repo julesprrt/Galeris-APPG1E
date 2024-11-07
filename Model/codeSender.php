@@ -12,7 +12,7 @@ Class CodeSender {
 
     public function sendCode($to) {
         $code = rand(100000,999999);
-        $this->sendMail->sendMail($to,title_Code_unique, message_Code_unique . $code);
+        $this->sendMail->sendMail($to,title_Code_unique, message_Code_unique . $code, galeris);
         //Ajouter le code dans une Table code dans la BD
     }
     

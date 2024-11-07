@@ -7,17 +7,16 @@ Class MailSender {
 
     }
 
-    public function sendMail($to, $subject, $message) {
+    public function sendMail($to, $subject, $message, $from) {
         $mail = new PHPMailer(true);
         $mail->isSMTP();   
         $mail->SMTPAuth = true;
         $mail->SMTPSecure = "ssl";
         $mail->Host = "smtp.gmail.com";
         $mail->Port = 465;
-        $mail->Username = "galeris2004@gmail.com";
+        $mail->Username = email_galeris;
         $mail->Password = "kwdo bkhh cfat bkbv";
-    
-        $mail->setFrom("galeris2004@gmail.com", "Galeris");
+        $mail->setFrom(email_galeris, $from);
     
         $mail->Subject = $subject;
         $mail->Body = $message;
@@ -25,11 +24,10 @@ Class MailSender {
         $mail->AddAddress($to);
 
         if($mail->Send()){
-            echo "ok";
+            return true;
         }
         else{
-            echo "nok ";
-            echo $mail->ErrorInfo;
+            return false;
         }
     }
     

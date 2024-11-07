@@ -1,6 +1,7 @@
 <?php
 require_once('Database/Database.php');
 require_once('Model/codeSender.php');
+require_once('Model/utils.php');
 
 Class User {
     private $name;
@@ -11,6 +12,7 @@ Class User {
     private $password;
     private $confirmPassword;
     private $sendCode;
+    private $utilsUser;
     public function __construct($name, $firstName, $userName, $email, $telephone, $password, $confirmPassword) {//Constructeur -> Initialisation des données
         $this->name = $name;
         $this->firstName = $firstName;
@@ -20,6 +22,7 @@ Class User {
         $this->password = $password;
         $this->confirmPassword = $confirmPassword;
         $this->sendCode = new CodeSender();
+        $this->utilsUser = new Utils();
     }
     /**
      * Summary of registerVerification
@@ -30,7 +33,7 @@ Class User {
         if($this->name === "" || $this->firstName === "" || $this->userName === "" || $this->email === "" || $this->telephone === "" || $this->password === "" || $this->confirmPassword === ""){
             return "Vous devez remplir l'ensemble des champs du formulaire";
         }
-        else if(!$this->emailComposition($this->email)){
+        else if(!$this->utilsUser->emailComposition($this->email)){
             return "Mail invalide";
         }
         else if(!$this->telComposition($this->telephone)){
@@ -93,16 +96,6 @@ Class User {
         else{
             return false;
         }
-    }
-
-    /**
-     * *
-     * @param mixed $email
-     * @return mixed
-     * Composition du mail via le filtre proposé par PHP
-     */
-    public function emailComposition($email){
-        return filter_var($email, FILTER_VALIDATE_EMAIL);
     }
     /**
      * Summary of VerifyExistMail

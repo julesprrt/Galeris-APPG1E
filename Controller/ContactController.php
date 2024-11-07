@@ -1,61 +1,35 @@
 <?php
 require_once('Database/Database.php');
 require_once('Controller.php');
-require_once('mailSender.php');
+require_once('Model/contact.php');
 
 //Controller utilisateur
-Class ContactController extends Controller{
+class ContactController extends Controller
+{
 
-    public function contact(Database $db) {
-
+  public function contact(Database $db)
+  {
     try {
-
-        if(isset($_POST['firstName']) && isset($_POST['Name']) && isset($_POST['email']) && isset($_POST['subject']) && isset($_POST['message']) )
-        {
-            $this->render('contact', ['message' => '']);
-        }
-
-        
-      } catch (error) {
-        
-        console.error("Une erreur s'est produite :", error);
-      }
-  
-    }
-
-
-
-    public function send(Database $db){
-
-      try {
-
-          $firstName = $_POST['firstName'];
-          $name = $_POST['Name'];
-          $email = $_POST['email'];
-          $subject = $_POST['subject'];
-          $message = $_POST['message'];
-
-          // Préparer l'e-mail
-          $to = $this->mailSender; // Adresse e-mail du destinataire (préconfigurée)
-          $headers = "From: $email\r\n";
-          $headers .= "Reply-To: $email\r\n";
-          $headers .= "Content-Type: text/plain; charset=UTF-8\r\n";
-
-
-          if (mailSender($to, $subject, $message, $headers)) {
-            echo "E-mail envoyé avec succès !";
-          } 
-          else {
-          echo "Échec de l'envoi de l'e-mail.";
+        $paramData = file_get_contents("php://input");
+        $data = json_decode($paramData, true);
+        if (isset($data['firstName']) && isset($data['name']) && isset($data['email']) && isset($data['subject']) && isset($data['message'])) {
+          $contact = new Contact($data['firstName'], $data['name'], $data['email'], $data['message'], $data['subject']);
+          $resultContact = $contact->contactPlatformGaleris();
+          if($resultContact == true && gettype($resultContact) !== 'string') {
+            http_response_code(200);
+            echo json_encode(['Success' => 'Mail bien envoyé à notre service']);
+          } else {
+            http_response_code(400);
+            echo json_encode(['Error' => $resultContact]);
           }
-
-          } 
-          catch (error) {
-        
-        console.error("Une erreur s'est produite :", error);
+        } 
+      else {
+       $this->render('contact', ['message' => '']);
       }
-
+    } catch (error) {
+      console.error("Une erreur s'est produite :", error);
+      http_response_code(500);
     }
 
-
+  }
 }

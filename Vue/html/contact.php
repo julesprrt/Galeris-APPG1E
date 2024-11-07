@@ -6,7 +6,9 @@
     <title>Document</title>
     <base href="/Vue/">
     <link rel="stylesheet" href="CSS/contact.css">
+    <link rel="stylesheet" href="CSS/style.css">
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="JS/contact.js" defer></script>
     
 </head>
 <body class="h-screen">
@@ -19,17 +21,16 @@
                 <h3 class="title3"> Contactez-nous </h3>
             </div>
     
-            <form action="http://localhost:80/contact" method="post">
+            <form>
                 <input type="text" name="firstName" placeholder="Prénom" required>
                 <input type="text" name="name" placeholder="Nom de famille" required>
                 <input type="text" name="email" placeholder="Adresse mail" required>
                 <input type="text" name="subject" placeholder="Sujet du message" required>
-                <textarea name="message" id="" cols="30" rows="10" placeholder="Message"></textarea>
-                <button type="submit" class="">Envoyer</button>
-    
+                <textarea name="message" cols="30" rows="10" placeholder="Message"></textarea>
+                <button type="button" id="btn-contact">Envoyer</button>
+                <p class="error-message"></p>
             </form>
         </div>
-
     </section>
 
 
