@@ -28,16 +28,12 @@
         </div>
         <div class="form-connexion">
             <p class="Title-connexion">Connectez-vous</p>
-            <form method="post" action="http://localhost:80/connexion">
+            <form>
                 <input name="email" type="text" class="input-connexion-first" placeholder="Entrez votre mail" />
                 <input name="password" type="password" class="input-connexion" placeholder="Mot de passe" />
                 <a href="changer a lien de mdpo" class="mdpo">Mot de passe oublié ?</a>
-                <button class="button-connection"></button>
-                <?php if(isset($message) && ($message !== null)): ?>
-                <p class="error-message"><?php echo $message; ?></p>
-                <?php else: ?>
-                    <p></p>
-                <?php endif; ?>
+                <button type="button" class="button-connection"></button>
+                <p class="error-message"></p>
             </form>
         </div>
         </div>

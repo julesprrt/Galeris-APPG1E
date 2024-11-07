@@ -11,7 +11,8 @@ Class UserController extends Controller{
             $user = new User($_POST["name"], $_POST["firstName"], $_POST["userName"], $_POST["email"], $_POST["telephone"], $_POST["password"],$_POST["confirmPassword"]);
             $result = $user->registerVerification($db);//Verifier les données d'inscription
             if($result === true){//Si les données sont correct alors envoie du code a usage unique + redirection vers la page  avec le code à usage unique
-                echo "Parfait";
+                $user->saveUser($db);
+                //echo "Parfait";
                 //Envoie code à usage unique
                 //Redirection vers la page avec le code à usage unique
                 //$this->render('code', ['message' => $user->"Un code vous à été envoyé sur votre adresse mail"]);
@@ -27,15 +28,19 @@ Class UserController extends Controller{
 
     //Connexion de l'utilisateur
     public function connexion(Database $db) {
-        if (isset($_POST['email']) && isset($_POST['password'])) {
-            $user = new User(null,null,null,$_POST['email'], null,$_POST['password'], null);
+        $paramData = file_get_contents("php://input");
+        $data = json_decode($paramData, true);
+        if (isset($data['email']) && isset($data['password'])) {
+            $user = new User(null,null,null,$data['email'], null,$data['password'], null);
             // Obtenir une connexion à la base de données
             $result = $user-> connectUser($db);
             if($result === true){
-                header("Location: http://localhost:80/");
+                http_response_code(200);
+                echo json_encode(['Success' => "Connexion réussie"]);
             }
             else{
-                $this->render('connexion', ['message' => $result]);
+                http_response_code(400);
+                echo json_encode(['Error' => $result]);
             }
         }
         else{

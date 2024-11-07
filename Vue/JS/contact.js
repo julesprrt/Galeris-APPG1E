@@ -19,7 +19,6 @@ async function contact() {
         redirect: "follow"
     };
     const response = await fetch("http://localhost:80/contact", requestOptions)
-    console.log(response)
     const statuscode = response.status;
     const result = await response.json();
     if(statuscode === 200){
