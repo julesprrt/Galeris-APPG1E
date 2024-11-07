@@ -8,6 +8,7 @@
     <link href="CSS/inscription.css" rel="stylesheet">
     <link href="CSS/footer.css" rel="stylesheet">
     <link href="CSS/style.css" rel="stylesheet">
+    <script src="JS/inscription.js" defer></script>
 </head>
 <body>
     <div class="Page">
@@ -27,7 +28,7 @@
         </div>
         <div class="form-inscription">
             <p class="Title-inscription">Inscription</p>
-            <form method="post" action="http://localhost:80/inscription">
+            
                 <input type="text" class="input-inscription-first" name="name" placeholder="Nom" />
                 <input type="text" class="input-inscription" name="firstName" placeholder="Prénom" />
                 <input type="text" class="input-inscription" name="userName" placeholder="Nom utilisateur" />
@@ -35,12 +36,8 @@
                 <input type="tel" class="input-inscription" name="telephone" placeholder="Numéro de téléphone" title="exemple format : 0647892314" />
                 <input type="password" class="input-inscription" name="password" placeholder="Mot de passe"  title="Veuillez rentrez un mot de passe contenant plus de 8 caractères avec au minumum une majucule, une minuscule, un chiffre et un caractère spéciale" />
                 <input type="password" class="input-inscription" name="confirmPassword" placeholder="Confirmer votre mot de passe" />
-                <input class="submit-button" type="submit" value="S’inscrire"/>
-                <?php if(isset($message) && ($message !== null)): ?>
-                <p class="error-message"><?php echo $message; ?></p>
-                <?php else: ?>
-                    <p></p>
-                <?php endif; ?>
+                <button class="submit-button" type="button">S'inscrire</button>
+                <p class="error-message"></p>
             </form>
         </div>
         </div>

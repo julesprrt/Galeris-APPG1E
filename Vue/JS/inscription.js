@@ -1,15 +1,18 @@
-document.getElementById("btn-contact").addEventListener('click', contact);
+document.querySelector(".submit-button").addEventListener('click', register)
 
-async function contact() {
+
+async function register() {
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
-    console.log(document.getElementsByName("email")[0].value)
+    
     const raw = JSON.stringify({
-        "email": document.getElementsByName("email")[0].value,
         "firstName": document.getElementsByName("firstName")[0].value,
         "name": document.getElementsByName("name")[0].value,
-        "subject": document.getElementsByName("subject")[0].value,
-        "message": document.getElementsByName("message")[0].value
+        "userName": document.getElementsByName("userName")[0].value,
+        "email": document.getElementsByName("email")[0].value,
+        "telephone": document.getElementsByName("telephone")[0].value,
+        "password" : document.getElementsByName("password")[0].value,
+        "confirmPassword" : document.getElementsByName("confirmPassword")[0].value
     });
 
     const requestOptions = {
@@ -18,13 +21,13 @@ async function contact() {
         body: raw,
         redirect: "follow"
     };
-    const response = await fetch("http://localhost:80/contact", requestOptions)
+    const response = await fetch("http://localhost:80/inscription", requestOptions)
     const statuscode = response.status;
     const result = await response.json();
+    
     if(statuscode === 200){
-        alert(result.Success);
+        alert(result.Success)
         document.querySelector('.error-message').innerHTML = "";
-        window.location.href = "http://localhost:80";
     }
     else{
         alert(result.Error);

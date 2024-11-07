@@ -7,18 +7,22 @@ require_once('Controller.php');
 Class UserController extends Controller{
     
     public function inscription(Database $db) {
-        if(isset($_POST['name']) && isset($_POST['firstName']) && isset($_POST['userName']) && isset($_POST['email']) && isset($_POST['telephone']) && isset($_POST['password']) && isset($_POST['confirmPassword'])){//Verification données entré dans le formulaire
-            $user = new User($_POST["name"], $_POST["firstName"], $_POST["userName"], $_POST["email"], $_POST["telephone"], $_POST["password"],$_POST["confirmPassword"]);
+        $paramData = file_get_contents("php://input");
+        $data = json_decode($paramData, true);
+        if(isset($data['name']) && isset($data['firstName']) && isset($data['userName']) && isset($data['email']) && isset($data['telephone']) && isset($data['password']) && isset($data['confirmPassword'])){//Verification données entré dans le formulaire
+            $user = new User($data["name"], $data["firstName"], $data["userName"], $data["email"], $data["telephone"], $data["password"],$data["confirmPassword"]);
             $result = $user->registerVerification($db);//Verifier les données d'inscription
             if($result === true){//Si les données sont correct alors envoie du code a usage unique + redirection vers la page  avec le code à usage unique
-                $user->saveUser($db);
-                //echo "Parfait";
+                //$user->saveUser($db);
+                http_response_code(200);
+                echo json_encode(['Success' => "Un code vous à été envoyé sur votre adresse mail"]);
                 //Envoie code à usage unique
                 //Redirection vers la page avec le code à usage unique
                 //$this->render('code', ['message' => $user->"Un code vous à été envoyé sur votre adresse mail"]);
             }
             else{//Sinon affiché le message d'erreur sur la vue
-                $this->render('inscription', ['message' => $result]);
+                http_response_code(400);
+                echo json_encode(['Error' => $result]);
             }
         }
         else{//Premier affichage sans les données Post
