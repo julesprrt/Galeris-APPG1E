@@ -24,7 +24,7 @@ async function connexion() {
         body: raw,
         redirect: "follow"
     };
-    const response = await fetch("http://localhost:80/connexion", requestOptions)
+    const response = await fetch("http://localhost:80/Galeris-APPG1E/connexion", requestOptions)
     const statuscode = response.status;
     const result = await response.json();
     console.log(statuscode);
@@ -32,7 +32,7 @@ async function connexion() {
     if(statuscode === 200){
         alert(result.Success)
         document.querySelector('.error-message').innerHTML = "";
-        window.location.href = "http://localhost:80";
+        window.location.href = "http://localhost:80/Galeris-APPG1E";
     }
     else{
         alert(result.Error);

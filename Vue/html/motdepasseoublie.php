@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mot de Passe Oublié</title>
-    <base href="/Vue/">
+    <base href="/Galeris-APPG1E/Vue/">
     <link rel="stylesheet" href="CSS\motdepasseoublie.css">
 </head>
 <header></header>

@@ -21,7 +21,7 @@ async function register() {
         body: raw,
         redirect: "follow"
     };
-    const response = await fetch("http://localhost:80/inscription", requestOptions)
+    const response = await fetch("http://localhost:80/Galeris-APPG1E/inscription", requestOptions)
     const statuscode = response.status;
     const result = await response.json();
     

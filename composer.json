@@ -1,8 +1,8 @@
 {
-    "name": "antoi/projet-app-info",
+    "name": "antoi/galeris-appg1e",
     "autoload": {
         "psr-4": {
-            "Antoi\\ProjetAppInfo\\": "src/"
+            "Antoi\\GalerisAppg1e\\": "src/"
         }
     },
     "authors": [
@@ -11,5 +11,7 @@
             "email": "antoine.caliez@eleve.isep.fr"
         }
     ],
-    "require": {}
+    "require": {
+        "phpmailer/phpmailer": "^6.9"
+    }
 }
