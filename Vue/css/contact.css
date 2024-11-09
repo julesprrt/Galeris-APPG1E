@@ -26,7 +26,6 @@ section#contact .container {
   padding: 30px 10px;
   box-sizing: border-box;
   border-radius: 15px;
-  
 }
 
 section#contact .container form button {
@@ -96,4 +95,16 @@ section#contact .container form input:active {
 
 section#contact .container form textarea {
   width: 100%;
+}
+
+#object-select {
+  border: 1px solid #000;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+#div-select {
+  align-items: center;
+  justify-content: center;
+  place-content : center;
 }

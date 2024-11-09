@@ -76,7 +76,16 @@ Class Contact {
         if( $this->utilsContact->emailComposition($this->email) == false){
             return "Email invalide";
         }
-        return $this->sendMail->sendMail(email_galeris, $this->subject, $this->message, $this->email);
+        $subject_options = [
+            'problem' => '[Probleme]',
+            'information' => '[Information]',
+            'bug' => '[Bug]',
+            'others' => '[Autres]',
+        ];
+
+        $subject_label = isset($subject_options[$this->subject]) ? $subject_options[$this->subject] : '[Autres]';
+
+        return $this->sendMail->sendMail(email_galeris, $subject_label, $this->message, $this->email);
     }
     
 }

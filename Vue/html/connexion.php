@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Connexion - Galeris</title>
-    <base href="/Vue/">
+    <base href="/Galeris-APPG1E/Vue/">
     <link href="CSS/connexion.css" rel="stylesheet">
     <link href="CSS/footer.css" rel="stylesheet">
     <link href="CSS/style.css" rel="stylesheet">
