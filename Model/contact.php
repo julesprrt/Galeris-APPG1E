@@ -33,9 +33,45 @@ Class Contact {
         }
     }
 
+    public function LimitLengthMessage(){
+        if(strlen($this->message) < 15){
+            return false;
+        }
+        else{
+            return true;
+        }
+    }
+
+    public function LimitLengthFirstName(){
+        if(strlen($this->name) <= 1){
+            return false;
+        }
+        else{
+            return true;
+        }
+    }
+
+    public function LimitLengthName(){
+        if(strlen($this->firstName) <= 1){
+            return false;
+        }
+        else{
+            return true;
+        }
+    }
+
     public function contactPlatformGaleris() {
         if($this->verifyAllInput() == false){
             return "Veuillez remplir l'ensemble des champs";
+        }
+        if($this->LimitLengthFirstName() == false){
+            return "Nombre de caractère minimale pour le champs Prénom est de 2";
+        }
+        if($this->LimitLengthName() == false){
+            return "Nombre de caractère minimale pour le champs nom est de 2";
+        }
+        if($this->LimitLengthMessage() == false){
+            return "Nombre de caractère minimale pour le champs message est de 15";
         }
         if( $this->utilsContact->emailComposition($this->email) == false){
             return "Email invalide";
