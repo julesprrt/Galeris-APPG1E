@@ -4,7 +4,6 @@ require_once("./Router.php");
 require_once("./Controller/UserController.php");
 require_once("./Controller/HomeController.php");
 require_once("./Controller/ContactController.php");
-
 require 'vendor/autoload.php';
 
 
