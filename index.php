@@ -16,6 +16,6 @@ $router->addRoute('/Galeris-APPG1E/', HomeController::class, action: 'home');
 $router->addRoute('/Galeris-APPG1E/inscription', UserController::class, action: 'inscription');
 $router->addRoute('/Galeris-APPG1E/connexion', UserController::class, 'connexion');
 $router->addRoute('/Galeris-APPG1E/contact', ContactController::class, 'contact');
-
+$router->addRoute('/Galeris-APPG1E/FAQ', UserController::class, 'FAQ');
 
 $router->dispatch($uri);//Appel a la méthode du controller dedié
