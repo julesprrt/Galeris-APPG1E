@@ -13,7 +13,7 @@
 <body>
     <div class="Page">
         <div class="logo-galeris">
-            <img width="150" height="150" src="../../images/logo-sans-fond.png"/>
+            <img width="150" height="150" src="../images/logo-sans-fond.png"/>
         </div>
         <div class="Page-content">
         <div class="infos-inscription">

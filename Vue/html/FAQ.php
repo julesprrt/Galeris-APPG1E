@@ -14,15 +14,15 @@
     <h2>Foire Aux Questions</h2>
     <p>Trouvez toutes les réponses à vos questions !</p>
     <p>
-        <img src="../../images/Logo_Galeris_(sans_fond).png" class="logo"/>
+        <img src="../images/Logo_Galeris_(sans_fond).png" class="logo"/>
 <!-- <a>href lien page d'accueil sur le logo (ajouter le texte "Retournez à l'accueil" en passant la souris sur le logo) </a> -->
-        <img src="../../images/tableau.png" class="tableau"/>
-        <img src="../../images/tableau2.png" class="tableau2"/>
+        <img src="../images/tableau.png" class="tableau"/>
+        <img src="../images/tableau2.png" class="tableau2"/>
     </p>
     
    </header> 
 <div class="Page">
-   <img src="../../images/sculpture2.png" class="image1"/>
+   <img src="../images/sculpture2.png" class="image1"/>
 
 <il>Général</il><br>
 

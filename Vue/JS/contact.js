@@ -24,6 +24,9 @@ async function contact() {
     if(statuscode === 200){
         alert(result.Success);
         document.querySelector('.error-message').innerHTML = "";
+        document.querySelectorAll('.contact-input').forEach((item)=> {
+            item.value = "";
+        })
         window.location.href = "http://localhost:80/Galeris-APPG1E/";
     }
     else{

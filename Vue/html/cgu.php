@@ -18,7 +18,7 @@
     <main>
         <h1 class="titre">
             <span>Conditions Générales d'Utilisation</span>
-            <img src="../../images/langue.png" alt="Langue" class="photo">
+            <img src="../images/langue.png" alt="Langue" class="photo">
         </h1>
         
         <br>

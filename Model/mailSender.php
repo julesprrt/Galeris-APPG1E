@@ -11,11 +11,11 @@ Class MailSender {
         $mail = new PHPMailer(true);
         $mail->isSMTP();   
         $mail->SMTPAuth = true;
-        $mail->SMTPSecure = "ssl";
+        $mail->SMTPSecure = "tls";
         $mail->Host = "smtp.gmail.com";
-        $mail->Port = 465;
+        $mail->Port = 587;
         $mail->Username = email_galeris;
-        $mail->Password = "kwdo bkhh cfat bkbv";
+        $mail->Password = email_galeris_password;
         $mail->setFrom(email_galeris, $from);
     
         $mail->Subject = $subject;

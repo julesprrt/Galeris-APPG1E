@@ -10,7 +10,7 @@
 </head>
 <header></header>
 <h1>Mot de Passe Oublié</h1>
-<a href="./html/accueil.php"><img src="..\..\images\logo.png" alt="Logo de Galeris" style="display: block; margin: 0 auto;" ></a>
+<a href="./html/accueil.php"><img src="../images/logo.png" alt="Logo de Galeris" style="display: block; margin: 0 auto;" ></a>
 </header>
 <main>
     <form action="/reset-password" method="post">

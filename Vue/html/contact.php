@@ -22,9 +22,9 @@
             </div>
     
             <form>
-                <input type="text" name="firstName" placeholder="Prénom" required>
-                <input type="text" name="name" placeholder="Nom de famille" required>
-                <input type="text" name="email" placeholder="Adresse mail" required>
+                <input class="contact-input" type="text" name="firstName" placeholder="Prénom" required>
+                <input class="contact-input" type="text" name="name" placeholder="Nom de famille" required>
+                <input class="contact-input" type="text" name="email" placeholder="Adresse mail" required>
                 <div id="div-select">
                         <select name="subject" id="object-select" required>
                         <option value="">--Choississez le sujet du message--</option>
@@ -34,7 +34,7 @@
                         <option value="others">Autres</option>
                         </select>
                 </div>
-                <textarea name="message" cols="30" rows="10" placeholder="Message"></textarea>
+                <textarea class="contact-input" name="message" cols="30" rows="10" placeholder="Message"></textarea>
                 <button type="button" id="btn-contact">Envoyer</button>
                 <p class="error-message"></p>
             </form>
