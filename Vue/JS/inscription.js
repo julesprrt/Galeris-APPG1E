@@ -27,6 +27,12 @@ async function register() {
     
     if(statuscode === 200){
         alert(result.Success)
+        document.querySelectorAll('.input-inscription').forEach((item)=> {
+            item.value = "";
+        })
+        document.querySelectorAll('.input-inscription-first').forEach((item)=> {
+            item.value = "";
+        })
         document.querySelector('.error-message').innerHTML = "";
     }
     else{

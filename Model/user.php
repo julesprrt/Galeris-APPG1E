@@ -59,7 +59,25 @@ Class User {
 
     public function connectUser(Database $db)
     {
-        return $this->connectionUser($db);
+        $database = $db->connect();
+        // Interroger les données utilisateur dans la base de données
+        $query = "SELECT * FROM utilisateur WHERE email = '$this->email'";
+        $result = $database->execute_query($query);
+        $database->close();
+        if (mysqli_num_rows($result) > 0) {
+            // Obtenir les données utilisateur
+            $user = mysqli_fetch_assoc($result);
+            // Vérifier le mot de passe
+            if (password_verify($this->password, $user['mot_de_passe'])) {
+                session_start();
+                $_SESSION["usersession"] = $this->email;
+                return true;
+            } else {
+                return "Votre mail/mot de passe est incorrect";
+            }
+        } else {
+            return "Vous n'avez pas de compte";
+        }
     }
 
     /**
@@ -134,27 +152,5 @@ Class User {
         session_destroy();
         session_start();
         $_SESSION["usersession"] = $emailSession;
-    }
-
-    public function connectionUser(Database $db){
-        $database = $db->connect();
-        // Interroger les données utilisateur dans la base de données
-        $query = "SELECT * FROM utilisateur WHERE email = '$this->email'";
-        $result = $database->execute_query($query);
-        $database->close();
-        if (mysqli_num_rows($result) > 0) {
-            // Obtenir les données utilisateur
-            $user = mysqli_fetch_assoc($result);
-            // Vérifier le mot de passe
-            if (password_verify($this->password, $user['mot_de_passe'])) {
-                session_start();
-                $_SESSION["usersession"] = $this->email;
-                return true;
-            } else {
-                return "Votre mail/mot de passe est incorrect";
-            }
-        } else {
-            return "Vous n'avez pas de compte";
-        }
     }
 }

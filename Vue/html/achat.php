@@ -172,7 +172,7 @@
 
     </footer>
 
-    <script src="..\JS\achat.js"></script>
+    <script src="http://localhost/Galeris-APPG1E/vue/JS/achat.js"></script>
 </body>
 
 </html>
