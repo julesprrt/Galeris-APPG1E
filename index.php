@@ -6,6 +6,7 @@ require_once("./Controller/HomeController.php");
 require_once("./Controller/ContactController.php");
 require_once("./Controller/FAQController.php");
 require_once("./Controller/CGUController.php");
+require_once("./Controller/AchatController.php");
 require 'vendor/autoload.php';
 
 
@@ -20,6 +21,7 @@ $router->addRoute('/Galeris-APPG1E/connexion', UserController::class, 'connexion
 $router->addRoute('/Galeris-APPG1E/contact', ContactController::class, 'contact');
 $router->addRoute('/Galeris-APPG1E/FAQ', FAQController::class, 'faq');
 $router->addRoute('/Galeris-APPG1E/cgu', CGUController::class, 'cgu');
+$router->addRoute('/Galeris-APPG1E/achat', AchatController::class, 'achat');
 
 
 $router->dispatch($uri);//Appel a la méthode du controller dedié
