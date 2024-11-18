@@ -19,9 +19,9 @@ $router->addRoute('/Galeris-APPG1E/', HomeController::class, action: 'home');
 $router->addRoute('/Galeris-APPG1E/inscription', UserController::class, action: 'inscription');
 $router->addRoute('/Galeris-APPG1E/connexion', UserController::class, 'connexion');
 $router->addRoute('/Galeris-APPG1E/contact', ContactController::class, 'contact');
-$router->addRoute('/Galeris-APPG1E/FAQ', FAQController::class, 'faq');
+$router->addRoute('/Galeris-APPG1E/faq', FAQController::class, 'faq');
 $router->addRoute('/Galeris-APPG1E/cgu', CGUController::class, 'cgu');
 $router->addRoute('/Galeris-APPG1E/achat', AchatController::class, 'achat');
-
+$router->addRoute('/Galeris-APPG1E/motdepasse', UserController::class, 'password');
 
 $router->dispatch($uri);//Appel a la méthode du controller dedié
