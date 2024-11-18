@@ -1,14 +1,14 @@
 {
-    "name": "antoi/galeris-appg1e",
+    "name": "yannroquignymartin/galeris-appg1e",
     "autoload": {
         "psr-4": {
-            "Antoi\\GalerisAppg1e\\": "src/"
+            "Yannroquignymartin\\GalerisAppg1e\\": "src/"
         }
     },
     "authors": [
         {
-            "name": "antoineclz",
-            "email": "antoine.caliez@eleve.isep.fr"
+            "name": "YannRM1",
+            "email": "yann.roquigny.martin@gmail.com"
         }
     ],
     "require": {
