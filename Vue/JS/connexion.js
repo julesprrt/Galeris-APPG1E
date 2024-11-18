@@ -32,10 +32,19 @@ async function connexion() {
     if(statuscode === 200){
         alert(result.Success)
         document.querySelector('.error-message').innerHTML = "";
+        document.querySelectorAll('.input-connexion').forEach((item)=> {
+            item.value = "";
+        })
+        document.querySelectorAll('.input-connexion-first').forEach((item)=> {
+            item.value = "";
+        })
         window.location.href = "http://localhost:80/Galeris-APPG1E";
     }
     else{
         alert(result.Error);
         document.querySelector('.error-message').innerHTML = result.Error;
+        document.querySelectorAll('.input-connexion').forEach((item)=> {
+            item.value = "";
+        })
     }
 }

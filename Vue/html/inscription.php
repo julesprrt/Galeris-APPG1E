@@ -8,7 +8,7 @@
     <link href="CSS/inscription.css" rel="stylesheet">
     <link href="CSS/footer.css" rel="stylesheet">
     <link href="CSS/style.css" rel="stylesheet">
-    <script src="JS/inscription.js" defer></script>
+    <script src="http://localhost/Galeris-APPG1E/vue/JS/inscription.js" defer></script>
 </head>
 <body>
     <div class="Page">

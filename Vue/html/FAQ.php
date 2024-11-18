@@ -7,7 +7,7 @@
     <base href="/Galeris-APPG1E/Vue/">
     <link rel="stylesheet" href="CSS/FAQ.css">
     <link rel="stylesheet" href="CSS/footer.css">
-    <script src="JS/Faq.js" defer></script>
+    <script src="http://localhost/Galeris-APPG1E/vue/JS/Faq.js" defer></script>
 </head>
 <body>
    <header>
