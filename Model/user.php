@@ -1,6 +1,6 @@
 <?php
 require_once('Database/Database.php');
-require_once('Model/codeSender.php');
+require_once('Model/code.php');
 require_once('Model/utils.php');
 
 Class User {
@@ -21,7 +21,7 @@ Class User {
         $this->telephone = $telephone;
         $this->password = $password;
         $this->confirmPassword = $confirmPassword;
-        $this->sendCode = new CodeSender();
+        $this->sendCode = new Code();
         $this->utilsUser = new Utils();
     }
     /**
@@ -30,6 +30,7 @@ Class User {
      * @return bool|string
      */
     public function registerVerification(Database $db){
+        $value = $this->VerifyExistMail($db);
         if($this->name === "" || $this->firstName === "" || $this->userName === "" || $this->email === "" || $this->telephone === "" || $this->password === "" || $this->confirmPassword === ""){
             return "Vous devez remplir l'ensemble des champs du formulaire";
         }
@@ -45,15 +46,13 @@ Class User {
         else if($this->password !== $this->confirmPassword){
             return "Les deux mots de passe ne sont pas identiques";
         }
-        else if($this->VerifyExistMail($db) > 0){
+        else if($value === false){
             return "Vous avez déja un compte";
         }
         else{
             //Envoie d'un code a usage unique
-            session_start();
-            $_SESSION["usersession"] = array("name" => $this->name, "firstname" => $this->firstName, "username" => $this->userName,"email" => $this->email,"telephone" => $this->telephone, "password" => $this->password);//Mettre monatenement dans la session pour les enregistrer dans la bd après que l'utilisateur rentre le code à usage unique
             $this->sendCode->sendCode($this->email);
-            return true;
+            return $value === "actif" ? "code" : true;
         }
     }
 
@@ -68,11 +67,16 @@ Class User {
             // Obtenir les données utilisateur
             $user = mysqli_fetch_assoc($result);
             // Vérifier le mot de passe
-            if (password_verify($this->password, $user['mot_de_passe'])) {
+            if (password_verify($this->password, $user['mot_de_passe']) && $user["actif"] === 1) {
                 session_start();
                 $_SESSION["usersession"] = $this->email;
                 return true;
-            } else {
+            } 
+            else if($user["actif"] === 0){
+                $this->sendCode->sendCode($this->email);
+                return "Utilisateur non valide";
+            }
+            else {
                 return "Votre mail/mot de passe est incorrect";
             }
         } else {
@@ -123,14 +127,24 @@ Class User {
      */
     public function VerifyExistMail(Database $db){
         $conn = $db->connect();
-        $sql = "SELECT count(*) as total FROM utilisateur where email = ?" ;
-        $stmt = $conn->prepare($sql);
-        $stmt->bind_param('s',$this->email);
-        $stmt->execute();
-        $stmt->bind_result($total);
-        $stmt->fetch();
-        $stmt->close();
-        return $total;
+        $sql = "SELECT * FROM utilisateur where email = '$this->email'" ;
+        $result = $conn->execute_query($sql);
+        $conn->close();
+        if(mysqli_num_rows($result) > 0){
+            /*while ($row = $user->fetch_assoc()) {
+                if($row["actif"] === 0){
+                    return false;
+                }
+            }*/
+            $user = mysqli_fetch_assoc($result);
+            if($user["actif"] === 0){
+                return "actif";
+            }
+            else{
+                return false;
+            }
+        }
+        return true;
     }
 
     /**
@@ -142,15 +156,15 @@ Class User {
     public function saveUser(Database $db){
         $conn = $db->connect();
         $date = date('Y/m/d');
-        $hashPassword = password_hash($_SESSION["usersession"]["password"], PASSWORD_DEFAULT);
+        $hashPassword = password_hash($this->password, PASSWORD_DEFAULT);
         $sql = "Insert into utilisateur (nom, prenom, email, mot_de_passe, date_creation) Values (?,?,?,?,?)" ;
         $stmt = $conn->prepare($sql);
-        $stmt->bind_param('sssss',$_SESSION["usersession"]["name"], $_SESSION["usersession"]["firstname"], $_SESSION["usersession"]["email"],$hashPassword,$date);
+        $stmt->bind_param('sssss',$this->name, $this->firstName, $this->email,$hashPassword,$date);
         $stmt->execute();
+        $id = $stmt->insert_id;
         $stmt->close();
-        $emailSession = $_SESSION["usersession"]["email"];
-        session_destroy();
         session_start();
-        $_SESSION["usersession"] = $emailSession;
+        $_SESSION["usersessionID"] = $id;
+        $_SESSION["usersessionMail"] = $this->email;
     }
 }

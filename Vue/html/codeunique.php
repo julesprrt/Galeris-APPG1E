@@ -12,7 +12,7 @@
 
     <div class="container">
         <h1>Entrez le code à 6 chiffres</h1>
-        <form action="verify_code.php" method="post">
+        <form>
             <div class="code-input">
                 <input type="text" name="digit1" maxlength="1" required>
                 <input type="text" name="digit2" maxlength="1" required>
@@ -21,7 +21,7 @@
                 <input type="text" name="digit5" maxlength="1" required>
                 <input type="text" name="digit6" maxlength="1" required>
             </div>
-            <button type="submit"></button>
+            <button type="button" class="valid-code"></button>
         </form>
     </div>
 

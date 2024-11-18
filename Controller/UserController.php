@@ -13,12 +13,13 @@ Class UserController extends Controller{
             $user = new User($data["name"], $data["firstName"], $data["userName"], $data["email"], $data["telephone"], $data["password"],$data["confirmPassword"]);
             $result = $user->registerVerification($db);//Verifier les données d'inscription
             if($result === true){//Si les données sont correct alors envoie du code a usage unique + redirection vers la page  avec le code à usage unique
-                //$user->saveUser($db);
+                $user->saveUser($db);
                 http_response_code(200);
-                echo json_encode(['Success' => "Un code vous à été envoyé sur votre adresse mail"]);
-                //Envoie code à usage unique
-                //Redirection vers la page avec le code à usage unique
-                //$this->render('code', ['message' => $user->"Un code vous à été envoyé sur votre adresse mail"]);
+                echo json_encode(['Success' => "Un code vous à été envoyé sur votre adresse mail pour confirmer votre identité"]);
+            }
+            else if($result === "code"){
+                http_response_code(200);
+                echo json_encode(['Success' => "Un code vous à été envoyé sur votre adresse mail pour confirmer votre identité"]);
             }
             else{//Sinon affiché le message d'erreur sur la vue
                 http_response_code(400);
@@ -41,6 +42,10 @@ Class UserController extends Controller{
             if($result === true){
                 http_response_code(200);
                 echo json_encode(['Success' => "Connexion réussie"]);
+            }
+            else if($result === "Utilisateur non valide"){
+                http_response_code(401);
+                echo json_encode(['Information' => "Un code vous à été envoyé sur votre adresse mail pour confirmer votre identité"]);
             }
             else{
                 http_response_code(400);

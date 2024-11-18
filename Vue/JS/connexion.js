@@ -40,6 +40,15 @@ async function connexion() {
         })
         window.location.href = "http://localhost:80/Galeris-APPG1E";
     }
+    else if(statuscode === 401){
+        alert(result.Information);
+        document.querySelectorAll('.input-connexion').forEach((item)=> {
+            item.value = "";
+        })
+        document.querySelectorAll('.input-connexion-first').forEach((item)=> {
+            item.value = "";
+        })
+    }
     else{
         alert(result.Error);
         document.querySelector('.error-message').innerHTML = result.Error;
