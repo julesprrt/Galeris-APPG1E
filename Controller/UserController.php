@@ -51,4 +51,9 @@ Class UserController extends Controller{
             $this->render('connexion', ['message' => '']);
         }
     }
+
+    public function password(Database $db){
+        $this->render('motdepasseoublie', ['message' => '']);
+    }
 }
+
