@@ -24,7 +24,7 @@ async function connexion() {
         body: raw,
         redirect: "follow"
     };
-    const response = await fetch("http://localhost:80/Galeris-APPG1E/connexion", requestOptions)
+    const response = await fetch("https://galeris/Galeris-APPG1E/connexion", requestOptions)
     const statuscode = response.status;
     const result = await response.json();
     console.log(statuscode);
@@ -38,7 +38,7 @@ async function connexion() {
         document.querySelectorAll('.input-connexion-first').forEach((item)=> {
             item.value = "";
         })
-        window.location.href = "http://localhost:80/Galeris-APPG1E";
+        window.location.href = "https://galeris/Galeris-APPG1E";
     }
     else if(statuscode === 401){
         alert(result.Information);

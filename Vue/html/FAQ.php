@@ -7,14 +7,14 @@
     <base href="/Galeris-APPG1E/Vue/">
     <link rel="stylesheet" href="CSS/FAQ.css">
     <link rel="stylesheet" href="CSS/footer.css">
-    <script src="http://localhost/Galeris-APPG1E/vue/JS/Faq.js" defer></script>
+    <script src="https://galeris/Galeris-APPG1E/vue/JS/Faq.js" defer></script>
 </head>
 <body>
    <header>
     <h2>Foire Aux Questions</h2>
     <p>Trouvez toutes les réponses à vos questions !</p>
     <p>
-        <img src="../images/Logo_Galeris_(sans_fond).png" class="logo"/>
+        <a href="https://galeris/Galeris-APPG1E/"><img src="../images/Logo_Galeris_(sans_fond).png" class="logo"/></a>
 <!-- <a>href lien page d'accueil sur le logo (ajouter le texte "Retournez à l'accueil" en passant la souris sur le logo) </a> -->
         <img src="../images/tableau.png" class="tableau"/>
         <img src="../images/tableau2.png" class="tableau2"/>
@@ -183,12 +183,12 @@
     </div>
     <div class="container-footer">
         <a class="title-footer">Aide</a>
-        <a class="item-footer" href="#">Foire aux questions</a>
-        <a class="item-footer" href="#">Contacts</a>
+        <a class="item-footer" href="https://galeris/Galeris-APPG1E/faq">Foire aux questions</a>
+        <a class="item-footer" href="https://galeris/Galeris-APPG1E/contact">Contacts</a>
     </div>
     <div class="container-footer">
         <a class="title-footer">Informations légales</a>
-        <a class="item-footer" href="#">Conditions d'utilisations</a>
+        <a class="item-footer" href="https://galeris/Galeris-APPG1E/cgu">Conditions d'utilisations</a>
         <a class="item-footer" href="#">Mentions légales</a>
     </div>
 

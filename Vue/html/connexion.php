@@ -8,12 +8,12 @@
     <link href="CSS/connexion.css" rel="stylesheet">
     <link href="CSS/footer.css" rel="stylesheet">
     <link href="CSS/style.css" rel="stylesheet">
-    <script src="http://localhost/Galeris-APPG1E/vue/JS/connexion.js" defer></script>
+    <script src="https://galeris/Galeris-APPG1E/vue/JS/connexion.js" defer></script>
 </head>
 <body>
     <div class="Page">
         <div class="logo-galeris">
-            <img width="150" height="150" src="../images/logo-sans-fond.png"/>
+            <a href="https://galeris/Galeris-APPG1E/"><img width="150" height="150" src="../images/logo-sans-fond.png"/></a>
         </div>
         <div class="Page-content">
         <div class="infos-connexion">
@@ -22,7 +22,7 @@
                     <h1 class="text-connexion">Connectez-vous à</h1>
                     <h1 class="text-galeris">Galeris</h1>
                     <p class="text-inscription">Si vous n’avez pas de compte vous</p>
-                    <p class="text-inscription">pouvez vous <a href="#">Inscrire ici </a>! </p>
+                    <p class="text-inscription">pouvez vous <a href="https://galeris/Galeris-APPG1E/inscription">Inscrire ici </a>! </p>
                 </div>   
             </div>
         </div>
@@ -31,7 +31,7 @@
             <form>
                 <input name="email" type="text" class="input-connexion-first" placeholder="Entrez votre mail" />
                 <input name="password" type="password" class="input-connexion" placeholder="Mot de passe" />
-                <a href="changer a lien de mdpo" class="mdpo">Mot de passe oublié ?</a>
+                <a href="https://galeris/Galeris-APPG1E/motdepasse" class="mdpo">Mot de passe oublié ?</a>
                 <button type="button" class="button-connection"></button>
                 <p class="error-message"></p>
             </form>
@@ -81,12 +81,12 @@
         </div>
         <div class="container-footer">
             <a class="title-footer">Aide</a>
-            <a class="item-footer" href="#">Foire aux questions</a>
-            <a class="item-footer" href="#">Contacts</a>
+            <a class="item-footer" href="https://galeris/Galeris-APPG1E/faq">Foire aux questions</a>
+            <a class="item-footer" href="https://galeris/Galeris-APPG1E/contact">Contacts</a>
         </div>
         <div class="container-footer">
             <a class="title-footer">Informations légales</a>
-            <a class="item-footer" href="#">Conditions d'utilisations</a>
+            <a class="item-footer" href="https://galeris/Galeris-APPG1E/cgu">Conditions d'utilisations</a>
             <a class="item-footer" href="#">Mentions légales</a>
         </div>
 

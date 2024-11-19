@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="CSS/contact.css">
     <link rel="stylesheet" href="CSS/style.css">
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="http://localhost/Galeris-APPG1E/vue/JS/contact.js" defer></script>
+    <script src="https://galeris/Galeris-APPG1E/vue/JS/contact.js" defer></script>
     
 </head>
 <body class="h-screen">

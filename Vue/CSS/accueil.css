@@ -5,11 +5,11 @@ body {
 .page-content {
     display: flex;
     flex-grow: 1;
-    padding-top: 30px;
+    padding-top: 1.8em;
 }
 
 .description {
-    padding: 0px 200px 0px 200px;
+    padding: 0em 12em 0em 12em;
 }
 
 .contentbase {
@@ -19,7 +19,7 @@ body {
 .sellproduct{
     border: none;
     background-color: #D9A36A;
-    padding: 15px;
+    padding: 1.1em;
     border-radius: 5px;
     color: white;
     cursor: pointer;
@@ -30,7 +30,7 @@ body {
 }
 
 .content-description{
-    padding-top: 10px;
+    padding-top: 0.8em;
 }
 
 .container {

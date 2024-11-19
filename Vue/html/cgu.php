@@ -18,7 +18,7 @@
     <main>
         <h1 class="titre">
             <span>Conditions Générales d'Utilisation</span>
-            <img src="../images/langue.png" alt="Langue" class="photo">
+            <a href="https://galeris/Galeris-APPG1E/"><img src="../images/langue.png" alt="Langue" class="photo"></a>
         </h1>
         
         <br>
@@ -141,7 +141,7 @@
         </div>
 
         <div class="bas">
-            <p class="haut"> <a href="#revenirenhaut">Revenir en haut</a> </p>
+            <p class="haut"> <a href="https://galeris/Galeris-APPG1E/cgu#revenirenhaut">Revenir en haut</a> </p>
         
         </div>
         

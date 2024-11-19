@@ -26,7 +26,7 @@
         </form>
     </div>
 
-    <script src="http://localhost/Galeris-APPG1E/vue/JS/codeunique.js"></script>
+    <script src="https://galeris/Galeris-APPG1E/vue/JS/codeunique.js"></script>
 </body>
 
 </html>
