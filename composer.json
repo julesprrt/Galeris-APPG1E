@@ -1,14 +1,26 @@
 {
+<<<<<<< HEAD
     "name": "yannroquignymartin/galeris-appg1e",
     "autoload": {
         "psr-4": {
             "Yannroquignymartin\\GalerisAppg1e\\": "src/"
+=======
+    "name": "wendi/connection",
+    "autoload": {
+        "psr-4": {
+            "Wendi\\Connection\\": "src/"
+>>>>>>> 3b7090eebeb43d5a5ad4e79360636fe99b6e3503
         }
     },
     "authors": [
         {
+<<<<<<< HEAD
             "name": "YannRM1",
             "email": "yann.roquigny.martin@gmail.com"
+=======
+            "name": "Wendi",
+            "email": "wendihan03@gmail.com"
+>>>>>>> 3b7090eebeb43d5a5ad4e79360636fe99b6e3503
         }
     ],
     "require": {
