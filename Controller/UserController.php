@@ -60,5 +60,9 @@ Class UserController extends Controller{
     public function password(Database $db){
         $this->render('motdepasseoublie', ['message' => '']);
     }
+
+    public function code() {
+        $this->render('codeunique', ['message' => '']);
+    }
 }
 

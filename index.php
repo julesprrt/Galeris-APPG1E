@@ -23,5 +23,7 @@ $router->addRoute('/Galeris-APPG1E/faq', FAQController::class, 'faq');
 $router->addRoute('/Galeris-APPG1E/cgu', CGUController::class, 'cgu');
 $router->addRoute('/Galeris-APPG1E/achat', AchatController::class, 'achat');
 $router->addRoute('/Galeris-APPG1E/motdepasse', UserController::class, 'password');
+$router->addRoute('/Galeris-APPG1E/codeunique', UserController::class, 'code');
+
 
 $router->dispatch($uri);//Appel a la méthode du controller dedié
