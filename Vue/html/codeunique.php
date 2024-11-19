@@ -4,6 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connexion - Galeris</title>
+    <base href="/Galeris-APPG1E/Vue/">
+    <link href="CSS/codeunique.css" rel="stylesheet">
+    <link href="CSS/footer.css" rel="stylesheet">
+    <link href="CSS/style.css" rel="stylesheet">
     <title>Code Unique</title>
     <link rel="stylesheet" href="../CSS/codeunique.css">
 </head>
