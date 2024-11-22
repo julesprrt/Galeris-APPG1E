@@ -7,7 +7,6 @@
     <base href="/Galeris-APPG1E/Vue/">
     <link rel="stylesheet" href="CSS/contact.css">
     <link rel="stylesheet" href="CSS/style.css">
-    <script src="https://cdn.tailwindcss.com"></script>
     <script src="http://localhost/Galeris-APPG1E/vue/JS/contact.js" defer></script>
     
 </head>
@@ -17,7 +16,7 @@
         
         <div class="container">
             <div class="">
-                <h6 class="tilte6"> Une quesion ? Un conseil ?</h6>
+                <p class="title6"> Une quesion ? Un conseil ?</p>
                 <h3 class="title3"> Contactez-nous </h3>
             </div>
     

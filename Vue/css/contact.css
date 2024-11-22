@@ -56,12 +56,12 @@ section#contact .container .title {
 }
 
 .title6 {
-  font-size: 1em;
+  font-size: 1.5rem;
   font-weight: bold;
 }
 
 .title3 {
-  font-size: 2.2em;
+  font-size: 2.5em;
   font-weight: bold;
 }
 
@@ -76,6 +76,7 @@ section#contact .container form {
 
 section#contact .container form input {
   width: 47%;
+  box-shadow: 1 2 3 2 #000;
 }
 
 section#contact .container form input,
@@ -106,5 +107,5 @@ section#contact .container form textarea {
 #div-select {
   align-items: center;
   justify-content: center;
-  place-content : center;
+  place-content: center;
 }
