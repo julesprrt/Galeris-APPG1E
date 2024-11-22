@@ -7,6 +7,7 @@ require_once("./Controller/ContactController.php");
 require_once("./Controller/FAQController.php");
 require_once("./Controller/CGUController.php");
 require_once("./Controller/AchatController.php");
+
 require 'vendor/autoload.php';
 
 
@@ -24,6 +25,7 @@ $router->addRoute('/Galeris-APPG1E/cgu', CGUController::class, 'cgu');
 $router->addRoute('/Galeris-APPG1E/achat', AchatController::class, 'achat');
 $router->addRoute('/Galeris-APPG1E/motdepasse', UserController::class, 'password');
 $router->addRoute('/Galeris-APPG1E/codeunique', UserController::class, 'code');
+$router->addRoute('/Galeris-APPG1E/confmdp', UserController::class, 'confirmationmdp');
 
 
 $router->dispatch($uri);//Appel a la méthode du controller dedié

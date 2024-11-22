@@ -64,5 +64,9 @@ Class UserController extends Controller{
     public function code() {
         $this->render('codeunique', ['message' => '']);
     }
+
+    public function confirmationmdp() {
+        $this-> render ('confirmationmdp', ['message'=> '']);
+    }
 }
 
