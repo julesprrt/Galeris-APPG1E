@@ -7,22 +7,37 @@ h1 {
 }
 
 .gauche {
+
     background-color: grey;
-    flex: 50%;
+    flex : 70%;
     display: flex;
-    flex-direction: column; /* Empile le contenu verticalement */
-    align-items: center; /* Centre horizontalement */
-    justify-content: center; /* Centre verticalement */
+    align-items: center;
+    flex-direction: column;
+   
+}
+.photo {
+    margin-top: 15px;
 }
 
-.gauche .photo {
-    max-width: 100%; /* Empêche que l'image dépasse le conteneur */
-    max-height: 100%; /* Ajuste la hauteur si nécessaire */
+.photos {
+    flex-direction: row;
+    
 }
-
-
+.photos img {
+    width: 150px; /* Fixe la largeur des images */
+    height: auto; }
 
 .droite {
-    background-color: yellow;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    background-color: #f0f0f0;
     flex : 50%;
+}
+.conteneur2 {
+
+    width: 500px; /* Ajoutez une largeur au carré jaune */
+    height: 500px;
+    background-color: yellow;
 }

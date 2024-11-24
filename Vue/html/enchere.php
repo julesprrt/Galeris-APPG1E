@@ -36,22 +36,38 @@
     <div class="gauche">
         
             <img class="photo" src="../images/oeuvre1-1.jpg" alt="Photo">
-        
+        <p>Cliquez sur l'image pour l'agrandir </p>
+
+        <div class=photos>
+             <img  src="../images/oeuvre1-1.jpg" alt="Photo">
+             <img  src="../images/oeuvre1-1.jpg" alt="Photo">
+             <img  src="../images/oeuvre1-1.jpg" alt="Photo">
+        </div>
+
+
         <div>
             <h1>A propos de ce lot</h1>
         <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Non aspernatur illo, 
             culpa maxime dolore, nesciunt repudiandae deserunt, quidem veritatis vel quis 
             excepturi suscipit quod cupiditate aperiam tempore facere eveniet itaque.
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sapiente ipsam temporibus totam vitae soluta 
+            architecto voluptates! Similique accusamus nemo blanditiis voluptas, laudantium, eius ad quae commodi eum provident, quos ipsa.
         </p>
         </div>
         
     </div>
     
     <div class="droite">
-        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. 
-            Possimus distinctio nemo ea nam explicabo adipisci, numquam ipsa quia 
-            iusto dolorum dicta cum ad quod asperiores sit vel voluptates, impedit ducimus?</p>
+        <div class="conteneur2">
             
+
+           
+        </div>
+        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. 
+                Possimus distinctio nemo ea nam explicabo adipisci, numquam ipsa quia 
+                iusto dolorum dicta cum ad quod asperiores sit vel voluptates, impedit ducimus?
+        </p>
+                
     </div>
         
         
