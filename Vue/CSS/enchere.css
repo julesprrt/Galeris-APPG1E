@@ -1,3 +1,18 @@
 h1 {
     color: black;
 }
+
+.conteneur {
+    display: flex;
+}
+
+.gauche {
+
+    background-color: grey;
+    flex : 1;
+}
+
+.droite {
+    background-color: yellow;
+    flex : 1;
+}
