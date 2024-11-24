@@ -7,12 +7,22 @@ h1 {
 }
 
 .gauche {
-
     background-color: grey;
-    flex : 1;
+    flex: 50%;
+    display: flex;
+    flex-direction: column; /* Empile le contenu verticalement */
+    align-items: center; /* Centre horizontalement */
+    justify-content: center; /* Centre verticalement */
 }
+
+.gauche .photo {
+    max-width: 100%; /* Empêche que l'image dépasse le conteneur */
+    max-height: 100%; /* Ajuste la hauteur si nécessaire */
+}
+
+
 
 .droite {
     background-color: yellow;
-    flex : 1;
+    flex : 50%;
 }

@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <base href="/Galeris-APPG1E/Vue/">
     <link rel="stylesheet" href="CSS/enchere.css">
     <link rel="stylesheet" href="CSS/style.css">
     <link rel="stylesheet" href="CSS/header.css">
@@ -33,10 +34,17 @@
 <div class="conteneur">
 
     <div class="gauche">
+        
+            <img class="photo" src="../images/oeuvre1-1.jpg" alt="Photo">
+        
+        <div>
+            <h1>A propos de ce lot</h1>
         <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Non aspernatur illo, 
             culpa maxime dolore, nesciunt repudiandae deserunt, quidem veritatis vel quis 
             excepturi suscipit quod cupiditate aperiam tempore facere eveniet itaque.
         </p>
+        </div>
+        
     </div>
     
     <div class="droite">
