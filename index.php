@@ -25,7 +25,6 @@ $router->addRoute('/Galeris-APPG1E/cgu', CGUController::class, 'cgu');
 $router->addRoute('/Galeris-APPG1E/achat', AchatController::class, 'achat');
 $router->addRoute('/Galeris-APPG1E/motdepasse', UserController::class, 'password');
 $router->addRoute('/Galeris-APPG1E/codeunique', UserController::class, 'code');
-$router->addRoute('/Galeris-APPG1E/confmdp', UserController::class, 'confirmationmdp');
-
+$router->addRoute('/Galeris-APPG1E/send-verification-code', UserController::class, 'sendVerificationCode');
 
 $router->dispatch($uri);//Appel a la méthode du controller dedié

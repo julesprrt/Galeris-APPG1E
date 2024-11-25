@@ -13,7 +13,7 @@
 <a href="./html/accueil.php"><img src="../images/logo.png" alt="Logo de Galeris" style="display: block; margin: 0 auto;" ></a>
 </header>
 <main>
-    <form action="/reset-password" method="post">
+    <form action="/Galeris-APPG1E/send-verification-code" method="post">
         <p>Entrez l'adresse e-mail associée à votre compte et nous vous enverrons un lien pour réinitialiser votre mot
             de passe.</p>
         <label for="email">Adresse e-mail :</label>
