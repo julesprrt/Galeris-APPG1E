@@ -3,7 +3,8 @@ require_once('Database/Database.php');
 require_once('Model/code.php');
 require_once('Model/utils.php');
 
-Class User {
+class User
+{
     private $name;
     private $firstName;
     private $userName;
@@ -13,7 +14,8 @@ Class User {
     private $confirmPassword;
     private $sendCode;
     private $utilsUser;
-    public function __construct($name, $firstName, $userName, $email, $telephone, $password, $confirmPassword) {//Constructeur -> Initialisation des données
+    public function __construct($name, $firstName, $userName, $email, $telephone, $password, $confirmPassword)
+    { //Constructeur -> Initialisation des données
         $this->name = $name;
         $this->firstName = $firstName;
         $this->userName = $userName;
@@ -29,27 +31,22 @@ Class User {
      * Verifier les données utilisateur
      * @return bool|string
      */
-    public function registerVerification(Database $db){
+    public function registerVerification(Database $db)
+    {
         $value = $this->VerifyExistMail($db);
-        if($this->name === "" || $this->firstName === "" || $this->userName === "" || $this->email === "" || $this->telephone === "" || $this->password === "" || $this->confirmPassword === ""){
+        if ($this->name === "" || $this->firstName === "" || $this->userName === "" || $this->email === "" || $this->telephone === "" || $this->password === "" || $this->confirmPassword === "") {
             return "Vous devez remplir l'ensemble des champs du formulaire";
-        }
-        else if(!$this->utilsUser->emailComposition($this->email)){
+        } else if (!$this->utilsUser->emailComposition($this->email)) {
             return "Mail invalide";
-        }
-        else if(!$this->telComposition($this->telephone)){
+        } else if (!$this->telComposition($this->telephone)) {
             return "Format invalide. Exemple : 0689213474";
-        }
-        else if(!$this->passwordComposition($this->password)){
+        } else if (!$this->passwordComposition($this->password)) {
             return "Votre mot de passe doit contenir une minuscule, une majucule, un nombre et un caractère spécial et plus que 8 caractères.";
-        }
-        else if($this->password !== $this->confirmPassword){
+        } else if ($this->password !== $this->confirmPassword) {
             return "Les deux mots de passe ne sont pas identiques";
-        }
-        else if($value === false){
+        } else if ($value === false) {
             return "Vous avez déja un compte";
-        }
-        else{
+        } else {
             //Envoie d'un code a usage unique
             $this->sendCode->sendCode($this->email);
             return $value === "actif" ? "code" : true;
@@ -71,12 +68,10 @@ Class User {
                 session_start();
                 $_SESSION["usersession"] = $this->email;
                 return true;
-            } 
-            else if($user["actif"] === 0){
+            } else if ($user["actif"] === 0) {
                 $this->sendCode->sendCode($this->email);
                 return "Utilisateur non valide";
-            }
-            else {
+            } else {
                 return "Votre mail/mot de passe est incorrect";
             }
         } else {
@@ -90,15 +85,15 @@ Class User {
      * @return bool
      * Composition du mot de passe (8 caractère au minimum, 1maj, 1 min, 1 caractère spec)
      */
-    public function passwordComposition($password) {
+    public function passwordComposition($password)
+    {
         $majuscule = preg_match('@[A-Z]@', $password);
         $minucule = preg_match('@[a-z]@', $password);
         $nombre = preg_match('@[0-9]@', $password);
         $caractereSpeciale = preg_match('/[\'\/~`\!@#\$%\^&\*\(\)_\-\+=\{\}\[\]\|;:"\<\>,\.\?\\\]/', $password);
-        if(!$majuscule || !$minucule || !$nombre || !$caractereSpeciale || strlen($password) < 8) {
+        if (!$majuscule || !$minucule || !$nombre || !$caractereSpeciale || strlen($password) < 8) {
             return false;
-        }
-        else{
+        } else {
             return true;
         }
     }
@@ -109,13 +104,13 @@ Class User {
      * @return bool
      * Composition du telephone -> 10 caractère ne contenant que des chiffres
      */
-    public function telComposition($tel){
+    public function telComposition($tel)
+    {
         $telWithoutSpace = trim($tel);
         $containOnlyNumber = preg_match('/^\d+$/', $telWithoutSpace);
-        if(strlen($telWithoutSpace) === 10 && $containOnlyNumber){
+        if (strlen($telWithoutSpace) === 10 && $containOnlyNumber) {
             return true;
-        }
-        else{
+        } else {
             return false;
         }
     }
@@ -125,22 +120,22 @@ Class User {
      * @return mixed
      * Verifier dans la bd si l'utilisateur existe ou non
      */
-    public function VerifyExistMail(Database $db){
+    public function VerifyExistMail(Database $db)
+    {
         $conn = $db->connect();
-        $sql = "SELECT * FROM utilisateur where email = '$this->email'" ;
+        $sql = "SELECT * FROM utilisateur where email = '$this->email'";
         $result = $conn->execute_query($sql);
         $conn->close();
-        if(mysqli_num_rows($result) > 0){
+        if (mysqli_num_rows($result) > 0) {
             /*while ($row = $user->fetch_assoc()) {
                 if($row["actif"] === 0){
                     return false;
                 }
             }*/
             $user = mysqli_fetch_assoc($result);
-            if($user["actif"] === 0){
+            if ($user["actif"] === 0) {
                 return "actif";
-            }
-            else{
+            } else {
                 return false;
             }
         }
@@ -153,13 +148,14 @@ Class User {
      * @return void
      * Ajouter l'utilisateur dans la base de données
      */
-    public function saveUser(Database $db){
+    public function saveUser(Database $db)
+    {
         $conn = $db->connect();
         $date = date('Y/m/d');
         $hashPassword = password_hash($this->password, PASSWORD_DEFAULT);
-        $sql = "Insert into utilisateur (nom, prenom, email, mot_de_passe, date_creation) Values (?,?,?,?,?)" ;
+        $sql = "Insert into utilisateur (nom, prenom, email, mot_de_passe, date_creation) Values (?,?,?,?,?)";
         $stmt = $conn->prepare($sql);
-        $stmt->bind_param('sssss',$this->name, $this->firstName, $this->email,$hashPassword,$date);
+        $stmt->bind_param('sssss', $this->name, $this->firstName, $this->email, $hashPassword, $date);
         $stmt->execute();
         $id = $stmt->insert_id;
         $stmt->close();
