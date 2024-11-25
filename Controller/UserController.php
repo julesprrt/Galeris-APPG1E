@@ -10,7 +10,7 @@ Class UserController extends Controller{
         $paramData = file_get_contents("php://input");
         $data = json_decode($paramData, true);
         if(isset($data['name']) && isset($data['firstName']) && isset($data['userName']) && isset($data['email']) && isset($data['telephone']) && isset($data['password']) && isset($data['confirmPassword'])){//Verification données entré dans le formulaire
-            $user = new User($data["name"], $data["firstName"], $data["userName"], $data["email"], $data["telephone"], $data["password"],$data["confirmPassword"]);
+            $user = new User($data["name"], $data["firstName"], $data["userName"], $data["email"], $data["telephone"], $data["password"],$data["confirmPassword"],null);
             $result = $user->registerVerification($db);//Verifier les données d'inscription
             if($result === true){//Si les données sont correct alors envoie du code a usage unique + redirection vers la page  avec le code à usage unique
                 $user->saveUser($db);
