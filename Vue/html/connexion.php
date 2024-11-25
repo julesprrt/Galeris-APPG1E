@@ -37,8 +37,7 @@
                     <a href="https://galeris/Galeris-APPG1E/motdepasse" class="mdpo">Mot de passe oublié ?</a>
                     <button type="button" class="button-connection"></button>
                     <br>
-                    <div class="g-recaptcha" data-sitekey="6LfGYYkqAAAAAKgMjRbrHHI64B8NFOIA-3wKM1wp"></div>
-
+                    <div name="recaptcha" class="g-recaptcha" data-sitekey="6LfGYYkqAAAAAKgMjRbrHHI64B8NFOIA-3wKM1wp"></div>
                     <p class="error-message"></p>
                 </form>
             </div>
