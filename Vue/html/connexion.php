@@ -31,7 +31,7 @@
             <form>
                 <input name="email" type="text" class="input-connexion-first" placeholder="Entrez votre mail" />
                 <input name="password" type="password" class="input-connexion" placeholder="Mot de passe" />
-                <a href="changer a lien de mdpo" class="mdpo">Mot de passe oublié ?</a>
+                <a href="http://localhost/Galeris-APPG1E/motdepasse" class="mdpo">Mot de passe oublié ?</a>
                 <button type="button" class="button-connection"></button>
                 <p class="error-message"></p>
             </form>
