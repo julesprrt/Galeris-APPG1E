@@ -62,7 +62,15 @@ Class UserController extends Controller{
     }
 
     public function code() {
-        $this->render('codeunique', ['message' => '']);
+        $paramData = file_get_contents("php://input");
+        $data = json_decode($paramData, true);
+        if (isset($data['code'])) {
+            http_response_code(200);
+            echo json_encode(['Success' => "Connexion réussie"]);
+        }
+        else {
+            $this->render('codeunique', ['message' => '']);
+        }
     }
 }
 
