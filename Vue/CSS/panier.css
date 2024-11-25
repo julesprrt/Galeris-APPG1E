@@ -1,0 +1,157 @@
+/* Global styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  header {
+    background-color: #f8f8f8;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .nav-container {
+    display: flex;
+    align-items: center;
+  }
+  
+  .nav-container .logo {
+    font-size: 20px;
+    font-weight: bold;
+  }
+  
+  nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+  }
+  
+  nav ul li {
+    margin: 0 10px;
+  }
+  
+  nav ul li a {
+    text-decoration: none;
+    color: #333;
+  }
+  
+  .search input {
+    padding: 5px;
+    margin-right: 5px;
+  }
+  
+  .user-menu button {
+    margin-left: 10px;
+    padding: 5px;
+  }
+  
+  .breadcrumb {
+    padding: 15px;
+    background-color: #f0f0f0;
+    border-bottom: 1px solid #ddd;
+    font-size: 14px;
+  }
+  
+  .product-container {
+    display: flex;
+    margin: 20px;
+  }
+  
+  .left-section {
+    flex: 3;
+    margin-right: 20px;
+  }
+  
+  .left-section .main-image {
+    width: 100%;
+    border: 1px solid #ddd;
+  }
+  
+  .similar-products {
+    margin-top: 20px;
+  }
+  
+  .similar-products .thumbnails {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .similar-products img {
+    width: 80px;
+    height: auto;
+    border: 1px solid #ddd;
+  }
+  
+  .right-section {
+    flex: 2;
+    border: 1px solid #ddd;
+    padding: 20px;
+    border-radius: 5px;
+  }
+  
+  .artist-info h2 {
+    margin-top: 0;
+  }
+  
+  .price {
+    font-size: 24px;
+    color: #e74c3c;
+  }
+  
+  .discount {
+    font-size: 14px;
+    color: #27ae60;
+  }
+  
+  .map iframe {
+    margin-top: 20px;
+  }
+  
+  footer {
+    background-color: #f8f8f8;
+    padding: 20px;
+    border-top: 1px solid #ddd;
+    display: flex;
+    justify-content: space-between;
+  }
+  footer {
+    border-top: 1px solid #D9D9D9;
+    display: flex;
+    margin-bottom: 2%;
+    padding: 2em 1em 1em 2em;
+    background-color: white;
+}
+
+.social-network {
+    flex-direction: column;
+    flex-wrap:wrap;
+}
+.social-network a {
+    padding-left: 0.4em;
+    text-decoration: none;
+}
+
+.container-footer {
+    display: flex;
+    flex-direction: column;
+    padding-left: 9%;
+}
+
+.title-footer {
+    font-weight: 600;
+}
+
+.container-footer a {
+    padding-bottom: 1.2em;
+}
+
+.item-footer {
+    text-decoration: none;
+    color: black;
+}
