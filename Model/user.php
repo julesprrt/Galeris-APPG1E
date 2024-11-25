@@ -13,7 +13,8 @@ Class User {
     private $confirmPassword;
     private $sendCode;
     private $utilsUser;
-    public function __construct($name, $firstName, $userName, $email, $telephone, $password, $confirmPassword) {//Constructeur -> Initialisation des données
+    private $captcha;
+    public function __construct($name, $firstName, $userName, $email, $telephone, $password, $confirmPassword,$captcha) {//Constructeur -> Initialisation des données
         $this->name = $name;
         $this->firstName = $firstName;
         $this->userName = $userName;
@@ -23,6 +24,7 @@ Class User {
         $this->confirmPassword = $confirmPassword;
         $this->sendCode = new Code();
         $this->utilsUser = new Utils();
+        $this->captcha = $captcha;
     }
     /**
      * Summary of registerVerification
@@ -58,6 +60,9 @@ Class User {
 
     public function connectUser(Database $db)
     {
+        if($this->utilsUser->verifyCaptcha($this->captcha) == false){
+            return "Veuillez valider le Captcha";
+        }
         $database = $db->connect();
         // Interroger les données utilisateur dans la base de données
         $query = "SELECT * FROM utilisateur WHERE email = '$this->email'";

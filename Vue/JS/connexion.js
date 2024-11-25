@@ -12,11 +12,10 @@ function passwordToggle() {
 async function connexion() {
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
-
     const raw = JSON.stringify({
         "email": document.getElementsByName("email")[0].value,
         "password": document.getElementsByName("password")[0].value,
-        "recaptcha": document.getElementsByName("recaptcha")[0].value
+        "g-recaptcha-response": document.getElementById("g-recaptcha-response").value
     });
 
     const requestOptions = {
@@ -39,6 +38,7 @@ async function connexion() {
         document.querySelectorAll('.input-connexion-first').forEach((item) => {
             item.value = "";
         })
+        grecaptcha.reset();
         window.location.href = "https://galeris/Galeris-APPG1E";
     }
     else if (statuscode === 401) {
@@ -49,6 +49,7 @@ async function connexion() {
         document.querySelectorAll('.input-connexion-first').forEach((item) => {
             item.value = "";
         })
+        grecaptcha.reset();
     }
     else {
         alert(result.Error);
@@ -56,5 +57,6 @@ async function connexion() {
         document.querySelectorAll('.input-connexion').forEach((item) => {
             item.value = "";
         })
+        grecaptcha.reset();
     }
 }

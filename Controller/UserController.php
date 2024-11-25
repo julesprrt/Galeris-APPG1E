@@ -35,8 +35,8 @@ Class UserController extends Controller{
     public function connexion(Database $db) {
         $paramData = file_get_contents("php://input");
         $data = json_decode($paramData, true);
-        if (isset($data['email']) && isset($data['password'])) {
-            $user = new User(null,null,null,$data['email'], null,$data['password'], null);
+        if (isset($data['email']) && isset($data['password']) && isset($data['g-recaptcha-response'])) {
+            $user = new User(null,null,null,$data['email'], null,$data['password'], null, $data['g-recaptcha-response']);
             // Obtenir une connexion à la base de données
             $result = $user-> connectUser($db);
             if($result === true){
