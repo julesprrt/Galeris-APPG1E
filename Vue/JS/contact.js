@@ -28,6 +28,7 @@ async function contact() {
             item.value = "";
         })
         window.location.href = "http://localhost:80/Galeris-APPG1E/";
+        
     }
     else{
         alert(result.Error);

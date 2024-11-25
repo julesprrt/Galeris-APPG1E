@@ -34,7 +34,9 @@ async function register() {
             item.value = "";
         })
         document.querySelector('.error-message').innerHTML = "";
+        window.location.href = "http://localhost:80/Galeris-APPG1E/codeunique"
     }
+    
     else{
         alert(result.Error);
         document.querySelector('.error-message').innerHTML = result.Error;

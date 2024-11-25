@@ -8,7 +8,7 @@
     <link href="CSS/inscription.css" rel="stylesheet">
     <link href="CSS/footer.css" rel="stylesheet">
     <link href="CSS/style.css" rel="stylesheet">
-    <script src="http://localhost/Galeris-APPG1E/vue/JS/inscription.js" defer></script>
+    <script src="JS/inscription.js" defer></script>
 </head>
 <body>
     <div class="Page">
@@ -36,7 +36,7 @@
                 <input type="tel" class="input-inscription" name="telephone" placeholder="Numéro de téléphone" title="exemple format : 0647892314" />
                 <input type="password" class="input-inscription" name="password" placeholder="Mot de passe"  title="Veuillez rentrez un mot de passe contenant plus de 8 caractères avec au minumum une majucule, une minuscule, un chiffre et un caractère spéciale" />
                 <input type="password" class="input-inscription" name="confirmPassword" placeholder="Confirmer votre mot de passe" />
-                <button class="submit-button" type="button">S'inscrire</button>
+                <button class="submit-button" type="button" > S'inscrire </button>
                 <p class="error-message"></p>
             </form>
         </div>
