@@ -17,7 +17,7 @@ Class MailSender {
         $mail->Username = email_galeris;
         $mail->Password = email_galeris_password;
         $mail->setFrom(email_galeris, $from);
-    
+        $mail->CharSet = "UTF-8";
         $mail->Subject = $subject;
         $mail->Body = $message;
  

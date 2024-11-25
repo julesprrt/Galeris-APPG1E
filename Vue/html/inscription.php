@@ -8,12 +8,12 @@
     <link href="CSS/inscription.css" rel="stylesheet">
     <link href="CSS/footer.css" rel="stylesheet">
     <link href="CSS/style.css" rel="stylesheet">
-    <script src="http://localhost/Galeris-APPG1E/vue/JS/inscription.js" defer></script>
+    <script src="https://galeris/Galeris-APPG1E/vue/JS/inscription.js" defer></script>
 </head>
 <body>
     <div class="Page">
         <div class="logo-galeris">
-            <img width="150" height="150" src="../images/logo-sans-fond.png"/>
+            <a href="https://galeris/Galeris-APPG1E/"><img width="150" height="150" src="../images/logo-sans-fond.png"/></a>
         </div>
         <div class="Page-content">
         <div class="infos-inscription">
@@ -22,13 +22,12 @@
                     <h1 class="text-inscription">Incrivez-vous à</h1>
                     <h1 class="text-galeris">Galeris</h1>
                     <p class="text-connexion">Si vous avez déjà un compte</p>
-                    <p class="text-connexion">vous pouvez vous connecter <a href="#">ici !</a></p>
+                    <p class="text-connexion">vous pouvez vous connecter <a href="https://galeris/Galeris-APPG1E/connexion">ici !</a></p>
                 </div>   
             </div>
         </div>
         <div class="form-inscription">
             <p class="Title-inscription">Inscription</p>
-            
                 <input type="text" class="input-inscription-first" name="name" placeholder="Nom" />
                 <input type="text" class="input-inscription" name="firstName" placeholder="Prénom" />
                 <input type="text" class="input-inscription" name="userName" placeholder="Nom utilisateur" />
@@ -85,12 +84,12 @@
         </div>
         <div class="container-footer">
             <a class="title-footer">Aide</a>
-            <a class="item-footer" href="#">Foire aux questions</a>
-            <a class="item-footer" href="#">Contacts</a>
+            <a class="item-footer" href="https://galeris/Galeris-APPG1E/faq">Foire aux questions</a>
+            <a class="item-footer" href="https://galeris/Galeris-APPG1E/contact">Contacts</a>
         </div>
         <div class="container-footer">
             <a class="title-footer">Informations légales</a>
-            <a class="item-footer" href="#">Conditions d'utilisations</a>
+            <a class="item-footer" href="https://galeris/Galeris-APPG1E/cgu">Conditions d'utilisations</a>
             <a class="item-footer" href="#">Mentions légales</a>
         </div>
 

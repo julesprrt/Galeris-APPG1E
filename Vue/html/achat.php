@@ -12,10 +12,10 @@
 
 <body>
     <header>
-        <div class="logo"> <img src="../images/logo.png"></div>
+        <div class="logo"><a href="https://galeris/Galeris-APPG1E/"> <img src="../images/logo.png"></a></div>
         <nav class="menu">
             <ul>
-                <li><a href="#">Accueil</a></li>
+                <li><a href="https://galeris/Galeris-APPG1E/">Accueil</a></li>
                 <li><a href="#">Vente</a></li>
                 <li><a href="#">Exposition</a></li>
                 <li><a href="#">News</a></li>
@@ -27,7 +27,7 @@
             <input type="text" placeholder="Rechercher...">
             <div class="favori"> <a href="favoris.html">❤️ </a></div>
             <div class="panier"> <a href="panier.html"> 🛒 </a></div>
-            <div class="utilisateur"><a href="panier.html"> 👤 </a></div>
+            <div class="utilisateur"><a href="https://galeris/Galeris-APPG1E/connexion"> 👤 </a></div>
         </div>
     </header> 
 
@@ -40,9 +40,9 @@
         
                     <!-- Images que on va faire défiler avec les flèches, pour l'instant juste des exemples.-->
                     <div class="art-image">
-                        <img src="..\..\images\oeuvre1-1.jpg" class="carousel-image active" alt="Photo Oeuvre 1"> <!-- La classe active est pour dire que c'est l'image affichée. -->
-                        <img src="..\..\images\oeuvre1-2.jpg" class="carousel-image" alt="Photo Oeuvre 2">
-                        <img src="..\..\images\oeuvre1-3.jpg" class="carousel-image" alt="Photo Oeuvre 3">
+                        <img src="..\images\oeuvre1-1.jpg" class="carousel-image active" alt="Photo Oeuvre 1"> <!-- La classe active est pour dire que c'est l'image affichée. -->
+                        <img src="..\images\oeuvre1-2.jpg" class="carousel-image" alt="Photo Oeuvre 2">
+                        <img src="..\images\oeuvre1-3.jpg" class="carousel-image" alt="Photo Oeuvre 3">
                     </div>
         
                     <!-- Flèche droite -->
@@ -63,9 +63,9 @@
                 <h2>Oeuvres similaires</h2>
                 <div class="tableau-similaire">
                     <!-- A améliorer car les images renvoie à rien, alors c'est censé renvoyer à la page. -->
-                    <img src="..\..\images\oeuvresim-1.png" alt="Tableau similaire 1">
-                    <img src="..\..\images\oeuvresim-2.jpg" alt="Tableau similaire 2">
-                    <img src="..\..\images\oeuvresim-3.jpg" alt="Tableau similaire 3">
+                    <img src="..\images\oeuvresim-1.png" alt="Tableau similaire 1">
+                    <img src="..\images\oeuvresim-2.jpg" alt="Tableau similaire 2">
+                    <img src="..\images\oeuvresim-3.jpg" alt="Tableau similaire 3">
                 </div>
             </section>
         </section>
@@ -161,18 +161,18 @@
         </div>
         <div class="container-footer">
             <a class="title-footer">Aide</a>
-            <a class="item-footer" href="#">Foire aux questions</a>
-            <a class="item-footer" href="#">Contacts</a>
+            <a class="item-footer" href="https://galeris/Galeris-APPG1E/faq">Foire aux questions</a>
+            <a class="item-footer" href="https://galeris/Galeris-APPG1E/contact">Contacts</a>
         </div>
         <div class="container-footer">
             <a class="title-footer">Informations légales</a>
-            <a class="item-footer" href="#">Conditions d'utilisations</a>
+            <a class="item-footer" href="https://galeris/Galeris-APPG1E/cgu">Conditions d'utilisations</a>
             <a class="item-footer" href="#">Mentions légales</a>
         </div>
 
     </footer>
 
-    <script src="http://localhost/Galeris-APPG1E/vue/JS/achat.js"></script>
+    <script src="https://galeris/Galeris-APPG1E/vue/JS/achat.js"></script>
 </body>
 
 </html>

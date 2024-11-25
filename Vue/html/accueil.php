@@ -14,10 +14,10 @@
 <body>
     <div class="container">
         <header>
-            <div class="logo"> <img src="../images/logo.png"></div>
+            <div class="logo"> <a href="https://galeris/Galeris-APPG1E/"><img src="../images/logo.png"></a></div>
             <nav class="menu">
                 <ul>
-                    <li><a href="#">Accueil</a></li>
+                    <li><a href="https://galeris/Galeris-APPG1E/">Accueil</a></li>
                     <li><a href="#">Vente</a></li>
                     <li><a href="#">Exposition</a></li>
                     <li><a href="#">News</a></li>
@@ -29,7 +29,7 @@
                 <input type="text" placeholder="Rechercher...">
                 <div class="favori"> <a href="favoris.html">❤️ </a></div>
                 <div class="panier"> <a href="panier.html"> 🛒 </a></div>
-                <div class="utilisateur"><a href="panier.html"> 👤 </a></div>
+                <div class="utilisateur"><a href="https://galeris/Galeris-APPG1E/connexion"> 👤 </a></div>
             </div>
         </header>
 
@@ -89,12 +89,12 @@
             </div>
             <div class="container-footer">
                 <a class="title-footer">Aide</a>
-                <a class="item-footer" href="#">Foire aux questions</a>
-                <a class="item-footer" href="#">Contacts</a>
+                <a class="item-footer" href="https://galeris/Galeris-APPG1E/faq">Foire aux questions</a>
+                <a class="item-footer" href="https://galeris/Galeris-APPG1E/contact">Contacts</a>
             </div>
             <div class="container-footer">
                 <a class="title-footer">Informations légales</a>
-                <a class="item-footer" href="#">Conditions d'utilisations</a>
+                <a class="item-footer" href="https://galeris/Galeris-APPG1E/cgu">Conditions d'utilisations</a>
                 <a class="item-footer" href="#">Mentions légales</a>
             </div>
 
