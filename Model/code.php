@@ -14,7 +14,4 @@ Class Code{
         $code = rand(100000,999999);
         $this->sendMail->sendMail($to,title_Code_unique, message_Code_unique . $code, galeris);
     }
-
-
-    
 }
