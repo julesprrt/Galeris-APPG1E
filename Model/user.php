@@ -167,4 +167,15 @@ Class User {
         $_SESSION["usersessionID"] = $id;
         $_SESSION["usersessionMail"] = $this->email;
     }
+
+    public function saveCode(Database $db){
+        $conn = $db->connect();
+        $sql = "Insert into code (code, date_expiration) Values (?,?)" ;
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param('sssss',$this->$code, $this->date_expiration);
+        $stmt->execute();
+        $id = $stmt->insert_id;
+        $stmt->close();
+        session_start();
+    }
 }
