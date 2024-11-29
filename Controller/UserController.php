@@ -13,7 +13,6 @@ Class UserController extends Controller{
             $user = new User($data["name"], $data["firstName"], $data["userName"], $data["email"], $data["telephone"], $data["password"],$data["confirmPassword"]);
             $result = $user->registerVerification($db);//Verifier les données d'inscription
             if($result === true){//Si les données sont correct alors envoie du code a usage unique + redirection vers la page  avec le code à usage unique
-                $user->saveUser($db);
                 http_response_code(200);
                 echo json_encode(['Success' => "Un code vous à été envoyé sur votre adresse mail pour confirmer votre identité"]);
             }

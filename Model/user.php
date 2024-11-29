@@ -50,8 +50,11 @@ Class User {
             return "Vous avez déja un compte";
         }
         else{
+            if($value === true){
+                $this->saveUser($db);
+            }
             //Envoie d'un code a usage unique
-            $this->sendCode->sendCode($this->email);
+            $this->sendCode->sendCode($this->email,$db);
             return $value === "actif" ? "code" : true;
         }
     }
@@ -138,6 +141,8 @@ Class User {
             }*/
             $user = mysqli_fetch_assoc($result);
             if($user["actif"] === 0){
+                session_start();
+                $_SESSION["usersessionID"] = $user["id_utilisateur"];
                 return "actif";
             }
             else{
