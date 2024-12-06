@@ -1,0 +1,160 @@
+/* Structure générale */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    color: #333;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1em 2em;
+    background-color: #fff;
+    border-bottom: 1px solid #ddd;
+}
+
+header .logo img {
+    height: 40px;
+}
+
+header .menu ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 1.5em;
+}
+
+header .menu ul li a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+}
+
+header .menu ul li a:hover {
+    color: #D9A36A;
+}
+
+.barre_recherche {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+}
+
+.barre_recherche input {
+    padding: 0.5em;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Section Profil */
+.profil {
+    max-width: 800px;
+    margin: 2em auto;
+    padding: 2em;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.profil h2 {
+    text-align: center;
+    color: #D9A36A;
+    margin-bottom: 1.5em;
+}
+
+.profil-info {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5em;
+}
+
+.profil-info img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    margin: 0 auto;
+    border: 2px solid #D9A36A;
+}
+
+.profil-info .details label {
+    font-weight: bold;
+    margin-bottom: 0.5em;
+    display: block;
+}
+
+.profil-info .details input {
+    width: 100%;
+    padding: 0.8em;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1em;
+}
+
+.profil-info .details input:focus {
+    border-color: #D9A36A;
+    outline: none;
+    box-shadow: 0 0 5px rgba(217, 163, 106, 0.5);
+}
+
+/* Actions */
+.actions {
+    display: flex;
+    justify-content: center;
+    gap: 1em;
+    margin-top: 2em;
+}
+
+.actions .btn {
+    background-color: #D9A36A;
+    color: #fff;
+    padding: 0.8em 1.5em;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    text-decoration: none;
+    text-align: center;
+    cursor: pointer;
+}
+
+.actions .btn:hover {
+    background-color: #bf8a58;
+}
+
+/* Footer */
+footer {
+    background-color: #fff;
+    padding: 1.5em 2em;
+    border-top: 1px solid #ddd;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+footer .social-network a {
+    color: #333;
+    text-decoration: none;
+    margin-right: 1em;
+}
+
+footer .social-network a:hover {
+    color: #D9A36A;
+}
+
+footer .container-footer {
+    margin: 1em 0;
+}
+
+footer .container-footer a {
+    text-decoration: none;
+    color: #333;
+    margin: 0.5em 0;
+    display: block;
+}
+
+footer .container-footer a:hover {
+    color: #D9A36A;
+}
