@@ -172,4 +172,11 @@ Class User {
         $_SESSION["usersessionID"] = $id;
         $_SESSION["usersessionMail"] = $this->email;
     }
+
+    public function verifycode(code, Database $db){ 
+
+
+
+
+    }
 }
