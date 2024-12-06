@@ -1,103 +1,111 @@
-/* profil.css */
-
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
     margin: 0;
     padding: 0;
-}
-
-header {
-    background-color: #333;
-    color: #fff;
-    padding: 10px 0;
-    text-align: center;
-}
-
-header h1 {
-    margin: 0;
-}
-
-nav ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    justify-content: center;
-}
-
-nav ul li {
-    margin: 0 15px;
-}
-
-nav ul li a {
-    color: #fff;
-    text-decoration: none;
-    font-weight: bold;
-}
-
-nav ul li a:hover {
-    text-decoration: underline;
+    background-color: #F9F9F9;
+    color: #333;
+    line-height: 1.6;
 }
 
 main {
-    padding: 20px;
+    max-width: 1200px;
+    margin: 2em auto;
+    padding: 0 2em;
 }
 
 .profil {
-    background-color: #fff;
-    padding: 20px;
+    background-color: #FFF;
     border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    margin: 20px auto;
+    padding: 2em;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .profil h2 {
     text-align: center;
-    color: #333;
+    color: #D9A36A;
+    margin-bottom: 1.5em;
 }
 
 .profil-info {
     display: flex;
+    gap: 2em;
     align-items: center;
-    margin-top: 20px;
 }
 
 .profil-info img {
+    width: 120px;
+    height: 120px;
     border-radius: 50%;
-    width: 150px;
-    height: 150px;
-    margin-right: 20px;
+    object-fit: cover;
+    border: 2px solid #D9A36A;
 }
 
-.details p {
-    margin: 5px 0;
+.profil-info .details p {
+    margin: 0.5em 0;
+}
+
+.profil-info .details p strong {
+    color: #555;
 }
 
 .actions {
-    text-align: center;
-    margin-top: 20px;
+    margin-top: 2em;
+    display: flex;
+    justify-content: center;
+    gap: 1em;
 }
 
 .actions .btn {
-    background-color: #333;
-    color: #fff;
-    padding: 10px 20px;
-    text-decoration: none;
+    background-color: #D9A36A;
+    color: #FFF;
+    padding: 0.8em 1.5em;
+    border: none;
     border-radius: 5px;
-    margin: 0 10px;
+    font-weight: bold;
+    text-decoration: none;
+    text-align: center;
+    cursor: pointer;
 }
 
 .actions .btn:hover {
-    background-color: #555;
+    background-color: #BF8A58;
 }
 
 footer {
-    background-color: #333;
-    color: #fff;
-    text-align: center;
-    padding: 10px 0;
-    position: fixed;
-    width: 100%;
-    bottom: 0;
+    background-color: #FFF;
+    border-top: 1px solid #DDD;
+    padding: 1.5em 3em;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+footer .social-network a {
+    margin-right: 1em;
+    color: #333;
+}
+
+footer .social-network a:hover {
+    color: #D9A36A;
+}
+
+footer .container-footer {
+    margin: 1em 0;
+}
+
+footer .title-footer {
+    font-weight: bold;
+    margin-bottom: 0.5em;
+    display: block;
+}
+
+footer .item-footer {
+    text-decoration: none;
+    color: #333;
+    margin: 0.3em 0;
+    display: block;
+}
+
+footer .item-footer:hover {
+    color: #D9A36A;
 }
