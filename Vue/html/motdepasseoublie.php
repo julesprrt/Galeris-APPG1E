@@ -7,22 +7,23 @@
     <title>Mot de Passe Oublié</title>
     <base href="/Galeris-APPG1E/Vue/">
     <link rel="stylesheet" href="CSS/motdepasseoublie.css">
+    <link rel="stylesheet" href="CSS/style.css">
 </head>
 <header></header>
-<h1>Mot de Passe Oublié</h1>
+<h1 class="simpleTitle">Mot de Passe Oublié</h1>
 <a href="https://galeris/Galeris-APPG1E/"><img src="../images/logo.png" alt="Logo de Galeris" style="display: block; margin: 0 auto;" ></a>
 </header>
 <main>
     <form>
-        <p>Entrez l'adresse e-mail associée à votre compte et nous vous enverrons un lien pour réinitialiser votre mot
+        <p class="simpleText">Entrez l'adresse e-mail associée à votre compte et nous vous enverrons un lien pour réinitialiser votre mot
             de passe.</p>
-        <label for="email">Adresse e-mail :</label>
+        <label class="simpleText" for="email">Adresse e-mail :</label>
         <input type="email" id="email" name="email" required>
-        <button type="button">Réinitialiser le mot de passe</button>
+        <button type="button" class="simpleText simpleButtonHover">Réinitialiser le mot de passe</button>
     </form>
 </main>
 <footer>
-    <p>&copy; Galeris. Tous droits réservés.</p>
+    <p class="simpleText">&copy; Galeris. Tous droits réservés.</p>
 </footer>
 </body>
 

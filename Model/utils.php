@@ -1,5 +1,5 @@
 <?php
-require 'vendor/autoload.php';
+
 
 Class Utils {
     public function __construct() {//Constructeur -> Initialisation des données
