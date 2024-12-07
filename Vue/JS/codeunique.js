@@ -33,12 +33,8 @@ async function register1() {
     
     if(statuscode === 200){
         alert(result.Success);
-        
     }
-    
     else{ 
         alert(result.Error);
-        
-
     }
 };

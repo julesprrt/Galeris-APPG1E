@@ -179,17 +179,18 @@ Class User {
             $conn = $db->connect();
             $sql = "SELECT code FROM code WHERE ID_user = ? AND date_expiration > NOW() ORDER BY date_expiration DESC LIMIT 1";
             $stmt = $conn->prepare($sql);
-            
             $id_user = $_SESSION['usersessionID'];
-            $stmt->bindParam('i', $id_user);
+            $stmt->bind_param('i', $id_user);
             $stmt->execute();
             $stmt->bind_result($codedb);
             while ($stmt->fetch()) {
-                    if ($codedb === $code){
-                    $updateSql = "UPDATE `utilisateur` SET active = 1 WHERE ID = ? ";
-                    $updateStmt = $conn->prepare($updateSql);
-                    $updateStmt->bindParam('i', $id_user);
-                    $updateStmt->execute();
+                if ($codedb == $code){
+                    $actif = 1;
+                    $updateSql = "UPDATE utilisateur SET actif = '$actif' WHERE id_utilisateur = '$id_user'";
+                    $conn->execute_query($updateSql);
+                    /*$updateStmt = $conn->prepare($updateSql);
+                    $updateStmt->bind_param('ii', $actif,$id_user);
+                    $updateStmt->execute();*/
                     return 200;
                 } else {
                     return 400;
