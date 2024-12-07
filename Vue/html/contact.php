@@ -13,9 +13,6 @@
 </head>
 
 <body>
-<div class="logo-galeris">
-            <a href="https://galeris/Galeris-APPG1E/"><img width="150" height="150" src="../images/logo-sans-fond.png"/></a>
-        </div>
     <section id="contact">
         <div class="container">
                 <p class="bigTitle6"> Une quesion ? Un conseil ?</p>

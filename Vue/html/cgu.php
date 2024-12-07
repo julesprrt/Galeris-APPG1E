@@ -7,6 +7,7 @@
     <title>Document</title>
     <base href="/Galeris-APPG1E/Vue/">
     <link rel="stylesheet" href="CSS/cgu.css">
+    <link rel="stylesheet" href="CSS/style.css">
 </head>
 
 <body>

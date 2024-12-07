@@ -1,10 +1,8 @@
 
 body {
-    font-family: Arial, sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
     background-color: #f5f5f5;
     color: #333;
-
-
 }
 
 /* Main */
@@ -193,4 +191,3 @@ main {
     border: none;
     border-radius: 4px;
 }
-

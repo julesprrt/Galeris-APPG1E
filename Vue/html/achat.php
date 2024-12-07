@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="CSS/achat.css">
     <link rel="stylesheet" href="CSS/header.css">
     <link rel="stylesheet" href="CSS/footer.css">
+    <link rel="stylesheet" href="CSS/style.css">
     <title>Page d'Achat</title>
 </head>
 
