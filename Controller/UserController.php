@@ -63,77 +63,7 @@ Class UserController extends Controller{
 
     public function code() {
         $this->render('codeunique', ['message' => '']);
-    }
-
-
-    //code verification
-    public function sendVerificationCode(Database $db) {
-        $email = $_POST['email'];
-    
-        if ($email) {
-            $user = new User(null, null, null, $email, null, null, null); 
-            $verificationResult = $user->VerifyExistMail($db);
-    
-            if ($verificationResult === true || $verificationResult === "actif") {
-                $codeModel = new Code();
-                $generatedCode = $codeModel->sendCode($email); // model code
-    
-                session_start();
-                $_SESSION['verification_code'] = $generatedCode; // gard code 
-                $_SESSION['email'] = $email; // gard email
-    
-                // reload to co deunique
-                header("Location: /Galeris-APPG1E/codeunique");
-                exit();
-            } else {
-                session_start();
-                if (!isset($_SESSION['failed_attempts'])) {
-                    $_SESSION['failed_attempts'] = 0;
-                }
-                $_SESSION['failed_attempts']++;
-    
-                if ($_SESSION['failed_attempts'] >= 5) {
-                    header("Location: /Galeris-APPG1E/accueil");
-                    exit();
-                }
-    
-                echo "Compte inexistant. Vous avez encore " . (5 - $_SESSION['failed_attempts']) . " tentatives.";
-            }
-        } else {
-            echo "Veuillez entrer une adresse e-mail valide.";
-        }
-    }
-    
-    public function verifyCode(Database $db) {
-        session_start();
-    
-        if (isset($_SESSION['verification_code'])) {
-            
-            $inputCode = implode("", $_POST); 
-    
-            if ($inputCode == $_SESSION['verification_code']) {
-                // reload to reset-password
-                header("Location: /Galeris-APPG1E/reset-password");
-                exit();
-            } else {
-                //code no correct
-                echo "Erreur de code de vérification. Veuillez réessayer.";
-            }
-        } else {
-            
-            echo "Le code de vérification est introuvable.";
-        }
-    }
-    
-    
-
-
-
-
-
-
-
-
+    }    
 
 }
 

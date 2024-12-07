@@ -13,7 +13,7 @@
 
     <div class="container">
         <h1>Entrez le code à 6 chiffres</h1>
-        <form action="/Galeris-APPG1E/verify-code" method="post">
+        <form>
             <div class="code-input">
                 <input type="number" name="digit1" maxlength="1" required>
                 <input type="number" name="digit2" maxlength="1" required>
