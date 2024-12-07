@@ -185,12 +185,13 @@ Class User {
             $stmt->bind_result($codedb);
             while ($stmt->fetch()) {
                 if ($codedb == $code){
-                    $actif = 1;
-                    $updateSql = "UPDATE utilisateur SET actif = '$actif' WHERE id_utilisateur = '$id_user'";
-                    $conn->execute_query($updateSql);
-                    /*$updateStmt = $conn->prepare($updateSql);
-                    $updateStmt->bind_param('ii', $actif,$id_user);
-                    $updateStmt->execute();*/
+                    $stmt->close();
+                    $updateSql = "UPDATE utilisateur SET actif = 1 WHERE id_utilisateur = ?";
+                    $updateStmt = $conn->prepare($updateSql) or die ($this->$conn->error);
+                    $updateStmt->bind_param('i', $id_user);
+                    $updateStmt->execute();
+                    $updateStmt->close();
+                    $conn->close();
                     return 200;
                 } else {
                     return 400;
