@@ -173,10 +173,33 @@ Class User {
         $_SESSION["usersessionMail"] = $this->email;
     }
 
-    public function verifycode(code, Database $db){ 
-
-
-
-
+    public function verifyCode($code, Database $db) { 
+        try {
+            session_start();
+            $conn = $db->connect();
+            $sql = "SELECT code FROM code WHERE ID_user = ? AND date_expiration > NOW() ORDER BY date_expiration DESC LIMIT 1";
+            $stmt = $conn->prepare($sql);
+            
+            $id_user = $_SESSION['usersessionID'];
+            $stmt->bindParam('i', $id_user);
+            $stmt->execute();
+            $stmt->bind_result($codedb);
+            while ($stmt->fetch()) {
+                    if ($codedb === $code){
+                    $updateSql = "UPDATE `utilisateur` SET active = 1 WHERE ID = ? ";
+                    $updateStmt = $conn->prepare($updateSql);
+                    $updateStmt->bindParam('i', $id_user);
+                    $updateStmt->execute();
+                    return 200;
+                } else {
+                    return 400;
+                }
+            } 
+            return 400;
+        } catch (PDOException $e) {
+            // Gérer les erreurs
+            return "Erreur : " . $e->getMessage();
+        }
     }
+    
 }

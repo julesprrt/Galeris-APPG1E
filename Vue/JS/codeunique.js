@@ -32,11 +32,12 @@ async function register1() {
     const result = await response.json();
     
     if(statuscode === 200){
-        alert("ok")
+        alert(result.Success);
         
     }
     
-    else{
+    else{ 
+        alert(result.Error);
         
 
     }
