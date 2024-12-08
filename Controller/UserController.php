@@ -4,65 +4,91 @@ require_once('Database/Database.php');
 require_once('Controller.php');
 
 //Controller utilisateur
-Class UserController extends Controller{
-    
-    public function inscription(Database $db) {
+class UserController extends Controller
+{
+
+    public function inscription(Database $db)
+    {
         $paramData = file_get_contents("php://input");
         $data = json_decode($paramData, true);
-        if(isset($data['name']) && isset($data['firstName']) && isset($data['userName']) && isset($data['email']) && isset($data['telephone']) && isset($data['password']) && isset($data['confirmPassword'])){//Verification données entré dans le formulaire
-            $user = new User($data["name"], $data["firstName"], $data["userName"], $data["email"], $data["telephone"], $data["password"],$data["confirmPassword"]);
-            $result = $user->registerVerification($db);//Verifier les données d'inscription
-            if($result === true){//Si les données sont correct alors envoie du code a usage unique + redirection vers la page  avec le code à usage unique
+        if (isset($data['name']) && isset($data['firstName']) && isset($data['userName']) && isset($data['email']) && isset($data['telephone']) && isset($data['password']) && isset($data['confirmPassword'])) { //Verification données entré dans le formulaire
+            $user = new User($data["name"], $data["firstName"], $data["userName"], $data["email"], $data["telephone"], $data["password"], $data["confirmPassword"]);
+            $result = $user->registerVerification($db); //Verifier les données d'inscription
+            if ($result === true) { //Si les données sont correct alors envoie du code a usage unique + redirection vers la page  avec le code à usage unique
                 $user->saveUser($db);
                 http_response_code(200);
                 echo json_encode(['Success' => "Un code vous à été envoyé sur votre adresse mail pour confirmer votre identité"]);
-            }
-            else if($result === "code"){
+            } else if ($result === "code") {
                 http_response_code(200);
                 echo json_encode(['Success' => "Un code vous à été envoyé sur votre adresse mail pour confirmer votre identité"]);
-            }
-            else{//Sinon affiché le message d'erreur sur la vue
+            } else { //Sinon affiché le message d'erreur sur la vue
                 http_response_code(400);
                 echo json_encode(['Error' => $result]);
             }
-        }
-        else{//Premier affichage sans les données Post
+        } else { //Premier affichage sans les données Post
             $this->render('inscription', ['message' => '']);
         }
     }
 
     //Connexion de l'utilisateur
-    public function connexion(Database $db) {
+    public function connexion(Database $db)
+    {
         $paramData = file_get_contents("php://input");
         $data = json_decode($paramData, true);
         if (isset($data['email']) && isset($data['password'])) {
-            $user = new User(null,null,null,$data['email'], null,$data['password'], null);
+            $user = new User(null, null, null, $data['email'], null, $data['password'], null);
             // Obtenir une connexion à la base de données
-            $result = $user-> connectUser($db);
-            if($result === true){
+            $result = $user->connectUser($db);
+            if ($result === true) {
                 http_response_code(200);
                 echo json_encode(['Success' => "Connexion réussie"]);
-            }
-            else if($result === "Utilisateur non valide"){
+            } else if ($result === "Utilisateur non valide") {
                 http_response_code(401);
                 echo json_encode(['Information' => "Un code vous à été envoyé sur votre adresse mail pour confirmer votre identité"]);
-            }
-            else{
+            } else {
                 http_response_code(400);
                 echo json_encode(['Error' => $result]);
             }
-        }
-        else{
+        } else {
             $this->render('connexion', ['message' => '']);
         }
     }
 
-    public function password(Database $db){
+    public function password(Database $db)
+    {
         $this->render('motdepasseoublie', ['message' => '']);
     }
 
-    public function code() {
+    public function code()
+    {
         $this->render('codeunique', ['message' => '']);
     }
-}
 
+    public function profil()
+    {
+        session_start();
+
+        // Vérifie si l'utilisateur est connecté
+        if (!isset($_SESSION['user_id'])) {
+            header('Location: /Galeris-APPG1E/connexion');
+            exit();
+        }
+
+        // Récupère l'ID utilisateur depuis la session
+        $userId = $_SESSION['user_id'];
+
+        // Charge les données utilisateur via le modèle
+        $db = new Database();
+        $user = new User(null, null, null, null, null, null, null); // Pas besoin d'initialiser les propriétés pour cette méthode
+        $userData = $user->getUserById($userId, $db);
+
+        // Vérifie si l'utilisateur existe
+        if (!$userData) {
+            echo "Utilisateur introuvable.";
+            exit();
+        }
+
+        // Transmet les données utilisateur à la vue
+        $this->render('profil', ['user' => $userData]);
+    }
+}
