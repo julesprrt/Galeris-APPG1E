@@ -25,6 +25,9 @@ $router->addRoute('/Galeris-APPG1E/achat', AchatController::class, 'achat');
 $router->addRoute('/Galeris-APPG1E/motdepasse', UserController::class, 'password');
 $router->addRoute('/Galeris-APPG1E/codeunique', UserController::class, 'code');
 $router->addRoute('/Galeris-APPG1E/profil', UserController::class, 'profil');
+$router->addRoute('/Galeris-APPG1E/editionprofil', UserController::class, 'editionprofil');
+$router->addRoute('/Galeris-APPG1E/process-edition', UserController::class, 'processEdition');
+
 
 
 $router->dispatch($uri);//Appel a la méthode du controller dedié

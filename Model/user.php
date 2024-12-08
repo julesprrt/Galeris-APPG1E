@@ -184,4 +184,35 @@ class User
         $conn->close();
         return null; // aucune ligne ne correspond dans la base, les ressources sont fermées et la méthode retourne null.
     }
+    public function updateUser($id, $nom, $prenom, $email, $description, $adresse, $newPassword, Database $db)
+    {
+        $conn = $db->connect();
+
+        // Prépare la requête SQL de base
+        $sql = "UPDATE utilisateur SET nom = ?, prenom = ?, email = ?, description = ?, adresse = ?";
+        $types = "sssss"; // Types pour bind_param
+        $params = [$nom, $prenom, $email, $description, $adresse];
+
+        // Si un nouveau mot de passe est fourni, on l'ajoute à la requête
+        if (!empty($newPassword)) {
+            $hashedPassword = password_hash($newPassword, PASSWORD_DEFAULT);
+            $sql .= ", mot_de_passe = ?";
+            $types .= "s"; // Ajoute le type chaîne
+            $params[] = $hashedPassword; // Ajoute la valeur
+        }
+
+        // Ajoute la condition WHERE
+        $sql .= " WHERE id_utilisateur = ?";
+        $types .= "i"; // Ajoute le type entier
+        $params[] = $id; // Ajoute l'ID utilisateur
+
+        // Prépare et exécute la requête
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param($types, ...$params); // Lie les paramètres
+        $result = $stmt->execute();
+
+        $stmt->close();
+        $conn->close();
+        return $result;
+    }
 }

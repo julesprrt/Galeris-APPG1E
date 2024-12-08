@@ -87,4 +87,88 @@ class UserController extends Controller
         // Transmet les données utilisateur à la vue
         $this->render('profil', ['user' => $userData]);
     }
+    public function editionprofil()
+    {
+        session_start();
+
+        if (!isset($_SESSION['user_id'])) {
+            header('Location: /Galeris-APPG1E/connexion');
+            exit();
+        }
+
+        $userId = $_SESSION['user_id'];
+        $db = new Database();
+        $userModel = new User(null, null, null, null, null, null, null);
+        $user = $userModel->getUserById($userId, $db);
+
+        if (!$user) {
+            echo "Utilisateur introuvable.";
+            exit();
+        }
+
+        $this->render('editionprofil', ['user' => $user]);
+    }
+
+    public function processEdition()
+    {
+        session_start();
+
+        if (!isset($_SESSION['user_id'])) {
+            header('Location: /Galeris-APPG1E/connexion');
+            exit();
+        }
+
+        $userId = $_SESSION['user_id'];
+
+        // Récupération des données du formulaire
+        $nom = $_POST['nom'] ?? '';
+        $prenom = $_POST['prenom'] ?? '';
+        $email = $_POST['email'] ?? '';
+        $description = $_POST['description'] ?? '';
+        $adresse = $_POST['adresse'] ?? '';
+        $oldPassword = $_POST['old_password'] ?? '';
+        $newPassword = $_POST['new_password'] ?? '';
+        $confirmPassword = $_POST['confirm_password'] ?? '';
+
+        $db = new Database();
+        $userModel = new User(null, null, null, null, null, null, null);
+        $user = $userModel->getUserById($userId, $db);
+
+        if (!$user) {
+            echo "Utilisateur introuvable.";
+            exit();
+        }
+
+        // Validation de l'ancien mot de passe
+        if (!password_verify($oldPassword, $user['mot_de_passe'])) {
+            $this->render('editionprofil', ['user' => $user, 'error' => "L'ancien mot de passe est incorrect."]);
+            return;
+        }
+
+        // Validation des nouvelles données
+        if (empty($nom) || empty($prenom) || empty($email)) {
+            $this->render('editionprofil', ['user' => $user, 'error' => "Tous les champs obligatoires doivent être remplis."]);
+            return;
+        }
+
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            $this->render('editionprofil', ['user' => $user, 'error' => "L'adresse email est invalide."]);
+            return;
+        }
+
+        if (!empty($newPassword) && $newPassword !== $confirmPassword) {
+            $this->render('editionprofil', ['user' => $user, 'error' => "Les nouveaux mots de passe ne correspondent pas."]);
+            return;
+        }
+
+        // Mise à jour des données
+        $updated = $userModel->updateUser($userId, $nom, $prenom, $email, $description, $adresse, $newPassword, $db);
+
+        if ($updated) {
+            header('Location: /Galeris-APPG1E/profil');
+            exit();
+        } else {
+            $this->render('editionprofil', ['user' => $user, 'error' => "Une erreur est survenue lors de la mise à jour."]);
+        }
+    }
 }

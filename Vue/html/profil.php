@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Profil Utilisateur - Votre Projet</title>
+    <title>Profil Utilisateur</title>
     <link rel="stylesheet" href="../CSS/profil.css">
     <link rel="stylesheet" href="../CSS/header.css">
     <link rel="stylesheet" href="../CSS/footer.css">
