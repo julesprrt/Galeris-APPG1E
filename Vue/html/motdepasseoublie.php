@@ -9,9 +9,9 @@
     <link rel="stylesheet" href="CSS/motdepasseoublie.css">
     <link rel="stylesheet" href="CSS/style.css">
 </head>
-<header></header>
+<body>
 <h1 class="simpleTitle">Mot de Passe Oublié</h1>
-<a href="https://galeris/Galeris-APPG1E/"><img src="../images/logo.png" alt="Logo de Galeris" style="display: block; margin: 0 auto;" ></a>
+<a href="https://galeris/Galeris-APPG1E/"><img src="../images/logo-sans-fond.png" alt="Logo de Galeris" style="display: block; margin: 0 auto;" ></a>
 </header>
 <main>
     <form>
