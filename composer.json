@@ -1,14 +1,14 @@
 {
-    "name": "yannroquignymartin/galeris-appg1e",
+    "name": "akash/galeris-appg1e",
     "autoload": {
         "psr-4": {
-            "Yannroquignymartin\\GalerisAppg1e\\": "src/"
+            "Akash\\GalerisAppg1e\\": "src/"
         }
     },
     "authors": [
         {
-            "name": "YannRM1",
-            "email": "yann.roquigny.martin@gmail.com"
+            "name": "akash47",
+            "email": "65364908+Akashos23@users.noreply.github.com"
         }
     ],
     "require": {
