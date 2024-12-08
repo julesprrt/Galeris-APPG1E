@@ -33,39 +33,21 @@
         </div>
     </header>
 
+
     <main>
         <section class="profil">
-            <h2>Bienvenue,
-                <?= htmlspecialchars($user['prenom']) ?>
-                <?= htmlspecialchars($user['nom']) ?>
-            </h2>
+            <h2>Bienvenue, <?= htmlspecialchars($user['prenom']) ?> <?= htmlspecialchars($user['nom']) ?></h2>
             <div class="profil-info">
                 <img src="images/avatar.png" alt="Photo de profil">
                 <div class="details">
-                    <p><strong>Nom :</strong>
-                        <?= htmlspecialchars($user['nom']) ?>
-                    </p>
-                    <p><strong>Prénom :</strong>
-                        <?= htmlspecialchars($user['prenom']) ?>
-                    </p>
-                    <p><strong>Email :</strong>
-                        <?= htmlspecialchars($user['email']) ?>
-                    </p>
-                    <p><strong>Téléphone :</strong>
-                        <?= htmlspecialchars($user['telephone'] ?? 'Non renseigné') ?>
-                    </p>
-                    <p><strong>Adresse :</strong>
-                        <?= htmlspecialchars($user['adresse'] ?? 'Non renseignée') ?>
-                    </p>
-                    <p><strong>Statut :</strong>
-                        <?= htmlspecialchars($user['statut'] ?? 'Client') ?>
-                    </p>
-                    <p><strong>Dernière connexion :</strong>
-                        <?= htmlspecialchars($user['derniere_connexion'] ?? 'Non disponible') ?>
-                    </p>
-                    <p><strong>Date d'inscription :</strong>
-                        <?= htmlspecialchars($user['date_creation']) ?>
-                    </p>
+                    <p><strong>Nom :</strong> <?= htmlspecialchars($user['nom']) ?></p>
+                    <p><strong>Prénom :</strong> <?= htmlspecialchars($user['prenom']) ?></p>
+                    <p><strong>Email :</strong> <?= htmlspecialchars($user['email']) ?></p>
+                    <p><strong>Description :</strong> <?= htmlspecialchars($user['description'] ?? 'Non renseignée') ?></p>
+                    <p><strong>Adresse :</strong> <?= htmlspecialchars($user['adresse'] ?? 'Non renseignée') ?></p>
+                    <p><strong>Rôle :</strong> <?= htmlspecialchars($user['roles']) ?></p>
+                    <p><strong>Date d'inscription :</strong> <?= htmlspecialchars($user['date_creation']) ?></p>
+                    <p><strong>Inscrit à la newsletter :</strong> <?= $user['newsletter'] ? 'Oui' : 'Non' ?></p>
                 </div>
             </div>
             <div class="actions">
