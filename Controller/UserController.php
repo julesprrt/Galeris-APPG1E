@@ -61,6 +61,26 @@ Class UserController extends Controller{
         $this->render('motdepasseoublie', ['message' => '']);
     }
 
+    public function PässwordMail(Database $db){
+        $paramData = file_get_contents("php://input");
+        $data = json_decode($paramData, true);
+        if(isset($data["email"]) && trim($data["email"]) !== ""){
+            $user = new User("","", "", $data["email"], "","","");
+            if($user->veirfyEmailForPassword($db)){
+                http_response_code(200);
+                echo json_encode(['Success' => "Un code vous à été envoyé sur votre adresse mail pour confirmer votre identité"]);
+            }
+            else{
+                http_response_code(400);
+                echo json_encode(['Error' => "Mail invalide"]);
+            }
+        }
+        else{
+            http_response_code(400);
+            echo json_encode(['Error' => "Entrez votre mail"]);
+        }
+    }
+
     public function code() {
         $this->render('codeunique', ['message' => '']);
     }    

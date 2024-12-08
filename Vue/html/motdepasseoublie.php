@@ -7,6 +7,8 @@
     <title>Mot de Passe Oublié</title>
     <base href="/Galeris-APPG1E/Vue/">
     <link rel="stylesheet" href="CSS\motdepasseoublie.css">
+    <link rel="stylesheet" href="CSS\style.css">
+    <script src="http://localhost/Galeris-APPG1E/vue/JS/oublieMotDePasse.js" defer></script>
 </head>
 <header></header>
 <h1>Mot de Passe Oublié</h1>
@@ -18,7 +20,8 @@
             de passe.</p>
         <label for="email">Adresse e-mail :</label>
         <input type="email" id="email" name="email" required>
-        <button type="button">Réinitialiser le mot de passe</button>
+        <button id="btn-omdp" type="button">Réinitialiser le mot de passe</button>
+        <p class="error-message"></p>
     </form>
 </main>
 <footer>

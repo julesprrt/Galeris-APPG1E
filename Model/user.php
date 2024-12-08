@@ -46,7 +46,7 @@ Class User {
         else if($this->password !== $this->confirmPassword){
             return "Les deux mots de passe ne sont pas identiques";
         }
-        else if($value === false){
+        else if($value === true){
             return "Vous avez déja un compte";
         }
         else{
@@ -127,24 +127,37 @@ Class User {
      */
     public function VerifyExistMail(Database $db){
         $conn = $db->connect();
-        $sql = "SELECT * FROM utilisateur where email = '$this->email'" ;
-        $result = $conn->execute_query($sql);
-        $conn->close();
-        if(mysqli_num_rows($result) > 0){
-            /*while ($row = $user->fetch_assoc()) {
-                if($row["actif"] === 0){
-                    return false;
-                }
-            }*/
-            $user = mysqli_fetch_assoc($result);
-            if($user["actif"] === 0){
+        $sql = "SELECT id_utilisateur, actif FROM utilisateur where email = ?" ;
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param('s',$this->email);
+        $stmt->execute();
+        $stmt->bind_result($id,$actif);
+        if($stmt->fetch()){
+            if($actif === 0){
+                $stmt->close();
+                $conn->close();
                 return "actif";
             }
             else{
+                session_start();
+                $_SESSION["usersessionID"] = $id;
+                $stmt->close();
+                $conn->close();
                 return true;
             }
         }
         return false;
+    }
+
+    public function veirfyEmailForPassword(Database $db){
+        $result = $this->verifyExistMail($db);
+        if(!$this->utilsUser->emailComposition($this->email) && $result === "actif" || !$this->utilsUser->emailComposition($this->email) && $result === false){
+            return false;
+        }
+        else{
+            $this->sendCode->sendCode($this->email,$db);
+            return true;
+        }
     }
 
     /**
@@ -167,4 +180,6 @@ Class User {
         $_SESSION["usersessionID"] = $id;
         $_SESSION["usersessionMail"] = $this->email;
     }
+
+
 }
