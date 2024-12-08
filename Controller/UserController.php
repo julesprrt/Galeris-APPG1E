@@ -71,7 +71,7 @@ Class UserController extends Controller{
                 echo json_encode(['Success' => "Inscription reussie"]);
             }
             else { 
-                http_response_code(400);
+                http_response_code($response);
                 echo json_encode(['Error' => "Code incorrect"]);
             }
         }

@@ -33,6 +33,11 @@ async function register1() {
     
     if(statuscode === 200){
         alert(result.Success);
+        window.location.href = "http://localhost:80/Galeris-APPG1E/";
+    }
+    else if(statuscode === 401){
+        alert(result.Error);
+        window.location.href = "http://localhost:80/Galeris-APPG1E/";
     }
     else{ 
         alert(result.Error);
