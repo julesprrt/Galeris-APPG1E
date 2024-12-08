@@ -17,7 +17,7 @@ body {
 .titre .photo {
     position: absolute;
     right: 20px; /* Espace entre le bord gauche et l'image */
-    width: 30px; /* Taille de l'image */
+    width: 150px; /* Taille de l'image */
     height: auto; /* Garde les proportions */
     cursor: pointer;
 }
