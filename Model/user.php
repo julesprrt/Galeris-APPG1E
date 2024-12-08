@@ -163,4 +163,25 @@ class User
         $_SESSION["usersessionID"] = $id;
         $_SESSION["usersessionMail"] = $this->email;
     }
+    public function getUserById($id, Database $db)
+    {
+        $conn = $db->connect();
+
+        $sql = "SELECT * FROM utilisateur WHERE id_utilisateur = ?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param('i', $id); // 'i' spécifie le type de données passées à la requête, ici integer. 
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        if ($result->num_rows > 0) {   // Si aucun utilisateur n'est trouvé, on évite d'accéder à des données inexistantes.
+            $user = $result->fetch_assoc(); // Récupère la première ligne des résultats sous forme d'un tableau associatif.
+            $stmt->close();
+            $conn->close();
+            return $user; // Ferme la requête préparée ($stmt) et la connexion à la base de données ($conn).
+        }
+
+        $stmt->close();
+        $conn->close();
+        return null; // aucune ligne ne correspond dans la base, les ressources sont fermées et la méthode retourne null.
+    }
 }

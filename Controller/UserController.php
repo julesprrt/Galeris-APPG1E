@@ -68,21 +68,17 @@ class UserController extends Controller
     {
         session_start();
 
-        // Vérifie si l'utilisateur est connecté
         if (!isset($_SESSION['user_id'])) {
             header('Location: /Galeris-APPG1E/connexion');
             exit();
         }
 
-        // Récupère l'ID utilisateur depuis la session
         $userId = $_SESSION['user_id'];
 
-        // Charge les données utilisateur via le modèle
         $db = new Database();
-        $user = new User(null, null, null, null, null, null, null); // Pas besoin d'initialiser les propriétés pour cette méthode
+        $user = new User(null, null, null, null, null, null, null);
         $userData = $user->getUserById($userId, $db);
 
-        // Vérifie si l'utilisateur existe
         if (!$userData) {
             echo "Utilisateur introuvable.";
             exit();

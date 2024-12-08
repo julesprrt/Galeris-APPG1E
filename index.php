@@ -10,7 +10,7 @@ require_once("./Controller/AchatController.php");
 require 'vendor/autoload.php';
 
 
-$uri = $_SERVER['REQUEST_URI'];//Recupération de l'uri (la route)
+$uri = $_SERVER['REQUEST_URI']; //Recupération de l'uri (la route)
 $router = new Router();
 
 
@@ -24,6 +24,7 @@ $router->addRoute('/Galeris-APPG1E/cgu', CGUController::class, 'cgu');
 $router->addRoute('/Galeris-APPG1E/achat', AchatController::class, 'achat');
 $router->addRoute('/Galeris-APPG1E/motdepasse', UserController::class, 'password');
 $router->addRoute('/Galeris-APPG1E/codeunique', UserController::class, 'code');
+$router->addRoute('/Galeris-APPG1E/profil', UserController::class, 'profil');
 
 
 $router->dispatch($uri);//Appel a la méthode du controller dedié

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,32 +11,33 @@
     <link href="CSS/style.css" rel="stylesheet">
     <script src="https://galeris/Galeris-APPG1E/vue/JS/connexion.js" defer></script>
 </head>
+
 <body>
     <div class="Page">
         <div class="logo-galeris">
-            <a href="https://galeris/Galeris-APPG1E/"><img width="150" height="150" src="../images/logo-sans-fond.png"/></a>
+            <a href="https://galeris/Galeris-APPG1E/"><img width="150" height="150" src="../images/logo-sans-fond.png" /></a>
         </div>
         <div class="Page-content">
-        <div class="infos-connexion">
-            <div class="inscrivez-vous">
-                <div class="connexion-content">
-                    <h1 class="text-connexion">Connectez-vous à</h1>
-                    <h1 class="text-galeris">Galeris</h1>
-                    <p class="text-inscription">Si vous n’avez pas de compte vous</p>
-                    <p class="text-inscription">pouvez vous <a href="https://galeris/Galeris-APPG1E/inscription">Inscrire ici </a>! </p>
-                </div>   
+            <div class="infos-connexion">
+                <div class="inscrivez-vous">
+                    <div class="connexion-content">
+                        <h1 class="text-connexion">Connectez-vous à</h1>
+                        <h1 class="text-galeris">Galeris</h1>
+                        <p class="text-inscription">Si vous n’avez pas de compte vous</p>
+                        <p class="text-inscription">pouvez vous <a href="https://galeris/Galeris-APPG1E/inscription">Inscrire ici </a>! </p>
+                    </div>
+                </div>
             </div>
-        </div>
-        <div class="form-connexion">
-            <p class="Title-connexion">Connectez-vous</p>
-            <form>
-                <input name="email" type="text" class="input-connexion-first" placeholder="Entrez votre mail" />
-                <input name="password" type="password" class="input-connexion" placeholder="Mot de passe" />
-                <a href="https://galeris/Galeris-APPG1E/motdepasse" class="mdpo">Mot de passe oublié ?</a>
-                <button type="button" class="button-connection"></button>
-                <p class="error-message"></p>
-            </form>
-        </div>
+            <div class="form-connexion">
+                <p class="Title-connexion">Connectez-vous</p>
+                <form>
+                    <input name="email" type="text" class="input-connexion-first" placeholder="Entrez votre mail" />
+                    <input name="password" type="password" class="input-connexion" placeholder="Mot de passe" />
+                    <a href="https://galeris/Galeris-APPG1E/motdepasse" class="mdpo">Mot de passe oublié ?</a>
+                    <button type="button" class="button-connection"></button>
+                    <p class="error-message"></p>
+                </form>
+            </div>
         </div>
     </div>
 
@@ -93,4 +95,5 @@
     </footer>
 
 </body>
+
 </html>
