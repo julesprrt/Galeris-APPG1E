@@ -7,6 +7,7 @@
     <title>Document</title>
     <base href="/Galeris-APPG1E/Vue/">
     <link rel="stylesheet" href="CSS/cgu.css">
+    <link rel="stylesheet" href="CSS/style.css">
 </head>
 
 <body>
@@ -18,7 +19,7 @@
     <main>
         <h1 class="titre">
             <span>Conditions Générales d'Utilisation</span>
-            <a href="https://galeris/Galeris-APPG1E/"><img src="../images/langue.png" alt="Langue" class="photo"></a>
+            <a href="https://galeris/Galeris-APPG1E/"><img src="../images/logo-sans-fond.png" alt="Langue" class="photo"></a>
         </h1>
         
         <br>
