@@ -11,7 +11,7 @@
             $pass = $env['PASSWORD'];
             $db = $env['DB'];
             $port = $env['PORT'];   
-            $connection = mysqli_connect($host, $user, $pass, $db,$port); // je crois que le prof a dit que mysqli c'est viellot et faut mieux utiliser PDO
+            $connection = mysqli_connect($host, $user, $pass, $db,$port);
             return $connection;
         }
     }

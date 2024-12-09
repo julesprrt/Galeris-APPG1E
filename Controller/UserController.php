@@ -60,7 +60,7 @@ Class UserController extends Controller{
         $this->render('motdepasseoublie', ['message' => '']);
     }
 
-    public function code(Database $db) {
+    public function code() {
         $paramData = file_get_contents("php://input");
         $data = json_decode($paramData, true);
         if (isset($data['code'])) {
@@ -71,7 +71,7 @@ Class UserController extends Controller{
                 echo json_encode(['Success' => "Inscription reussie"]);
             }
             else { 
-                http_response_code($response);
+                http_response_code(400);
                 echo json_encode(['Error' => "Code incorrect"]);
             }
         }
