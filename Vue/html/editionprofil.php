@@ -4,16 +4,17 @@
 <head>
     <meta charset="UTF-8">
     <title>Modification de Profil</title>
-    <link rel="stylesheet" href="../CSS/editionprofil.css">
-    <link rel="stylesheet" href="../CSS/header.css">
-    <link rel="stylesheet" href="../CSS/footer.css">
+    <base href="/Galeris-APPG1E/Vue/">
+    <link rel="stylesheet" href="CSS/editionprofil.css">
+    <link rel="stylesheet" href="CSS/header.css">
+    <link rel="stylesheet" href="CSS/footer.css">
 </head>
 
 <body>
     <header>
         <div class="logo">
             <a href="https://galeris/Galeris-APPG1E/">
-                <img src="../../images/logo.png" alt="Logo">
+                <img src="../images/logo.png" alt="Logo">
             </a>
         </div>
         <nav class="menu">

@@ -4,16 +4,17 @@
 <head>
     <meta charset="UTF-8">
     <title>Profil Utilisateur</title>
-    <link rel="stylesheet" href="../CSS/profil.css">
-    <link rel="stylesheet" href="../CSS/header.css">
-    <link rel="stylesheet" href="../CSS/footer.css">
+    <base href="/Galeris-APPG1E/Vue/">
+    <link rel="stylesheet" href="CSS/profil.css">
+    <link rel="stylesheet" href="CSS/header.css">
+    <link rel="stylesheet" href="CSS/footer.css">
 </head>
 
 <body>
     <header>
         <div class="logo">
             <a href="https://galeris/Galeris-APPG1E/">
-                <img src="../../images/logo.png" alt="Logo">
+                <img src="../images/logo.png" alt="Logo">
             </a>
         </div>
         <nav class="menu">
@@ -38,7 +39,7 @@
         <section class="profil">
             <h2>Bienvenue, <?= htmlspecialchars($user['prenom']) ?> <?= htmlspecialchars($user['nom']) ?></h2>
             <div class="profil-info">
-                <img src="images/avatar.png" alt="Photo de profil">
+                <!--<img src="../images/avatar.png" alt="Photo de profil">-->
                 <div class="details">
                     <p><strong>Nom :</strong> <?= htmlspecialchars($user['nom']) ?></p>
                     <p><strong>Prénom :</strong> <?= htmlspecialchars($user['prenom']) ?></p>
@@ -51,7 +52,7 @@
                 </div>
             </div>
             <div class="actions">
-                <a href="editionprofil.html" class="btn">Modifier le Profil</a>
+                <a href="https://galeris/Galeris-APPG1E/editionprofil" class="btn">Modifier le Profil</a>
             </div>
         </section>
     </main>
