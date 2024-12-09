@@ -26,7 +26,7 @@ $router->addRoute('/Galeris-APPG1E/achat', AchatController::class, 'achat');
 $router->addRoute('/Galeris-APPG1E/motdepasse', UserController::class, 'password');
 $router->addRoute('/Galeris-APPG1E/codeunique', UserController::class, 'code');
 $router->addRoute('/Galeris-APPG1E/send-verification-code', UserController::class, 'sendVerificationCode');
-$router->addRoute('/Galeris-APPG1E/confirmationMDP', UserController::class, 'confirmationMDP');
+$router->addRoute('/Galeris-APPG1E/confirmationmdp', UserController::class, 'confirmationMDP');
 $router->addRoute('/Galeris-APPG1E/verifyMail', UserController::class, 'PässwordMail');
 
 $router->dispatch($uri);//Appel a la méthode du controller dedié

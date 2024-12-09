@@ -195,7 +195,7 @@ class User
     {
         $conn = $db->connect();
         $hashPassword = password_hash($this->password, PASSWORD_DEFAULT);
-        $sql = "UPDATE FROM utilisateur SET mot_de_passe = ? where id_utilisateur = 6";
+        $sql = "UPDATE utilisateur SET mot_de_passe = ? where id_utilisateur = 6";
         $stmt = $conn->prepare($sql);
         $stmt->bind_param("s", $hashPassword);
         $stmt->execute();
