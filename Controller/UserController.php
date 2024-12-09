@@ -4,7 +4,7 @@ require_once('Database/Database.php');
 require_once('Controller.php');
 
 //Controller utilisateur
-class UserController extends Controller
+class   UserController extends Controller
 {
 
     public function inscription(Database $db)
@@ -64,7 +64,7 @@ class UserController extends Controller
         $this->render('codeunique', ['message' => '']);
     }
 
-    public function profil()
+    public function profil(Database $db)
     {
         session_start();
 
@@ -75,7 +75,6 @@ class UserController extends Controller
 
         $userId = $_SESSION['user_id'];
 
-        $db = new Database();
         $user = new User(null, null, null, null, null, null, null);
         $userData = $user->getUserById($userId, $db);
 
@@ -87,7 +86,7 @@ class UserController extends Controller
         // Transmet les données utilisateur à la vue
         $this->render('profil', ['user' => $userData]);
     }
-    public function editionprofil()
+    public function editionprofil(Database $db)
     {
         session_start();
 
@@ -97,7 +96,6 @@ class UserController extends Controller
         }
 
         $userId = $_SESSION['user_id'];
-        $db = new Database();
         $userModel = new User(null, null, null, null, null, null, null);
         $user = $userModel->getUserById($userId, $db);
 
@@ -109,7 +107,7 @@ class UserController extends Controller
         $this->render('editionprofil', ['user' => $user]);
     }
 
-    public function processEdition()
+    public function processEdition(Database $db)
     {
         session_start();
 
@@ -121,16 +119,15 @@ class UserController extends Controller
         $userId = $_SESSION['user_id'];
 
         // Récupération des données du formulaire
-        $nom = $_POST['nom'] ?? '';
-        $prenom = $_POST['prenom'] ?? '';
-        $email = $_POST['email'] ?? '';
-        $description = $_POST['description'] ?? '';
-        $adresse = $_POST['adresse'] ?? '';
-        $oldPassword = $_POST['old_password'] ?? '';
-        $newPassword = $_POST['new_password'] ?? '';
-        $confirmPassword = $_POST['confirm_password'] ?? '';
+        $nom = $_POST['nom'];
+        $prenom = $_POST['prenom'];
+        $email = $_POST['email'];
+        $description = $_POST['description'];
+        $adresse = $_POST['adresse'];
+        $oldPassword = $_POST['old_password'];
+        $newPassword = $_POST['new_password'];
+        $confirmPassword = $_POST['confirm_password'];
 
-        $db = new Database();
         $userModel = new User(null, null, null, null, null, null, null);
         $user = $userModel->getUserById($userId, $db);
 
@@ -138,13 +135,11 @@ class UserController extends Controller
             echo "Utilisateur introuvable.";
             exit();
         }
-
         // Validation de l'ancien mot de passe
         if (!password_verify($oldPassword, $user['mot_de_passe'])) {
             $this->render('editionprofil', ['user' => $user, 'error' => "L'ancien mot de passe est incorrect."]);
             return;
         }
-
         // Validation des nouvelles données
         if (empty($nom) || empty($prenom) || empty($email)) {
             $this->render('editionprofil', ['user' => $user, 'error' => "Tous les champs obligatoires doivent être remplis."]);
