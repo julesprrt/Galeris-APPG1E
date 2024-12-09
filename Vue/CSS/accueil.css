@@ -17,7 +17,7 @@ body {
     text-align: center;
 }
 
-.sellproduct{
+.sellproduct {
     border: none;
     background-color: #D9A36A;
     padding: 1.1em;
@@ -26,11 +26,11 @@ body {
     cursor: pointer;
 }
 
-.sellproduct:hover{
+.sellproduct:hover {
     opacity: 0.9;
 }
 
-.content-description{
+.content-description {
     padding-top: 0.8em;
 }
 

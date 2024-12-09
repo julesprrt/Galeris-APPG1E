@@ -1,50 +1,103 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Connexion - Galeris</title>
+    <title>Modification de Profil</title>
     <base href="/Galeris-APPG1E/Vue/">
-    <link href="CSS/connexion.css" rel="stylesheet">
-    <link href="CSS/footer.css" rel="stylesheet">
-    <link href="CSS/style.css" rel="stylesheet">
-    <script src="https://galeris/Galeris-APPG1E/vue/JS/connexion.js" defer></script>
+    <link rel="stylesheet" href="CSS/editionprofil.css">
+    <link rel="stylesheet" href="CSS/header.css">
+    <link rel="stylesheet" href="CSS/footer.css">
+    <script src="https://galeris/Galeris-APPG1E/vue/JS/nominatim.js" defer></script>
 </head>
 
 <body>
-    <div class="Page-User">
-        <div class="logo-galeris">
-            <a href="https://galeris/Galeris-APPG1E/"><img width="150" height="150" src="../images/logo-sans-fond.png" /></a>
+    <header>
+        <div class="logo">
+            <a href="https://galeris/Galeris-APPG1E/">
+                <img src="../images/logo.png" alt="Logo">
+            </a>
         </div>
-        <div class="Page-content">
-        <div class="infos-connexion">
-            <div class="inscrivez-vous">
-                <div class="connexion-content">
-                    <h1 class="bigTitle">Connectez-vous à</h1>
-                    <h1 class="text-galeris">Galeris</h1>
-                    <p class="simpleBigText">Si vous n’avez pas de compte vous</p>
-                    <p class="simpleBigText">pouvez vous <a href="https://galeris/Galeris-APPG1E/inscription">Inscrire ici </a>! </p>
-                </div>   
-            </div>
+        <nav class="menu">
+            <ul>
+                <li><a href="https://galeris/Galeris-APPG1E/">Accueil</a></li>
+                <li><a href="#">Vente</a></li>
+                <li><a href="#">Exposition</a></li>
+                <li><a href="#">News</a></li>
+                <li><a href="#">Plus</a></li>
+            </ul>
+        </nav>
+        <div class="barre_recherche">
+            <input type="text" placeholder="Rechercher...">
+            <div class="favori"><a href="favoris.html">❤️</a></div>
+            <div class="panier"><a href="panier.html">🛒</a></div>
+            <div class="utilisateur"><a href="https://galeris/Galeris-APPG1E/connexion">👤</a></div>
         </div>
-        <div class="form-connexion">
-            <p class="Title-connexion">Connectez-vous</p>
-            <form>
-                <input name="email" type="text" class="input-user-first" placeholder="Entrez votre mail" />
-                <input name="password" type="password" class="input-user" placeholder="Mot de passe" />
-                <a href="https://galeris/Galeris-APPG1E/motdepasse" class="link">Mot de passe oublié ?</a>
-                <button type="button" class="button-connection submit-button">Connexion</button>
-                <p class="error-message"></p>
+    </header>
+
+    <main>
+        <section class="profil">
+            <h2>Modification de votre profil</h2>
+
+            <!-- Affichage d'un message d'erreur si nécessaire -->
+            <?php if (isset($error) && !empty($error)) : ?>
+                <div class="error-message">
+                    <?= htmlspecialchars($error) ?>
+                </div>
+            <?php endif; ?>
+
+            <form action="/Galeris-APPG1E/process-edition" method="POST" class="profil-form">
+                <div class="profil-info">
+                    <img src="images/avatar.png" alt="Photo de profil">
+                    <div class="details">
+                        <p>
+                            <strong>Nom :</strong>
+                            <input type="text" name="nom" value="<?= htmlspecialchars($user['nom']) ?>" required>
+                        </p>
+                        <p>
+                            <strong>Prénom :</strong>
+                            <input type="text" name="prenom" value="<?= htmlspecialchars($user['prenom']) ?>" required>
+                        </p>
+                        <p>
+                            <strong>Email :</strong>
+                            <input type="email" name="email" value="<?= htmlspecialchars($user['email']) ?>" required>
+                        </p>
+                        <p>
+                            <strong>Description :</strong>
+                            <textarea name="description" rows="3" placeholder="Parlez un peu de vous..."><?= htmlspecialchars($user['description'] ?? '') ?></textarea>
+                        </p>
+                        <p>
+                            <strong>Adresse :</strong>
+                            <input type="text" id="autocomplete" name="adresse" placeholder="Commencez à saisir une adresse...">
+                        <ul id="suggestions" class="suggestions" style="display: none;"></ul>
+                        </p>
+                    </div>
+                </div>
+
+                <h3>Modification du mot de passe</h3>
+                <div class="password-section">
+                    <p>
+                        <strong>Ancien mot de passe :</strong>
+                        <input type="password" name="old_password" placeholder="Entrez votre ancien mot de passe" required>
+                    </p>
+                    <p>
+                        <strong>Nouveau mot de passe :</strong>
+                        <input type="password" name="new_password" placeholder="Au moins 8 caractères, 1 majuscule, 1 chiffre">
+                    </p>
+                    <p>
+                        <strong>Confirmer le nouveau mot de passe :</strong>
+                        <input type="password" name="confirm_password" placeholder="Répétez le nouveau mot de passe">
+                    </p>
+                </div>
+
+                <div class="actions">
+                    <button type="submit" class="btn">Enregistrer les modifications</button>
+                    <a href="/Galeris-APPG1E/profil" class="btn">Annuler</a>
+                </div>
             </form>
-        </div>
-        </div>
-    </div>
-
-
+        </section>
+    </main>
     <footer>
-
-        <!-- icones réseaux sociaux -->
         <div class="social-network">
             <a href="#"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"
                     xmlns="http://www.w3.org/2000/svg">
@@ -74,8 +127,6 @@
                 </svg>
             </a>
         </div>
-
-        <!-- infos footer (aide, contact ...) -->
         <div class="container-footer">
             <a class="title-footer">Qui sommes nous</a>
             <a class="item-footer" href="#">NovArt</a>
@@ -93,7 +144,8 @@
         </div>
 
     </footer>
-
+    <script src="https://maps.googleapis.com/maps/api/js?key=VOTRE_CLE_API&libraries=places"></script>
+    <script src="../JS/autocomplete.js"></script>
 </body>
 
 </html>
