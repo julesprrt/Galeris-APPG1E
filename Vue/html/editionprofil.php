@@ -78,7 +78,7 @@
                 <div class="password-section">
                     <p>
                         <strong>Ancien mot de passe :</strong>
-                        <input type="password" name="old_password" placeholder="Entrez votre ancien mot de passe" required>
+                        <input type="password" name="old_password" placeholder="Entrez votre ancien mot de passe">
                     </p>
                     <p>
                         <strong>Nouveau mot de passe :</strong>
