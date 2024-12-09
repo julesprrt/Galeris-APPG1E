@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="CSS/style.css">
     <link rel="stylesheet" href="CSS/header.css">
     <link rel="stylesheet" href="CSS/footer.css">
+    <link rel="stylesheet" href="CSS/style.css">
 </head>
 
 <header>
@@ -31,48 +32,62 @@
             </div>
 </header>
 <body>
-<div class="conteneur">
+    <!-- Header déjà existant -->
 
-    <div class="gauche">
-        
-            <img class="photo" src="../images/oeuvre1-1.jpg" alt="Photo">
-        <p>Cliquez sur l'image pour l'agrandir </p>
-
-        <div class=photos>
-             <img  src="../images/oeuvre1-1.jpg" alt="Photo">
-             <img  src="../images/oeuvre1-1.jpg" alt="Photo">
-             <img  src="../images/oeuvre1-1.jpg" alt="Photo">
+    <main>
+        <div class="container">
+            <div class="left-section">
+                <h1>Peinture acrylique</h1>
+                <p>Lot : PA1234 | Villecresnes, 94440</p>
+                <div class="main-image">
+                    <img src="../images/tableau2.png" alt="Peinture acrylique">
+                </div>
+                <p class="image-caption">Cliquez sur l'image pour l'agrandir</p>
+                <div class="thumbnail-gallery">
+                    <img src="../images/tableau2.png" alt="Thumbnail 1">
+                    <img src="../images/tableau2.png" alt="Thumbnail 2">
+                    <img src="../images/tableau2.png" alt="Thumbnail 3">
+                </div>
+                <div class="description">
+                    <h2>À propos de ce lot</h2>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua...</p>
+                </div>
+            </div>
+            <div class="right-section">
+                <div class="auction-info">
+                    <p>Se ferme dans :</p>
+                    <p class="close-date">29 nov 2024 19:30</p>
+                    <p>Enchère actuelle</p>
+                    <p class="current-bid">11 500,00 €</p>
+                    <button class="bid-button">Se connecter pour enchérir</button>
+                    <button class="register-button">Créer un compte</button>
+                    <p class="register-info">S'inscrire en moins de 2 min</p>
+                </div>
+                <div class="offers">
+                    <h3>Offres (17 🛎️)</h3>
+                    <table>
+                        <tr>
+                            <td>11 500,00 €</td>
+                            <td>23 nov. 13:48</td>
+                        </tr>
+                        <tr>
+                            <td>11 500,00 €</td>
+                            <td>23 nov. 13:48</td>
+                        </tr>
+                        <tr>
+                            <td>11 500,00 €</td>
+                            <td>23 nov. 13:48</td>
+                        </tr>
+                    </table>
+                    <a href="#" class="view-offers">Voir toutes les offres</a>
+                </div>
+            </div>
         </div>
+    </main>
 
-
-        <div>
-            <h1>A propos de ce lot</h1>
-        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Non aspernatur illo, 
-            culpa maxime dolore, nesciunt repudiandae deserunt, quidem veritatis vel quis 
-            excepturi suscipit quod cupiditate aperiam tempore facere eveniet itaque.
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sapiente ipsam temporibus totam vitae soluta 
-            architecto voluptates! Similique accusamus nemo blanditiis voluptas, laudantium, eius ad quae commodi eum provident, quos ipsa.
-        </p>
-        </div>
-        
-    </div>
-    
-    <div class="droite">
-        <div class="conteneur2">
-            
-
-           
-        </div>
-        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. 
-                Possimus distinctio nemo ea nam explicabo adipisci, numquam ipsa quia 
-                iusto dolorum dicta cum ad quod asperiores sit vel voluptates, impedit ducimus?
-        </p>
-                
-    </div>
-        
-        
-</div>
+    <!-- Footer déjà existant -->
 </body>
+
 
 <footer>
  <!-- icones réseaux sociaux -->
