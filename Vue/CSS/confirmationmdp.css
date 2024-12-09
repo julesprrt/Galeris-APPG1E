@@ -6,6 +6,7 @@ body {
   height: 100vh;
   margin: 0;
   font-family: Arial, sans-serif;
+  background-color: #EBEBEB;
 }
 
 header,
@@ -73,7 +74,18 @@ form button:hover {
 }
 
 #hidemdp {
-  width: 1.6rem;
-  height: 1rem;
+  width: 1.4rem;
+  height: 1.2rem;
   cursor: pointer;
+}
+
+#diveye {
+  width: 1.4rem;
+  height: 1.2rem;
+}
+
+.inputContainer{
+  display: flex;
+  flex-direction: row;
+  place-items: center;
 }

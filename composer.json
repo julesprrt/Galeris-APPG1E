@@ -1,14 +1,14 @@
 {
-    "name": "wendi/galeris-appg1e",
+    "name": "antoi/galeris-appg1e",
     "autoload": {
         "psr-4": {
-            "Wendi\\GalerisAppg1e\\": "src/"
+            "Antoi\\GalerisAppg1e\\": "src/"
         }
     },
     "authors": [
         {
-            "name": "Wendi",
-            "email": "wendihan03@gmail.com"
+            "name": "antoineclz",
+            "email": "antoine.caliez@eleve.isep.fr"
         }
     ],
     "require": {}
