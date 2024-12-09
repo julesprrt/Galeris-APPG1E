@@ -6,7 +6,7 @@ body {
     box-sizing: border-box;
   }
 /* Cible l'image spécifique */
-img[src="../html/images/tableau.png"] {
+img[src="../images/tableau.png"] {
   max-width: 100px;
   height: auto;
   display: block; 

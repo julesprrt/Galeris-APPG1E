@@ -1,13 +1,15 @@
 <html>
     <head>
         <title>Gomycode DOM checkpoints  Cart</title>
-        <link rel="stylesheet" href="../CSS/panier.css">  
-        <link rel="stylesheet" href="../CSS/header.css">
-        <link rel="stylesheet" href="../CSS/footer.css">  
+        <base href="/Galeris-APPG1E/Vue/">
+        <link rel="stylesheet" href="CSS/panier.css">  
+        <link rel="stylesheet" href="CSS/header.css">
+        <link rel="stylesheet" href="CSS/footer.css">
+        <script src="https://galeris/Galeris-APPG1E/vue/JS/panier.js" defer></script>  
 
     </head>
     <header>
-        <div class="logo"><a href="https://galeris/Galeris-APPG1E/"> <img src="/images/logo-sans-fond.png"></a></div>
+        <div class="logo"><a href="https://galeris/Galeris-APPG1E/"> <img src="../images/logo-sans-fond.png"></a></div>
         <nav class="menu">
             <ul>
                 <li><a href="https://galeris/Galeris-APPG1E/">Accueil</a></li>
@@ -42,7 +44,7 @@
                 </thead>
                 <tbody id="all_products">
                   <tr> 
-                    <td class="article--name"><div style="margin-right:1rem"><img src="../html/images/tableau.png"></div> <div>
+                    <td class="article--name"><div style="margin-right:1rem"><img src="../images/tableau.png"></div> <div>
                         <h3>Tableau 200x160</h3> 
                         <a class="remove" id="1">Supprimer</a></div></td>
                   

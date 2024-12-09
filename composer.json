@@ -1,14 +1,14 @@
 {
-    "name": "yannroquignymartin/galeris-appg1e",
+    "name": "nicol/galeris-appg1e",
     "autoload": {
         "psr-4": {
-            "Yannroquignymartin\\GalerisAppg1e\\": "src/"
+            "Nicol\\GalerisAppg1e\\": "src/"
         }
     },
     "authors": [
         {
-            "name": "YannRM1",
-            "email": "yann.roquigny.martin@gmail.com"
+            "name": "NicolasCOMES",
+            "email": "164205581+NicolasCOMES@users.noreply.github.com"
         }
     ],
     "require": {
