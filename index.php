@@ -7,7 +7,7 @@ require_once("./Controller/ContactController.php");
 require_once("./Controller/FAQController.php");
 require_once("./Controller/CGUController.php");
 require_once("./Controller/AchatController.php");
-require 'vendor/autoload.php';
+
 
 
 $uri = $_SERVER['REQUEST_URI']; //Recupération de l'uri (la route)

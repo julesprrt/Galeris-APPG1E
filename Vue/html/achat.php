@@ -6,13 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <base href="/Galeris-APPG1E/Vue/">
     <link rel="stylesheet" href="CSS/achat.css">
+    <link rel="stylesheet" href="CSS/header.css">
     <link rel="stylesheet" href="CSS/footer.css">
+    <link rel="stylesheet" href="CSS/style.css">
     <title>Page d'Achat</title>
 </head>
 
 <body>
     <header>
-        <div class="logo"><a href="https://galeris/Galeris-APPG1E/"> <img src="../images/logo.png"></a></div>
+        <div class="logo"><a href="https://galeris/Galeris-APPG1E/"> <img width="150" height="150" src="../images/logo-sans-fond.png" src="../images/logo.png"></a></div>
         <nav class="menu">
             <ul>
                 <li><a href="https://galeris/Galeris-APPG1E/">Accueil</a></li>

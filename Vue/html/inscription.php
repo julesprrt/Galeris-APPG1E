@@ -11,7 +11,7 @@
     <script src="https://galeris/Galeris-APPG1E/vue/JS/inscription.js" defer></script>
 </head>
 <body>
-    <div class="Page">
+    <div class="Page-User">
         <div class="logo-galeris">
             <a href="https://galeris/Galeris-APPG1E/"><img width="150" height="150" src="../images/logo-sans-fond.png"/></a>
         </div>
@@ -19,23 +19,23 @@
         <div class="infos-inscription">
             <div class="inscrivez-vous">
                 <div class="inscription-content">
-                    <h1 class="text-inscription">Incrivez-vous à</h1>
+                    <h1 class="bigTitle">Incrivez-vous à</h1>
                     <h1 class="text-galeris">Galeris</h1>
-                    <p class="text-connexion">Si vous avez déjà un compte</p>
-                    <p class="text-connexion">vous pouvez vous connecter <a href="https://galeris/Galeris-APPG1E/connexion">ici !</a></p>
+                    <p class="simpleBigText">Si vous avez déjà un compte</p>
+                    <p class="simpleBigText">vous pouvez vous connecter <a href="https://galeris/Galeris-APPG1E/connexion">ici !</a></p>
                 </div>   
             </div>
         </div>
         <div class="form-inscription">
             <p class="Title-inscription">Inscription</p>
-                <input type="text" class="input-inscription-first" name="name" placeholder="Nom" />
-                <input type="text" class="input-inscription" name="firstName" placeholder="Prénom" />
-                <input type="text" class="input-inscription" name="userName" placeholder="Nom utilisateur" />
-                <input type="email" class="input-inscription"name="email" placeholder="Email" />
-                <input type="tel" class="input-inscription" name="telephone" placeholder="Numéro de téléphone" title="exemple format : 0647892314" />
-                <input type="password" class="input-inscription" name="password" placeholder="Mot de passe"  title="Veuillez rentrez un mot de passe contenant plus de 8 caractères avec au minumum une majucule, une minuscule, un chiffre et un caractère spéciale" />
-                <input type="password" class="input-inscription" name="confirmPassword" placeholder="Confirmer votre mot de passe" />
-                <button class="submit-button" type="button">S'inscrire</button>
+                <input type="text" class="input-user-first" name="name" placeholder="Nom" />
+                <input type="text" class="input-user" name="firstName" placeholder="Prénom" />
+                <input type="text" class="input-user" name="userName" placeholder="Nom utilisateur" />
+                <input type="email" class="input-user"name="email" placeholder="Email" />
+                <input type="tel" class="input-user" name="telephone" placeholder="Numéro de téléphone" title="exemple format : 0647892314" />
+                <input type="password" class="input-user" name="password" placeholder="Mot de passe"  title="Veuillez rentrez un mot de passe contenant plus de 8 caractères avec au minumum une majucule, une minuscule, un chiffre et un caractère spéciale" />
+                <input type="password" class="input-user" name="confirmPassword" placeholder="Confirmer votre mot de passe" />
+                <button class="submit-button button-inscription" type="button">S'inscrire</button>
                 <p class="error-message"></p>
             </form>
         </div>
