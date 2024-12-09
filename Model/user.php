@@ -172,4 +172,49 @@ Class User {
         $_SESSION["usersessionID"] = $id;
         $_SESSION["usersessionMail"] = $this->email;
     }
+
+    public function verifyCode($code, Database $db) { 
+        try {
+            session_start();
+            $conn = $db->connect();
+            $sql = "SELECT code FROM code WHERE ID_user = ? AND date_expiration > NOW() ORDER BY date_expiration DESC LIMIT 1";
+            $stmt = $conn->prepare($sql);
+            $id_user = $_SESSION['usersessionID'];
+            $stmt->bind_param('i', $id_user);
+            $stmt->execute();
+            $stmt->bind_result($codedb);
+            while ($stmt->fetch()) {
+                if ($codedb == $code){
+                    $stmt->close();
+                    $updateSql = "UPDATE utilisateur SET actif = 1 WHERE id_utilisateur = ?";
+                    $updateStmt = $conn->prepare($updateSql) or die ($this->$conn->error);
+                    $updateStmt->bind_param('i', $id_user);
+                    $updateStmt->execute();
+                    $updateStmt->close();
+                    $conn->close();
+                    return 200;
+                } else {
+                    if(isset($_SESSION['nberror'])){
+                        $_SESSION['nberror'] =  $_SESSION['nberror'] + 1;
+                        if($_SESSION['nberror'] === 5){
+                            session_destroy();
+                            session_start();
+                            $_SESSION["userIP"] =  $_SERVER['REMOTE_ADDR'];;
+                            $my_date_time = date("Y-m-d H:i:s", strtotime("+10 minutes"));
+                            $_SESSION["datetime"] = $my_date_time;
+                        } 
+                    }
+                    else{
+                        $_SESSION['nberror'] = 1; 
+                    }
+                    return 400;
+                }
+            } 
+            return 400;
+        } catch (PDOException $e) {
+            // Gérer les erreurs
+            return "Erreur : " . $e->getMessage();
+        }
+    }
+    
 }

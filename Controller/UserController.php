@@ -64,8 +64,16 @@ Class UserController extends Controller{
         $paramData = file_get_contents("php://input");
         $data = json_decode($paramData, true);
         if (isset($data['code'])) {
-            http_response_code(200);
-            echo json_encode(['Success' => "Connexion réussie"]);
+            $user = new User(null,null,null,null,null,null,null);
+            $response = $user->verifyCode($data['code'],$db);
+            if ($response == 200){
+                http_response_code(200);
+                echo json_encode(['Success' => "Inscription reussie"]);
+            }
+            else { 
+                http_response_code(400);
+                echo json_encode(['Error' => "Code incorrect"]);
+            }
         }
         else {
             $this->render('codeunique', ['message' => '']);
