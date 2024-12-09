@@ -67,6 +67,7 @@ class User
             if (password_verify($this->password, $user['mot_de_passe']) && $user["actif"] === 1) {
                 session_start();
                 $_SESSION["usersession"] = $this->email;
+                $_SESSION["user_id"] = $user["id_utilisateur"];
                 return true;
             } else if ($user["actif"] === 0) {
                 $this->sendCode->sendCode($this->email);
