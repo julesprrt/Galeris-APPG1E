@@ -5,7 +5,38 @@ body {
     padding: 0;
     box-sizing: border-box;
   }
-  
+/* Cible l'image spécifique */
+img[src="../html/images/tableau.png"] {
+  max-width: 100px;
+  height: auto;
+  display: block; 
+  margin: 0 auto;
+  border-radius: 5px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+  /* Conteneur global */
+.container {
+  width: 90%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+/* Structure principale du panier */
+.structure {
+  width: 100%;
+  max-width: 1200px;
+  background-color: #f9f9f9;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+ 
   header {
     background-color: #f8f8f8;
     padding: 10px 20px;
@@ -15,7 +46,10 @@ body {
     border-bottom: 1px solid #ddd;
   }
   
-  
+.price {
+  color: #FFD700;
+}
+
   .nav-container {
     display: flex;
     align-items: center;

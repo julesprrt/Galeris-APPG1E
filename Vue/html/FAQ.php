@@ -10,7 +10,7 @@
     <script src="https://galeris/Galeris-APPG1E/vue/JS/Faq.js" defer></script>
 </head>
 <body>
-   <header>
+  <header>
     <h2>Foire Aux Questions</h2>
     <p>Trouvez toutes les réponses à vos questions !</p>
     <p>
@@ -20,7 +20,7 @@
         <img src="../images/tableau2.png" class="tableau2"/>
     </p>
     
-   </header> 
+   </header>  
 <div class="Page">
    <img src="../images/sculpture2.png" class="image1"/>
 
