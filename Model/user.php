@@ -76,7 +76,7 @@ Class User {
                 return true;
             } 
             else if($user["actif"] === 0){
-                $this->sendCode->sendCode($this->email);
+                $this->sendCode->sendCode($this->email, $db);
                 return "Utilisateur non valide";
             }
             else {
