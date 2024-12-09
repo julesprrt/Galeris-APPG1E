@@ -155,6 +155,10 @@ class   UserController extends Controller
             $this->render('editionprofil', ['user' => $user, 'error' => "Les nouveaux mots de passe ne correspondent pas."]);
             return;
         }
+        if (!$userModel->passwordComposition($newPassword)) {
+            $this->render('editionprofil', ['user' => $user, 'error' => "Le mot de passe doit contenir au moins 8 caractères, une majuscule, un chiffre et un caractère spécial."]);
+            return;
+        }
 
         // Mise à jour des données
         $updated = $userModel->updateUser($userId, $nom, $prenom, $email, $description, $adresse, $newPassword, $db);
