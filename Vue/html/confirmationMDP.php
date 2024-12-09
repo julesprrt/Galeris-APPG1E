@@ -29,7 +29,14 @@
         </div>
 
         <label for="text">Confirmation du mot de passe :</label>
-        <input type="password" id="confPasswordInput" class="passInput" name="MotDePasse" required>
+        <div class="inputContainer">
+            <input type="password" id="confPasswordInput" class="passInput" name="MotDePasse" required>
+            <div id="diveye">
+                <img src="../images/eyes.png" alt="Afficher mot de passe" id="showmdp2" class="show-password">
+                <img src="../images/eye.png" alt="cacher mot de passe" id="hidemdp2" class="hide-password"
+                    style="display : none">
+            </div>
+        </div>
 
         <button type="button" id="resetPass">Réinitialiser le mot de passe</button>
     </form>

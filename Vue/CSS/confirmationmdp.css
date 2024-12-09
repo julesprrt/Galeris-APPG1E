@@ -79,6 +79,18 @@ form button:hover {
   cursor: pointer;
 }
 
+#showmdp2 {
+  width: 1.6rem;
+  height: 1rem;
+  cursor: pointer;
+}
+
+#hidemdp2 {
+  width: 1.4rem;
+  height: 1.2rem;
+  cursor: pointer;
+}
+
 #diveye {
   width: 1.4rem;
   height: 1.2rem;
