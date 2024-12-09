@@ -32,14 +32,12 @@ async function register1() {
     const result = await response.json();
     
     if(statuscode === 200){
-        alert(result.Success);
-        window.location.href = "http://localhost:80/Galeris-APPG1E/";
+        alert("ok")
+        
     }
-    else if(statuscode === 401){
-        alert(result.Error);
-        window.location.href = "http://localhost:80/Galeris-APPG1E/";
-    }
-    else{ 
-        alert(result.Error);
+    
+    else{
+        
+
     }
 };

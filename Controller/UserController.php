@@ -60,20 +60,12 @@ Class UserController extends Controller{
         $this->render('motdepasseoublie', ['message' => '']);
     }
 
-    public function code(Database $db) {
+    public function code() {
         $paramData = file_get_contents("php://input");
         $data = json_decode($paramData, true);
         if (isset($data['code'])) {
-            $user = new User(null,null,null,null,null,null,null);
-            $response = $user->verifyCode($data['code'],$db);
-            if ($response == 200){
-                http_response_code(200);
-                echo json_encode(['Success' => "Inscription reussie"]);
-            }
-            else { 
-                http_response_code($response);
-                echo json_encode(['Error' => "Code incorrect"]);
-            }
+            http_response_code(200);
+            echo json_encode(['Success' => "Connexion réussie"]);
         }
         else {
             $this->render('codeunique', ['message' => '']);
