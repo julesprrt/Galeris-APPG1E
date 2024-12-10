@@ -1,0 +1,23 @@
+input[type="file"] {
+    display: none;
+}
+
+.button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.35em 0.75em;
+    cursor: pointer;
+    border-radius: 5px;
+    background-color: white;
+    font-size: 5em;
+    font-weight: bold;
+    border: 1px solid black;
+    color: black;
+    width: 1em
+}
+
+.button-wrap {
+    display: flex;
+    flex-direction: row;
+}
