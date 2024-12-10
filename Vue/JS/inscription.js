@@ -1,4 +1,8 @@
 document.querySelector(".submit-button").addEventListener('click', register)
+document.getElementById("showmdp").addEventListener('click', passwordToggle);
+document.getElementById("hidemdp").addEventListener('click', HidepasswordToggle);
+document.getElementById("showmdp2").addEventListener('click', passwordToggle2);
+document.getElementById("hidemdp2").addEventListener('click', HidepasswordToggle2);
 
 
 async function register() {
@@ -39,4 +43,29 @@ async function register() {
         alert(result.Error);
         document.querySelector('.error-message').innerHTML = result.Error;
     }
+}
+
+
+function passwordToggle(){
+    document.getElementById("passwordInput").setAttribute("type", "text");
+    document.getElementById("showmdp").style.display = 'none';
+    document.getElementById("hidemdp").style.display = ''
+}
+
+function HidepasswordToggle(){
+    document.getElementById("passwordInput"). setAttribute("type", "password");
+    document.getElementById("hidemdp").style.display = 'none';
+    document.getElementById("showmdp").style.display = '';
+}
+
+function passwordToggle2(){
+    document.getElementById("confPasswordInput").setAttribute("type", "text");
+    document.getElementById("showmdp2").style.display = 'none';
+    document.getElementById("hidemdp2").style.display = ''
+}
+
+function HidepasswordToggle2(){
+    document.getElementById("confPasswordInput"). setAttribute("type", "password");
+    document.getElementById("hidemdp2").style.display = 'none';
+    document.getElementById("showmdp2").style.display = '';
 }

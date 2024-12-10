@@ -1,6 +1,6 @@
-//document.getElementById("togglePassword").addEventListener('click', passwordToggle);
 document.querySelector(".button-connection").addEventListener('click', connexion);
-document.getElementById("affichermdp").addEventListener('click',passwordToggle);
+document.getElementById("showmdp").addEventListener('click', passwordToggle);
+document.getElementById("hidemdp").addEventListener('click', HidepasswordToggle);
 
 //Afficher ou non le mot de passe
 function passwordToggle(){
@@ -58,4 +58,16 @@ async function connexion() {
             item.value = "";
         })
     }
+}
+
+function passwordToggle(){
+    document.getElementById("passwordInput").setAttribute("type", "text");
+    document.getElementById("showmdp").style.display = 'none';
+    document.getElementById("hidemdp").style.display = ''
+}
+
+function HidepasswordToggle(){
+    document.getElementById("passwordInput"). setAttribute("type", "password");
+    document.getElementById("hidemdp").style.display = 'none';
+    document.getElementById("showmdp").style.display = '';
 }

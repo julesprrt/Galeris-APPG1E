@@ -34,8 +34,18 @@
                 <input type="text" class="input-inscription" name="userName" placeholder="Nom utilisateur" />
                 <input type="email" class="input-inscription"name="email" placeholder="Email" />
                 <input type="tel" class="input-inscription" name="telephone" placeholder="Numéro de téléphone" title="exemple format : 0647892314" />
-                <input type="password" class="input-inscription" name="password" placeholder="Mot de passe"  title="Veuillez rentrez un mot de passe contenant plus de 8 caractères avec au minumum une majucule, une minuscule, un chiffre et un caractère spéciale" />
-                <input type="password" class="input-inscription" name="confirmPassword" placeholder="Confirmer votre mot de passe" />
+                <input type="password" class="input-inscription" id="passwordInput" name="password" placeholder="Mot de passe"  title="Veuillez rentrez un mot de passe contenant plus de 8 caractères avec au minumum une majucule, une minuscule, un chiffre et un caractère spéciale" />
+                    <div id="diveye">
+                        <img src="../images/eyes.png" alt="Afficher mot de passe" id="showmdp" class="show-password">
+                        <img src="../images/eye.png" alt="cacher mot de passe" id="hidemdp" class="hide-password"
+                            style="display : none">
+                    </div>
+                <input type="password" class="input-inscription" id="confPasswordInput" name="confirmPassword" placeholder="Confirmer votre mot de passe" />
+                    <div id="diveye">
+                        <img src="../images/eyes.png" alt="Afficher mot de passe" id="showmdp2" class="show-password">
+                        <img src="../images/eye.png" alt="cacher mot de passe" id="hidemdp2" class="hide-password"
+                            style="display : none">
+                    </div>
                 <button class="submit-button" type="button">S'inscrire</button>
                 <p class="error-message"></p>
             </form>
