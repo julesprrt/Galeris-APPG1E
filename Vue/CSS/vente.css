@@ -17,7 +17,65 @@ input[type="file"] {
     width: 1em
 }
 
+.button-center {
+    display: flex;
+    justify-content: center;
+}
+
+.details {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+pre-oeuvre {
+    display: flex;
+    justify-content: center;
+}
 .button-wrap {
     display: flex;
     flex-direction: row;
+}
+
+.oeuvre {
+    display: flex;
+    justify-content: center;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #F9F9F9;
+    color: #333;
+    line-height: 1.6;
+}
+
+main {
+    max-width: 1200px;
+    margin: 2em auto;
+    padding: 0 2em;
+}
+
+.actions {
+    margin-top: 2em;
+    display: flex;
+    justify-content: center;
+    gap: 1em;
+}
+
+.actions .btn {
+    background-color: #D9A36A;
+    color: #FFF;
+    padding: 0.8em 1.5em;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    text-decoration: none;
+    text-align: center;
+    cursor: pointer;
+}
+
+.actions .btn:hover {
+    background-color: #BF8A58;
 }

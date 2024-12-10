@@ -37,15 +37,17 @@
 
     <main>
         <section class="oeuvre">
-            <h2>Vente d'une oeuvre d'art</h2>
-
-
             <form>
-                <div class="profil-info">
+                <div class="oeuvre-info">
+                <div class="pre-oeuvre">
+                <h2>Vente d'une oeuvre d'art</h2>
                 <strong>Ajoutez jusqu'a trois photos</strong>
-                    <div class="button-wrap">
+                </div>
+                    <div class="button-center">
                         <label class="button" for="upload">📷</label>
                         <input id="upload" type="file" onchange="onFileSelected(event)">
+                    </div>
+                    <div class="button-wrap">
                         <img class="myimage" height="100">
                         <img class="myimage" height="100">
                         <img class="myimage" height="100">
