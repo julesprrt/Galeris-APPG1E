@@ -45,7 +45,7 @@
                 </div>
                     <div class="button-center">
                         <label class="button" for="upload">📷</label>
-                        <input id="upload" type="file" onchange="onFileSelected(event)">
+                        <input id="upload" type="file">
                     </div>
                     <div class="button-wrap">
                         <img class="myimage" height="100">

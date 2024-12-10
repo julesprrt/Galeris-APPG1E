@@ -1,3 +1,5 @@
+document.getElementById("upload").addEventListener("change", onFileSelected)
+
 function onFileSelected(event) {
     var selectedFile = event.target.files[0];
     var reader = new FileReader();
