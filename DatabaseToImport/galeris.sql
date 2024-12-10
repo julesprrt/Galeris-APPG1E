@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : lun. 09 déc. 2024 à 19:05
+-- Généré le : mar. 10 déc. 2024 à 18:55
 -- Version du serveur : 10.4.32-MariaDB
 -- Version de PHP : 8.2.12
 
@@ -31,6 +31,14 @@ CREATE TABLE `categorie` (
   `id_categorie` int(11) NOT NULL,
   `Nom_categorie` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Déchargement des données de la table `categorie`
+--
+
+INSERT INTO `categorie` (`id_categorie`, `Nom_categorie`) VALUES
+(2, 'Tableaux'),
+(3, 'Scupltures');
 
 -- --------------------------------------------------------
 
@@ -111,7 +119,8 @@ CREATE TABLE `oeuvre` (
   `est_vendu` tinyint(1) DEFAULT 0,
   `auteur` varchar(50) DEFAULT NULL,
   `id_utilisateur` int(11) DEFAULT NULL,
-  `id_categorie` int(11) DEFAULT NULL
+  `id_categorie` int(11) DEFAULT NULL,
+  `statut` enum('refuse','en attente de validation','accepte') DEFAULT 'en attente de validation'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -196,6 +205,12 @@ ALTER TABLE `utilisateur`
 --
 -- AUTO_INCREMENT pour les tables déchargées
 --
+
+--
+-- AUTO_INCREMENT pour la table `categorie`
+--
+ALTER TABLE `categorie`
+  MODIFY `id_categorie` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT pour la table `code`
