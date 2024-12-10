@@ -61,14 +61,20 @@
                             <strong>Auteur de l'oeuvre :</strong>
                             <input type="text" name="auteur">
                         </p>
+                        <p>
+                        <strong>Categorie :</strong>
                         <select name="categorie" id="categorie-selec" required>
                             <option value="">--Choississez la categorie--</option>
                         </select>
+                        </p>
+                        <p>
+                        <strong>Type de vente :</strong>
                         <select name="vente" id="vente-selec" required>
                             <option value="">--Type de vente--</option>
                             <option value="Vente">Vente</option>
                             <option value="Enchere">Enchere</option>
                         </select>
+                        </p>
                         <p>
                             <strong>Prix :</strong>
                             <input type="number" min="0.00" max="10000.00" step="0.01" name="prix" />
@@ -85,8 +91,8 @@
                 </div>
 
                 <div class="actions">
-                    <button type="submit" class="btn">Enregistrer les modifications</button>
-                    <a href="/Galeris-APPG1E/profil" class="btn">Annuler</a>
+                    <button type="submit" class="btn">Confirmer</button>
+                    <a href="/Galeris-APPG1E/" class="btn">Annuler</a>
                 </div>
             </form>
         </section>
