@@ -29,7 +29,7 @@
                 <input type="text" placeholder="Rechercher...">
                 <div class="favori"> <a href="favoris.html">❤️ </a></div>
                 <div class="panier"> <a href="panier.html"> 🛒 </a></div>
-                <div class="utilisateur"><a href="https://galeris/Galeris-APPG1E/connexion"> 👤 </a></div>
+                <div class="utilisateur"><a href="https://galeris/Galeris-APPG1E/profil"> 👤 </a></div>
             </div>
         </header>
 
