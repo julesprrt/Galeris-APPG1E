@@ -17,7 +17,7 @@
         
         <div class="container">
             <div class="">
-                <h6 class="tilte6"> Une quesion ? Un conseil ?</h6>
+                <h6 class="tilte6"> Une question ? Un conseil ?</h6>
                 <h3 class="title3"> Contactez-nous </h3>
             </div>
     

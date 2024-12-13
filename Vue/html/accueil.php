@@ -14,7 +14,7 @@
 <body>
     <div class="container">
         <header>
-            <div class="logo"> <a href="https://galeris/Galeris-APPG1E/"><img src="../images/logo.png"></a></div>
+            <div class="logo"> <a href="https://galeris/Galeris-APPG1E/"><img src="../images/logo-sans-fond.png"></a></div>
             <nav class="menu">
                 <ul>
                     <li><a href="https://galeris/Galeris-APPG1E/">Accueil</a></li>
@@ -28,7 +28,7 @@
                 <!-- Barre de recherche, les emojis sont responsives si on clique dessus -->
                 <input type="text" placeholder="Rechercher...">
                 <div class="favori"> <a href="favoris.html">❤️ </a></div>
-                <div class="panier"> <a href="panier.html"> 🛒 </a></div>
+                <div class="panier"> <a href="https://galeris/Galeris-APPG1E/panier"> 🛒 </a></div>
                 <div class="utilisateur"><a href="https://galeris/Galeris-APPG1E/connexion"> 👤 </a></div>
             </div>
         </header>
