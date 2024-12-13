@@ -64,5 +64,6 @@ Class UserController extends Controller{
     public function code() {
         $this->render('codeunique', ['message' => '']);
     }
+
 }
 

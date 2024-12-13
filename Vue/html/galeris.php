@@ -5,10 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <base href="/Galeris-APPG1E/Vue/">
-    <link rel="stylesheet" href="CSS/accueil.css">
+    <link rel="stylesheet" href="CSS/galeris.css">
     <link rel="stylesheet" href="CSS/header.css">
     <link rel="stylesheet" href="CSS/footer.css">
-    <title>Accueil</title>
+    <title>galeris</title>
 </head>
 
 <body>
@@ -17,7 +17,7 @@
             <div class="logo"> <a href="https://galeris/Galeris-APPG1E/"><img src="../images/logo.png"></a></div>
             <nav class="menu">
                 <ul>
-                    <li><a href="https://galeris/Galeris-APPG1E/">Accueil</a></li>
+                    <li><a href="https://galeris/Galeris-APPG1E/">galeris</a></li>
                     <li><a href="#">Vente</a></li>
                     <li><a href="#">Exposition</a></li>
                     <li><a href="#">News</a></li>
@@ -34,19 +34,31 @@
         </header>
 
         <!-- Contenu de la page d'accueil -->
-        <div class="page-content">
+        <div class="page-galeris">
             <div class="contentbase">
-                <button type="button" class="sellproduct">Vendre une oeuvre</button>
                 <div class="content-description">
-                    <p class="description">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                        exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-                        reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-                        occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+                    <p class="description">"Galeris est une plateforme en ligne qui permet aux artistes de présenter 
+                        leurs œuvres à un public international, d’élargir leur notoriété et de valoriser leur travail. Grâce à galeris, 
+                        les artistes peuvent atteindre un marché bien plus vaste que les galeries physiques traditionnelles, tout en 
+                        limitant l’empreinte écologique et en offrant aux collectionneurs une expérience d’achat plus facile, personnalisée et responsable."
                     </p>
                 </div>
             </div>
         </div>
+
+        <div class="sphere-container">
+            <div class="sphere">
+                <div class="sphere-image"><img src="../images/oeuvre1-1.jpg" alt="art1"></div>
+                <div class="sphere-image"><img src="../images/oeuvresim-1.png" alt="art2"></div>
+                <div class="sphere-image"><img src="../images/oeuvresim-2.jpg" alt="art3"></div>
+                <div class="sphere-image"><img src="../images/oeuvresim-3.jpg" alt="art4"></div>
+                <div class="sphere-image"><img src="../images/p1.jpg" alt="art5"></div>
+                <div class="sphere-image"><img src="../images/p2.jpg" alt="art6"></div>
+                <div class="sphere-image"><img src="../images/p3.jpg" alt="art7"></div>
+                <div class="sphere-image"><img src="../images/p4.jpg" alt="art8"></div>
+            </div>
+        </div>
+        
 
         <footer>
 
