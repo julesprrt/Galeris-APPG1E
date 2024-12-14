@@ -3,7 +3,10 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
+
 -- Généré le : sam. 14 déc. 2024 à 22:03
+
+
 -- Version du serveur : 10.4.32-MariaDB
 -- Version de PHP : 8.2.12
 
@@ -104,6 +107,7 @@ INSERT INTO `code` (`ID`, `code`, `date_expiration`, `ID_user`) VALUES
 -- --------------------------------------------------------
 
 --
+
 -- Structure de la table `exposition`
 --
 
@@ -170,13 +174,17 @@ INSERT INTO `exposition_images` (`id_exposition_images`, `chemin_image`, `id_exp
 -- --------------------------------------------------------
 
 --
+=======
+
 -- Structure de la table `oeuvre`
 --
 
 CREATE TABLE `oeuvre` (
   `id_oeuvre` int(11) NOT NULL,
   `Titre` varchar(50) NOT NULL,
+
   `Description` text DEFAULT NULL,
+
   `eco_responsable` tinyint(1) DEFAULT 0,
   `Date_debut` datetime DEFAULT current_timestamp(),
   `Date_fin` datetime NOT NULL,
@@ -188,6 +196,7 @@ CREATE TABLE `oeuvre` (
   `id_categorie` int(11) DEFAULT NULL,
   `statut` enum('refuse','en attente de validation','accepte') DEFAULT 'en attente de validation'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
 
 --
 -- Déchargement des données de la table `oeuvre`
@@ -211,6 +220,7 @@ INSERT INTO `oeuvre` (`id_oeuvre`, `Titre`, `Description`, `eco_responsable`, `D
 (15, 'test', '', 0, '2024-12-14 20:05:02', '2024-12-19 20:05:02', 50.00, 'Enchere', 0, 'test', 6, 2, 'en attente de validation'),
 (16, 'test555588', '', 0, '2024-12-14 21:09:40', '2024-12-19 21:09:40', 50.00, 'Enchere', 0, 's', 6, 2, 'en attente de validation');
 
+=======
 -- --------------------------------------------------------
 
 --
@@ -222,6 +232,7 @@ CREATE TABLE `oeuvre_images` (
   `chemin_image` varchar(100) DEFAULT NULL,
   `id_oeuvre` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
 
 --
 -- Déchargement des données de la table `oeuvre_images`
@@ -238,6 +249,8 @@ INSERT INTO `oeuvre_images` (`id_photo`, `chemin_image`, `id_oeuvre`) VALUES
 (8, 'ImageBD/Oeuvre/image_675dd60043bf20.83251527.png', 14),
 (9, 'ImageBD/Oeuvre/image_675dd6ded5a550.55231916.png', 15),
 (10, 'ImageBD/Oeuvre/image_675de604c0d099.50850953.png', 16);
+
+=======
 
 -- --------------------------------------------------------
 
@@ -287,6 +300,7 @@ ALTER TABLE `code`
   ADD KEY `ID_user` (`ID_user`);
 
 --
+
 -- Index pour la table `exposition`
 --
 ALTER TABLE `exposition`
@@ -299,6 +313,8 @@ ALTER TABLE `exposition_images`
   ADD PRIMARY KEY (`id_exposition_images`);
 
 --
+=======
+
 -- Index pour la table `oeuvre`
 --
 ALTER TABLE `oeuvre`
@@ -335,6 +351,7 @@ ALTER TABLE `code`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
+
 -- AUTO_INCREMENT pour la table `exposition`
 --
 ALTER TABLE `exposition`
@@ -357,6 +374,12 @@ ALTER TABLE `oeuvre`
 --
 ALTER TABLE `oeuvre_images`
   MODIFY `id_photo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+=======
+-- AUTO_INCREMENT pour la table `oeuvre`
+--
+ALTER TABLE `oeuvre`
+  MODIFY `id_oeuvre` int(11) NOT NULL AUTO_INCREMENT;
+
 
 --
 -- AUTO_INCREMENT pour la table `utilisateur`
