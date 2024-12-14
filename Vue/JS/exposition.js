@@ -1,4 +1,5 @@
-document.querySelector('.button-validation').addEventListener('click', exposition);
+document.querySelector('.btn-exposition').addEventListener('click', exposition);
+
 
 async function exposition() {
     const title = document.getElementById('title').value;

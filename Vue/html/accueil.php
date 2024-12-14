@@ -19,7 +19,7 @@
                 <ul>
                     <li><a href="https://galeris/Galeris-APPG1E/">Accueil</a></li>
                     <li><a href="#">Vente</a></li>
-                    <li><a href="https://galeris/Galeris-APPG1E/exposition">Exposition</a></li>
+                    <li><a href="#">Exposition</a></li>
                     <li><a href="#">News</a></li>
                     <li><a href="#">Plus</a></li>
                 </ul>
@@ -37,6 +37,7 @@
         <div class="page-content">
             <div class="contentbase">
                 <button type="button" class="sellproduct">Vendre une oeuvre</button>
+                <a href="https://galeris/Galeris-APPG1E/exposition"><button type="button" class="demandeexpo">Demande d'exposition</button></a>
                 <div class="content-description">
                     <p class="description">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
                         tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
