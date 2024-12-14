@@ -9,8 +9,6 @@ async function exposition() {
     if(title.trim() === "" || title.length >50){
         alert("Le titre est obligatoire et doit contenir moins de 50 caractères.")
     }
-    console.log(date_debut)
-    console.log(isDateBeforeToday(date_debut))
     if(date_debut === "" || isDateBeforeToday(date_debut) == false){
         alert("La date de début est requise et doit être ultérieure à la date actuelle.")
     }
