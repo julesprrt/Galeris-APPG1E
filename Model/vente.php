@@ -76,7 +76,7 @@ Class Vente{
     }
 
     public function saveImage(Database $db, $image){
-        $filename = $this->utils->saveFile($image);
+        $filename = $this->utils->saveFile($image, "Oeuvre");
         $Database = $db->connect();
         $sql = "insert into oeuvre_images (chemin_image, id_oeuvre) values (?,?)";
         $stmt = $Database->prepare($sql);
