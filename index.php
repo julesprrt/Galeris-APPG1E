@@ -7,6 +7,7 @@ require_once("./Controller/ContactController.php");
 require_once("./Controller/FAQController.php");
 require_once("./Controller/CGUController.php");
 require_once("./Controller/AchatController.php");
+require_once("./Controller/ExpositionController.php");
 
 
 
@@ -27,6 +28,8 @@ $router->addRoute('/Galeris-APPG1E/codeunique', UserController::class, 'code');
 $router->addRoute('/Galeris-APPG1E/profil', UserController::class, 'profil');
 $router->addRoute('/Galeris-APPG1E/editionprofil', UserController::class, 'editionprofil');
 $router->addRoute('/Galeris-APPG1E/process-edition', UserController::class, 'processEdition');
+$router->addRoute('/Galeris-APPG1E/exposition', ExpositionController::class, 'exposition');
+$router->addRoute('/Galeris-APPG1E/createexposition', ExpositionController::class, 'createexposition');
 
 
 
