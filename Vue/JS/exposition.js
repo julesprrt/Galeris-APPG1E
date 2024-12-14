@@ -21,8 +21,8 @@ async function exposition() {
     const diffTime = Math.abs(new Date(date_fin) - new Date(date_debut));
     const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
     if (diffDays > 14) {
-      //  alert("La durée maximale est de deux semaines.")
-        //return;
+        alert("La durée maximale est de deux semaines.")
+        return;
     }
     if (verifDate(date_debut, date_fin) === false) {
         alert("La date de fin doit être supérieure à la date de début.")
