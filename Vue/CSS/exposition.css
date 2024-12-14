@@ -97,3 +97,9 @@ main {
     font-size: 1em;
     background-color: #F9F9F9;
 }
+
+.description-exposition {
+    padding-right: 2em;
+    padding-left: 2em;
+    text-align: center;
+}   

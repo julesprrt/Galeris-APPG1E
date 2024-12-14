@@ -9,13 +9,20 @@ class Exposition
     private $date_debut;
     private $date_fin;
     private $description;
-
-    public function __construct($titre, $date_debut, $date_fin, $description)
+    private $image1;
+    private $image2;
+    private $image3;
+    private Utils $utils;
+    public function __construct($titre, $date_debut, $date_fin, $description, $image1,$image2,$image3)
     {
         $this->titre = $titre;
         $this->date_debut = $date_debut;
         $this->date_fin = $date_fin;
         $this->description = $description;
+        $this->image1 = $image1;
+        $this->image2 = $image2;
+        $this->image3 = $image3;
+        $this->utils = new Utils();
     }
 
     public function VerifyAndSaveExposition(Database $db)
@@ -32,9 +39,17 @@ class Exposition
         if($this->getNumberDaysBeetweenTwoDates() > 14){
             return 404;
         }
-
-        return $this->saveExposition($db);
-
+        $this->saveExposition($db);
+        if($this->image1 !== ""){
+            $this->SaveExpositionFile($db, $this->image1);
+        }
+        if($this->image2 !== ""){
+            $this->SaveExpositionFile($db, $this->image1);
+        }
+        if($this->image3 !== ""){
+            $this->SaveExpositionFile($db, $this->image1);
+        }
+        return 200;
     }
     public function VerificationDate($date_debut)
     {
@@ -65,8 +80,19 @@ class Exposition
         $stmt = $Database->prepare($sql);
         $stmt->bind_param('ssssi', $this->titre, $this->description, $this->date_debut, $this->date_fin, $_SESSION["user_id"]);
         $stmt->execute();
+        $_SESSION["exposition_id"] = $Database->insert_id;
         $stmt->close();
         $Database->close();
-        return 200;
+    }
+
+    public function SaveExpositionFile(Database $db, $image){
+        $filename = $this->utils->SaveFile($image, "exposition");
+        $Database = $db->connect();
+        $sql = "insert into exposition_images (chemin_image, id_exposition) values (?,?)";
+        $stmt = $Database->prepare($sql);
+        $stmt->bind_param("si",$filename,$_SESSION["exposition_id"]);
+        $stmt->execute();
+        $stmt->close();
+        $Database->close();
     }
 }

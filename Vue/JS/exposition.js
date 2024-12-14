@@ -34,9 +34,9 @@ async function exposition() {
     const date_fin = document.getElementById('date_fin').value;
     const description = document.getElementById('description').value;
     
-    const image1 = document.getElementById("image1").attributes[5] === undefined ? "" : document.getElementById("image1").attributes[5].value;
-    const image2 = document.getElementById("image2").attributes[5] === undefined ? "" : document.getElementById("image2").attributes[5].value;
-    const image3 = document.getElementById("image3").attributes[5] === undefined ? "" : document.getElementById("image3").attributes[5].value;
+    const image1 = document.getElementById("image1").attributes[4] === undefined ? "" : document.getElementById("image1").attributes[4].value;
+    const image2 = document.getElementById("image2").attributes[4] === undefined ? "" : document.getElementById("image2").attributes[4].value;
+    const image3 = document.getElementById("image3").attributes[4] === undefined ? "" : document.getElementById("image3").attributes[4].value;
 
     if (title.trim() === "" || title.length > 50) {
         alert("Le titre est obligatoire et doit contenir moins de 50 caractères.")
@@ -86,6 +86,18 @@ async function exposition() {
     const result = await response.json();
     if (statuscode === 200) {
         alert(result.Success)
+        const expo = document.querySelectorAll(".input-exposition");
+        expo.forEach(item => {
+            item.value = "";
+        })
+
+        var imgtag = document.querySelectorAll(".myimage");
+
+        imgtag.forEach(item => {
+            item.src = "";
+            item.title = "";
+        })
+        window.location.href = "https://galeris/Galeris-APPG1E";
     }
     else {
         alert(result.Error);

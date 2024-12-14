@@ -12,7 +12,7 @@ class ExpositionController extends Controller{
         $paramData = file_get_contents("php://input");
         $data = json_decode($paramData, true);
         if(isset($data['titre'])&& isset($data['date_debut'])&& isset($data['date_fin'])){
-            $exposition=new Exposition($data['titre'],$data['date_debut'],$data['date_fin'],$data['description']);
+            $exposition=new Exposition($data['titre'],$data['date_debut'],$data['date_fin'],$data['description'], $data['image1'], $data['image2'], $data['image3']);
             $result = $exposition->VerifyAndSaveExposition($db);
             if($result===200){
                 http_response_code(200);
