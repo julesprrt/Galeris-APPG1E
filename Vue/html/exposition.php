@@ -5,7 +5,6 @@
   <meta charset="UTF-8">
   <title>Modification de Profil</title>
   <base href="/Galeris-APPG1E/Vue/">
-  <link rel="stylesheet" href="CSS/style.css">
   <link rel="stylesheet" href="CSS/exposition.css">
   <link rel="stylesheet" href="CSS/header.css">
   <link rel="stylesheet" href="CSS/footer.css">
@@ -40,15 +39,15 @@
     <section class="exposition">
       <form>
         <h2>Demande d'exposition</h2>
-
+        <strong class="strong-title">Vous pouvez ajouter jusqu'a trois photos</strong>
         <div class="button-center">
           <label class="button" for="upload">📷</label>
           <input id="upload" type="file">
         </div>
         <div class="button-wrap">
-          <img class="myimage" id="image1" height="100">
-          <img class="myimage" id="image2" height="100">
-          <img class="myimage" id="image3" height="100">
+          <img class="myimage" id="image1">
+          <img class="myimage" id="image2">
+          <img class="myimage" id="image3">
         </div>
         <p>
         <strong>Titre :</strong>

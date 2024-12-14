@@ -1,4 +1,31 @@
 document.querySelector('.btn-exposition').addEventListener('click', exposition);
+document.getElementById("upload").addEventListener("change", onFileSelected)
+
+function onFileSelected(event) {
+    var selectedFile = event.target.files[0];
+    var reader = new FileReader();
+
+    var imgtag = document.querySelectorAll(".myimage");
+    var stop = false;
+    imgtag.forEach(item => {
+        if (item.title === "" && stop === false) {
+            item.style.cursor = "pointer";
+            item.title = "Supprimer l'image ?"
+            reader.onload = function (event) {
+                item.src = event.target.result;
+            };
+            item.addEventListener('click', () => {
+                var result = confirm("Etez-vous sûre de vouloir supprimer votre image ?");
+                if (result) {
+                    item.src = "";
+                    item.title = "";
+                }
+            })
+            reader.readAsDataURL(selectedFile);
+            stop = true;
+        }
+    })
+}
 
 
 async function exposition() {
@@ -6,6 +33,10 @@ async function exposition() {
     const date_debut = document.getElementById('date_debut').value;
     const date_fin = document.getElementById('date_fin').value;
     const description = document.getElementById('description').value;
+    
+    const image1 = document.getElementById("image1").attributes[5] === undefined ? "" : document.getElementById("image1").attributes[5].value;
+    const image2 = document.getElementById("image2").attributes[5] === undefined ? "" : document.getElementById("image2").attributes[5].value;
+    const image3 = document.getElementById("image3").attributes[5] === undefined ? "" : document.getElementById("image3").attributes[5].value;
 
     if (title.trim() === "" || title.length > 50) {
         alert("Le titre est obligatoire et doit contenir moins de 50 caractères.")
@@ -39,6 +70,9 @@ async function exposition() {
         "date_debut": date_debut,
         "date_fin": date_fin,
         "description": description,
+        "image1": image1,
+        "image2": image2,
+        "image3": image3
     });
 
     const requestOptions = {

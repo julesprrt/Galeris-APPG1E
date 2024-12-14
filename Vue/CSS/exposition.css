@@ -21,9 +21,21 @@ h2{
     text-align: center;
 }
 
+.strong-title{
+    display: flex;
+    justify-content: center;
+    padding-bottom: 2em;
+}
+
 img {
     padding-top: 20px;
     padding-right: 30px;
+}
+
+.details {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .button-center {
