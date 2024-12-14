@@ -23,23 +23,38 @@ class Exposition
         if ($this->titre === "" || strlen($this->titre) > 50) {
             return 401;
         }
-        if ($this->date_debut === "") {
+        if ($this->date_debut === "" || $this->VerificationDate($this->date_debut) === false) {
             return 402;
         }
         if ($this->date_fin === "") {
             return 403;
         }
+        if($this->getNumberDaysBeetweenTwoDates() > 14){
+            return 404;
+        }
+
         return $this->saveExposition($db);
 
     }
     public function VerificationDate($date_debut)
     {
-        $date_fin = date('Y/m/d');
-        if ($date_debut < $date_fin) {
+        $date_now = new DateTime();
+        $date2 = new DateTime($date_debut);
+
+        if ($date2 < $date_now) {
             return false;
         } else {
             return true;
         }
+    }
+
+    public function getNumberDaysBeetweenTwoDates()
+    {
+        $date_debubFormat = strtotime($this->date_debut);
+        $date_finFormat = strtotime($this->date_fin);
+        $datediff = $date_finFormat - $date_debubFormat;
+
+        return round($datediff / (60 * 60 * 24));
     }
 
     public function saveExposition(Database $db)

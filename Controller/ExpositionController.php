@@ -30,10 +30,14 @@ class ExpositionController extends Controller{
                 http_response_code(403);
                 echo json_encode(['Error'=> "La date de fin est requise."]);
             }
+            else if($result === 404){
+                http_response_code(404);
+                echo json_encode(['Error'=> "La durée maximale est de deux semaines."]);
+            }
         }
         else{
             http_response_code(400);
-            echo json_encode(['Error' => "Les données n'ont pas été envoyées."]);
+            echo json_encode(['Error' => "Votre demande d'exposition à bien été pris en compte"]);
         }
     }
 }
