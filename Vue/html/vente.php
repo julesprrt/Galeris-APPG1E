@@ -39,59 +39,66 @@
         <section class="oeuvre">
             <form>
                 <div class="oeuvre-info">
-                <div class="pre-oeuvre">
-                <h2>Vente d'une oeuvre d'art</h2>
-                <strong>Ajoutez jusqu'a trois photos</strong>
-                </div>
+                    <div class="pre-oeuvre">
+                        <h2>Vente d'une oeuvre d'art</h2>
+                        <strong class="strong-title">Ajoutez jusqu'a trois photos</strong><br><br>
+                    </div>
                     <div class="button-center">
                         <label class="button" for="upload">📷</label>
                         <input id="upload" type="file">
                     </div>
                     <div class="button-wrap">
-                        <img class="myimage" height="100">
-                        <img class="myimage" height="100">
-                        <img class="myimage" height="100">
+                        <img class="myimage" id="image1" height="100">
+                        <img class="myimage" id="image2" height="100">
+                        <img class="myimage" id="image3" height="100">
                     </div>
                     <div class="details">
                         <p>
                             <strong>Titre :</strong>
-                            <input type="text" name="titre" required>
+                            <input type="text" name="titre" class="input-vente" required>
                         </p>
                         <p>
                             <strong>Auteur de l'oeuvre :</strong>
-                            <input type="text" name="auteur">
+                            <input type="text" name="auteur" class="input-vente">
                         </p>
                         <p>
-                        <strong>Categorie :</strong>
-                        <select name="categorie" id="categorie-selec" required>
-                            <option value="">--Choississez la categorie--</option>
-                        </select>
+                            <strong>Categorie :</strong>
+                            <select name="categorie" id="categorie-selec" class="input-vente" required>
+                                <option value="">--Choississez la categorie--</option>
+                                <?php
+                                if (!empty($result)) {
+                                    foreach ($result as $resultat) {
+                                        echo "<option id={$resultat['id']}>{$resultat['nom']}</option>";
+                                    }
+                                }
+                                ?>
+                            </select>
                         </p>
                         <p>
-                        <strong>Type de vente :</strong>
-                        <select name="vente" id="vente-selec" required>
-                            <option value="">--Type de vente--</option>
-                            <option value="Vente">Vente</option>
-                            <option value="Enchere">Enchere</option>
-                        </select>
+                            <strong>Type de vente :</strong>
+                            <select name="vente" id="vente-selec" class="input-vente" required>
+                                <option value="">--Type de vente--</option>
+                                <option value="Vente">Vente</option>
+                                <option value="Enchere">Enchere</option>
+                            </select>
                         </p>
                         <p>
                             <strong>Prix :</strong>
-                            <input type="number" min="0.00" max="10000.00" step="0.01" name="prix" />
+                            <input class="input-vente" type="number" min="0.00" max="10000.00" step="0.01" name="prix" required />
                         </p>
                         <p>
                             <strong>Nombres de jours :</strong>
-                            <input type="number" min="2" max="30" step="1" name="nbjours" />
+                            <input class="input-vente" type="number" min="2" max="30" step="1" name="nbjours" placeholder="30 jours maximum autorisé" required />
                         </p>
                         <p>
                             <strong>Description :</strong>
-                            <textarea name="description" rows="3"></textarea>
+                            <textarea class="input-vente" name="description" rows="3"></textarea>
                         </p>
                     </div>
                 </div>
 
                 <div class="actions">
-                    <button type="submit" class="btn">Confirmer</button>
+                    <a class="btn btn-vente">Confirmer</a>
                     <a href="/Galeris-APPG1E/" class="btn">Annuler</a>
                 </div>
             </form>
