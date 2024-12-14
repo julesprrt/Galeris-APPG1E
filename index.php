@@ -7,7 +7,7 @@ require_once("./Controller/ContactController.php");
 require_once("./Controller/FAQController.php");
 require_once("./Controller/CGUController.php");
 require_once("./Controller/AchatController.php");
-
+require_once("./Controller/VenteController.php");
 
 
 $uri = $_SERVER['REQUEST_URI']; //Recupération de l'uri (la route)
@@ -24,9 +24,12 @@ $router->addRoute('/Galeris-APPG1E/cgu', CGUController::class, 'cgu');
 $router->addRoute('/Galeris-APPG1E/achat', AchatController::class, 'achat');
 $router->addRoute('/Galeris-APPG1E/motdepasse', UserController::class, 'password');
 $router->addRoute('/Galeris-APPG1E/codeunique', UserController::class, 'code');
+$router->addRoute('/Galeris-APPG1E/vente', VenteController::class, 'vente');
+$router->addRoute('/Galeris-APPG1E/createvente', VenteController::class, 'createvente');
 $router->addRoute('/Galeris-APPG1E/profil', UserController::class, 'profil');
 $router->addRoute('/Galeris-APPG1E/editionprofil', UserController::class, 'editionprofil');
 $router->addRoute('/Galeris-APPG1E/process-edition', UserController::class, 'processEdition');
+
 
 
 
