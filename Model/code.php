@@ -1,5 +1,5 @@
 <?php
-require 'vendor/autoload.php';
+
 require_once('Model/mailSender.php');
 require_once('Constantes/constants.php');
 require_once('Database/Database.php');

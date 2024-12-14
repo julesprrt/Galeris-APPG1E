@@ -21,16 +21,16 @@ async function register() {
         body: raw,
         redirect: "follow"
     };
-    const response = await fetch("http://localhost:80/Galeris-APPG1E/inscription", requestOptions)
+    const response = await fetch("https://galeris/Galeris-APPG1E/inscription", requestOptions)
     const statuscode = response.status;
     const result = await response.json();
     
     if(statuscode === 200){
         alert(result.Success)
-        document.querySelectorAll('.input-inscription').forEach((item)=> {
+        document.querySelectorAll('.input-user').forEach((item)=> {
             item.value = "";
         })
-        document.querySelectorAll('.input-inscription-first').forEach((item)=> {
+        document.querySelectorAll('.input-user-first').forEach((item)=> {
             item.value = "";
         })
         document.querySelector('.error-message').innerHTML = "";
