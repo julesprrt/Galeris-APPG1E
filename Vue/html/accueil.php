@@ -36,8 +36,11 @@
         <!-- Contenu de la page d'accueil -->
         <div class="page-content">
             <div class="contentbase">
-                <button type="button" class="sellproduct">Vendre une oeuvre</button>
-                <a href="https://galeris/Galeris-APPG1E/exposition"><button type="button" class="demandeexpo">Demande d'exposition</button></a>
+                <?php
+                    if($connectUser === true){
+                        echo '<button type="button" class="sellproduct">Vendre une oeuvre</button> <a href="https://galeris/Galeris-APPG1E/exposition"><button type="button" class="demandeexpo">Demande exposition</button></a>';
+                    }
+                ?>
                 <div class="content-description">
                     <p class="description">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
                         tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
