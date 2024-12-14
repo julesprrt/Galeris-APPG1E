@@ -3,7 +3,10 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : mar. 10 déc. 2024 à 18:55
+
+-- Généré le : sam. 14 déc. 2024 à 22:03
+
+
 -- Version du serveur : 10.4.32-MariaDB
 -- Version de PHP : 8.2.12
 
@@ -104,13 +107,84 @@ INSERT INTO `code` (`ID`, `code`, `date_expiration`, `ID_user`) VALUES
 -- --------------------------------------------------------
 
 --
+
+-- Structure de la table `exposition`
+--
+
+CREATE TABLE `exposition` (
+  `id_exhibition` int(11) NOT NULL,
+  `titre` varchar(50) NOT NULL,
+  `description` varchar(200) DEFAULT NULL,
+  `date_debut` datetime NOT NULL,
+  `date_fin` datetime NOT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  `statut` enum('refuse','en attente de validation','valide') DEFAULT 'en attente de validation'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Déchargement des données de la table `exposition`
+--
+
+INSERT INTO `exposition` (`id_exhibition`, `titre`, `description`, `date_debut`, `date_fin`, `user_id`, `statut`) VALUES
+(1, 'test', '', '2024-12-14 00:00:00', '2024-12-28 00:00:00', 6, 'en attente de validation'),
+(2, 'test', '', '2024-12-14 00:00:00', '2024-12-21 00:00:00', 6, 'en attente de validation'),
+(3, 'sss', '', '2024-12-14 00:00:00', '2024-12-28 00:00:00', 6, 'en attente de validation'),
+(4, 'sss', '', '2024-12-14 00:00:00', '2024-12-28 00:00:00', 6, 'en attente de validation'),
+(5, 'sss', '', '2024-12-14 00:00:00', '2024-12-28 00:00:00', 6, 'en attente de validation'),
+(6, 'ssss', 'sss', '2024-12-14 00:00:00', '2024-12-22 00:00:00', 6, 'en attente de validation'),
+(7, 'ssss', 'sss', '2024-12-15 00:00:00', '2024-12-22 00:00:00', 6, 'en attente de validation'),
+(8, 'akash', 'sss', '2024-12-15 00:00:00', '2024-12-22 00:00:00', 6, 'en attente de validation'),
+(9, 'sss', 'ssss', '2024-12-15 00:00:00', '2024-12-22 00:00:00', 6, 'en attente de validation'),
+(10, 'sss', 'sss', '2024-12-22 00:00:00', '2024-12-28 00:00:00', 6, 'en attente de validation'),
+(11, 'sss', 'sss', '2024-12-15 00:00:00', '2024-12-28 00:00:00', 6, 'en attente de validation'),
+(12, 'test', 'szzz', '2024-12-15 00:00:00', '2024-12-22 00:00:00', 6, 'en attente de validation'),
+(13, 'test', 'szzz', '2024-12-15 00:00:00', '2024-12-20 00:00:00', 6, 'en attente de validation'),
+(14, 'test', '', '2024-12-15 00:00:00', '2024-12-21 00:00:00', 6, 'en attente de validation'),
+(15, 'test', '', '2024-12-15 00:00:00', '2024-12-21 00:00:00', 6, 'en attente de validation'),
+(16, 'test', 'sss', '2024-12-15 00:00:00', '2024-12-27 00:00:00', 6, 'en attente de validation'),
+(17, 'sss', 'sss', '2024-12-15 00:00:00', '2024-12-22 00:00:00', 6, 'en attente de validation'),
+(18, 'sss', 'ss', '2024-12-15 00:00:00', '2024-12-28 00:00:00', 6, 'en attente de validation'),
+(19, 'sss', 'sss', '2024-12-21 00:00:00', '2024-12-27 00:00:00', 6, 'en attente de validation'),
+(20, 'sss', '', '2024-12-22 00:00:00', '2024-12-29 00:00:00', 6, 'en attente de validation'),
+(21, 'test', 'sss', '2024-12-15 00:00:00', '2024-12-27 00:00:00', 6, 'en attente de validation'),
+(22, 'test', 'ssss', '2024-12-25 00:00:00', '2024-12-28 00:00:00', 6, 'en attente de validation'),
+(23, 'test', 'sss', '2024-12-15 00:00:00', '2024-12-20 00:00:00', 6, 'en attente de validation');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `exposition_images`
+--
+
+CREATE TABLE `exposition_images` (
+  `id_exposition_images` int(11) NOT NULL,
+  `chemin_image` varchar(100) DEFAULT NULL,
+  `id_exposition` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Déchargement des données de la table `exposition_images`
+--
+
+INSERT INTO `exposition_images` (`id_exposition_images`, `chemin_image`, `id_exposition`) VALUES
+(1, 'ImageBD/exposition/image_675dea7b7462c8.30624128.png', 17),
+(2, 'ImageBD/exposition/image_675decac041c14.17469191.png', 21),
+(3, 'ImageBD/exposition/image_675dece1a14e60.10690491.png', 22);
+
+-- --------------------------------------------------------
+
+--
+=======
+
 -- Structure de la table `oeuvre`
 --
 
 CREATE TABLE `oeuvre` (
   `id_oeuvre` int(11) NOT NULL,
   `Titre` varchar(50) NOT NULL,
-  `Description` varchar(200) DEFAULT NULL,
+
+  `Description` text DEFAULT NULL,
+
   `eco_responsable` tinyint(1) DEFAULT 0,
   `Date_debut` datetime DEFAULT current_timestamp(),
   `Date_fin` datetime NOT NULL,
@@ -123,6 +197,30 @@ CREATE TABLE `oeuvre` (
   `statut` enum('refuse','en attente de validation','accepte') DEFAULT 'en attente de validation'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+
+--
+-- Déchargement des données de la table `oeuvre`
+--
+
+INSERT INTO `oeuvre` (`id_oeuvre`, `Titre`, `Description`, `eco_responsable`, `Date_debut`, `Date_fin`, `Prix`, `type_vente`, `est_vendu`, `auteur`, `id_utilisateur`, `id_categorie`, `statut`) VALUES
+(1, 'test', '', 0, '2024-12-14 19:29:22', '2025-01-13 19:29:22', 30.00, 'Enchere', 0, 'tets', NULL, 2, 'en attente de validation'),
+(2, 'test', '', 0, '2024-12-14 19:30:34', '2025-01-13 19:30:34', 30.00, 'Vente', 0, 'auteuir', NULL, 2, 'en attente de validation'),
+(3, 'test', '', 0, '2024-12-14 19:32:04', '2025-01-13 19:31:37', 30.00, 'Vente', 0, 'test', NULL, 3, 'en attente de validation'),
+(4, 'test', '', 0, '2024-12-14 19:33:10', '2024-12-16 19:33:07', 30.00, 'Enchere', 0, 'bom', 6, 2, 'en attente de validation'),
+(5, 'sss', '', 0, '2024-12-14 19:48:27', '2025-01-13 19:48:26', 50.00, 'Vente', 0, 'sss', 6, 2, 'en attente de validation'),
+(6, 'test', '', 0, '2024-12-14 19:49:16', '2025-01-08 19:49:16', 30.00, 'Vente', 0, 'test', 6, 2, 'en attente de validation'),
+(7, 's', '', 0, '2024-12-14 19:49:44', '2025-01-13 19:49:43', 30.00, 'Enchere', 0, 's', 6, 2, 'en attente de validation'),
+(8, 'sss', '', 0, '2024-12-14 19:50:13', '2025-01-13 19:50:13', 50.00, 'Vente', 0, 'sss', 6, 3, 'en attente de validation'),
+(9, 'test', 'test', 0, '2024-12-14 19:54:49', '2025-01-13 19:54:49', 30.00, 'Vente', 0, 'test', 6, 2, 'en attente de validation'),
+(10, 'test', '', 0, '2024-12-14 19:56:03', '2024-12-16 19:56:03', 52.00, 'Enchere', 0, 'et', 6, 3, 'en attente de validation'),
+(11, 'test', '', 0, '2024-12-14 19:57:15', '2025-01-13 19:57:15', 30.00, 'Enchere', 0, 'test', 6, 2, 'en attente de validation'),
+(12, '20', '', 0, '2024-12-14 19:57:34', '2025-01-13 19:57:34', 30.00, 'Vente', 0, 'ss', 6, 3, 'en attente de validation'),
+(13, 'test5', 'test', 0, '2024-12-14 19:58:56', '2025-01-13 19:58:56', 50.00, 'Vente', 0, 'sss', 6, 2, 'en attente de validation'),
+(14, 'test', 'test', 0, '2024-12-14 20:01:20', '2025-01-03 20:01:20', 50.00, 'Enchere', 0, 'bom', 6, 2, 'en attente de validation'),
+(15, 'test', '', 0, '2024-12-14 20:05:02', '2024-12-19 20:05:02', 50.00, 'Enchere', 0, 'test', 6, 2, 'en attente de validation'),
+(16, 'test555588', '', 0, '2024-12-14 21:09:40', '2024-12-19 21:09:40', 50.00, 'Enchere', 0, 's', 6, 2, 'en attente de validation');
+
+=======
 -- --------------------------------------------------------
 
 --
@@ -134,6 +232,25 @@ CREATE TABLE `oeuvre_images` (
   `chemin_image` varchar(100) DEFAULT NULL,
   `id_oeuvre` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+
+--
+-- Déchargement des données de la table `oeuvre_images`
+--
+
+INSERT INTO `oeuvre_images` (`id_photo`, `chemin_image`, `id_oeuvre`) VALUES
+(1, 'ImageBD/Oeuvre/image_675dd4c34692e2.43883459.png', 10),
+(2, 'ImageBD/Oeuvre/image_675dd4c34ce1e9.87412969.png', 10),
+(3, 'ImageBD/Oeuvre/image_675dd4c354f065.34977982.png', 10),
+(4, 'ImageBD/Oeuvre/image_675dd51e3671c6.99409343.png', 12),
+(5, 'ImageBD/Oeuvre/image_675dd51e3e8067.63081218.png', 12),
+(6, 'ImageBD/Oeuvre/image_675dd51e45e431.83167278.png', 12),
+(7, 'ImageBD/Oeuvre/image_675dd570ef5956.85444746.png', 13),
+(8, 'ImageBD/Oeuvre/image_675dd60043bf20.83251527.png', 14),
+(9, 'ImageBD/Oeuvre/image_675dd6ded5a550.55231916.png', 15),
+(10, 'ImageBD/Oeuvre/image_675de604c0d099.50850953.png', 16);
+
+=======
 
 -- --------------------------------------------------------
 
@@ -183,6 +300,21 @@ ALTER TABLE `code`
   ADD KEY `ID_user` (`ID_user`);
 
 --
+
+-- Index pour la table `exposition`
+--
+ALTER TABLE `exposition`
+  ADD PRIMARY KEY (`id_exhibition`);
+
+--
+-- Index pour la table `exposition_images`
+--
+ALTER TABLE `exposition_images`
+  ADD PRIMARY KEY (`id_exposition_images`);
+
+--
+=======
+
 -- Index pour la table `oeuvre`
 --
 ALTER TABLE `oeuvre`
@@ -219,10 +351,35 @@ ALTER TABLE `code`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
+
+-- AUTO_INCREMENT pour la table `exposition`
+--
+ALTER TABLE `exposition`
+  MODIFY `id_exhibition` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+
+--
+-- AUTO_INCREMENT pour la table `exposition_images`
+--
+ALTER TABLE `exposition_images`
+  MODIFY `id_exposition_images` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT pour la table `oeuvre`
+--
+ALTER TABLE `oeuvre`
+  MODIFY `id_oeuvre` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+
+--
+-- AUTO_INCREMENT pour la table `oeuvre_images`
+--
+ALTER TABLE `oeuvre_images`
+  MODIFY `id_photo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+=======
 -- AUTO_INCREMENT pour la table `oeuvre`
 --
 ALTER TABLE `oeuvre`
   MODIFY `id_oeuvre` int(11) NOT NULL AUTO_INCREMENT;
+
 
 --
 -- AUTO_INCREMENT pour la table `utilisateur`

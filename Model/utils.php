@@ -22,10 +22,11 @@ Class Utils {
         $type = strtolower($type[1]);//recuperer le type (exemple .png)
         $base64Image = base64_decode($base64Image); //decodage image
 
-        $filename = "ImageBD/$repository" . '/' . uniqid('image_', true) . '.' . $type; //nom fichier unique
+
+        $filename = "ImageBD/{$repository}" . '/' . uniqid('image_', true) . '.' . $type; //nom fichier unique
+
 
         file_put_contents($filename, $base64Image);//enregistrer l'image dans le dossiser ImageBD/Ouevre
         return $filename;
     }
-    
 }
