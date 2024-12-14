@@ -1,0 +1,72 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #F9F9F9;
+    color: #333;
+    line-height: 1.6;
+}
+
+main {
+    max-width: 1200px;
+    margin: 2em auto;
+    padding: 0 2em;
+}
+
+.profil {
+    background-color: #FFF;
+    border-radius: 8px;
+    padding: 2em;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.profil h2 {
+    text-align: center;
+    color: #D9A36A;
+    margin-bottom: 1.5em;
+}
+
+.profil-info {
+    display: flex;
+    gap: 2em;
+    align-items: center;
+}
+
+.profil-info img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #D9A36A;
+}
+
+.profil-info .details p {
+    margin: 0.5em 0;
+}
+
+.profil-info .details p strong {
+    color: #555;
+}
+
+.actions {
+    margin-top: 2em;
+    display: flex;
+    justify-content: center;
+    gap: 1em;
+}
+
+.actions .btn {
+    background-color: #D9A36A;
+    color: #FFF;
+    padding: 0.8em 1.5em;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    text-decoration: none;
+    text-align: center;
+    cursor: pointer;
+}
+
+.actions .btn:hover {
+    background-color: #BF8A58;
+}

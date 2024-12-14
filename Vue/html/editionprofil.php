@@ -3,18 +3,21 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modification de Profil</title>
     <base href="/Galeris-APPG1E/Vue/">
-    <link rel="stylesheet" href="CSS/achat.css">
+    <link rel="stylesheet" href="CSS/editionprofil.css">
     <link rel="stylesheet" href="CSS/header.css">
     <link rel="stylesheet" href="CSS/footer.css">
-    <link rel="stylesheet" href="CSS/style.css">
-    <title>Page d'Achat</title>
+    <script src="https://galeris/Galeris-APPG1E/vue/JS/nominatim.js" defer></script>
 </head>
 
 <body>
     <header>
-        <div class="logo"><a href="https://galeris/Galeris-APPG1E/"> <img width="150" height="150" src="../images/logo-sans-fond.png" src="../images/logo.png"></a></div>
+        <div class="logo">
+            <a href="https://galeris/Galeris-APPG1E/">
+                <img src="../images/logo.png" alt="Logo">
+            </a>
+        </div>
         <nav class="menu">
             <ul>
                 <li><a href="https://galeris/Galeris-APPG1E/">Accueil</a></li>
@@ -25,106 +28,76 @@
             </ul>
         </nav>
         <div class="barre_recherche">
-            <!-- Barre de recherche, les emojis sont responsives si on clique dessus -->
             <input type="text" placeholder="Rechercher...">
-            <div class="favori"> <a href="favoris.html">❤️ </a></div>
-            <div class="panier"> <a href="panier.html"> 🛒 </a></div>
-            <div class="utilisateur"><a href="https://galeris/Galeris-APPG1E/profil"> 👤 </a></div>
+            <div class="favori"><a href="favoris.html">❤️</a></div>
+            <div class="panier"><a href="panier.html">🛒</a></div>
+            <div class="utilisateur"><a href="https://galeris/Galeris-APPG1E/profil">👤</a></div>
         </div>
     </header>
 
     <main>
-        <section class="gauche">
-            <section class="art-details">
-                <div class="carousel-container">
-                    <!-- Flèche gauche -->
-                    <button class="carousel-fleche gauche cfg">&#10094; <!-- Les nombres chelous represente la flèche en Unicode --> </button>
+        <section class="profil">
+            <h2>Modification de votre profil</h2>
 
-                    <!-- Images que on va faire défiler avec les flèches, pour l'instant juste des exemples.-->
-                    <div class="art-image">
-                        <img src="..\images\oeuvre1-1.jpg" class="carousel-image active" alt="Photo Oeuvre 1"> <!-- La classe active est pour dire que c'est l'image affichée. -->
-                        <img src="..\images\oeuvre1-2.jpg" class="carousel-image" alt="Photo Oeuvre 2">
-                        <img src="..\images\oeuvre1-3.jpg" class="carousel-image" alt="Photo Oeuvre 3">
-                    </div>
-
-                    <!-- Flèche droite -->
-                    <button class="carousel-fleche droite cfd">&#10095;</button>
+            <!-- Affichage d'un message d'erreur si nécessaire -->
+            <?php if (isset($error) && !empty($error)) : ?>
+                <div class="error-message">
+                    <?= htmlspecialchars($error) ?>
                 </div>
+            <?php endif; ?>
 
-                <div class="art-info">
-                    <h1>Peinture acrylique</h1>
-                    <p>Peinte en 2020.<br>60 x 80 cm.</p>
-                </div>
-            </section>
-
-
-
-
-            <section class="art-image-similaire">
-                <!-- Voir comment faire pr afficher tableaux similaires, manque fonction en php -->
-                <h2>Oeuvres similaires</h2>
-                <div class="tableau-similaire">
-                    <!-- A améliorer car les images renvoie à rien, alors c'est censé renvoyer à la page. -->
-                    <img src="..\images\oeuvresim-1.png" alt="Tableau similaire 1">
-                    <img src="..\images\oeuvresim-2.jpg" alt="Tableau similaire 2">
-                    <img src="..\images\oeuvresim-3.jpg" alt="Tableau similaire 3">
-                </div>
-            </section>
-        </section>
-
-        <section class="droite">
-            <section class="profil-section">
+            <form action="/Galeris-APPG1E/process-edition" method="POST" class="profil-form">
                 <div class="profil-info">
-                    <img src="https://via.placeholder.com/50" alt="Photo de profil" class="photo-profil">
-                    <div class="profil-nom">
-                        <!-- Tout est exemple ici, manque les fonctions PHP pour récupérer tout ce qui est nom, prix et tt les infos. -->
-                        <strong>PIERRE PAUL</strong>
+                    <img src="images/avatar.png" alt="Photo de profil">
+                    <div class="details">
+                        <p>
+                            <strong>Nom :</strong>
+                            <input type="text" name="nom" value="<?= htmlspecialchars($user['nom']) ?>" required>
+                        </p>
+                        <p>
+                            <strong>Prénom :</strong>
+                            <input type="text" name="prenom" value="<?= htmlspecialchars($user['prenom']) ?>" required>
+                        </p>
+                        <p>
+                            <strong>Email :</strong>
+                            <input type="email" name="email" value="<?= htmlspecialchars($user['email']) ?>" required>
+                        </p>
+                        <p>
+                            <strong>Description :</strong>
+                            <textarea name="description" rows="3" placeholder="Parlez un peu de vous..."><?= htmlspecialchars($user['description'] ?? '') ?></textarea>
+                        </p>
+                        <p>
+                            <strong>Adresse :</strong>
+                            <input type="text" id="autocomplete" name="adresse" placeholder="Commencez à saisir une adresse...">
+                        <ul id="suggestions" class="suggestions" style="display: none;"></ul>
+                        </p>
                     </div>
-                    <div class="note">
-                        ★★★★★<span class="valeur-note">4/5</span>
-                        <!-- A améliorer, ici juste logo pour que le HTML sois beau pr l'instant, manque encore des infos à recup en PHP.-->
-                    </div>
+                </div>
+
+                <h3>Modification du mot de passe</h3>
+                <div class="password-section">
+                    <p>
+                        <strong>Ancien mot de passe :</strong>
+                        <input type="password" name="old_password" placeholder="Entrez votre ancien mot de passe">
+                    </p>
+                    <p>
+                        <strong>Nouveau mot de passe :</strong>
+                        <input type="password" name="new_password" placeholder="Au moins 8 caractères, 1 majuscule, 1 chiffre">
+                    </p>
+                    <p>
+                        <strong>Confirmer le nouveau mot de passe :</strong>
+                        <input type="password" name="confirm_password" placeholder="Répétez le nouveau mot de passe">
+                    </p>
                 </div>
 
                 <div class="actions">
-                    <button class="boutton-acheter">Acheter</button>
-                    <button class="boutton-message-vendeur">Message</button>
+                    <button type="submit" class="btn">Enregistrer les modifications</button>
+                    <a href="/Galeris-APPG1E/profil" class="btn">Annuler</a>
                 </div>
-
-                <div class="info-prix">
-                    <div class="prix">
-                        <span>€ 100</span>
-                        <!-- Prix de l'oeuvre, encore une fois, juste à titre d'exemple pr l'instant.  -->
-                        <div class="réduction">Réduction 25%</div>
-                        <!-- Ici par exemple, le 25 sera à recuperer dans le DB.-->
-                        <p class="eco-info">Fait avec matériaux éco-responsables</p>
-                    </div>
-                </div>
-
-                <div class="details">
-                    <div class="publication">
-                        <span>Publié le <strong>18/09/2024</strong></span>
-                    </div>
-                    <div class="livraison">
-                        <span>Livraison à partir de <strong>2.99€</strong></span>
-                    </div>
-                </div>
-            </section>
-
-
-            <section class="map">
-                <!-- Map ou on veut afficher l'endroit ou l'article est stocké.  A revoir pr l'instant juste pluggin Google Maps-->
-                <div class="map-Maps">
-                    <iframe
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2624.4667632450124!2d2.334453415674848!3d48.85950827928717!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e66fc3e55aa8a1%3A0x7fcb8cf23a5d4f80!2sLouvre%20Museum!5e0!3m2!1sen!2sfr!4v1633345612345!5m2!1sen!2sfr"
-                        width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-                </div>
-            </section>
+            </form>
         </section>
     </main>
     <footer>
-
-        <!-- icones réseaux sociaux -->
         <div class="social-network">
             <a href="#"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"
                     xmlns="http://www.w3.org/2000/svg">
@@ -154,8 +127,6 @@
                 </svg>
             </a>
         </div>
-
-        <!-- infos footer (aide, contact ...) -->
         <div class="container-footer">
             <a class="title-footer">Qui sommes nous</a>
             <a class="item-footer" href="#">NovArt</a>
@@ -173,8 +144,8 @@
         </div>
 
     </footer>
-
-    <script src="https://galeris/Galeris-APPG1E/vue/JS/achat.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=VOTRE_CLE_API&libraries=places"></script>
+    <script src="../JS/autocomplete.js"></script>
 </body>
 
 </html>
