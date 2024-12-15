@@ -76,7 +76,7 @@
                 <div class="profil-info">
                     <img src="https://via.placeholder.com/50" alt="Photo de profil" class="photo-profil">
                     <div class="profil-nom">
-                        <strong>Vendeur : <?php echo htmlspecialchars($oeuvre['nomvendeur']) . " " . htmlspecialchars($oeuvre['prenomvendeur']); ?></strong>
+                        <strong>Vendeur : <?php echo htmlspecialchars($oeuvre['nom']) . " " . htmlspecialchars($oeuvre['prenom']); ?></strong>
                     </div>
                 </div>
             </section>

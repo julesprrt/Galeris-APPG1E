@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : dim. 15 déc. 2024 à 15:42
+-- Généré le : dim. 15 déc. 2024 à 18:06
 -- Version du serveur : 10.4.32-MariaDB
 -- Version de PHP : 8.2.12
 
@@ -261,29 +261,7 @@ CREATE TABLE `oeuvre` (
 --
 
 INSERT INTO `oeuvre` (`id_oeuvre`, `Titre`, `Description`, `eco_responsable`, `Date_debut`, `Date_fin`, `Prix`, `type_vente`, `est_vendu`, `auteur`, `id_utilisateur`, `id_categorie`, `statut`) VALUES
-(1, 'test', '', 0, '2024-12-14 19:29:22', '2025-01-13 19:29:22', 30.00, 'Enchere', 0, 'tets', NULL, 2, 'en attente de validation'),
-(2, 'test', '', 0, '2024-12-14 19:30:34', '2025-01-13 19:30:34', 30.00, 'Vente', 0, 'auteuir', NULL, 2, 'en attente de validation'),
-(3, 'test', '', 0, '2024-12-14 19:32:04', '2025-01-13 19:31:37', 30.00, 'Vente', 0, 'test', NULL, 3, 'en attente de validation'),
-(4, 'test', '', 0, '2024-12-14 19:33:10', '2024-12-16 19:33:07', 30.00, 'Enchere', 0, 'bom', 6, 2, 'en attente de validation'),
-(5, 'sss', '', 0, '2024-12-14 19:48:27', '2025-01-13 19:48:26', 50.00, 'Vente', 0, 'sss', 6, 2, 'en attente de validation'),
-(6, 'test', '', 0, '2024-12-14 19:49:16', '2025-01-08 19:49:16', 30.00, 'Vente', 0, 'test', 6, 2, 'en attente de validation'),
-(7, 's', '', 0, '2024-12-14 19:49:44', '2025-01-13 19:49:43', 30.00, 'Enchere', 0, 's', 6, 2, 'en attente de validation'),
-(8, 'sss', '', 0, '2024-12-14 19:50:13', '2025-01-13 19:50:13', 50.00, 'Vente', 0, 'sss', 6, 3, 'en attente de validation'),
-(9, 'test', 'test', 0, '2024-12-14 19:54:49', '2025-01-13 19:54:49', 30.00, 'Vente', 0, 'test', 6, 2, 'en attente de validation'),
-(10, 'test', '', 0, '2024-12-14 19:56:03', '2024-12-16 19:56:03', 52.00, 'Enchere', 0, 'et', 6, 3, 'en attente de validation'),
-(11, 'test', '', 0, '2024-12-14 19:57:15', '2025-01-13 19:57:15', 30.00, 'Enchere', 0, 'test', 6, 2, 'en attente de validation'),
-(12, '20', '', 0, '2024-12-14 19:57:34', '2025-01-13 19:57:34', 30.00, 'Vente', 0, 'ss', 6, 3, 'en attente de validation'),
-(13, 'test5', 'test', 0, '2024-12-14 19:58:56', '2025-01-13 19:58:56', 50.00, 'Vente', 0, 'sss', 6, 2, 'en attente de validation'),
-(14, 'test', 'test', 0, '2024-12-14 20:01:20', '2025-01-03 20:01:20', 50.00, 'Enchere', 0, 'bom', 6, 2, 'en attente de validation'),
-(15, 'test', '', 0, '2024-12-14 20:05:02', '2024-12-19 20:05:02', 50.00, 'Enchere', 0, 'test', 6, 2, 'en attente de validation'),
-(16, 'test555588', '', 0, '2024-12-14 21:09:40', '2024-12-19 21:09:40', 50.00, 'Enchere', 0, 's', 6, 2, 'en attente de validation'),
-(17, 'sss', '', 0, '2024-12-14 22:41:18', '2024-12-19 22:41:18', 50.00, 'Enchere', 0, 'ss', 6, 2, 'en attente de validation'),
-(18, 'test', '', 0, '2024-12-15 01:59:13', '2024-12-17 01:59:13', 30.00, 'Enchere', 0, 'test', NULL, 3, 'en attente de validation'),
-(19, 'sss', '', 0, '2024-12-15 01:59:41', '2024-12-20 01:59:41', 50.00, 'Enchere', 0, 'ss', NULL, 2, 'en attente de validation'),
-(20, 'sss', '', 0, '2024-12-15 02:00:34', '2025-01-14 02:00:34', 50.00, 'Enchere', 0, 'sss', NULL, 3, 'en attente de validation'),
-(21, 'sss', '', 0, '2024-12-15 02:00:59', '2024-12-19 02:00:59', 50.00, 'Enchere', 0, 'sss', NULL, 2, 'en attente de validation'),
-(22, 'sss', '', 0, '2024-12-15 02:04:00', '2024-12-20 02:04:00', 30.00, 'Vente', 0, 'sss', NULL, 3, 'en attente de validation'),
-(23, 'test', '', 0, '2024-12-15 14:53:39', '2024-12-20 14:53:39', 20.00, 'Enchere', 0, 'test', NULL, 2, 'en attente de validation');
+(32, 'test', '', 0, '2024-12-15 18:05:26', '2025-01-04 18:05:26', 50.00, 'Vente', 0, 'test', 6, 2, 'en attente de validation');
 
 -- --------------------------------------------------------
 
@@ -302,26 +280,7 @@ CREATE TABLE `oeuvre_images` (
 --
 
 INSERT INTO `oeuvre_images` (`id_photo`, `chemin_image`, `id_oeuvre`) VALUES
-(1, 'ImageBD/Oeuvre/image_675dd4c34692e2.43883459.png', 10),
-(2, 'ImageBD/Oeuvre/image_675dd4c34ce1e9.87412969.png', 10),
-(3, 'ImageBD/Oeuvre/image_675dd4c354f065.34977982.png', 10),
-(4, 'ImageBD/Oeuvre/image_675dd51e3671c6.99409343.png', 12),
-(5, 'ImageBD/Oeuvre/image_675dd51e3e8067.63081218.png', 12),
-(6, 'ImageBD/Oeuvre/image_675dd51e45e431.83167278.png', 12),
-(7, 'ImageBD/Oeuvre/image_675dd570ef5956.85444746.png', 13),
-(8, 'ImageBD/Oeuvre/image_675dd60043bf20.83251527.png', 14),
-(9, 'ImageBD/Oeuvre/image_675dd6ded5a550.55231916.png', 15),
-(10, 'ImageBD/Oeuvre/image_675de604c0d099.50850953.png', 16),
-(11, 'ImageBD/Oeuvre/image_675dfb7e76c805.05592495.png', 17),
-(12, 'ImageBD/Oeuvre/image_675e29fd1cf838.61963903.', 19),
-(13, 'ImageBD/Oeuvre/image_675e29fd2507e3.50736208.', 19),
-(14, 'ImageBD/Oeuvre/image_675e29fd2fd872.23676395.', 19),
-(15, 'ImageBD/Oeuvre/image_675e2a320b7271.79659051.png', 20),
-(16, 'ImageBD/Oeuvre/image_675e2a4b7d1178.97806146.png', 21),
-(17, 'ImageBD/Oeuvre/image_675e2b0002e3b7.59881909.png', 22),
-(18, 'ImageBD/Oeuvre/image_675e2b000a4e82.16214707.png', 22),
-(19, 'ImageBD/Oeuvre/image_675e2b0011e184.44597221.png', 22),
-(20, 'ImageBD/Oeuvre/image_675edf630944b0.85609227.png', 23);
+(29, 'ImageBD/Oeuvre/image_675f0c56bd33b3.33262443.png', 32);
 
 -- --------------------------------------------------------
 
@@ -451,13 +410,13 @@ ALTER TABLE `exposition_images`
 -- AUTO_INCREMENT pour la table `oeuvre`
 --
 ALTER TABLE `oeuvre`
-  MODIFY `id_oeuvre` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id_oeuvre` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT pour la table `oeuvre_images`
 --
 ALTER TABLE `oeuvre_images`
-  MODIFY `id_photo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id_photo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT pour la table `utilisateur`

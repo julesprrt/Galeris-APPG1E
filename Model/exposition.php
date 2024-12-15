@@ -78,7 +78,7 @@ class Exposition
         $Database = $db->connect();
         $sql = "insert into exposition (titre,description,date_debut,date_fin,user_id) values (?,?,?,?,?)";
         $stmt = $Database->prepare($sql);
-        $stmt->bind_param('ssssi', $this->titre, $this->description, $this->date_debut, $this->date_fin, $_SESSION["user_id"]);
+        $stmt->bind_param('ssssi', $this->titre, $this->description, $this->date_debut, $this->date_fin, $_SESSION["usersessionID"]);
         $stmt->execute();
         $_SESSION["exposition_id"] = $Database->insert_id;
         $stmt->close();

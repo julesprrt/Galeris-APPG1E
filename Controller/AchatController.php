@@ -11,7 +11,7 @@ class AchatController extends Controller
         // Récupérer l'œuvre depuis le modèle
         $oeuvre = new Oeuvre($Titre = null, $Description = null, $eco_responsable = null, $Date_debut = null, $Date_fin = null, $Prix = null, $type_vente = null, $est_vendu = null, $auteur = null, $id_utilisateur = null, $id_categorie = null, $status = null, $nomvendeur = null, $prenomvendeur = null);
         session_start();
-        $id =  $_SESSION['id_oeuvre'];
+        $id =  $_SESSION['oeuvre_id'];
         $oeuvreid = $oeuvre->getOeuvreById($id, $db);
 
         // Vérifier si l'œuvre existe
@@ -24,7 +24,7 @@ class AchatController extends Controller
         }
 
         // Transmettre les données à la vue
-        $this->render('achat', ['oeuvre' => $oeuvre]);
+        $this->render('achat', ['oeuvre' => $oeuvreid]);
     }
 
     public function saveid(Database $db)
@@ -33,7 +33,7 @@ class AchatController extends Controller
         $data = json_decode($paramData, true);
         if (isset($data['id'])) {
             session_start();
-            $_SESSION['id_oeuvre'] = $data['id'];
+            $_SESSION['oeuvre_id'] = (int)$data['id'];
             http_response_code(200);
         } else {
             http_response_code(400);

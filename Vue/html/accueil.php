@@ -54,7 +54,6 @@
                     <div class="artworks">
                         <?php
                         foreach ($oeuvres as $oeuvre) {
-
                             echo '<a id = "oeuvre" style="cursor:pointer" >';
                             echo '<div class="oeuvre">';
                             echo '<input type="hidden" id="id_oeuvre" name="id_oeuvre" value="' . $oeuvre["id_oeuvre"] . '">';
