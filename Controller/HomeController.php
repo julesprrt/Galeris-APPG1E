@@ -6,7 +6,7 @@ Class HomeController extends Controller{//Controlleur accueil
     
     public function home() {
         session_start();
-        $this->render('accueil', ["connectUser" =>  isset($_SESSION["user_id"])]);
+        $this->render('accueil', ["connectUser" =>  isset($_SESSION["usersessionID"])]);
         
     }
 }

@@ -83,12 +83,12 @@ class   UserController extends Controller
     {
         session_start();
 
-        if (!isset($_SESSION['user_id'])) {
+        if (!isset($_SESSION['usersessionID'])) {
             header('Location: /Galeris-APPG1E/connexion');
             exit();
         }
 
-        $userId = $_SESSION['user_id'];
+        $userId = $_SESSION['usersessionID'];
 
         $user = new User(null, null,  null, null, null, null,null);
         $userData = $user->getUserById($userId, $db);
@@ -105,12 +105,12 @@ class   UserController extends Controller
     {
         session_start();
 
-        if (!isset($_SESSION['user_id'])) {
+        if (!isset($_SESSION['usersessionID'])) {
             header('Location: /Galeris-APPG1E/connexion');
             exit();
         }
 
-        $userId = $_SESSION['user_id'];
+        $userId = $_SESSION['usersessionID'];
         $userModel = new User(null, null,  null, null, null, null,null);
         $user = $userModel->getUserById($userId, $db);
 
@@ -126,12 +126,12 @@ class   UserController extends Controller
     {
         session_start();
 
-        if (!isset($_SESSION['user_id'])) {
+        if (!isset($_SESSION['usersessionID'])) {
             header('Location: /Galeris-APPG1E/connexion');
             exit();
         }
 
-        $userId = $_SESSION['user_id'];
+        $userId = $_SESSION['usersessionID'];
 
         // Récupération des données du formulaire
         $nom = $_POST['nom'];
@@ -151,7 +151,7 @@ class   UserController extends Controller
             exit();
         }
         // Validation de l'ancien mot de passe
-        if (!password_verify($oldPassword, $user['mot_de_passe'])) {
+        if (strlen($oldPassword) > 0 && !password_verify($oldPassword, $user['mot_de_passe'])) {
             $this->render('editionprofil', ['user' => $user, 'error' => "L'ancien mot de passe est incorrect."]);
             return;
         }
@@ -166,11 +166,11 @@ class   UserController extends Controller
             return;
         }
 
-        if (!empty($newPassword) && $newPassword !== $confirmPassword) {
+        if (strlen($oldPassword) > 0 && !empty($newPassword) && $newPassword !== $confirmPassword) {
             $this->render('editionprofil', ['user' => $user, 'error' => "Les nouveaux mots de passe ne correspondent pas."]);
             return;
         }
-        if (!$userModel->passwordComposition($newPassword)) {
+        if (strlen($oldPassword) > 0 && !$userModel->passwordComposition($newPassword)) {
             $this->render('editionprofil', ['user' => $user, 'error' => "Le mot de passe doit contenir au moins 8 caractères, une majuscule, un chiffre et un caractère spécial."]);
             return;
         }

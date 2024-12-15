@@ -38,7 +38,7 @@
             <div class="contentbase">
                 <?php
                     if($connectUser === true){
-                        echo '<button type="button" class="sellproduct">Vendre une oeuvre</button> <a href="https://galeris/Galeris-APPG1E/exposition"><button type="button" class="demandeexpo">Demande exposition</button></a>';
+                        echo '<a href="https://galeris/Galeris-APPG1E/vente"><button type="button" class="sellproduct">Vendre une oeuvre</button></a> <a href="https://galeris/Galeris-APPG1E/exposition"><button type="button" class="demandeexpo">Demande exposition</button></a>';
                     }
                 ?>
                 <div class="content-description">
