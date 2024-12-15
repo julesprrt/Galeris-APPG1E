@@ -9,7 +9,7 @@ require_once("./Controller/CGUController.php");
 require_once("./Controller/AchatController.php");
 require_once("./Controller/ExpositionController.php");
 require_once("./Controller/VenteController.php");
-
+require_once("./Controller/ListeAttenteAdminController.php");
 
 
 $uri = $_SERVER['REQUEST_URI']; //Recupération de l'uri (la route)
@@ -35,6 +35,7 @@ $router->addRoute('/Galeris-APPG1E/exposition', ExpositionController::class, 'ex
 $router->addRoute('/Galeris-APPG1E/createexposition', ExpositionController::class, 'createexposition');
 $router->addRoute('/Galeris-APPG1E/renvoiecode', UserController::class, 'resendcode');
 $router->addRoute('/Galeris-APPG1E/deconnexion', UserController::class, 'deconnexion');
+$router->addRoute('/Galeris-APPG1E/listeoeuvreattente', ListeAttenteAdminController::class, 'listeattenteoeuvre');
 
 if($uri !== null){
     $router->dispatch($uri);//Appel a la méthode du controller dedié

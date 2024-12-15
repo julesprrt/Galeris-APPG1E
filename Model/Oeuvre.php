@@ -4,7 +4,7 @@ require_once('Model/utils.php');
 require_once('Constantes/constants.php');
 require_once('Database/Database.php');
 
-Class Vente{
+Class Oeuvre{
     private $titre;
     private $auteur;
     private $categorie;
@@ -68,7 +68,7 @@ Class Vente{
         $stmt = $Database->prepare($sql);
         $datefin = date('Y-m-d H:i:s', strtotime("+{$this->nbJours} days"));
         $categId = (int)$this->categorie;
-        $stmt->bind_param("sssdssii", $this->titre, $this->description, $datefin, $this->prix, $this->type_vente, $this->auteur, $_SESSION["user_id"], $categId);
+        $stmt->bind_param("sssdssii", $this->titre, $this->description, $datefin, $this->prix, $this->type_vente, $this->auteur, $_SESSION["usersessionID"], $categId);
         $stmt->execute();
         $_SESSION["oeuvre_id"] = $Database->insert_id;
         $stmt->close();
@@ -85,6 +85,19 @@ Class Vente{
         $stmt->close();
         $Database->close();
 
+    }
+
+    public function getOeuvresEnAttente(Database $db){
+        $Database = $db->connect();
+        $sql = "SELECT o.*, c.*, u.*, COALESCE(oi.image_path, 'Aucune image') AS image_path FROM oeuvre o INNER JOIN categorie c ON c.id_categorie = o.id_categorie INNER join utilisateur u on u.id_utilisateur = o.id_utilisateur LEFT JOIN ( SELECT id_oeuvre, MIN(chemin_image) AS image_path FROM oeuvre_images GROUP BY id_oeuvre ) oi ON oi.id_oeuvre = o.id_oeuvre WHERE o.statut = ?";
+        $stmt = $Database->prepare($sql);
+        $accept = "en attente de validation";
+        $stmt->bind_param("s", $accept);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $stmt->close();
+        $Database->close();
+        return $result;
     }
 
 }

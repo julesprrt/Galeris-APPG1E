@@ -1,0 +1,76 @@
+.page-content {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    flex-grow: 1;
+    padding-top: 1.8em;
+}
+
+.title-oeuvre {
+    margin-bottom: 10px; 
+    display: flex;
+    justify-content: center;
+    padding-bottom: 1em;
+}
+
+.oeuvre {
+    padding: 2em;
+    border: 1px solid #ddd; 
+    cursor: pointer;
+    display: flex;
+    gap: 1.5em; 
+}
+
+.image-oeuvre img {
+    height: 5em;
+}
+
+.content-oeuvre {
+    display: flex;
+    flex-direction: column; 
+    width : 50em;
+}
+
+.titre {
+    color: black;
+}
+
+.desc {
+    color: black; 
+    font-size: 0.9em; 
+    margin-top: 0.5em;
+}
+
+a {
+    text-decoration: none;
+}
+
+.details-vente {
+    display: flex;
+    flex-direction: column; 
+}
+
+.btn {
+    background-color: #D9A36A;
+    color: #FFF;
+    padding: 0.8em 1.5em;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-color: #BF8A58;
+}
+
+.container-btn {
+    padding-top: 1em;
+}
+
+.decision{
+    display: flex;
+    flex-direction: column;
+    padding-left: 3em;
+}

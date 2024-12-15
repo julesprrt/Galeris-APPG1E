@@ -39,7 +39,7 @@
                                 <a href="https://galeris/Galeris-APPG1E/profil">Mon profil</a>
                                 <a href="#">Mon solde</a>'.
                                 (($userRole === true)?
-                                    '<a href="#">Oeuvres en attente</a>
+                                    '<a href="https://galeris/Galeris-APPG1E/listeoeuvreattente">Oeuvres en attente</a>
                                     <a href="#">Exposés en attente</a>':"").
                                 '<a id="deconnexion">Déconnexion</a>
                             </div>
