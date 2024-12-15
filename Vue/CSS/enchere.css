@@ -1,0 +1,43 @@
+h1 {
+    color: black;
+}
+
+.conteneur {
+    display: flex;
+}
+
+.gauche {
+
+    background-color: grey;
+    flex : 70%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+   
+}
+.photo {
+    margin-top: 15px;
+}
+
+.photos {
+    flex-direction: row;
+    
+}
+.photos img {
+    width: 150px; /* Fixe la largeur des images */
+    height: auto; }
+
+.droite {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    background-color: #f0f0f0;
+    flex : 50%;
+}
+.conteneur2 {
+
+    width: 500px; /* Ajoutez une largeur au carré jaune */
+    height: 500px;
+    background-color: yellow;
+}
