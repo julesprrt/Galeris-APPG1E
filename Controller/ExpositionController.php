@@ -6,7 +6,8 @@ require_once('Model/exposition.php');
 class ExpositionController extends Controller{ 
     public function exposition()
     {
-        $this->render('exposition', []);
+        session_start();
+        $this->render('exposition', ["connectUser" =>  isset($_SESSION["usersessionID"])]);
     }
     public function createexposition(Database $db){
         $paramData = file_get_contents("php://input");

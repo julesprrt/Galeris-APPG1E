@@ -6,9 +6,10 @@ require_once('Model/vente.php');
 Class VenteController extends Controller{//Controlleur accueil
     
     public function vente(Database $db) {
+        session_start();
         $categorie = new Categorie();
         $result = $categorie->getAllCategorie($db);
-        $this->render('vente', ["result" => $result]);   
+        $this->render('vente', ["result" => $result, "connectUser" =>  isset($_SESSION["usersessionID"])]);   
     }
 
     public function createvente(Database $db){

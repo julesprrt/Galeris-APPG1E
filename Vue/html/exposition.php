@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="CSS/header.css">
   <link rel="stylesheet" href="CSS/footer.css">
   <script src="https://galeris/Galeris-APPG1E/vue/JS/exposition.js" defer></script>
+  <script src="https://galeris/Galeris-APPG1E/vue/JS/header.js" defer></script>
 </head>
 
 <body>
@@ -31,19 +32,32 @@
       <input type="text" placeholder="Rechercher...">
       <div class="favori"><a href="favoris.html">❤️</a></div>
       <div class="panier"><a href="panier.html">🛒</a></div>
-      <div class="utilisateur"><a href="https://galeris/Galeris-APPG1E/profil">👤</a></div>
+      <?php
+      if ($connectUser === true) {
+        echo '<div class="dropdown">
+                            <div class="utilisateur"> 👤 </div>
+                            <div class="dropdown-child">
+                                <a href="https://galeris/Galeris-APPG1E/profil">Mon profil</a>
+                                <a href="#">Mon solde</a>
+                                <a id="deconnexion">Déconnexion</a>
+                            </div>
+                           </div>';
+      } else {
+        echo '<div class="utilisateur"><a href="https://galeris/Galeris-APPG1E/connexion"> 👤 </a></div>';
+      }
+      ?>
     </div>
   </header>
 
   <main>
     <section class="exposition">
-    <p class="description-exposition">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                        exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-                        reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-                        occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." 
-                        (expliquer que l'exposition est dans notre locaux pour une durée limité de 14 jours ...)
-                    </p>
+      <p class="description-exposition">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+        exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+        reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
+        occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+        (expliquer que l'exposition est dans notre locaux pour une durée limité de 14 jours ...)
+      </p>
       <form>
         <h2>Demande d'exposition</h2>
         <strong class="strong-title">Vous pouvez ajouter jusqu'a trois photos</strong>
@@ -57,20 +71,22 @@
           <img class="myimage" id="image3">
         </div>
         <p>
-        <strong>Titre :</strong>
-        <input type="text" class="input-exposition" id="title" name="title" value="" maxlength="50" placeholder="50 caractères maximum" required>
+          <strong>Titre :</strong>
+          <input type="text" class="input-exposition" id="title" name="title" value="" maxlength="50"
+            placeholder="50 caractères maximum" required>
         </p>
         <p>
-        <strong>Date de début :</strong>
-        <input type="date" class="input-exposition" id="date_debut" name="date_debut" value="" required>
+          <strong>Date de début :</strong>
+          <input type="date" class="input-exposition" id="date_debut" name="date_debut" value="" required>
         </p>
         <p>
-        <strong>Date de fin :</strong>
-        <input type="date" class="input-exposition" id="date_fin" name="date_fin" value="" required>
+          <strong>Date de fin :</strong>
+          <input type="date" class="input-exposition" id="date_fin" name="date_fin" value="" required>
         </p>
         <p>
-        <strong>Description :</strong>
-        <textarea class="input-exposition" id="description" name="description" cols="3" maxlength="200" placeholder="200 caractères maximum"></textarea>
+          <strong>Description :</strong>
+          <textarea class="input-exposition" id="description" name="description" cols="3" maxlength="200"
+            placeholder="200 caractères maximum"></textarea>
         </p>
         <div class="actions">
           <a class="btn btn-exposition">Confirmer</a>

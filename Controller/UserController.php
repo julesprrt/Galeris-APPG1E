@@ -99,7 +99,7 @@ class   UserController extends Controller
         }
 
         // Transmet les données utilisateur à la vue
-        $this->render('profil', ['user' => $userData]);
+        $this->render('profil', ['user' => $userData, "connectUser" =>  isset($_SESSION["usersessionID"])]);
     }
     public function editionprofil(Database $db)
     {
@@ -119,7 +119,7 @@ class   UserController extends Controller
             exit();
         }
 
-        $this->render('editionprofil', ['user' => $user]);
+        $this->render('editionprofil', ['user' => $user, "connectUser" =>  isset($_SESSION["usersessionID"])]);
     }
 
     public function processEdition(Database $db)
@@ -194,5 +194,13 @@ class   UserController extends Controller
         http_response_code(200);
         echo json_encode(['Success' => "Code envoyé"]);
 
+    }
+
+    public function Deconnexion(){
+        session_start();
+        session_destroy();
+
+        http_response_code(200);
+        echo json_encode(['Success' => "Déconnexion réussie"]);
     }
 }
