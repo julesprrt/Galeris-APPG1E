@@ -1,8 +1,3 @@
-<?php
-// Données de l'œuvre transmises par le contrôleur
-$artwork = $data['artwork'];
-?>
-
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -14,11 +9,10 @@ $artwork = $data['artwork'];
     <link rel="stylesheet" href="CSS/header.css">
     <link rel="stylesheet" href="CSS/footer.css">
     <link rel="stylesheet" href="CSS/style.css">
-    <title><?php echo htmlspecialchars($artwork['titre']); ?></title>
+    <title><?php echo htmlspecialchars($oeuvre['Titre']); ?></title>
 </head>
 
 <body>
-    <!-- HEADER -->
     <header>
         <div class="logo">
             <a href="https://galeris/Galeris-APPG1E/">
@@ -42,16 +36,13 @@ $artwork = $data['artwork'];
         </div>
     </header>
 
-    <!-- MAIN -->
     <main>
-        <!-- Gauche : Détails de l'œuvre -->
         <section class="gauche">
             <section class="art-details">
                 <div class="carousel-container">
                     <!-- Flèche gauche -->
                     <button class="carousel-fleche gauche cfg">&#10094;</button>
 
-                    <!-- Images statiques non modifiées -->
                     <div class="art-image">
                         <img src="..\images\oeuvre1-1.jpg" class="carousel-image active" alt="Photo Oeuvre 1">
                         <img src="..\images\oeuvre1-2.jpg" class="carousel-image" alt="Photo Oeuvre 2">
@@ -63,9 +54,8 @@ $artwork = $data['artwork'];
                 </div>
 
                 <div class="art-info">
-                    <h1><?php echo htmlspecialchars($artwork['titre']); ?></h1>
-                    <p><?php echo nl2br(htmlspecialchars($artwork['description'])); ?></p>
-                    <p><strong>Dimensions :</strong> <?php echo htmlspecialchars($artwork['dimensions']); ?></p>
+                    <h1><?php echo htmlspecialchars($oeuvre['Titre']); ?></h1>
+                    <p><?php echo nl2br(htmlspecialchars($oeuvre['Description'])); ?></p>
                 </div>
             </section>
 
@@ -86,16 +76,15 @@ $artwork = $data['artwork'];
                 <div class="profil-info">
                     <img src="https://via.placeholder.com/50" alt="Photo de profil" class="photo-profil">
                     <div class="profil-nom">
-                        <strong>Vendeur : <?php echo htmlspecialchars($artwork['vendeur_id']); ?></strong>
+                        <strong>Vendeur : <?php echo htmlspecialchars($oeuvre['nomvendeur']) . " " . htmlspecialchars($oeuvre['prenomvendeur']); ?></strong>
                     </div>
                 </div>
             </section>
 
             <section class="info-prix">
                 <div class="prix">
-                    <span><strong>Prix :</strong> € <?php echo number_format($artwork['prix'], 2, ',', ' '); ?></span>
-                    <p class="eco-info"><?php echo htmlspecialchars($artwork['eco_info']); ?></p>
-                    <p><small>Publié le : <?php echo htmlspecialchars($artwork['date_publication']); ?></small></p>
+                    <span><strong>Prix :</strong> € <?php echo number_format($oeuvre['Prix'], 2, ',', ' '); ?></span>
+                    <p><small>Publié le : <?php echo htmlspecialchars($oeuvre['Date_debut']); ?></small></p>
                 </div>
             </section>
 
