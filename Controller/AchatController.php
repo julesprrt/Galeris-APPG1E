@@ -9,7 +9,7 @@ class AchatController extends Controller
     public function achat(Database $db)
     {
         // Récupérer l'œuvre depuis le modèle
-        $oeuvre = new Oeuvre($Titre = null, $Description = null, $eco_responsable = null, $Date_debut = null, $Date_fin = null, $Prix = null, $type_vente = null, $est_vendu = null, $auteur = null, $id_utilisateur = null, $id_categorie = null, $status = null, $nomvendeur = null, $prenomvendeur = null);
+        $oeuvre = new Oeuvre($Titre = null, $Description = null, $eco_responsable = null, $Date_debut = null, $Date_fin = null, $Prix = null, $type_vente = null, $est_vendu = null, $auteur = null, $id_utilisateur = null, $id_categorie = null, $status = null, $nomvendeur = null, $prenomvendeur = null, $chemin_image = null);
         session_start();
         $id =  $_SESSION['oeuvre_id'];
         $oeuvreid = $oeuvre->getOeuvreById($id, $db);

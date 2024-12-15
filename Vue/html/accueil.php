@@ -58,6 +58,9 @@
                             echo '<div class="oeuvre">';
                             echo '<input type="hidden" id="id_oeuvre" name="id_oeuvre" value="' . $oeuvre["id_oeuvre"] . '">';
                             echo '<h3>' . $oeuvre["Titre"] . '</h3>';
+                            // Ajout de l'image
+
+                            echo '<img src="../' . $oeuvre["chemin_image"] . '" alt="' . $oeuvre["chemin_image"] . '" />';
                             echo '<p>' . $oeuvre["Description"] . '</p>';
                             echo '</div>';
                             echo '</a>';

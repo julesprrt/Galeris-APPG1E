@@ -17,6 +17,7 @@ class Oeuvre
     private $status;
     private $nomvendeur;
     private $prenomvendeur;
+    private $chemin_image;
 
     // Constructeur pour initialiser les valeurs
     public function __construct(
@@ -33,7 +34,8 @@ class Oeuvre
         $id_categorie,
         $status,
         $nomvendeur,
-        $prenomvendeur
+        $prenomvendeur,
+        $chemin_image
 
     ) {
         $this->Titre = $Titre;
@@ -50,6 +52,7 @@ class Oeuvre
         $this->status = $status;
         $this->nomvendeur = $nomvendeur;
         $this->prenomvendeur = $prenomvendeur;
+        $this->chemin_image = $chemin_image;
     }
     // Méthode pour récupérer une œuvre par son ID
     public static function getOeuvreById($id, Database $db)
@@ -72,7 +75,7 @@ class Oeuvre
     public static function getAllOeuvre(Database $db)
     {
         $conn = $db->connect();
-        $query = "SELECT * FROM oeuvre o ORDER BY Date_fin DESC LIMIT 10";
+        $query = "SELECT * FROM oeuvre o INNER JOIN oeuvre_images oi ON o.id_oeuvre = oi.id_oeuvre ORDER BY Date_fin DESC LIMIT 10";
 
         $stmt = $conn->prepare($query);
         $stmt->execute();
