@@ -34,8 +34,10 @@ $router->addRoute('/Galeris-APPG1E/process-edition', UserController::class, 'pro
 $router->addRoute('/Galeris-APPG1E/exposition', ExpositionController::class, 'exposition');
 $router->addRoute('/Galeris-APPG1E/createexposition', ExpositionController::class, 'createexposition');
 $router->addRoute('/Galeris-APPG1E/renvoiecode', UserController::class, 'resendcode');
+$router->addRoute('/Galeris-APPG1E/achat/{id}', AchatController::class, 'achat');
 
 
-if($uri !== null){
-    $router->dispatch($uri);//Appel a la méthode du controller dedié
+
+if ($uri !== null) {
+    $router->dispatch($uri); //Appel a la méthode du controller dedié
 }
