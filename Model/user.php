@@ -7,24 +7,24 @@ class User
 {
     private $name;
     private $firstName;
-    private $userName;
     private $email;
     private $telephone;
     private $password;
     private $confirmPassword;
     private $sendCode;
     private $utilsUser;
-    public function __construct($name, $firstName, $userName, $email, $telephone, $password, $confirmPassword)
+    private $cgu;
+    public function __construct($name, $firstName, $email, $telephone, $password, $confirmPassword,$cgu)
     { //Constructeur -> Initialisation des données
         $this->name = $name;
         $this->firstName = $firstName;
-        $this->userName = $userName;
         $this->email = $email;
         $this->telephone = $telephone;
         $this->password = $password;
         $this->confirmPassword = $confirmPassword;
         $this->sendCode = new Code();
         $this->utilsUser = new Utils();
+        $this->cgu = $cgu;
     }
     /**
      * Summary of registerVerification
@@ -34,8 +34,10 @@ class User
     public function registerVerification(Database $db)
     {
         $value = $this->VerifyExistMail($db);
-        if ($this->name === "" || $this->firstName === "" || $this->userName === "" || $this->email === "" || $this->telephone === "" || $this->password === "" || $this->confirmPassword === "") {
+        if ($this->name === "" || $this->firstName === "" || $this->email === "" || $this->telephone === "" || $this->password === "" || $this->confirmPassword === "") {
             return "Vous devez remplir l'ensemble des champs du formulaire";
+        }else if($this->cgu === false){
+            return "Vous devez valider les condition générale d'utilisation de Galeris";
         } else if (!$this->utilsUser->emailComposition($this->email)) {
             return "Mail invalide";
         } else if (!$this->telComposition($this->telephone)) {
@@ -70,12 +72,11 @@ class User
             // Vérifier le mot de passe
             if (password_verify($this->password, $user['mot_de_passe']) && $user["actif"] === 1) {
                 session_start();
-                $_SESSION["usersession"] = $this->email;
-                $_SESSION["user_id"] = $user["id_utilisateur"];
+                $_SESSION["usersessionMail"] = $this->email;
+                $_SESSION["usersessionID"] = $user["id_utilisateur"];
                 return true;
             } 
             else if($user["actif"] === 0){
-                $this->sendCode->sendCode($this->email, $db);
                 return "Utilisateur non valide";
             } else {
                 return "Votre mail/mot de passe est incorrect";

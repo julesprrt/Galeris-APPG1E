@@ -33,7 +33,7 @@ $router->addRoute('/Galeris-APPG1E/editionprofil', UserController::class, 'editi
 $router->addRoute('/Galeris-APPG1E/process-edition', UserController::class, 'processEdition');
 $router->addRoute('/Galeris-APPG1E/exposition', ExpositionController::class, 'exposition');
 $router->addRoute('/Galeris-APPG1E/createexposition', ExpositionController::class, 'createexposition');
-
+$router->addRoute('/Galeris-APPG1E/renvoiecode', UserController::class, 'resendcode');
 
 
 if($uri !== null){
