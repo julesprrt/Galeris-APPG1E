@@ -7,7 +7,8 @@ class ExpositionController extends Controller{
     public function exposition()
     {
         session_start();
-        $this->render('exposition', ["connectUser" =>  isset($_SESSION["usersessionID"])]);
+        $role = isset($_SESSION["usersessionRole"]) === true && $_SESSION["usersessionRole"] === "Admin" ? true : false;
+        $this->render('exposition', ["connectUser" =>  isset($_SESSION["usersessionID"]), "userRole" => $role]);
     }
     public function createexposition(Database $db){
         $paramData = file_get_contents("php://input");

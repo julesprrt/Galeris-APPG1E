@@ -74,6 +74,7 @@ class User
                 session_start();
                 $_SESSION["usersessionMail"] = $this->email;
                 $_SESSION["usersessionID"] = $user["id_utilisateur"];
+                $_SESSION["usersessionRole"] = $user["roles"];
                 return true;
             } 
             else if($user["actif"] === 0){
@@ -171,6 +172,7 @@ class User
         session_start();
         $_SESSION["usersessionID"] = $id;
         $_SESSION["usersessionMail"] = $this->email;
+        $_SESSION["usersessionRole"] = "Utilisateur";
     }
 
     public function verifyCode($code, Database $db) { 

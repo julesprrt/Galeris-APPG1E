@@ -6,7 +6,8 @@ Class HomeController extends Controller{//Controlleur accueil
     
     public function home() {
         session_start();
-        $this->render('accueil', ["connectUser" =>  isset($_SESSION["usersessionID"])]);
+        $role = isset($_SESSION["usersessionRole"]) === true && $_SESSION["usersessionRole"] === "Admin" ? true : false;
+        $this->render('accueil', ["connectUser" =>  isset($_SESSION["usersessionID"]), "userRole" => $role]);
         
     }
 }

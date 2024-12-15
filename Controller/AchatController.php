@@ -6,7 +6,8 @@ Class AchatController extends Controller{//Controlleur accueil
     
     public function achat() {
         session_start();
-        $this->render('achat', ["connectUser" =>  isset($_SESSION["usersessionID"])]);
+        $role = isset($_SESSION["usersessionRole"]) === true && $_SESSION["usersessionRole"] === "Admin" ? true : false;
+        $this->render('achat', ["connectUser" =>  isset($_SESSION["usersessionID"]), "userRole" => $role]);
         
     }
 }
