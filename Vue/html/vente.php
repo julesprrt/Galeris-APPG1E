@@ -110,7 +110,7 @@
                         </p>
                         <p>
                             <strong>Description :</strong>
-                            <textarea class="input-vente" name="description" rows="3"></textarea>
+                            <textarea class="input-vente" name="description" rows="3" minlength="50" placeholder="50 caractères minimum" required></textarea>
                         </p>
                     </div>
                 </div>

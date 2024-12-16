@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : dim. 15 déc. 2024 à 13:03
+-- Généré le : lun. 16 déc. 2024 à 17:51
 -- Version du serveur : 10.4.32-MariaDB
 -- Version de PHP : 8.2.12
 
@@ -157,7 +157,8 @@ INSERT INTO `code` (`ID`, `code`, `date_expiration`, `ID_user`) VALUES
 (97, 701307, '2024-12-15 02:41:09', 25),
 (98, 399595, '2024-12-15 02:43:09', 6),
 (99, 997600, '2024-12-15 02:48:39', 6),
-(100, 773808, '2024-12-15 02:49:50', 26);
+(100, 773808, '2024-12-15 02:49:50', 26),
+(101, 884391, '2024-12-16 10:47:15', 27);
 
 -- --------------------------------------------------------
 
@@ -168,7 +169,7 @@ INSERT INTO `code` (`ID`, `code`, `date_expiration`, `ID_user`) VALUES
 CREATE TABLE `exposition` (
   `id_exhibition` int(11) NOT NULL,
   `titre` varchar(50) NOT NULL,
-  `description` varchar(200) DEFAULT NULL,
+  `description` text DEFAULT NULL,
   `date_debut` datetime NOT NULL,
   `date_fin` datetime NOT NULL,
   `user_id` int(11) DEFAULT NULL,
@@ -206,7 +207,16 @@ INSERT INTO `exposition` (`id_exhibition`, `titre`, `description`, `date_debut`,
 (24, 'test', 'sss', '2024-12-15 00:00:00', '2024-12-28 00:00:00', 6, 'en attente de validation'),
 (25, '50', '', '2024-12-16 00:00:00', '2024-12-19 00:00:00', NULL, 'en attente de validation'),
 (26, 'sss', '', '2024-12-27 00:00:00', '2024-12-29 00:00:00', NULL, 'en attente de validation'),
-(27, 'sss', '', '2024-12-16 00:00:00', '2024-12-27 00:00:00', NULL, 'en attente de validation');
+(27, 'sss', '', '2024-12-16 00:00:00', '2024-12-27 00:00:00', NULL, 'en attente de validation'),
+(28, 'titre', 'test', '2024-12-17 00:00:00', '2024-12-22 00:00:00', 6, 'en attente de validation'),
+(29, 'test', 'test', '2024-12-18 00:00:00', '2024-12-22 00:00:00', 6, 'en attente de validation'),
+(30, 'test', 'test', '2024-12-18 00:00:00', '2024-12-29 00:00:00', 6, 'en attente de validation'),
+(31, 's', '', '2024-12-18 00:00:00', '2024-12-22 00:00:00', 6, 'en attente de validation'),
+(32, 'test', '', '2024-12-19 00:00:00', '2024-12-27 00:00:00', 6, 'en attente de validation'),
+(33, 'sss', 'sssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss', '2024-12-17 00:00:00', '2024-12-22 00:00:00', 6, 'en attente de validation'),
+(34, 'test', 'sssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss', '2024-12-17 00:00:00', '2024-12-21 00:00:00', 6, 'en attente de validation'),
+(35, 'ssss', 'teeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee', '2024-12-17 00:00:00', '2024-12-26 00:00:00', 6, 'en attente de validation'),
+(36, 'test', 'sssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss', '2024-12-17 00:00:00', '2024-12-21 00:00:00', 6, 'en attente de validation');
 
 -- --------------------------------------------------------
 
@@ -232,7 +242,12 @@ INSERT INTO `exposition_images` (`id_exposition_images`, `chemin_image`, `id_exp
 (5, 'ImageBD/exposition/image_675e2a7fbf7e38.22606091.png', 25),
 (6, 'ImageBD/exposition/image_675e2ade814c53.27693642.png', 27),
 (7, 'ImageBD/exposition/image_675e2ade839c37.02756374.png', 27),
-(8, 'ImageBD/exposition/image_675e2ade89b509.90906819.png', 27);
+(8, 'ImageBD/exposition/image_675e2ade89b509.90906819.png', 27),
+(9, 'ImageBD/exposition/image_6760006ed56a33.27847963.png', 28),
+(10, 'ImageBD/exposition/image_676019d499de86.21750235.png', 33),
+(11, 'ImageBD/exposition/image_67601ac2682032.34891755.png', 34),
+(12, 'ImageBD/exposition/image_676058c98a64d1.40714702.png', 35),
+(13, 'ImageBD/exposition/image_67605a49b43ae9.97662832.png', 36);
 
 -- --------------------------------------------------------
 
@@ -261,28 +276,18 @@ CREATE TABLE `oeuvre` (
 --
 
 INSERT INTO `oeuvre` (`id_oeuvre`, `Titre`, `Description`, `eco_responsable`, `Date_debut`, `Date_fin`, `Prix`, `type_vente`, `est_vendu`, `auteur`, `id_utilisateur`, `id_categorie`, `statut`) VALUES
-(1, 'test', '', 0, '2024-12-14 19:29:22', '2025-01-13 19:29:22', 30.00, 'Enchere', 0, 'tets', NULL, 2, 'en attente de validation'),
-(2, 'test', '', 0, '2024-12-14 19:30:34', '2025-01-13 19:30:34', 30.00, 'Vente', 0, 'auteuir', NULL, 2, 'en attente de validation'),
-(3, 'test', '', 0, '2024-12-14 19:32:04', '2025-01-13 19:31:37', 30.00, 'Vente', 0, 'test', NULL, 3, 'en attente de validation'),
-(4, 'test', '', 0, '2024-12-14 19:33:10', '2024-12-16 19:33:07', 30.00, 'Enchere', 0, 'bom', 6, 2, 'en attente de validation'),
-(5, 'sss', '', 0, '2024-12-14 19:48:27', '2025-01-13 19:48:26', 50.00, 'Vente', 0, 'sss', 6, 2, 'en attente de validation'),
-(6, 'test', '', 0, '2024-12-14 19:49:16', '2025-01-08 19:49:16', 30.00, 'Vente', 0, 'test', 6, 2, 'en attente de validation'),
-(7, 's', '', 0, '2024-12-14 19:49:44', '2025-01-13 19:49:43', 30.00, 'Enchere', 0, 's', 6, 2, 'en attente de validation'),
-(8, 'sss', '', 0, '2024-12-14 19:50:13', '2025-01-13 19:50:13', 50.00, 'Vente', 0, 'sss', 6, 3, 'en attente de validation'),
-(9, 'test', 'test', 0, '2024-12-14 19:54:49', '2025-01-13 19:54:49', 30.00, 'Vente', 0, 'test', 6, 2, 'en attente de validation'),
-(10, 'test', '', 0, '2024-12-14 19:56:03', '2024-12-16 19:56:03', 52.00, 'Enchere', 0, 'et', 6, 3, 'en attente de validation'),
-(11, 'test', '', 0, '2024-12-14 19:57:15', '2025-01-13 19:57:15', 30.00, 'Enchere', 0, 'test', 6, 2, 'en attente de validation'),
-(12, '20', '', 0, '2024-12-14 19:57:34', '2025-01-13 19:57:34', 30.00, 'Vente', 0, 'ss', 6, 3, 'en attente de validation'),
-(13, 'test5', 'test', 0, '2024-12-14 19:58:56', '2025-01-13 19:58:56', 50.00, 'Vente', 0, 'sss', 6, 2, 'en attente de validation'),
-(14, 'test', 'test', 0, '2024-12-14 20:01:20', '2025-01-03 20:01:20', 50.00, 'Enchere', 0, 'bom', 6, 2, 'en attente de validation'),
-(15, 'test', '', 0, '2024-12-14 20:05:02', '2024-12-19 20:05:02', 50.00, 'Enchere', 0, 'test', 6, 2, 'en attente de validation'),
-(16, 'test555588', '', 0, '2024-12-14 21:09:40', '2024-12-19 21:09:40', 50.00, 'Enchere', 0, 's', 6, 2, 'en attente de validation'),
-(17, 'sss', '', 0, '2024-12-14 22:41:18', '2024-12-19 22:41:18', 50.00, 'Enchere', 0, 'ss', 6, 2, 'en attente de validation'),
-(18, 'test', '', 0, '2024-12-15 01:59:13', '2024-12-17 01:59:13', 30.00, 'Enchere', 0, 'test', NULL, 3, 'en attente de validation'),
-(19, 'sss', '', 0, '2024-12-15 01:59:41', '2024-12-20 01:59:41', 50.00, 'Enchere', 0, 'ss', NULL, 2, 'en attente de validation'),
-(20, 'sss', '', 0, '2024-12-15 02:00:34', '2025-01-14 02:00:34', 50.00, 'Enchere', 0, 'sss', NULL, 3, 'en attente de validation'),
-(21, 'sss', '', 0, '2024-12-15 02:00:59', '2024-12-19 02:00:59', 50.00, 'Enchere', 0, 'sss', NULL, 2, 'en attente de validation'),
-(22, 'sss', '', 0, '2024-12-15 02:04:00', '2024-12-20 02:04:00', 30.00, 'Vente', 0, 'sss', NULL, 3, 'en attente de validation');
+(34, 'Tableau Paysage', 'Cette œuvre reflète l’imagination débordante de l’artiste, mêlant subtilement couleurs et textures pour offrir une vision unique. Elle invite le spectateur à explorer un univers captivant, riche en émotions, où chaque détail raconte une histoire et inspire à la contemplation.', 0, '2024-12-16 10:03:59', '2025-01-15 10:03:59', 50.00, 'Vente', 0, 'Hugo Marchal', 27, 2, 'en attente de validation'),
+(35, 'Paysage d\'antan ', 'Cette œuvre reflète l’imagination débordante de l’artiste, mêlant subtilement couleurs et textures pour offrir une vision unique. Elle invite le spectateur à explorer un univers captivant, riche en émotions, où chaque détail raconte une histoire et inspire à la contemplation.', 0, '2024-12-16 10:04:41', '2025-01-15 10:04:41', 58.00, 'Vente', 0, 'Emma Lavaux', 27, 2, 'en attente de validation'),
+(36, 'Petite sculpture en pierre ', 'Cette œuvre reflète l’imagination débordante de l’artiste, mêlant subtilement couleurs et textures pour offrir une vision unique. Elle invite le spectateur à explorer un univers captivant, riche en émotions, où chaque détail raconte une histoire et inspire à la contemplation.', 0, '2024-12-16 10:05:33', '2025-01-15 10:05:33', 100.00, 'Vente', 0, 'Emma Lobineau', 27, 3, 'en attente de validation'),
+(37, 'Maison d\'enfance ', 'Cette œuvre reflète l’imagination débordante de l’artiste, mêlant subtilement couleurs et textures pour offrir une vision unique. Elle invite le spectateur à explorer un univers captivant, riche en émotions, où chaque détail raconte une histoire et inspire à la contemplation.', 0, '2024-12-16 10:06:16', '2025-01-15 10:06:16', 75.00, 'Vente', 0, 'Léa Garnier ', 27, 2, 'en attente de validation'),
+(38, 'Naturel', 'Cette œuvre reflète l’imagination débordante de l’artiste, mêlant subtilement couleurs et textures pour offrir une vision unique. Elle invite le spectateur à explorer un univers captivant, riche en émotions, où chaque détail raconte une histoire et inspire à la contemplation.', 0, '2024-12-16 10:06:46', '2025-01-15 10:06:46', 25.00, 'Vente', 0, 'Léa Garnier ', 27, 2, 'en attente de validation'),
+(39, 'test', 'm', 0, '2024-12-16 17:35:34', '2025-01-05 17:35:34', 30.00, 'Enchere', 0, 'test', 6, 3, 'en attente de validation'),
+(40, 'test', 'testtesttesttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt', 0, '2024-12-16 17:40:30', '2025-01-10 17:40:30', 50.00, 'Vente', 0, 'test', 6, 2, 'en attente de validation'),
+(41, 'test', 'testtesttesttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt', 0, '2024-12-16 17:40:33', '2025-01-10 17:40:33', 50.00, 'Vente', 0, 'test', 6, 2, 'en attente de validation'),
+(42, 'test', 'testtesttesttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt', 0, '2024-12-16 17:40:37', '2025-01-10 17:40:37', 50.00, 'Vente', 0, 'test', 6, 2, 'en attente de validation'),
+(43, 'test', 'testtesttesttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt', 0, '2024-12-16 17:40:37', '2025-01-10 17:40:37', 50.00, 'Vente', 0, 'test', 6, 2, 'en attente de validation'),
+(44, 'test', 'sssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss', 0, '2024-12-16 17:41:57', '2025-01-05 17:41:57', 50.00, 'Vente', 0, 'test', 6, 2, 'en attente de validation'),
+(45, 'test', 'sssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss', 0, '2024-12-16 17:42:26', '2025-01-05 17:42:26', 24.00, 'Enchere', 0, 'test', 6, 2, 'en attente de validation');
 
 -- --------------------------------------------------------
 
@@ -301,25 +306,18 @@ CREATE TABLE `oeuvre_images` (
 --
 
 INSERT INTO `oeuvre_images` (`id_photo`, `chemin_image`, `id_oeuvre`) VALUES
-(1, 'ImageBD/Oeuvre/image_675dd4c34692e2.43883459.png', 10),
-(2, 'ImageBD/Oeuvre/image_675dd4c34ce1e9.87412969.png', 10),
-(3, 'ImageBD/Oeuvre/image_675dd4c354f065.34977982.png', 10),
-(4, 'ImageBD/Oeuvre/image_675dd51e3671c6.99409343.png', 12),
-(5, 'ImageBD/Oeuvre/image_675dd51e3e8067.63081218.png', 12),
-(6, 'ImageBD/Oeuvre/image_675dd51e45e431.83167278.png', 12),
-(7, 'ImageBD/Oeuvre/image_675dd570ef5956.85444746.png', 13),
-(8, 'ImageBD/Oeuvre/image_675dd60043bf20.83251527.png', 14),
-(9, 'ImageBD/Oeuvre/image_675dd6ded5a550.55231916.png', 15),
-(10, 'ImageBD/Oeuvre/image_675de604c0d099.50850953.png', 16),
-(11, 'ImageBD/Oeuvre/image_675dfb7e76c805.05592495.png', 17),
-(12, 'ImageBD/Oeuvre/image_675e29fd1cf838.61963903.', 19),
-(13, 'ImageBD/Oeuvre/image_675e29fd2507e3.50736208.', 19),
-(14, 'ImageBD/Oeuvre/image_675e29fd2fd872.23676395.', 19),
-(15, 'ImageBD/Oeuvre/image_675e2a320b7271.79659051.png', 20),
-(16, 'ImageBD/Oeuvre/image_675e2a4b7d1178.97806146.png', 21),
-(17, 'ImageBD/Oeuvre/image_675e2b0002e3b7.59881909.png', 22),
-(18, 'ImageBD/Oeuvre/image_675e2b000a4e82.16214707.png', 22),
-(19, 'ImageBD/Oeuvre/image_675e2b0011e184.44597221.png', 22);
+(33, 'ImageBD/Oeuvre/image_675fecff445a41.97423138.png', 34),
+(34, 'ImageBD/Oeuvre/image_675fecff4b7969.61541123.png', 34),
+(35, 'ImageBD/Oeuvre/image_675fed29d7ed16.67414203.png', 35),
+(36, 'ImageBD/Oeuvre/image_675fed5d4dcc17.31300131.png', 36),
+(37, 'ImageBD/Oeuvre/image_675fed888eb3f0.27949733.png', 37),
+(38, 'ImageBD/Oeuvre/image_675feda6e9a416.81705887.png', 38),
+(39, 'ImageBD/Oeuvre/image_676057fe2715d6.07036906.', 40),
+(40, 'ImageBD/Oeuvre/image_67605801727dc4.49343565.', 41),
+(41, 'ImageBD/Oeuvre/image_676058054ab6d0.76979022.', 42),
+(42, 'ImageBD/Oeuvre/image_6760580582b256.13619574.', 43),
+(43, 'ImageBD/Oeuvre/image_67605855610f83.54886866.png', 44),
+(44, 'ImageBD/Oeuvre/image_676058723be7b2.34000752.png', 45);
 
 -- --------------------------------------------------------
 
@@ -347,7 +345,7 @@ CREATE TABLE `utilisateur` (
 --
 
 INSERT INTO `utilisateur` (`id_utilisateur`, `nom`, `prenom`, `email`, `description`, `adresse`, `roles`, `mot_de_passe`, `date_creation`, `newsletter`, `actif`, `solde`) VALUES
-(6, 'selvaratnam', 'akash', 'kaladevi549@gmail.com', '', '', 'Utilisateur', '$2y$10$saQYwT.kQu4kvSLRhyNWR.nl8bXuUsJt1dfhnipCqaAZr7XR.ZTdS', '2024-11-26', 0, 1, 0.00),
+(6, 'selvaratnam', 'akash', 'kaladevi549@gmail.com', '', '', 'Admin', '$2y$10$saQYwT.kQu4kvSLRhyNWR.nl8bXuUsJt1dfhnipCqaAZr7XR.ZTdS', '2024-11-26', 0, 1, 0.00),
 (7, 'selvaratnam', 'akash', 'kaladevi549@gmail.ju', NULL, NULL, 'Utilisateur', '$2y$10$EMfeaZGsM4pt6A4676gI9u2ox6z4.PE14jaM8IAqXDbuEHwqBj4b2', '2024-11-28', 0, 1, 0.00),
 (8, 'selvaratnam', 'akash', 'kaladevi549@gmail.pm', NULL, NULL, 'Utilisateur', '$2y$10$3YzJizisFI1S2EUCiFj0OeNkXgC3oyb2DeWGo4QMsu.QUSYRXI5OK', '2024-11-28', 0, 0, 0.00),
 (10, 'selvaratnam', 'akash', 'kaladevi549@gmail.sss', NULL, NULL, 'Utilisateur', '$2y$10$.PR1AYeC0RqSjMi15T734.HhfPTIcgWVbev0krEkhs/l.kFXKahJO', '2024-12-08', 0, 1, 0.00),
@@ -366,7 +364,8 @@ INSERT INTO `utilisateur` (`id_utilisateur`, `nom`, `prenom`, `email`, `descript
 (23, 'selvaratnam', 'akash', 'test5@test5.sdq', NULL, NULL, 'Utilisateur', '$2y$10$Yq3FKOr0R9petsy.q.nOJuDVC07ON7FbDMInxNPU.mCsT5jAXa7XC', '2024-12-15', 0, 0, 0.00),
 (24, 'selvaratnam', 'akash', 'kaladevi549@gmail.csss', NULL, NULL, 'Utilisateur', '$2y$10$KgoBkF26LP1o1iQAGJ0T7eD8U2/bKiUX04ZsFURnx6HoAUynme2sm', '2024-12-15', 0, 0, 0.00),
 (25, 'test', 'test', 'kaladevi559@gmail.com', NULL, NULL, 'Utilisateur', '$2y$10$IcF91b6iKtRkMaERjlcefO7swQiDFl6ImYTyJM0ry6qQuvGlspCbG', '2024-12-15', 0, 0, 0.00),
-(26, 'abidi', 'bb', 'bb@bb.ss', NULL, NULL, 'Utilisateur', '$2y$10$KQZnwu39LE.hkGPdpo2CFOwjsQcrOA3mdZKwJ5nxvYEfaBk4BydpG', '2024-12-15', 0, 1, 0.00);
+(26, 'abidi', 'bb', 'bb@bb.ss', NULL, NULL, 'Utilisateur', '$2y$10$KQZnwu39LE.hkGPdpo2CFOwjsQcrOA3mdZKwJ5nxvYEfaBk4BydpG', '2024-12-15', 0, 1, 0.00),
+(27, 'Pierret ', 'Jules', 'jupi63473@eleve.isep.fr', NULL, NULL, 'Utilisateur', '$2y$10$mhdJtYwHue6QyA0O8xouH.2oDTekGIC1GEf1M7P5JT3zUqO1AynlK', '2024-12-16', 0, 0, 0.00);
 
 --
 -- Index pour les tables déchargées
@@ -431,37 +430,37 @@ ALTER TABLE `categorie`
 -- AUTO_INCREMENT pour la table `code`
 --
 ALTER TABLE `code`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=101;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=102;
 
 --
 -- AUTO_INCREMENT pour la table `exposition`
 --
 ALTER TABLE `exposition`
-  MODIFY `id_exhibition` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id_exhibition` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- AUTO_INCREMENT pour la table `exposition_images`
 --
 ALTER TABLE `exposition_images`
-  MODIFY `id_exposition_images` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_exposition_images` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT pour la table `oeuvre`
 --
 ALTER TABLE `oeuvre`
-  MODIFY `id_oeuvre` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id_oeuvre` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 
 --
 -- AUTO_INCREMENT pour la table `oeuvre_images`
 --
 ALTER TABLE `oeuvre_images`
-  MODIFY `id_photo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id_photo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 
 --
 -- AUTO_INCREMENT pour la table `utilisateur`
 --
 ALTER TABLE `utilisateur`
-  MODIFY `id_utilisateur` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id_utilisateur` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- Contraintes pour les tables déchargées

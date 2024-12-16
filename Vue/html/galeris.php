@@ -5,11 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <base href="/Galeris-APPG1E/Vue/">
-    <link rel="stylesheet" href="CSS/accueil.css">
+    <link rel="stylesheet" href="CSS/galeris.css">
     <link rel="stylesheet" href="CSS/header.css">
     <link rel="stylesheet" href="CSS/footer.css">
-    <script src="https://galeris/Galeris-APPG1E/vue/JS/header.js" defer></script>
-    <title>Accueil</title>
+    <title>galeris</title>
 </head>
 
 <body>
@@ -30,45 +29,36 @@
                 <input type="text" placeholder="Rechercher...">
                 <div class="favori"> <a href="favoris.html">❤️ </a></div>
                 <div class="panier"> <a href="panier.html"> 🛒 </a></div>
-                <?php
-                if ($connectUser === true) {
-                    echo '<div class="dropdown">
-                            <div class="utilisateur"> 👤 </div>
-                            <div class="dropdown-child">
-                                <a href="https://galeris/Galeris-APPG1E/profil">Mon profil</a>
-                                <a href="#">Mon solde</a>'.
-                                (($userRole === true)?
-                                    '<a href="https://galeris/Galeris-APPG1E/listeoeuvreattente">Oeuvres en attente</a>
-                                    <a href="#">Exposés en attente</a>':"").
-                                '<a id="deconnexion">Déconnexion</a>
-                            </div>
-                           </div>';
-                } else {
-                    echo '<div class="utilisateur"><a href="https://galeris/Galeris-APPG1E/connexion"> 👤 </a></div>';
-                }
-                ?>
-
+                <div class="utilisateur"><a href="https://galeris/Galeris-APPG1E/connexion"> 👤 </a></div>
             </div>
         </header>
 
         <!-- Contenu de la page d'accueil -->
-        <div class="page-content">
+        <div class="page-galeris">
             <div class="contentbase">
-                <?php
-                if ($connectUser === true) {
-                    echo '<a href="https://galeris/Galeris-APPG1E/vente"><button type="button" class="sellproduct">Vendre une oeuvre</button></a> <a href="https://galeris/Galeris-APPG1E/exposition"><button type="button" class="demandeexpo">Demande exposition</button></a>';
-                }
-                ?>
                 <div class="content-description">
-                    <p class="description">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                        exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-                        reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-                        occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+                    <p class="description">"Galeris est une plateforme en ligne qui permet aux artistes de présenter 
+                        leurs œuvres à un public international, d’élargir leur notoriété et de valoriser leur travail. Grâce à galeris, 
+                        les artistes peuvent atteindre un marché bien plus vaste que les galeries physiques traditionnelles, tout en 
+                        limitant l’empreinte écologique et en offrant aux collectionneurs une expérience d’achat plus facile, personnalisée et responsable."
                     </p>
                 </div>
             </div>
         </div>
+
+        <div class="sphere-container">
+            <div class="sphere">
+                <div class="sphere-image"><img src="../images/oeuvre1-1.jpg" alt="art1"></div>
+                <div class="sphere-image"><img src="../images/oeuvresim-1.png" alt="art2"></div>
+                <div class="sphere-image"><img src="../images/oeuvresim-2.jpg" alt="art3"></div>
+                <div class="sphere-image"><img src="../images/oeuvresim-3.jpg" alt="art4"></div>
+                <div class="sphere-image"><img src="../images/p1.jpg" alt="art5"></div>
+                <div class="sphere-image"><img src="../images/p2.jpg" alt="art6"></div>
+                <div class="sphere-image"><img src="../images/p3.jpg" alt="art7"></div>
+                <div class="sphere-image"><img src="../images/p4.jpg" alt="art8"></div>
+            </div>
+        </div>
+        
 
         <footer>
 

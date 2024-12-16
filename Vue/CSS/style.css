@@ -1,15 +1,16 @@
-body{
-    font-family: Arial, Helvetica, sans-serif; 
+body {
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 .Page-User {
-    background: url('../../images/fondecran.png') no-repeat center center;
+    background: url('../../images/fondecran3.jpg') no-repeat center center;
     display: flex;
-    background-size: cover; /* Fait en sorte que l'image couvre toute la page */
+    background-size: cover;
+    /* Fait en sorte que l'image couvre toute la page */
     min-height: 120vh;
     color: #333;
     justify-content: center;
-  }
+}
 
 .error-message {
     color: red;
@@ -64,8 +65,8 @@ img {
     opacity: 0.9;
 }
 
-.input-user{
-    background:rgba(217,163,106,0.7);
+.input-user {
+    background: rgba(217, 163, 106, 0.7);
     border: none;
     padding: 15px;
     width: 18em;
@@ -73,32 +74,32 @@ img {
     margin-top: 7px;
 }
 
-.input-user-first{
+.input-user-first {
     border: none;
     padding: 15px;
     width: 18em;
     border-radius: 5px;
-    background:rgba(217,163,106,0.7);
+    background: rgba(217, 163, 106, 0.7);
 }
 
 .input-user-first::placeholder {
     color: black;
-    opacity: 1; 
+    opacity: 1;
 }
 
 .input-user::placeholder {
     color: black;
-    opacity: 1; 
+    opacity: 1;
 }
 
 .link {
     width: 275px;
     text-align: end;
     font-family: Arial, Helvetica, sans-serif;
-    font-weight: 400; 
-    font-size: 12px; 
-    color: #B0B0B0; 
-    text-decoration: none; 
+    font-weight: 400;
+    font-size: 12px;
+    color: #B0B0B0;
+    text-decoration: none;
     padding-top: 20px;
     opacity: 100%;
 }
@@ -118,4 +119,3 @@ img {
     margin-top: 7px;
     font-family: Arial, Helvetica, sans-serif;
 }
-

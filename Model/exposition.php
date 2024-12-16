@@ -30,6 +30,9 @@ class Exposition
         if ($this->titre === "" || strlen($this->titre) > 50) {
             return 401;
         }
+        if(strlen($this->description) < 50){
+            return 405;
+        }
         if ($this->date_debut === "" || $this->VerificationDate($this->date_debut) === false) {
             return 402;
         }
@@ -38,6 +41,9 @@ class Exposition
         }
         if($this->getNumberDaysBeetweenTwoDates() > 14){
             return 404;
+        }
+        if($this->image1 === ""){
+            return 406;
         }
         $this->saveExposition($db);
         if($this->image1 !== ""){

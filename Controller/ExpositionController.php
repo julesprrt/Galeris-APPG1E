@@ -36,6 +36,14 @@ class ExpositionController extends Controller{
                 http_response_code(404);
                 echo json_encode(['Error'=> "La durée maximale est de deux semaines."]);
             }
+            else if($result === 405){
+                http_response_code(405);
+                echo json_encode(['Error'=> "La description est obligatoire et doit contenir plus de 50 caractères."]);
+            }
+            else if($result === 406){
+                http_response_code(406);
+                echo json_encode(['Error'=> "Une image obligatoire"]);
+            }
         }
         else{
             http_response_code(400);

@@ -8,21 +8,37 @@
     <base href="/Galeris-APPG1E/Vue/">
     <link rel="stylesheet" href="CSS/FAQ.css">
     <link rel="stylesheet" href="CSS/footer.css">
+    <link rel="stylesheet" href="CSS/header.css">
+    <link rel="stylesheet" href="CSS/style.css">
     <script src="https://galeris/Galeris-APPG1E/vue/JS/Faq.js" defer></script>
 </head>
-
+<div class="container">
+<header>
+        <div class="logo"><a href="https://galeris/Galeris-APPG1E/"> <img width="150" height="150" src="../images/logo-sans-fond.png" src="../images/logo.png"></a></div>
+        <nav class="menu">
+            <ul>
+                <li><a href="https://galeris/Galeris-APPG1E/">Accueil</a></li>
+                <li><a href="#">Vente</a></li>
+                    <li><a href="#">Exposition</a></li>
+                <li><a href="#">News</a></li>
+                <li><a href="#">Plus</a></li>
+            </ul>
+        </nav>
+        <div class="barre_recherche">
+            <!-- Barre de recherche, les emojis sont responsives si on clique dessus -->
+            <input type="text" placeholder="Rechercher...">
+            <div class="favori"> <a href="favoris.html">❤️ </a></div>
+            <div class="panier"> <a href="panier.html"> 🛒 </a></div>
+            <div class="utilisateur"><a href="https://galeris/Galeris-APPG1E/profil"> 👤 </a></div>
+        </div>
+    </header>     
 <body>
-    <header>
-        <h2>Foire Aux Questions</h2>
-        <p>Trouvez toutes les réponses à vos questions !</p>
+    <h1> Foire aux questions </h1>
+    <h2>Trouvez toutes les réponses à vos questions !</h2>
         <p>
-            <a href="https://galeris/Galeris-APPG1E/"><img src="../images/Logo_Galeris_(sans_fond).png" class="logo" /></a>
-            <!-- <a>href lien page d'accueil sur le logo (ajouter le texte "Retournez à l'accueil" en passant la souris sur le logo) </a> -->
             <img src="../images/tableau.png" class="tableau" />
             <img src="../images/tableau2.png" class="tableau2" />
         </p>
-
-    </header>
     <div class="Page">
         <img src="../images/sculpture2.png" class="image1" />
 
@@ -178,22 +194,22 @@
             </a>
         </div>
 
-        <!-- infos footer (aide, contact ...) -->
-        <div class="container-footer">
-            <a class="title-footer">Qui sommes nous</a>
-            <a class="item-footer" href="#">NovArt</a>
-            <a class="item-footer" href="#">Galeris</a>
-        </div>
-        <div class="container-footer">
-            <a class="title-footer">Aide</a>
-            <a class="item-footer" href="https://galeris/Galeris-APPG1E/faq">Foire aux questions</a>
-            <a class="item-footer" href="https://galeris/Galeris-APPG1E/contact">Contacts</a>
-        </div>
-        <div class="container-footer">
-            <a class="title-footer">Informations légales</a>
-            <a class="item-footer" href="https://galeris/Galeris-APPG1E/cgu">Conditions d'utilisations</a>
-            <a class="item-footer" href="#">Mentions légales</a>
-        </div>
+    <!-- infos footer (aide, contact ...) -->
+    <div class="container-footer">
+        <a class="title-footer">Qui sommes nous</a>
+        <a class="item-footer" href="#">NovArt</a>
+        <a class="item-footer" href="https://galeris/Galeris-APPG1E/galeris">Galeris</a>
+    </div>
+    <div class="container-footer">
+        <a class="title-footer">Aide</a>
+        <a class="item-footer" href="https://galeris/Galeris-APPG1E/faq">Foire aux questions</a>
+        <a class="item-footer" href="https://galeris/Galeris-APPG1E/contact">Contacts</a>
+    </div>
+    <div class="container-footer">
+        <a class="title-footer">Informations légales</a>
+        <a class="item-footer" href="https://galeris/Galeris-APPG1E/cgu">Conditions d'utilisations</a>
+        <a class="item-footer" href="#">Mentions légales</a>
+    </div>
 
     </footer>
 
