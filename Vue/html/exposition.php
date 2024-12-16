@@ -69,7 +69,7 @@
         </p>
         <p>
         <strong>Description :</strong>
-        <textarea class="input-exposition" id="description" name="description" cols="3" maxlength="200" placeholder="200 caractères maximum"></textarea>
+        <textarea class="input-exposition" id="description" name="description" cols="3" minlength="50" placeholder="50 caractères minimum" required></textarea>
         </p>
         <div class="actions">
           <a class="btn btn-exposition">Confirmer</a>

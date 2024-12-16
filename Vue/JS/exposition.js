@@ -32,14 +32,22 @@ async function exposition() {
     const title = document.getElementById('title').value;
     const date_debut = document.getElementById('date_debut').value;
     const date_fin = document.getElementById('date_fin').value;
-    const description = document.getElementById('description').value;
+    const description = document.getElementById('description').value.trim();
     
     const image1 = document.getElementById("image1").attributes[4] === undefined ? "" : document.getElementById("image1").attributes[4].value;
     const image2 = document.getElementById("image2").attributes[4] === undefined ? "" : document.getElementById("image2").attributes[4].value;
     const image3 = document.getElementById("image3").attributes[4] === undefined ? "" : document.getElementById("image3").attributes[4].value;
-
+    
     if (title.trim() === "" || title.length > 50) {
         alert("Le titre est obligatoire et doit contenir moins de 50 caractères.")
+        return;
+    }
+    if(description.length < 50){
+        alert("La description est obligatoire et doit contenir plus de 50 caractères.")
+        return;
+    }
+    if(image1 === ""){
+        alert("Une image obligatoire")
         return;
     }
     if (date_debut === "" || isDateBeforeToday(date_debut) == false) {
