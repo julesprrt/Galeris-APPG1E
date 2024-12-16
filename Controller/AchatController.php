@@ -40,4 +40,36 @@ class AchatController extends Controller
             echo json_encode(['Error' => "ID incorrect"]);
         }
     }
-}
+
+
+  
+    public function enchere(Database $db) {
+        // Instanciation du modèle
+        $oeuvre = new Oeuvre($Titre = null, $Description = null, $eco_responsable = null, $Date_debut = null, $Date_fin = null, $Prix = null, $type_vente = null, $est_vendu = null, $auteur = null, $id_utilisateur = null, $id_categorie = null, $status = null, $nomvendeur = null, $prenomvendeur = null, $chemin_image = null);
+        session_start();
+        // Récupérer l'ID de l'œuvre depuis la session
+        
+        $id_oeuvre = $_SESSION['oeuvre_id'];
+    
+        // Récupérer les données de l'œuvre
+        $oeuvreData = $oeuvre->getOeuvreById($id_oeuvre);
+    
+        // Vérifier si l'œuvre existe
+        if (!$oeuvreData) {
+            http_response_code(404);
+            echo "L'œuvre demandée est introuvable.";
+            header('Location: /Galeris-APPG1E/accueil');
+            exit();
+        }
+    
+        // Récupérer les images associées à l'œuvre
+        $oeuvreImages = $oeuvre->getImagesByOeuvreId($id_oeuvre,$db);
+    
+        // Passer les données à la vue
+        $this->render('enchere', [
+            'oeuvre' => $oeuvreData,
+            'images' => $oeuvreImages
+        ]);
+    }
+}    
+

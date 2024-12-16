@@ -89,4 +89,38 @@ class Oeuvre
 
         return $result;
     }
+    public static function getImagesByOeuvreId($id_oeuvre, Database $db) 
+{
+    // Connexion à la base de données
+    $conn = $db->connect();
+
+    // Requête SQL pour récupérer les images liées à une œuvre spécifique
+    $query = "SELECT chemin_image FROM oeuvre_images WHERE id_oeuvre = ?";
+
+    // Préparer la requête
+    $stmt = $conn->prepare($query);
+
+    // Associer le paramètre à la requête (id de l'œuvre)
+    $stmt->bind_param('i', $id_oeuvre);
+
+    // Exécuter la requête
+    $stmt->execute();
+
+    // Obtenir les résultats
+    $result = $stmt->get_result();
+
+    // Stocker les résultats dans un tableau
+    $images = [];
+    while ($row = $result->fetch_assoc()) {
+        $images[] = $row['chemin_image'];
+    }
+
+    // Fermer la requête et la connexion
+    $stmt->close();
+    $conn->close();
+
+    // Retourner les images
+    return $images;
+}
+
 }
