@@ -1,23 +1,21 @@
 <!DOCTYPE html>
-<html lang="fr">
-
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
     <base href="/Galeris-APPG1E/Vue/">
-    <link rel="stylesheet" href="CSS/accueil.css">
+    <link rel="stylesheet" href="CSS/enchere.css">
+    <link rel="stylesheet" href="CSS/style.css">
     <link rel="stylesheet" href="CSS/header.css">
     <link rel="stylesheet" href="CSS/footer.css">
-    <title>Accueil</title>
 </head>
 
-<body>
-    <div class="container">
-        <header>
-            <div class="logo"> <a href="https://galeris/Galeris-APPG1E/"><img src="../images/logo.png"></a></div>
+<header>
+<div class="logo"> <img src="../images/logo.png"></div>
             <nav class="menu">
                 <ul>
-                    <li><a href="https://galeris/Galeris-APPG1E/">Accueil</a></li>
+                    <li><a href="#">Accueil</a></li>
                     <li><a href="#">Vente</a></li>
                     <li><a href="#">Exposition</a></li>
                     <li><a href="#">News</a></li>
@@ -29,33 +27,56 @@
                 <input type="text" placeholder="Rechercher...">
                 <div class="favori"> <a href="favoris.html">❤️ </a></div>
                 <div class="panier"> <a href="panier.html"> 🛒 </a></div>
-                <div class="utilisateur"><a href="https://galeris/Galeris-APPG1E/profil"> 👤 </a></div>
+                <div class="utilisateur"><a href="panier.html"> 👤 </a></div>
             </div>
-        </header>
+</header>
+<body>
+<div class="conteneur">
 
-        <!-- Contenu de la page d'accueil -->
-        <div class="page-content">
-            <div class="contentbase">
-                <?php
-                    if($connectUser === true){
-                        echo '<a href="https://galeris/Galeris-APPG1E/vente"><button type="button" class="sellproduct">Vendre une oeuvre</button></a> <a href="https://galeris/Galeris-APPG1E/exposition"><button type="button" class="demandeexpo">Demande exposition</button></a>';
-                    }
-                ?>
-                <div class="content-description">
-                    <p class="description">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                        exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-                        reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-                        occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-                    </p>
-                </div>
-            </div>
+    <div class="gauche">
+        
+            <img class="photo" src="../images/oeuvre1-1.jpg" alt="Photo">
+        <p>Cliquez sur l'image pour l'agrandir </p>
+
+        <div class=photos>
+             <img  src="../images/oeuvre1-1.jpg" alt="Photo">
+             <img  src="../images/oeuvre1-1.jpg" alt="Photo">
+             <img  src="../images/oeuvre1-1.jpg" alt="Photo">
         </div>
 
-        <footer>
 
-            <!-- icones réseaux sociaux -->
-            <div class="social-network">
+        <div>
+            <h1>A propos de ce lot</h1>
+        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Non aspernatur illo, 
+            culpa maxime dolore, nesciunt repudiandae deserunt, quidem veritatis vel quis 
+            excepturi suscipit quod cupiditate aperiam tempore facere eveniet itaque.
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sapiente ipsam temporibus totam vitae soluta 
+            architecto voluptates! Similique accusamus nemo blanditiis voluptas, laudantium, eius ad quae commodi eum provident, quos ipsa.
+        </p>
+        </div>
+        
+    </div>
+    
+    <div class="droite">
+        <div class="conteneur2">
+            
+
+           
+        </div>
+        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. 
+                Possimus distinctio nemo ea nam explicabo adipisci, numquam ipsa quia 
+                iusto dolorum dicta cum ad quod asperiores sit vel voluptates, impedit ducimus?
+        </p>
+                
+    </div>
+        
+        
+</div>
+</body>
+
+<footer>
+ <!-- icones réseaux sociaux -->
+ <div class="social-network">
                 <a href="#"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"
                         xmlns="http://www.w3.org/2000/svg">
                         <path
@@ -93,18 +114,15 @@
             </div>
             <div class="container-footer">
                 <a class="title-footer">Aide</a>
-                <a class="item-footer" href="https://galeris/Galeris-APPG1E/faq">Foire aux questions</a>
-                <a class="item-footer" href="https://galeris/Galeris-APPG1E/contact">Contacts</a>
+                <a class="item-footer" href="#">Foire aux questions</a>
+                <a class="item-footer" href="#">Contacts</a>
             </div>
             <div class="container-footer">
                 <a class="title-footer">Informations légales</a>
-                <a class="item-footer" href="https://galeris/Galeris-APPG1E/cgu">Conditions d'utilisations</a>
+                <a class="item-footer" href="#">Conditions d'utilisations</a>
                 <a class="item-footer" href="#">Mentions légales</a>
             </div>
 
-        </footer>
-    </div>
-</body>
 
-
+</footer>
 </html>

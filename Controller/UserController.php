@@ -1,5 +1,6 @@
 <?php
 require_once('Model/user.php');
+require_once('Model/code.php');
 require_once('Database/Database.php');
 require_once('Controller.php');
 
@@ -11,11 +12,10 @@ class   UserController extends Controller
     {
         $paramData = file_get_contents("php://input");
         $data = json_decode($paramData, true);
-        if (isset($data['name']) && isset($data['firstName']) && isset($data['userName']) && isset($data['email']) && isset($data['telephone']) && isset($data['password']) && isset($data['confirmPassword'])) { //Verification données entré dans le formulaire
-            $user = new User($data["name"], $data["firstName"], $data["userName"], $data["email"], $data["telephone"], $data["password"], $data["confirmPassword"]);
-            $result = $user->registerVerification($db); //Verifier les données d'inscription
-            if ($result === true) { //Si les données sont correct alors envoie du code a usage unique + redirection vers la page  avec le code à usage unique
-                $user->saveUser($db);
+        if(isset($data['name']) && isset($data['firstName']) &&  isset($data['email']) && isset($data['telephone']) && isset($data['password']) && isset($data['confirmPassword']) && isset($data['cgu'])){//Verification données entré dans le formulaire
+            $user = new User($data["name"], $data["firstName"],  $data["email"], $data["telephone"], $data["password"],$data["confirmPassword"],$data["cgu"]);
+            $result = $user->registerVerification($db);//Verifier les données d'inscription
+            if($result === true){//Si les données sont correct alors envoie du code a usage unique + redirection vers la page  avec le code à usage unique
                 http_response_code(200);
                 echo json_encode(['Success' => "Un code vous à été envoyé sur votre adresse mail pour confirmer votre identité"]);
             } else if ($result === "code") {
@@ -36,7 +36,7 @@ class   UserController extends Controller
         $paramData = file_get_contents("php://input");
         $data = json_decode($paramData, true);
         if (isset($data['email']) && isset($data['password'])) {
-            $user = new User(null, null, null, $data['email'], null, $data['password'], null);
+            $user = new User(null, null, $data['email'], null, $data['password'], null,null);
             // Obtenir une connexion à la base de données
             $result = $user->connectUser($db);
             if ($result === true) {
@@ -44,7 +44,7 @@ class   UserController extends Controller
                 echo json_encode(['Success' => "Connexion réussie"]);
             } else if ($result === "Utilisateur non valide") {
                 http_response_code(401);
-                echo json_encode(['Information' => "Un code vous à été envoyé sur votre adresse mail pour confirmer votre identité"]);
+                echo json_encode(['Information' => "Veuillez vous inscrire"]);
             } else {
                 http_response_code(400);
                 echo json_encode(['Error' => $result]);
@@ -59,23 +59,38 @@ class   UserController extends Controller
         $this->render('motdepasseoublie', ['message' => '']);
     }
 
-    public function code()
-    {
-        $this->render('codeunique', ['message' => '']);
+    public function code(Database $db) {
+        $paramData = file_get_contents("php://input");
+        $data = json_decode($paramData, true);
+        if (isset($data['code'])) {
+            $user = new User(null,null,null,null,null,null,null);
+            $response = $user->verifyCode($data['code'],$db);
+            if ($response == 200){
+                http_response_code(200);
+                echo json_encode(['Success' => "Inscription reussie"]);
+            }
+            else { 
+                http_response_code(400);
+                echo json_encode(['Error' => "Code incorrect"]);
+            }
+        }
+        else {
+            $this->render('codeunique', ['message' => '']);
+        }
     }
 
     public function profil(Database $db)
     {
         session_start();
 
-        if (!isset($_SESSION['user_id'])) {
+        if (!isset($_SESSION['usersessionID'])) {
             header('Location: /Galeris-APPG1E/connexion');
             exit();
         }
 
-        $userId = $_SESSION['user_id'];
+        $userId = $_SESSION['usersessionID'];
 
-        $user = new User(null, null, null, null, null, null, null);
+        $user = new User(null, null,  null, null, null, null,null);
         $userData = $user->getUserById($userId, $db);
 
         if (!$userData) {
@@ -90,13 +105,13 @@ class   UserController extends Controller
     {
         session_start();
 
-        if (!isset($_SESSION['user_id'])) {
+        if (!isset($_SESSION['usersessionID'])) {
             header('Location: /Galeris-APPG1E/connexion');
             exit();
         }
 
-        $userId = $_SESSION['user_id'];
-        $userModel = new User(null, null, null, null, null, null, null);
+        $userId = $_SESSION['usersessionID'];
+        $userModel = new User(null, null,  null, null, null, null,null);
         $user = $userModel->getUserById($userId, $db);
 
         if (!$user) {
@@ -111,12 +126,12 @@ class   UserController extends Controller
     {
         session_start();
 
-        if (!isset($_SESSION['user_id'])) {
+        if (!isset($_SESSION['usersessionID'])) {
             header('Location: /Galeris-APPG1E/connexion');
             exit();
         }
 
-        $userId = $_SESSION['user_id'];
+        $userId = $_SESSION['usersessionID'];
 
         // Récupération des données du formulaire
         $nom = $_POST['nom'];
@@ -128,7 +143,7 @@ class   UserController extends Controller
         $newPassword = $_POST['new_password'];
         $confirmPassword = $_POST['confirm_password'];
 
-        $userModel = new User(null, null, null, null, null, null, null);
+        $userModel = new User(null, null,  null, null, null, null,null);
         $user = $userModel->getUserById($userId, $db);
 
         if (!$user) {
@@ -136,7 +151,7 @@ class   UserController extends Controller
             exit();
         }
         // Validation de l'ancien mot de passe
-        if (!password_verify($oldPassword, $user['mot_de_passe'])) {
+        if (strlen($oldPassword) > 0 && !password_verify($oldPassword, $user['mot_de_passe'])) {
             $this->render('editionprofil', ['user' => $user, 'error' => "L'ancien mot de passe est incorrect."]);
             return;
         }
@@ -151,11 +166,11 @@ class   UserController extends Controller
             return;
         }
 
-        if (!empty($newPassword) && $newPassword !== $confirmPassword) {
+        if (strlen($oldPassword) > 0 && !empty($newPassword) && $newPassword !== $confirmPassword) {
             $this->render('editionprofil', ['user' => $user, 'error' => "Les nouveaux mots de passe ne correspondent pas."]);
             return;
         }
-        if (!$userModel->passwordComposition($newPassword)) {
+        if (strlen($oldPassword) > 0 && !$userModel->passwordComposition($newPassword)) {
             $this->render('editionprofil', ['user' => $user, 'error' => "Le mot de passe doit contenir au moins 8 caractères, une majuscule, un chiffre et un caractère spécial."]);
             return;
         }
@@ -169,5 +184,15 @@ class   UserController extends Controller
         } else {
             $this->render('editionprofil', ['user' => $user, 'error' => "Une erreur est survenue lors de la mise à jour."]);
         }
+    }
+
+    public function resendcode(Database $db){
+        $code = new Code();
+        session_start();
+        $code->sendCode($_SESSION["usersessionMail"],$db);
+
+        http_response_code(200);
+        echo json_encode(['Success' => "Code envoyé"]);
+
     }
 }

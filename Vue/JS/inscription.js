@@ -8,11 +8,11 @@ async function register() {
     const raw = JSON.stringify({
         "firstName": document.getElementsByName("firstName")[0].value,
         "name": document.getElementsByName("name")[0].value,
-        "userName": document.getElementsByName("userName")[0].value,
         "email": document.getElementsByName("email")[0].value,
         "telephone": document.getElementsByName("telephone")[0].value,
         "password" : document.getElementsByName("password")[0].value,
-        "confirmPassword" : document.getElementsByName("confirmPassword")[0].value
+        "confirmPassword" : document.getElementsByName("confirmPassword")[0].value,
+        "cgu" : document.getElementById("check-inscription").checked
     });
 
     const requestOptions = {
@@ -33,8 +33,11 @@ async function register() {
         document.querySelectorAll('.input-user-first').forEach((item)=> {
             item.value = "";
         })
+        document.getElementById("check-inscription").checked = false;
         document.querySelector('.error-message').innerHTML = "";
+        window.location.href = "https://galeris/Galeris-APPG1E/codeunique"
     }
+    
     else{
         alert(result.Error);
         document.querySelector('.error-message').innerHTML = result.Error;

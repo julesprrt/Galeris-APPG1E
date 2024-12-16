@@ -6,7 +6,7 @@ body{
     background: url('../../images/fondecran.png') no-repeat center center;
     display: flex;
     background-size: cover; /* Fait en sorte que l'image couvre toute la page */
-    min-height: 100vh;
+    min-height: 120vh;
     color: #333;
     justify-content: center;
   }
