@@ -51,7 +51,7 @@
                     </p>
                 </div>
                 <div>
-                    <div class="artworks">
+                    <div class="oeuvres">
                         <?php
                         foreach ($oeuvres as $oeuvre) {
                             echo '<a id = "oeuvre" style="cursor:pointer" >';

@@ -75,9 +75,11 @@ class Oeuvre
     public static function getAllOeuvre(Database $db)
     {
         $conn = $db->connect();
-        $query = "SELECT * FROM oeuvre o INNER JOIN oeuvre_images oi ON o.id_oeuvre = oi.id_oeuvre ORDER BY Date_fin DESC LIMIT 10";
+        $query = "SELECT * FROM oeuvre o INNER JOIN oeuvre_images oi ON o.id_oeuvre = oi.id_oeuvre WHERE o.est_vendu = ? ORDER BY Date_fin DESC LIMIT 10";
 
         $stmt = $conn->prepare($query);
+        $est_vendu = 0;
+        $stmt->bind_param('i', $est_vendu);
         $stmt->execute();
 
         $result = $stmt->get_result();

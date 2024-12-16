@@ -1,5 +1,5 @@
 body {
-    font-family: Arial, Helvetica, sans-serif; 
+    font-family: Arial, Helvetica, sans-serif;
     height: 100%;
 }
 
@@ -34,6 +34,7 @@ body {
     color: white;
     cursor: pointer;
 }
+
 .sellproduct:hover {
     opacity: 0.9;
 }
@@ -52,3 +53,70 @@ body {
     min-height: 100vh;
 }
 
+/* Section principale des œuvres */
+.oeuvres {
+    display: flex;
+    flex-wrap: wrap;
+    /* Permet le retour à la ligne */
+    justify-content: space-evenly;
+    /* Espacement uniforme */
+    gap: 20px;
+    /* Espacement entre les cartes */
+    padding: 2em 5%;
+    /* Espacement autour de la section */
+    background-color: #f9f9f9;
+    /* Fond léger pour démarquer */
+}
+
+/* Carte individuelle pour chaque œuvre */
+.oeuvre {
+    background-color: #fff;
+    /* Fond blanc pour la carte */
+    border: 1px solid #ddd;
+    /* Bordure fine grise */
+    border-radius: 8px;
+    /* Coins arrondis */
+    width: 250px;
+    /* Taille fixe pour uniformité */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    /* Ombre légère */
+    transition: transform 0.3s ease-in-out;
+    /* Animation au survol */
+    text-align: center;
+    /* Contenu centré */
+    overflow: hidden;
+    /* Coupe le contenu dépassant */
+}
+
+.oeuvre:hover {
+    transform: translateY(-5px);
+    /* Effet d'élévation au survol */
+}
+
+/* Image des œuvres */
+.oeuvre img {
+    width: 100%;
+    /* Image responsive */
+    height: 160px;
+    /* Hauteur fixe pour uniformité */
+    object-fit: cover;
+    /* Ajustement sans déformation */
+    border-bottom: 1px solid #ddd;
+    /* Séparation visuelle */
+}
+
+/* Titre des œuvres */
+.oeuvre h3 {
+    font-size: 1.1em;
+    margin: 0.5em 0;
+    color: #333;
+    /* Couleur sobre */
+}
+
+/* Description des œuvres */
+.oeuvre p {
+    font-size: 0.9em;
+    color: #666;
+    /* Texte plus clair */
+    padding: 0.5em;
+}
