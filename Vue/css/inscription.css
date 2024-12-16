@@ -18,6 +18,10 @@
     background:rgba(217,217,217,0.8);
 }
 
+.checkbox-container{
+    width: 20em;
+}
+
 .inscription-content {
     padding: 40px 75px 80px 75px;
     opacity: 1;

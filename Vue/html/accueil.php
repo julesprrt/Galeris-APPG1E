@@ -29,14 +29,18 @@
                 <input type="text" placeholder="Rechercher...">
                 <div class="favori"> <a href="favoris.html">❤️ </a></div>
                 <div class="panier"> <a href="panier.html"> 🛒 </a></div>
-                <div class="utilisateur"><a href="https://galeris/Galeris-APPG1E/connexion"> 👤 </a></div>
+                <div class="utilisateur"><a href="https://galeris/Galeris-APPG1E/profil"> 👤 </a></div>
             </div>
         </header>
 
         <!-- Contenu de la page d'accueil -->
         <div class="page-content">
             <div class="contentbase">
-                <button type="button" class="sellproduct">Vendre une oeuvre</button>
+                <?php
+                    if($connectUser === true){
+                        echo '<a href="https://galeris/Galeris-APPG1E/vente"><button type="button" class="sellproduct">Vendre une oeuvre</button></a> <a href="https://galeris/Galeris-APPG1E/exposition"><button type="button" class="demandeexpo">Demande exposition</button></a>';
+                    }
+                ?>
                 <div class="content-description">
                     <p class="description">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
                         tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud

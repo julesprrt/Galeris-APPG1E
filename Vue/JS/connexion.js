@@ -48,6 +48,7 @@ async function connexion() {
         document.querySelectorAll('.input-user-first').forEach((item)=> {
             item.value = "";
         })
+        window.location.href = "https://galeris/Galeris-APPG1E/inscription";
     }
     else{
         alert(result.Error);
