@@ -9,38 +9,32 @@
     <link href="CSS/connexion.css" rel="stylesheet">
     <link href="CSS/footer.css" rel="stylesheet">
     <link href="CSS/style.css" rel="stylesheet">
-    <script src="http://localhost/Galeris-APPG1E/vue/JS/connexion.js" defer></script>
+    <script src="https://galeris/Galeris-APPG1E/vue/JS/connexion.js" defer></script>
 </head>
 
 <body>
-    <div class="Page">
+    <div class="Page-User">
         <div class="logo-galeris">
-            <img width="150" height="150" src="../images/logo-sans-fond.png" />
+            <a href="https://galeris/Galeris-APPG1E/"><img width="150" height="150" src="../images/logo-sans-fond.png" /></a>
         </div>
         <div class="Page-content">
             <div class="infos-connexion">
                 <div class="inscrivez-vous">
                     <div class="connexion-content">
-                        <h1 class="text-connexion">Connectez-vous à</h1>
+                        <h1 class="bigTitle">Connectez-vous à</h1>
                         <h1 class="text-galeris">Galeris</h1>
-                        <p class="text-inscription">Si vous n’avez pas de compte vous</p>
-                        <p class="text-inscription">pouvez vous <a href="#">Inscrire ici </a>! </p>
+                        <p class="simpleBigText">Si vous n’avez pas de compte vous</p>
+                        <p class="simpleBigText">pouvez vous <a href="https://galeris/Galeris-APPG1E/inscription">Inscrire ici </a>! </p>
                     </div>
                 </div>
             </div>
             <div class="form-connexion">
                 <p class="Title-connexion">Connectez-vous</p>
                 <form>
-                    <input name="email" type="text" class="input-connexion-first" placeholder="Entrez votre mail" />
-                    <input name="password" type="password" class="input-connexion" id="passwordInput"
-                        placeholder="Mot de passe" />
-                    <div id="diveye">
-                        <img src="../images/eyes.png" alt="Afficher mot de passe" id="showmdp" class="show-password">
-                        <img src="../images/eye.png" alt="cacher mot de passe" id="hidemdp" class="hide-password"
-                            style="display : none">
-                    </div>
-                    <a href="http://localhost/Galeris-APPG1E/motdepasse" class="mdpo">Mot de passe oublié ?</a>
-                    <button type="button" class="button-connection"></button>
+                    <input name="email" type="text" class="input-user-first" placeholder="Entrez votre mail" />
+                    <input name="password" type="password" class="input-user" placeholder="Mot de passe" />
+                    <a href="https://galeris/Galeris-APPG1E/motdepasse" class="link">Mot de passe oublié ?</a>
+                    <button type="button" class="button-connection submit-button">Connexion</button>
                     <p class="error-message"></p>
                 </form>
             </div>
@@ -85,17 +79,18 @@
         </div>
         <div class="container-footer">
             <a class="title-footer">Aide</a>
-            <a class="item-footer" href="#">Foire aux questions</a>
-            <a class="item-footer" href="#">Contacts</a>
+            <a class="item-footer" href="https://galeris/Galeris-APPG1E/faq">Foire aux questions</a>
+            <a class="item-footer" href="https://galeris/Galeris-APPG1E/contact">Contacts</a>
         </div>
         <div class="container-footer">
             <a class="title-footer">Informations légales</a>
-            <a class="item-footer" href="#">Conditions d'utilisations</a>
+            <a class="item-footer" href="https://galeris/Galeris-APPG1E/cgu">Conditions d'utilisations</a>
             <a class="item-footer" href="#">Mentions légales</a>
         </div>
 
     </footer>
 
 </body>
+
 
 </html>

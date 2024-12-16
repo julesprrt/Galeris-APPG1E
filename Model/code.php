@@ -1,5 +1,5 @@
 <?php
-require 'vendor/autoload.php';
+
 require_once('Model/mailSender.php');
 require_once('Constantes/constants.php');
 require_once('Database/Database.php');
@@ -13,7 +13,6 @@ Class Code{
     public function sendCode($to,$db) {
         $code = rand(100000,999999);
         $this->sendMail->sendMail($to,title_Code_unique, message_Code_unique . $code, galeris);
-        $this->saveCode($db,$code);
     }
 
     public function saveCode(Database $db, $code){

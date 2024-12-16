@@ -24,9 +24,12 @@
             </div>
             <button type="button" class="valid-code"></button>
         </form>
+        <div class="resendcode">
+            <a class="link-resendCode" id="resendcode">Renvoyer le code ?</a>
+        </div>
     </div>
 
-    <script src="http://localhost/Galeris-APPG1E/vue/JS/codeunique.js"></script>
+    <script src="https://galeris/Galeris-APPG1E/vue/JS/codeunique.js"></script>
 </body>
 
 </html>

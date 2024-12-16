@@ -5,26 +5,28 @@ require_once('Model/utils.php');
 
 class User
 {
+class User
+{
     private $name;
     private $firstName;
-    private $userName;
     private $email;
     private $telephone;
     private $password;
     private $confirmPassword;
     private $sendCode;
     private $utilsUser;
-    public function __construct($name, $firstName, $userName, $email, $telephone, $password, $confirmPassword)
-    {//Constructeur -> Initialisation des données
+    private $cgu;
+    public function __construct($name, $firstName, $email, $telephone, $password, $confirmPassword,$cgu)
+    { //Constructeur -> Initialisation des données
         $this->name = $name;
         $this->firstName = $firstName;
-        $this->userName = $userName;
         $this->email = $email;
         $this->telephone = $telephone;
         $this->password = $password;
         $this->confirmPassword = $confirmPassword;
         $this->sendCode = new Code();
         $this->utilsUser = new Utils();
+        $this->cgu = $cgu;
     }
     /**
      * Summary of registerVerification
@@ -34,8 +36,10 @@ class User
     public function registerVerification(Database $db)
     {
         $value = $this->VerifyExistMail($db);
-        if ($this->name === "" || $this->firstName === "" || $this->userName === "" || $this->email === "" || $this->telephone === "" || $this->password === "" || $this->confirmPassword === "") {
+        if ($this->name === "" || $this->firstName === "" || $this->email === "" || $this->telephone === "" || $this->password === "" || $this->confirmPassword === "") {
             return "Vous devez remplir l'ensemble des champs du formulaire";
+        }else if($this->cgu === false){
+            return "Vous devez valider les condition générale d'utilisation de Galeris";
         } else if (!$this->utilsUser->emailComposition($this->email)) {
             return "Mail invalide";
         } else if (!$this->telComposition($this->telephone)) {
@@ -45,10 +49,15 @@ class User
         } else if ($this->password !== $this->confirmPassword) {
             return "Les deux mots de passe ne sont pas identiques";
         } else if ($value === true) {
+        } else if ($value === false) {
             return "Vous avez déja un compte";
-        } else {
+        }
+        else{
+            if($value === true){
+                $this->saveUser($db);
+            }
             //Envoie d'un code a usage unique
-            $this->sendCode->sendCode($this->email);
+            $this->sendCode->sendCode($this->email,$db);
             return $value === "actif" ? "code" : true;
         }
     }
@@ -66,10 +75,11 @@ class User
             // Vérifier le mot de passe
             if (password_verify($this->password, $user['mot_de_passe']) && $user["actif"] === 1) {
                 session_start();
-                $_SESSION["usersession"] = $this->email;
+                $_SESSION["usersessionMail"] = $this->email;
+                $_SESSION["usersessionID"] = $user["id_utilisateur"];
                 return true;
-            } else if ($user["actif"] === 0) {
-                $this->sendCode->sendCode($this->email);
+            } 
+            else if($user["actif"] === 0){
                 return "Utilisateur non valide";
             } else {
                 return "Votre mail/mot de passe est incorrect";
@@ -123,36 +133,25 @@ class User
     public function VerifyExistMail(Database $db)
     {
         $conn = $db->connect();
-        $sql = "SELECT id_utilisateur, actif FROM utilisateur where email = ?";
-        $stmt = $conn->prepare($sql);
-        $stmt->bind_param('s', $this->email);
-        $stmt->execute();
-        $stmt->bind_result($id, $actif);
-        if ($stmt->fetch()) {
-            if ($actif === 0) {
-                $stmt->close();
-                $conn->close();
+        $sql = "SELECT * FROM utilisateur where email = '$this->email'";
+        $result = $conn->execute_query($sql);
+        $conn->close();
+        if (mysqli_num_rows($result) > 0) {
+            /*while ($row = $user->fetch_assoc()) {
+                if($row["actif"] === 0){
+                    return false;
+                }
+            }*/
+            $user = mysqli_fetch_assoc($result);
+            if($user["actif"] === 0){
+                session_start();
+                $_SESSION["usersessionID"] = $user["id_utilisateur"];
                 return "actif";
             } else {
-                session_start();
-                $_SESSION["usersessionID"] = $id;
-                $stmt->close();
-                $conn->close();
-                return true;
+                return false;
             }
         }
-        return false;
-    }
-
-    public function veirfyEmailForPassword(Database $db)
-    {
-        $result = $this->verifyExistMail($db);
-        if (!$this->utilsUser->emailComposition($this->email) && $result === "actif" || !$this->utilsUser->emailComposition($this->email) && $result === false) {
-            return false;
-        } else {
-            $this->sendCode->sendCode($this->email, $db);
-            return true;
-        }
+        return true;
     }
 
     /**
@@ -205,4 +204,102 @@ class User
     }
 
 
+
+    public function verifyCode($code, Database $db) { 
+        try {
+            session_start();
+            $conn = $db->connect();
+            $sql = "SELECT code FROM code WHERE ID_user = ? AND date_expiration > NOW() ORDER BY date_expiration DESC LIMIT 1";
+            $stmt = $conn->prepare($sql);
+            $id_user = $_SESSION['usersessionID'];
+            $stmt->bind_param('i', $id_user);
+            $stmt->execute();
+            $stmt->bind_result($codedb);
+            while ($stmt->fetch()) {
+                if ($codedb == $code){
+                    $stmt->close();
+                    $updateSql = "UPDATE utilisateur SET actif = 1 WHERE id_utilisateur = ?";
+                    $updateStmt = $conn->prepare($updateSql) or die ($this->$conn->error);
+                    $updateStmt->bind_param('i', $id_user);
+                    $updateStmt->execute();
+                    $updateStmt->close();
+                    $conn->close();
+                    return 200;
+                } else {
+                    if(isset($_SESSION['nberror'])){
+                        $_SESSION['nberror'] =  $_SESSION['nberror'] + 1;
+                        if($_SESSION['nberror'] === 5){
+                            session_destroy();
+                            session_start();
+                            $_SESSION["userIP"] =  $_SERVER['REMOTE_ADDR'];;
+                            $my_date_time = date("Y-m-d H:i:s", strtotime("+10 minutes"));
+                            $_SESSION["datetime"] = $my_date_time;
+                        } 
+                    }
+                    else{
+                        $_SESSION['nberror'] = 1; 
+                    }
+                    return 400;
+                }
+            } 
+            return 400;
+        } catch (PDOException $e) {
+            // Gérer les erreurs
+            return "Erreur : " . $e->getMessage();
+        }
+    }
+    
+
+    public function getUserById($id, Database $db)
+    {
+        $conn = $db->connect();
+
+        $sql = "SELECT * FROM utilisateur WHERE id_utilisateur = ?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param('i', $id); // 'i' spécifie le type de données passées à la requête, ici integer. 
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        if ($result->num_rows > 0) {   // Si aucun utilisateur n'est trouvé, on évite d'accéder à des données inexistantes.
+            $user = $result->fetch_assoc(); // Récupère la première ligne des résultats sous forme d'un tableau associatif.
+            $stmt->close();
+            $conn->close();
+            return $user; // Ferme la requête préparée ($stmt) et la connexion à la base de données ($conn).
+        }
+
+        $stmt->close();
+        $conn->close();
+        return null; // aucune ligne ne correspond dans la base, les ressources sont fermées et la méthode retourne null.
+    }
+    public function updateUser($id, $nom, $prenom, $email, $description, $adresse, $newPassword, Database $db)
+    {
+        $conn = $db->connect();
+
+        // Prépare la requête SQL de base
+        $sql = "UPDATE utilisateur SET nom = ?, prenom = ?, email = ?, description = ?, adresse = ?";
+        $types = "sssss"; // Types pour bind_param
+        $params = [$nom, $prenom, $email, $description, $adresse];
+
+        // Si un nouveau mot de passe est fourni, on l'ajoute à la requête
+        if (!empty($newPassword)) {
+            $hashedPassword = password_hash($newPassword, PASSWORD_DEFAULT);
+            $sql .= ", mot_de_passe = ?";
+            $types .= "s"; // Ajoute le type chaîne
+            $params[] = $hashedPassword; // Ajoute la valeur
+        }
+
+        // Ajoute la condition WHERE
+        $sql .= " WHERE id_utilisateur = ?";
+        $types .= "i"; // Ajoute le type entier
+        $params[] = $id; // Ajoute l'ID utilisateur
+
+        // Prépare et exécute la requête
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param($types, ...$params); // Lie les paramètres
+        $result = $stmt->execute();
+
+        $stmt->close();
+        $conn->close();
+        return $result;
+    }
 }

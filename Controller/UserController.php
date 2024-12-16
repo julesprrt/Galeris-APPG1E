@@ -1,5 +1,6 @@
 <?php
 require_once('Model/user.php');
+require_once('Model/code.php');
 require_once('Database/Database.php');
 require_once('Controller.php');
 
@@ -11,21 +12,20 @@ class UserController extends Controller
     {
         $paramData = file_get_contents("php://input");
         $data = json_decode($paramData, true);
-        if (isset($data['name']) && isset($data['firstName']) && isset($data['userName']) && isset($data['email']) && isset($data['telephone']) && isset($data['password']) && isset($data['confirmPassword'])) {//Verification données entré dans le formulaire
-            $user = new User($data["name"], $data["firstName"], $data["userName"], $data["email"], $data["telephone"], $data["password"], $data["confirmPassword"]);
+        if(isset($data['name']) && isset($data['firstName']) &&  isset($data['email']) && isset($data['telephone']) && isset($data['password']) && isset($data['confirmPassword']) && isset($data['cgu'])){//Verification données entré dans le formulaire
+            $user = new User($data["name"], $data["firstName"],  $data["email"], $data["telephone"], $data["password"],$data["confirmPassword"],$data["cgu"]);
             $result = $user->registerVerification($db);//Verifier les données d'inscription
-            if ($result === true) {//Si les données sont correct alors envoie du code a usage unique + redirection vers la page  avec le code à usage unique
-                $user->saveUser($db);
+            if($result === true){//Si les données sont correct alors envoie du code a usage unique + redirection vers la page  avec le code à usage unique
                 http_response_code(200);
                 echo json_encode(['Success' => "Un code vous à été envoyé sur votre adresse mail pour confirmer votre identité"]);
             } else if ($result === "code") {
                 http_response_code(200);
                 echo json_encode(['Success' => "Un code vous à été envoyé sur votre adresse mail pour confirmer votre identité"]);
-            } else {//Sinon affiché le message d'erreur sur la vue
+            } else { //Sinon affiché le message d'erreur sur la vue
                 http_response_code(400);
                 echo json_encode(['Error' => $result]);
             }
-        } else {//Premier affichage sans les données Post
+        } else { //Premier affichage sans les données Post
             $this->render('inscription', ['message' => '']);
         }
     }
@@ -36,7 +36,7 @@ class UserController extends Controller
         $paramData = file_get_contents("php://input");
         $data = json_decode($paramData, true);
         if (isset($data['email']) && isset($data['password'])) {
-            $user = new User(null, null, null, $data['email'], null, $data['password'], null);
+            $user = new User(null, null, $data['email'], null, $data['password'], null,null);
             // Obtenir une connexion à la base de données
             $result = $user->connectUser($db);
             if ($result === true) {
@@ -44,7 +44,7 @@ class UserController extends Controller
                 echo json_encode(['Success' => "Connexion réussie"]);
             } else if ($result === "Utilisateur non valide") {
                 http_response_code(401);
-                echo json_encode(['Information' => "Un code vous à été envoyé sur votre adresse mail pour confirmer votre identité"]);
+                echo json_encode(['Information' => "Veuillez vous inscrire"]);
             } else {
                 http_response_code(400);
                 echo json_encode(['Error' => $result]);
@@ -79,94 +79,140 @@ class UserController extends Controller
         }
     }
 
-    public function code() {
-        $this->render('codeunique', ['message' => '']);
-    }    
-
-
-    public function confirmationmdp(Database $db)
-    {
+    public function code(Database $db) {
         $paramData = file_get_contents("php://input");
         $data = json_decode($paramData, true);
-        if (isset($data['password']) && isset($data['confirmPassword'])) {
-            $obj = new user(null, null, null, null, null, $data['password'], $data['confirmPassword']);
-            $statusCode = $obj->verifpassword($db);
-            if ($statusCode == 200) {
+        if (isset($data['code'])) {
+            $user = new User(null,null,null,null,null,null,null);
+            $response = $user->verifyCode($data['code'],$db);
+            if ($response == 200){
                 http_response_code(200);
-                echo json_encode(['Success' => "Mot de passe modifié"]);
-            } else if ($statusCode === 400) {
+                echo json_encode(['Success' => "Inscription reussie"]);
+            }
+            else { 
                 http_response_code(400);
-                echo json_encode(['Error' => "Les deux mots de passe ne sont pas identiques"]);
-            } else {
-                http_response_code(401);
-                echo json_encode(['Error' => "Votre mot de passe doit contenir une minuscule, une majucule, un nombre et un caractère spécial et plus que 8 caractères."]);
+                echo json_encode(['Error' => "Code incorrect"]);
             }
-        } else {
-            $this->render('confirmationMDP', ['message' => '']);
+        }
+        else {
+            $this->render('codeunique', ['message' => '']);
         }
     }
 
-
-    //code verification
-    public function sendVerificationCode(Database $db)
-    {
-        $email = $_POST['email'];
-
-        if ($email) {
-            $user = new User(null, null, null, $email, null, null, null);
-            $verificationResult = $user->VerifyExistMail($db);
-
-            if ($verificationResult === true || $verificationResult === "actif") {
-                $codeModel = new Code();
-                $generatedCode = $codeModel->sendCode($email); // model code
-
-                session_start();
-                $_SESSION['verification_code'] = $generatedCode; // gard code 
-                $_SESSION['email'] = $email; // gard email
-
-                // reload to co deunique
-                header("Location: /Galeris-APPG1E/codeunique");
-                exit();
-            } else {
-                session_start();
-                if (!isset($_SESSION['failed_attempts'])) {
-                    $_SESSION['failed_attempts'] = 0;
-                }
-                $_SESSION['failed_attempts']++;
-
-                if ($_SESSION['failed_attempts'] >= 5) {
-                    header("Location: /Galeris-APPG1E/accueil");
-                    exit();
-                }
-
-                echo "Compte inexistant. Vous avez encore " . (5 - $_SESSION['failed_attempts']) . " tentatives.";
-            }
-        } else {
-            echo "Veuillez entrer une adresse e-mail valide.";
-        }
-    }
-
-    public function verifyCode(Database $db)
+    public function profil(Database $db)
     {
         session_start();
 
-        if (isset($_SESSION['verification_code'])) {
+        if (!isset($_SESSION['usersessionID'])) {
+            header('Location: /Galeris-APPG1E/connexion');
+            exit();
+        }
 
-            $inputCode = implode("", $_POST);
+        $userId = $_SESSION['usersessionID'];
 
-            if ($inputCode == $_SESSION['verification_code']) {
-                // reload to reset-password
-                header("Location: /Galeris-APPG1E/reset-password");
-                exit();
-            } else {
-                //code no correct
-                echo "Erreur de code de vérification. Veuillez réessayer.";
-            }
+        $user = new User(null, null,  null, null, null, null,null);
+        $userData = $user->getUserById($userId, $db);
+
+        if (!$userData) {
+            echo "Utilisateur introuvable.";
+            exit();
+        }
+
+        // Transmet les données utilisateur à la vue
+        $this->render('profil', ['user' => $userData]);
+    }
+    public function editionprofil(Database $db)
+    {
+        session_start();
+
+        if (!isset($_SESSION['usersessionID'])) {
+            header('Location: /Galeris-APPG1E/connexion');
+            exit();
+        }
+
+        $userId = $_SESSION['usersessionID'];
+        $userModel = new User(null, null,  null, null, null, null,null);
+        $user = $userModel->getUserById($userId, $db);
+
+        if (!$user) {
+            echo "Utilisateur introuvable.";
+            exit();
+        }
+
+        $this->render('editionprofil', ['user' => $user]);
+    }
+
+    public function processEdition(Database $db)
+    {
+        session_start();
+
+        if (!isset($_SESSION['usersessionID'])) {
+            header('Location: /Galeris-APPG1E/connexion');
+            exit();
+        }
+
+        $userId = $_SESSION['usersessionID'];
+
+        // Récupération des données du formulaire
+        $nom = $_POST['nom'];
+        $prenom = $_POST['prenom'];
+        $email = $_POST['email'];
+        $description = $_POST['description'];
+        $adresse = $_POST['adresse'];
+        $oldPassword = $_POST['old_password'];
+        $newPassword = $_POST['new_password'];
+        $confirmPassword = $_POST['confirm_password'];
+
+        $userModel = new User(null, null,  null, null, null, null,null);
+        $user = $userModel->getUserById($userId, $db);
+
+        if (!$user) {
+            echo "Utilisateur introuvable.";
+            exit();
+        }
+        // Validation de l'ancien mot de passe
+        if (strlen($oldPassword) > 0 && !password_verify($oldPassword, $user['mot_de_passe'])) {
+            $this->render('editionprofil', ['user' => $user, 'error' => "L'ancien mot de passe est incorrect."]);
+            return;
+        }
+        // Validation des nouvelles données
+        if (empty($nom) || empty($prenom) || empty($email)) {
+            $this->render('editionprofil', ['user' => $user, 'error' => "Tous les champs obligatoires doivent être remplis."]);
+            return;
+        }
+
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            $this->render('editionprofil', ['user' => $user, 'error' => "L'adresse email est invalide."]);
+            return;
+        }
+
+        if (strlen($oldPassword) > 0 && !empty($newPassword) && $newPassword !== $confirmPassword) {
+            $this->render('editionprofil', ['user' => $user, 'error' => "Les nouveaux mots de passe ne correspondent pas."]);
+            return;
+        }
+        if (strlen($oldPassword) > 0 && !$userModel->passwordComposition($newPassword)) {
+            $this->render('editionprofil', ['user' => $user, 'error' => "Le mot de passe doit contenir au moins 8 caractères, une majuscule, un chiffre et un caractère spécial."]);
+            return;
+        }
+
+        // Mise à jour des données
+        $updated = $userModel->updateUser($userId, $nom, $prenom, $email, $description, $adresse, $newPassword, $db);
+
+        if ($updated) {
+            header('Location: /Galeris-APPG1E/profil');
+            exit();
         } else {
-
-            echo "Le code de vérification est introuvable.";
+            $this->render('editionprofil', ['user' => $user, 'error' => "Une erreur est survenue lors de la mise à jour."]);
         }
     }
 
-}
+    public function resendcode(Database $db){
+        $code = new Code();
+        session_start();
+        $code->sendCode($_SESSION["usersessionMail"],$db);
 
+        http_response_code(200);
+        echo json_encode(['Success' => "Code envoyé"]);
+
+    }
+}
