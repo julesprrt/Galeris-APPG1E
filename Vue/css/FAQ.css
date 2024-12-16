@@ -18,18 +18,28 @@ header {
     padding: 20px;
 }
 
-header h2 {
+body h1 {
     margin: 0;
     font-size: 2rem;
     color: #000000; /* Écriture noire */
     background-color: #fff;
-    border: 1px solid #ddd;
     border-radius: 100px;
-    padding: 1px;
+    padding: 25px;
     margin-bottom: 10px;
     transition: all 0.3s ease;
     max-width: 550px;
     margin-left: 440px;
+}
+body h2 {
+    margin: 0;
+    font-size: 1.2rem; /* Réduction de la taille du texte */
+    color: #000000; /* Écriture noire */
+    background-color: #fff;
+    border-radius: 20px; /* Réduction du rayon des bords arrondis */
+    padding-left: 450px; /* Réduction de l'espace intérieur */
+    max-width: 500px; /* Réduction de la largeur maximale */
+    margin-left: 20px; /* Réduction de la marge gauche */
+    
 }
 
 .logo{

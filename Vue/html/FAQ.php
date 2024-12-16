@@ -8,21 +8,19 @@
     <base href="/Galeris-APPG1E/Vue/">
     <link rel="stylesheet" href="CSS/FAQ.css">
     <link rel="stylesheet" href="CSS/footer.css">
+    <link rel="stylesheet" href="CSS/header.css">
+    <link rel="stylesheet" href="CSS/style.css">
     <script src="https://galeris/Galeris-APPG1E/vue/JS/Faq.js" defer></script>
 </head>
-
+<div class="container">
+        
 <body>
-    <header>
-        <h2>Foire Aux Questions</h2>
-        <p>Trouvez toutes les réponses à vos questions !</p>
+    <h1> Foire aux questions </h1>
+    <h2>Trouvez toutes les réponses à vos questions !</h2>
         <p>
-            <a href="https://galeris/Galeris-APPG1E/"><img src="../images/Logo_Galeris_(sans_fond).png" class="logo" /></a>
-            <!-- <a>href lien page d'accueil sur le logo (ajouter le texte "Retournez à l'accueil" en passant la souris sur le logo) </a> -->
             <img src="../images/tableau.png" class="tableau" />
             <img src="../images/tableau2.png" class="tableau2" />
         </p>
-
-    </header>
     <div class="Page">
         <img src="../images/sculpture2.png" class="image1" />
 
