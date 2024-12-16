@@ -52,7 +52,7 @@ class AchatController extends Controller
         $id_oeuvre = $_SESSION['oeuvre_id'];
     
         // Récupérer les données de l'œuvre
-        $oeuvreData = $oeuvre->getOeuvreById($id_oeuvre);
+        $oeuvreData = $oeuvre->getOeuvreById($id_oeuvre,$db);
     
         // Vérifier si l'œuvre existe
         if (!$oeuvreData) {
