@@ -194,22 +194,22 @@
             </a>
         </div>
 
-        <!-- infos footer (aide, contact ...) -->
-        <div class="container-footer">
-            <a class="title-footer">Qui sommes nous</a>
-            <a class="item-footer" href="#">NovArt</a>
-            <a class="item-footer" href="#">Galeris</a>
-        </div>
-        <div class="container-footer">
-            <a class="title-footer">Aide</a>
-            <a class="item-footer" href="https://galeris/Galeris-APPG1E/faq">Foire aux questions</a>
-            <a class="item-footer" href="https://galeris/Galeris-APPG1E/contact">Contacts</a>
-        </div>
-        <div class="container-footer">
-            <a class="title-footer">Informations légales</a>
-            <a class="item-footer" href="https://galeris/Galeris-APPG1E/cgu">Conditions d'utilisations</a>
-            <a class="item-footer" href="#">Mentions légales</a>
-        </div>
+    <!-- infos footer (aide, contact ...) -->
+    <div class="container-footer">
+        <a class="title-footer">Qui sommes nous</a>
+        <a class="item-footer" href="#">NovArt</a>
+        <a class="item-footer" href="https://galeris/Galeris-APPG1E/galeris">Galeris</a>
+    </div>
+    <div class="container-footer">
+        <a class="title-footer">Aide</a>
+        <a class="item-footer" href="https://galeris/Galeris-APPG1E/faq">Foire aux questions</a>
+        <a class="item-footer" href="https://galeris/Galeris-APPG1E/contact">Contacts</a>
+    </div>
+    <div class="container-footer">
+        <a class="title-footer">Informations légales</a>
+        <a class="item-footer" href="https://galeris/Galeris-APPG1E/cgu">Conditions d'utilisations</a>
+        <a class="item-footer" href="#">Mentions légales</a>
+    </div>
 
     </footer>
 

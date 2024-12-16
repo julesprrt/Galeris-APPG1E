@@ -195,4 +195,5 @@ class   UserController extends Controller
         echo json_encode(['Success' => "Code envoyé"]);
 
     }
+
 }
