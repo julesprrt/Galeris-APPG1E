@@ -14,39 +14,42 @@ function onFileSelected(event) {
             reader.onload = function (event) {
                 item.src = event.target.result;
             };
-            item.addEventListener('click', () => {
-                var result = confirm("Etez-vous sûre de vouloir supprimer votre image ?");
-                if (result) {
-                    item.src = "";
-                    item.title = "";
-                }
-            })
+            item.addEventListener('click',eventExpo, item)
             reader.readAsDataURL(selectedFile);
             stop = true;
         }
     })
 }
 
+function eventExpo(event) {
+    var result = confirm("Etez-vous sûre de vouloir supprimer votre image ?");
+    if (result) {
+        event.currentTarget.removeAttribute("src");
+        event.currentTarget.removeAttribute("title");
+        event.currentTarget.removeAttribute("style");
+        event.currentTarget.removeEventListener("click", eventExpo);
+    }
+}
 
 async function exposition() {
     const title = document.getElementById('title').value;
     const date_debut = document.getElementById('date_debut').value;
     const date_fin = document.getElementById('date_fin').value;
     const description = document.getElementById('description').value.trim();
-    
+
     const image1 = document.getElementById("image1").attributes[4] === undefined ? "" : document.getElementById("image1").attributes[4].value;
     const image2 = document.getElementById("image2").attributes[4] === undefined ? "" : document.getElementById("image2").attributes[4].value;
     const image3 = document.getElementById("image3").attributes[4] === undefined ? "" : document.getElementById("image3").attributes[4].value;
-    
+
     if (title.trim() === "" || title.length > 50) {
         alert("Le titre est obligatoire et doit contenir moins de 50 caractères.")
         return;
     }
-    if(description.length < 50){
+    if (description.length < 50) {
         alert("La description est obligatoire et doit contenir plus de 50 caractères.")
         return;
     }
-    if(image1 === ""){
+    if (image1 === "") {
         alert("Une image obligatoire")
         return;
     }

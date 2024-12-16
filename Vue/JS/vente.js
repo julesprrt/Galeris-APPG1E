@@ -14,17 +14,21 @@ function onFileSelected(event) {
             reader.onload = function (event) {
                 item.src = event.target.result;
             };
-            item.addEventListener('click', () => {
-                var result = confirm("Etez-vous sûre de vouloir supprimer votre image ?");
-                if (result) {
-                    item.src = "";
-                    item.title = "";
-                }
-            })
+            item.addEventListener('click', eventOeuvre, item)
             reader.readAsDataURL(selectedFile);
             stop = true;
         }
     })
+}
+
+function eventOeuvre(event) {
+    var result = confirm("Etez-vous sûre de vouloir supprimer votre image ?");
+    if (result) {
+        event.currentTarget.removeAttribute("src");
+        event.currentTarget.removeAttribute("title");
+        event.currentTarget.removeAttribute("style");
+        event.currentTarget.removeEventListener("click", eventOeuvre);
+    }
 }
 
 
