@@ -56,7 +56,7 @@
                         foreach ($oeuvres as $oeuvre) {
                             echo '<a class = "oeuvreOBJ" style="cursor:pointer" >';
                             echo '<div class="oeuvre">';
-                            echo '<input type="hidden" id="id_oeuvre" name="id_oeuvre" value="' . $oeuvre["id_oeuvre"] . '">';
+                            echo '<input type="hidden" id="id_oeuvre_' . $oeuvre["id_oeuvre"] . '" name="id_oeuvre" value="' . $oeuvre["id_oeuvre"] . '">';
                             echo '<h3>' . $oeuvre["Titre"] . '</h3>';
                             // Ajout de l'image
                             echo '<img src="../' . $oeuvre["chemin_image"] . '" alt="' . $oeuvre["Titre"] . '" />';
