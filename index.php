@@ -28,9 +28,6 @@ $router->addRoute('/Galeris-APPG1E/achat', AchatController::class, 'achat');
 $router->addRoute('/Galeris-APPG1E/motdepasse', UserController::class, 'password');
 $router->addRoute('/Galeris-APPG1E/codeunique', UserController::class, 'code');
 $router->addRoute('/Galeris-APPG1E/galeris', GalerisController::class, 'controller');
-
-$router->dispatch($uri);//Appel a la méthode du controller dedié
-
 $router->addRoute('/Galeris-APPG1E/vente', VenteController::class, 'vente');
 $router->addRoute('/Galeris-APPG1E/createvente', VenteController::class, 'createvente');
 $router->addRoute('/Galeris-APPG1E/profil', UserController::class, 'profil');

@@ -17,7 +17,7 @@
             <div class="logo"> <a href="https://galeris/Galeris-APPG1E/"><img src="../images/logo.png"></a></div>
             <nav class="menu">
                 <ul>
-                    <li><a href="https://galeris/Galeris-APPG1E/">galeris</a></li>
+                    <li><a href="https://galeris/Galeris-APPG1E/">Accueil</a></li>
                     <li><a href="#">Vente</a></li>
                     <li><a href="#">Exposition</a></li>
                     <li><a href="#">News</a></li>
