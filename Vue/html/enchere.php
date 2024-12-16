@@ -40,13 +40,13 @@
                 <h1>Peinture acrylique</h1>
                 <p>Lot : PA1234 | Villecresnes, 94440</p>
                 <div class="main-image">
-                    <img src="../images/tableau2.png" alt="Peinture acrylique">
+                    <img src="../images/oeuvre1-1.jpg" alt="Peinture acrylique">
                 </div>
                 <p class="image-caption">Cliquez sur l'image pour l'agrandir</p>
                 <div class="thumbnail-gallery">
-                    <img src="../images/tableau2.png" alt="Thumbnail 1">
-                    <img src="../images/tableau2.png" alt="Thumbnail 2">
-                    <img src="../images/tableau2.png" alt="Thumbnail 3">
+                    <img src="../images/oeuvre1-1.jpg" alt="Thumbnail 1">
+                    <img src="../images/oeuvre1-1.jpg" alt="Thumbnail 2">
+                    <img src="../images/oeuvre1-1.jpg" alt="Thumbnail 3">
                 </div>
                 <div class="description">
                     <h2>À propos de ce lot</h2>
