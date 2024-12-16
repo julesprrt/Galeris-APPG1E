@@ -68,7 +68,7 @@ Class Vente{
         $stmt = $Database->prepare($sql);
         $datefin = date('Y-m-d H:i:s', strtotime("+{$this->nbJours} days"));
         $categId = (int)$this->categorie;
-        $stmt->bind_param("sssdssii", $this->titre, $this->description, $datefin, $this->prix, $this->type_vente, $this->auteur, $_SESSION["usersessionID"], $categId);
+        $stmt->bind_param("sssdssii", $this->titre, $this->description, $datefin, $this->prix, $this->type_vente, $this->auteur,  $_SESSION["usersessionID"], $categId);
         $stmt->execute();
         $_SESSION["oeuvre_id"] = $Database->insert_id;
         $stmt->close();

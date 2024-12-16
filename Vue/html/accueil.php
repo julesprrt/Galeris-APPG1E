@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="CSS/accueil.css">
     <link rel="stylesheet" href="CSS/header.css">
     <link rel="stylesheet" href="CSS/footer.css">
+    <script src="https://galeris/Galeris-APPG1E/vue/JS/accueil.js" defer></script>
     <title>Accueil</title>
 </head>
 
@@ -48,6 +49,24 @@
                         reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
                         occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
                     </p>
+                </div>
+                <div>
+                    <div class="oeuvres">
+                        <?php
+                        foreach ($oeuvres as $oeuvre) {
+                            echo '<a class = "oeuvreOBJ" style="cursor:pointer" >';
+                            echo '<div class="oeuvre">';
+                            echo '<input type="hidden" id="id_oeuvre_' . $oeuvre["id_oeuvre"] . '" name="id_oeuvre" value="' . $oeuvre["id_oeuvre"] . '">';
+                            echo '<h3>' . $oeuvre["Titre"] . '</h3>';
+                            // Ajout de l'image
+                            echo '<img src="../' . $oeuvre["chemin_image"] . '" alt="' . $oeuvre["Titre"] . '" />';
+                            echo '<p>' . $oeuvre["Description"] . '</p>';
+                            echo '</div>';
+                            echo '</a>';
+                        }
+                        ?>
+                    </div>
+
                 </div>
             </div>
         </div>

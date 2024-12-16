@@ -2,8 +2,8 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Hôte : 127.0.0.1:3306
--- Généré le : dim. 15 déc. 2024 à 18:06
+-- Hôte : 127.0.0.1
+-- Généré le : lun. 16 déc. 2024 à 10:35
 -- Version du serveur : 10.4.32-MariaDB
 -- Version de PHP : 8.2.12
 
@@ -157,7 +157,8 @@ INSERT INTO `code` (`ID`, `code`, `date_expiration`, `ID_user`) VALUES
 (97, 701307, '2024-12-15 02:41:09', 25),
 (98, 399595, '2024-12-15 02:43:09', 6),
 (99, 997600, '2024-12-15 02:48:39', 6),
-(100, 773808, '2024-12-15 02:49:50', 26);
+(100, 773808, '2024-12-15 02:49:50', 26),
+(101, 884391, '2024-12-16 10:47:15', 27);
 
 -- --------------------------------------------------------
 
@@ -261,7 +262,11 @@ CREATE TABLE `oeuvre` (
 --
 
 INSERT INTO `oeuvre` (`id_oeuvre`, `Titre`, `Description`, `eco_responsable`, `Date_debut`, `Date_fin`, `Prix`, `type_vente`, `est_vendu`, `auteur`, `id_utilisateur`, `id_categorie`, `statut`) VALUES
-(32, 'test', '', 0, '2024-12-15 18:05:26', '2025-01-04 18:05:26', 50.00, 'Vente', 0, 'test', 6, 2, 'en attente de validation');
+(34, 'Tableau Paysage', 'Cette œuvre reflète l’imagination débordante de l’artiste, mêlant subtilement couleurs et textures pour offrir une vision unique. Elle invite le spectateur à explorer un univers captivant, riche en émotions, où chaque détail raconte une histoire et inspire à la contemplation.', 0, '2024-12-16 10:03:59', '2025-01-15 10:03:59', 50.00, 'Vente', 0, 'Hugo Marchal', 27, 2, 'en attente de validation'),
+(35, 'Paysage d\'antan ', 'Cette œuvre reflète l’imagination débordante de l’artiste, mêlant subtilement couleurs et textures pour offrir une vision unique. Elle invite le spectateur à explorer un univers captivant, riche en émotions, où chaque détail raconte une histoire et inspire à la contemplation.', 0, '2024-12-16 10:04:41', '2025-01-15 10:04:41', 58.00, 'Vente', 0, 'Emma Lavaux', 27, 2, 'en attente de validation'),
+(36, 'Petite sculpture en pierre ', 'Cette œuvre reflète l’imagination débordante de l’artiste, mêlant subtilement couleurs et textures pour offrir une vision unique. Elle invite le spectateur à explorer un univers captivant, riche en émotions, où chaque détail raconte une histoire et inspire à la contemplation.', 0, '2024-12-16 10:05:33', '2025-01-15 10:05:33', 100.00, 'Vente', 0, 'Emma Lobineau', 27, 3, 'en attente de validation'),
+(37, 'Maison d\'enfance ', 'Cette œuvre reflète l’imagination débordante de l’artiste, mêlant subtilement couleurs et textures pour offrir une vision unique. Elle invite le spectateur à explorer un univers captivant, riche en émotions, où chaque détail raconte une histoire et inspire à la contemplation.', 0, '2024-12-16 10:06:16', '2025-01-15 10:06:16', 75.00, 'Vente', 0, 'Léa Garnier ', 27, 2, 'en attente de validation'),
+(38, 'Naturel', 'Cette œuvre reflète l’imagination débordante de l’artiste, mêlant subtilement couleurs et textures pour offrir une vision unique. Elle invite le spectateur à explorer un univers captivant, riche en émotions, où chaque détail raconte une histoire et inspire à la contemplation.', 0, '2024-12-16 10:06:46', '2025-01-15 10:06:46', 25.00, 'Vente', 0, 'Léa Garnier ', 27, 2, 'en attente de validation');
 
 -- --------------------------------------------------------
 
@@ -280,7 +285,12 @@ CREATE TABLE `oeuvre_images` (
 --
 
 INSERT INTO `oeuvre_images` (`id_photo`, `chemin_image`, `id_oeuvre`) VALUES
-(29, 'ImageBD/Oeuvre/image_675f0c56bd33b3.33262443.png', 32);
+(33, 'ImageBD/Oeuvre/image_675fecff445a41.97423138.png', 34),
+(34, 'ImageBD/Oeuvre/image_675fecff4b7969.61541123.png', 34),
+(35, 'ImageBD/Oeuvre/image_675fed29d7ed16.67414203.png', 35),
+(36, 'ImageBD/Oeuvre/image_675fed5d4dcc17.31300131.png', 36),
+(37, 'ImageBD/Oeuvre/image_675fed888eb3f0.27949733.png', 37),
+(38, 'ImageBD/Oeuvre/image_675feda6e9a416.81705887.png', 38);
 
 -- --------------------------------------------------------
 
@@ -327,7 +337,8 @@ INSERT INTO `utilisateur` (`id_utilisateur`, `nom`, `prenom`, `email`, `descript
 (23, 'selvaratnam', 'akash', 'test5@test5.sdq', NULL, NULL, 'Utilisateur', '$2y$10$Yq3FKOr0R9petsy.q.nOJuDVC07ON7FbDMInxNPU.mCsT5jAXa7XC', '2024-12-15', 0, 0, 0.00),
 (24, 'selvaratnam', 'akash', 'kaladevi549@gmail.csss', NULL, NULL, 'Utilisateur', '$2y$10$KgoBkF26LP1o1iQAGJ0T7eD8U2/bKiUX04ZsFURnx6HoAUynme2sm', '2024-12-15', 0, 0, 0.00),
 (25, 'test', 'test', 'kaladevi559@gmail.com', NULL, NULL, 'Utilisateur', '$2y$10$IcF91b6iKtRkMaERjlcefO7swQiDFl6ImYTyJM0ry6qQuvGlspCbG', '2024-12-15', 0, 0, 0.00),
-(26, 'abidi', 'bb', 'bb@bb.ss', NULL, NULL, 'Utilisateur', '$2y$10$KQZnwu39LE.hkGPdpo2CFOwjsQcrOA3mdZKwJ5nxvYEfaBk4BydpG', '2024-12-15', 0, 1, 0.00);
+(26, 'abidi', 'bb', 'bb@bb.ss', NULL, NULL, 'Utilisateur', '$2y$10$KQZnwu39LE.hkGPdpo2CFOwjsQcrOA3mdZKwJ5nxvYEfaBk4BydpG', '2024-12-15', 0, 1, 0.00),
+(27, 'Pierret ', 'Jules', 'jupi63473@eleve.isep.fr', NULL, NULL, 'Utilisateur', '$2y$10$mhdJtYwHue6QyA0O8xouH.2oDTekGIC1GEf1M7P5JT3zUqO1AynlK', '2024-12-16', 0, 0, 0.00);
 
 --
 -- Index pour les tables déchargées
@@ -392,7 +403,7 @@ ALTER TABLE `categorie`
 -- AUTO_INCREMENT pour la table `code`
 --
 ALTER TABLE `code`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=101;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=102;
 
 --
 -- AUTO_INCREMENT pour la table `exposition`
@@ -410,19 +421,19 @@ ALTER TABLE `exposition_images`
 -- AUTO_INCREMENT pour la table `oeuvre`
 --
 ALTER TABLE `oeuvre`
-  MODIFY `id_oeuvre` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `id_oeuvre` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT pour la table `oeuvre_images`
 --
 ALTER TABLE `oeuvre_images`
-  MODIFY `id_photo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `id_photo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT pour la table `utilisateur`
 --
 ALTER TABLE `utilisateur`
-  MODIFY `id_utilisateur` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id_utilisateur` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- Contraintes pour les tables déchargées

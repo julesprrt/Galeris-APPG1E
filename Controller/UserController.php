@@ -12,10 +12,10 @@ class   UserController extends Controller
     {
         $paramData = file_get_contents("php://input");
         $data = json_decode($paramData, true);
-        if(isset($data['name']) && isset($data['firstName']) &&  isset($data['email']) && isset($data['telephone']) && isset($data['password']) && isset($data['confirmPassword']) && isset($data['cgu'])){//Verification données entré dans le formulaire
-            $user = new User($data["name"], $data["firstName"],  $data["email"], $data["telephone"], $data["password"],$data["confirmPassword"],$data["cgu"]);
-            $result = $user->registerVerification($db);//Verifier les données d'inscription
-            if($result === true){//Si les données sont correct alors envoie du code a usage unique + redirection vers la page  avec le code à usage unique
+        if (isset($data['name']) && isset($data['firstName']) &&  isset($data['email']) && isset($data['telephone']) && isset($data['password']) && isset($data['confirmPassword']) && isset($data['cgu'])) { //Verification données entré dans le formulaire
+            $user = new User($data["name"], $data["firstName"],  $data["email"], $data["telephone"], $data["password"], $data["confirmPassword"], $data["cgu"]);
+            $result = $user->registerVerification($db); //Verifier les données d'inscription
+            if ($result === true) { //Si les données sont correct alors envoie du code a usage unique + redirection vers la page  avec le code à usage unique
                 http_response_code(200);
                 echo json_encode(['Success' => "Un code vous à été envoyé sur votre adresse mail pour confirmer votre identité"]);
             } else if ($result === "code") {
@@ -36,7 +36,7 @@ class   UserController extends Controller
         $paramData = file_get_contents("php://input");
         $data = json_decode($paramData, true);
         if (isset($data['email']) && isset($data['password'])) {
-            $user = new User(null, null, $data['email'], null, $data['password'], null,null);
+            $user = new User(null, null, $data['email'], null, $data['password'], null, null);
             // Obtenir une connexion à la base de données
             $result = $user->connectUser($db);
             if ($result === true) {
@@ -59,22 +59,21 @@ class   UserController extends Controller
         $this->render('motdepasseoublie', ['message' => '']);
     }
 
-    public function code(Database $db) {
+    public function code(Database $db)
+    {
         $paramData = file_get_contents("php://input");
         $data = json_decode($paramData, true);
         if (isset($data['code'])) {
-            $user = new User(null,null,null,null,null,null,null);
-            $response = $user->verifyCode($data['code'],$db);
-            if ($response == 200){
+            $user = new User(null, null, null, null, null, null, null);
+            $response = $user->verifyCode($data['code'], $db);
+            if ($response == 200) {
                 http_response_code(200);
                 echo json_encode(['Success' => "Inscription reussie"]);
-            }
-            else { 
+            } else {
                 http_response_code(400);
                 echo json_encode(['Error' => "Code incorrect"]);
             }
-        }
-        else {
+        } else {
             $this->render('codeunique', ['message' => '']);
         }
     }
@@ -90,7 +89,7 @@ class   UserController extends Controller
 
         $userId = $_SESSION['usersessionID'];
 
-        $user = new User(null, null,  null, null, null, null,null);
+        $user = new User(null, null,  null, null, null, null, null);
         $userData = $user->getUserById($userId, $db);
 
         if (!$userData) {
@@ -111,7 +110,7 @@ class   UserController extends Controller
         }
 
         $userId = $_SESSION['usersessionID'];
-        $userModel = new User(null, null,  null, null, null, null,null);
+        $userModel = new User(null, null,  null, null, null, null, null);
         $user = $userModel->getUserById($userId, $db);
 
         if (!$user) {
@@ -143,7 +142,7 @@ class   UserController extends Controller
         $newPassword = $_POST['new_password'];
         $confirmPassword = $_POST['confirm_password'];
 
-        $userModel = new User(null, null,  null, null, null, null,null);
+        $userModel = new User(null, null,  null, null, null, null, null);
         $user = $userModel->getUserById($userId, $db);
 
         if (!$user) {
@@ -186,13 +185,13 @@ class   UserController extends Controller
         }
     }
 
-    public function resendcode(Database $db){
+    public function resendcode(Database $db)
+    {
         $code = new Code();
         session_start();
-        $code->sendCode($_SESSION["usersessionMail"],$db);
+        $code->sendCode($_SESSION["usersessionMail"], $db);
 
         http_response_code(200);
         echo json_encode(['Success' => "Code envoyé"]);
-
     }
 }
