@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>Modification de Profil</title>
+  <title>Modification de profil</title>
   <base href="/Galeris-APPG1E/Vue/">
   <link rel="stylesheet" href="CSS/exposition.css">
   <link rel="stylesheet" href="CSS/header.css">
@@ -46,7 +46,7 @@
                     </p>
       <form>
         <h2>Demande d'exposition</h2>
-        <strong class="strong-title">Vous pouvez ajouter jusqu'a trois photos</strong>
+        <strong class="strong-title">Vous pouvez ajouter jusqu'à 3 photos</strong>
         <div class="button-center">
           <label class="button" for="upload">📷</label>
           <input id="upload" type="file">
@@ -108,14 +108,14 @@
     </a>
   </div>
   <div class="container-footer">
-    <a class="title-footer">Qui sommes nous</a>
+    <a class="title-footer">Qui sommes-nous ?</a>
     <a class="item-footer" href="#">NovArt</a>
     <a class="item-footer" href="#">Galeris</a>
   </div>
   <div class="container-footer">
     <a class="title-footer">Aide</a>
     <a class="item-footer" href="https://galeris/Galeris-APPG1E/faq">Foire aux questions</a>
-    <a class="item-footer" href="https://galeris/Galeris-APPG1E/contact">Contacts</a>
+    <a class="item-footer" href="https://galeris/Galeris-APPG1E/contact">Contact</a>
   </div>
   <div class="container-footer">
     <a class="title-footer">Informations légales</a>

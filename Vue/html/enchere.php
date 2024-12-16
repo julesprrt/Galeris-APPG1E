@@ -46,7 +46,7 @@
 
 
         <div>
-            <h1>A propos de ce lot</h1>
+            <h1>À propos de ce lot</h1>
         <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Non aspernatur illo, 
             culpa maxime dolore, nesciunt repudiandae deserunt, quidem veritatis vel quis 
             excepturi suscipit quod cupiditate aperiam tempore facere eveniet itaque.
@@ -108,14 +108,14 @@
 
             <!-- infos footer (aide, contact ...) -->
             <div class="container-footer">
-                <a class="title-footer">Qui sommes nous</a>
+                <a class="title-footer">Qui sommes-nous ?</a>
                 <a class="item-footer" href="#">NovArt</a>
                 <a class="item-footer" href="#">Galeris</a>
             </div>
             <div class="container-footer">
                 <a class="title-footer">Aide</a>
                 <a class="item-footer" href="#">Foire aux questions</a>
-                <a class="item-footer" href="#">Contacts</a>
+                <a class="item-footer" href="#">Contact</a>
             </div>
             <div class="container-footer">
                 <a class="title-footer">Informations légales</a>
