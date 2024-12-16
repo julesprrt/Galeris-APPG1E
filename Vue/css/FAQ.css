@@ -27,8 +27,8 @@ body h1 {
     padding: 25px;
     margin-bottom: 10px;
     transition: all 0.3s ease;
-    max-width: 550px;
-    margin-left: 440px;
+    max-width: 500px;
+    margin-left: 550px;
 }
 body h2 {
     margin: 0;
@@ -37,19 +37,10 @@ body h2 {
     background-color: #fff;
     border-radius: 20px; /* Réduction du rayon des bords arrondis */
     padding-left: 450px; /* Réduction de l'espace intérieur */
-    max-width: 500px; /* Réduction de la largeur maximale */
-    margin-left: 20px; /* Réduction de la marge gauche */
-    
-}
-
-.logo{
-    position: absolute;
-    top: 20px;
-    right: 45px;
-    width: 145px; /* Ajuste la taille du logo si nécessaire */
-    height: auto;
-    border-radius: 5px;
-
+    max-width: 440px; /* Réduction de la largeur maximale */
+    margin-left: 80px; /* Réduction de la marge gauche */
+    position: relative;
+    top: -20px; 
 }
 
 .image1{
@@ -61,6 +52,7 @@ body h2 {
     width: 350px; /* Ajuste la taille du logo si nécessaire */
     height: auto;
     border-radius: 50px;
+    padding-top:50px;
 }
 
 .tableau {

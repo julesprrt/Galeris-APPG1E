@@ -13,7 +13,25 @@
     <script src="https://galeris/Galeris-APPG1E/vue/JS/Faq.js" defer></script>
 </head>
 <div class="container">
-        
+<header>
+        <div class="logo"><a href="https://galeris/Galeris-APPG1E/"> <img width="150" height="150" src="../images/logo-sans-fond.png" src="../images/logo.png"></a></div>
+        <nav class="menu">
+            <ul>
+                <li><a href="https://galeris/Galeris-APPG1E/">Accueil</a></li>
+                <li><a href="#">Vente</a></li>
+                    <li><a href="#">Exposition</a></li>
+                <li><a href="#">News</a></li>
+                <li><a href="#">Plus</a></li>
+            </ul>
+        </nav>
+        <div class="barre_recherche">
+            <!-- Barre de recherche, les emojis sont responsives si on clique dessus -->
+            <input type="text" placeholder="Rechercher...">
+            <div class="favori"> <a href="favoris.html">❤️ </a></div>
+            <div class="panier"> <a href="panier.html"> 🛒 </a></div>
+            <div class="utilisateur"><a href="https://galeris/Galeris-APPG1E/profil"> 👤 </a></div>
+        </div>
+    </header>     
 <body>
     <h1> Foire aux questions </h1>
     <h2>Trouvez toutes les réponses à vos questions !</h2>
