@@ -5,8 +5,6 @@ require_once('Model/utils.php');
 
 class User
 {
-class User
-{
     private $name;
     private $firstName;
     private $email;
@@ -48,7 +46,6 @@ class User
             return "Votre mot de passe doit contenir une minuscule, une majucule, un nombre et un caractère spécial et plus que 8 caractères.";
         } else if ($this->password !== $this->confirmPassword) {
             return "Les deux mots de passe ne sont pas identiques";
-        } else if ($value === true) {
         } else if ($value === false) {
             return "Vous avez déja un compte";
         }

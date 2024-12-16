@@ -90,3 +90,20 @@ form {
 .button-connection:hover {
   opacity: 0.9;
 }
+
+#showmdp {
+  width: 1.4rem;
+  height: 1.2rem;
+  cursor: pointer;
+}
+
+#hidemdp {
+  width: 1.4rem;
+  height: 1.2rem;
+  cursor: pointer;
+}
+
+#diveye {
+  width: 1.4rem;
+  height: 1.2rem;
+}

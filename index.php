@@ -36,13 +36,10 @@ $router->addRoute('/Galeris-APPG1E/process-edition', UserController::class, 'pro
 $router->addRoute('/Galeris-APPG1E/exposition', ExpositionController::class, 'exposition');
 $router->addRoute('/Galeris-APPG1E/createexposition', ExpositionController::class, 'createexposition');
 $router->addRoute('/Galeris-APPG1E/renvoiecode', UserController::class, 'resendcode');
-
-
-if($uri !== null){
-    $router->dispatch($uri);//Appel a la méthode du controller dedié
-}
 $router->addRoute('/Galeris-APPG1E/send-verification-code', UserController::class, 'sendVerificationCode');
 $router->addRoute('/Galeris-APPG1E/confirmationmdp', UserController::class, 'confirmationMDP');
 $router->addRoute('/Galeris-APPG1E/verifyMail', UserController::class, 'PässwordMail');
 
-$router->dispatch($uri);//Appel a la méthode du controller dedié
+if($uri !== null){
+    $router->dispatch($uri);//Appel a la méthode du controller dedié
+}

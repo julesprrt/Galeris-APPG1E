@@ -23,6 +23,7 @@ Class Code{
         $stmt->bind_param('sss',$code, $my_date_time, $_SESSION["usersessionID"]);
         $stmt->execute();
         $stmt->close();
+        $conn->close();
     }
 
     
