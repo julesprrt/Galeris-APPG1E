@@ -3,7 +3,7 @@ body {
 }
 
 .Page-User {
-    background: url('../../images/fondecran4.jpg') no-repeat center center;
+    background: url('../../images/fondecran3.jpg') no-repeat center center;
     display: flex;
     background-size: cover;
     /* Fait en sorte que l'image couvre toute la page */
