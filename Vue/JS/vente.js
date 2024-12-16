@@ -39,7 +39,7 @@ async function verificateAndSaveData() {
     const prix = document.getElementsByName("prix")[0].value;
     const nbJours = document.getElementsByName("nbjours")[0].value;
     const auteur = document.getElementsByName("auteur")[0].value;
-    const description = document.getElementsByName("description")[0].value;
+    const description = document.getElementsByName("description")[0].value.trim();
 
     let options = document.querySelectorAll("#categorie-selec option");
     let categorieId;
@@ -54,7 +54,7 @@ async function verificateAndSaveData() {
     const image2 = document.getElementById("image2").attributes[5] === undefined ? "" : document.getElementById("image2").attributes[5].value;
     const image3 = document.getElementById("image3").attributes[5] === undefined ? "" : document.getElementById("image3").attributes[5].value;
 
-    if (verificationData(titre, categorie, type, prix, nbJours) === false) {
+    if (verificationData(titre, categorie, type, prix, nbJours, description, image1) === false) {
         return;
     }
 
@@ -101,9 +101,19 @@ async function verificateAndSaveData() {
     }
 }
 
-function verificationData(titre, categorie, type, prix, nbJours) {
+function verificationData(titre, categorie, type, prix, nbJours, description, image1) {
     if (titre === "") {
         alert("Le titre est obligatoire");
+        return false;
+    }
+
+    if(description.length < 50) {
+        alert("La description est obligatoire et doit contenir plus de 50 caractères.");
+        return false;
+    }
+
+    if (image1 === "") {
+        alert("Vous devez ajouter au moins une image");
         return false;
     }
 
