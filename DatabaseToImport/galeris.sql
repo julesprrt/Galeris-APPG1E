@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : lun. 16 déc. 2024 à 17:51
+-- Généré le : mar. 17 déc. 2024 à 17:25
 -- Version du serveur : 10.4.32-MariaDB
 -- Version de PHP : 8.2.12
 
@@ -207,16 +207,7 @@ INSERT INTO `exposition` (`id_exhibition`, `titre`, `description`, `date_debut`,
 (24, 'test', 'sss', '2024-12-15 00:00:00', '2024-12-28 00:00:00', 6, 'en attente de validation'),
 (25, '50', '', '2024-12-16 00:00:00', '2024-12-19 00:00:00', NULL, 'en attente de validation'),
 (26, 'sss', '', '2024-12-27 00:00:00', '2024-12-29 00:00:00', NULL, 'en attente de validation'),
-(27, 'sss', '', '2024-12-16 00:00:00', '2024-12-27 00:00:00', NULL, 'en attente de validation'),
-(28, 'titre', 'test', '2024-12-17 00:00:00', '2024-12-22 00:00:00', 6, 'en attente de validation'),
-(29, 'test', 'test', '2024-12-18 00:00:00', '2024-12-22 00:00:00', 6, 'en attente de validation'),
-(30, 'test', 'test', '2024-12-18 00:00:00', '2024-12-29 00:00:00', 6, 'en attente de validation'),
-(31, 's', '', '2024-12-18 00:00:00', '2024-12-22 00:00:00', 6, 'en attente de validation'),
-(32, 'test', '', '2024-12-19 00:00:00', '2024-12-27 00:00:00', 6, 'en attente de validation'),
-(33, 'sss', 'sssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss', '2024-12-17 00:00:00', '2024-12-22 00:00:00', 6, 'en attente de validation'),
-(34, 'test', 'sssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss', '2024-12-17 00:00:00', '2024-12-21 00:00:00', 6, 'en attente de validation'),
-(35, 'ssss', 'teeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee', '2024-12-17 00:00:00', '2024-12-26 00:00:00', 6, 'en attente de validation'),
-(36, 'test', 'sssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss', '2024-12-17 00:00:00', '2024-12-21 00:00:00', 6, 'en attente de validation');
+(27, 'sss', '', '2024-12-16 00:00:00', '2024-12-27 00:00:00', NULL, 'en attente de validation');
 
 -- --------------------------------------------------------
 
@@ -242,12 +233,7 @@ INSERT INTO `exposition_images` (`id_exposition_images`, `chemin_image`, `id_exp
 (5, 'ImageBD/exposition/image_675e2a7fbf7e38.22606091.png', 25),
 (6, 'ImageBD/exposition/image_675e2ade814c53.27693642.png', 27),
 (7, 'ImageBD/exposition/image_675e2ade839c37.02756374.png', 27),
-(8, 'ImageBD/exposition/image_675e2ade89b509.90906819.png', 27),
-(9, 'ImageBD/exposition/image_6760006ed56a33.27847963.png', 28),
-(10, 'ImageBD/exposition/image_676019d499de86.21750235.png', 33),
-(11, 'ImageBD/exposition/image_67601ac2682032.34891755.png', 34),
-(12, 'ImageBD/exposition/image_676058c98a64d1.40714702.png', 35),
-(13, 'ImageBD/exposition/image_67605a49b43ae9.97662832.png', 36);
+(8, 'ImageBD/exposition/image_675e2ade89b509.90906819.png', 27);
 
 -- --------------------------------------------------------
 
@@ -280,14 +266,7 @@ INSERT INTO `oeuvre` (`id_oeuvre`, `Titre`, `Description`, `eco_responsable`, `D
 (35, 'Paysage d\'antan ', 'Cette œuvre reflète l’imagination débordante de l’artiste, mêlant subtilement couleurs et textures pour offrir une vision unique. Elle invite le spectateur à explorer un univers captivant, riche en émotions, où chaque détail raconte une histoire et inspire à la contemplation.', 0, '2024-12-16 10:04:41', '2025-01-15 10:04:41', 58.00, 'Vente', 0, 'Emma Lavaux', 27, 2, 'en attente de validation'),
 (36, 'Petite sculpture en pierre ', 'Cette œuvre reflète l’imagination débordante de l’artiste, mêlant subtilement couleurs et textures pour offrir une vision unique. Elle invite le spectateur à explorer un univers captivant, riche en émotions, où chaque détail raconte une histoire et inspire à la contemplation.', 0, '2024-12-16 10:05:33', '2025-01-15 10:05:33', 100.00, 'Vente', 0, 'Emma Lobineau', 27, 3, 'en attente de validation'),
 (37, 'Maison d\'enfance ', 'Cette œuvre reflète l’imagination débordante de l’artiste, mêlant subtilement couleurs et textures pour offrir une vision unique. Elle invite le spectateur à explorer un univers captivant, riche en émotions, où chaque détail raconte une histoire et inspire à la contemplation.', 0, '2024-12-16 10:06:16', '2025-01-15 10:06:16', 75.00, 'Vente', 0, 'Léa Garnier ', 27, 2, 'en attente de validation'),
-(38, 'Naturel', 'Cette œuvre reflète l’imagination débordante de l’artiste, mêlant subtilement couleurs et textures pour offrir une vision unique. Elle invite le spectateur à explorer un univers captivant, riche en émotions, où chaque détail raconte une histoire et inspire à la contemplation.', 0, '2024-12-16 10:06:46', '2025-01-15 10:06:46', 25.00, 'Vente', 0, 'Léa Garnier ', 27, 2, 'en attente de validation'),
-(39, 'test', 'm', 0, '2024-12-16 17:35:34', '2025-01-05 17:35:34', 30.00, 'Enchere', 0, 'test', 6, 3, 'en attente de validation'),
-(40, 'test', 'testtesttesttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt', 0, '2024-12-16 17:40:30', '2025-01-10 17:40:30', 50.00, 'Vente', 0, 'test', 6, 2, 'en attente de validation'),
-(41, 'test', 'testtesttesttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt', 0, '2024-12-16 17:40:33', '2025-01-10 17:40:33', 50.00, 'Vente', 0, 'test', 6, 2, 'en attente de validation'),
-(42, 'test', 'testtesttesttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt', 0, '2024-12-16 17:40:37', '2025-01-10 17:40:37', 50.00, 'Vente', 0, 'test', 6, 2, 'en attente de validation'),
-(43, 'test', 'testtesttesttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt', 0, '2024-12-16 17:40:37', '2025-01-10 17:40:37', 50.00, 'Vente', 0, 'test', 6, 2, 'en attente de validation'),
-(44, 'test', 'sssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss', 0, '2024-12-16 17:41:57', '2025-01-05 17:41:57', 50.00, 'Vente', 0, 'test', 6, 2, 'en attente de validation'),
-(45, 'test', 'sssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss', 0, '2024-12-16 17:42:26', '2025-01-05 17:42:26', 24.00, 'Enchere', 0, 'test', 6, 2, 'en attente de validation');
+(38, 'Naturel', 'Cette œuvre reflète l’imagination débordante de l’artiste, mêlant subtilement couleurs et textures pour offrir une vision unique. Elle invite le spectateur à explorer un univers captivant, riche en émotions, où chaque détail raconte une histoire et inspire à la contemplation.', 0, '2024-12-16 10:06:46', '2025-01-15 10:06:46', 25.00, 'Vente', 0, 'Léa Garnier ', 27, 2, 'en attente de validation');
 
 -- --------------------------------------------------------
 
@@ -311,13 +290,7 @@ INSERT INTO `oeuvre_images` (`id_photo`, `chemin_image`, `id_oeuvre`) VALUES
 (35, 'ImageBD/Oeuvre/image_675fed29d7ed16.67414203.png', 35),
 (36, 'ImageBD/Oeuvre/image_675fed5d4dcc17.31300131.png', 36),
 (37, 'ImageBD/Oeuvre/image_675fed888eb3f0.27949733.png', 37),
-(38, 'ImageBD/Oeuvre/image_675feda6e9a416.81705887.png', 38),
-(39, 'ImageBD/Oeuvre/image_676057fe2715d6.07036906.', 40),
-(40, 'ImageBD/Oeuvre/image_67605801727dc4.49343565.', 41),
-(41, 'ImageBD/Oeuvre/image_676058054ab6d0.76979022.', 42),
-(42, 'ImageBD/Oeuvre/image_6760580582b256.13619574.', 43),
-(43, 'ImageBD/Oeuvre/image_67605855610f83.54886866.png', 44),
-(44, 'ImageBD/Oeuvre/image_676058723be7b2.34000752.png', 45);
+(38, 'ImageBD/Oeuvre/image_675feda6e9a416.81705887.png', 38);
 
 -- --------------------------------------------------------
 
@@ -436,25 +409,25 @@ ALTER TABLE `code`
 -- AUTO_INCREMENT pour la table `exposition`
 --
 ALTER TABLE `exposition`
-  MODIFY `id_exhibition` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `id_exhibition` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT pour la table `exposition_images`
 --
 ALTER TABLE `exposition_images`
-  MODIFY `id_exposition_images` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id_exposition_images` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT pour la table `oeuvre`
 --
 ALTER TABLE `oeuvre`
-  MODIFY `id_oeuvre` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+  MODIFY `id_oeuvre` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT pour la table `oeuvre_images`
 --
 ALTER TABLE `oeuvre_images`
-  MODIFY `id_photo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+  MODIFY `id_photo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT pour la table `utilisateur`
