@@ -17,7 +17,7 @@ class Oeuvre
     private $status;
     private $nomvendeur;
     private $prenomvendeur;
-    private $chemin_image;
+    private $chemin_image = [];
 
     // Constructeur pour initialiser les valeurs
     public function __construct(
@@ -68,7 +68,25 @@ class Oeuvre
         $oeuvre = $result->fetch_assoc();
 
         $stmt->close();
+
+        // Récupére les images de l'œuvre 
+        $queryImages = "SELECT chemin_image FROM oeuvre_images WHERE id_oeuvre = ?";
+        $stmtImages = $conn->prepare($queryImages);
+        $stmtImages->bind_param('i', $id);
+        $stmtImages->execute();
+
+        $resultImages = $stmtImages->get_result();
+        // Récupére les chemins des images
+        $chemin_image = [];
+        while ($row = $resultImages->fetch_assoc()) {
+            $chemin_image[] = $row['chemin_image'];
+        }
+        $stmtImages->close();
         $conn->close();
+
+        // Ajouter les chemins des images à l'œuvre
+        $oeuvre['chemin_image'] = $chemin_image;
+
 
         return $oeuvre;
     }
