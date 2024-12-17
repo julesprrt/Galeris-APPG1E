@@ -34,9 +34,8 @@ $router->addRoute('/Galeris-APPG1E/process-edition', UserController::class, 'pro
 $router->addRoute('/Galeris-APPG1E/exposition', ExpositionController::class, 'exposition');
 $router->addRoute('/Galeris-APPG1E/createexposition', ExpositionController::class, 'createexposition');
 $router->addRoute('/Galeris-APPG1E/renvoiecode', UserController::class, 'resendcode');
-$router->addRoute('/Galeris-APPG1E/achat', AchatController::class, 'achat');
 $router->addRoute('/Galeris-APPG1E/saveid', AchatController::class, 'saveid');
-$router->addRoute('/Galeris-APPG1E/enchere',AchatController::class,'enchere');
+
 
 
 

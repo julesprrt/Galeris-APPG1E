@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title><?= htmlspecialchars($oeuvre['Titre']) ?> </title>
     <base href="/Galeris-APPG1E/Vue/">
     <link rel="stylesheet" href="CSS/enchere.css">
     <link rel="stylesheet" href="CSS/style.css">
@@ -32,60 +32,40 @@
             </div>
 </header>
 <body>
-    <!-- Header déjà existant -->
-
-    <main>
-        <div class="container">
-            <div class="left-section">
-                <h1>Peinture acrylique</h1>
-                <p>Lot : PA1234 | Villecresnes, 94440</p>
-                <div class="main-image">
-                    <img src="../images/oeuvre1-1.jpg" alt="Peinture acrylique">
-                </div>
-                <p class="image-caption">Cliquez sur l'image pour l'agrandir</p>
-                <div class="thumbnail-gallery">
-                    <img src="../images/oeuvre1-1.jpg" alt="Thumbnail 1">
-                    <img src="../images/oeuvre1-1.jpg" alt="Thumbnail 2">
-                    <img src="../images/oeuvre1-1.jpg" alt="Thumbnail 3">
-                </div>
-                <div class="description">
-                    <h2>À propos de ce lot</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua...</p>
-                </div>
+<main>
+    <div class="container">
+        <div class="left-section">
+            <h1><?php echo htmlspecialchars($oeuvre['Titre']); ?></h1>
+            <p>Lot : <?= htmlspecialchars($oeuvre['id_oeuvre']) ?> | <?= htmlspecialchars($oeuvre['Description']) ?></p>
+            <div class="main-image">
+                
+                <img src="../images/oeuvre1-1.jpg" alt="Oeuvre">
             </div>
-            <div class="right-section">
-                <div class="auction-info">
-                    <p>Se ferme dans :</p>
-                    <p class="close-date">29 nov 2024 19:30</p>
-                    <p>Enchère actuelle</p>
-                    <p class="current-bid">11 500,00 €</p>
-                    <button class="bid-button">Se connecter pour enchérir</button>
-                    <button class="register-button">Créer un compte</button>
-                    <p class="register-info">S'inscrire en moins de 2 min</p>
-                </div>
-                <div class="offers">
-                    <h3>Offres (17 🛎️)</h3>
-                    <table>
-                        <tr>
-                            <td>11 500,00 €</td>
-                            <td>23 nov. 13:48</td>
-                        </tr>
-                        <tr>
-                            <td>11 500,00 €</td>
-                            <td>23 nov. 13:48</td>
-                        </tr>
-                        <tr>
-                            <td>11 500,00 €</td>
-                            <td>23 nov. 13:48</td>
-                        </tr>
-                    </table>
-                    <a href="#" class="view-offers">Voir toutes les offres</a>
-                </div>
+            <p class="image-caption">Cliquez sur l'image pour l'agrandir</p>
+            <div class="thumbnail-gallery">
+
+                <img src="../images/oeuvre1-1.jpg" alt="Thumbnail">
+            
+            </div>
+            <div class="description">
+                <h2>À propos de ce lot</h2>
+                <p><?= htmlspecialchars($oeuvre['Description']) ?></p>
             </div>
         </div>
-    </main>
 
-    <!-- Footer déjà existant -->
+        <div class="right-section">
+            <div class="auction-info">
+                <p>Se ferme dans :</p>
+                <p class="close-date"><?= htmlspecialchars($oeuvre['Date_fin']) ?></p>
+                <p>Prix actuel</p>
+                <p class="current-bid"><?= number_format($oeuvre['Prix'], 2, ',', ' ') ?> €</p>
+                <button class="bid-button">Se connecter pour enchérir</button>
+                <button class="register-button">Créer un compte</button>
+                <p class="register-info">S'inscrire en moins de 2 min</p>
+            </div>
+        </div>
+    </div>
+</main> 
 </body>
 
 
