@@ -49,7 +49,7 @@
             <div class="droite">
                 <div id="section1">
                     <h2>Présentation du site</h2>
-                    <p>Le site Galeris, édité par NovArt, permet la promotion et la vente d'œuvres d'art via des ventes classiques et des enchères. Ce site est destiné à la fois aux artistes professionnels et amateurs, leur offrant une plateforme pour vendre leurs œuvres de manière directe ou aux enchères, tout en assurant la promotion de leurs expositions.</p>
+                    <p>Le site Galeris, créé par NovArt, est une plateforme ouverte aux artistes professionnels et amateurs, leur permettant de vendre leurs œuvres directement ou aux enchères, tout en promouvant leurs expositions.</p>
                 </div>
 
                 <div id="section2">
@@ -57,7 +57,7 @@
                     <p> 
                         <ul>
                             <li> Utilisateur : Toute personne naviguant sur le site, qu'elle soit inscrite ou non.</li>
-                            <li> Artiste : Utilisateur qui met en vente une ou plusieurs œuvres sur la plateforme.</li>
+                            <li> Artiste : Utilisateur ayant mis en vente une ou plusieurs œuvres sur la plateforme.</li>
                             <li> Acheteur : Utilisateur procédant à l'achat d'une œuvre proposée par un artiste.</li>
                             <li> Galeris : Le site web de vente d'œuvres d'art, édité par NovArt.</li>
                         </ul>
@@ -77,16 +77,16 @@
 
                 <div id="section5">
                     <h2>Accès au site</h2>
-                    <p>L'accès à certains services est réservé aux Utilisateurs inscrits. Tout Utilisateur peut consulter les œuvres, mais l'inscription est nécessaire pour acheter, enchérir, ou vendre des œuvres.</p>
+                    <p>L'accès à certains services est réservé aux Utilisateurs inscrits. Tout Utilisateur peut consulter les œuvres. Cependant, l'inscription est nécessaire pour acheter, enchérir, ou vendre des œuvres.</p>
                 </div>
 
                 <div id="section6">
                     <h2>Inscription et Compte Utilisateur</h2>
-                    <p>Lors de l'inscription, l'Utilisateur doit fournir une adresse e-mail valide et un mot de passe sécurisé. Ce mot de passe est personnel et confidentiel. En cas de perte, un processus de récupération par e-mail est disponible..</p>
+                    <p>Lors de l'inscription, l'utilisateur doit fournir une adresse e-mail valide et un mot de passe sécurisé. Ce mot de passe est personnel et confidentiel. En cas de perte, un processus de récupération par e-mail est disponible.</p>
                 </div>
 
                 <div id="section7">
-                    <h2>Rôles des Utilisateurs</h2>
+                    <h2>Rôles des utilisateurs</h2>
                     <p>
                         Deux types d'utilisateurs sont définis :
                         <ul>
@@ -109,7 +109,7 @@
                 </div>
                 <div id="section9">
                     <h2>Responsabilités des utilisateurs</h2>
-                    <p>Les Utilisateurs s'engagent à fournir des informations exactes et à ne pas diffuser de contenu illicite. L'artiste garantit que ses œuvres sont originales et respectent les droits de propriété intellectuelle.</p>
+                    <p>Les utilisateurs s'engagent à fournir des informations exactes et à ne pas diffuser de contenu illicite. L'artiste garantit que ses œuvres sont originales et respectent les droits de propriété intellectuelle.</p>
 
                 </div>
 
@@ -125,7 +125,7 @@
 
                 <div id="section12">
                     <h2>Droit de rétractation</h2>
-                    <p>Conformément à la législation en vigueur, l'Acheteur dispose d'un délai de 14 jours pour se rétracter après l'achat d'une œuvre. Ce droit ne s'applique pas aux œuvres numériques.</p>
+                    <p>Conformément à la législation en vigueur, l'acheteur dispose d'un délai de 14 jours pour se rétracter après l'achat d'une œuvre. Ce droit ne s'applique pas aux œuvres numériques.</p>
                 </div>
                 <div id="section13">
                     <h2>Modifications des CGU</h2>
