@@ -50,10 +50,10 @@ class Exposition
             $this->SaveExpositionFile($db, $this->image1);
         }
         if($this->image2 !== ""){
-            $this->SaveExpositionFile($db, $this->image1);
+            $this->SaveExpositionFile($db, $this->image2);
         }
         if($this->image3 !== ""){
-            $this->SaveExpositionFile($db, $this->image1);
+            $this->SaveExpositionFile($db, $this->image3);
         }
         return 200;
     }
@@ -97,6 +97,74 @@ class Exposition
         $sql = "insert into exposition_images (chemin_image, id_exposition) values (?,?)";
         $stmt = $Database->prepare($sql);
         $stmt->bind_param("si",$filename,$_SESSION["exposition_id"]);
+        $stmt->execute();
+        $stmt->close();
+        $Database->close();
+    }
+
+    public function getExposesEnAttente(Database $db){
+        $Database = $db->connect();
+        $sql = "SELECT e.*, e.description as 'desc', u.*, COALESCE(oi.image_path, 'Aucune image') as 'image_path' FROM exposition e INNER join utilisateur u on u.id_utilisateur = e.user_id LEFT JOIN ( SELECT id_exposition, MIN(chemin_image) as 'image_path' FROM exposition_images GROUP BY id_exposition ) oi ON oi.id_exposition = e.id_exhibition WHERE e.statut = ?";
+        $stmt = $Database->prepare($sql);
+        $accept = "en attente de validation";
+        $stmt->bind_param("s", $accept);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $stmt->close();
+        $Database->close();
+        return $result;
+    }
+
+    public function getExposeById($id, Database $db){
+        $conn = $db->connect();
+        $query = "SELECT e.*, u.*, e.description as 'desc' FROM exposition e INNER JOIN utilisateur u ON u.id_utilisateur = e.user_id WHERE id_exhibition = ?";
+
+        $stmt = $conn->prepare($query);
+        $stmt->bind_param('i', $id);
+        $stmt->execute();
+
+        $result = $stmt->get_result();
+        $oeuvre = $result->fetch_assoc();
+
+        $timestamp = strtotime($oeuvre["date_debut"]);
+        $date_deb_only = date('d/m/Y', $timestamp);
+        $oeuvre["date_debut"] = $date_deb_only;
+
+        $timestamp = strtotime($oeuvre["date_fin"]);
+        $date_fin_only = date('d/m/Y', $timestamp);
+        $oeuvre["date_fin"] = $date_fin_only;
+
+        $stmt->close();
+
+        // Récupére les images de l'œuvre 
+        $queryImages = "SELECT chemin_image FROM exposition_images WHERE id_exposition = ?";
+        $stmtImages = $conn->prepare($queryImages);
+        $stmtImages->bind_param('i', $id);
+        $stmtImages->execute();
+
+        $resultImages = $stmtImages->get_result();
+        // Récupére les chemins des images
+        $chemin_image = [];
+        while ($row = $resultImages->fetch_assoc()) {
+            $chemin_image[] = $row['chemin_image'];
+        }
+        $stmtImages->close();
+        $conn->close();
+
+        // Ajouter les chemins des images à l'œuvre
+        $oeuvre['chemin_image'] = $chemin_image;
+
+
+        return $oeuvre;
+    }
+
+    public function updateStatut(Database $db, $accept, $id){
+        $Database = $db->connect();
+        $sql = "Update exposition set statut = ? where id_exhibition = ?";
+        $statut = $accept === true ? "accepte" : "refuse";
+        $stmt = $Database->prepare($sql);
+        $realID = (int)$id;
+        $stmt->bind_param("si",$statut,$realID);
         $stmt->execute();
         $stmt->close();
         $Database->close();

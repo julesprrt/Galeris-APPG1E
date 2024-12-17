@@ -6,7 +6,9 @@ require_once('Model/exposition.php');
 class ExpositionController extends Controller{ 
     public function exposition()
     {
-        $this->render('exposition', []);
+        session_start();
+        $role = isset($_SESSION["usersessionRole"]) === true && $_SESSION["usersessionRole"] === "Admin" ? true : false;
+        $this->render('exposition', ["connectUser" =>  isset($_SESSION["usersessionID"]), "userRole" => $role]);
     }
     public function createexposition(Database $db){
         $paramData = file_get_contents("php://input");
@@ -46,6 +48,20 @@ class ExpositionController extends Controller{
         else{
             http_response_code(400);
             echo json_encode(['Error' => "Votre demande d'exposition à bien été pris en compte"]);
+        }
+    }
+
+    public function saveidexpose(Database $db)
+    {
+        $paramData = file_get_contents("php://input");
+        $data = json_decode($paramData, true);
+        if (isset($data['id'])) {
+            session_start();
+            $_SESSION['expose_id'] = (int)$data['id'];
+            http_response_code(200);
+        } else {
+            http_response_code(400);
+            echo json_encode(['Error' => "ID incorrect"]);
         }
     }
 }

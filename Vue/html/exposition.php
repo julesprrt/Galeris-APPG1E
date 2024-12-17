@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="CSS/header.css">
   <link rel="stylesheet" href="CSS/footer.css">
   <script src="https://galeris/Galeris-APPG1E/vue/JS/exposition.js" defer></script>
+  <script src="https://galeris/Galeris-APPG1E/vue/JS/header.js" defer></script>
 </head>
 
 <body>
@@ -31,7 +32,25 @@
       <input type="text" placeholder="Rechercher...">
       <div class="favori"><a href="favoris.html">❤️</a></div>
       <div class="panier"><a href="panier.html">🛒</a></div>
-      <div class="utilisateur"><a href="https://galeris/Galeris-APPG1E/profil">👤</a></div>
+      <?php
+                if ($connectUser === true) {
+                    echo '<div class="dropdown">
+                            <div class="utilisateur"> 👤 </div>
+                            <div class="dropdown-child">
+                                <a href="https://galeris/Galeris-APPG1E/profil">Mon profil</a>
+                                <a href="#">Mon solde</a>'.
+                                (($userRole === true)?
+                                    '<a href="https://galeris/Galeris-APPG1E/listeoeuvreattente">Oeuvres en attente</a>
+                                    <a href="https://galeris/Galeris-APPG1E/listeexposeattente">Exposés en attente</a>':"").
+                                '<a id="deconnexion">Déconnexion</a>
+                            </div>
+                           </div>';
+                } else {
+                    echo '<div class="utilisateur"><a href="https://galeris/Galeris-APPG1E/connexion"> 👤 </a></div>';
+                }
+                ?>
+
+
     </div>
   </header>
 
@@ -56,16 +75,17 @@
           <img class="myimage" id="image3">
         </div>
         <p>
-        <strong>Titre :</strong>
-        <input type="text" class="input-exposition" id="title" name="title" value="" maxlength="50" placeholder="50 caractères maximum" required>
+          <strong>Titre :</strong>
+          <input type="text" class="input-exposition" id="title" name="title" value="" maxlength="50"
+            placeholder="50 caractères maximum" required>
         </p>
         <p>
-        <strong>Date de début :</strong>
-        <input type="date" class="input-exposition" id="date_debut" name="date_debut" value="" required>
+          <strong>Date de début :</strong>
+          <input type="date" class="input-exposition" id="date_debut" name="date_debut" value="" required>
         </p>
         <p>
-        <strong>Date de fin :</strong>
-        <input type="date" class="input-exposition" id="date_fin" name="date_fin" value="" required>
+          <strong>Date de fin :</strong>
+          <input type="date" class="input-exposition" id="date_fin" name="date_fin" value="" required>
         </p>
         <p>
         <strong>Description :</strong>

@@ -1,22 +1,25 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
     <base href="/Galeris-APPG1E/Vue/">
-    <link rel="stylesheet" href="CSS/enchere.css">
-    <link rel="stylesheet" href="CSS/style.css">
+    <link rel="stylesheet" href="CSS/listeattenteoeuvre.css">
     <link rel="stylesheet" href="CSS/header.css">
     <link rel="stylesheet" href="CSS/footer.css">
     <script src="https://galeris/Galeris-APPG1E/vue/JS/header.js" defer></script>
+    <script src="https://galeris/Galeris-APPG1E/vue/JS/listeattenteoeuvre.js" defer></script>
+    <title>Liste des oeuvres en liste d'attente</title>
 </head>
 
-<header>
-<div class="logo"> <img src="../images/logo.png"></div>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo"> <a href="https://galeris/Galeris-APPG1E/"><img src="../images/logo.png"></a></div>
             <nav class="menu">
                 <ul>
-                    <li><a href="#">Accueil</a></li>
+                    <li><a href="https://galeris/Galeris-APPG1E/">Accueil</a></li>
                     <li><a href="#">Vente</a></li>
                     <li><a href="#">Exposition</a></li>
                     <li><a href="#">News</a></li>
@@ -34,11 +37,11 @@
                             <div class="utilisateur"> 👤 </div>
                             <div class="dropdown-child">
                                 <a href="https://galeris/Galeris-APPG1E/profil">Mon profil</a>
-                                <a href="#">Mon solde</a>'.
-                                (($userRole === true)?
-                                    '<a href="https://galeris/Galeris-APPG1E/listeoeuvreattente">Oeuvres en attente</a>
-                                    <a href="https://galeris/Galeris-APPG1E/listeexposeattente">Exposés en attente</a>':"").
-                                '<a id="deconnexion">Déconnexion</a>
+                                <a href="#">Mon solde</a>' .
+                        (($userRole === true) ?
+                            '<a href="https://galeris/Galeris-APPG1E/listeoeuvreattente">Oeuvres en attente</a>
+                                    <a href="https://galeris/Galeris-APPG1E/listeexposeattente">Exposés en attente</a>' : "") .
+                        '<a id="deconnexion">Déconnexion</a>
                             </div>
                            </div>';
                 } else {
@@ -46,56 +49,36 @@
                 }
                 ?>
 
-
             </div>
-</header>
-<body>
-<div class="conteneur">
+        </header>
 
-    <div class="gauche">
-        
-            <img class="photo" src="../images/oeuvre1-1.jpg" alt="Photo">
-        <p>Cliquez sur l'image pour l'agrandir </p>
-
-        <div class=photos>
-             <img  src="../images/oeuvre1-1.jpg" alt="Photo">
-             <img  src="../images/oeuvre1-1.jpg" alt="Photo">
-             <img  src="../images/oeuvre1-1.jpg" alt="Photo">
+        <!-- Contenu de la page d'accueil -->
+        <div class="page-content">
+            <div class="contentbase">
+            <h2 class="title-oeuvre">Liste des oeuvres d'arts en attente</h2>
+                    <div class="oeuvres">
+                        <?php
+                        foreach ($oeuvres as $oeuvre) {
+                            echo '<a class = "oeuvreOBJ" style="cursor:pointer" >';
+                            echo '<div class="oeuvre">';
+                            echo '<input type="hidden" id="id_oeuvre_' . $oeuvre["id_oeuvre"] . '" name="id_oeuvre" value="' . $oeuvre["id_oeuvre"] . '">';
+                            echo '<h3>' . $oeuvre["Titre"] . '</h3>';
+                            // Ajout de l'image
+                            echo '<img src="../' . $oeuvre["image_path"] . '" alt="' . $oeuvre["Titre"] . '" />';
+                            echo '<p>' . $oeuvre["Description"] . '</p>';
+                            echo '</div>';
+                            echo '</a>';
+                        }
+                        ?>
+                    </div>
+        </div>
         </div>
 
 
-        <div>
-            <h1>À propos de ce lot</h1>
-        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Non aspernatur illo, 
-            culpa maxime dolore, nesciunt repudiandae deserunt, quidem veritatis vel quis 
-            excepturi suscipit quod cupiditate aperiam tempore facere eveniet itaque.
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sapiente ipsam temporibus totam vitae soluta 
-            architecto voluptates! Similique accusamus nemo blanditiis voluptas, laudantium, eius ad quae commodi eum provident, quos ipsa.
-        </p>
-        </div>
-        
-    </div>
-    
-    <div class="droite">
-        <div class="conteneur2">
-            
+        <footer>
 
-           
-        </div>
-        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. 
-                Possimus distinctio nemo ea nam explicabo adipisci, numquam ipsa quia 
-                iusto dolorum dicta cum ad quod asperiores sit vel voluptates, impedit ducimus?
-        </p>
-                
-    </div>
-        
-        
-</div>
-</body>
-
-<footer>
- <!-- icones réseaux sociaux -->
- <div class="social-network">
+            <!-- icones réseaux sociaux -->
+            <div class="social-network">
                 <a href="#"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"
                         xmlns="http://www.w3.org/2000/svg">
                         <path
@@ -127,21 +110,24 @@
 
             <!-- infos footer (aide, contact ...) -->
             <div class="container-footer">
-                <a class="title-footer">Qui sommes-nous ?</a>
+                <a class="title-footer">Qui sommes nous</a>
                 <a class="item-footer" href="#">NovArt</a>
                 <a class="item-footer" href="#">Galeris</a>
             </div>
             <div class="container-footer">
                 <a class="title-footer">Aide</a>
-                <a class="item-footer" href="#">Foire aux questions</a>
-                <a class="item-footer" href="#">Contact</a>
+                <a class="item-footer" href="https://galeris/Galeris-APPG1E/faq">Foire aux questions</a>
+                <a class="item-footer" href="https://galeris/Galeris-APPG1E/contact">Contacts</a>
             </div>
             <div class="container-footer">
                 <a class="title-footer">Informations légales</a>
-                <a class="item-footer" href="#">Conditions d'utilisations</a>
+                <a class="item-footer" href="https://galeris/Galeris-APPG1E/cgu">Conditions d'utilisations</a>
                 <a class="item-footer" href="#">Mentions légales</a>
             </div>
 
+        </footer>
+    </div>
+</body>
 
-</footer>
+
 </html>

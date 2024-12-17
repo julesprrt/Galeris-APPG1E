@@ -96,7 +96,7 @@ class Oeuvre
         $query = " SELECT o.*, oi.chemin_image
         FROM oeuvre o
         INNER JOIN oeuvre_images oi ON o.id_oeuvre = oi.id_oeuvre
-        WHERE o.est_vendu = ?
+        WHERE o.est_vendu = ? AND o.statut = ?
         GROUP BY o.id_oeuvre
         ORDER BY o.Date_fin DESC
         LIMIT 10
@@ -106,8 +106,9 @@ class Oeuvre
 
 
         $stmt = $conn->prepare($query);
-        $est_vendu = 0;
-        $stmt->bind_param('i', $est_vendu);
+        $est_vendu = "accepte";
+        $accept = "en";
+        $stmt->bind_param('is', $est_vendu, $est_vendu);
         $stmt->execute();
 
         $result = $stmt->get_result();
@@ -116,5 +117,30 @@ class Oeuvre
         $conn->close();
 
         return $result;
+    }
+
+    public function getOeuvresEnAttente(Database $db){
+        $Database = $db->connect();
+        $sql = "SELECT o.*, c.*, u.*, COALESCE(oi.image_path, 'Aucune image') AS image_path FROM oeuvre o INNER JOIN categorie c ON c.id_categorie = o.id_categorie INNER join utilisateur u on u.id_utilisateur = o.id_utilisateur LEFT JOIN ( SELECT id_oeuvre, MIN(chemin_image) AS image_path FROM oeuvre_images GROUP BY id_oeuvre ) oi ON oi.id_oeuvre = o.id_oeuvre WHERE o.statut = ?";
+        $stmt = $Database->prepare($sql);
+        $accept = "en attente de validation";
+        $stmt->bind_param("s", $accept);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $stmt->close();
+        $Database->close();
+        return $result;
+    }
+
+    public function updateStatut(Database $db, $accept, $id){
+        $Database = $db->connect();
+        $sql = "Update oeuvre set statut = ? where id_oeuvre = ?";
+        $statut = $accept === true ? "accepte" : "refuse";
+        $stmt = $Database->prepare($sql);
+        $realID = (int)$id;
+        $stmt->bind_param("si",$statut,$realID);
+        $stmt->execute();
+        $stmt->close();
+        $Database->close();
     }
 }
