@@ -9,7 +9,6 @@ require_once("./Controller/CGUController.php");
 require_once("./Controller/AchatController.php");
 require_once("./Controller/ExpositionController.php");
 require_once("./Controller/VenteController.php");
-
 require_once("./Controller/PanierController.php");
 require 'vendor/autoload.php';
 
@@ -36,11 +35,6 @@ $router->addRoute('/Galeris-APPG1E/process-edition', UserController::class, 'pro
 $router->addRoute('/Galeris-APPG1E/exposition', ExpositionController::class, 'exposition');
 $router->addRoute('/Galeris-APPG1E/createexposition', ExpositionController::class, 'createexposition');
 $router->addRoute('/Galeris-APPG1E/renvoiecode', UserController::class, 'resendcode');
-
-
-if($uri !== null){
-    $router->dispatch($uri);//Appel a la méthode du controller dedié
-}
 $router->addRoute('/Galeris-APPG1E/panier', PanierController::class, 'panier');
 
 
