@@ -2,8 +2,8 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Hôte : 127.0.0.1
--- Généré le : mar. 17 déc. 2024 à 17:20
+-- Hôte : 127.0.0.1:3306
+-- Généré le : mar. 17 déc. 2024 à 17:25
 -- Version du serveur : 10.4.32-MariaDB
 -- Version de PHP : 8.2.12
 
@@ -169,7 +169,7 @@ INSERT INTO `code` (`ID`, `code`, `date_expiration`, `ID_user`) VALUES
 CREATE TABLE `exposition` (
   `id_exhibition` int(11) NOT NULL,
   `titre` varchar(50) NOT NULL,
-  `description` varchar(200) DEFAULT NULL,
+  `description` text DEFAULT NULL,
   `date_debut` datetime NOT NULL,
   `date_fin` datetime NOT NULL,
   `user_id` int(11) DEFAULT NULL,
