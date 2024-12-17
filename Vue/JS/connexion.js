@@ -1,5 +1,5 @@
 //document.getElementById("togglePassword").addEventListener('click', passwordToggle);
-document.querySelector(".button-connection").addEventListener('click', connexion);
+document.querySelector(".submit-button").addEventListener('click', connexion);
 
 //Afficher ou non le mot de passe
 function passwordToggle(){
@@ -32,27 +32,28 @@ async function connexion() {
     if(statuscode === 200){
         alert(result.Success)
         document.querySelector('.error-message').innerHTML = "";
-        document.querySelectorAll('.input-connexion').forEach((item)=> {
+        document.querySelectorAll('.input-user').forEach((item)=> {
             item.value = "";
         })
-        document.querySelectorAll('.input-connexion-first').forEach((item)=> {
+        document.querySelectorAll('.input-user-first').forEach((item)=> {
             item.value = "";
         })
         window.location.href = "https://galeris/Galeris-APPG1E";
     }
     else if(statuscode === 401){
         alert(result.Information);
-        document.querySelectorAll('.input-connexion').forEach((item)=> {
+        document.querySelectorAll('.input-user').forEach((item)=> {
             item.value = "";
         })
-        document.querySelectorAll('.input-connexion-first').forEach((item)=> {
+        document.querySelectorAll('.input-user-first').forEach((item)=> {
             item.value = "";
         })
+        window.location.href = "https://galeris/Galeris-APPG1E/inscription";
     }
     else{
         alert(result.Error);
         document.querySelector('.error-message').innerHTML = result.Error;
-        document.querySelectorAll('.input-connexion').forEach((item)=> {
+        document.querySelectorAll('.input-user').forEach((item)=> {
             item.value = "";
         })
     }
