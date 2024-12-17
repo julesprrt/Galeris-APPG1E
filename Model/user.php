@@ -299,4 +299,23 @@ class User
         $conn->close();
         return $result;
     }
+
+    public function verifyEmailForPassword(Database $db){
+        $conn = $db->connect();
+        $sql = "select * from utilisateur where email = ?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param('s', $this->email);
+        $stmt->execute();
+        $result = $stmt->get_result();;
+        $stmt->close();
+        $conn->close();
+        if($result->field_count > 0){
+            $email = $this->email;
+            $this->sendCode->sendCode($this->email, $db);
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
 }

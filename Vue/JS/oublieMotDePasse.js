@@ -14,17 +14,15 @@ async function verifyMail() {
         body: raw,
         redirect: "follow"
     };
-    const response = await fetch("http://localhost:80/Galeris-APPG1E/verifyMail", requestOptions)
+    const response = await fetch("https://galeris/Galeris-APPG1E/verifyMail", requestOptions)
     const statuscode = response.status;
     const result = await response.json();
     
     if(statuscode === 200){
         alert(result.Success)
-        document.querySelector(".error-message").textContent = "";
-        window.location.href = "http://localhost:80/Galeris-APPG1E/codeunique";
+        window.location.href = "https://galeris/Galeris-APPG1E/codeunique";
     }
     else{
         alert(result.Error);
-        document.querySelector(".error-message").textContent = result.Error;
     }
 }

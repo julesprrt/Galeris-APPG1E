@@ -20,7 +20,7 @@
             de passe.</p>
         <label class="simpleText" for="email">Adresse e-mail :</label>
         <input type="email" id="email" name="email" required>
-        <button type="button" class="simpleText simpleButtonHover">Réinitialiser le mot de passe</button>
+        <button type="button" class="simpleText simpleButtonHover" id="btn-omdp">Réinitialiser le mot de passe</button>
     </form>
 </main>
 <footer>

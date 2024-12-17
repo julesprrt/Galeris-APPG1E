@@ -34,7 +34,7 @@
                     <input name="email" type="text" class="input-user-first" placeholder="Entrez votre mail" />
                     <input name="password" type="password" class="input-user" placeholder="Mot de passe" />
                     <a href="https://galeris/Galeris-APPG1E/motdepasse" class="link">Mot de passe oublié ?</a>
-                    <button type="button" class="button-connection submit-button">Connexion</button>
+                    <button type="button" class="button-connection submit-button"></button>
                     <p class="error-message"></p>
                 </form>
             </div>
