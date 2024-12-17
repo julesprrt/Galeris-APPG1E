@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Modification de Profil</title>
+    <title>Modification de profil</title>
     <base href="/Galeris-APPG1E/Vue/">
     <link rel="stylesheet" href="CSS/vente.css">
     <link rel="stylesheet" href="CSS/header.css">
@@ -41,7 +41,7 @@
                 <div class="oeuvre-info">
                     <div class="pre-oeuvre">
                         <h2>Vente d'une oeuvre d'art</h2>
-                        <strong class="strong-title">Ajoutez jusqu'a trois photos</strong><br><br>
+                        <strong class="strong-title">Ajoutez jusqu'à 3 photos</strong><br><br>
                     </div>
                     <div class="button-center">
                         <label class="button" for="upload">📷</label>
@@ -64,7 +64,7 @@
                         <p>
                             <strong>Categorie :</strong>
                             <select name="categorie" id="categorie-selec" class="input-vente" required>
-                                <option value="">--Choississez la categorie--</option>
+                                <option value="">--Choississez la catégorie--</option>
                                 <?php
                                 if (!empty($result)) {
                                     foreach ($result as $resultat) {
@@ -79,7 +79,7 @@
                             <select name="vente" id="vente-selec" class="input-vente" required>
                                 <option value="">--Type de vente--</option>
                                 <option value="Vente">Vente</option>
-                                <option value="Enchere">Enchere</option>
+                                <option value="Enchere">Enchère</option>
                             </select>
                         </p>
                         <p>
@@ -87,12 +87,12 @@
                             <input class="input-vente" type="number" min="0.00" max="10000.00" step="0.01" name="prix" required />
                         </p>
                         <p>
-                            <strong>Nombres de jours :</strong>
+                            <strong>Nombre de jours :</strong>
                             <input class="input-vente" type="number" min="2" max="30" step="1" name="nbjours" placeholder="30 jours maximum autorisé" required />
                         </p>
                         <p>
                             <strong>Description :</strong>
-                            <textarea class="input-vente" name="description" rows="3"></textarea>
+                            <textarea class="input-vente" name="description" rows="3" minlength="50" placeholder="50 caractères minimum" required></textarea>
                         </p>
                     </div>
                 </div>
@@ -131,14 +131,14 @@
             </a>
         </div>
         <div class="container-footer">
-            <a class="title-footer">Qui sommes nous</a>
+            <a class="title-footer">Qui sommes-nous ?</a>
             <a class="item-footer" href="#">NovArt</a>
             <a class="item-footer" href="#">Galeris</a>
         </div>
         <div class="container-footer">
             <a class="title-footer">Aide</a>
             <a class="item-footer" href="https://galeris/Galeris-APPG1E/faq">Foire aux questions</a>
-            <a class="item-footer" href="https://galeris/Galeris-APPG1E/contact">Contacts</a>
+            <a class="item-footer" href="https://galeris/Galeris-APPG1E/contact">Contact</a>
         </div>
         <div class="container-footer">
             <a class="title-footer">Informations légales</a>

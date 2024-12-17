@@ -15,7 +15,7 @@
 <body>
     <section id="contact">
         <div class="container">
-                <p class="bigTitle6"> Une quesion ? Un conseil ?</p>
+                <p class="bigTitle6"> Une question ? Un conseil ?</p>
                 <p class="bigTitle3"> Contactez-nous </p>
 
 

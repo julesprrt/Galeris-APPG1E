@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>Modification de Profil</title>
+  <title>Modification de profil</title>
   <base href="/Galeris-APPG1E/Vue/">
   <link rel="stylesheet" href="CSS/exposition.css">
   <link rel="stylesheet" href="CSS/header.css">
@@ -37,16 +37,15 @@
 
   <main>
     <section class="exposition">
-    <p class="description-exposition">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                        exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-                        reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-                        occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." 
-                        (expliquer que l'exposition est dans notre locaux pour une durée limité de 14 jours ...)
+    <p class="description-exposition">Notre site offre aux artistes une opportunité unique d’exposer leurs œuvres d’art dans nos locaux.
+      Que vous soyez peintre, sculpteur, photographe ou créateur multidisciplinaire, nous mettons à votre disposition un espace convivial
+      et professionnel pour présenter vos créations au public. Les expositions peuvent être organisées pour une durée maximale de 14 jours,
+      vous permettant de partager votre vision artistique et d’interagir directement avec vos spectateurs dans un cadre inspirant.
+      Rejoignez-nous et faites briller votre talent dans un lieu dédié à l’expression artistique et à la découverte culturelle.
                     </p>
       <form>
         <h2>Demande d'exposition</h2>
-        <strong class="strong-title">Vous pouvez ajouter jusqu'a trois photos</strong>
+        <strong class="strong-title">Vous pouvez ajouter jusqu'à 3 photos</strong>
         <div class="button-center">
           <label class="button" for="upload">📷</label>
           <input id="upload" type="file">
@@ -70,7 +69,7 @@
         </p>
         <p>
         <strong>Description :</strong>
-        <textarea class="input-exposition" id="description" name="description" cols="3" maxlength="200" placeholder="200 caractères maximum"></textarea>
+        <textarea class="input-exposition" id="description" name="description" cols="3" minlength="50" placeholder="50 caractères minimum" required></textarea>
         </p>
         <div class="actions">
           <a class="btn btn-exposition">Confirmer</a>
@@ -108,14 +107,14 @@
     </a>
   </div>
   <div class="container-footer">
-    <a class="title-footer">Qui sommes nous</a>
+    <a class="title-footer">Qui sommes-nous ?</a>
     <a class="item-footer" href="#">NovArt</a>
     <a class="item-footer" href="#">Galeris</a>
   </div>
   <div class="container-footer">
     <a class="title-footer">Aide</a>
     <a class="item-footer" href="https://galeris/Galeris-APPG1E/faq">Foire aux questions</a>
-    <a class="item-footer" href="https://galeris/Galeris-APPG1E/contact">Contacts</a>
+    <a class="item-footer" href="https://galeris/Galeris-APPG1E/contact">Contact</a>
   </div>
   <div class="container-footer">
     <a class="title-footer">Informations légales</a>

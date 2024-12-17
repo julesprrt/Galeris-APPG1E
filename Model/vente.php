@@ -37,6 +37,12 @@ Class Vente{
         else if($this->categorie === ""){
             return "La categorie est obligatoire";
         }
+        else if(strlen($this->description) < 50){
+            return "La description est obligatoire et doit contenir plus de 50 caractères.";
+        }
+        else if($this->image1 === ""){
+            return "Vous devez ajouter au moins une image";
+        }
         else if($this->type_vente === ""){
             return "Le type de vente est obligatoire";
         }

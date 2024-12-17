@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Profil Utilisateur</title>
+    <title>Profil utilisateur</title>
     <base href="/Galeris-APPG1E/Vue/">
     <link rel="stylesheet" href="CSS/profil.css">
     <link rel="stylesheet" href="CSS/header.css">
@@ -52,7 +52,7 @@
                 </div>
             </div>
             <div class="actions">
-                <a href="https://galeris/Galeris-APPG1E/editionprofil" class="btn">Modifier le Profil</a>
+                <a href="https://galeris/Galeris-APPG1E/editionprofil" class="btn">Modifier le profil</a>
             </div>
         </section>
     </main>
@@ -89,14 +89,14 @@
             </a>
         </div>
         <div class="container-footer">
-            <a class="title-footer">Qui sommes nous</a>
+            <a class="title-footer">Qui sommes-nous ?</a>
             <a class="item-footer" href="#">NovArt</a>
             <a class="item-footer" href="#">Galeris</a>
         </div>
         <div class="container-footer">
             <a class="title-footer">Aide</a>
             <a class="item-footer" href="https://galeris/Galeris-APPG1E/faq">Foire aux questions</a>
-            <a class="item-footer" href="https://galeris/Galeris-APPG1E/contact">Contacts</a>
+            <a class="item-footer" href="https://galeris/Galeris-APPG1E/contact">Contact</a>
         </div>
         <div class="container-footer">
             <a class="title-footer">Informations légales</a>

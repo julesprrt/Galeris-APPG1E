@@ -8,28 +8,44 @@
     <base href="/Galeris-APPG1E/Vue/">
     <link rel="stylesheet" href="CSS/FAQ.css">
     <link rel="stylesheet" href="CSS/footer.css">
+    <link rel="stylesheet" href="CSS/header.css">
+    <link rel="stylesheet" href="CSS/style.css">
     <script src="https://galeris/Galeris-APPG1E/vue/JS/Faq.js" defer></script>
 </head>
-
+<div class="container">
+<header>
+        <div class="logo"><a href="https://galeris/Galeris-APPG1E/"> <img width="150" height="150" src="../images/logo-sans-fond.png" src="../images/logo.png"></a></div>
+        <nav class="menu">
+            <ul>
+                <li><a href="https://galeris/Galeris-APPG1E/">Accueil</a></li>
+                <li><a href="#">Vente</a></li>
+                    <li><a href="#">Exposition</a></li>
+                <li><a href="#">News</a></li>
+                <li><a href="#">Plus</a></li>
+            </ul>
+        </nav>
+        <div class="barre_recherche">
+            <!-- Barre de recherche, les emojis sont responsives si on clique dessus -->
+            <input type="text" placeholder="Rechercher...">
+            <div class="favori"> <a href="favoris.html">❤️ </a></div>
+            <div class="panier"> <a href="panier.html"> 🛒 </a></div>
+            <div class="utilisateur"><a href="https://galeris/Galeris-APPG1E/profil"> 👤 </a></div>
+        </div>
+    </header>     
 <body>
-    <header>
-        <h2>Foire Aux Questions</h2>
-        <p>Trouvez toutes les réponses à vos questions !</p>
+    <h1> Foire aux questions </h1>
+    <h2>Trouvez toutes les réponses à vos questions !</h2>
         <p>
-            <a href="https://galeris/Galeris-APPG1E/"><img src="../images/Logo_Galeris_(sans_fond).png" class="logo" /></a>
-            <!-- <a>href lien page d'accueil sur le logo (ajouter le texte "Retournez à l'accueil" en passant la souris sur le logo) </a> -->
             <img src="../images/tableau.png" class="tableau" />
             <img src="../images/tableau2.png" class="tableau2" />
         </p>
-
-    </header>
     <div class="Page">
         <img src="../images/sculpture2.png" class="image1" />
 
         <il>Général</il><br>
 
         <details>
-            <summary>Mini quiz</summary>
+            <summary>Mini-quiz</summary>
             <p>Ceci est le texte qui se déroule lorsque vous cliquez sur le mot.</p>
         </details>
 
@@ -39,7 +55,7 @@
         </details>
 
         <details>
-            <summary>Eco-resposabilité</summary>
+            <summary>Eco-responsabilité</summary>
             <p>Ceci est le texte qui se déroule lorsque vous cliquez sur le mot.</p>
         </details>
 
@@ -50,21 +66,21 @@
             <p>Créer un compte Galeris vous donne accès à un monde d’art et d’objets extraordinaires. Dès que vous créez un compte, vous pouvez :
 
             <ul>
-                <li>Enregistrez vos intérêts pour des recommandations personnalisées</li>
-                <li>Suivez les lots et les enchères Suivez</li>
-                <li>En gardez une trace dans votre compte</li>
-                <li>Consultez vos factures</li>
-                <li>organisez l'expédition et le paiement en ligne</li>
-                <li>En gardez une trace dans votre compte</li>
-                <li>Suivez la progression de tous les articles que vous vendez</li>
-                <li>Inscrivez-vous et enchérissez aux enchères</li>
+                <li>Enregistrer vos intérêts pour des recommandations personnalisées</li>
+                <li>Suivre les lots et les enchères</li>
+                <li>Garder une trace dans votre compte</li>
+                <li>Consulter vos factures</li>
+                <li>organiser l'expédition et le paiement en ligne</li>
+                <li>Garder une trace dans votre compte</li>
+                <li>Suivre la progression de tous les articles que vous vendez</li>
+                <li>S'inscrire et enchérir</li>
             </ul>
             </p>
         </details>
         <details>
             <summary>Comment réinitialiser mon mot de passe ?</summary>
             <p>Cliquez ici et saisissez l'adresse e-mail associée à votre compte Galeris pour recevoir
-                un lien pour réinitialiser votre mot de passe.
+                un lien de réinitialisation du mot de passe.
             </p>
         </details>
 
@@ -75,29 +91,28 @@
 
         <details>
             <summary>Comment acheter des œuvres d'art via Galeris ?</summary>
-            <p>Il existe plusieurs façons d'acheter chez Galeris. Vous pouvez enchérir sur une œuvre lors de l'une
-                de nos ventes aux enchères en direct ou en ligne organisées régulièrement. Consultez le calendrier des
-                ventes pour connaître les prochaines dates. <br><br>Vous pouvez également acheter des œuvres d'art via notre
-                service de ventes privées, qui propose des œuvres disponibles à l'achat immédiat. Parcourez les catégories,
-                découvrez quelque chose de nouveau dans nos expositions de vente thématiques ou contactez un spécialiste si
-                vous avez un objet spécifique en tête.</p>
+            <p>Il y a différentes méthodes d'achat chez Galeris. Il est possible d'acheter une œuvre lors d'une de nos ventes 
+                aux enchères en direct ou en ligne qui se déroulent régulièrement. Voir le calendrier des ventes pour obtenir 
+                des informations sur les dates à venir. <br><br>Il est possible d'acquérir des œuvres d'art en utilisant notre site.
+                Service de vente en ligne, offrant des œuvres à l'achat immédiat. Explorez les différentes catégories, explorez quelque 
+                chose de nouveau dans nos expositions de vente thématiques ou contactez un expert si vous avez une question particulière en tête.</p>
         </details>
 
         <details>
             <summary>Comment m'inscrire à une vente aux enchères ?</summary>
-            <p>Avant de vous inscrire, vous devez d'abord créer un compte Galeris et vérifier votre identité.
-                Une fois cette étape effectuée, vous pouvez vous inscrire pour enchérir dans n'importe quelle vente aux enchères.<br><br>
-                Pour les enchères en ligne, connectez-vous à votre compte, accédez à la page de vente et cliquez sur « S'inscrire ».
-                Il vous sera demandé de confirmer certains détails de votre compte, tels que votre adresse de livraison préférée.
-                Vous pouvez vous inscrire avant la vente aux enchères ou à tout moment pendant celle-ci.</p>
+            <p>Il est nécessaire de créer un compte Galeris et de vérifier votre identité avant de vous inscrire.
+                Après avoir accompli cette étape, vous avez la possibilité de vous inscrire pour participer à n'importe quelle vente aux enchères.<br><br>
+                Pour participer aux enchères en ligne, veuillez vous connecter à votre compte, vous rendre sur la page de vente et cliquer sur le bouton « S'inscrire ».
+                Certaines informations de votre compte, comme votre adresse de livraison préférée, seront nécessaires pour être confirmées.
+                Avant la vente aux enchères ou à tout moment pendant celle-ci, vous avez la possibilité de vous inscrire.</p>
         </details>
 
         <details>
             <summary>Comment payer mon achat ?</summary>
-            <p>Si vous remportez une enchère, vous trouverez toutes les informations relatives à votre achat dans votre compte
-                sous « Acheter », puis « Finaliser ma commande ».<br><br>
+            <p>Si vous remportez une enchère, vous trouverez toutes les informations relatives à votre achat sur votre compte
+                dans l'onglet « Acheter », puis « Finaliser ma commande ».<br><br>
 
-                Ici, vous pouvez consulter les factures de vos lots et payer et organiser l'expédition des commandes jusqu'à
+                Ici, vous pourrez consulter les factures de vos lots, payer et organiser l'expédition des commandes jusqu'à
                 100 000 USD / 100 000 £ / 100 000 € / 1 000 000 HK$ / 100 000 CHF. Veuillez noter qu'il peut s'écouler jusqu'à
                 48 heures avant que les lots soient disponibles pour le paiement en ligne. <br><br>Pour les lots supérieurs à ce montant
                 ou d'autres options de paiement, y compris le virement bancaire, veuillez vérifier le verso de votre facture.</p>
@@ -113,12 +128,10 @@
 
         <details>
             <summary>Comment puis-je obtenir une estimation ?</summary>
-            <p>Utilisez notre outil d'estimation d'enchères gratuit pour soumettre des
-                images et des informations supplémentaires par article. <br><br>Les estimations d'enchères
-                sont fournies dans un délai de 3 à 4 semaines pour les articles pour lesquels Galeris
-                a une catégorie de vente et qui correspondent à notre valeur de consignation minimale.
-                Si vous avez plus de six articles à estimer, veuillez contacter nos services d'estimation
-                et d'évaluation des successions.</p>
+            <p>Essayez notre outil gratuit d'estimation d'enchères pour fournir des images et des informations supplémentaires 
+            pour chaque article. <br><br>Galeris fournit les estimations d'enchères dans un délai de 3 à 4 semaines concernant les articles pour lesquels elle a été sollicitée.
+            Il existe une catégorie de vente qui correspond à notre valeur minimale de consignation.
+            Si vous disposez de plus de six articles à évaluer, nous vous prions de prendre contact avec nos services d'estimation et d'évaluation des successions.</p>
         </details>
 
         <details>
@@ -138,7 +151,7 @@
                 étape consiste à demander une estimation gratuite de la vente aux enchères et à déterminer
                 si votre article convient à la vente aux enchères de Galeris.<br><br> Un spécialiste de Galeris vous
                 contactera ensuite pour discuter des estimations, vous conseiller sur les dates de vente aux
-                enchères et vous expliquer votre accord de vente et la structure de commission.<br><br>Après la vente
+                enchères et vous expliquer votre accord de vente ainsi que la structure de commission.<br><br>Après la vente
                 aux enchères, vous recevrez une notification vous informant du prix atteint par votre article.
                 À condition que nous ayons reçu le paiement intégral de l'acheteur, environ 35 jours après la
                 vente aux enchères, votre paiement sera envoyé sur votre compte désigné.</p>
@@ -180,14 +193,14 @@
 
         <!-- infos footer (aide, contact ...) -->
         <div class="container-footer">
-            <a class="title-footer">Qui sommes nous</a>
+            <a class="title-footer">Qui sommes-nous ?</a>
             <a class="item-footer" href="#">NovArt</a>
             <a class="item-footer" href="#">Galeris</a>
         </div>
         <div class="container-footer">
             <a class="title-footer">Aide</a>
             <a class="item-footer" href="https://galeris/Galeris-APPG1E/faq">Foire aux questions</a>
-            <a class="item-footer" href="https://galeris/Galeris-APPG1E/contact">Contacts</a>
+            <a class="item-footer" href="https://galeris/Galeris-APPG1E/contact">Contact</a>
         </div>
         <div class="container-footer">
             <a class="title-footer">Informations légales</a>

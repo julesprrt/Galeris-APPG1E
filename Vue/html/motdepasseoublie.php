@@ -15,7 +15,7 @@
 </header>
 <main>
     <form>
-        <p class="simpleText">Entrez l'adresse e-mail associée à votre compte et nous vous enverrons un lien pour réinitialiser votre mot
+        <p class="simpleText">Entrez l'adresse e-mail associée à votre compte. Un lien vous sera envoyé pour réinitialiser votre mot
             de passe.</p>
         <label class="simpleText" for="email">Adresse e-mail :</label>
         <input type="email" id="email" name="email" required>

@@ -1,21 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
     <base href="/Galeris-APPG1E/Vue/">
-    <link rel="stylesheet" href="CSS/enchere.css">
-    <link rel="stylesheet" href="CSS/style.css">
+    <link rel="stylesheet" href="CSS/galeris.css">
     <link rel="stylesheet" href="CSS/header.css">
     <link rel="stylesheet" href="CSS/footer.css">
+    <title>galeris</title>
 </head>
 
-<header>
-<div class="logo"> <img src="../images/logo.png"></div>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo"> <a href="https://galeris/Galeris-APPG1E/"><img src="../images/logo.png"></a></div>
             <nav class="menu">
                 <ul>
-                    <li><a href="#">Accueil</a></li>
+                    <li><a href="https://galeris/Galeris-APPG1E/">Accueil</a></li>
                     <li><a href="#">Vente</a></li>
                     <li><a href="#">Exposition</a></li>
                     <li><a href="#">News</a></li>
@@ -27,56 +29,41 @@
                 <input type="text" placeholder="Rechercher...">
                 <div class="favori"> <a href="favoris.html">❤️ </a></div>
                 <div class="panier"> <a href="panier.html"> 🛒 </a></div>
-                <div class="utilisateur"><a href="panier.html"> 👤 </a></div>
+                <div class="utilisateur"><a href="https://galeris/Galeris-APPG1E/connexion"> 👤 </a></div>
             </div>
-</header>
-<body>
-<div class="conteneur">
+        </header>
 
-    <div class="gauche">
-        
-            <img class="photo" src="../images/oeuvre1-1.jpg" alt="Photo">
-        <p>Cliquez sur l'image pour l'agrandir </p>
-
-        <div class=photos>
-             <img  src="../images/oeuvre1-1.jpg" alt="Photo">
-             <img  src="../images/oeuvre1-1.jpg" alt="Photo">
-             <img  src="../images/oeuvre1-1.jpg" alt="Photo">
+        <!-- Contenu de la page d'accueil -->
+        <div class="page-galeris">
+            <div class="contentbase">
+                <div class="content-description">
+                    <p class="description">"Galeris est une plateforme en ligne qui permet aux artistes de présenter 
+                        leurs œuvres à un public international, d’élargir leur notoriété et de valoriser leur travail. Grâce à galeris, 
+                        les artistes peuvent atteindre un marché bien plus vaste que les galeries physiques traditionnelles, tout en 
+                        limitant l’empreinte écologique et en offrant aux collectionneurs une expérience d’achat plus facile, personnalisée et responsable."
+                    </p>
+                </div>
+            </div>
         </div>
 
-
-        <div>
-            <h1>À propos de ce lot</h1>
-        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Non aspernatur illo, 
-            culpa maxime dolore, nesciunt repudiandae deserunt, quidem veritatis vel quis 
-            excepturi suscipit quod cupiditate aperiam tempore facere eveniet itaque.
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sapiente ipsam temporibus totam vitae soluta 
-            architecto voluptates! Similique accusamus nemo blanditiis voluptas, laudantium, eius ad quae commodi eum provident, quos ipsa.
-        </p>
+        <div class="sphere-container">
+            <div class="sphere">
+                <div class="sphere-image"><img src="../images/oeuvre1-1.jpg" alt="art1"></div>
+                <div class="sphere-image"><img src="../images/oeuvresim-1.png" alt="art2"></div>
+                <div class="sphere-image"><img src="../images/oeuvresim-2.jpg" alt="art3"></div>
+                <div class="sphere-image"><img src="../images/oeuvresim-3.jpg" alt="art4"></div>
+                <div class="sphere-image"><img src="../images/p1.jpg" alt="art5"></div>
+                <div class="sphere-image"><img src="../images/p2.jpg" alt="art6"></div>
+                <div class="sphere-image"><img src="../images/p3.jpg" alt="art7"></div>
+                <div class="sphere-image"><img src="../images/p4.jpg" alt="art8"></div>
+            </div>
         </div>
         
-    </div>
-    
-    <div class="droite">
-        <div class="conteneur2">
-            
 
-           
-        </div>
-        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. 
-                Possimus distinctio nemo ea nam explicabo adipisci, numquam ipsa quia 
-                iusto dolorum dicta cum ad quod asperiores sit vel voluptates, impedit ducimus?
-        </p>
-                
-    </div>
-        
-        
-</div>
-</body>
+        <footer>
 
-<footer>
- <!-- icones réseaux sociaux -->
- <div class="social-network">
+            <!-- icones réseaux sociaux -->
+            <div class="social-network">
                 <a href="#"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"
                         xmlns="http://www.w3.org/2000/svg">
                         <path
@@ -108,21 +95,24 @@
 
             <!-- infos footer (aide, contact ...) -->
             <div class="container-footer">
-                <a class="title-footer">Qui sommes-nous ?</a>
+                <a class="title-footer">Qui sommes nous</a>
                 <a class="item-footer" href="#">NovArt</a>
-                <a class="item-footer" href="#">Galeris</a>
+                <a class="item-footer" href="https://galeris/Galeris-APPG1E/galeris">Galeris</a>
             </div>
             <div class="container-footer">
                 <a class="title-footer">Aide</a>
-                <a class="item-footer" href="#">Foire aux questions</a>
-                <a class="item-footer" href="#">Contact</a>
+                <a class="item-footer" href="https://galeris/Galeris-APPG1E/faq">Foire aux questions</a>
+                <a class="item-footer" href="https://galeris/Galeris-APPG1E/contact">Contacts</a>
             </div>
             <div class="container-footer">
                 <a class="title-footer">Informations légales</a>
-                <a class="item-footer" href="#">Conditions d'utilisations</a>
+                <a class="item-footer" href="https://galeris/Galeris-APPG1E/cgu">Conditions d'utilisations</a>
                 <a class="item-footer" href="#">Mentions légales</a>
             </div>
 
+        </footer>
+    </div>
+</body>
 
-</footer>
+
 </html>
