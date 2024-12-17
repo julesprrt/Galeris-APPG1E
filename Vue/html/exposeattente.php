@@ -5,14 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <base href="/Galeris-APPG1E/Vue/">
-    <link rel="stylesheet" href="CSS/achat.css">
+    <link rel="stylesheet" href="CSS/oeuvreattente.css">
     <link rel="stylesheet" href="CSS/header.css">
     <link rel="stylesheet" href="CSS/footer.css">
     <link rel="stylesheet" href="CSS/style.css">
-    <script src="https://galeris/Galeris-APPG1E/vue/JS/achat.js" defer></script>
-    <title><?php echo htmlspecialchars($oeuvre['Titre']); ?></title>
+    <title><?php echo htmlspecialchars($expose['titre']); ?></title>
     <script src="https://galeris/Galeris-APPG1E/vue/JS/header.js" defer></script>
-    <title>Page d'Achat</title>
+    <script src="https://galeris/Galeris-APPG1E/vue/JS/exposeattente.js" defer></script>
+    <title>Attente exposé</title>
 </head>
 
 <body>
@@ -65,10 +65,10 @@
                     <button class="carousel-fleche gauche cfg">&#10094;</button>
 
                     <div class="art-image">
-                        <?php foreach ($oeuvre['chemin_image'] as $index => $chemin): ?>
+                        <?php foreach ($expose['chemin_image'] as $index => $chemin): ?>
                             <img src="../<?php echo htmlspecialchars($chemin); ?>"
                                 class="carousel-image <?php echo $index === 0 ? 'active' : ''; ?>"
-                                alt="Image de <?php echo htmlspecialchars($oeuvre['Titre']); ?>">
+                                alt="Image de <?php echo htmlspecialchars($expose['titre']); ?>">
                         <?php endforeach; ?>
                     </div>
 
@@ -80,14 +80,14 @@
 
 
                 <div class="art-info">
-                    <h1><?php echo htmlspecialchars($oeuvre['Titre']); ?></h1>
-                    <p><?php echo nl2br(htmlspecialchars($oeuvre['Description'])); ?></p>
+                    <h1><?php echo htmlspecialchars($expose['titre']); ?></h1>
+                    <p><?php echo nl2br(htmlspecialchars($expose['desc'])); ?></p>
                 </div>
             </section>
 
             <!-- Section : Œuvres similaires -->
             <section class="art-image-similaire">
-                <h2>Oeuvres similaires</h2>
+                <h2>Exposes similaires</h2>
                 <div class="tableau-similaire">
                     <img src="..\images\oeuvresim-1.png" alt="Tableau similaire 1">
                     <img src="..\images\oeuvresim-2.jpg" alt="Tableau similaire 2">
@@ -102,22 +102,22 @@
                 <div class="profil-info">
                     <img src="https://via.placeholder.com/50" alt="Photo de profil" class="photo-profil">
                     <div class="profil-nom">
-                        <strong>Vendeur : <?php echo htmlspecialchars($oeuvre['nom']) . " " . htmlspecialchars($oeuvre['prenom']); ?></strong>
+                        <strong>Vendeur : <?php echo htmlspecialchars($expose['nom']) . " " . htmlspecialchars($expose['prenom']); ?></strong>
                     </div>
                 </div>
             </section>
 
             <section class="info-prix">
                 <div class="prix">
-                    <span><strong>Prix :</strong> € <?php echo number_format($oeuvre['Prix'], 2, ',', ' '); ?></span>
-                    <p><small>Publié le : <?php echo htmlspecialchars($oeuvre['Date_debut']); ?></small></p>
+                    <p><small>Du <?php echo htmlspecialchars($expose['date_debut']); ?> au <?php echo htmlspecialchars($expose['date_fin']); ?></small></p>
                 </div>
             </section>
 
             <!-- Boutons d'actions -->
             <section class="actions">
-                <button class="boutton-acheter">Acheter</button>
-                <button class="boutton-message-vendeur">Message</button>
+                <input type="hidden" id="id_expose" name="id_expose" value="<?php echo $expose["id_exhibition"] ?>">
+                <button class="boutton-valider">Accepté</button>
+                <button class="boutton-refuse">Réfusé</button>
             </section>
         </section>
     </main>

@@ -5,11 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <base href="/Galeris-APPG1E/Vue/">
-    <link rel="stylesheet" href="CSS/accueil.css">
+    <link rel="stylesheet" href="CSS/listeattenteoeuvre.css">
     <link rel="stylesheet" href="CSS/header.css">
     <link rel="stylesheet" href="CSS/footer.css">
-    <link rel="stylesheet" href="CSS/listeattenteoeuvre.css">
     <script src="https://galeris/Galeris-APPG1E/vue/JS/header.js" defer></script>
+    <script src="https://galeris/Galeris-APPG1E/vue/JS/listeattenteoeuvre.js" defer></script>
     <title>Liste des oeuvres en liste d'attente</title>
 </head>
 
@@ -40,7 +40,7 @@
                                 <a href="#">Mon solde</a>' .
                         (($userRole === true) ?
                             '<a href="https://galeris/Galeris-APPG1E/listeoeuvreattente">Oeuvres en attente</a>
-                                    <a href="#">Exposés en attente</a>' : "") .
+                                    <a href="https://galeris/Galeris-APPG1E/listeexposeattente">Exposés en attente</a>' : "") .
                         '<a id="deconnexion">Déconnexion</a>
                             </div>
                            </div>';
@@ -54,41 +54,24 @@
 
         <!-- Contenu de la page d'accueil -->
         <div class="page-content">
+            <div class="contentbase">
             <h2 class="title-oeuvre">Liste des oeuvres d'arts en attente</h2>
-                <?php
-                foreach($oeuvres as $row) {
-                echo 
-                '<div class="oeuvre">
-                    <div class="image-oeuvre">';
-                       echo '<img src="../'. $row["image_path"] .'">';
-                    echo '</div>
-                    <div class="content-oeuvre">
-                        <div class="titre">';
-                            echo '<h4>' . $row["Titre"] . ' (' . $row["Nom_categorie"] . ') ' . (($row["auteur"])? 'de ' . $row["auteur"] : '').' vendue par ' . $row['nom'] . " " . $row["prenom"] .'</h4>
-                        </div>
-                        <div class="desc">';
-                            echo '<p>' . $row["Description"] .'</p>
-                        </div>
+                    <div class="oeuvres">
+                        <?php
+                        foreach ($oeuvres as $oeuvre) {
+                            echo '<a class = "oeuvreOBJ" style="cursor:pointer" >';
+                            echo '<div class="oeuvre">';
+                            echo '<input type="hidden" id="id_oeuvre_' . $oeuvre["id_oeuvre"] . '" name="id_oeuvre" value="' . $oeuvre["id_oeuvre"] . '">';
+                            echo '<h3>' . $oeuvre["Titre"] . '</h3>';
+                            // Ajout de l'image
+                            echo '<img src="../' . $oeuvre["image_path"] . '" alt="' . $oeuvre["Titre"] . '" />';
+                            echo '<p>' . $oeuvre["Description"] . '</p>';
+                            echo '</div>';
+                            echo '</a>';
+                        }
+                        ?>
                     </div>
-                        <div class="details-vente">';
-                            echo '<p>Type de vente : '. $row["type_vente"] .'</p>';
-                            echo '<p>Prix : '. $row["Prix"] . '  €</p>';
-                            echo '<p>Date de fin : ' . $row["Date_fin"] . '</p>
-                        </div>
-                        <div class="decision">
-                            <div class="container-btn">
-                            <button type="submit" class="btn">Accepté</button>
-                            </div>
-                            <div class="container-btn">
-                            <button type="submit" class="btn">Refusé</button>
-                            </div>
-                            <div class="container-btn">
-                            <button type="submit" class="btn">Voir plus</button>
-                            </div>
-                        </div>
-                </div>';
-                }
-                ?>
+        </div>
         </div>
 
 

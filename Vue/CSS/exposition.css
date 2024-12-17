@@ -28,8 +28,13 @@ h2{
 }
 
 img {
+    width: 25em;
+    height: 100%;
+    object-fit: cover;
+    border-bottom: 1px solid #ddd;
     padding-top: 20px;
     padding-right: 30px;
+    border: none;
 }
 
 .details {

@@ -1,10 +1,26 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    height: 100%;
+}
+
 .page-content {
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    flex-grow: 1;
-    padding-top: 1.8em;
+    flex-grow: 1; /* Utiliser tout l'espace disponible */
+    width: 100%; /* S'assurer que l'élément prend toute la largeur */
+    padding: 0; /* Supprimer le padding existant */
+    margin: 0; /* Supprimer les marges */
 }
+
+.oeuvres {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* Centre les éléments enfants */
+    width: 100%; /* Prend toute la largeur */
+    margin: 0; /* Supprimer les marges si existantes */
+    padding: 2em 0; /* Ajuster le padding selon les besoins */
+}
+
 
 .title-oeuvre {
     margin-bottom: 10px; 
@@ -13,64 +29,79 @@
     padding-bottom: 1em;
 }
 
-.oeuvre {
-    padding: 2em;
-    border: 1px solid #ddd; 
-    cursor: pointer;
-    display: flex;
-    gap: 1.5em; 
-}
-
-.image-oeuvre img {
-    height: 5em;
-}
-
-.content-oeuvre {
-    display: flex;
-    flex-direction: column; 
-    width : 50em;
-}
-
-.titre {
-    color: black;
-}
-
-.desc {
-    color: black; 
-    font-size: 0.9em; 
-    margin-top: 0.5em;
-}
-
-a {
-    text-decoration: none;
-}
-
-.details-vente {
-    display: flex;
-    flex-direction: column; 
-}
-
-.btn {
-    background-color: #D9A36A;
-    color: #FFF;
-    padding: 0.8em 1.5em;
-    border: none;
-    border-radius: 5px;
-    font-weight: bold;
-    text-decoration: none;
-    cursor: pointer;
-}
-
-.btn:hover {
-    background-color: #BF8A58;
-}
-
-.container-btn {
-    padding-top: 1em;
-}
-
-.decision{
+.container {
     display: flex;
     flex-direction: column;
-    padding-left: 3em;
+    min-height: 100vh;
+}
+
+.contentbase {
+    text-align: center;
+}
+
+/* Section principale des œuvres */
+.oeuvres {
+    display: flex;
+    flex-wrap: wrap; /* Les éléments sautent à la ligne si besoin */
+    justify-content: space-evenly; /* Espacement uniforme des éléments */
+    gap: 20px; /* Espacement entre les cartes */
+    padding: 2em 5%; /* Espacement autour de la section */
+    background-color: #f9f9f9; /* Fond léger */
+    box-sizing: border-box; /* Inclut le padding dans la largeur totale */
+    max-width: 100%; /* Assure que ça ne dépasse pas la largeur de la page */
+    margin: 0 auto; /* Centre la section */
+}
+
+
+/* Carte individuelle pour chaque œuvre */
+.oeuvre {
+    background-color: #fff;
+    /* Fond blanc pour la carte */
+    border: 1px solid #ddd;
+    /* Bordure fine grise */
+    border-radius: 8px;
+    /* Coins arrondis */
+    width: 250px;
+    /* Taille fixe pour uniformité */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    /* Ombre légère */
+    transition: transform 0.3s ease-in-out;
+    /* Animation au survol */
+    text-align: center;
+    /* Contenu centré */
+    overflow: hidden;
+    /* Coupe le contenu dépassant */
+}
+
+.oeuvre:hover {
+    transform: translateY(-5px);
+    /* Effet d'élévation au survol */
+}
+
+/* Image des œuvres */
+.oeuvre img {
+    width: 100%;
+    /* Image responsive */
+    height: 160px;
+    /* Hauteur fixe pour uniformité */
+    object-fit: cover;
+    /* Ajustement sans déformation */
+    border-bottom: 1px solid #ddd;
+    /* Séparation visuelle */
+}
+
+/* Titre des œuvres */
+.oeuvre h3 {
+    font-size: 1.1em;
+    margin: 0.5em 0;
+    color: #333;
+    /* Couleur sobre */
+}
+
+/* Description des œuvres */
+.oeuvre p {
+    font-size: 0.9em;
+    color: #666;
+    /* Texte plus clair */
+    padding: 0.5em;
 }

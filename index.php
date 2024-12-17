@@ -10,8 +10,8 @@ require_once("./Controller/AchatController.php");
 require_once("./Controller/ExpositionController.php");
 require_once("./Controller/VenteController.php");
 require_once("./Controller/ListeAttenteAdminController.php");
-
 require_once("./Controller/GalerisController.php");
+require_once("./Controller/AdminController.php");
 
 
 $uri = $_SERVER['REQUEST_URI']; //Recupération de l'uri (la route)
@@ -41,6 +41,12 @@ $router->addRoute('/Galeris-APPG1E/achat', AchatController::class, 'achat');
 $router->addRoute('/Galeris-APPG1E/saveid', AchatController::class, 'saveid');
 $router->addRoute('/Galeris-APPG1E/deconnexion', UserController::class, 'deconnexion');
 $router->addRoute('/Galeris-APPG1E/listeoeuvreattente', ListeAttenteAdminController::class, 'listeattenteoeuvre');
+$router->addRoute('/Galeris-APPG1E/attenteoeuvre', AdminController::class, 'attenteoeuvre');
+$router->addRoute('/Galeris-APPG1E/statutoeuvre', AdminController::class, 'acceptoeuvre');
+$router->addRoute('/Galeris-APPG1E/statutexpose', AdminController::class, 'acceptexpose');
+$router->addRoute('/Galeris-APPG1E/listeexposeattente', ListeAttenteAdminController::class, 'listeattenteexpose');
+$router->addRoute('/Galeris-APPG1E/saveidexpose', ExpositionController::class, 'saveidexpose');
+$router->addRoute('/Galeris-APPG1E/attenteexpose', AdminController::class, 'attenteexpose');
 
 if ($uri !== null) {
     $router->dispatch($uri); //Appel a la méthode du controller dedié

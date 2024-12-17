@@ -5,14 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <base href="/Galeris-APPG1E/Vue/">
-    <link rel="stylesheet" href="CSS/achat.css">
+    <link rel="stylesheet" href="CSS/oeuvreattente.css">
     <link rel="stylesheet" href="CSS/header.css">
     <link rel="stylesheet" href="CSS/footer.css">
     <link rel="stylesheet" href="CSS/style.css">
-    <script src="https://galeris/Galeris-APPG1E/vue/JS/achat.js" defer></script>
     <title><?php echo htmlspecialchars($oeuvre['Titre']); ?></title>
     <script src="https://galeris/Galeris-APPG1E/vue/JS/header.js" defer></script>
-    <title>Page d'Achat</title>
+    <script src="https://galeris/Galeris-APPG1E/vue/JS/oeuvreattente.js" defer></script>
+    <title>Attente Oeuvre</title>
 </head>
 
 <body>
@@ -116,8 +116,9 @@
 
             <!-- Boutons d'actions -->
             <section class="actions">
-                <button class="boutton-acheter">Acheter</button>
-                <button class="boutton-message-vendeur">Message</button>
+                <input type="hidden" id="id_oeuvre" name="id_oeuvre" value="<?php echo $oeuvre["id_oeuvre"] ?>">
+                <button class="boutton-valider">Accepté</button>
+                <button class="boutton-refuse">Réfusé</button>
             </section>
         </section>
     </main>
