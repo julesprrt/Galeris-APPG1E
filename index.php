@@ -39,8 +39,6 @@ $router->addRoute('/Galeris-APPG1E/createexposition', ExpositionController::clas
 $router->addRoute('/Galeris-APPG1E/renvoiecode', UserController::class, 'resendcode');
 $router->addRoute('/Galeris-APPG1E/achat', AchatController::class, 'achat');
 $router->addRoute('/Galeris-APPG1E/saveid', AchatController::class, 'saveid');
-
-
 $router->addRoute('/Galeris-APPG1E/deconnexion', UserController::class, 'deconnexion');
 $router->addRoute('/Galeris-APPG1E/listeoeuvreattente', ListeAttenteAdminController::class, 'listeattenteoeuvre');
 
