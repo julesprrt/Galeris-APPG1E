@@ -62,16 +62,16 @@ Class Contact {
 
     public function contactPlatformGaleris() {
         if($this->verifyAllInput() == false){
-            return "Veuillez remplir l'ensemble des champs";
+            return "Veuillez remplir l'ensemble des champs du formulaire";
         }
         if($this->LimitLengthFirstName() == false){
-            return "Nombre de caractère minimale pour le champs Prénom est de 2";
+            return "Nombre de caractère minimale pour le champ Prénom est de 2 caractères";
         }
         if($this->LimitLengthName() == false){
-            return "Nombre de caractère minimale pour le champs nom est de 2";
+            return "Nombre de caractère minimale pour le champs nom est de 2 caractères";
         }
         if($this->LimitLengthMessage() == false){
-            return "Nombre de caractère minimale pour le champs message est de 15";
+            return "Nombre de caractère minimale pour le champs message est de 15 caractères";
         }
         if( $this->utilsContact->emailComposition($this->email) == false){
             return "Email invalide";

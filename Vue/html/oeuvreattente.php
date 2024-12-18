@@ -117,8 +117,8 @@
             <!-- Boutons d'actions -->
             <section class="actions">
                 <input type="hidden" id="id_oeuvre" name="id_oeuvre" value="<?php echo $oeuvre["id_oeuvre"] ?>">
-                <button class="boutton-valider">Accepté</button>
-                <button class="boutton-refuse">Réfusé</button>
+                <button class="boutton-valider">Accepter</button>
+                <button class="boutton-refuse">Réfuser</button>
             </section>
         </section>
     </main>

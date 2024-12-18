@@ -37,7 +37,7 @@ class User
         if ($this->name === "" || $this->firstName === "" || $this->email === "" || $this->telephone === "" || $this->password === "" || $this->confirmPassword === "") {
             return "Vous devez remplir l'ensemble des champs du formulaire";
         } else if ($this->cgu === false) {
-            return "Vous devez valider les condition générale d'utilisation de Galeris";
+            return "Vous devez valider les conditions générales d'utilisation de Galeris";
         } else if (!$this->utilsUser->emailComposition($this->email)) {
             return "Mail invalide";
         } else if (!$this->telComposition($this->telephone)) {
