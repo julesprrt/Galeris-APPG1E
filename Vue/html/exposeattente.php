@@ -116,8 +116,8 @@
             <!-- Boutons d'actions -->
             <section class="actions">
                 <input type="hidden" id="id_expose" name="id_expose" value="<?php echo $expose["id_exhibition"] ?>">
-                <button class="boutton-valider">Accepté</button>
-                <button class="boutton-refuse">Réfusé</button>
+                <button class="boutton-valider">Accepter</button>
+                <button class="boutton-refuse">Refuser</button>
             </section>
         </section>
     </main>

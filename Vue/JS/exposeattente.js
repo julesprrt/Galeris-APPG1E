@@ -64,7 +64,7 @@ async function acceptExpose() {
 }
 
 async function cancelExpose() {
-    const responseUser = confirm("Etez-vous sûre de vouloir réfuser cette expose ?");
+    const responseUser = confirm("Etez-vous sûre de vouloir refuser cette exposé ?");
     if (responseUser === true) {
         const id = document.getElementById("id_expose").value;
 

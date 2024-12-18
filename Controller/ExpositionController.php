@@ -34,7 +34,7 @@ class ExpositionController extends Controller{
             }
             else if($result === 404){
                 http_response_code(404);
-                echo json_encode(['Error'=> "La durée maximale est de deux semaines."]);
+                echo json_encode(['Error'=> "La durée maximale est de 14 jours maximum."]);
             }
             else if($result === 405){
                 http_response_code(405);

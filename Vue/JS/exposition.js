@@ -119,7 +119,7 @@ function verificationData(title, description, image1, date_debut, date_fin){
     const diffTime = Math.abs(new Date(date_fin) - new Date(date_debut));
     const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
     if (diffDays > 14) {
-        alert("La durée maximale est de deux semaines.")
+        alert("La durée maximale est de 14 jours.")
         return false;
     }
     if (verifDate(date_debut, date_fin) === false) {

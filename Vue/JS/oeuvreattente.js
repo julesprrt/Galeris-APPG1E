@@ -63,7 +63,7 @@ async function acceptOeuvre() {
 }
 
 async function cancelOeuvre() {
-    const responseUser = confirm("Etez-vous sûre de vouloir réfuser cette oeuvre ?");
+    const responseUser = confirm("Etez-vous sûre de vouloir refuser cette oeuvre ?");
     if (responseUser === true) {
         const id = document.getElementById("id_oeuvre").value;
 
