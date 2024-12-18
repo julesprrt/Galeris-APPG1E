@@ -39,12 +39,19 @@
             <p>Lot : <?= htmlspecialchars($oeuvre['id_oeuvre']) ?> | </p>
             <div class="main-image">
                 
-                <img src="../images/oeuvre1-1.jpg" alt="Oeuvre">
+            <?php foreach ($oeuvre['chemin_image'] as $index => $chemin): ?>
+                            <img src="../<?php echo htmlspecialchars($chemin); ?>"
+                                alt="Image de <?php echo htmlspecialchars($oeuvre['Titre']); ?>">
+                        <?php endforeach; ?>
+
             </div>
             <p class="image-caption">Cliquez sur l'image pour l'agrandir</p>
             <div class="thumbnail-gallery">
 
-                <img src="../images/oeuvre1-1.jpg" alt="Thumbnail">
+            <?php foreach ($oeuvre['chemin_image'] as $index => $chemin): ?>
+                            <img src="../<?php echo htmlspecialchars($chemin); ?>"
+                                alt="Image de <?php echo htmlspecialchars($oeuvre['Titre']); ?>">
+                        <?php endforeach; ?>
             
             </div>
             <div class="description">

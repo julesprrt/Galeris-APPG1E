@@ -43,12 +43,12 @@ body {
     height: 250px; 
     width: auto;
     border: 1px solid #ddd; 
-    border-radius: 5px; 
+    
 }
     
 .main-image img {
-    max-width: 70%; /* S'assure que l'image ne déborde pas horizontalement */
-    max-height: 70%; /* S'assure que l'image ne déborde pas verticalement */
+    max-width: 150%; /* S'assure que l'image ne déborde pas horizontalement */
+    max-height: 150%; /* S'assure que l'image ne déborde pas verticalement */
     object-fit: contain; /* Conserve les proportions de l'image */
 }
 

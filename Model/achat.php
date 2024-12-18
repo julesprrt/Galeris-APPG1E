@@ -17,7 +17,7 @@ class Oeuvre
     private $status;
     private $nomvendeur;
     private $prenomvendeur;
-    private $chemin_image;
+    private $chemin_image = [];
 
     // Constructeur pour initialiser les valeurs
     public function __construct(
@@ -67,16 +67,43 @@ class Oeuvre
         $result = $stmt->get_result();
         $oeuvre = $result->fetch_assoc();
 
-        
         $stmt->close();
+
+        // Récupére les images de l'œuvre 
+        $queryImages = "SELECT chemin_image FROM oeuvre_images WHERE id_oeuvre = ?";
+        $stmtImages = $conn->prepare($queryImages);
+        $stmtImages->bind_param('i', $id);
+        $stmtImages->execute();
+
+        $resultImages = $stmtImages->get_result();
+        // Récupére les chemins des images
+        $chemin_image = [];
+        while ($row = $resultImages->fetch_assoc()) {
+            $chemin_image[] = $row['chemin_image'];
+        }
+        $stmtImages->close();
         $conn->close();
+
+        // Ajouter les chemins des images à l'œuvre
+        $oeuvre['chemin_image'] = $chemin_image;
+
 
         return $oeuvre;
     }
     public static function getAllOeuvre(Database $db)
     {
         $conn = $db->connect();
-        $query = "SELECT * FROM oeuvre o INNER JOIN oeuvre_images oi ON o.id_oeuvre = oi.id_oeuvre WHERE o.est_vendu = ? ORDER BY Date_fin DESC LIMIT 10";
+        $query = " SELECT o.*, oi.chemin_image
+        FROM oeuvre o
+        INNER JOIN oeuvre_images oi ON o.id_oeuvre = oi.id_oeuvre
+        WHERE o.est_vendu = ?
+        GROUP BY o.id_oeuvre
+        ORDER BY o.Date_fin DESC
+        LIMIT 10
+    ";
+
+
+
 
         $stmt = $conn->prepare($query);
         $est_vendu = 0;
