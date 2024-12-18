@@ -133,11 +133,6 @@ class User
         $result = $conn->execute_query($sql);
         $conn->close();
         if (mysqli_num_rows($result) > 0) {
-            /*while ($row = $user->fetch_assoc()) {
-                if($row["actif"] === 0){
-                    return false;
-                }
-            }*/
             $user = mysqli_fetch_assoc($result);
             if ($user["actif"] === 0) {
                 session_start();
@@ -309,7 +304,7 @@ class User
         $user = $result->fetch_assoc();
         $stmt->close();
         $conn->close();
-        if($result->field_count > 0){
+        if($result->num_rows > 0){
             $email = $this->email;
             $_SESSION["usersessionID"] = $user["id_utilisateur"];
             $_SESSION["usersessionMail"] = $email;

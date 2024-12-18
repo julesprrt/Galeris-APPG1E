@@ -6,6 +6,7 @@ document.getElementById("hidemdp2").addEventListener('click', HidepasswordToggle
 
 
 async function register() {
+    document.querySelector(".submit-button").disable = true;
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
     
@@ -39,11 +40,13 @@ async function register() {
         })
         document.getElementById("check-inscription").checked = false;
         document.querySelector('.error-message').innerHTML = "";
+        document.querySelector(".submit-button").disable = false;
         window.location.href = "https://galeris/Galeris-APPG1E/codeunique"
     }
     
     else{
         alert(result.Error);
+        document.querySelector(".submit-button").disable = false;
         document.querySelector('.error-message').innerHTML = result.Error;
     }
 }

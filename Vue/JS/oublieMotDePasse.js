@@ -3,7 +3,7 @@ document.getElementById("btn-omdp").addEventListener("click", verifyMail);
 async function verifyMail() {
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
-    
+    document.getElementById("btn-omdp").disable = true;
     const raw = JSON.stringify({
         "email" : document.getElementById("email").value
     });
@@ -19,10 +19,12 @@ async function verifyMail() {
     const result = await response.json();
     
     if(statuscode === 200){
+        document.getElementById("btn-omdp").disable = false;
         alert(result.Success)
         window.location.href = "https://galeris/Galeris-APPG1E/codeunique";
     }
     else{
+        document.getElementById("btn-omdp").disable = false;
         alert(result.Error);
     }
 }
