@@ -14,7 +14,7 @@ class User
     private $sendCode;
     private $utilsUser;
     private $cgu;
-    public function __construct($name, $firstName, $email, $telephone, $password, $confirmPassword,$cgu)
+    public function __construct($name, $firstName, $email, $telephone, $password, $confirmPassword, $cgu)
     { //Constructeur -> Initialisation des données
         $this->name = $name;
         $this->firstName = $firstName;
@@ -36,7 +36,7 @@ class User
         $value = $this->VerifyExistMail($db);
         if ($this->name === "" || $this->firstName === "" || $this->email === "" || $this->telephone === "" || $this->password === "" || $this->confirmPassword === "") {
             return "Vous devez remplir l'ensemble des champs du formulaire";
-        }else if($this->cgu === false){
+        } else if ($this->cgu === false) {
             return "Vous devez valider les condition générale d'utilisation de Galeris";
         } else if (!$this->utilsUser->emailComposition($this->email)) {
             return "Mail invalide";
@@ -48,13 +48,12 @@ class User
             return "Les deux mots de passe ne sont pas identiques";
         } else if ($value === false) {
             return "Vous avez déja un compte";
-        }
-        else{
-            if($value === true){
+        } else {
+            if ($value === true) {
                 $this->saveUser($db);
             }
             //Envoie d'un code a usage unique
-            $this->sendCode->sendCode($this->email,$db);
+            $this->sendCode->sendCode($this->email, $db);
             return $value === "actif" ? "code" : true;
         }
     }
@@ -74,9 +73,9 @@ class User
                 session_start();
                 $_SESSION["usersessionMail"] = $this->email;
                 $_SESSION["usersessionID"] = $user["id_utilisateur"];
+                $_SESSION["usersessionRole"] = $user["roles"];
                 return true;
-            } 
-            else if($user["actif"] === 0){
+            } else if ($user["actif"] === 0) {
                 return "Utilisateur non valide";
             } else {
                 return "Votre mail/mot de passe est incorrect";
@@ -140,7 +139,7 @@ class User
                 }
             }*/
             $user = mysqli_fetch_assoc($result);
-            if($user["actif"] === 0){
+            if ($user["actif"] === 0) {
                 session_start();
                 $_SESSION["usersessionID"] = $user["id_utilisateur"];
                 return "actif";
@@ -171,6 +170,7 @@ class User
         session_start();
         $_SESSION["usersessionID"] = $id;
         $_SESSION["usersessionMail"] = $this->email;
+        $_SESSION["usersessionRole"] = "Utilisateur";
         $_SESSION["usersessionType"] = "";
     }
 
@@ -203,7 +203,8 @@ class User
 
 
 
-    public function verifyCode($code, Database $db) { 
+    public function verifyCode($code, Database $db)
+    {
         try {
             $conn = $db->connect();
             $sql = "SELECT code FROM code WHERE ID_user = ? AND date_expiration > NOW() ORDER BY date_expiration DESC LIMIT 1";
@@ -213,39 +214,38 @@ class User
             $stmt->execute();
             $stmt->bind_result($codedb);
             while ($stmt->fetch()) {
-                if ($codedb == $code){
+                if ($codedb == $code) {
                     $stmt->close();
                     $updateSql = "UPDATE utilisateur SET actif = 1 WHERE id_utilisateur = ?";
-                    $updateStmt = $conn->prepare($updateSql) or die ($this->$conn->error);
+                    $updateStmt = $conn->prepare($updateSql) or die($this->$conn->error);
                     $updateStmt->bind_param('i', $id_user);
                     $updateStmt->execute();
                     $updateStmt->close();
                     $conn->close();
                     return 200;
                 } else {
-                    if(isset($_SESSION['nberror'])){
+                    if (isset($_SESSION['nberror'])) {
                         $_SESSION['nberror'] =  $_SESSION['nberror'] + 1;
-                        if($_SESSION['nberror'] === 5){
+                        if ($_SESSION['nberror'] === 5) {
                             session_destroy();
                             session_start();
                             $_SESSION["userIP"] =  $_SERVER['REMOTE_ADDR'];;
                             $my_date_time = date("Y-m-d H:i:s", strtotime("+10 minutes"));
                             $_SESSION["datetime"] = $my_date_time;
-                        } 
-                    }
-                    else{
-                        $_SESSION['nberror'] = 1; 
+                        }
+                    } else {
+                        $_SESSION['nberror'] = 1;
                     }
                     return 400;
                 }
-            } 
+            }
             return 400;
         } catch (PDOException $e) {
             // Gérer les erreurs
             return "Erreur : " . $e->getMessage();
         }
     }
-    
+
 
     public function getUserById($id, Database $db)
     {

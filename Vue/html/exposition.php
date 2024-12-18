@@ -3,12 +3,13 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>Modification de Profil</title>
+  <title>Modification de profil</title>
   <base href="/Galeris-APPG1E/Vue/">
   <link rel="stylesheet" href="CSS/exposition.css">
   <link rel="stylesheet" href="CSS/header.css">
   <link rel="stylesheet" href="CSS/footer.css">
   <script src="https://galeris/Galeris-APPG1E/vue/JS/exposition.js" defer></script>
+  <script src="https://galeris/Galeris-APPG1E/vue/JS/header.js" defer></script>
 </head>
 
 <body>
@@ -31,7 +32,25 @@
       <input type="text" placeholder="Rechercher...">
       <div class="favori"><a href="favoris.html">❤️</a></div>
       <div class="panier"><a href="panier.html">🛒</a></div>
-      <div class="utilisateur"><a href="https://galeris/Galeris-APPG1E/profil">👤</a></div>
+      <?php
+                if ($connectUser === true) {
+                    echo '<div class="dropdown">
+                            <div class="utilisateur"> 👤 </div>
+                            <div class="dropdown-child">
+                                <a href="https://galeris/Galeris-APPG1E/profil">Mon profil</a>
+                                <a href="#">Mon solde</a>'.
+                                (($userRole === true)?
+                                    '<a href="https://galeris/Galeris-APPG1E/listeoeuvreattente">Oeuvres en attente</a>
+                                    <a href="https://galeris/Galeris-APPG1E/listeexposeattente">Exposés en attente</a>':"").
+                                '<a id="deconnexion">Déconnexion</a>
+                            </div>
+                           </div>';
+                } else {
+                    echo '<div class="utilisateur"><a href="https://galeris/Galeris-APPG1E/connexion"> 👤 </a></div>';
+                }
+                ?>
+
+
     </div>
   </header>
 
@@ -45,7 +64,7 @@
                     </p>
       <form>
         <h2>Demande d'exposition</h2>
-        <strong class="strong-title">Vous pouvez ajouter jusqu'a trois photos</strong>
+        <strong class="strong-title">Vous pouvez ajouter jusqu'à 3 photos</strong>
         <div class="button-center">
           <label class="button" for="upload">📷</label>
           <input id="upload" type="file">
@@ -56,20 +75,21 @@
           <img class="myimage" id="image3">
         </div>
         <p>
-        <strong>Titre :</strong>
-        <input type="text" class="input-exposition" id="title" name="title" value="" maxlength="50" placeholder="50 caractères maximum" required>
+          <strong>Titre :</strong>
+          <input type="text" class="input-exposition" id="title" name="title" value="" maxlength="50"
+            placeholder="50 caractères maximum" required>
         </p>
         <p>
-        <strong>Date de début :</strong>
-        <input type="date" class="input-exposition" id="date_debut" name="date_debut" value="" required>
+          <strong>Date de début :</strong>
+          <input type="date" class="input-exposition" id="date_debut" name="date_debut" value="" required>
         </p>
         <p>
-        <strong>Date de fin :</strong>
-        <input type="date" class="input-exposition" id="date_fin" name="date_fin" value="" required>
+          <strong>Date de fin :</strong>
+          <input type="date" class="input-exposition" id="date_fin" name="date_fin" value="" required>
         </p>
         <p>
         <strong>Description :</strong>
-        <textarea class="input-exposition" id="description" name="description" cols="3" maxlength="200" placeholder="200 caractères maximum"></textarea>
+        <textarea class="input-exposition" id="description" name="description" cols="3" minlength="50" placeholder="50 caractères minimum" required></textarea>
         </p>
         <div class="actions">
           <a class="btn btn-exposition">Confirmer</a>
@@ -107,14 +127,14 @@
     </a>
   </div>
   <div class="container-footer">
-    <a class="title-footer">Qui sommes nous</a>
+    <a class="title-footer">Qui sommes-nous ?</a>
     <a class="item-footer" href="#">NovArt</a>
     <a class="item-footer" href="#">Galeris</a>
   </div>
   <div class="container-footer">
     <a class="title-footer">Aide</a>
     <a class="item-footer" href="https://galeris/Galeris-APPG1E/faq">Foire aux questions</a>
-    <a class="item-footer" href="https://galeris/Galeris-APPG1E/contact">Contacts</a>
+    <a class="item-footer" href="https://galeris/Galeris-APPG1E/contact">Contact</a>
   </div>
   <div class="container-footer">
     <a class="title-footer">Informations légales</a>

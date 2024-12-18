@@ -45,6 +45,66 @@ header {
 .barre_recherche a {
     text-decoration: none;
     font-size: 20px;
-    margin-left: 15px;
     color: #333;
 }
+
+.favori {
+  padding-left: 1em;
+}
+.panier {
+  padding-left: 1em;
+}
+
+.utilisateur{
+  padding-left: 1em;
+}
+
+.mainmenubtn {
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .mainmenubtn:hover { 
+    opacity: 0.9;
+  }
+  
+  .dropdown {
+    position: relative; 
+    display: inline-block;
+  }
+  
+  .dropdown-child {
+    display: none; 
+    position: absolute; 
+    background-color: #f9f9f9; 
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); 
+    z-index: 1; 
+    background-color: #f1f1f1;
+    left: -7em;
+    top: 1.5em;
+    text-align: center;
+  }
+  
+  .dropdown-child a {
+    color: black;
+    padding: 0.5em 0.8em;
+    text-decoration: none;
+    display: block;
+  }
+  
+  .dropdown-child a:hover {
+   opacity: 0.4;
+  }
+  
+  .dropdown:hover .dropdown-child {
+    display: block;
+  }
+  
+
+  #deconnexion {
+    cursor: pointer;
+  }

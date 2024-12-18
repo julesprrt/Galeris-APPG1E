@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="CSS/header.css">
     <link rel="stylesheet" href="CSS/footer.css">
     <script src="https://galeris/Galeris-APPG1E/vue/JS/nominatim.js" defer></script>
+    <script src="https://galeris/Galeris-APPG1E/vue/JS/header.js" defer></script>
 </head>
 
 <body>
@@ -22,7 +23,7 @@
             <ul>
                 <li><a href="https://galeris/Galeris-APPG1E/">Accueil</a></li>
                 <li><a href="#">Vente</a></li>
-                    <li><a href="#">Exposition</a></li>
+                <li><a href="#">Exposition</a></li>
                 <li><a href="#">News</a></li>
                 <li><a href="#">Plus</a></li>
             </ul>
@@ -31,7 +32,24 @@
             <input type="text" placeholder="Rechercher...">
             <div class="favori"><a href="favoris.html">❤️</a></div>
             <div class="panier"><a href="panier.html">🛒</a></div>
-            <div class="utilisateur"><a href="https://galeris/Galeris-APPG1E/profil">👤</a></div>
+            <?php
+                if ($connectUser === true) {
+                    echo '<div class="dropdown">
+                            <div class="utilisateur"> 👤 </div>
+                            <div class="dropdown-child">
+                                <a href="https://galeris/Galeris-APPG1E/profil">Mon profil</a>
+                                <a href="#">Mon solde</a>'.
+                                (($userRole === true)?
+                                    '<a href="https://galeris/Galeris-APPG1E/listeoeuvreattente">Oeuvres en attente</a>
+                                    <a href="https://galeris/Galeris-APPG1E/listeexposeattente">Exposés en attente</a>':"").
+                                '<a id="deconnexion">Déconnexion</a>
+                            </div>
+                           </div>';
+                } else {
+                    echo '<div class="utilisateur"><a href="https://galeris/Galeris-APPG1E/connexion"> 👤 </a></div>';
+                }
+            ?>
+
         </div>
     </header>
 
@@ -128,14 +146,14 @@
             </a>
         </div>
         <div class="container-footer">
-            <a class="title-footer">Qui sommes nous</a>
+            <a class="title-footer">Qui sommes-nous ?</a>
             <a class="item-footer" href="#">NovArt</a>
             <a class="item-footer" href="#">Galeris</a>
         </div>
         <div class="container-footer">
             <a class="title-footer">Aide</a>
             <a class="item-footer" href="https://galeris/Galeris-APPG1E/faq">Foire aux questions</a>
-            <a class="item-footer" href="https://galeris/Galeris-APPG1E/contact">Contacts</a>
+            <a class="item-footer" href="https://galeris/Galeris-APPG1E/contact">Contact</a>
         </div>
         <div class="container-footer">
             <a class="title-footer">Informations légales</a>
