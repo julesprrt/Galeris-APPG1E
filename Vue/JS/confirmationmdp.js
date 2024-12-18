@@ -54,7 +54,7 @@ async function confpassword (){
     }
 
 
-    try{
+
         const response = await fetch("https://galeris/Galeris-APPG1E/confirmationmdp", requestOptions);
         const statuscode = response.status;
         const result = await response.json();
@@ -72,11 +72,7 @@ async function confpassword (){
                 item.value = "";
             })
         }
-    }
-    catch (error){
-        console.error("Erreur lors de la requête :", error);
-        alert("Une erreur s'est produite. Veuillez réessayer.");
-    }
+   
 
 
 

@@ -330,7 +330,7 @@ class User
         }
         else{
             $conn = $db->connect();
-            $sql = "UPDATE utilisateur SET password = ? where id_utilisateur = ?";
+            $sql = "UPDATE utilisateur SET mot_de_passe = ? where id_utilisateur = ?";
             $stmt = $conn->prepare($sql);
             $id_user = $_SESSION['usersessionID'];
             $hashedPassword = password_hash($this->password, PASSWORD_DEFAULT);

@@ -240,11 +240,13 @@ class UserController extends Controller
             $user = new User(null, null,  null, null, $data['password'], $data['confirmPassword'],null);
             $result = $user->changePassword($db);
             if($result === true){
+                http_response_code(200);
+                echo json_encode(["Success" => "Mot de passe modifié"]);
                 session_destroy();
             }
             else{
                 http_response_code(400);
-                echo json_encode(["error" => $result]);
+                echo json_encode(["Error" => $result]);
             }
             
         }
