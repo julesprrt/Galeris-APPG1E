@@ -36,7 +36,7 @@
     <div class="container">
         <div class="left-section">
             <h1><?php echo htmlspecialchars($oeuvre['Titre']); ?></h1>
-            <p>Lot : <?= htmlspecialchars($oeuvre['id_oeuvre']) ?> | <?= htmlspecialchars($oeuvre['Description']) ?></p>
+            <p>Lot : <?= htmlspecialchars($oeuvre['id_oeuvre']) ?> | </p>
             <div class="main-image">
                 
                 <img src="../images/oeuvre1-1.jpg" alt="Oeuvre">
