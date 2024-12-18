@@ -19,18 +19,18 @@ body {
 }
 
 /* Section gauche */
-.left-section {
+.gauche {
     flex: 2;
 }
 
    
-.left-section h1 {
+.gauche h1 {
     font-size: 24px;
     font-weight: bold;
     margin-bottom: 10px;
 }
 
-.left-section p {
+.gauche p {
     color: #555;
     margin-bottom: 10px;
 }
@@ -40,29 +40,22 @@ body {
     display: flex; /* Utilisation de Flexbox */
     justify-content: center; /* Centre horizontalement */
     align-items: center; /* Centre verticalement */
-    height: 250px; 
-    width: auto;
+    padding : 10px;
     border: 1px solid #ddd; 
     
 }
     
 .main-image img {
-    max-width: 150%; /* S'assure que l'image ne déborde pas horizontalement */
-    max-height: 150%; /* S'assure que l'image ne déborde pas verticalement */
-    object-fit: contain; /* Conserve les proportions de l'image */
+    width: 400px;
 }
 
 
 .image-caption {
     text-align: center;
     font-size: 14px;
-    margin: 10px 0;
-    color: #888;
+    
+    
 }
-.photos img {
-    width: 150px; /* Fixe la largeur des images */
-    height: auto; }
-
 
 .thumbnail-gallery {
     display: flex;
@@ -90,7 +83,7 @@ body {
 }
 
 /* Section droite */
-.right-section {
+.droite {
     flex: 1;
     border: 1px solid #ddd;
     border-radius: 5px;
@@ -103,20 +96,15 @@ body {
     margin-bottom: 10px;
 }
 
-.close-date {
-    font-weight: bold;
-    font-size: 18px;
-    color: #333;
-}
 
-.current-bid {
+.prixActuel {
     font-size: 24px;
     font-weight: bold;
     color: #007BFF;
     text-align: center;
 }
 
-.bid-button {
+.encherir {
     display: block;
     width: 100%;
     padding: 10px;
@@ -128,7 +116,7 @@ body {
     cursor: pointer;
 }
 
-.register-button {
+.partager {
     display: block;
     width: 100%;
     padding: 10px;
@@ -139,32 +127,27 @@ body {
     cursor: pointer;
 }
 
-.register-info {
-    text-align: center;
-    color: #888;
-    font-size: 14px;
-    margin-top: 10px;
+.separer {
+    display: flex;
+    justify-content:  space-around;
 }
 
-.offers h3 {
-    font-size: 16px;
-    margin-bottom: 10px;
-    color: #333;
-}
 
-.offers table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 10px;
-}
+.separer_offre {
+        width: 300px; /* Largeur du conteneur */
+        margin: auto; /* Centre le conteneur */
+    }
 
-.offers table td {
-    padding: 5px;
-    border-bottom: 1px solid #ddd;
-}
+.offre {
+        display: flex; /* Aligne les éléments horizontalement */
+        justify-content: space-around;
+        margin-bottom: 5px; /* Espacement entre chaque ligne */
+    }
 
-.view-offers {
-    text-decoration: none;
-    font-size: 14px;
-    color: #007BFF;
+.balise {
+
+    display: flex;
+    justify-content: center
+
+
 }

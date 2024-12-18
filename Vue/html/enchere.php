@@ -34,9 +34,9 @@
 <body>
 <main>
     <div class="container">
-        <div class="left-section">
+        <div class="gauche">
             <h1><?php echo htmlspecialchars($oeuvre['Titre']); ?></h1>
-            <p>Lot : <?= htmlspecialchars($oeuvre['id_oeuvre']) ?> | </p>
+            <p>Lot : <?= htmlspecialchars($oeuvre['id_oeuvre']) ?> | <?= htmlspecialchars($oeuvre['auteur'])?> </p>
             <div class="main-image">
                 
             <?php foreach ($oeuvre['chemin_image'] as $index => $chemin): ?>
@@ -46,32 +46,69 @@
 
             </div>
             <p class="image-caption">Cliquez sur l'image pour l'agrandir</p>
-            <div class="thumbnail-gallery">
-
-            <?php foreach ($oeuvre['chemin_image'] as $index => $chemin): ?>
-                            <img src="../<?php echo htmlspecialchars($chemin); ?>"
-                                alt="Image de <?php echo htmlspecialchars($oeuvre['Titre']); ?>">
-                        <?php endforeach; ?>
             
+            <div class="thumbnail-gallery">
+                    <?php foreach ($oeuvre['chemin_image'] as $index => $chemin): ?>
+                        <img src="../<?php echo htmlspecialchars($chemin); ?>"
+                            alt="Image de <?php echo htmlspecialchars($oeuvre['Titre']); ?>">
+                    <?php endforeach; ?>
+
+                    <?php foreach ($oeuvre['chemin_image'] as $index => $chemin): ?>
+                        <img src="../<?php echo htmlspecialchars($chemin); ?>"
+                            alt="Image de <?php echo htmlspecialchars($oeuvre['Titre']); ?>">
+                    <?php endforeach; ?>
+
+                    <?php foreach ($oeuvre['chemin_image'] as $index => $chemin): ?>
+                        <img src="../<?php echo htmlspecialchars($chemin); ?>"
+                            alt="Image de <?php echo htmlspecialchars($oeuvre['Titre']); ?>">
+                    <?php endforeach; ?>
             </div>
+
             <div class="description">
                 <h2>À propos de ce lot</h2>
                 <p><?= htmlspecialchars($oeuvre['Description']) ?></p>
             </div>
         </div>
 
-        <div class="right-section">
+        <div class="droite">
             <div class="auction-info">
-                <p>Se ferme dans :</p>
-                <p class="close-date"><?= htmlspecialchars($oeuvre['Date_fin']) ?></p>
+                <p>A ouvert : <?= htmlspecialchars($oeuvre['Date_debut']) ?> </p>
+                
+                <p>Se ferme dans :<?= htmlspecialchars($oeuvre['Date_fin']) ?></p>
+                
                 <p>Prix actuel</p>
-                <p class="current-bid"><?= number_format($oeuvre['Prix'], 2, ',', ' ') ?> €</p>
-                <button class="bid-button">Se connecter pour enchérir</button>
-                <button class="register-button">Créer un compte</button>
-                <p class="register-info">S'inscrire en moins de 2 min</p>
-            </div>
-        </div>
-    </div>
+                <p class="prixActuel"><?= number_format($oeuvre['Prix'], 2, ',', ' ') ?> €</p>
+                <button class="encherir">Enchérir</button>
+                <button class="partager">Partager</button>
+                <br>
+                <hr>
+                <div class="separer">
+                    <p class="balise" > Offre(s) : 15 </p> <p class=balise> Date</p>
+                </div>
+
+                <div class="separer_offre">
+                    <div class="offre">
+                        <p>75 €</p>
+                        <p>2024-12-17 10:10:15</p>
+                    </div>
+                    <div class="offre">
+                        <p>75 €</p>
+                        <p>2024-12-17 10:10:15</p>
+                    </div>
+                    <div class="offre">
+                        <p>75 €</p>
+                        <p>2024-12-17 10:10:15</p>
+                    </div>
+                    <div class="offre">
+                        <p>75 €</p>
+                        <p>2024-12-17 10:10:15</p>
+                    </div>
+                </div>
+
+<div>
+    
+Voir toutes les offres 
+                    </div>
 </main> 
 </body>
 
