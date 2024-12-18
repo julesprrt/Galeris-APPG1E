@@ -30,17 +30,16 @@ function HidepasswordToggle2(){
 
 
 async function confpassword (){
-    console.log("ok")
     const passWord = document.getElementById("passwordInput").value
     const confPassWord = document.getElementById("confPasswordInput").value
     
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
 
-    /*if (passWord !== confPassWord) {
+    if (passWord !== confPassWord) {
         alert("Les mots de passe ne correspondent pas !");
         return;
-    }*/
+    }
 
     const raw = JSON.stringify({
         password: passWord,
@@ -61,16 +60,18 @@ async function confpassword (){
         const result = await response.json();
 
         if(statuscode === 200){
-            alert(result.Success)
-           /* document.querySelectorAll('.input-inscription').forEach((item)=> {
+            alert(result.Success);
+            document.querySelectorAll(".inputpassword").forEach(item => {
                 item.value = "";
-            });*/
+            });
+            window.location.href = "https://galeris/Galeris-APPG1E/";
         }
         else {
-            // Erreur
             alert(result.Error);
-            //document.querySelector('.error-message').innerHTML = result.Error;
-    }
+            document.querySelectorAll(".inputpassword").forEach(item => {
+                item.value = "";
+            })
+        }
     }
     catch (error){
         console.error("Erreur lors de la requête :", error);

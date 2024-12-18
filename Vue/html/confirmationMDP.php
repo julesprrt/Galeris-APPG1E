@@ -22,8 +22,8 @@
         <div class="inputContainer">
             <input type="password" id="passwordInput" class="passInput" name="MotDePasse" required>
             <div id="diveye">
-                <img src="../images/eyes.png" alt="Afficher mot de passe" id="showmdp" class="show-password">
-                <img src="../images/eye.png" alt="cacher mot de passe" id="hidemdp" class="hide-password"
+                <img src="../images/eyes.png" alt="Afficher mot de passe" id="showmdp" class="show-password inputpassword">
+                <img src="../images/eye.png" alt="cacher mot de passe" id="hidemdp" class="hide-password inputpassword"
                     style="display : none">
             </div>
         </div>

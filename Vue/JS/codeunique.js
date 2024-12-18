@@ -31,10 +31,13 @@ async function register1() {
     const response = await fetch("https://galeris/Galeris-APPG1E/codeunique", requestOptions)
     const statuscode = response.status;
     const result = await response.json();
-    
-    if(statuscode === 200){
+    console.log(result.Success !== "password")
+    if(statuscode === 200 && result.Success !== "password"){
         alert(result.Success);
         window.location.href = "https://galeris/Galeris-APPG1E/"
+    }
+    else if(statuscode === 200 && result.Success === "password"){
+        window.location.href = "https://galeris/Galeris-APPG1E/confirmationmdp";
     }
     else{ 
         alert(result.Error);
