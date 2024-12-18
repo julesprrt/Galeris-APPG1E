@@ -5,7 +5,7 @@ require_once('Database/Database.php');
 require_once('Controller.php');
 
 //Controller utilisateur
-class   UserController extends Controller
+class UserController extends Controller
 {
 
     public function inscription(Database $db)
@@ -59,17 +59,43 @@ class   UserController extends Controller
         $this->render('motdepasseoublie', ['message' => '']);
     }
 
-    public function code(Database $db)
-    {
+    public function PässwordMail(Database $db){
+        $paramData = file_get_contents("php://input");
+        $data = json_decode($paramData, true);
+        if(isset($data["email"]) && trim($data["email"]) !== ""){
+            $user = new User("","", $data["email"], "","","","");
+            if($user->verifyEmailForPassword($db)){
+                http_response_code(200);
+                echo json_encode(['Success' => "Un code vous à été envoyé sur votre adresse mail pour confirmer votre identité"]);
+            }
+            else{
+                http_response_code(400);
+                echo json_encode(['Error' => "Mail invalide"]);
+            }
+        }
+        else{
+            http_response_code(400);
+            echo json_encode(['Error' => "Entrez votre mail"]);
+        }
+    }
+
+    public function code(Database $db) {
+        session_start();
         $paramData = file_get_contents("php://input");
         $data = json_decode($paramData, true);
         if (isset($data['code'])) {
-            $user = new User(null, null, null, null, null, null, null);
-            $response = $user->verifyCode($data['code'], $db);
-            if ($response == 200) {
+            $user = new User(null,null,null,null,null,null,null);
+            $response = $user->verifyCode($data['code'],$db);
+            $type = $_SESSION["usersessionType"];
+            if ($response == 200 && $type === ""){
                 http_response_code(200);
                 echo json_encode(['Success' => "Inscription reussie"]);
-            } else {
+            }
+            else if($response == 200 && $type === "password"){
+                http_response_code(200);
+                echo json_encode(['Success' => $type]);
+            }
+            else { 
                 http_response_code(400);
                 echo json_encode(['Error' => "Code incorrect"]);
             }
@@ -193,6 +219,7 @@ class   UserController extends Controller
         session_start();
         $code->sendCode($_SESSION["usersessionMail"], $db);
 
+        $code->sendCode($_SESSION["usersessionMail"],$db);
         http_response_code(200);
         echo json_encode(['Success' => "Code envoyé"]);
     }
@@ -203,5 +230,28 @@ class   UserController extends Controller
 
         http_response_code(200);
         echo json_encode(['Success' => "Déconnexion réussie"]);
+    }
+
+    public function confirmationMDP(Database $db){
+        session_start();
+        $paramData = file_get_contents("php://input");
+        $data = json_decode($paramData, true);
+        if (isset($data['password']) && isset($data['confirmPassword'])) {
+            $user = new User(null, null,  null, null, $data['password'], $data['confirmPassword'],null);
+            $result = $user->changePassword($db);
+            if($result === true){
+                http_response_code(200);
+                echo json_encode(["Success" => "Mot de passe modifié"]);
+                session_destroy();
+            }
+            else{
+                http_response_code(400);
+                echo json_encode(["Error" => $result]);
+            }
+            
+        }
+        else{
+            $this->render('confirmationMDP', []);
+        }
     }
 }

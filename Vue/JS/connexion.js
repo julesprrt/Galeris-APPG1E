@@ -1,11 +1,14 @@
 //document.getElementById("togglePassword").addEventListener('click', passwordToggle);
 document.querySelector(".submit-button").addEventListener('click', connexion);
+document.getElementById("showmdp").addEventListener('click', passwordToggle);
+document.getElementById("hidemdp").addEventListener('click', HidepasswordToggle);
 
 //Afficher ou non le mot de passe
 function passwordToggle(){
     const type = document.getElementById("passwordInput").getAttribute("type") === "password" ? "text" : "password";
     document.getElementById("passwordInput").setAttribute("type", type);
     document.getElementById("togglePassword").classList.toggle("show-password");
+    
 }
 
 
@@ -57,4 +60,16 @@ async function connexion() {
             item.value = "";
         })
     }
+}
+
+function passwordToggle(){
+    document.getElementById("passwordInput").setAttribute("type", "text");
+    document.getElementById("showmdp").style.display = 'none';
+    document.getElementById("hidemdp").style.display = ''
+}
+
+function HidepasswordToggle(){
+    document.getElementById("passwordInput"). setAttribute("type", "password");
+    document.getElementById("hidemdp").style.display = 'none';
+    document.getElementById("showmdp").style.display = '';
 }

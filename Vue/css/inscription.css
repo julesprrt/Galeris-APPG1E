@@ -55,6 +55,35 @@
     font-family: Arial, Helvetica, sans-serif;
 }
 
+#showmdp {
+    width: 1.4rem;
+    height: 1.2rem;
+    cursor: pointer;
+  }
+  
+  #hidemdp {
+    width: 1.4rem;
+    height: 1.2rem;
+    cursor: pointer;
+  }
+  
+  #showmdp2 {
+    width: 1.4rem;
+    height: 1.2rem;
+    cursor: pointer;
+  }
+  
+  #hidemdp2 {
+    width: 1.4rem;
+    height: 1.2rem;
+    cursor: pointer;
+  }
+  
+  #diveye {
+    width: 1.4rem;
+    height: 1.2rem;
+  }
+
 .submit-button {
     background-color: #D9A36A;
     border: none;

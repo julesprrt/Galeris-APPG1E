@@ -133,11 +133,6 @@ class User
         $result = $conn->execute_query($sql);
         $conn->close();
         if (mysqli_num_rows($result) > 0) {
-            /*while ($row = $user->fetch_assoc()) {
-                if($row["actif"] === 0){
-                    return false;
-                }
-            }*/
             $user = mysqli_fetch_assoc($result);
             if ($user["actif"] === 0) {
                 session_start();
@@ -171,12 +166,41 @@ class User
         $_SESSION["usersessionID"] = $id;
         $_SESSION["usersessionMail"] = $this->email;
         $_SESSION["usersessionRole"] = "Utilisateur";
+        $_SESSION["usersessionType"] = "";
     }
+
+
+
+
+    public function verifpassword(Database $db)
+    {
+        if ($this->password !== $this->confirmPassword) {
+            return 400;
+        } else if (!$this->passwordComposition($this->password)) {
+            return 401;
+        } else {
+            return $this->savePassword($db);
+        }
+    }
+
+    public function savePassword(Database $db)
+    {
+        $conn = $db->connect();
+        $hashPassword = password_hash($this->password, PASSWORD_DEFAULT);
+        $sql = "UPDATE utilisateur SET mot_de_passe = ? where id_utilisateur = 6";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("s", $hashPassword);
+        $stmt->execute();
+        $stmt->close();
+        $conn->close();
+        return 200;
+    }
+
+
 
     public function verifyCode($code, Database $db)
     {
         try {
-            session_start();
             $conn = $db->connect();
             $sql = "SELECT code FROM code WHERE ID_user = ? AND date_expiration > NOW() ORDER BY date_expiration DESC LIMIT 1";
             $stmt = $conn->prepare($sql);
@@ -221,13 +245,11 @@ class User
     public function getUserById($id, Database $db)
     {
         $conn = $db->connect();
-
         $sql = "SELECT * FROM utilisateur WHERE id_utilisateur = ?";
         $stmt = $conn->prepare($sql);
         $stmt->bind_param('i', $id); // 'i' spécifie le type de données passées à la requête, ici integer. 
         $stmt->execute();
         $result = $stmt->get_result();
-
         if ($result->num_rows > 0) {   // Si aucun utilisateur n'est trouvé, on évite d'accéder à des données inexistantes.
             $user = $result->fetch_assoc(); // Récupère la première ligne des résultats sous forme d'un tableau associatif.
             $stmt->close();
@@ -269,5 +291,49 @@ class User
         $stmt->close();
         $conn->close();
         return $result;
+    }
+
+    public function verifyEmailForPassword(Database $db){
+        session_start();
+        $conn = $db->connect();
+        $sql = "select * from utilisateur where email = ?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param('s', $this->email);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $user = $result->fetch_assoc();
+        $stmt->close();
+        $conn->close();
+        if($result->num_rows > 0){
+            $email = $this->email;
+            $_SESSION["usersessionID"] = $user["id_utilisateur"];
+            $_SESSION["usersessionMail"] = $email;
+            $_SESSION["usersessionType"] = "password";
+            $this->sendCode->sendCode($this->email, $db);
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+    public function changePassword(Database $db){
+        if (!$this->passwordComposition($this->password)) {
+            return "Votre mot de passe doit contenir une minuscule, une majucule, un nombre et un caractère spécial et plus que 8 caractères.";
+        } else if ($this->password !== $this->confirmPassword) {
+            return "Les deux mots de passe ne sont pas identiques";
+        }
+        else{
+            $conn = $db->connect();
+            $sql = "UPDATE utilisateur SET mot_de_passe = ? where id_utilisateur = ?";
+            $stmt = $conn->prepare($sql);
+            $id_user = $_SESSION['usersessionID'];
+            $hashedPassword = password_hash($this->password, PASSWORD_DEFAULT);
+            $stmt->bind_param('si', $hashedPassword,$id_user);
+            $stmt->execute();
+            $stmt->close();
+            $conn->close();
+            return true;
+        }
     }
 }
