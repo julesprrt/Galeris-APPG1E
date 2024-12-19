@@ -26,7 +26,7 @@
             <ul>
                 <li><a href="https://galeris/Galeris-APPG1E/">Accueil</a></li>
                 <li><a href="#">Vente</a></li>
-                <li><a href="#">Exposition</a></li>
+                <li><a href="https://galeris/Galeris-APPG1E/exposes">Exposition</a></li>
                 <li><a href="#">News</a></li>
                 <li><a href="#">Plus</a></li>
             </ul>
@@ -100,7 +100,7 @@
         <section class="droite">
             <section class="profil-section">
                 <div class="profil-info">
-                    <img src="https://via.placeholder.com/50" alt="Photo de profil" class="photo-profil">
+                    <img src="../images/photodeprofil.jpg" alt="Photo de profil" class="photo-profil">
                     <div class="profil-nom">
                         <strong>Vendeur : <?php echo htmlspecialchars($oeuvre['nom']) . " " . htmlspecialchars($oeuvre['prenom']); ?></strong>
                     </div>

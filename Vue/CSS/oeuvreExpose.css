@@ -186,8 +186,15 @@ main {
     margin-bottom: 10px;
 }
 
-.map-Maps iframe {
-    width: 100%;
-    border: none;
-    border-radius: 4px;
+#map {
+    height: 40em;
+}
+
+.leaflet-popup-content-wrapper{
+    opacity: 0.85;
+}
+
+.maplocaux{
+    font-weight:bold; 
+    font-size:1.2em
 }

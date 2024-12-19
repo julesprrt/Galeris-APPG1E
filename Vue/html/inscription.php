@@ -46,7 +46,7 @@
                 <label class="checkbox-container">
                     <input type="checkbox" id="check-inscription">
                     <span class="checkmark"></span>
-                    Je reconnais avoir pris connaissance des <a href="https://galeris/Galeris-APPG1E/cgu">conditions générales d’utilisation</> de Galeris
+                    Je reconnais avoir pris connaissance des <a href="https://galeris/Galeris-APPG1E/cgu" target="_blank">conditions générales d’utilisation</> de Galeris
                 </label>
                 </form>
             </div>

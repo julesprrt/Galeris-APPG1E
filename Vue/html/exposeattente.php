@@ -5,13 +5,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <base href="/Galeris-APPG1E/Vue/">
-    <link rel="stylesheet" href="CSS/oeuvreattente.css">
+    <link rel="stylesheet" href="CSS/oeuvreExpose.css">
     <link rel="stylesheet" href="CSS/header.css">
     <link rel="stylesheet" href="CSS/footer.css">
     <link rel="stylesheet" href="CSS/style.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+     integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+     crossorigin=""/>
     <title><?php echo htmlspecialchars($expose['titre']); ?></title>
     <script src="https://galeris/Galeris-APPG1E/vue/JS/header.js" defer></script>
     <script src="https://galeris/Galeris-APPG1E/vue/JS/exposeattente.js" defer></script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+     integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+     crossorigin=""></script>
     <title>Attente exposé</title>
 </head>
 
@@ -26,7 +32,7 @@
             <ul>
                 <li><a href="https://galeris/Galeris-APPG1E/">Accueil</a></li>
                 <li><a href="#">Vente</a></li>
-                <li><a href="#">Exposition</a></li>
+                <li><a href="https://galeris/Galeris-APPG1E/exposes">Exposition</a></li>
                 <li><a href="#">News</a></li>
                 <li><a href="#">Plus</a></li>
             </ul>
@@ -100,9 +106,9 @@
         <section class="droite">
             <section class="profil-section">
                 <div class="profil-info">
-                    <img src="https://via.placeholder.com/50" alt="Photo de profil" class="photo-profil">
+                    <img src="../images/photodeprofil.jpg" alt="Photo de profil" class="photo-profil">
                     <div class="profil-nom">
-                        <strong>Vendeur : <?php echo htmlspecialchars($expose['nom']) . " " . htmlspecialchars($expose['prenom']); ?></strong>
+                        <strong>Exposition par : <?php echo htmlspecialchars($expose['nom']) . " " . htmlspecialchars($expose['prenom']); ?></strong>
                     </div>
                 </div>
             </section>
@@ -119,6 +125,13 @@
                 <button class="boutton-valider">Accepter</button>
                 <button class="boutton-refuse">Refuser</button>
             </section>
+
+            <div class="adresse">
+                <p><strong>Adresse : 10 Rue de Vanves, 92130 Vanves, France</strong></p>
+            </div>
+            <div id="map">
+
+            </div>
         </section>
     </main>
 

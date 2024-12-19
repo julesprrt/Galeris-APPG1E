@@ -5,12 +5,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <base href="/Galeris-APPG1E/Vue/">
-    <link rel="stylesheet" href="CSS/accueil.css">
+    <link rel="stylesheet" href="CSS/listeattentexpose.css">
     <link rel="stylesheet" href="CSS/header.css">
     <link rel="stylesheet" href="CSS/footer.css">
     <script src="https://galeris/Galeris-APPG1E/vue/JS/header.js" defer></script>
-    <script src="https://galeris/Galeris-APPG1E/vue/JS/accueil.js" defer></script>
-    <title>Accueil</title>
+    <script src="https://galeris/Galeris-APPG1E/vue/JS/listeexposes.js" defer></script>
+    <title>Expositions</title>
 </head>
 
 <body>
@@ -37,11 +37,11 @@
                             <div class="utilisateur"> 👤 </div>
                             <div class="dropdown-child">
                                 <a href="https://galeris/Galeris-APPG1E/profil">Mon profil</a>
-                                <a href="#">Mon solde</a>'.
-                                (($userRole === true)?
-                                    '<a href="https://galeris/Galeris-APPG1E/listeoeuvreattente">Oeuvres en attente</a>
-                                    <a href="https://galeris/Galeris-APPG1E/listeexposeattente">Exposés en attente</a>':"").
-                                '<a id="deconnexion">Déconnexion</a>
+                                <a href="#">Mon solde</a>' .
+                        (($userRole === true) ?
+                            '<a href="https://galeris/Galeris-APPG1E/listeoeuvreattente">Oeuvres en attente</a>
+                                    <a href="https://galeris/Galeris-APPG1E/listeexposeattente">Exposés en attente</a>' : "") .
+                        '<a id="deconnexion">Déconnexion</a>
                             </div>
                            </div>';
                 } else {
@@ -55,39 +55,25 @@
         <!-- Contenu de la page d'accueil -->
         <div class="page-content">
             <div class="contentbase">
-                <?php
-                if ($connectUser === true) {
-                    echo '<a href="https://galeris/Galeris-APPG1E/vente"><button type="button" class="sellproduct">Vendre une oeuvre</button></a> <a href="https://galeris/Galeris-APPG1E/exposition"><button type="button" class="demandeexpo">Demande exposition</button></a>';
-                }
-                ?>
-                <div class="content-description">
-                    <p class="description">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                        exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-                        reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-                        occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-                    </p>
-                </div>
-                <div>
-                    <div class="oeuvres">
+            <h2 class="title-expose">Exposés</h2>
+                    <div class="exposes">
                         <?php
-                        foreach ($oeuvres as $oeuvre) {
-                            echo '<a class = "oeuvreOBJ" style="cursor:pointer" >';
-                            echo '<div class="oeuvre">';
-                            echo '<input type="hidden" id="id_oeuvre_' . $oeuvre["id_oeuvre"] . '" name="id_oeuvre" value="' . $oeuvre["id_oeuvre"] . '">';
-                            echo '<h3>' . $oeuvre["Titre"] . '</h3>';
+                        foreach ($exposes as $expose) {
+                            echo '<a class = "exposeOBJ" style="cursor:pointer" >';
+                            echo '<div class="expose">';
+                            echo '<input type="hidden" id="id_expose_' . $expose["id_exhibition"] . '" name="id_expose" value="' . $expose["id_exhibition"] . '">';
+                            echo '<h3>' . $expose["titre"] . '</h3>';
                             // Ajout de l'image
-                            echo '<img src="../' . $oeuvre["chemin_image"] . '" alt="' . $oeuvre["Titre"] . '" />';
-                            echo '<p>' . $oeuvre["Description"] . '</p>';
+                            echo '<img src="../' . $expose["image_path"] . '" alt="' . $expose["titre"] . '" />';
+                            echo '<p>' . $expose["desc"] . '</p>';
                             echo '</div>';
                             echo '</a>';
                         }
                         ?>
                     </div>
-
-                </div>
-            </div>
         </div>
+        </div>
+
 
         <footer>
 
@@ -124,14 +110,14 @@
 
             <!-- infos footer (aide, contact ...) -->
             <div class="container-footer">
-                <a class="title-footer">Qui sommes-nous ?</a>
+                <a class="title-footer">Qui sommes nous</a>
                 <a class="item-footer" href="#">NovArt</a>
-                <a class="item-footer" href="https://galeris/Galeris-APPG1E/galeris">Galeris</a>
+                <a class="item-footer" href="#">Galeris</a>
             </div>
             <div class="container-footer">
                 <a class="title-footer">Aide</a>
                 <a class="item-footer" href="https://galeris/Galeris-APPG1E/faq">Foire aux questions</a>
-                <a class="item-footer" href="https://galeris/Galeris-APPG1E/contact">Contact</a>
+                <a class="item-footer" href="https://galeris/Galeris-APPG1E/contact">Contacts</a>
             </div>
             <div class="container-footer">
                 <a class="title-footer">Informations légales</a>
