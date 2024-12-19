@@ -92,3 +92,16 @@ async function cancelExpose() {
         return;
     }
 }
+
+var map = L.map('map').setView([48.82, 2.28], 12);
+
+L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19,
+    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+}).addTo(map);
+
+var marker = L.marker([48.82, 2.28]).addTo(map);
+
+L.marker([48.82, 2.28]).addTo(map)
+    .bindPopup('<p class="maplocaux">10 Rue de Vanves, 92130 Vanves,<br> France<br><br>Latitude : 48,82 | Longitude : 2.28</p>')
+    .openPopup();

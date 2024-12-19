@@ -50,6 +50,8 @@ $router->addRoute('/Galeris-APPG1E/attenteexpose', AdminController::class, 'atte
 $router->addRoute('/Galeris-APPG1E/send-verification-code', UserController::class, 'sendVerificationCode');
 $router->addRoute('/Galeris-APPG1E/confirmationmdp', UserController::class, 'confirmationMDP');
 $router->addRoute('/Galeris-APPG1E/verifyMail', UserController::class, 'PässwordMail');
+$router->addRoute('/Galeris-APPG1E/exposes', ExpositionController::class, 'listeExpose');
+$router->addRoute('/Galeris-APPG1E/expose', ExpositionController::class, 'exposeByID');
 
 if ($uri !== null) {
     $router->dispatch($uri); //Appel a la méthode du controller dedié

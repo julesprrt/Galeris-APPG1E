@@ -115,6 +115,21 @@ class Exposition
         return $result;
     }
 
+    public function getExposes(Database $db){
+        $Database = $db->connect();
+        $sql = "SELECT e.*, e.description as 'desc', u.*, COALESCE(oi.image_path, 'Aucune image') as 'image_path' FROM exposition e INNER join utilisateur u on u.id_utilisateur = e.user_id LEFT JOIN ( SELECT id_exposition, MIN(chemin_image) as 'image_path' FROM exposition_images GROUP BY id_exposition ) oi ON oi.id_exposition = e.id_exhibition WHERE e.statut = ? AND e.Date_fin >= ? Order by date_debut";
+        $stmt = $Database->prepare($sql);
+        $accept = "accepte";
+        $now = new DateTime();
+        $now = $now->format('Y-m-d H:i:s');
+        $stmt->bind_param("ss", $accept,$now);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $stmt->close();
+        $Database->close();
+        return $result;
+    }
+
     public function getExposeById($id, Database $db){
         $conn = $db->connect();
         $query = "SELECT e.*, u.*, e.description as 'desc' FROM exposition e INNER JOIN utilisateur u ON u.id_utilisateur = e.user_id WHERE id_exhibition = ?";

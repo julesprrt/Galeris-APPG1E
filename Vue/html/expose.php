@@ -9,10 +9,16 @@
     <link rel="stylesheet" href="CSS/header.css">
     <link rel="stylesheet" href="CSS/footer.css">
     <link rel="stylesheet" href="CSS/style.css">
-    <title><?php echo htmlspecialchars($oeuvre['Titre']); ?></title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+     integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+     crossorigin=""/>
+    <title><?php echo htmlspecialchars($expose['titre']); ?></title>
     <script src="https://galeris/Galeris-APPG1E/vue/JS/header.js" defer></script>
-    <script src="https://galeris/Galeris-APPG1E/vue/JS/oeuvreattente.js" defer></script>
-    <title>Attente Oeuvre</title>
+    <script src="https://galeris/Galeris-APPG1E/vue/JS/expose.js" defer></script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+     integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+     crossorigin=""></script>
+    <title>Exposé</title>
 </head>
 
 <body>
@@ -65,10 +71,10 @@
                     <button class="carousel-fleche gauche cfg">&#10094;</button>
 
                     <div class="art-image">
-                        <?php foreach ($oeuvre['chemin_image'] as $index => $chemin): ?>
+                        <?php foreach ($expose['chemin_image'] as $index => $chemin): ?>
                             <img src="../<?php echo htmlspecialchars($chemin); ?>"
                                 class="carousel-image <?php echo $index === 0 ? 'active' : ''; ?>"
-                                alt="Image de <?php echo htmlspecialchars($oeuvre['Titre']); ?>">
+                                alt="Image de <?php echo htmlspecialchars($expose['titre']); ?>">
                         <?php endforeach; ?>
                     </div>
 
@@ -80,14 +86,14 @@
 
 
                 <div class="art-info">
-                    <h1><?php echo htmlspecialchars($oeuvre['Titre']); ?></h1>
-                    <p><?php echo nl2br(htmlspecialchars($oeuvre['Description'])); ?></p>
+                    <h1><?php echo htmlspecialchars($expose['titre']); ?></h1>
+                    <p><?php echo nl2br(htmlspecialchars($expose['desc'])); ?></p>
                 </div>
             </section>
 
             <!-- Section : Œuvres similaires -->
             <section class="art-image-similaire">
-                <h2>Oeuvres similaires</h2>
+                <h2>Exposes similaires</h2>
                 <div class="tableau-similaire">
                     <img src="..\images\oeuvresim-1.png" alt="Tableau similaire 1">
                     <img src="..\images\oeuvresim-2.jpg" alt="Tableau similaire 2">
@@ -102,24 +108,29 @@
                 <div class="profil-info">
                     <img src="../images/photodeprofil.jpg" alt="Photo de profil" class="photo-profil">
                     <div class="profil-nom">
-                        <strong>Vendeur : <?php echo htmlspecialchars($oeuvre['nom']) . " " . htmlspecialchars($oeuvre['prenom']); ?></strong>
+                        <strong>Exposition par : <?php echo htmlspecialchars($expose['nom']) . " " . htmlspecialchars($expose['prenom']); ?></strong>
                     </div>
                 </div>
             </section>
 
             <section class="info-prix">
                 <div class="prix">
-                    <span><strong>Prix :</strong> € <?php echo number_format($oeuvre['Prix'], 2, ',', ' '); ?></span>
-                    <p><small>Publié le : <?php echo htmlspecialchars($oeuvre['Date_debut']); ?></small></p>
+                    <p><small>Du <?php echo htmlspecialchars($expose['date_debut']); ?> au <?php echo htmlspecialchars($expose['date_fin']); ?></small></p>
                 </div>
             </section>
+            <div class="adresse">
+                <p><strong>Adresse : 10 Rue de Vanves, 92130 Vanves, France</strong></p>
+            </div>
+            <div id="map">
 
-            <!-- Boutons d'actions -->
-            <section class="actions">
-                <input type="hidden" id="id_oeuvre" name="id_oeuvre" value="<?php echo $oeuvre["id_oeuvre"] ?>">
+            </div>
+
+            <!-- Boutons d'actions (modif expo pour l'utilisateur) -->
+            <!--<section class="actions">
+                <input type="hidden" id="id_expose" name="id_expose" value="<?php echo $expose["id_exhibition"] ?>">
                 <button class="boutton-valider">Accepter</button>
                 <button class="boutton-refuse">Refuser</button>
-            </section>
+            </section>-->
         </section>
     </main>
 

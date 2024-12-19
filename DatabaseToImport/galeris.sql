@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : mer. 18 déc. 2024 à 22:24
+-- Généré le : jeu. 19 déc. 2024 à 21:38
 -- Version du serveur : 10.4.32-MariaDB
 -- Version de PHP : 8.2.12
 
@@ -192,9 +192,7 @@ INSERT INTO `code` (`ID`, `code`, `date_expiration`, `ID_user`) VALUES
 (132, 864117, '2024-12-18 21:48:45', 6),
 (133, 778411, '2024-12-18 21:50:27', 6),
 (134, 245747, '2024-12-18 21:50:39', 6),
-(135, 193310, '2024-12-18 21:50:42', 6),
-(140, 881820, '2024-12-18 22:58:23', 34),
-(141, 187856, '2024-12-18 23:06:03', 6);
+(135, 193310, '2024-12-18 21:50:42', 6);
 
 -- --------------------------------------------------------
 
@@ -209,7 +207,7 @@ CREATE TABLE `exposition` (
   `date_debut` datetime NOT NULL,
   `date_fin` datetime NOT NULL,
   `user_id` int(11) DEFAULT NULL,
-  `statut` enum('refuse','en attente de validation','valide') DEFAULT 'en attente de validation'
+  `statut` enum('refuse','en attente de validation','accepte') DEFAULT 'en attente de validation'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -217,12 +215,10 @@ CREATE TABLE `exposition` (
 --
 
 INSERT INTO `exposition` (`id_exhibition`, `titre`, `description`, `date_debut`, `date_fin`, `user_id`, `statut`) VALUES
-(34, 'test expose', 'grandeur nature attaque ah aha ha hahahahahahahahaaaaaaaaa', '2024-12-18 00:00:00', '2024-12-26 00:00:00', 6, 'valide'),
-(35, 'sssss', 'sssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss', '2024-12-18 00:00:00', '2024-12-22 00:00:00', 6, 'valide'),
-(36, 'test 2 photos', 'ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss', '2024-12-20 00:00:00', '2024-12-25 00:00:00', 6, 'valide'),
-(37, 'sssssssssssssssss', 'ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss', '2024-12-18 00:00:00', '2024-12-21 00:00:00', 6, 'valide'),
-(38, 'test carrousel', 'sssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss', '2024-12-18 00:00:00', '2024-12-22 00:00:00', 6, 'valide'),
-(41, 'Mes tableaux', 'Présentation de l\'ensemble de mes tableaux. Tous réalisé à la main.', '2024-12-19 00:00:00', '2024-12-28 00:00:00', 34, 'refuse');
+(42, 'Autoportrait Van Gogh', 'Autoportrait de Van Gogh réalisé par Van Gogh lui même. Portée vers la droite peinture délicate', '2024-12-25 00:00:00', '2024-12-27 00:00:00', 6, 'accepte'),
+(43, 'Exposition Napoléon Bonaparte', 'Tableaux de l\'empereur Napoléon réalisé par les plus grand peintres.', '2024-12-24 00:00:00', '2025-01-02 00:00:00', 6, 'accepte'),
+(44, 'Exposition Van Gogh et Napoléon', 'Van Gogh et Napoléon réunis dans un seul et même endroits dans les locaux de Galeris. Venez voir, vous n\'allez pas être déçu.', '2024-12-22 00:00:00', '2024-12-29 00:00:00', 6, 'accepte'),
+(45, 'test', 'test de l\'affichage de la map de notre local, a faire absolument', '2024-12-21 00:00:00', '2024-12-27 00:00:00', 6, 'en attente de validation');
 
 -- --------------------------------------------------------
 
@@ -241,15 +237,11 @@ CREATE TABLE `exposition_images` (
 --
 
 INSERT INTO `exposition_images` (`id_exposition_images`, `chemin_image`, `id_exposition`) VALUES
-(15, 'ImageBD/exposition/image_6761d9f9e62452.74353461.png', 34),
-(16, 'ImageBD/exposition/image_6761da16b60498.74378273.png', 35),
-(17, 'ImageBD/exposition/image_6761ea1a8f84b0.02751030.png', 36),
-(18, 'ImageBD/exposition/image_6761ea1a971c36.64321837.png', 36),
-(19, 'ImageBD/exposition/image_6761eaae6a12a9.93460094.png', 37),
-(20, 'ImageBD/exposition/image_6761eaae7250e7.76072169.png', 37),
-(21, 'ImageBD/exposition/image_6761eb05e6ae53.85608912.png', 38),
-(22, 'ImageBD/exposition/image_6761eb05eddaa4.19754275.png', 38),
-(25, 'ImageBD/exposition/image_676338540a6804.34040496.jpeg', 41);
+(26, 'ImageBD/exposition/image_67646aea617c94.34761246.jpeg', 42),
+(27, 'ImageBD/exposition/image_67646b63215c10.83545964.jpeg', 43),
+(28, 'ImageBD/exposition/image_67646fc7acd891.98112720.jpeg', 44),
+(29, 'ImageBD/exposition/image_67646fc7af9037.03153777.jpeg', 44),
+(30, 'ImageBD/exposition/image_67647e1e2bd0b0.99199497.jpeg', 45);
 
 -- --------------------------------------------------------
 
@@ -283,8 +275,7 @@ INSERT INTO `oeuvre` (`id_oeuvre`, `Titre`, `Description`, `eco_responsable`, `D
 (36, 'Petite sculpture en pierre ', 'Cette œuvre reflète l’imagination débordante de l’artiste, mêlant subtilement couleurs et textures pour offrir une vision unique. Elle invite le spectateur à explorer un univers captivant, riche en émotions, où chaque détail raconte une histoire et inspire à la contemplation.', 0, '2024-12-16 10:05:33', '2025-01-15 10:05:33', 100.00, 'Vente', 0, 'Emma Lobineau', 27, 3, 'accepte'),
 (37, 'Maison d\'enfance ', 'Cette œuvre reflète l’imagination débordante de l’artiste, mêlant subtilement couleurs et textures pour offrir une vision unique. Elle invite le spectateur à explorer un univers captivant, riche en émotions, où chaque détail raconte une histoire et inspire à la contemplation.', 0, '2024-12-16 10:06:16', '2025-01-15 10:06:16', 75.00, 'Vente', 0, 'Léa Garnier ', 27, 2, 'accepte'),
 (38, 'Naturel', 'Cette œuvre reflète l’imagination débordante de l’artiste, mêlant subtilement couleurs et textures pour offrir une vision unique. Elle invite le spectateur à explorer un univers captivant, riche en émotions, où chaque détail raconte une histoire et inspire à la contemplation.', 0, '2024-12-16 10:06:46', '2025-01-15 10:06:46', 25.00, 'Vente', 0, 'Léa Garnier ', 27, 2, 'accepte'),
-(39, 'l\'art pour tous', 'wow quelle oeuvre achetez ça me fait plaisir. Oh Oh Oh', 0, '2024-12-17 21:00:26', '2025-01-06 21:00:26', 50.00, 'Vente', 0, 'Boner', 6, 2, 'accepte'),
-(42, 'Autoportrait Van Gogh', 'Autoportrait de Van Gogh réalisé par Van Gogh. Qualité supérieur du grand maître.', 0, '2024-12-18 22:01:13', '2025-01-12 22:01:13', 125.00, 'Vente', 0, 'Van Gogh', 34, 2, 'accepte');
+(39, 'l\'art pour tous', 'wow quelle oeuvre achetez ça me fait plaisir. Oh Oh Oh', 0, '2024-12-17 21:00:26', '2025-01-06 21:00:26', 50.00, 'Vente', 0, 'Boner', 6, 2, 'accepte');
 
 -- --------------------------------------------------------
 
@@ -310,8 +301,7 @@ INSERT INTO `oeuvre_images` (`id_photo`, `chemin_image`, `id_oeuvre`) VALUES
 (37, 'ImageBD/Oeuvre/image_675fed888eb3f0.27949733.png', 37),
 (38, 'ImageBD/Oeuvre/image_675feda6e9a416.81705887.png', 38),
 (39, 'ImageBD/Oeuvre/image_6761d85ac85a51.58806564.png', 39),
-(40, 'ImageBD/Oeuvre/image_6761d85ad06e69.37601475.jpeg', 39),
-(43, 'ImageBD/Oeuvre/image_676338192ebc29.47120370.jpeg', 42);
+(40, 'ImageBD/Oeuvre/image_6761d85ad06e69.37601475.jpeg', 39);
 
 -- --------------------------------------------------------
 
@@ -361,8 +351,7 @@ INSERT INTO `utilisateur` (`id_utilisateur`, `nom`, `prenom`, `email`, `descript
 (26, 'abidi', 'bb', 'bb@bb.ss', NULL, NULL, 'Utilisateur', '$2y$10$KQZnwu39LE.hkGPdpo2CFOwjsQcrOA3mdZKwJ5nxvYEfaBk4BydpG', '2024-12-15', 0, 1, 0.00),
 (27, 'Pierret ', 'Jules', 'jupi63473@eleve.isep.fr', NULL, NULL, 'Utilisateur', '$2y$10$mhdJtYwHue6QyA0O8xouH.2oDTekGIC1GEf1M7P5JT3zUqO1AynlK', '2024-12-16', 0, 0, 0.00),
 (28, 'selvaratnam', 'akash', 'larrykala@hotmail.fr', NULL, NULL, 'Utilisateur', '$2y$10$Upt78gmC9Qs5YtLrRAcCz.B4jcDdMbRgu.9UWz7IePanIsZ3nKVHS', '2024-12-18', 0, 1, 0.00),
-(29, 'selvaratnam', 'akash', 'kaladevi549@gmail.sjsj', NULL, NULL, 'Utilisateur', '$2y$10$NgMyTRBFYFM5kKj6H.CEHednJtmRdfYN5M5yt00ZR8ZgduYiTDg3S', '2024-12-18', 0, 0, 0.00),
-(34, 'selvaratnam', 'akash', 'akse63476@eleve.isep.fr', 'Grand artiste', '', 'Utilisateur', '$2y$10$SIMox0O8BXX5tGdaxg89n.MRVy1BBddR9JP3B8m1B7s8Xm9dGSD.O', '2024-12-18', 0, 1, 0.00);
+(29, 'selvaratnam', 'akash', 'kaladevi549@gmail.sjsj', NULL, NULL, 'Utilisateur', '$2y$10$NgMyTRBFYFM5kKj6H.CEHednJtmRdfYN5M5yt00ZR8ZgduYiTDg3S', '2024-12-18', 0, 0, 0.00);
 
 --
 -- Index pour les tables déchargées
@@ -434,13 +423,13 @@ ALTER TABLE `code`
 -- AUTO_INCREMENT pour la table `exposition`
 --
 ALTER TABLE `exposition`
-  MODIFY `id_exhibition` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+  MODIFY `id_exhibition` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 
 --
 -- AUTO_INCREMENT pour la table `exposition_images`
 --
 ALTER TABLE `exposition_images`
-  MODIFY `id_exposition_images` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id_exposition_images` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT pour la table `oeuvre`
