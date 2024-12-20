@@ -36,21 +36,21 @@
             <div class="favori"> <a href="favoris.html">❤️ </a></div>
             <div class="panier"> <a href="panier.html"> 🛒 </a></div>
             <?php
-                if ($connectUser === true) {
-                    echo '<div class="dropdown">
+            if ($connectUser === true) {
+                echo '<div class="dropdown">
                             <div class="utilisateur"> 👤 </div>
                             <div class="dropdown-child">
                                 <a href="https://galeris/Galeris-APPG1E/profil">Mon profil</a>
-                                <a href="#">Mon solde</a>'.
-                                (($userRole === true)?
-                                    '<a href="https://galeris/Galeris-APPG1E/listeoeuvreattente">Oeuvres en attente</a>
-                                    <a href="https://galeris/Galeris-APPG1E/listeexposeattente">Exposés en attente</a>':"").
-                                '<a id="deconnexion">Déconnexion</a>
+                                <a href="#">Mon solde</a>' .
+                    (($userRole === true) ?
+                        '<a href="https://galeris/Galeris-APPG1E/listeoeuvreattente">Oeuvres en attente</a>
+                                    <a href="https://galeris/Galeris-APPG1E/listeexposeattente">Exposés en attente</a>' : "") .
+                    '<a id="deconnexion">Déconnexion</a>
                             </div>
                            </div>';
-                } else {
-                    echo '<div class="utilisateur"><a href="https://galeris/Galeris-APPG1E/connexion"> 👤 </a></div>';
-                }
+            } else {
+                echo '<div class="utilisateur"><a href="https://galeris/Galeris-APPG1E/connexion"> 👤 </a></div>';
+            }
             ?>
 
 
@@ -117,7 +117,7 @@
             <!-- Boutons d'actions -->
             <section class="actions">
                 <button class="boutton-acheter">Acheter</button>
-                <button class="boutton-message-vendeur">Message</button>
+                <button class="boutton-message-vendeur">Ajouter au Panier</button>
             </section>
         </section>
     </main>
