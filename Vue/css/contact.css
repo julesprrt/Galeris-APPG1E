@@ -62,6 +62,7 @@ section#contact .container form input:active {
 
 section#contact .container form textarea {
   width: 100%;
+  background-color: rgba(217, 163, 106, 0.7);
 }
 
 #object-select {
@@ -70,4 +71,9 @@ section#contact .container form textarea {
   border-radius: 5px;
   margin-top: 7px;
   border: none;
+  background-color: rgba(217, 163, 106, 0.7);
+}
+
+.simpleInput {
+  background-color: rgba(217, 163, 106, 0.7);
 }

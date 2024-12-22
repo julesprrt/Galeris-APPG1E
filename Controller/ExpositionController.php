@@ -44,6 +44,14 @@ class ExpositionController extends Controller{
                 http_response_code(406);
                 echo json_encode(['Error'=> "Une image obligatoire"]);
             }
+            else if($result === 407){
+                http_response_code(407);
+                echo json_encode(['Error'=> "Type de fichier autorisé : image"]);
+            }
+            else if($result === 408){
+                http_response_code(408);
+                echo json_encode(['Error'=> "Fichier trop lourd, 1 MB maximum"]);
+            }
         }
         else{
             http_response_code(400);

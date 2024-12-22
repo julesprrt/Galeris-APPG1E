@@ -4,6 +4,16 @@ document.getElementById("upload").addEventListener("change", onFileSelected)
 function onFileSelected(event) {
     var selectedFile = event.target.files[0];
     var reader = new FileReader();
+    
+    if(!selectedFile.type.includes("image")){
+        alert("Type de fichier autorisé : image");
+        return;
+    }
+
+    if(selectedFile.size >= 1000000){
+        alert("Fichier trop lourd, 1 MB maximum");
+        return;
+    }
 
     var imgtag = document.querySelectorAll(".myimage");
     var stop = false;

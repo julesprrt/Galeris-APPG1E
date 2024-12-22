@@ -45,6 +45,12 @@ class Exposition
         if($this->image1 === ""){
             return 406;
         }
+        else if($this->image1 !== "" && !$this->utils->verifyImageAndSize($this->image1) || $this->image2 !== "" && !$this->utils->verifyImageAndSize($this->image2) || $this->image3 !== "" && !$this->utils->verifyImageAndSize($this->image3)){
+            return 407;
+        }
+        else if($this->image1 !== "" && $this->utils->human_filesize( $this->image1) >= 1 || $this->image2 !== "" && $this->utils->human_filesize($this->image2) >= 1 || $this->image3 !== "" && $this->utils->human_filesize($this->image3) >= 1){
+            return 408;
+        }
         $this->saveExposition($db);
         if($this->image1 !== ""){
             $this->SaveExpositionFile($db, $this->image1);
