@@ -25,7 +25,7 @@
         <nav class="menu">
             <ul>
                 <li><a href="https://galeris/Galeris-APPG1E/">Accueil</a></li>
-                <li><a href="#">Vente</a></li>
+                <li><a href="https://galeris/Galeris-APPG1E/ventes">Vente</a></li>
                 <li><a href="https://galeris/Galeris-APPG1E/exposes">Exposition</a></li>
                 <li><a href="#">News</a></li>
                 <li><a href="#">Plus</a></li>
@@ -109,9 +109,10 @@
 
             <section class="info-prix">
                 <div class="prix">
+                   <span><strong>Auteur :</strong> <?php echo htmlspecialchars($oeuvre['auteur']) ?></span><br><br>
                     <span><strong>Prix :</strong> € <?php echo number_format($oeuvre['Prix'], 2, ',', ' '); ?></span>
                     <p><small>Publié le : <?php echo htmlspecialchars($oeuvre['Date_debut']); ?></small></p>
-                </div>
+               </div>
             </section>
 
             <!-- Boutons d'actions -->

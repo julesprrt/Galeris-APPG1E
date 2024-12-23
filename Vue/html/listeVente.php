@@ -1,22 +1,26 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
     <base href="/Galeris-APPG1E/Vue/">
-    <link rel="stylesheet" href="CSS/enchere.css">
     <link rel="stylesheet" href="CSS/style.css">
+    <link rel="stylesheet" href="CSS/listeVente.css">
     <link rel="stylesheet" href="CSS/header.css">
     <link rel="stylesheet" href="CSS/footer.css">
     <script src="https://galeris/Galeris-APPG1E/vue/JS/header.js" defer></script>
+    <script src="https://galeris/Galeris-APPG1E/vue/JS/listeVente.js" defer></script>
+    <title>Accueil</title>
 </head>
 
-<header>
-<div class="logo"> <img src="../images/logo.png"></div>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo"> <a href="https://galeris/Galeris-APPG1E/"><img src="../images/logo.png"></a></div>
             <nav class="menu">
                 <ul>
-                    <li><a href="#">Accueil</a></li>
+                    <li><a href="https://galeris/Galeris-APPG1E/">Accueil</a></li>
                     <li><a href="https://galeris/Galeris-APPG1E/ventes">Vente</a></li>
                     <li><a href="https://galeris/Galeris-APPG1E/exposes">Exposition</a></li>
                     <li><a href="#">News</a></li>
@@ -34,11 +38,11 @@
                             <div class="utilisateur"> 👤 </div>
                             <div class="dropdown-child">
                                 <a href="https://galeris/Galeris-APPG1E/profil">Mon profil</a>
-                                <a href="#">Mon solde</a>'.
-                                (($userRole === true)?
-                                    '<a href="https://galeris/Galeris-APPG1E/listeoeuvreattente">Oeuvres en attente</a>
-                                    <a href="https://galeris/Galeris-APPG1E/listeexposeattente">Exposés en attente</a>':"").
-                                '<a id="deconnexion">Déconnexion</a>
+                                <a href="#">Mon solde</a>' .
+                        (($userRole === true) ?
+                            '<a href="https://galeris/Galeris-APPG1E/listeoeuvreattente">Oeuvres en attente</a>
+                                    <a href="https://galeris/Galeris-APPG1E/listeexposeattente">Exposés en attente</a>' : "") .
+                        '<a id="deconnexion">Déconnexion</a>
                             </div>
                            </div>';
                 } else {
@@ -46,56 +50,82 @@
                 }
                 ?>
 
-
             </div>
-</header>
-<body>
-<div class="conteneur">
+        </header>
 
-    <div class="gauche">
-        
-            <img class="photo" src="../images/oeuvre1-1.jpg" alt="Photo">
-        <p>Cliquez sur l'image pour l'agrandir </p>
+        <!-- Contenu de la page d'accueil -->
+        <div class="page-content">
+            <div class="filter">
+                <p class="title-filter">Oeuvre</p>
+                <div class="Title-container">
+                    <p class="subtitle-filter">Titre oeuvre</p>
+                    <input type="text" id="titre-oeuvre" class="oeuvre-input" placeholder="Nom de l'oeuvre" >
+                </div>
+                <div class="auteur-container">
+                    <p class="subtitle-filter">Auteur oeuvre</p>
+                    <input type="text" id="auteur-oeuvre" class="auteur-input" placeholder="Nom de l'auteur" >
+                </div>
+                <div class="categorie-container">
+                    <p class="subtitle-filter">Catégories</p>
+                    <?php
+                    foreach ($categories as $categorie) {
+                        echo '<div class=categ-liste>';
+                        echo '<input type="checkbox" class="check-categ" checked="true" categorie="' . $categorie["nom"] . '" name="' . $categorie["nom"] . '"/>';
+                        echo '<label for="' . $categorie["nom"] . '">' . $categorie["nom"] . '</label>';
+                        echo '</div>';
+                        echo '<br>';
+                    }
+                    ?>
+                </div>
+                <div class="typevente-container">
+                    <p class="subtitle-filter">Type de vente</p>
+                    <div class="typevente-liste">
+                        <input type="checkbox" class="check-vente" checked="true" vente="Vente" name="Vente"/>
+                        <label for="Vente">Vente</label>
+                    </div>
+                    <br>
+                    <div class="typevente-liste">
+                        <input type="checkbox" class="check-vente" checked="true" vente="Enchere" name="Enchere"/>
+                        <label for="Enchere">Enchere</label>
+                    </div>
+                    <br>
+                </div>
+                <div class="price-container">
+                    <p class="subtitle-filter">Prix</p>
+                    <input id="slider-price" type="range" min="<?php echo $prices["min"]; ?>" max="<?php echo $prices["max"]; ?>" value="<?php echo $prices["max"]; ?>" step="0.1">
+                    <p class="subtitle-filter" id="value-slider">Prix : <?php echo $prices["max"]; ?>  €</p>
+                </div>
+                <div class="div-reinit">
+                    <button id="reinit">Réinitialiser</button>
+                </div>
+            </div>
+            <div class="contentbase">
+                <div>
+                    <div class="oeuvres">
+                        <?php
+                        foreach ($oeuvres as $oeuvre) {
+                            echo '<a class = "oeuvreOBJ" style="cursor:pointer" nomCategorie="' . $oeuvre["Nom_categorie"] . '" prix="' . $oeuvre["Prix"] . '" type="'. $oeuvre["type_vente"] .'" titre="'. $oeuvre["Titre"] .'" auteur="'. $oeuvre["auteur"] .'">';
+                            echo '<div class="oeuvre">';
+                            echo '<input type="hidden" id="id_oeuvre_' . $oeuvre["id_oeuvre"] . '" name="id_oeuvre" value="' . $oeuvre["id_oeuvre"] . '">';
+                            echo '<h3>' . $oeuvre["Titre"] . '</h3>';
+                            echo '<img src="../' . $oeuvre["chemin_image"] . '" alt="' . $oeuvre["Titre"] . '" />';
+                            echo '<p class="temps-restant" data-fin="' . $oeuvre["Date_fin"] . '">' . '</p>';
+                            echo '<p >' . $oeuvre['Prix'] . ' €</p>';
+                            echo '<p>' . substr($oeuvre["Description"], 0, 250) . '...</p>';
+                            echo '</div>';
+                            echo '</a>';
+                        }
+                        ?>
+                    </div>
 
-        <div class=photos>
-             <img  src="../images/oeuvre1-1.jpg" alt="Photo">
-             <img  src="../images/oeuvre1-1.jpg" alt="Photo">
-             <img  src="../images/oeuvre1-1.jpg" alt="Photo">
+                </div>
+            </div>
         </div>
 
+        <footer>
 
-        <div>
-            <h1>À propos de ce lot</h1>
-        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Non aspernatur illo, 
-            culpa maxime dolore, nesciunt repudiandae deserunt, quidem veritatis vel quis 
-            excepturi suscipit quod cupiditate aperiam tempore facere eveniet itaque.
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sapiente ipsam temporibus totam vitae soluta 
-            architecto voluptates! Similique accusamus nemo blanditiis voluptas, laudantium, eius ad quae commodi eum provident, quos ipsa.
-        </p>
-        </div>
-        
-    </div>
-    
-    <div class="droite">
-        <div class="conteneur2">
-            
-
-           
-        </div>
-        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. 
-                Possimus distinctio nemo ea nam explicabo adipisci, numquam ipsa quia 
-                iusto dolorum dicta cum ad quod asperiores sit vel voluptates, impedit ducimus?
-        </p>
-                
-    </div>
-        
-        
-</div>
-</body>
-
-<footer>
- <!-- icones réseaux sociaux -->
- <div class="social-network">
+            <!-- icones réseaux sociaux -->
+            <div class="social-network">
                 <a href="#"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"
                         xmlns="http://www.w3.org/2000/svg">
                         <path
@@ -129,19 +159,22 @@
             <div class="container-footer">
                 <a class="title-footer">Qui sommes-nous ?</a>
                 <a class="item-footer" href="#">NovArt</a>
-                <a class="item-footer" href="#">Galeris</a>
+                <a class="item-footer" href="https://galeris/Galeris-APPG1E/galeris">Galeris</a>
             </div>
             <div class="container-footer">
                 <a class="title-footer">Aide</a>
-                <a class="item-footer" href="#">Foire aux questions</a>
-                <a class="item-footer" href="#">Contact</a>
+                <a class="item-footer" href="https://galeris/Galeris-APPG1E/faq">Foire aux questions</a>
+                <a class="item-footer" href="https://galeris/Galeris-APPG1E/contact">Contact</a>
             </div>
             <div class="container-footer">
                 <a class="title-footer">Informations légales</a>
-                <a class="item-footer" href="#">Conditions d'utilisations</a>
-                <a class="item-footer" href="#">Mentions légales</a>
-            </div>
+                <a class="item-footer" href="https://galeris/Galeris-APPG1E/cgu">Conditions d' utilisations</a>
+                        <a class="item-footer" href="#">Mentions légales</a>
+                    </div>
+
+                    </footer>
+                </div>
+</body>
 
 
-</footer>
 </html>

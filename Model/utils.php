@@ -45,4 +45,23 @@ Class Utils {
         file_put_contents($filename, $base64Image);//enregistrer l'image dans le dossiser ImageBD/Ouevre
         return $filename;
     }
+
+    public function getMaxAndMinPriceFromMySQL($oeuvres){
+        $result = [];
+        foreach ($oeuvres as $oeuvre) {
+            if(!array_key_exists("min", $result)){
+                $result["min"] = $oeuvre["Prix"];
+            }
+            if(!array_key_exists("max", $result)){
+                $result["max"] = $oeuvre["Prix"];
+            }
+            if($result["min"] > $oeuvre["Prix"]){
+                $result["min"] = $oeuvre["Prix"];
+            }
+            if($result["max"] < $oeuvre["Prix"]){
+                $result["max"] = $oeuvre["Prix"];
+            }
+        }
+        return $result;
+    }
 }

@@ -52,6 +52,7 @@ $router->addRoute('/Galeris-APPG1E/confirmationmdp', UserController::class, 'con
 $router->addRoute('/Galeris-APPG1E/verifyMail', UserController::class, 'PässwordMail');
 $router->addRoute('/Galeris-APPG1E/exposes', ExpositionController::class, 'listeExpose');
 $router->addRoute('/Galeris-APPG1E/expose', ExpositionController::class, 'exposeByID');
+$router->addRoute('/Galeris-APPG1E/ventes', VenteController::class, 'listeVente');
 
 if ($uri !== null) {
     $router->dispatch($uri); //Appel a la méthode du controller dedié
