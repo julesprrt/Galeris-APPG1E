@@ -19,6 +19,7 @@ body {
     flex: 0 0 200px; 
     padding: 1em;
     border: 1px solid #ccc; 
+    margin-top: 2.5em;
 }
 
 .title-filter{
