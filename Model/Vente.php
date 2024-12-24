@@ -52,6 +52,12 @@ Class Vente{
         else if($this->nbJours === "" || (int)$this->nbJours > 30) {
             return "Le nombre de jours est obligatoire et doit être inférieur ou égal à 30 jours";
         }
+        else if($this->image1 !== "" && !$this->utils->verifyImageAndSize($this->image1) || $this->image2 !== "" && !$this->utils->verifyImageAndSize($this->image2) || $this->image3 !== "" && !$this->utils->verifyImageAndSize($this->image3)){
+            return "Type de fichier autorisé : image";
+        }
+        else if($this->image1 !== "" && $this->utils->human_filesize($this->image1) >= 1 || $this->image2 !== "" && $this->utils->human_filesize($this->image2) >= 1 || $this->image3 !== "" && $this->utils->human_filesize($this->image3) >= 1){
+            return "Fichier trop lourd, 1 MB maximum";
+        }
         else{
             $this->saveProduct($db);
             if($this->image1 !== ""){

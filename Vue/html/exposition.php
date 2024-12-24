@@ -22,7 +22,7 @@
     <nav class="menu">
       <ul>
         <li><a href="https://galeris/Galeris-APPG1E/">Accueil</a></li>
-        <li><a href="#">Vente</a></li>
+        <li><a href="https://galeris/Galeris-APPG1E/ventes">Vente</a></li>
         <li><a href="https://galeris/Galeris-APPG1E/exposes">Exposition</a></li>
         <li><a href="#">News</a></li>
         <li><a href="#">Plus</a></li>
@@ -67,7 +67,7 @@
         <strong class="strong-title">Vous pouvez ajouter jusqu'à 3 photos</strong>
         <div class="button-center">
           <label class="button" for="upload">📷</label>
-          <input id="upload" type="file">
+          <input id="upload" type="file" accept="image/*">
         </div>
         <div class="button-wrap">
           <img class="myimage" id="image1">

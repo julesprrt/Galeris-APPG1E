@@ -25,7 +25,7 @@
         <nav class="menu">
             <ul>
                 <li><a href="https://galeris/Galeris-APPG1E/">Accueil</a></li>
-                <li><a href="#">Vente</a></li>
+                <li><a href="https://galeris/Galeris-APPG1E/ventes">Vente</a></li>
                 <li><a href="https://galeris/Galeris-APPG1E/exposes">Exposition</a></li>
                 <li><a href="#">News</a></li>
                 <li><a href="#">Plus</a></li>
@@ -109,15 +109,17 @@
 
             <section class="info-prix">
                 <div class="prix">
-                    <span><strong>Prix :</strong> € <?php echo number_format($oeuvre['Prix'], 2, ',', ' '); ?></span>
+                    <span><strong>Auteur :</strong> <?php echo htmlspecialchars($oeuvre['auteur']) ?></span><br><br>
+                    <span><strong>Prix :</strong> <?php echo number_format($oeuvre['Prix'], 2, ',', ' '); ?> € </span>
                     <p><small>Publié le : <?php echo htmlspecialchars($oeuvre['Date_debut']); ?></small></p>
+                    <p><small class="temps-restant" data-fin="<?php echo $oeuvre["Date_fin"]  ?>">Temps restant : </small></p>
                 </div>
             </section>
 
             <!-- Boutons d'actions -->
             <section class="actions">
-                <button class="boutton-acheter">Acheter</button>
                 <button class="boutton-message-vendeur">Ajouter au Panier</button>
+                <button class="boutton-acheter">Ajouter au favoris</button>
             </section>
         </section>
     </main>

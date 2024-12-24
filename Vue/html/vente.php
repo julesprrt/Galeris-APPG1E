@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Modification de profil</title>
+    <title>Vente</title>
     <base href="/Galeris-APPG1E/Vue/">
     <link rel="stylesheet" href="CSS/vente.css">
     <link rel="stylesheet" href="CSS/header.css">
@@ -22,7 +22,7 @@
         <nav class="menu">
             <ul>
                 <li><a href="https://galeris/Galeris-APPG1E/">Accueil</a></li>
-                <li><a href="#">Vente</a></li>
+                <li><a href="https://galeris/Galeris-APPG1E/ventes">Vente</a></li>
                 <li><a href="https://galeris/Galeris-APPG1E/exposes">Exposition</a></li>
                 <li><a href="#">News</a></li>
                 <li><a href="#">Plus</a></li>
@@ -63,7 +63,7 @@
                     </div>
                     <div class="button-center">
                         <label class="button" for="upload">📷</label>
-                        <input id="upload" type="file">
+                        <input id="upload" type="file" accept="image/*">
                     </div>
                     <div class="button-wrap">
                         <img class="myimage" id="image1" height="100">

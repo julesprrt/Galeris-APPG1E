@@ -20,7 +20,7 @@
             <nav class="menu">
                 <ul>
                     <li><a href="https://galeris/Galeris-APPG1E/">Accueil</a></li>
-                    <li><a href="#">Vente</a></li>
+                    <li><a href="https://galeris/Galeris-APPG1E/ventes">Vente</a></li>
                     <li><a href="https://galeris/Galeris-APPG1E/exposes">Exposition</a></li>
                     <li><a href="#">News</a></li>
                     <li><a href="#">Plus</a></li>
@@ -76,9 +76,10 @@
                             echo '<div class="oeuvre">';
                             echo '<input type="hidden" id="id_oeuvre_' . $oeuvre["id_oeuvre"] . '" name="id_oeuvre" value="' . $oeuvre["id_oeuvre"] . '">';
                             echo '<h3>' . $oeuvre["Titre"] . '</h3>';
-                            // Ajout de l'image
                             echo '<img src="../' . $oeuvre["chemin_image"] . '" alt="' . $oeuvre["Titre"] . '" />';
-                            echo '<p>' . $oeuvre["Description"] . '</p>';
+                            echo '<p class="temps-restant" data-fin="' . $oeuvre["Date_fin"] . '">' . '</p>';
+                            echo '<p >'. $oeuvre['Prix'] .' €</p>';
+                            echo '<p>' . substr($oeuvre["Description"],0,250) . '(...)</p>';
                             echo '</div>';
                             echo '</a>';
                         }

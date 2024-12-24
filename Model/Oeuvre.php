@@ -93,22 +93,21 @@ class Oeuvre
     public static function getAllOeuvre(Database $db)
     {
         $conn = $db->connect();
-        $query = " SELECT o.*, oi.chemin_image
+        $query = " SELECT o.*,c.Nom_categorie, oi.chemin_image
         FROM oeuvre o
         INNER JOIN oeuvre_images oi ON o.id_oeuvre = oi.id_oeuvre
-        WHERE o.est_vendu = ? AND o.statut = ?
+        Inner join categorie c on c.id_categorie = o.id_categorie
+        WHERE o.est_vendu = ? AND o.statut = ? AND o.Date_fin >= ?
         GROUP BY o.id_oeuvre
-        ORDER BY o.Date_fin DESC
+        ORDER BY o.Date_fin 
         LIMIT 10
     ";
-
-
-
-
         $stmt = $conn->prepare($query);
-        $est_vendu = "accepte";
-        $accept = "en";
-        $stmt->bind_param('is', $est_vendu, $est_vendu);
+        $est_vendu = 0;
+        $accept = "accepte";
+        $now = new DateTime();
+        $now = $now->format('Y-m-d H:i:s');
+        $stmt->bind_param('iss', $est_vendu, $accept, $now);
         $stmt->execute();
 
         $result = $stmt->get_result();

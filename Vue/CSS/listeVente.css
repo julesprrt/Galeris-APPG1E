@@ -1,0 +1,190 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    height: 100%;
+}
+.page-content {
+    display: flex; /* Active Flexbox */
+    align-items: flex-start; /* Aligne les éléments au début verticalement */
+    gap: 20px; /* Espacement entre le filtre et les œuvres */
+    width: 100%; /* Assure que le conteneur prend toute la largeur */
+}
+
+.contentbase {
+    flex: 1; /* Prend l'espace restant */
+    display: flex; /* Active Flexbox pour le contenu interne */
+    justify-content: flex-start; /* Aligne les œuvres à gauche par rapport à leur conteneur */
+}
+
+.filter {
+    flex: 0 0 200px; 
+    padding: 1em;
+    border: 1px solid #ccc; 
+    margin-top: 1.5em;
+    padding-right: 2.5em;
+    margin-bottom: 2em;
+}
+
+#tri-select{
+    padding: 0.3em 1.9em;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.title-filter{
+    padding-bottom: 1em;
+    font-weight: bold;
+    font-size: 24;
+}
+
+.subtitle-filter {
+    font-weight: bold;
+    font-size: 16;
+}
+
+
+.Tri-container {
+    border: 1px solid #ccc;
+    padding : 0.5em;
+}
+
+.Title-container {
+    border: 1px solid #ccc;
+    padding : 0.5em;
+    margin-top: 0.5em;
+}
+
+.oeuvre-input {
+    padding: 0.3em 0.5em;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.auteur-input {
+    padding: 0.3em 0.5em;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.auteur-container {
+    border: 1px solid #ccc;
+    padding : 0.5em;
+    margin-top: 0.5em;
+}
+
+
+.categorie-container {
+    border: 1px solid #ccc;
+    padding : 0.5em;
+    margin-top: 0.5em;
+}
+
+.price-container {
+    border: 1px solid #ccc;
+    padding : 0.5em;
+    margin-top: 0.5em;
+}
+
+
+.container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.categ-liste{
+    padding-top: 0.02em;
+}
+
+.typevente-liste{
+    padding-top: 0.02em;
+}
+
+.typevente-container{
+    border: 1px solid #ccc;
+    padding : 0.5em;
+    margin-top: 0.5em;
+}
+
+/* Section principale des œuvres */
+
+
+/* Carte individuelle pour chaque œuvre */
+
+.oeuvres {
+    display: flex; /* Flexbox pour aligner les cartes */
+    flex-wrap: wrap; /* Les cartes passent à la ligne si nécessaire */
+    justify-content: flex-start; /* Aligne les œuvres vers la droite */
+    gap: 20px; /* Espacement entre les cartes */
+    padding: 2em 5%; /* Espacement autour */
+    width: 100%;
+}
+
+.oeuvre {
+    background-color: #fff;
+    /* Fond blanc pour la carte */
+    border: 1px solid #ddd;
+    /* Bordure fine grise */
+    border-radius: 8px;
+    /* Coins arrondis */
+    width: 250px;
+    /* Taille fixe pour uniformité */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    /* Ombre légère */
+    transition: transform 0.3s ease-in-out;
+    /* Animation au survol */
+    text-align: center;
+    /* Contenu centré */
+    overflow: hidden;
+    /* Coupe le contenu dépassant */
+}
+
+.oeuvre:hover {
+    transform: translateY(-5px);
+    /* Effet d'élévation au survol */
+}
+
+/* Image des œuvres */
+.oeuvre img {
+    width: 100%;
+    /* Image responsive */
+    height: 160px;
+    /* Hauteur fixe pour uniformité */
+    object-fit: cover;
+    /* Ajustement sans déformation */
+    border-bottom: 1px solid #ddd;
+    /* Séparation visuelle */
+}
+
+/* Titre des œuvres */
+.oeuvre h3 {
+    font-size: 1.1em;
+    margin: 0.5em 0;
+    color: #333;
+    /* Couleur sobre */
+}
+
+/* Description des œuvres */
+.oeuvre p {
+    font-size: 0.9em;
+    color: #666;
+    /* Texte plus clair */
+    padding: 0em 0.5em 0.5em 0.5em;
+}
+
+#reinit{
+    background-color: #D9A36A;
+    padding: 0.7em;
+    border-radius: 0.2em;
+    border: none;
+    align-items: right;
+}
+
+.div-reinit {
+    padding-top: 1em;
+    display: flex;
+    justify-content: center;
+}
+
+#reinit:hover {
+    opacity: 0.9;
+}

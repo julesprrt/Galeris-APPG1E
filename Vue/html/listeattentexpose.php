@@ -20,7 +20,7 @@
             <nav class="menu">
                 <ul>
                     <li><a href="https://galeris/Galeris-APPG1E/">Accueil</a></li>
-                    <li><a href="#">Vente</a></li>
+                    <li><a href="https://galeris/Galeris-APPG1E/ventes">Vente</a></li>
                     <li><a href="https://galeris/Galeris-APPG1E/exposes">Exposition</a></li>
                     <li><a href="#">News</a></li>
                     <li><a href="#">Plus</a></li>
@@ -65,7 +65,7 @@
                             echo '<h3>' . $expose["titre"] . '</h3>';
                             // Ajout de l'image
                             echo '<img src="../' . $expose["image_path"] . '" alt="' . $expose["titre"] . '" />';
-                            echo '<p>' . $expose["desc"] . '</p>';
+                            echo '<p>' . substr($expose["desc"], 0, 250) . '(...)</p>';
                             echo '</div>';
                             echo '</a>';
                         }

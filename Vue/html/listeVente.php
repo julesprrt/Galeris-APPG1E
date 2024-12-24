@@ -5,12 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <base href="/Galeris-APPG1E/Vue/">
-    <link rel="stylesheet" href="CSS/listeattenteoeuvre.css">
+    <link rel="stylesheet" href="CSS/style.css">
+    <link rel="stylesheet" href="CSS/listeVente.css">
     <link rel="stylesheet" href="CSS/header.css">
     <link rel="stylesheet" href="CSS/footer.css">
     <script src="https://galeris/Galeris-APPG1E/vue/JS/header.js" defer></script>
-    <script src="https://galeris/Galeris-APPG1E/vue/JS/listeattenteoeuvre.js" defer></script>
-    <title>Liste des oeuvres en liste d'attente</title>
+    <script src="https://galeris/Galeris-APPG1E/vue/JS/listeVente.js" defer></script>
+    <title>Accueil</title>
 </head>
 
 <body>
@@ -54,26 +55,80 @@
 
         <!-- Contenu de la page d'accueil -->
         <div class="page-content">
+            <div class="filter">
+                <p class="title-filter">Oeuvre</p>
+                <div class="Tri-container">
+                    <p class="subtitle-filter">Trier par</p>
+                    <select name="tri" id="tri-select" required>
+                    <option value="date">Bientôt terminées</option>
+                    <option value="prixmin">Prix minimum</option>
+                    <option value="prixdec">Prix décroissants</option>
+                </select>
+                </div>
+                <div class="Title-container">
+                    <p class="subtitle-filter">Titre oeuvre</p>
+                    <input type="text" id="titre-oeuvre" class="oeuvre-input" placeholder="Nom de l'oeuvre" >
+                </div>
+                <div class="auteur-container">
+                    <p class="subtitle-filter">Auteur oeuvre</p>
+                    <input type="text" id="auteur-oeuvre" class="auteur-input" placeholder="Nom de l'auteur" >
+                </div>
+                <div class="categorie-container">
+                    <p class="subtitle-filter">Catégories</p>
+                    <?php
+                    foreach ($categories as $categorie) {
+                        echo '<div class=categ-liste>';
+                        echo '<input type="checkbox" class="check-categ" checked="true" categorie="' . $categorie["nom"] . '" name="' . $categorie["nom"] . '"/>';
+                        echo '<label for="' . $categorie["nom"] . '">' . $categorie["nom"] . '</label>';
+                        echo '</div>';
+                        echo '<br>';
+                    }
+                    ?>
+                </div>
+                <div class="typevente-container">
+                    <p class="subtitle-filter">Type de vente</p>
+                    <div class="typevente-liste">
+                        <input type="checkbox" class="check-vente" checked="true" vente="Vente" name="Vente"/>
+                        <label for="Vente">Vente</label>
+                    </div>
+                    <br>
+                    <div class="typevente-liste">
+                        <input type="checkbox" class="check-vente" checked="true" vente="Enchere" name="Enchere"/>
+                        <label for="Enchere">Enchere</label>
+                    </div>
+                    <br>
+                </div>
+                <div class="price-container">
+                    <p class="subtitle-filter">Prix</p>
+                    <input id="slider-price" type="range" min="<?php echo $prices["min"]; ?>" max="<?php echo $prices["max"]; ?>" value="<?php echo $prices["max"]; ?>" step="0.1">
+                    <p class="subtitle-filter" id="value-slider">Prix : <?php echo $prices["max"]; ?>  €</p>
+                </div>
+                <div class="div-reinit">
+                    <button id="reinit">Réinitialiser</button>
+                </div>
+            </div>
             <div class="contentbase">
-            <h2 class="title-oeuvre">Liste des oeuvres d'arts en attente</h2>
+                <div>
                     <div class="oeuvres">
                         <?php
                         foreach ($oeuvres as $oeuvre) {
-                            echo '<a class = "oeuvreOBJ" style="cursor:pointer" >';
+                            echo '<a class = "oeuvreOBJ" style="cursor:pointer" nomCategorie="' . $oeuvre["Nom_categorie"] . '" prix="' . $oeuvre["Prix"] . '" type="'. $oeuvre["type_vente"] .'" titre="'. $oeuvre["Titre"] .'" auteur="'. $oeuvre["auteur"] .'" datefin="'. $oeuvre["Date_fin"] .'"">';
                             echo '<div class="oeuvre">';
                             echo '<input type="hidden" id="id_oeuvre_' . $oeuvre["id_oeuvre"] . '" name="id_oeuvre" value="' . $oeuvre["id_oeuvre"] . '">';
                             echo '<h3>' . $oeuvre["Titre"] . '</h3>';
-                            // Ajout de l'image
-                            echo '<img src="../' . $oeuvre["image_path"] . '" alt="' . $oeuvre["Titre"] . '" />';
+                            echo '<img src="../' . $oeuvre["chemin_image"] . '" alt="' . $oeuvre["Titre"] . '" />';
+                            echo '<p class="temps-restant" data-fin="' . $oeuvre["Date_fin"] . '">' . '</p>';
+                            echo '<p >' . $oeuvre['Prix'] . ' €</p>';
                             echo '<p>' . substr($oeuvre["Description"], 0, 250) . '(...)</p>';
                             echo '</div>';
                             echo '</a>';
                         }
                         ?>
                     </div>
-        </div>
-        </div>
 
+                </div>
+            </div>
+        </div>
 
         <footer>
 
@@ -110,23 +165,23 @@
 
             <!-- infos footer (aide, contact ...) -->
             <div class="container-footer">
-                <a class="title-footer">Qui sommes nous</a>
+                <a class="title-footer">Qui sommes-nous ?</a>
                 <a class="item-footer" href="#">NovArt</a>
-                <a class="item-footer" href="#">Galeris</a>
+                <a class="item-footer" href="https://galeris/Galeris-APPG1E/galeris">Galeris</a>
             </div>
             <div class="container-footer">
                 <a class="title-footer">Aide</a>
                 <a class="item-footer" href="https://galeris/Galeris-APPG1E/faq">Foire aux questions</a>
-                <a class="item-footer" href="https://galeris/Galeris-APPG1E/contact">Contacts</a>
+                <a class="item-footer" href="https://galeris/Galeris-APPG1E/contact">Contact</a>
             </div>
             <div class="container-footer">
                 <a class="title-footer">Informations légales</a>
-                <a class="item-footer" href="https://galeris/Galeris-APPG1E/cgu">Conditions d'utilisations</a>
-                <a class="item-footer" href="#">Mentions légales</a>
-            </div>
+                <a class="item-footer" href="https://galeris/Galeris-APPG1E/cgu">Conditions d' utilisations</a>
+                        <a class="item-footer" href="#">Mentions légales</a>
+                    </div>
 
-        </footer>
-    </div>
+                    </footer>
+                </div>
 </body>
 
 
