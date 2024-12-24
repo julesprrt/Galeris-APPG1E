@@ -57,21 +57,6 @@ body {
     
 }
 
-.thumbnail-gallery {
-    display: flex;
-    gap: 10px;
-    justify-content: center;
-    margin-bottom: 20px;
-}
-
-.thumbnail-gallery img {
-    width: 80px;
-    height: auto;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
 .description h2 {
     font-size: 20px;
     margin-bottom: 10px;
@@ -150,4 +135,36 @@ body {
     justify-content: center
 
 
+}
+
+
+.carousel-container {
+    position: relative;
+    width: 100%;
+    max-width: 25em;
+    margin: 0 auto;
+}
+
+.carousel-fleche {
+    position: absolute;
+    top: 50%;
+    background: none;
+    border: none;
+    font-size: 1.4em;
+    padding: 0.8em;
+    cursor: pointer;
+    color: #333;
+    transform: translateY(-50%);
+    /* Box autour de la flèche, à changer peut-être. */
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.carousel-fleche.gauche {
+    left: -3.5em;
+}
+
+.carousel-fleche.droite {
+    right: -3.5em;
 }

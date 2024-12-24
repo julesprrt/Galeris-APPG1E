@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="CSS/header.css">
     <link rel="stylesheet" href="CSS/footer.css">
     <link rel="stylesheet" href="CSS/style.css">
+    <script src="https://galeris/Galeris-APPG1E/vue/JS/achat.js" defer></script>
 </head>
 
 <header>
@@ -38,31 +39,22 @@
             <h1><?php echo htmlspecialchars($oeuvre['Titre']); ?></h1>
             <p>Lot : <?= htmlspecialchars($oeuvre['id_oeuvre']) ?> | <?= htmlspecialchars($oeuvre['auteur'])?> </p>
             <div class="main-image">
+            <div class="carousel-container">
+                    <!-- Flèche gauche -->
+                    <button class="carousel-fleche gauche cfg">&#10094;</button>
+
+                    <!-- Flèche droite -->
+                    <button class="carousel-fleche droite cfd">&#10095;</button>
+                </div>
                 
             <?php foreach ($oeuvre['chemin_image'] as $index => $chemin): ?>
                             <img src="../<?php echo htmlspecialchars($chemin); ?>"
                                 alt="Image de <?php echo htmlspecialchars($oeuvre['Titre']); ?>">
                         <?php endforeach; ?>
-
             </div>
-            <p class="image-caption">Cliquez sur l'image pour l'agrandir</p>
             
-            <div class="thumbnail-gallery">
-                    <?php foreach ($oeuvre['chemin_image'] as $index => $chemin): ?>
-                        <img src="../<?php echo htmlspecialchars($chemin); ?>"
-                            alt="Image de <?php echo htmlspecialchars($oeuvre['Titre']); ?>">
-                    <?php endforeach; ?>
+            
 
-                    <?php foreach ($oeuvre['chemin_image'] as $index => $chemin): ?>
-                        <img src="../<?php echo htmlspecialchars($chemin); ?>"
-                            alt="Image de <?php echo htmlspecialchars($oeuvre['Titre']); ?>">
-                    <?php endforeach; ?>
-
-                    <?php foreach ($oeuvre['chemin_image'] as $index => $chemin): ?>
-                        <img src="../<?php echo htmlspecialchars($chemin); ?>"
-                            alt="Image de <?php echo htmlspecialchars($oeuvre['Titre']); ?>">
-                    <?php endforeach; ?>
-            </div>
 
             <div class="description">
                 <h2>À propos de ce lot</h2>
