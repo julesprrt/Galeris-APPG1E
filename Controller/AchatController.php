@@ -9,7 +9,7 @@ class AchatController extends Controller
     public function achat(Database $db)
     {
         // Récupérer l'œuvre depuis le modèle
-        $oeuvre = new Oeuvre($Titre = null, $Description = null, $eco_responsable = null, $Date_debut = null, $Date_fin = null, $Prix = null, $type_vente = null, $est_vendu = null, $auteur = null, $id_utilisateur = null, $id_categorie = null, $status = null, $nomvendeur = null, $prenomvendeur = null, $chemin_image = null);
+        $oeuvre = new Oeuvre($Titre = null, $Description = null, $eco_responsable = null, $Date_debut = null, $Date_fin = null, $Prix = null, $type_vente = null, $est_vendu = null, $auteur = null, $id_utilisateur = null, $id_categorie = null, $status = null, $nomvendeur = null, $prenomvendeur = null, $chemin_image = null, $prix_actuel = null, $id_offreur = null);
         session_start();
         $id =  $_SESSION['oeuvre_id'];
         $oeuvreid = $oeuvre->getOeuvreById($id, $db);
@@ -40,7 +40,7 @@ class AchatController extends Controller
         if (isset($data['id'])) {
             session_start();
             $_SESSION['oeuvre_id'] = (int)$data['id'];
-            $oeuvre = new Oeuvre($Titre = null, $Description = null, $eco_responsable = null, $Date_debut = null, $Date_fin = null, $Prix = null, $type_vente = null, $est_vendu = null, $auteur = null, $id_utilisateur = null, $id_categorie = null, $status = null, $nomvendeur = null, $prenomvendeur = null, $chemin_image = null);
+            $oeuvre = new Oeuvre($Titre = null, $Description = null, $eco_responsable = null, $Date_debut = null, $Date_fin = null, $Prix = null, $type_vente = null, $est_vendu = null, $auteur = null, $id_utilisateur = null, $id_categorie = null, $status = null, $nomvendeur = null, $prenomvendeur = null, $chemin_image = null, $prix_actuel = null, $id_offreur = null);
             $oeuvreid = $oeuvre->getOeuvreById((int)$data['id'], $db);
             $_SESSION['oeuvre_typevente']= $oeuvreid['type_vente'];
             http_response_code(200);
@@ -50,23 +50,5 @@ class AchatController extends Controller
         }
     }
  
-    public function enchere(Database $db)
-        {
-            // Récupérer l'œuvre depuis le modèle
-            $oeuvre = new Oeuvre($Titre = null, $Description = null, $eco_responsable = null, $Date_debut = null, $Date_fin = null, $Prix = null, $type_vente = null, $est_vendu = null, $auteur = null, $id_utilisateur = null, $id_categorie = null, $status = null, $nomvendeur = null, $prenomvendeur = null, $chemin_image = null);
-            session_start();
-            $id =  $_SESSION['oeuvre_id'];
-            $oeuvreid = $oeuvre->getOeuvreById($id, $db);
-
-            // Vérifier si l'œuvre existe
-            if (!$oeuvre) {
-                http_response_code(404);
-                echo "L'œuvre demandée est introuvable.";
-                header('Location: /Galeris-APPG1E/accueil');
-                exit();
-            }
-            $this->render('enchere', ['oeuvre' => $oeuvreid]);
-            exit();  
-        }}
-
+}
 

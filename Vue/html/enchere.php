@@ -89,6 +89,8 @@
                     <span><strong>Prix :</strong> € <?php echo number_format($oeuvre['Prix'], 2, ',', ' '); ?></span>
                     <p><small>Publié le : <?php echo htmlspecialchars($oeuvre['Date_debut']); ?></small></p>
                     <p><small>Ferme le : <?php echo htmlspecialchars($oeuvre['Date_fin']); ?></small></p>
+                    <p><small>Prix actuel : <?php echo htmlspecialchars($oeuvre['prix_actuel']); ?></small> Offreur : <?php echo htmlspecialchars($oeuvre['id_offreur'])?></p>
+                    
                 </div>
             </section>
 

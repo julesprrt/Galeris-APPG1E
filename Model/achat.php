@@ -18,6 +18,8 @@ class Oeuvre
     private $nomvendeur;
     private $prenomvendeur;
     private $chemin_image = [];
+    private $prix_actuel;
+    private $id_offreur;
 
     // Constructeur pour initialiser les valeurs
     public function __construct(
@@ -35,7 +37,10 @@ class Oeuvre
         $status,
         $nomvendeur,
         $prenomvendeur,
-        $chemin_image
+        $chemin_image,
+        $prix_actuel,
+        $id_offreur
+
 
     ) {
         $this->Titre = $Titre;
@@ -53,12 +58,14 @@ class Oeuvre
         $this->nomvendeur = $nomvendeur;
         $this->prenomvendeur = $prenomvendeur;
         $this->chemin_image = $chemin_image;
+        $this->prix_actuel = $prix_actuel;
+        $this->id_offreur = $id_offreur;
     }
     // Méthode pour récupérer une œuvre par son ID
     public static function getOeuvreById($id, Database $db)
     {
         $conn = $db->connect();
-        $query = "SELECT * FROM oeuvre o INNER JOIN utilisateur u ON u.id_utilisateur = o.id_utilisateur WHERE id_oeuvre =  ?";
+        $query = "SELECT * FROM oeuvre o INNER JOIN utilisateur u ON u.id_utilisateur = o.id_utilisateur INNER JOIN enchere e on e.id_oeuvre = o.id_oeuvre  WHERE o.id_oeuvre = ?";
 
         $stmt = $conn->prepare($query);
         $stmt->bind_param('i', $id);

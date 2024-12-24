@@ -22,7 +22,7 @@ $router->addRoute('/Galeris-APPG1E/inscription', UserController::class, action: 
 $router->addRoute('/Galeris-APPG1E/connexion', UserController::class, 'connexion');
 $router->addRoute('/Galeris-APPG1E/contact', ContactController::class, 'contact');
 $router->addRoute('/Galeris-APPG1E/achat', AchatController::class, 'achat');
-$router->addRoute('/Galeris-APPG1E/enchere', AchatController::class, 'enchere');
+$router->addRoute('/Galeris-APPG1E/enchere', AchatController::class, 'achat');
 $router->addRoute('/Galeris-APPG1E/faq', FAQController::class, 'faq');
 $router->addRoute('/Galeris-APPG1E/cgu', CGUController::class, 'cgu');
 $router->addRoute('/Galeris-APPG1E/achat', AchatController::class, 'achat');

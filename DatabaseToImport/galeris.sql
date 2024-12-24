@@ -2,8 +2,8 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Hôte : 127.0.0.1
--- Généré le : lun. 16 déc. 2024 à 10:35
+-- HÃ´te : 127.0.0.1:3306
+-- GÃ©nÃ©rÃ© le : mar. 24 dÃ©c. 2024 Ã  14:56
 -- Version du serveur : 10.4.32-MariaDB
 -- Version de PHP : 8.2.12
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de données : `galeris`
+-- Base de donnÃ©es : `galeris`
 --
 
 -- --------------------------------------------------------
@@ -33,7 +33,7 @@ CREATE TABLE `categorie` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Déchargement des données de la table `categorie`
+-- DÃ©chargement des donnÃ©es de la table `categorie`
 --
 
 INSERT INTO `categorie` (`id_categorie`, `Nom_categorie`) VALUES
@@ -54,7 +54,7 @@ CREATE TABLE `code` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Déchargement des données de la table `code`
+-- DÃ©chargement des donnÃ©es de la table `code`
 --
 
 INSERT INTO `code` (`ID`, `code`, `date_expiration`, `ID_user`) VALUES
@@ -163,6 +163,23 @@ INSERT INTO `code` (`ID`, `code`, `date_expiration`, `ID_user`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `enchere`
+--
+
+CREATE TABLE `enchere` (
+  `id_enchere` int(11) NOT NULL,
+  `id_oeuvre` int(11) NOT NULL,
+  `prix_depart` decimal(10,2) NOT NULL,
+  `prix_actuel` decimal(10,2) DEFAULT NULL,
+  `id_offreur` int(11) DEFAULT NULL,
+  `date_debut` datetime NOT NULL,
+  `date_fin` datetime NOT NULL,
+  `statut` enum('ouverte','fermÃ©e') NOT NULL DEFAULT 'ouverte'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `exposition`
 --
 
@@ -177,7 +194,7 @@ CREATE TABLE `exposition` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Déchargement des données de la table `exposition`
+-- DÃ©chargement des donnÃ©es de la table `exposition`
 --
 
 INSERT INTO `exposition` (`id_exhibition`, `titre`, `description`, `date_debut`, `date_fin`, `user_id`, `statut`) VALUES
@@ -222,7 +239,7 @@ CREATE TABLE `exposition_images` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Déchargement des données de la table `exposition_images`
+-- DÃ©chargement des donnÃ©es de la table `exposition_images`
 --
 
 INSERT INTO `exposition_images` (`id_exposition_images`, `chemin_image`, `id_exposition`) VALUES
@@ -258,15 +275,16 @@ CREATE TABLE `oeuvre` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Déchargement des données de la table `oeuvre`
+-- DÃ©chargement des donnÃ©es de la table `oeuvre`
 --
 
 INSERT INTO `oeuvre` (`id_oeuvre`, `Titre`, `Description`, `eco_responsable`, `Date_debut`, `Date_fin`, `Prix`, `type_vente`, `est_vendu`, `auteur`, `id_utilisateur`, `id_categorie`, `statut`) VALUES
-(34, 'Tableau Paysage', 'Cette œuvre reflète l’imagination débordante de l’artiste, mêlant subtilement couleurs et textures pour offrir une vision unique. Elle invite le spectateur à explorer un univers captivant, riche en émotions, où chaque détail raconte une histoire et inspire à la contemplation.', 0, '2024-12-16 10:03:59', '2025-01-15 10:03:59', 50.00, 'Vente', 0, 'Hugo Marchal', 27, 2, 'en attente de validation'),
-(35, 'Paysage d\'antan ', 'Cette œuvre reflète l’imagination débordante de l’artiste, mêlant subtilement couleurs et textures pour offrir une vision unique. Elle invite le spectateur à explorer un univers captivant, riche en émotions, où chaque détail raconte une histoire et inspire à la contemplation.', 0, '2024-12-16 10:04:41', '2025-01-15 10:04:41', 58.00, 'Vente', 0, 'Emma Lavaux', 27, 2, 'en attente de validation'),
-(36, 'Petite sculpture en pierre ', 'Cette œuvre reflète l’imagination débordante de l’artiste, mêlant subtilement couleurs et textures pour offrir une vision unique. Elle invite le spectateur à explorer un univers captivant, riche en émotions, où chaque détail raconte une histoire et inspire à la contemplation.', 0, '2024-12-16 10:05:33', '2025-01-15 10:05:33', 100.00, 'Vente', 0, 'Emma Lobineau', 27, 3, 'en attente de validation'),
-(37, 'Maison d\'enfance ', 'Cette œuvre reflète l’imagination débordante de l’artiste, mêlant subtilement couleurs et textures pour offrir une vision unique. Elle invite le spectateur à explorer un univers captivant, riche en émotions, où chaque détail raconte une histoire et inspire à la contemplation.', 0, '2024-12-16 10:06:16', '2025-01-15 10:06:16', 75.00, 'Vente', 0, 'Léa Garnier ', 27, 2, 'en attente de validation'),
-(38, 'Naturel', 'Cette œuvre reflète l’imagination débordante de l’artiste, mêlant subtilement couleurs et textures pour offrir une vision unique. Elle invite le spectateur à explorer un univers captivant, riche en émotions, où chaque détail raconte une histoire et inspire à la contemplation.', 0, '2024-12-16 10:06:46', '2025-01-15 10:06:46', 25.00, 'Vente', 0, 'Léa Garnier ', 27, 2, 'en attente de validation');
+(34, 'Tableau Paysage', 'Cette Å“uvre reflÃ¨te lâ€™imagination dÃ©bordante de lâ€™artiste, mÃªlant subtilement couleurs et textures pour offrir une vision unique. Elle invite le spectateur Ã  explorer un univers captivant, riche en Ã©motions, oÃ¹ chaque dÃ©tail raconte une histoire et inspire Ã  la contemplation.', 0, '2024-12-16 10:03:59', '2025-01-15 10:03:59', 50.00, 'Enchere', 0, 'Hugo Marchal', 27, 2, 'en attente de validation'),
+(35, 'Paysage d\'antan ', 'Cette Å“uvre reflÃ¨te lâ€™imagination dÃ©bordante de lâ€™artiste, mÃªlant subtilement couleurs et textures pour offrir une vision unique. Elle invite le spectateur Ã  explorer un univers captivant, riche en Ã©motions, oÃ¹ chaque dÃ©tail raconte une histoire et inspire Ã  la contemplation.', 0, '2024-12-16 10:04:41', '2025-01-15 10:04:41', 58.00, 'Vente', 0, 'Emma Lavaux', 27, 2, 'en attente de validation'),
+(36, 'Petite sculpture en pierre ', 'Cette Å“uvre reflÃ¨te lâ€™imagination dÃ©bordante de lâ€™artiste, mÃªlant subtilement couleurs et textures pour offrir une vision unique. Elle invite le spectateur Ã  explorer un univers captivant, riche en Ã©motions, oÃ¹ chaque dÃ©tail raconte une histoire et inspire Ã  la contemplation.', 0, '2024-12-16 10:05:33', '2025-01-15 10:05:33', 100.00, 'Vente', 0, 'Emma Lobineau', 27, 3, 'en attente de validation'),
+(37, 'Maison d\'enfance ', 'Cette Å“uvre reflÃ¨te lâ€™imagination dÃ©bordante de lâ€™artiste, mÃªlant subtilement couleurs et textures pour offrir une vision unique. Elle invite le spectateur Ã  explorer un univers captivant, riche en Ã©motions, oÃ¹ chaque dÃ©tail raconte une histoire et inspire Ã  la contemplation.', 0, '2024-12-16 10:06:16', '2025-01-15 10:06:16', 75.00, 'Vente', 0, 'LÃ©a Garnier ', 27, 2, 'en attente de validation'),
+(38, 'Naturel', 'Cette Å“uvre reflÃ¨te lâ€™imagination dÃ©bordante de lâ€™artiste, mÃªlant subtilement couleurs et textures pour offrir une vision unique. Elle invite le spectateur Ã  explorer un univers captivant, riche en Ã©motions, oÃ¹ chaque dÃ©tail raconte une histoire et inspire Ã  la contemplation.', 0, '2024-12-16 10:06:46', '2025-01-15 10:06:46', 25.00, 'Vente', 0, 'LÃ©a Garnier ', 27, 2, 'en attente de validation'),
+(39, 'Super naturel', 'Cette Å“uvre reflÃ¨te lâ€™imagination dÃ©bordante de lâ€™artiste, mÃªlant subtilement couleurs et textures pour offrir une vision unique. Elle invite le spectateur Ã  explorer un univers captivant, riche en Ã©motions, oÃ¹ chaque dÃ©tail raconte une histoire et inspire Ã  la contemplation.', 0, '2024-12-16 10:06:46', '2025-01-15 10:06:46', 25.00, 'Enchere', 0, 'LÃ©a Garnier ', 27, 2, 'en attente de validation');
 
 -- --------------------------------------------------------
 
@@ -281,7 +299,7 @@ CREATE TABLE `oeuvre_images` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Déchargement des données de la table `oeuvre_images`
+-- DÃ©chargement des donnÃ©es de la table `oeuvre_images`
 --
 
 INSERT INTO `oeuvre_images` (`id_photo`, `chemin_image`, `id_oeuvre`) VALUES
@@ -314,7 +332,7 @@ CREATE TABLE `utilisateur` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Déchargement des données de la table `utilisateur`
+-- DÃ©chargement des donnÃ©es de la table `utilisateur`
 --
 
 INSERT INTO `utilisateur` (`id_utilisateur`, `nom`, `prenom`, `email`, `description`, `adresse`, `roles`, `mot_de_passe`, `date_creation`, `newsletter`, `actif`, `solde`) VALUES
@@ -341,7 +359,7 @@ INSERT INTO `utilisateur` (`id_utilisateur`, `nom`, `prenom`, `email`, `descript
 (27, 'Pierret ', 'Jules', 'jupi63473@eleve.isep.fr', NULL, NULL, 'Utilisateur', '$2y$10$mhdJtYwHue6QyA0O8xouH.2oDTekGIC1GEf1M7P5JT3zUqO1AynlK', '2024-12-16', 0, 0, 0.00);
 
 --
--- Index pour les tables déchargées
+-- Index pour les tables dÃ©chargÃ©es
 --
 
 --
@@ -356,6 +374,14 @@ ALTER TABLE `categorie`
 ALTER TABLE `code`
   ADD PRIMARY KEY (`ID`),
   ADD KEY `ID_user` (`ID_user`);
+
+--
+-- Index pour la table `enchere`
+--
+ALTER TABLE `enchere`
+  ADD PRIMARY KEY (`id_enchere`),
+  ADD KEY `id_oeuvre` (`id_oeuvre`),
+  ADD KEY `id_utilisateur` (`id_offreur`);
 
 --
 -- Index pour la table `exposition`
@@ -390,7 +416,7 @@ ALTER TABLE `utilisateur`
   ADD UNIQUE KEY `email` (`email`);
 
 --
--- AUTO_INCREMENT pour les tables déchargées
+-- AUTO_INCREMENT pour les tables dÃ©chargÃ©es
 --
 
 --
@@ -404,6 +430,12 @@ ALTER TABLE `categorie`
 --
 ALTER TABLE `code`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=102;
+
+--
+-- AUTO_INCREMENT pour la table `enchere`
+--
+ALTER TABLE `enchere`
+  MODIFY `id_enchere` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT pour la table `exposition`
@@ -421,7 +453,7 @@ ALTER TABLE `exposition_images`
 -- AUTO_INCREMENT pour la table `oeuvre`
 --
 ALTER TABLE `oeuvre`
-  MODIFY `id_oeuvre` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `id_oeuvre` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- AUTO_INCREMENT pour la table `oeuvre_images`
@@ -436,7 +468,7 @@ ALTER TABLE `utilisateur`
   MODIFY `id_utilisateur` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
--- Contraintes pour les tables déchargées
+-- Contraintes pour les tables dÃ©chargÃ©es
 --
 
 --
@@ -444,6 +476,13 @@ ALTER TABLE `utilisateur`
 --
 ALTER TABLE `code`
   ADD CONSTRAINT `code_ibfk_1` FOREIGN KEY (`ID_user`) REFERENCES `utilisateur` (`id_utilisateur`);
+
+--
+-- Contraintes pour la table `enchere`
+--
+ALTER TABLE `enchere`
+  ADD CONSTRAINT `enchere_ibfk_1` FOREIGN KEY (`id_oeuvre`) REFERENCES `oeuvre` (`id_oeuvre`),
+  ADD CONSTRAINT `enchere_ibfk_2` FOREIGN KEY (`id_offreur`) REFERENCES `utilisateur` (`id_utilisateur`);
 
 --
 -- Contraintes pour la table `oeuvre_images`
