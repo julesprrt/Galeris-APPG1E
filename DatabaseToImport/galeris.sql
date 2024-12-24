@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- HÃ´te : 127.0.0.1:3306
--- GÃ©nÃ©rÃ© le : mar. 24 dÃ©c. 2024 Ã  14:56
+-- GÃ©nÃ©rÃ© le : mar. 24 dÃ©c. 2024 Ã  16:06
 -- Version du serveur : 10.4.32-MariaDB
 -- Version de PHP : 8.2.12
 
@@ -176,6 +176,13 @@ CREATE TABLE `enchere` (
   `date_fin` datetime NOT NULL,
   `statut` enum('ouverte','fermÃ©e') NOT NULL DEFAULT 'ouverte'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- DÃ©chargement des donnÃ©es de la table `enchere`
+--
+
+INSERT INTO `enchere` (`id_enchere`, `id_oeuvre`, `prix_depart`, `prix_actuel`, `id_offreur`, `date_debut`, `date_fin`, `statut`) VALUES
+(1, 34, 150.00, 180.00, NULL, '2024-12-16 10:03:59', '2025-01-15 10:03:59', 'ouverte');
 
 -- --------------------------------------------------------
 
@@ -435,7 +442,7 @@ ALTER TABLE `code`
 -- AUTO_INCREMENT pour la table `enchere`
 --
 ALTER TABLE `enchere`
-  MODIFY `id_enchere` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_enchere` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT pour la table `exposition`

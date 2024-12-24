@@ -34,7 +34,6 @@
 </header>
 <body>
 <main>
-    <H1>C4EST UNE ENCHERE </H1>
         <section class="gauche">
             <section class="art-details">
                 <div class="carousel-container">
@@ -80,6 +79,7 @@
                     <img src="https://via.placeholder.com/50" alt="Photo de profil" class="photo-profil">
                     <div class="profil-nom">
                         <strong>Vendeur : <?php echo htmlspecialchars($oeuvre['nom']) . " " . htmlspecialchars($oeuvre['prenom']); ?></strong>
+                        
                     </div>
                 </div>
             </section>
@@ -89,7 +89,8 @@
                     <span><strong>Prix :</strong> € <?php echo number_format($oeuvre['Prix'], 2, ',', ' '); ?></span>
                     <p><small>Publié le : <?php echo htmlspecialchars($oeuvre['Date_debut']); ?></small></p>
                     <p><small>Ferme le : <?php echo htmlspecialchars($oeuvre['Date_fin']); ?></small></p>
-                    <p><small>Prix actuel : <?php echo htmlspecialchars($oeuvre['prix_actuel']); ?></small> Offreur : <?php echo htmlspecialchars($oeuvre['id_offreur'])?></p>
+                    <p><small>Prix actuel : <?php echo htmlspecialchars($oeuvre['prix_actuel']); ?></small> </p>
+                    <p>Offreur : <?php echo htmlspecialchars($oeuvre['nom']) . ' ' . htmlspecialchars($oeuvre['prenom']) ?></p>
                     
                 </div>
             </section>
@@ -97,6 +98,7 @@
             <!-- Boutons d'actions -->
             <section class="actions">
                 <button class="boutton-offre">Offre</button>
+                <button class="bouttton-favori"> Favori</button>
                 <button class="boutton-message-vendeur">Message</button>
             </section>
         </section>
