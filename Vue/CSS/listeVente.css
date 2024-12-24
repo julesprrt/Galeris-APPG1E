@@ -19,8 +19,15 @@ body {
     flex: 0 0 200px; 
     padding: 1em;
     border: 1px solid #ccc; 
-    margin-top: 2.5em;
+    margin-top: 1.5em;
     padding-right: 2.5em;
+    margin-bottom: 2em;
+}
+
+#tri-select{
+    padding: 0.3em 1.9em;
+    border: 1px solid #ccc;
+    border-radius: 4px;
 }
 
 .title-filter{
@@ -34,9 +41,16 @@ body {
     font-size: 16;
 }
 
+
+.Tri-container {
+    border: 1px solid #ccc;
+    padding : 0.5em;
+}
+
 .Title-container {
     border: 1px solid #ccc;
     padding : 0.5em;
+    margin-top: 0.5em;
 }
 
 .oeuvre-input {
@@ -99,10 +113,10 @@ body {
 .oeuvres {
     display: flex; /* Flexbox pour aligner les cartes */
     flex-wrap: wrap; /* Les cartes passent à la ligne si nécessaire */
-    justify-content: flex-end; /* Aligne les œuvres vers la droite */
+    justify-content: flex-start; /* Aligne les œuvres vers la droite */
     gap: 20px; /* Espacement entre les cartes */
     padding: 2em 5%; /* Espacement autour */
-    max-width: 100%; /* Empêche le débordement horizontal */
+    width: 100%;
 }
 
 .oeuvre {

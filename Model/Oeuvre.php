@@ -99,7 +99,7 @@ class Oeuvre
         Inner join categorie c on c.id_categorie = o.id_categorie
         WHERE o.est_vendu = ? AND o.statut = ? AND o.Date_fin >= ?
         GROUP BY o.id_oeuvre
-        ORDER BY o.Date_fin DESC
+        ORDER BY o.Date_fin 
         LIMIT 10
     ";
         $stmt = $conn->prepare($query);

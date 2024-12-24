@@ -57,6 +57,14 @@
         <div class="page-content">
             <div class="filter">
                 <p class="title-filter">Oeuvre</p>
+                <div class="Tri-container">
+                    <p class="subtitle-filter">Trier par</p>
+                    <select name="tri" id="tri-select" required>
+                    <option value="date">Bientôt terminées</option>
+                    <option value="prixmin">Prix minimum</option>
+                    <option value="prixdec">Prix décroissants</option>
+                </select>
+                </div>
                 <div class="Title-container">
                     <p class="subtitle-filter">Titre oeuvre</p>
                     <input type="text" id="titre-oeuvre" class="oeuvre-input" placeholder="Nom de l'oeuvre" >
@@ -104,7 +112,7 @@
                     <div class="oeuvres">
                         <?php
                         foreach ($oeuvres as $oeuvre) {
-                            echo '<a class = "oeuvreOBJ" style="cursor:pointer" nomCategorie="' . $oeuvre["Nom_categorie"] . '" prix="' . $oeuvre["Prix"] . '" type="'. $oeuvre["type_vente"] .'" titre="'. $oeuvre["Titre"] .'" auteur="'. $oeuvre["auteur"] .'">';
+                            echo '<a class = "oeuvreOBJ" style="cursor:pointer" nomCategorie="' . $oeuvre["Nom_categorie"] . '" prix="' . $oeuvre["Prix"] . '" type="'. $oeuvre["type_vente"] .'" titre="'. $oeuvre["Titre"] .'" auteur="'. $oeuvre["auteur"] .'" datefin="'. $oeuvre["Date_fin"] .'"">';
                             echo '<div class="oeuvre">';
                             echo '<input type="hidden" id="id_oeuvre_' . $oeuvre["id_oeuvre"] . '" name="id_oeuvre" value="' . $oeuvre["id_oeuvre"] . '">';
                             echo '<h3>' . $oeuvre["Titre"] . '</h3>';

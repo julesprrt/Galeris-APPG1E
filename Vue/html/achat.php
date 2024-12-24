@@ -118,8 +118,8 @@
 
             <!-- Boutons d'actions -->
             <section class="actions">
-                <button class="boutton-acheter">Acheter</button>
                 <button class="boutton-message-vendeur">Ajouter au Panier</button>
+                <button class="boutton-acheter">Ajouter au favoris</button>
             </section>
         </section>
     </main>

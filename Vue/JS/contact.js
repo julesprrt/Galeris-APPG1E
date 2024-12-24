@@ -3,7 +3,6 @@ document.getElementById("btn-contact").addEventListener('click', contact);
 async function contact() {
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
-    console.log(document.getElementsByName("email")[0].value)
     const raw = JSON.stringify({
         "email": document.getElementsByName("email")[0].value,
         "firstName": document.getElementsByName("firstName")[0].value,

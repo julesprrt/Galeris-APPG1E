@@ -13,7 +13,8 @@ document.getElementById("auteur-oeuvre").addEventListener("input", AffichageOeuv
 
 setInterval(tempsRestants, 1000);
 
-document.getElementById("reinit").addEventListener("click", reinit)
+document.getElementById("reinit").addEventListener("click", reinit);
+document.getElementById("tri-select").addEventListener("change", tri)
 
 for (let i = 0; i < cbox.length; i++) {
     cbox[i].addEventListener("click", saveId);
@@ -113,4 +114,33 @@ function reinit(){
     document.querySelectorAll(".oeuvreOBJ").forEach(itemOeuvre => {
             itemOeuvre.style.display = "";
     })
+    document.getElementById("tri-select").value = "date";
+    tri();
+}
+
+function tri(){
+    const sort = document.getElementById("tri-select").value;
+    const oeuvres = document.querySelectorAll('.oeuvreOBJ');
+    if(sort === "date"){
+        const datefin = Array.from(oeuvres, function(element) {
+            return { name: new Date(element.attributes[7].value), element: element };  
+        });
+        const sortedDate = datefin.sort((a, b) => a.name > b.name ? 1 : -1)
+        sortedDate.forEach((el, index) => el.element.style.order = index)
+    }
+    else if(sort === "prixmin"){
+        const prixMin = Array.from(oeuvres, function(element) {
+            console.log(parseFloat(element.attributes[3].value))
+            return { name: parseFloat(element.attributes[3].value), element: element };  
+        });
+        const sortedPrixMin = prixMin.sort((a, b) => a.name > b.name ? 1 : -1)
+        sortedPrixMin.forEach((el, index) => el.element.style.order = index)
+    }
+    else if(sort === "prixdec"){
+        const prixDesc = Array.from(oeuvres, function(element) {
+            return { name: parseFloat(element.attributes[3].value), element: element };  
+        });
+        const sortedPrixdesc = prixDesc.sort((a, b) => a.name < b.name ? 1 : -1)
+        sortedPrixdesc.forEach((el, index) => el.element.style.order = index)
+    }
 }
