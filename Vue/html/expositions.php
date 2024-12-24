@@ -65,7 +65,7 @@
                             echo '<h3>' . $expose["titre"] . '</h3>';
                             // Ajout de l'image
                             echo '<img src="../' . $expose["image_path"] . '" alt="' . $expose["titre"] . '" />';
-                            echo '<p>' . substr($expose["desc"],0,250) . '</p>';
+                            echo '<p>' . substr($expose["desc"],0,250) . '(...)</p>';
                             echo '</div>';
                             echo '</a>';
                         }

@@ -65,7 +65,7 @@
                             echo '<h3>' . $oeuvre["Titre"] . '</h3>';
                             // Ajout de l'image
                             echo '<img src="../' . $oeuvre["image_path"] . '" alt="' . $oeuvre["Titre"] . '" />';
-                            echo '<p>' . $oeuvre["Description"] . '</p>';
+                            echo '<p>' . substr($oeuvre["Description"], 0, 250) . '(...)</p>';
                             echo '</div>';
                             echo '</a>';
                         }

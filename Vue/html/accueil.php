@@ -79,7 +79,7 @@
                             echo '<img src="../' . $oeuvre["chemin_image"] . '" alt="' . $oeuvre["Titre"] . '" />';
                             echo '<p class="temps-restant" data-fin="' . $oeuvre["Date_fin"] . '">' . '</p>';
                             echo '<p >'. $oeuvre['Prix'] .' €</p>';
-                            echo '<p>' . substr($oeuvre["Description"],0,250) . '...</p>';
+                            echo '<p>' . substr($oeuvre["Description"],0,250) . '(...)</p>';
                             echo '</div>';
                             echo '</a>';
                         }
