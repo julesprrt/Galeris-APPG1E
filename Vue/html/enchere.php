@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="CSS/header.css">
     <link rel="stylesheet" href="CSS/footer.css">
     <link rel="stylesheet" href="CSS/style.css">
-    <script src="https://galeris/Galeris-APPG1E/vue/JS/achat.js" defer></script>
+    <script src="https://galeris/Galeris-APPG1E/vue/JS/enchere.js" defer></script>
 </head>
 
 <header>
@@ -34,74 +34,70 @@
 </header>
 <body>
 <main>
-    <div class="container">
-        <div class="gauche">
-            <h1><?php echo htmlspecialchars($oeuvre['Titre']); ?></h1>
-            <p>Lot : <?= htmlspecialchars($oeuvre['id_oeuvre']) ?> | <?= htmlspecialchars($oeuvre['auteur'])?> </p>
-            <div class="main-image">
-            <div class="carousel-container">
+        <section class="gauche">
+            <section class="art-details">
+                <div class="carousel-container">
                     <!-- Flèche gauche -->
                     <button class="carousel-fleche gauche cfg">&#10094;</button>
+
+                    <div class="art-image">
+                        <?php foreach ($oeuvre['chemin_image'] as $index => $chemin): ?>
+                            <img src="../<?php echo htmlspecialchars($chemin); ?>"
+                                class="carousel-image <?php echo $index === 0 ? 'active' : ''; ?>"
+                                alt="Image de <?php echo htmlspecialchars($oeuvre['Titre']); ?>">
+                        <?php endforeach; ?>
+                    </div>
+
+
 
                     <!-- Flèche droite -->
                     <button class="carousel-fleche droite cfd">&#10095;</button>
                 </div>
-                
-            <?php foreach ($oeuvre['chemin_image'] as $index => $chemin): ?>
-                            <img src="../<?php echo htmlspecialchars($chemin); ?>"
-                                alt="Image de <?php echo htmlspecialchars($oeuvre['Titre']); ?>">
-                        <?php endforeach; ?>
-            </div>
-            
-            
 
 
-            <div class="description">
-                <h2>À propos de ce lot</h2>
-                <p><?= htmlspecialchars($oeuvre['Description']) ?></p>
-            </div>
-        </div>
-
-        <div class="droite">
-            <div class="auction-info">
-                <p>A ouvert : <?= htmlspecialchars($oeuvre['Date_debut']) ?> </p>
-                
-                <p>Se ferme dans :<?= htmlspecialchars($oeuvre['Date_fin']) ?></p>
-                
-                <p>Prix actuel</p>
-                <p class="prixActuel"><?= number_format($oeuvre['Prix'], 2, ',', ' ') ?> €</p>
-                <button class="encherir">Enchérir</button>
-                <button class="partager">Partager</button>
-                <br>
-                <hr>
-                <div class="separer">
-                    <p class="balise" > Offre(s) : 15 </p> <p class=balise> Date</p>
+                <div class="art-info">
+                    <h1><?php echo htmlspecialchars($oeuvre['Titre']); ?></h1>
+                    <p><?php echo nl2br(htmlspecialchars($oeuvre['Description'])); ?></p>
                 </div>
+            </section>
 
-                <div class="separer_offre">
-                    <div class="offre">
-                        <p>75 €</p>
-                        <p>2024-12-17 10:10:15</p>
-                    </div>
-                    <div class="offre">
-                        <p>75 €</p>
-                        <p>2024-12-17 10:10:15</p>
-                    </div>
-                    <div class="offre">
-                        <p>75 €</p>
-                        <p>2024-12-17 10:10:15</p>
-                    </div>
-                    <div class="offre">
-                        <p>75 €</p>
-                        <p>2024-12-17 10:10:15</p>
+            <!-- Section : Œuvres similaires -->
+            <section class="art-image-similaire">
+                <h2>Oeuvres similaires</h2>
+                <div class="tableau-similaire">
+                    <img src="..\images\oeuvresim-1.png" alt="Tableau similaire 1">
+                    <img src="..\images\oeuvresim-2.jpg" alt="Tableau similaire 2">
+                    <img src="..\images\oeuvresim-3.jpg" alt="Tableau similaire 3">
+                </div>
+            </section>
+        </section>
+
+        <!-- Droite : Informations supplémentaires -->
+        <section class="droite">
+            <section class="profil-section">
+                <div class="profil-info">
+                    <img src="https://via.placeholder.com/50" alt="Photo de profil" class="photo-profil">
+                    <div class="profil-nom">
+                        <strong>Vendeur : <?php echo htmlspecialchars($oeuvre['nom']) . " " . htmlspecialchars($oeuvre['prenom']); ?></strong>
                     </div>
                 </div>
+            </section>
 
-<div>
-    
-Voir toutes les offres 
-                    </div>
-</main> 
+            <section class="info-prix">
+                <div class="prix">
+                    <span><strong>Prix :</strong> € <?php echo number_format($oeuvre['Prix'], 2, ',', ' '); ?></span>
+                    <p><small>Publié le : <?php echo htmlspecialchars($oeuvre['Date_debut']); ?></small></p>
+                    <p><small>Ferme le : <?php echo htmlspecialchars($oeuvre['Date_fin']); ?></small></p>
+                </div>
+            </section>
+
+            <!-- Boutons d'actions -->
+            <section class="actions">
+                <button class="boutton-offre">Offre</button>
+                <button class="boutton-message-vendeur">Message</button>
+            </section>
+        </section>
+    </main>
 </body>
 
 
