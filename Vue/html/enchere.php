@@ -34,6 +34,7 @@
 </header>
 <body>
 <main>
+    <H1>C4EST UNE ENCHERE </H1>
         <section class="gauche">
             <section class="art-details">
                 <div class="carousel-container">

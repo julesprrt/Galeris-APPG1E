@@ -37,21 +37,24 @@
     </header>
 
     <main>
-        <section class="gauche">
+    <section class="gauche">
             <section class="art-details">
                 <div class="carousel-container">
                     <!-- Flèche gauche -->
                     <button class="carousel-fleche gauche cfg">&#10094;</button>
 
                     <div class="art-image">
-                        <img src="..\images\oeuvre1-1.jpg" class="carousel-image active" alt="Photo Oeuvre 1">
-                        <img src="..\images\oeuvre1-2.jpg" class="carousel-image" alt="Photo Oeuvre 2">
-                        <img src="..\images\oeuvre1-3.jpg" class="carousel-image" alt="Photo Oeuvre 3">
+                        <?php foreach ($oeuvre['chemin_image'] as $index => $chemin): ?>
+                            <img src="../<?php echo htmlspecialchars($chemin); ?>"
+                                class="carousel-image <?php echo $index === 0 ? 'active' : ''; ?>"
+                                alt="Image de <?php echo htmlspecialchars($oeuvre['Titre']); ?>">
+                        <?php endforeach; ?>
                     </div>
 
                     <!-- Flèche droite -->
                     <button class="carousel-fleche droite cfd">&#10095;</button>
                 </div>
+
 
                 <div class="art-info">
                     <h1><?php echo htmlspecialchars($oeuvre['Titre']); ?></h1>

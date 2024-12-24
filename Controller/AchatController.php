@@ -24,7 +24,7 @@ class AchatController extends Controller
         }
 
         $type =  $_SESSION['oeuvre_typevente'];
-        if ($type==="Vente"){
+        if ($type === "Vente") {
             $this->render('achat', ['oeuvre' => $oeuvreid]);
         }
         else {
@@ -49,5 +49,24 @@ class AchatController extends Controller
             echo json_encode(['Error' => "ID incorrect"]);
         }
     }
-}
+ 
+    public function enchere(Database $db)
+        {
+            // Récupérer l'œuvre depuis le modèle
+            $oeuvre = new Oeuvre($Titre = null, $Description = null, $eco_responsable = null, $Date_debut = null, $Date_fin = null, $Prix = null, $type_vente = null, $est_vendu = null, $auteur = null, $id_utilisateur = null, $id_categorie = null, $status = null, $nomvendeur = null, $prenomvendeur = null, $chemin_image = null);
+            session_start();
+            $id =  $_SESSION['oeuvre_id'];
+            $oeuvreid = $oeuvre->getOeuvreById($id, $db);
+
+            // Vérifier si l'œuvre existe
+            if (!$oeuvre) {
+                http_response_code(404);
+                echo "L'œuvre demandée est introuvable.";
+                header('Location: /Galeris-APPG1E/accueil');
+                exit();
+            }
+            $this->render('enchere', ['oeuvre' => $oeuvreid]);
+            exit();  
+        }}
+
 
