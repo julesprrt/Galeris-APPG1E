@@ -162,6 +162,12 @@ class User
         $stmt->execute();
         $id = $stmt->insert_id;
         $stmt->close();
+        $sqlPanier = "Insert into panier (id_utilisateur) values (?)";
+        $stmtPanier = $conn->prepare($sqlPanier);
+        $stmtPanier->bind_param('i', $id);
+        $stmtPanier->execute();
+        $stmtPanier->close();
+        $conn->close();
         session_start();
         $_SESSION["usersessionID"] = $id;
         $_SESSION["usersessionMail"] = $this->email;

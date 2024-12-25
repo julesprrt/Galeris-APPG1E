@@ -31,6 +31,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
 setInterval(tempsRestants, 1000);
 
+document.querySelector(".boutton-panier").addEventListener("click", payment);
+
 function tempsRestants() {
     const elements = document.querySelectorAll('.temps-restant');
 
@@ -53,3 +55,23 @@ function tempsRestants() {
 }
 
 
+async function payment(){
+    const myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+    
+    const raw = JSON.stringify({
+    });
+
+    const requestOptions = {
+        method: "POST",
+        headers: myHeaders,
+        body: raw,
+        redirect: "follow"
+    };
+    const result = await fetch("https://galeris/Galeris-APPG1E/ajoutpanier", requestOptions);
+    const statut = result.status;
+    const text = await result.json();
+    if(statut === 200){
+        //window.location.href = text.payment;
+    }
+}
