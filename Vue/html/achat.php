@@ -118,7 +118,15 @@
 
             <!-- Boutons d'actions -->
             <section class="actions">
-                <button class="boutton-panier">Ajouter au Panier</button>
+                <?php
+                    if($oeuvre["id_panier"] === null){
+                        echo '<button class="boutton-panier">Ajouter au Panier</button>';
+                    }
+                    else{
+                        echo '<button class="boutton-retirer-panier">Retirer du Panier</button>';
+                    }
+                ?>
+                
                 <button class="boutton-favoris">Ajouter au favoris</button>
             </section>
         </section>

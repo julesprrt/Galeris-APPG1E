@@ -13,8 +13,8 @@ class AchatController extends Controller
         session_start();
         $role = isset($_SESSION["usersessionRole"]) === true && $_SESSION["usersessionRole"] === "Admin" ? true : false;
         $id =  $_SESSION['oeuvre_id'];
-        
-        $oeuvreid = $oeuvre->getOeuvreById($id, $db);
+        $user_id =  $_SESSION['usersessionID'];
+        $oeuvreid = $oeuvre->getOeuvreById($id, $db, $user_id);
 
 
         // Vérifier si l'œuvre existe

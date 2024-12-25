@@ -31,7 +31,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
 setInterval(tempsRestants, 1000);
 
-document.querySelector(".boutton-panier").addEventListener("click", payment);
+document.querySelectorAll(".boutton-retirer-panier").forEach(item => item.addEventListener("click", retirerpanier));
+document.querySelectorAll(".boutton-panier").forEach(item => item.addEventListener("click", ajoutpanier));
+
 
 function tempsRestants() {
     const elements = document.querySelectorAll('.temps-restant');
@@ -55,7 +57,7 @@ function tempsRestants() {
 }
 
 
-async function payment(){
+async function ajoutpanier(){
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
     
@@ -72,6 +74,31 @@ async function payment(){
     const statut = result.status;
     const text = await result.json();
     if(statut === 200){
-        //window.location.href = text.payment;
-    }
+        alert(text.panier);
+        window.location.reload();
+   }
+}
+
+async function retirerpanier(){
+    console.log("ok")
+    const myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+    
+    const raw = JSON.stringify({
+    });
+
+    const requestOptions = {
+        method: "POST",
+        headers: myHeaders,
+        body: raw,
+        redirect: "follow"
+    };
+
+    const result = await fetch("https://galeris/Galeris-APPG1E/retirerpanier", requestOptions);
+    const statut = result.status;
+    const text = await result.json();
+    if(statut === 200){
+        alert(text.panier);
+        window.location.reload();
+   }
 }
