@@ -2,6 +2,7 @@
 require_once('Model/oeuvre.php');
 require_once('Database/Database.php');
 require_once('Controller.php');
+require_once('Model/panier.php');
 
 class AchatController extends Controller
 {
@@ -13,9 +14,10 @@ class AchatController extends Controller
         session_start();
         $role = isset($_SESSION["usersessionRole"]) === true && $_SESSION["usersessionRole"] === "Admin" ? true : false;
         $id =  $_SESSION['oeuvre_id'];
-        $user_id =  $_SESSION['usersessionID'];
-        $oeuvreid = $oeuvre->getOeuvreById($id, $db, $user_id);
+        $oeuvreid = $oeuvre->getOeuvreById($id, $db);
 
+        $panier = new Panier();
+        $panierExist = $panier->existPanier($db);
 
         // Vérifier si l'œuvre existe
         if (!$oeuvre) {
@@ -27,7 +29,7 @@ class AchatController extends Controller
         }
 
         // Transmettre les données à la vue
-        $this->render('achat', ["connectUser" =>  isset($_SESSION["usersessionID"]), "userRole" => $role,'oeuvre' => $oeuvreid]);
+        $this->render('achat', ["connectUser" =>  isset($_SESSION["usersessionID"]), "userRole" => $role,'oeuvre' => $oeuvreid, 'panier' => $panierExist]);
     }
 
     public function saveid(Database $db)

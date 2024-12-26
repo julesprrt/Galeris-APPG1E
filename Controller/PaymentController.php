@@ -6,10 +6,17 @@ require_once('Model/payment.php');
 class PaymentController extends Controller
 { 
 
-    public function payment()
+    public function payment(Database $db)
     { 
         $payment = new Payment();
-        $result = $payment->createObject();
+        $result = $payment->createObject($db);
+
+        if($result === 401){
+            http_response_code(401);
+            echo json_encode(["payment" => "erreur paiement"]);
+            exit();
+        }
+
         $id = $result["id"];
         $url = $payment->createPayment($id);
         http_response_code(200);
@@ -34,6 +41,13 @@ class PaymentController extends Controller
             }
             else{
                 $_SESSION["payment"] = false;
+                if($_SESSION["type_payment"] === "panier"){
+                    $payment = new Payment();
+                    $payment->concludePayment($db);
+                }
+                else{
+                    //enchères
+                }
                 $this->render('successPayment', []);
             }
         }

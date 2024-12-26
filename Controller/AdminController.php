@@ -13,8 +13,7 @@ class AdminController extends Controller
         session_start();
         $role = isset($_SESSION["usersessionRole"]) === true && $_SESSION["usersessionRole"] === "Admin" ? true : false;
         $id =  $_SESSION['oeuvre_id'];
-        $user_id =  $_SESSION['usersessionID'];
-        $oeuvreid = $oeuvre->getOeuvreById($id, $db, $user_id);
+        $oeuvreid = $oeuvre->getOeuvreById($id, $db);
 
 
         // Vérifier si l'œuvre existe

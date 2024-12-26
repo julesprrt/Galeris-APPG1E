@@ -60,5 +60,25 @@ Class Panier{
         $conn->close();
         return 200;
     }
+
+    public function getTotalAmountPanier(Database $db){
+        $conn = $db->connect();
+        $sql = "select SUM(o.Prix) as price from panier p inner join oeuvre o on o.id_oeuvre = p.id_oeuvre where p.id_utilisateur = ? and o.type_vente = ? and o.est_vendu = ? and o.Date_fin > ?";
+        $stmt = $conn->prepare($sql);
+        $id_utilisateur = $_SESSION["usersessionID"];
+        $type_vente = "vente";
+        $est_vendu = 0;
+        $actualDate = date('Y-m-d H:i:s');
+        $stmt->bind_param("isis",$id_utilisateur, $type_vente, $est_vendu, $actualDate);
+        $stmt->execute();
+
+        $result = $stmt->get_result();
+        $panier = $result->fetch_assoc();
+
+        $stmt->close();
+        $conn->close();
+
+        return $panier["price"];
+    }
     
 }

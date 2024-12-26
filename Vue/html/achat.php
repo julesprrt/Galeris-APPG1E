@@ -119,7 +119,7 @@
             <!-- Boutons d'actions -->
             <section class="actions">
                 <?php
-                    if($oeuvre["id_panier"] === null){
+                    if($panier === false){
                         echo '<button class="boutton-panier">Ajouter au Panier</button>';
                     }
                     else{

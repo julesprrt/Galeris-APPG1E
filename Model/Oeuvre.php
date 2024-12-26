@@ -55,13 +55,13 @@ class Oeuvre
         $this->chemin_image = $chemin_image;
     }
     // Méthode pour récupérer une œuvre par son ID
-    public static function getOeuvreById($id, Database $db, $user_id)
+    public static function getOeuvreById($id, Database $db)
     {
         $conn = $db->connect();
-        $query = "SELECT * FROM oeuvre o INNER JOIN utilisateur u ON u.id_utilisateur = o.id_utilisateur LEFT JOIN panier p ON p.id_oeuvre = o.id_oeuvre WHERE o.id_oeuvre = ? AND p.id_utilisateur = ? or o.id_oeuvre = ? AND p.id_utilisateur IS NULL;";
+        $query = "SELECT * FROM oeuvre o INNER JOIN utilisateur u ON u.id_utilisateur = o.id_utilisateur LEFT JOIN panier p ON p.id_utilisateur = u.id_utilisateur WHERE o.id_oeuvre = ?";
 
         $stmt = $conn->prepare($query);
-        $stmt->bind_param('iii', $id, $user_id, $id);
+        $stmt->bind_param('i', $id);
         $stmt->execute();
 
         $result = $stmt->get_result();
