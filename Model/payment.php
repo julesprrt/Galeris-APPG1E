@@ -86,10 +86,11 @@ class Payment
 
     public function updateUserSold(Database $db){
         $conn = $db->connect();
-        $sql = "select u.id_utilisateur as utilisateur, o.prix, o.id_oeuvre from utilisateur u inner join oeuvre o on o.id_utilisateur = u.id_utilisateur inner join panier p on p.id_oeuvre = o.id_oeuvre where p.id_utilisateur = ?";
+        $sql = "select u.id_utilisateur as utilisateur, o.prix, o.id_oeuvre from utilisateur u inner join oeuvre o on o.id_utilisateur = u.id_utilisateur inner join panier p on p.id_oeuvre = o.id_oeuvre where p.id_utilisateur = ? and o.est_vendu = ?";
         $stmt = $conn->prepare($sql);
         $id_utilisateur = $_SESSION["usersessionID"];
-        $stmt->bind_param("i", $id_utilisateur);
+        $est_vendu = 0;
+        $stmt->bind_param("ii", $id_utilisateur, $est_vendu);
         $stmt->execute();
 
         $userpanier =$stmt->get_result();
