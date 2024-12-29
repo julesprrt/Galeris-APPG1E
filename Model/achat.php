@@ -41,6 +41,7 @@ class Oeuvre
         $prix_actuel,
         $id_offreur
 
+
     ) {
         $this->Titre = $Titre;
         $this->Description = $Description;
@@ -61,11 +62,10 @@ class Oeuvre
         $this->id_offreur = $id_offreur;
     }
     // Méthode pour récupérer une œuvre par son ID
-    // Méthode pour récupérer une œuvre par son ID
     public static function getOeuvreById($id, Database $db)
     {
         $conn = $db->connect();
-        $query = "SELECT o.*, u.nom, u.prenom, Max(e.prix) AS prix_courant, e.date_enchere, ut.nom AS nom_offreur, ut.prenom AS prenom_offreur FROM oeuvre o INNER JOIN utilisateur u ON u.id_utilisateur = o.id_utilisateur left JOIN enchere e on e.id_oeuvre_enchere = o.id_oeuvre left join utilisateur ut on ut.id_utilisateur = e.id_offreur LEFT JOIN panier p ON p.id_utilisateur = u.id_utilisateur WHERE o.id_oeuvre = ?;";
+        $query = "SELECT * FROM oeuvre o INNER JOIN utilisateur u ON u.id_utilisateur = o.id_utilisateur INNER JOIN enchere e on e.id_oeuvre = o.id_oeuvre  WHERE o.id_oeuvre = ?";
 
         $stmt = $conn->prepare($query);
         $stmt->bind_param('i', $id);
@@ -100,62 +100,21 @@ class Oeuvre
     public static function getAllOeuvre(Database $db)
     {
         $conn = $db->connect();
-        $query = " SELECT o.*,c.Nom_categorie, oi.chemin_image
+        $query = " SELECT o.*, oi.chemin_image
         FROM oeuvre o
         INNER JOIN oeuvre_images oi ON o.id_oeuvre = oi.id_oeuvre
-        Inner join categorie c on c.id_categorie = o.id_categorie
-        WHERE o.est_vendu = ? AND o.statut = ? AND o.Date_fin >= ?
+        WHERE o.est_vendu = ?
         GROUP BY o.id_oeuvre
-        ORDER BY o.Date_fin 
+        ORDER BY o.Date_fin DESC
         LIMIT 10
     ";
+
+
+
+
         $stmt = $conn->prepare($query);
         $est_vendu = 0;
-        $accept = "accepte";
-        $now = new DateTime();
-        $now = $now->format('Y-m-d H:i:s');
-        $stmt->bind_param('iss', $est_vendu, $accept, $now);
-        $stmt->execute();
-
-        $result = $stmt->get_result();
-
-        $stmt->close();
-        $conn->close();
-
-        return $result;
-    }
-
-    public function getOeuvresEnAttente(Database $db){
-        $Database = $db->connect();
-        $sql = "SELECT o.*, c.*, u.*, COALESCE(oi.image_path, 'Aucune image') AS image_path FROM oeuvre o INNER JOIN categorie c ON c.id_categorie = o.id_categorie INNER join utilisateur u on u.id_utilisateur = o.id_utilisateur LEFT JOIN ( SELECT id_oeuvre, MIN(chemin_image) AS image_path FROM oeuvre_images GROUP BY id_oeuvre ) oi ON oi.id_oeuvre = o.id_oeuvre WHERE o.statut = ?";
-        $stmt = $Database->prepare($sql);
-        $accept = "en attente de validation";
-        $stmt->bind_param("s", $accept);
-        $stmt->execute();
-        $result = $stmt->get_result();
-        $stmt->close();
-        $Database->close();
-        return $result;
-    }
-
-    public function updateStatut(Database $db, $accept, $id){
-        $Database = $db->connect();
-        $sql = "Update oeuvre set statut = ? where id_oeuvre = ?";
-        $statut = $accept === true ? "accepte" : "refuse";
-        $stmt = $Database->prepare($sql);
-        $realID = (int)$id;
-        $stmt->bind_param("si",$statut,$realID);
-        $stmt->execute();
-        $stmt->close();
-        $Database->close();
-    }
-
-    public function getAllEnchere($id, Database $db){
-        $conn = $db->connect();
-        $query = "SELECT * FROM enchere e left join utilisateur ut on ut.id_utilisateur = e.id_offreur WHERE e.id_oeuvre_enchere = ?";
-
-        $stmt = $conn->prepare($query);
-        $stmt->bind_param('i', $id);
+        $stmt->bind_param('i', $est_vendu);
         $stmt->execute();
 
         $result = $stmt->get_result();
@@ -166,3 +125,4 @@ class Oeuvre
         return $result;
     }
 }
+

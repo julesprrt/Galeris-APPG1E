@@ -17,7 +17,7 @@ Class ListeAttenteAdminController extends Controller{//Controlleur accueil
             exit();
         }
 
-        $oeuvre = new Oeuvre(null,null,null,null,null,null,null,null,null,null,null,null,null,null,null);
+        $oeuvre = new Oeuvre(null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null);
         $oeuvres = $oeuvre->getOeuvresEnAttente($db);
         $this->render('listeattenteoeuvre', ["connectUser" =>  isset($_SESSION["usersessionID"]), "userRole" => $role, "oeuvres" => $oeuvres]);
         
