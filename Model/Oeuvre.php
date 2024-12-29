@@ -1,6 +1,7 @@
 <?php
 require_once('Database/Database.php');
-
+require_once('Model/user.php');
+require_once('Model/payment.php');
 class Oeuvre
 {
     private $Titre;
@@ -60,7 +61,7 @@ class Oeuvre
         $this->prix_actuel = $prix_actuel;
         $this->id_offreur = $id_offreur;
     }
-    // Méthode pour récupérer une œuvre par son ID
+
     // Méthode pour récupérer une œuvre par son ID
     public static function getOeuvreById($id, Database $db)
     {
@@ -100,10 +101,11 @@ class Oeuvre
     public static function getAllOeuvre(Database $db)
     {
         $conn = $db->connect();
-        $query = " SELECT o.*,c.Nom_categorie, oi.chemin_image
+        $query = " SELECT o.*,c.Nom_categorie, oi.chemin_image, MAX(e.prix) as prix_courant
         FROM oeuvre o
         INNER JOIN oeuvre_images oi ON o.id_oeuvre = oi.id_oeuvre
         Inner join categorie c on c.id_categorie = o.id_categorie
+        left JOIN enchere e on e.id_oeuvre_enchere = o.id_oeuvre 
         WHERE o.est_vendu = ? AND o.statut = ? AND o.Date_fin >= ?
         GROUP BY o.id_oeuvre
         ORDER BY o.Date_fin 
@@ -164,5 +166,48 @@ class Oeuvre
         $conn->close();
 
         return $result;
+    }
+
+    public function verifyEnchere(Database $db){
+        $user = new User(null,null,null,null,null,null,null);
+        $userLivraison = $user->getUserById($_SESSION["usersessionID"],$db);
+        if($userLivraison["adresse_livraison"] === null || $userLivraison["adresse_livraison"] === ""){
+            return 401;
+        }
+        
+        $oeuvre = $this->getOeuvreById($_SESSION['oeuvre_id'], $db);
+
+        if($oeuvre["prix_courant"] === null){
+            return [
+                "prixCourant" => $oeuvre["Prix"] * 1.10,
+                "adresse" => $userLivraison["adresse_livraison"]
+            ];
+        }
+
+        return [
+            "prixCourant" => $oeuvre["prix_courant"] * 1.10,
+            "adresse" => $userLivraison["adresse_livraison"]
+        ];
+    }
+
+    public function enchere(Database $db, $prix){
+        $prixCourant = $this->verifyEnchere($db);
+        if(round(floatval($prix), 2) < round($prixCourant["prixCourant"],2)){
+            return [
+                "prixCourant" => $prixCourant["prixCourant"],
+                "statut" => 401
+            ];
+        }
+        else{
+            $payment = new Payment();
+            $paymentId = $payment->createObjectForAuction($db, $prix);
+            $id = $paymentId["id"];
+            $url = $payment->createPayment($id);
+            $_SESSION["auction_price"] = $prix;
+            return [
+                "url" => $url,
+                "statut" => 200
+            ];
+        }
     }
 }

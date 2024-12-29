@@ -15,7 +15,9 @@
 </head>
 
 <header>
-<a href="https://galeris/Galeris-APPG1E/"><div class="logo"> <img src="../images/logo.png"></div></a>
+    <a href="https://galeris/Galeris-APPG1E/">
+        <div class="logo"> <img src="../images/logo.png"></div>
+    </a>
     <nav class="menu">
         <ul>
             <li><a href="https://galeris/Galeris-APPG1E/">Accueil</a></li>
@@ -53,6 +55,19 @@
 </header>
 
 <body>
+    <div class="enchere-form">
+    <div class="btn-close-container">
+        <button class="close-button" type="submit">X</button>
+    </div>
+        <p class="title-enchere">Place ton enchère</p>
+            <input type="text" class="input-enchere" name="enchere" placeholder="Enchere" value="" min="" />
+        <br>
+        <p class="error"></p>
+        <br>
+        <div class="btn-container">
+            <button class="enchere-button" type="submit">Enchérir</button>
+        </div>
+    </div>
     <main>
         <section class="gauche">
             <section class="art-details">
@@ -107,17 +122,16 @@
 
             <section class="info-prix">
                 <div class="prix">
-                    <span><strong>Prix : </strong><?php echo $oeuvre['Prix']; ?> € </span>
+                    <?php
+                    if ($oeuvre['prix_courant'] !== null) {
+                        echo "<span><strong>Prix actuel : " . $oeuvre['prix_courant'] . " € </strong></span>";
+                    } else {
+                        echo "<span><strong>Prix actuel : " . $oeuvre['Prix'] . " € </strong> </span>";
+                    }
+                    ?>
                     <p><small>Publié le : <?php echo htmlspecialchars($oeuvre['Date_debut']); ?></small></p>
                     <p><small class="temps-restant" data-fin="<?php echo $oeuvre["Date_fin"] ?>">Temps restant :
                         </small></p>
-                    <?php
-                    if ($oeuvre['prix_courant'] !== null) {
-                        echo "<p><small>Prix actuel : " . $oeuvre['prix_courant'] . " € </small></p>";
-                    } else {
-                        echo "<p><small>Prix actuel : " . $oeuvre['Prix'] . " € </small> </p>";
-                    }
-                    ?>
                     <?php
                     if ($oeuvre["prenom_offreur"] !== null) {
                         echo "<p>Offreur : " . htmlspecialchars($oeuvre['nom_offreur']) . ' ' . htmlspecialchars($oeuvre['prenom_offreur']) . "</p>";
@@ -134,8 +148,8 @@
                 <button class="boutton-favoris">Ajouter au favoris</button>
             </section>
             <?php
-                if(mysqli_num_rows($encheres) > 0){
-                    echo "<table class='table-enchere'>
+            if (mysqli_num_rows($encheres) > 0) {
+                echo "<table class='table-enchere'>
                     <caption class='enchere'>Enchères</caption>
                     <thead>
                         <tr>
@@ -146,19 +160,18 @@
                     </thead>
                     <tbody>";
 
-                    foreach($encheres as $enchere){
-                        echo "<tr>
-                             <td>". $enchere["nom"] . " " . $enchere["prenom"]  ."</td>
+                foreach ($encheres as $enchere) {
+                    echo "<tr>
+                             <td>" . $enchere["nom"] . " " . $enchere["prenom"] . "</td>
                             <td colspan='2'>" . $enchere["prix"] . " €</td>
                             <td>" . $enchere["date_enchere"] . "</td>
                             </tr>";
-                        } 
-                    echo "</tbody>
+                }
+                echo "</tbody>
                 </table>";
-                }
-                else{
-                    echo "<strong>Aucune enchères</strong>";
-                }
+            } else {
+                echo "<strong>Aucune enchères</strong>";
+            }
             ?>
         </section>
     </main>

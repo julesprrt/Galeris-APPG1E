@@ -85,8 +85,12 @@
                             <textarea name="description" rows="3" placeholder="Parlez un peu de vous..."><?= htmlspecialchars($user['description'] ?? '') ?></textarea>
                         </p>
                         <p>
+                            <strong>Adresse de livraison :</strong>
+                            <input type="text" id="autocomplete-livraison" name="adresseLivraison" placeholder="Commencez à saisir une adresse de livraison..." value="<?= htmlspecialchars($user['adresse_livraison'] ?? '') ?>">
+                        </p>
+                        <p>
                             <strong>Adresse :</strong>
-                            <input type="text" id="autocomplete" name="adresse" placeholder="Commencez à saisir une adresse...">
+                            <input type="text" id="autocomplete" name="adresse" placeholder="Commencez à saisir une adresse..." value="<?= htmlspecialchars($user['adresse'] ?? '') ?>">
                         <ul id="suggestions" class="suggestions" style="display: none;"></ul>
                         </p>
                     </div>
@@ -163,7 +167,6 @@
 
     </footer>
     <script src="https://maps.googleapis.com/maps/api/js?key=VOTRE_CLE_API&libraries=places"></script>
-    <script src="../JS/autocomplete.js"></script>
 </body>
 
 </html>

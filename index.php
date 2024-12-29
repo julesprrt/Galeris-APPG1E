@@ -61,6 +61,8 @@ $router->addRoute('/Galeris-APPG1E/success', PaymentController::class, 'successP
 $router->addRoute('/Galeris-APPG1E/cancel', PaymentController::class, 'cancelPayment');
 $router->addRoute('/Galeris-APPG1E/ajoutpanier', PanierController::class, 'ajoutPanier');
 $router->addRoute('/Galeris-APPG1E/retirerpanier', PanierController::class, 'retirerPanier');
+$router->addRoute('/Galeris-APPG1E/verifyenchere', AchatController::class, 'verifierEnchere');
+$router->addRoute('/Galeris-APPG1E/encherir', AchatController::class, 'encherir');
 
 if ($uri !== null) {
     $router->dispatch($uri); //Appel a la méthode du controller dedié

@@ -46,7 +46,8 @@ class PaymentController extends Controller
                     $payment->concludePayment($db);
                 }
                 else{
-                    //enchères
+                    $payment = new Payment();
+                    $payment->concludePaymentAuction($db);
                 }
                 $this->render('successPayment', []);
             }

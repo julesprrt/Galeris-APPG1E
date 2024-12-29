@@ -24,6 +24,7 @@ class Payment
         }
         $amount = floatval($amount);
         $_SESSION["payment"] = true;
+        $_SESSION["type_payment"] = "panier";
         $curl = curl_init();
         $fields = array();
         $fields["currency"] = 'eur';
@@ -61,9 +62,31 @@ class Payment
         curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
         $output = curl_exec($curl);
         curl_close($curl);
-        $_SESSION["type_payment"] = "panier";
         return json_decode($output, true); 
     }
+
+    public function createObjectForAuction(Database $db, $amount){
+        $_SESSION["payment"] = true;
+        $_SESSION["type_payment"] = "enchere";
+        $curl = curl_init();
+        $fields = array();
+        $fields["currency"] = 'eur';
+        $fields['unit_amount'] = $amount * 100; 
+        $fields['product_data'] = array(
+            'name' => "Oeuvre d'art"
+        );
+        curl_setopt($curl, CURLOPT_HTTPHEADER, $this->headers);
+        curl_setopt($curl, CURLOPT_URL, stripe_create_object_url);
+        curl_setopt($curl, CURLOPT_POST, true);
+        curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query($fields));
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+        $output = curl_exec($curl);
+        curl_close($curl);
+
+        return json_decode($output, true); 
+    }
+
 
     public function concludePayment(Database $db){
         $this->updateUserSold($db);//Mise a jour solde utilisateur (pour chaque utilisateur concerné)
@@ -119,6 +142,22 @@ class Payment
         $stmt = $conn->prepare($sql);
         $id_utilisateur = $_SESSION["usersessionID"];
         $stmt->bind_param("i", $id_utilisateur);
+        $stmt->execute();
+        $stmt->close();
+        $conn->close();
+    }
+
+    public function concludePaymentAuction(Database $db){
+        $price_Auction = $_SESSION["auction_price"];
+        $oeuvreID = $_SESSION['oeuvre_id'];
+        $userID =$_SESSION['usersessionID'];
+        $now = new DateTime();
+        $now = $now->format('Y-m-d H:i:s');
+        unset($_SESSION["auction_price"]);
+        $conn = $db->connect();
+        $sql = "insert into enchere (id_oeuvre_enchere, prix, id_offreur, date_enchere) values (?,?,?,?)";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("idis", $oeuvreID,$price_Auction,$userID,$now);
         $stmt->execute();
         $stmt->close();
         $conn->close();

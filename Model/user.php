@@ -262,14 +262,14 @@ class User
         $conn->close();
         return null; // aucune ligne ne correspond dans la base, les ressources sont fermées et la méthode retourne null.
     }
-    public function updateUser($id, $nom, $prenom, $email, $description, $adresse, $newPassword, Database $db)
+    public function updateUser($id, $nom, $prenom, $email, $description, $adresse, $adresse_livraison,$newPassword, Database $db)
     {
         $conn = $db->connect();
 
         // Prépare la requête SQL de base
-        $sql = "UPDATE utilisateur SET nom = ?, prenom = ?, email = ?, description = ?, adresse = ?";
-        $types = "sssss"; // Types pour bind_param
-        $params = [$nom, $prenom, $email, $description, $adresse];
+        $sql = "UPDATE utilisateur SET nom = ?, prenom = ?, email = ?, description = ?, adresse = ?, adresse_livraison = ?";
+        $types = "ssssss"; // Types pour bind_param
+        $params = [$nom, $prenom, $email, $description, $adresse,$adresse_livraison];
 
         // Si un nouveau mot de passe est fourni, on l'ajoute à la requête
         if (!empty($newPassword)) {

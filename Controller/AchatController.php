@@ -32,7 +32,7 @@ class AchatController extends Controller
 
         $type =  $_SESSION['oeuvre_typevente'];
         if ($type === "Vente") {
-            $this->render('achat', ["connectUser" =>  isset($_SESSION["usersessionID"]), "userRole" => $role,'oeuvre' => $oeuvreid]);
+            $this->render('achat', ["connectUser" =>  isset($_SESSION["usersessionID"]), "userRole" => $role,'oeuvre' => $oeuvreid,"panier" => $panierExist]);
         }
         else {
             $encheres = $oeuvre->getAllEnchere($id, $db);
@@ -56,6 +56,36 @@ class AchatController extends Controller
             echo json_encode(['Error' => "ID incorrect"]);
         }
     }
- 
+
+    public function verifierEnchere(Database $db){
+        session_start();
+        $oeuvre = new Oeuvre($Titre = null, $Description = null, $eco_responsable = null, $Date_debut = null, $Date_fin = null, $Prix = null, $type_vente = null, $est_vendu = null, $auteur = null, $id_utilisateur = null, $id_categorie = null, $status = null, $nomvendeur = null, $prenomvendeur = null, $chemin_image = null, $prix_actuel = null, $id_offreur = null);
+        $result = $oeuvre->verifyEnchere($db);
+        if($result === 401){
+            http_response_code(401);
+            echo json_encode(['Error' => "Veuillez renseigner votre adresse de livraison sur la page d'édition de profil avant d'enchérir sur une oeuvre"]);
+        }
+        else{
+            http_response_code(200);
+            echo json_encode(['Success' => "Si vous remportez l'enchère votre commande sera livré à l'adresse suivante : " . $result["adresse"], 'prix' => number_format($result["prixCourant"], 2, '.', '')]);
+        }
+    }
+
+    public function encherir(Database $db){
+        $paramData = file_get_contents("php://input");
+        $data = json_decode($paramData, true);
+        session_start();
+        $oeuvre = new Oeuvre($Titre = null, $Description = null, $eco_responsable = null, $Date_debut = null, $Date_fin = null, $Prix = null, $type_vente = null, $est_vendu = null, $auteur = null, $id_utilisateur = null, $id_categorie = null, $status = null, $nomvendeur = null, $prenomvendeur = null, $chemin_image = null, $prix_actuel = null, $id_offreur = null);
+        $result = $oeuvre->enchere($db, $data["prix"]);
+        if($result["statut"] === 401){
+            http_response_code(401);
+            echo json_encode(['Error' => "Le prix ne doit pas être inférieur à " . $result["prixCourant"] . " €", 'prix' => number_format($result["prixCourant"], 2, '.', '')]);
+        }
+        else{
+            http_response_code(200);
+            echo json_encode(["payment" => $result["url"]]);
+        }
+    }
+  
 }
 
