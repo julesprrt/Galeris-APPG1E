@@ -2,8 +2,8 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- HÃ´te : 127.0.0.1:3306
--- GÃ©nÃ©rÃ© le : ven. 27 dÃ©c. 2024 Ã  21:05
+-- Hôte : 127.0.0.1:3306
+-- Généré le : dim. 29 déc. 2024 à 16:27
 -- Version du serveur : 10.4.32-MariaDB
 -- Version de PHP : 8.2.12
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de donnÃ©es : `galeris`
+-- Base de données : `galeris`
 --
 
 -- --------------------------------------------------------
@@ -33,7 +33,7 @@ CREATE TABLE `categorie` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- DÃ©chargement des donnÃ©es de la table `categorie`
+-- Déchargement des données de la table `categorie`
 --
 
 INSERT INTO `categorie` (`id_categorie`, `Nom_categorie`) VALUES
@@ -54,7 +54,7 @@ CREATE TABLE `code` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- DÃ©chargement des donnÃ©es de la table `code`
+-- Déchargement des données de la table `code`
 --
 
 INSERT INTO `code` (`ID`, `code`, `date_expiration`, `ID_user`) VALUES
@@ -192,7 +192,8 @@ INSERT INTO `code` (`ID`, `code`, `date_expiration`, `ID_user`) VALUES
 (132, 864117, '2024-12-18 21:48:45', 6),
 (133, 778411, '2024-12-18 21:50:27', 6),
 (134, 245747, '2024-12-18 21:50:39', 6),
-(135, 193310, '2024-12-18 21:50:42', 6);
+(135, 193310, '2024-12-18 21:50:42', 6),
+(144, 938551, '2024-12-25 19:53:16', 37);
 
 -- --------------------------------------------------------
 
@@ -202,21 +203,19 @@ INSERT INTO `code` (`ID`, `code`, `date_expiration`, `ID_user`) VALUES
 
 CREATE TABLE `enchere` (
   `id_enchere` int(11) NOT NULL,
-  `id_oeuvre` int(11) NOT NULL,
-  `prix_depart` decimal(10,2) NOT NULL,
-  `prix_actuel` decimal(10,2) DEFAULT NULL,
+  `id_oeuvre_enchere` int(11) NOT NULL,
+  `prix` decimal(10,2) DEFAULT NULL,
   `id_offreur` int(11) DEFAULT NULL,
-  `date_debut` datetime NOT NULL,
-  `date_fin` datetime NOT NULL,
-  `statut` enum('ouverte','fermÃ©e') NOT NULL DEFAULT 'ouverte'
+  `date_enchere` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- DÃ©chargement des donnÃ©es de la table `enchere`
+-- Déchargement des données de la table `enchere`
 --
 
-INSERT INTO `enchere` (`id_enchere`, `id_oeuvre`, `prix_depart`, `prix_actuel`, `id_offreur`, `date_debut`, `date_fin`, `statut`) VALUES
-(1, 34, 150.00, 180.00, NULL, '2024-12-16 10:03:59', '2025-01-15 10:03:59', 'ouverte');
+INSERT INTO `enchere` (`id_enchere`, `id_oeuvre_enchere`, `prix`, `id_offreur`, `date_enchere`) VALUES
+(4, 48, 50.00, 6, '2022-06-07 00:00:00'),
+(5, 48, 55.00, 6, '2022-06-08 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -235,14 +234,21 @@ CREATE TABLE `exposition` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- DÃ©chargement des donnÃ©es de la table `exposition`
+-- Déchargement des données de la table `exposition`
 --
 
 INSERT INTO `exposition` (`id_exhibition`, `titre`, `description`, `date_debut`, `date_fin`, `user_id`, `statut`) VALUES
-(42, 'Autoportrait Van Gogh', 'Autoportrait de Van Gogh rÃ©alisÃ© par Van Gogh lui mÃªme. PortÃ©e vers la droite peinture dÃ©licate', '2024-12-25 00:00:00', '2024-12-27 00:00:00', 6, 'accepte'),
-(43, 'Exposition NapolÃ©on Bonaparte', 'Tableaux de l\'empereur NapolÃ©on rÃ©alisÃ© par les plus grand peintres.', '2024-12-24 00:00:00', '2025-01-02 00:00:00', 6, 'accepte'),
-(44, 'Exposition Van Gogh et NapolÃ©on', 'Van Gogh et NapolÃ©on rÃ©unis dans un seul et mÃªme endroits dans les locaux de Galeris. Venez voir, vous n\'allez pas Ãªtre dÃ©Ã§u.', '2024-12-22 00:00:00', '2024-12-29 00:00:00', 6, 'accepte'),
-(45, 'test', 'test de l\'affichage de la map de notre local, a faire absolument', '2024-12-21 00:00:00', '2024-12-27 00:00:00', 6, 'en attente de validation');
+(42, 'Autoportrait Van Gogh', 'Autoportrait de Van Gogh réalisé par Van Gogh lui même. Portée vers la droite peinture délicate', '2024-12-25 00:00:00', '2024-12-27 00:00:00', 6, 'accepte'),
+(43, 'Exposition Napoléon Bonaparte', 'Tableaux de l\'empereur Napoléon réalisé par les plus grand peintres.', '2024-12-24 00:00:00', '2025-01-02 00:00:00', 6, 'accepte'),
+(44, 'Exposition Van Gogh et Napoléon', 'Van Gogh et Napoléon réunis dans un seul et même endroits dans les locaux de Galeris. Venez voir, vous n\'allez pas être déçu.', '2024-12-22 00:00:00', '2024-12-29 00:00:00', 6, 'accepte'),
+(45, 'test', 'test de l\'affichage de la map de notre local, a faire absolument', '2024-12-21 00:00:00', '2024-12-27 00:00:00', 6, 'refuse'),
+(48, 'sssssssssssssssssssssssssss', 'ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss', '2024-12-29 00:00:00', '2024-12-31 00:00:00', NULL, 'en attente de validation'),
+(49, 'sss', 'sssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss', '2024-12-28 00:00:00', '2024-12-31 00:00:00', NULL, 'en attente de validation'),
+(50, 'ssssssssssssssssssssssssssssssssssss', 'sssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss', '2024-12-26 00:00:00', '2024-12-29 00:00:00', 6, 'refuse'),
+(51, 's', 'ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss', '2024-12-29 00:00:00', '2024-12-30 00:00:00', 6, 'refuse'),
+(52, 'sss', 'ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss', '2024-12-24 00:00:00', '2024-12-29 00:00:00', 6, 'refuse'),
+(53, 'sss', 'ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss', '2024-12-24 00:00:00', '2024-12-29 00:00:00', 6, 'refuse'),
+(54, 'sss', 'ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss', '2024-12-23 00:00:00', '2024-12-29 00:00:00', 6, 'refuse');
 
 -- --------------------------------------------------------
 
@@ -257,7 +263,7 @@ CREATE TABLE `exposition_images` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- DÃ©chargement des donnÃ©es de la table `exposition_images`
+-- Déchargement des données de la table `exposition_images`
 --
 
 INSERT INTO `exposition_images` (`id_exposition_images`, `chemin_image`, `id_exposition`) VALUES
@@ -265,7 +271,14 @@ INSERT INTO `exposition_images` (`id_exposition_images`, `chemin_image`, `id_exp
 (27, 'ImageBD/exposition/image_67646b63215c10.83545964.jpeg', 43),
 (28, 'ImageBD/exposition/image_67646fc7acd891.98112720.jpeg', 44),
 (29, 'ImageBD/exposition/image_67646fc7af9037.03153777.jpeg', 44),
-(30, 'ImageBD/exposition/image_67647e1e2bd0b0.99199497.jpeg', 45);
+(30, 'ImageBD/exposition/image_67647e1e2bd0b0.99199497.jpeg', 45),
+(33, 'ImageBD/exposition/image_67684d92ef7c23.68140965.jpeg', 48),
+(34, 'ImageBD/exposition/image_6768504ae9f5a2.77346424.jpeg', 49),
+(35, 'ImageBD/exposition/image_676850d3bcec46.75551948.jpeg', 50),
+(36, 'ImageBD/exposition/image_67685113a6ebd2.21020732.jpeg', 51),
+(37, 'ImageBD/exposition/image_676852648ffde4.59232398.jpeg', 52),
+(38, 'ImageBD/exposition/image_676852685415c3.78190913.jpeg', 53),
+(39, 'ImageBD/exposition/image_6768528db06623.12771135.jpeg', 54);
 
 -- --------------------------------------------------------
 
@@ -290,16 +303,20 @@ CREATE TABLE `oeuvre` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- DÃ©chargement des donnÃ©es de la table `oeuvre`
+-- Déchargement des données de la table `oeuvre`
 --
 
 INSERT INTO `oeuvre` (`id_oeuvre`, `Titre`, `Description`, `eco_responsable`, `Date_debut`, `Date_fin`, `Prix`, `type_vente`, `est_vendu`, `auteur`, `id_utilisateur`, `id_categorie`, `statut`) VALUES
-(34, 'Tableau Paysage', 'Cette Å“uvre reflÃ¨te lâ€™imagination dÃ©bordante de lâ€™artiste, mÃªlant subtilement couleurs et textures pour offrir une vision unique. Elle invite le spectateur Ã  explorer un univers captivant, riche en Ã©motions, oÃ¹ chaque dÃ©tail raconte une histoire et inspire Ã  la contemplation.', 0, '2024-12-16 10:03:59', '2025-01-15 10:03:59', 50.00, 'Vente', 0, 'Hugo Marchal', 27, 2, 'accepte'),
-(35, 'Paysage d\'antan ', 'Cette Å“uvre reflÃ¨te lâ€™imagination dÃ©bordante de lâ€™artiste, mÃªlant subtilement couleurs et textures pour offrir une vision unique. Elle invite le spectateur Ã  explorer un univers captivant, riche en Ã©motions, oÃ¹ chaque dÃ©tail raconte une histoire et inspire Ã  la contemplation.', 0, '2024-12-16 10:04:41', '2025-01-15 10:04:41', 58.00, 'Vente', 0, 'Emma Lavaux', 27, 2, 'accepte'),
-(36, 'Petite sculpture en pierre ', 'Cette Å“uvre reflÃ¨te lâ€™imagination dÃ©bordante de lâ€™artiste, mÃªlant subtilement couleurs et textures pour offrir une vision unique. Elle invite le spectateur Ã  explorer un univers captivant, riche en Ã©motions, oÃ¹ chaque dÃ©tail raconte une histoire et inspire Ã  la contemplation.', 0, '2024-12-16 10:05:33', '2025-01-15 10:05:33', 100.00, 'Vente', 0, 'Emma Lobineau', 27, 3, 'accepte'),
-(37, 'Maison d\'enfance ', 'Cette Å“uvre reflÃ¨te lâ€™imagination dÃ©bordante de lâ€™artiste, mÃªlant subtilement couleurs et textures pour offrir une vision unique. Elle invite le spectateur Ã  explorer un univers captivant, riche en Ã©motions, oÃ¹ chaque dÃ©tail raconte une histoire et inspire Ã  la contemplation.', 0, '2024-12-16 10:06:16', '2025-01-15 10:06:16', 75.00, 'Vente', 0, 'LÃ©a Garnier ', 27, 2, 'accepte'),
-(38, 'Naturel', 'Cette Å“uvre reflÃ¨te lâ€™imagination dÃ©bordante de lâ€™artiste, mÃªlant subtilement couleurs et textures pour offrir une vision unique. Elle invite le spectateur Ã  explorer un univers captivant, riche en Ã©motions, oÃ¹ chaque dÃ©tail raconte une histoire et inspire Ã  la contemplation.', 0, '2024-12-16 10:06:46', '2025-01-15 10:06:46', 25.00, 'Vente', 0, 'LÃ©a Garnier ', 27, 2, 'accepte'),
-(39, 'l\'art pour tous', 'wow quelle oeuvre achetez Ã§a me fait plaisir. Oh Oh Oh', 0, '2024-12-17 21:00:26', '2025-01-06 21:00:26', 50.00, 'Vente', 0, 'Boner', 6, 2, 'accepte');
+(34, 'Tableau Paysage', 'Cette œuvre reflète l’imagination débordante de l’artiste, mêlant subtilement couleurs et textures pour offrir une vision unique. Elle invite le spectateur à explorer un univers captivant, riche en émotions, où chaque détail raconte une histoire et inspire à la contemplation.', 0, '2024-12-16 10:03:59', '2025-01-15 10:03:59', 50.00, 'Vente', 1, 'Hugo Marchal', 27, 2, 'accepte'),
+(35, 'Paysage d\'antan ', 'Cette œuvre reflète l’imagination débordante de l’artiste, mêlant subtilement couleurs et textures pour offrir une vision unique. Elle invite le spectateur à explorer un univers captivant, riche en émotions, où chaque détail raconte une histoire et inspire à la contemplation.', 0, '2024-12-16 10:04:41', '2025-01-15 10:04:41', 58.00, 'Vente', 1, 'Emma Lavaux', 27, 2, 'accepte'),
+(36, 'Petite sculpture en pierre ', 'Cette œuvre reflète l’imagination débordante de l’artiste, mêlant subtilement couleurs et textures pour offrir une vision unique. Elle invite le spectateur à explorer un univers captivant, riche en émotions, où chaque détail raconte une histoire et inspire à la contemplation.', 0, '2024-12-16 10:05:33', '2025-01-15 10:05:33', 100.00, 'Vente', 0, 'Emma Lobineau', 27, 3, 'accepte'),
+(37, 'Maison d\'enfance ', 'Cette œuvre reflète l’imagination débordante de l’artiste, mêlant subtilement couleurs et textures pour offrir une vision unique. Elle invite le spectateur à explorer un univers captivant, riche en émotions, où chaque détail raconte une histoire et inspire à la contemplation.', 0, '2024-12-16 10:06:16', '2025-01-15 10:06:16', 75.00, 'Vente', 1, 'Léa Garnier ', 27, 2, 'accepte'),
+(38, 'Naturel', 'Cette œuvre reflète l’imagination débordante de l’artiste, mêlant subtilement couleurs et textures pour offrir une vision unique. Elle invite le spectateur à explorer un univers captivant, riche en émotions, où chaque détail raconte une histoire et inspire à la contemplation.', 0, '2024-12-16 10:06:46', '2025-01-15 10:06:46', 100.00, 'Vente', 1, 'Léa Garnier ', 27, 2, 'accepte'),
+(39, 'l\'art pour tous', 'wow quelle oeuvre achetez ça me fait plaisir. Oh Oh Oh', 0, '2024-12-17 21:00:26', '2025-01-06 21:00:26', 50.00, 'Vente', 1, 'Boner', 6, 2, 'accepte'),
+(44, 'test', 'tetstettetststetststetetstetetetstetetstetetstet', 0, '2024-12-20 09:20:38', '2025-01-09 09:20:38', 50.00, 'Enchere', 0, 'jean', 6, 2, 'refuse'),
+(47, 'Solution du blocage de port', 'Pour une enchère débutant à 50 euros, je deviens prof pour savoir comment gérer les exceptions/erreurs sur Xampp. A vos marques prêts partez.', 0, '2024-12-24 15:30:05', '2024-12-24 15:35:05', 50.00, 'Enchere', 0, 'Akash Selvaratnam', 6, 3, 'accepte'),
+(48, 'Vente oeuvre Van Gogh', 'Enchères des tableaux de Van Gogh Achetez svp j\'ai pas beaucoup d\'argent', 0, '2024-12-29 14:29:26', '2025-01-08 14:29:26', 30.00, 'Enchere', 0, 'Van Gogh', 6, 2, 'accepte'),
+(49, 'test', 'sssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss', 0, '2024-12-29 14:40:37', '2025-01-28 14:40:37', 30.00, 'Vente', 0, 'test', 6, 2, 'accepte');
 
 -- --------------------------------------------------------
 
@@ -314,18 +331,41 @@ CREATE TABLE `oeuvre_images` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- DÃ©chargement des donnÃ©es de la table `oeuvre_images`
+-- Déchargement des données de la table `oeuvre_images`
 --
 
 INSERT INTO `oeuvre_images` (`id_photo`, `chemin_image`, `id_oeuvre`) VALUES
 (33, 'ImageBD/Oeuvre/image_675fecff445a41.97423138.png', 34),
 (34, 'ImageBD/Oeuvre/image_675fecff4b7969.61541123.png', 34),
 (35, 'ImageBD/Oeuvre/image_675fed29d7ed16.67414203.png', 35),
-(36, 'ImageBD/Oeuvre/image_675fed5d4dcc17.31300131.png', 36),
 (37, 'ImageBD/Oeuvre/image_675fed888eb3f0.27949733.png', 37),
 (38, 'ImageBD/Oeuvre/image_675feda6e9a416.81705887.png', 38),
 (39, 'ImageBD/Oeuvre/image_6761d85ac85a51.58806564.png', 39),
-(40, 'ImageBD/Oeuvre/image_6761d85ad06e69.37601475.jpeg', 39);
+(40, 'ImageBD/Oeuvre/image_6761d85ad06e69.37601475.jpeg', 39),
+(45, 'ImageBD/Oeuvre/image_676528d628d778.30804993.jpeg', 44),
+(48, 'ImageBD/Oeuvre/image_676ac56e00d2b1.36771869.png', 47),
+(49, 'ImageBD/Oeuvre/image_67714eb6d5aad8.17266380.jpeg', 48),
+(50, 'ImageBD/Oeuvre/image_67714eb6dbc1e1.18266037.jpeg', 48),
+(51, 'ImageBD/Oeuvre/image_677151559b8931.94486066.jpeg', 49);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `panier`
+--
+
+CREATE TABLE `panier` (
+  `id_panier` int(11) NOT NULL,
+  `id_utilisateur` int(11) DEFAULT NULL,
+  `id_oeuvre` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Déchargement des données de la table `panier`
+--
+
+INSERT INTO `panier` (`id_panier`, `id_utilisateur`, `id_oeuvre`) VALUES
+(6, 37, 35);
 
 -- --------------------------------------------------------
 
@@ -349,11 +389,11 @@ CREATE TABLE `utilisateur` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- DÃ©chargement des donnÃ©es de la table `utilisateur`
+-- Déchargement des données de la table `utilisateur`
 --
 
 INSERT INTO `utilisateur` (`id_utilisateur`, `nom`, `prenom`, `email`, `description`, `adresse`, `roles`, `mot_de_passe`, `date_creation`, `newsletter`, `actif`, `solde`) VALUES
-(6, 'selvaratnam', 'akash', 'kaladevi549@gmail.com', '', '', 'Admin', '$2y$10$lk08IJsZy7Oivka/WgY.pOLqDqnPhCtCs4sDqMY3KmkzPv57IDwm6', '2024-11-26', 0, 1, 0.00),
+(6, 'selvaratnam', 'akash', 'kaladevi549@gmail.com', '', '110, Rue Brancion, Quartier Saint-Lambert, Paris 15e Arrondissement, Paris, Île-de-France, France mé', 'Admin', '$2y$10$lk08IJsZy7Oivka/WgY.pOLqDqnPhCtCs4sDqMY3KmkzPv57IDwm6', '2024-11-26', 0, 1, 50.00),
 (7, 'selvaratnam', 'akash', 'kaladevi549@gmail.ju', NULL, NULL, 'Utilisateur', '$2y$10$EMfeaZGsM4pt6A4676gI9u2ox6z4.PE14jaM8IAqXDbuEHwqBj4b2', '2024-11-28', 0, 1, 0.00),
 (8, 'selvaratnam', 'akash', 'kaladevi549@gmail.pm', NULL, NULL, 'Utilisateur', '$2y$10$3YzJizisFI1S2EUCiFj0OeNkXgC3oyb2DeWGo4QMsu.QUSYRXI5OK', '2024-11-28', 0, 0, 0.00),
 (10, 'selvaratnam', 'akash', 'kaladevi549@gmail.sss', NULL, NULL, 'Utilisateur', '$2y$10$.PR1AYeC0RqSjMi15T734.HhfPTIcgWVbev0krEkhs/l.kFXKahJO', '2024-12-08', 0, 1, 0.00),
@@ -373,12 +413,39 @@ INSERT INTO `utilisateur` (`id_utilisateur`, `nom`, `prenom`, `email`, `descript
 (24, 'selvaratnam', 'akash', 'kaladevi549@gmail.csss', NULL, NULL, 'Utilisateur', '$2y$10$KgoBkF26LP1o1iQAGJ0T7eD8U2/bKiUX04ZsFURnx6HoAUynme2sm', '2024-12-15', 0, 0, 0.00),
 (25, 'test', 'test', 'kaladevi559@gmail.com', NULL, NULL, 'Utilisateur', '$2y$10$IcF91b6iKtRkMaERjlcefO7swQiDFl6ImYTyJM0ry6qQuvGlspCbG', '2024-12-15', 0, 0, 0.00),
 (26, 'abidi', 'bb', 'bb@bb.ss', NULL, NULL, 'Utilisateur', '$2y$10$KQZnwu39LE.hkGPdpo2CFOwjsQcrOA3mdZKwJ5nxvYEfaBk4BydpG', '2024-12-15', 0, 1, 0.00),
-(27, 'Pierret ', 'Jules', 'jupi63473@eleve.isep.fr', NULL, NULL, 'Utilisateur', '$2y$10$mhdJtYwHue6QyA0O8xouH.2oDTekGIC1GEf1M7P5JT3zUqO1AynlK', '2024-12-16', 0, 0, 0.00),
+(27, 'Pierret ', 'Jules', 'jupi63473@eleve.isep.fr', NULL, NULL, 'Utilisateur', '$2y$10$mhdJtYwHue6QyA0O8xouH.2oDTekGIC1GEf1M7P5JT3zUqO1AynlK', '2024-12-16', 0, 0, 283.00),
 (28, 'selvaratnam', 'akash', 'larrykala@hotmail.fr', NULL, NULL, 'Utilisateur', '$2y$10$Upt78gmC9Qs5YtLrRAcCz.B4jcDdMbRgu.9UWz7IePanIsZ3nKVHS', '2024-12-18', 0, 1, 0.00),
-(29, 'selvaratnam', 'akash', 'kaladevi549@gmail.sjsj', NULL, NULL, 'Utilisateur', '$2y$10$NgMyTRBFYFM5kKj6H.CEHednJtmRdfYN5M5yt00ZR8ZgduYiTDg3S', '2024-12-18', 0, 0, 0.00);
+(29, 'selvaratnam', 'akash', 'kaladevi549@gmail.sjsj', NULL, NULL, 'Utilisateur', '$2y$10$NgMyTRBFYFM5kKj6H.CEHednJtmRdfYN5M5yt00ZR8ZgduYiTDg3S', '2024-12-18', 0, 0, 0.00),
+(37, 'selvaratnam', 'akash', 'akse63476@eleve.isep.fr', NULL, NULL, 'Utilisateur', '$2y$10$nW9LD3lbWK87gZ9mKhyL5.igcX9b6KBaTCfrUmYmaZctWKBqyLala', '2024-12-25', 0, 1, 0.00);
+
+-- --------------------------------------------------------
 
 --
--- Index pour les tables dÃ©chargÃ©es
+-- Structure de la table `vente`
+--
+
+CREATE TABLE `vente` (
+  `id_vente` int(11) NOT NULL,
+  `prix` decimal(10,2) DEFAULT NULL,
+  `Date_vente` datetime DEFAULT current_timestamp(),
+  `Type_vente` enum('vente','enchere') DEFAULT 'vente',
+  `id_oeuvre` int(11) DEFAULT NULL,
+  `id_utilisateur` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Déchargement des données de la table `vente`
+--
+
+INSERT INTO `vente` (`id_vente`, `prix`, `Date_vente`, `Type_vente`, `id_oeuvre`, `id_utilisateur`) VALUES
+(6, 100.00, '2024-12-26 22:40:55', 'vente', 38, 6),
+(7, 50.00, '2024-12-26 22:40:55', 'vente', 39, 6),
+(8, 50.00, '2024-12-26 22:40:55', 'vente', 34, 6),
+(9, 75.00, '2024-12-26 22:40:55', 'vente', 37, 6),
+(10, 58.00, '2024-12-26 22:40:55', 'vente', 35, 6);
+
+--
+-- Index pour les tables déchargées
 --
 
 --
@@ -399,8 +466,8 @@ ALTER TABLE `code`
 --
 ALTER TABLE `enchere`
   ADD PRIMARY KEY (`id_enchere`),
-  ADD KEY `id_oeuvre` (`id_oeuvre`),
-  ADD KEY `id_utilisateur` (`id_offreur`);
+  ADD KEY `id_utilisateur` (`id_offreur`),
+  ADD KEY `id_oeuvre_enchere` (`id_oeuvre_enchere`) USING BTREE;
 
 --
 -- Index pour la table `exposition`
@@ -429,6 +496,12 @@ ALTER TABLE `oeuvre_images`
   ADD KEY `id_oeuvre` (`id_oeuvre`);
 
 --
+-- Index pour la table `panier`
+--
+ALTER TABLE `panier`
+  ADD PRIMARY KEY (`id_panier`);
+
+--
 -- Index pour la table `utilisateur`
 --
 ALTER TABLE `utilisateur`
@@ -436,7 +509,13 @@ ALTER TABLE `utilisateur`
   ADD UNIQUE KEY `email` (`email`);
 
 --
--- AUTO_INCREMENT pour les tables dÃ©chargÃ©es
+-- Index pour la table `vente`
+--
+ALTER TABLE `vente`
+  ADD PRIMARY KEY (`id_vente`);
+
+--
+-- AUTO_INCREMENT pour les tables déchargées
 --
 
 --
@@ -449,46 +528,58 @@ ALTER TABLE `categorie`
 -- AUTO_INCREMENT pour la table `code`
 --
 ALTER TABLE `code`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=142;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=145;
 
 --
 -- AUTO_INCREMENT pour la table `enchere`
 --
 ALTER TABLE `enchere`
-  MODIFY `id_enchere` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_enchere` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT pour la table `exposition`
 --
 ALTER TABLE `exposition`
-  MODIFY `id_exhibition` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+  MODIFY `id_exhibition` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
 
 --
 -- AUTO_INCREMENT pour la table `exposition_images`
 --
 ALTER TABLE `exposition_images`
-  MODIFY `id_exposition_images` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id_exposition_images` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- AUTO_INCREMENT pour la table `oeuvre`
 --
 ALTER TABLE `oeuvre`
-  MODIFY `id_oeuvre` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+  MODIFY `id_oeuvre` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
 
 --
 -- AUTO_INCREMENT pour la table `oeuvre_images`
 --
 ALTER TABLE `oeuvre_images`
-  MODIFY `id_photo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+  MODIFY `id_photo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
+
+--
+-- AUTO_INCREMENT pour la table `panier`
+--
+ALTER TABLE `panier`
+  MODIFY `id_panier` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT pour la table `utilisateur`
 --
 ALTER TABLE `utilisateur`
-  MODIFY `id_utilisateur` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `id_utilisateur` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
--- Contraintes pour les tables dÃ©chargÃ©es
+-- AUTO_INCREMENT pour la table `vente`
+--
+ALTER TABLE `vente`
+  MODIFY `id_vente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- Contraintes pour les tables déchargées
 --
 
 --
@@ -496,13 +587,6 @@ ALTER TABLE `utilisateur`
 --
 ALTER TABLE `code`
   ADD CONSTRAINT `code_ibfk_1` FOREIGN KEY (`ID_user`) REFERENCES `utilisateur` (`id_utilisateur`);
-
---
--- Contraintes pour la table `enchere`
---
-ALTER TABLE `enchere`
-  ADD CONSTRAINT `enchere_ibfk_1` FOREIGN KEY (`id_oeuvre`) REFERENCES `oeuvre` (`id_oeuvre`),
-  ADD CONSTRAINT `enchere_ibfk_2` FOREIGN KEY (`id_offreur`) REFERENCES `utilisateur` (`id_utilisateur`);
 
 --
 -- Contraintes pour la table `exposition_images`

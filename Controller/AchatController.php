@@ -1,5 +1,6 @@
 <?php
 require_once('Model/oeuvre.php');
+require_once('Model/oeuvre.php');
 require_once('Database/Database.php');
 require_once('Controller.php');
 
@@ -12,9 +13,12 @@ class AchatController extends Controller
         $oeuvre = new Oeuvre($Titre = null, $Description = null, $eco_responsable = null, $Date_debut = null, $Date_fin = null, $Prix = null, $type_vente = null, $est_vendu = null, $auteur = null, $id_utilisateur = null, $id_categorie = null, $status = null, $nomvendeur = null, $prenomvendeur = null, $chemin_image = [], $prix_actuel = null, $id_offreur = null);
         session_start();
         $role = isset($_SESSION["usersessionRole"]) === true && $_SESSION["usersessionRole"] === "Admin" ? true : false;
+        $role = isset($_SESSION["usersessionRole"]) === true && $_SESSION["usersessionRole"] === "Admin" ? true : false;
         $id =  $_SESSION['oeuvre_id'];
         
+        
         $oeuvreid = $oeuvre->getOeuvreById($id, $db);
+
 
 
         // Vérifier si l'œuvre existe
