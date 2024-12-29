@@ -3,17 +3,15 @@ require_once('Database/Database.php');
 require_once('Controller.php');
 require_once('Model/categorie.php');
 require_once('Model/Utils.php');
+require_once('Model/Vente.php');
 
 Class VenteController extends Controller{//Controlleur accueil
     
     public function vente(Database $db) {
         session_start();
         $role = isset($_SESSION["usersessionRole"]) === true && $_SESSION["usersessionRole"] === "Admin" ? true : false;
-        session_start();
-        $role = isset($_SESSION["usersessionRole"]) === true && $_SESSION["usersessionRole"] === "Admin" ? true : false;
         $categorie = new Categorie();
         $result = $categorie->getAllCategorie($db);
-        $this->render('vente', ["result" => $result, "connectUser" =>  isset($_SESSION["usersessionID"]), "userRole" => $role]);   
         $this->render('vente', ["result" => $result, "connectUser" =>  isset($_SESSION["usersessionID"]), "userRole" => $role]);   
     }
 

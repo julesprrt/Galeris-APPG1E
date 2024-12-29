@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : dim. 29 déc. 2024 à 16:27
+-- Généré le : dim. 29 déc. 2024 à 16:42
 -- Version du serveur : 10.4.32-MariaDB
 -- Version de PHP : 8.2.12
 
@@ -316,7 +316,9 @@ INSERT INTO `oeuvre` (`id_oeuvre`, `Titre`, `Description`, `eco_responsable`, `D
 (44, 'test', 'tetstettetststetststetetstetetetstetetstetetstet', 0, '2024-12-20 09:20:38', '2025-01-09 09:20:38', 50.00, 'Enchere', 0, 'jean', 6, 2, 'refuse'),
 (47, 'Solution du blocage de port', 'Pour une enchère débutant à 50 euros, je deviens prof pour savoir comment gérer les exceptions/erreurs sur Xampp. A vos marques prêts partez.', 0, '2024-12-24 15:30:05', '2024-12-24 15:35:05', 50.00, 'Enchere', 0, 'Akash Selvaratnam', 6, 3, 'accepte'),
 (48, 'Vente oeuvre Van Gogh', 'Enchères des tableaux de Van Gogh Achetez svp j\'ai pas beaucoup d\'argent', 0, '2024-12-29 14:29:26', '2025-01-08 14:29:26', 30.00, 'Enchere', 0, 'Van Gogh', 6, 2, 'accepte'),
-(49, 'test', 'sssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss', 0, '2024-12-29 14:40:37', '2025-01-28 14:40:37', 30.00, 'Vente', 0, 'test', 6, 2, 'accepte');
+(49, 'test', 'sssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss', 0, '2024-12-29 14:40:37', '2025-01-28 14:40:37', 30.00, 'Vente', 0, 'test', 6, 2, 'accepte'),
+(50, 'test', 'ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss', 0, '2024-12-29 16:39:28', '2025-01-28 16:39:28', 50.00, 'Enchere', 0, 'test', 6, 2, 'accepte'),
+(51, 'ssssssssssssssssssssss', 'ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss', 0, '2024-12-29 16:40:11', '2025-01-28 16:40:11', 50.00, 'Vente', 0, 'ssssss', 6, 2, 'accepte');
 
 -- --------------------------------------------------------
 
@@ -346,7 +348,9 @@ INSERT INTO `oeuvre_images` (`id_photo`, `chemin_image`, `id_oeuvre`) VALUES
 (48, 'ImageBD/Oeuvre/image_676ac56e00d2b1.36771869.png', 47),
 (49, 'ImageBD/Oeuvre/image_67714eb6d5aad8.17266380.jpeg', 48),
 (50, 'ImageBD/Oeuvre/image_67714eb6dbc1e1.18266037.jpeg', 48),
-(51, 'ImageBD/Oeuvre/image_677151559b8931.94486066.jpeg', 49);
+(51, 'ImageBD/Oeuvre/image_677151559b8931.94486066.jpeg', 49),
+(52, 'ImageBD/Oeuvre/image_67716d3024b8c8.80852988.jpeg', 50),
+(53, 'ImageBD/Oeuvre/image_67716d5b357633.81323832.jpeg', 51);
 
 -- --------------------------------------------------------
 
@@ -552,13 +556,13 @@ ALTER TABLE `exposition_images`
 -- AUTO_INCREMENT pour la table `oeuvre`
 --
 ALTER TABLE `oeuvre`
-  MODIFY `id_oeuvre` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
+  MODIFY `id_oeuvre` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 
 --
 -- AUTO_INCREMENT pour la table `oeuvre_images`
 --
 ALTER TABLE `oeuvre_images`
-  MODIFY `id_photo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
+  MODIFY `id_photo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
 
 --
 -- AUTO_INCREMENT pour la table `panier`

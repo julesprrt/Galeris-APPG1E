@@ -10,10 +10,7 @@
     <link rel="stylesheet" href="CSS/footer.css">
     <link rel="stylesheet" href="CSS/style.css">
     <script src="https://galeris/Galeris-APPG1E/vue/JS/achat.js" defer></script>
-    <script src="https://galeris/Galeris-APPG1E/vue/JS/achat.js" defer></script>
     <title><?php echo htmlspecialchars($oeuvre['Titre']); ?></title>
-    <script src="https://galeris/Galeris-APPG1E/vue/JS/header.js" defer></script>
-    <title>Page d'Achat</title>
     <script src="https://galeris/Galeris-APPG1E/vue/JS/header.js" defer></script>
     <title>Page d'Achat</title>
 </head>
@@ -30,8 +27,6 @@
                 <li><a href="https://galeris/Galeris-APPG1E/">Accueil</a></li>
                 <li><a href="https://galeris/Galeris-APPG1E/ventes">Vente</a></li>
                 <li><a href="https://galeris/Galeris-APPG1E/exposes">Exposition</a></li>
-                <li><a href="https://galeris/Galeris-APPG1E/ventes">Vente</a></li>
-                <li><a href="https://galeris/Galeris-APPG1E/exposes">Exposition</a></li>
                 <li><a href="#">News</a></li>
                 <li><a href="#">Plus</a></li>
             </ul>
@@ -40,27 +35,7 @@
             <input type="text" placeholder="Rechercher...">
             <div class="favori"> <a href="favoris.html">❤️ </a></div>
             <div class="panier"> <a href="panier.html"> 🛒 </a></div>
-            <?php
-            if ($connectUser === true) {
-                echo '<div class="dropdown">
-                            <div class="utilisateur"> 👤 </div>
-                            <div class="dropdown-child">
-                                <a href="https://galeris/Galeris-APPG1E/profil">Mon profil</a>
-                                <a href="#">Mon solde</a>' .
-                    (($userRole === true) ?
-                        '<a href="https://galeris/Galeris-APPG1E/listeoeuvreattente">Oeuvres en attente</a>
-                                    <a href="https://galeris/Galeris-APPG1E/listeexposeattente">Exposés en attente</a>' : "") .
-                    '<a id="deconnexion">Déconnexion</a>
-                            </div>
-                           </div>';
-            } else {
-                echo '<div class="utilisateur"><a href="https://galeris/Galeris-APPG1E/connexion"> 👤 </a></div>';
-            }
-            ?>
 
-
-            <div class="favori"> <a href="favoris.html">❤️ </a></div>
-            <div class="panier"> <a href="panier.html"> 🛒 </a></div>
             <?php
             if ($connectUser === true) {
                 echo '<div class="dropdown">
@@ -91,11 +66,6 @@
                     <button class="carousel-fleche gauche cfg">&#10094;</button>
 
                     <div class="art-image">
-                        <?php foreach ($oeuvre['chemin_image'] as $index => $chemin): ?>
-                            <img src="../<?php echo htmlspecialchars($chemin); ?>"
-                                class="carousel-image <?php echo $index === 0 ? 'active' : ''; ?>"
-                                alt="Image de <?php echo htmlspecialchars($oeuvre['Titre']); ?>">
-                        <?php endforeach; ?>
                         <?php foreach ($oeuvre['chemin_image'] as $index => $chemin): ?>
                             <img src="../<?php echo htmlspecialchars($chemin); ?>"
                                 class="carousel-image <?php echo $index === 0 ? 'active' : ''; ?>"
@@ -145,10 +115,7 @@
                 <div class="prix">
                     <span><strong>Auteur :</strong> <?php echo htmlspecialchars($oeuvre['auteur']) ?></span><br><br>
                     <span><strong>Prix :</strong> <?php echo number_format($oeuvre['Prix'], 2, ',', ' '); ?> € </span>
-                    <span><strong>Auteur :</strong> <?php echo htmlspecialchars($oeuvre['auteur']) ?></span><br><br>
-                    <span><strong>Prix :</strong> <?php echo number_format($oeuvre['Prix'], 2, ',', ' '); ?> € </span>
                     <p><small>Publié le : <?php echo htmlspecialchars($oeuvre['Date_debut']); ?></small></p>
-                    <p><small class="temps-restant" data-fin="<?php echo $oeuvre["Date_fin"]  ?>">Temps restant : </small></p>
                     <p><small class="temps-restant" data-fin="<?php echo $oeuvre["Date_fin"]  ?>">Temps restant : </small></p>
                 </div>
             </section>
