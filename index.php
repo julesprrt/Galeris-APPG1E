@@ -12,6 +12,9 @@ require_once("./Controller/VenteController.php");
 require_once("./Controller/ListeAttenteAdminController.php");
 require_once("./Controller/GalerisController.php");
 require_once("./Controller/AdminController.php");
+require_once("./Controller/ListeAttenteAdminController.php");
+require_once("./Controller/GalerisController.php");
+require_once("./Controller/AdminController.php");
 
 
 $uri = $_SERVER['REQUEST_URI']; //Recupération de l'uri (la route)
@@ -23,11 +26,14 @@ $router->addRoute('/Galeris-APPG1E/', HomeController::class, action: 'home');
 $router->addRoute('/Galeris-APPG1E/inscription', UserController::class, action: 'inscription');
 $router->addRoute('/Galeris-APPG1E/connexion', UserController::class, 'connexion');
 $router->addRoute('/Galeris-APPG1E/contact', ContactController::class, 'contact');
+$router->addRoute('/Galeris-APPG1E/achat', AchatController::class, 'achat');
+$router->addRoute('/Galeris-APPG1E/enchere', AchatController::class, 'achat');
 $router->addRoute('/Galeris-APPG1E/faq', FAQController::class, 'faq');
 $router->addRoute('/Galeris-APPG1E/cgu', CGUController::class, 'cgu');
 $router->addRoute('/Galeris-APPG1E/achat', AchatController::class, 'achat');
 $router->addRoute('/Galeris-APPG1E/motdepasse', UserController::class, 'password');
 $router->addRoute('/Galeris-APPG1E/codeunique', UserController::class, 'code');
+$router->addRoute('/Galeris-APPG1E/galeris', GalerisController::class, 'controller');
 $router->addRoute('/Galeris-APPG1E/galeris', GalerisController::class, 'controller');
 $router->addRoute('/Galeris-APPG1E/vente', VenteController::class, 'vente');
 $router->addRoute('/Galeris-APPG1E/createvente', VenteController::class, 'createvente');
@@ -37,7 +43,6 @@ $router->addRoute('/Galeris-APPG1E/process-edition', UserController::class, 'pro
 $router->addRoute('/Galeris-APPG1E/exposition', ExpositionController::class, 'exposition');
 $router->addRoute('/Galeris-APPG1E/createexposition', ExpositionController::class, 'createexposition');
 $router->addRoute('/Galeris-APPG1E/renvoiecode', UserController::class, 'resendcode');
-$router->addRoute('/Galeris-APPG1E/achat', AchatController::class, 'achat');
 $router->addRoute('/Galeris-APPG1E/saveid', AchatController::class, 'saveid');
 $router->addRoute('/Galeris-APPG1E/deconnexion', UserController::class, 'deconnexion');
 $router->addRoute('/Galeris-APPG1E/listeoeuvreattente', ListeAttenteAdminController::class, 'listeattenteoeuvre');
@@ -53,6 +58,8 @@ $router->addRoute('/Galeris-APPG1E/verifyMail', UserController::class, 'Pässwor
 $router->addRoute('/Galeris-APPG1E/exposes', ExpositionController::class, 'listeExpose');
 $router->addRoute('/Galeris-APPG1E/expose', ExpositionController::class, 'exposeByID');
 $router->addRoute('/Galeris-APPG1E/ventes', VenteController::class, 'listeVente');
+
+
 
 if ($uri !== null) {
     $router->dispatch($uri); //Appel a la méthode du controller dedié
