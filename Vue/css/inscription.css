@@ -54,6 +54,41 @@
     font-weight: 600;
     font-family: Arial, Helvetica, sans-serif;
 }
+input:-internal-autofill-selected {
+    appearance: menulist-button;
+    background-image: none !important;
+    background-color: rgba(217, 163, 106, 0.7);
+    color: fieldtext !important;
+}
+
+#showmdp {
+    width: 1.4rem;
+    height: 1.2rem;
+    cursor: pointer;
+  }
+  
+  #hidemdp {
+    width: 1.4rem;
+    height: 1.2rem;
+    cursor: pointer;
+  }
+  
+  #showmdp2 {
+    width: 1.4rem;
+    height: 1.2rem;
+    cursor: pointer;
+  }
+  
+  #hidemdp2 {
+    width: 1.4rem;
+    height: 1.2rem;
+    cursor: pointer;
+  }
+  
+  #diveye {
+    width: 1.4rem;
+    height: 1.2rem;
+  }
 
 .submit-button {
     background-color: #D9A36A;

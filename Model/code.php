@@ -13,7 +13,7 @@ Class Code{
     public function sendCode($to,$db) {
         $code = rand(100000,999999);
         $this->sendMail->sendMail($to,title_Code_unique, message_Code_unique . $code, galeris);
-        $this->saveCode($db,$code);
+        $this->saveCode($db, $code);
     }
 
     public function saveCode(Database $db, $code){
@@ -24,8 +24,8 @@ Class Code{
         $stmt->bind_param('sss',$code, $my_date_time, $_SESSION["usersessionID"]);
         $stmt->execute();
         $stmt->close();
+        $conn->close();
     }
-
 
     
 }

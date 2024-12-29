@@ -16,6 +16,22 @@ Class Utils {
         return filter_var($email, FILTER_VALIDATE_EMAIL);
     }
 
+    public function verifyImageAndSize($image){
+        return getimagesize($image) ? true : false;
+    }
+
+    public function human_filesize($base64Image){ //return memory size in B, KB, MB
+        try{
+            $size_in_bytes = (int) (strlen(rtrim($base64Image, '=')) * 3 / 4);
+            $size_in_kb    = $size_in_bytes / 1024;
+            $size_in_mb    = $size_in_kb / 1024;
+    
+            return $size_in_mb;
+        }
+        catch(Exception $e){
+            return $e;
+        }
+    }
     public function SaveFile($image,$repository){
         preg_match('/^data:image\/(\w+);base64,/', $image, $type);
         $base64Image = substr($image, strpos($image, ',') + 1);//image en base 64
@@ -28,5 +44,24 @@ Class Utils {
 
         file_put_contents($filename, $base64Image);//enregistrer l'image dans le dossiser ImageBD/Ouevre
         return $filename;
+    }
+
+    public function getMaxAndMinPriceFromMySQL($oeuvres){
+        $result = [];
+        foreach ($oeuvres as $oeuvre) {
+            if(!array_key_exists("min", $result)){
+                $result["min"] = $oeuvre["Prix"];
+            }
+            if(!array_key_exists("max", $result)){
+                $result["max"] = $oeuvre["Prix"];
+            }
+            if($result["min"] > $oeuvre["Prix"]){
+                $result["min"] = $oeuvre["Prix"];
+            }
+            if($result["max"] < $oeuvre["Prix"]){
+                $result["max"] = $oeuvre["Prix"];
+            }
+        }
+        return $result;
     }
 }

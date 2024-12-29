@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="CSS/accueil.css">
     <link rel="stylesheet" href="CSS/header.css">
     <link rel="stylesheet" href="CSS/footer.css">
+    <script src="https://galeris/Galeris-APPG1E/vue/JS/header.js" defer></script>
     <script src="https://galeris/Galeris-APPG1E/vue/JS/accueil.js" defer></script>
     <title>Accueil</title>
 </head>
@@ -19,8 +20,8 @@
             <nav class="menu">
                 <ul>
                     <li><a href="https://galeris/Galeris-APPG1E/">Accueil</a></li>
-                    <li><a href="#">Vente</a></li>
-                    <li><a href="#">Exposition</a></li>
+                    <li><a href="https://galeris/Galeris-APPG1E/ventes">Vente</a></li>
+                    <li><a href="https://galeris/Galeris-APPG1E/exposes">Exposition</a></li>
                     <li><a href="#">News</a></li>
                     <li><a href="#">Plus</a></li>
                 </ul>
@@ -30,7 +31,24 @@
                 <input type="text" placeholder="Rechercher...">
                 <div class="favori"> <a href="favoris.html">❤️ </a></div>
                 <div class="panier"> <a href="panier.html"> 🛒 </a></div>
-                <div class="utilisateur"><a href="https://galeris/Galeris-APPG1E/profil"> 👤 </a></div>
+                <?php
+                if ($connectUser === true) {
+                    echo '<div class="dropdown">
+                            <div class="utilisateur"> 👤 </div>
+                            <div class="dropdown-child">
+                                <a href="https://galeris/Galeris-APPG1E/profil">Mon profil</a>
+                                <a href="#">Mon solde</a>'.
+                                (($userRole === true)?
+                                    '<a href="https://galeris/Galeris-APPG1E/listeoeuvreattente">Oeuvres en attente</a>
+                                    <a href="https://galeris/Galeris-APPG1E/listeexposeattente">Exposés en attente</a>':"").
+                                '<a id="deconnexion">Déconnexion</a>
+                            </div>
+                           </div>';
+                } else {
+                    echo '<div class="utilisateur"><a href="https://galeris/Galeris-APPG1E/connexion"> 👤 </a></div>';
+                }
+                ?>
+
             </div>
         </header>
 
@@ -58,9 +76,10 @@
                             echo '<div class="oeuvre">';
                             echo '<input type="hidden" id="id_oeuvre_' . $oeuvre["id_oeuvre"] . '" name="id_oeuvre" value="' . $oeuvre["id_oeuvre"] . '">';
                             echo '<h3>' . $oeuvre["Titre"] . '</h3>';
-                            // Ajout de l'image
                             echo '<img src="../' . $oeuvre["chemin_image"] . '" alt="' . $oeuvre["Titre"] . '" />';
-                            echo '<p>' . $oeuvre["Description"] . '</p>';
+                            echo '<p class="temps-restant" data-fin="' . $oeuvre["Date_fin"] . '">' . '</p>';
+                            echo '<p >'. $oeuvre['Prix'] .' €</p>';
+                            echo '<p>' . substr($oeuvre["Description"],0,250) . '(...)</p>';
                             echo '</div>';
                             echo '</a>';
                         }
@@ -106,14 +125,14 @@
 
             <!-- infos footer (aide, contact ...) -->
             <div class="container-footer">
-                <a class="title-footer">Qui sommes nous</a>
+                <a class="title-footer">Qui sommes-nous ?</a>
                 <a class="item-footer" href="#">NovArt</a>
-                <a class="item-footer" href="#">Galeris</a>
+                <a class="item-footer" href="https://galeris/Galeris-APPG1E/galeris">Galeris</a>
             </div>
             <div class="container-footer">
                 <a class="title-footer">Aide</a>
                 <a class="item-footer" href="https://galeris/Galeris-APPG1E/faq">Foire aux questions</a>
-                <a class="item-footer" href="https://galeris/Galeris-APPG1E/contact">Contacts</a>
+                <a class="item-footer" href="https://galeris/Galeris-APPG1E/contact">Contact</a>
             </div>
             <div class="container-footer">
                 <a class="title-footer">Informations légales</a>

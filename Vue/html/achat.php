@@ -9,7 +9,10 @@
     <link rel="stylesheet" href="CSS/header.css">
     <link rel="stylesheet" href="CSS/footer.css">
     <link rel="stylesheet" href="CSS/style.css">
+    <script src="https://galeris/Galeris-APPG1E/vue/JS/achat.js" defer></script>
     <title><?php echo htmlspecialchars($oeuvre['Titre']); ?></title>
+    <script src="https://galeris/Galeris-APPG1E/vue/JS/header.js" defer></script>
+    <title>Page d'Achat</title>
 </head>
 
 <body>
@@ -22,17 +25,35 @@
         <nav class="menu">
             <ul>
                 <li><a href="https://galeris/Galeris-APPG1E/">Accueil</a></li>
-                <li><a href="#">Vente</a></li>
-                <li><a href="#">Exposition</a></li>
+                <li><a href="https://galeris/Galeris-APPG1E/ventes">Vente</a></li>
+                <li><a href="https://galeris/Galeris-APPG1E/exposes">Exposition</a></li>
                 <li><a href="#">News</a></li>
                 <li><a href="#">Plus</a></li>
             </ul>
         </nav>
         <div class="barre_recherche">
             <input type="text" placeholder="Rechercher...">
-            <div class="favori"><a href="favoris.html">❤️</a></div>
-            <div class="panier"><a href="panier.html">🛒</a></div>
-            <div class="utilisateur"><a href="https://galeris/Galeris-APPG1E/profil">👤</a></div>
+            <div class="favori"> <a href="favoris.html">❤️ </a></div>
+            <div class="panier"> <a href="panier.html"> 🛒 </a></div>
+            <?php
+            if ($connectUser === true) {
+                echo '<div class="dropdown">
+                            <div class="utilisateur"> 👤 </div>
+                            <div class="dropdown-child">
+                                <a href="https://galeris/Galeris-APPG1E/profil">Mon profil</a>
+                                <a href="#">Mon solde</a>' .
+                    (($userRole === true) ?
+                        '<a href="https://galeris/Galeris-APPG1E/listeoeuvreattente">Oeuvres en attente</a>
+                                    <a href="https://galeris/Galeris-APPG1E/listeexposeattente">Exposés en attente</a>' : "") .
+                    '<a id="deconnexion">Déconnexion</a>
+                            </div>
+                           </div>';
+            } else {
+                echo '<div class="utilisateur"><a href="https://galeris/Galeris-APPG1E/connexion"> 👤 </a></div>';
+            }
+            ?>
+
+
         </div>
     </header>
 
@@ -50,6 +71,8 @@
                                 alt="Image de <?php echo htmlspecialchars($oeuvre['Titre']); ?>">
                         <?php endforeach; ?>
                     </div>
+
+
 
                     <!-- Flèche droite -->
                     <button class="carousel-fleche droite cfd">&#10095;</button>
@@ -77,7 +100,7 @@
         <section class="droite">
             <section class="profil-section">
                 <div class="profil-info">
-                    <img src="https://via.placeholder.com/50" alt="Photo de profil" class="photo-profil">
+                    <img src="../images/photodeprofil.jpg" alt="Photo de profil" class="photo-profil">
                     <div class="profil-nom">
                         <strong>Vendeur : <?php echo htmlspecialchars($oeuvre['nom']) . " " . htmlspecialchars($oeuvre['prenom']); ?></strong>
                     </div>
@@ -86,15 +109,17 @@
 
             <section class="info-prix">
                 <div class="prix">
-                    <span><strong>Prix :</strong> € <?php echo number_format($oeuvre['Prix'], 2, ',', ' '); ?></span>
+                    <span><strong>Auteur :</strong> <?php echo htmlspecialchars($oeuvre['auteur']) ?></span><br><br>
+                    <span><strong>Prix :</strong> <?php echo number_format($oeuvre['Prix'], 2, ',', ' '); ?> € </span>
                     <p><small>Publié le : <?php echo htmlspecialchars($oeuvre['Date_debut']); ?></small></p>
+                    <p><small class="temps-restant" data-fin="<?php echo $oeuvre["Date_fin"]  ?>">Temps restant : </small></p>
                 </div>
             </section>
 
             <!-- Boutons d'actions -->
             <section class="actions">
-                <button class="boutton-acheter">Acheter</button>
-                <button class="boutton-message-vendeur">Message</button>
+                <button class="boutton-message-vendeur">Ajouter au Panier</button>
+                <button class="boutton-favoris">Ajouter au favoris</button>
             </section>
         </section>
     </main>
@@ -102,14 +127,14 @@
     <!-- FOOTER -->
     <footer>
         <div class="container-footer">
-            <a class="title-footer">Qui sommes nous</a>
+            <a class="title-footer">Qui sommes-nous ?</a>
             <a class="item-footer" href="#">NovArt</a>
-            <a class="item-footer" href="#">Galeris</a>
+            <a class="item-footer" href="https://galeris/Galeris-APPG1E/galeris">Galeris</a>
         </div>
         <div class="container-footer">
             <a class="title-footer">Aide</a>
             <a class="item-footer" href="https://galeris/Galeris-APPG1E/faq">Foire aux questions</a>
-            <a class="item-footer" href="https://galeris/Galeris-APPG1E/contact">Contacts</a>
+            <a class="item-footer" href="https://galeris/Galeris-APPG1E/contact">Contact</a>
         </div>
         <div class="container-footer">
             <a class="title-footer">Informations légales</a>

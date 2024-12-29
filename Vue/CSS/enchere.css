@@ -94,7 +94,7 @@ main {
     margin-top: 10px;
     justify-content: space-evenly;
 }
- 
+
 
 .tableau-similaire img {
     width: 100px;
@@ -140,7 +140,7 @@ main {
 
 .actions {
     margin: 15px 0;
-    
+
 }
 
 .actions button {
@@ -152,7 +152,7 @@ main {
     margin-right: 10px;
     border-radius: 4px;
     font-size: 16px;
-    
+
 }
 
 .actions button:hover {
@@ -181,6 +181,28 @@ main {
     margin-top: 20px;
 }
 
-.details .publication, .details .livraison {
+.details .publication,
+.details .livraison {
     margin-bottom: 10px;
+}
+
+.table-enchere th,
+.table-enchere td {
+    border: 1px solid gray;
+    padding: 5px;
+}
+
+.table-enchere {
+    border-collapse: collapse;
+    margin-top: 1.5em;
+}
+
+.table-enchere th,
+.table-enchere td {
+    border: 1px solid gray;
+    padding: 10px;
+}
+
+.enchere{
+    padding-bottom: 1em;
 }

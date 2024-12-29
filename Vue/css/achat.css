@@ -157,7 +157,7 @@ main {
 }
 
 .actions button:hover {
-    background-color: #00b66a;
+    opacity : 0.9;
 }
 
 .info-prix {

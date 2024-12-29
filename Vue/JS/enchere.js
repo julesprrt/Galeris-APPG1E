@@ -28,3 +28,28 @@ document.addEventListener("DOMContentLoaded", () => {
         images[currentIndex].classList.add('active');
     }
 });
+
+setInterval(tempsRestants, 1000);
+
+function tempsRestants() {
+    const elements = document.querySelectorAll('.temps-restant');
+
+    elements.forEach(el => {
+        const date_fin = new Date(el.dataset.fin);
+        const date_actuelle = new Date();
+
+        const temps_restants = date_fin - date_actuelle;
+        if (temps_restants > 0) {
+            const jours = Math.floor((temps_restants / (1000 * 60 * 60 * 24)));
+            const heures = Math.floor((temps_restants % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((temps_restants % (1000 * 60 * 60)) / (1000 * 60));
+            const secondes = Math.floor(((temps_restants % (1000 * 60)) / 1000));
+
+            el.textContent = `${jours}j ${heures}h ${minutes}m ${secondes}s restant`;
+        } else {
+            window.location.href = "https://galeris/Galeris-APPG1E/";
+        }
+    });
+}
+
+

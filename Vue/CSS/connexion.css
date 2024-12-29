@@ -1,21 +1,21 @@
 .Page-content {
   display: flex;
-  flex-direction:row;
+  flex-direction: row;
   align-items: center;
 }
 
 .infos-connexion {
- display: flex;
- padding-left: 90px;
- padding-right: 30px;
- width: 600px;
- height: 375px;
+  display: flex;
+  padding-left: 90px;
+  padding-right: 30px;
+  width: 600px;
+  height: 375px;
 }
 
 .inscrivez-vous {
   border-radius: 30px;
   box-shadow: 2px 2px;
-  background:rgba(217,217,217,0.8);
+  background: rgba(217, 217, 217, 0.8);
 }
 
 .connexion-content {
@@ -25,17 +25,17 @@
 
 .simpleBigText a{
   text-decoration: none;
-  color: #D9A36A;
+  color: #d9a36a;
   font-weight: 300;
 }
 
 .text-galeris {
   color: black;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
 .form-connexion {
-  border-radius: 10px; 
+  border-radius: 10px;
   padding-left: 100px;
   padding-right: 30px;
   width: 600px;
@@ -46,8 +46,8 @@
 
 form {
   display: flex;
-  flex-direction: column; 
-  width: 100%; 
+  flex-direction: column;
+  width: 100%;
 }
 
 .Title-connexion{
@@ -57,7 +57,7 @@ form {
 }
 
 .submit-button {
-  background-color: #D9A36A;
+  background-color: #d9a36a;
   border: none;
   padding: 15px;
   width: 45%;
@@ -74,6 +74,43 @@ form {
   right: 0px;
 }
 
+.button-connection {
+  width: 275px; /* 按钮宽度 */
+  margin-top: 20px;
+  height: 60px;
+  border-radius: 15px; /* 圆角边框 */
+  background-image: url('../../images/co.png'); /* 使用相对路径加载背景图片 */
+  background-repeat: no-repeat; /* 不重复背景图 */
+  background-size: 369px 59px; /* 确保背景图片完整显示 */
+  background-position: center; /* 居中显示背景图 */
+  cursor: pointer; /* 鼠标悬停时显示手势 */
+  border: none; /* 去除黑色边框 */
+}
+
 .button-connection:hover {
   opacity: 0.9;
+}
+
+#showmdp {
+  width: 1.4rem;
+  height: 1.2rem;
+  cursor: pointer;
+}
+
+#hidemdp {
+  width: 1.4rem;
+  height: 1.2rem;
+  cursor: pointer;
+}
+
+#diveye {
+  width: 1.4rem;
+  height: 1.2rem;
+}
+
+input:-internal-autofill-selected {
+  appearance: menulist-button;
+  background-image: none !important;
+  background-color: rgba(217, 163, 106, 0.7);
+  color: fieldtext !important;
 }

@@ -17,7 +17,7 @@
             <div class="code-input">
                 <input type="number" name="digit1" maxlength="1" required>
                 <input type="number" name="digit2" maxlength="1" required>
-                <input type="number"name="digit3" maxlength="1" required>
+                <input type="number" name="digit3" maxlength="1" required>
                 <input type="number" name="digit4" maxlength="1" required>
                 <input type="number" name="digit5" maxlength="1" required>
                 <input type="number" name="digit6" maxlength="1" required>

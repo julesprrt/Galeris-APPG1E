@@ -46,7 +46,7 @@
                 <label class="checkbox-container">
                     <input type="checkbox" id="check-inscription">
                     <span class="checkmark"></span>
-                    Je reconnais avoir pris connaissance des<a href="https://galeris/Galeris-APPG1E/cgu">conditions générales d’utilisation</a> de Galeris
+                    Je reconnais avoir pris connaissance des <a href="https://galeris/Galeris-APPG1E/cgu" target="_blank">conditions générales d’utilisation</> de Galeris
                 </label>
                 </form>
             </div>
@@ -85,14 +85,14 @@
 
         <!-- infos footer (aide, contact ...) -->
         <div class="container-footer">
-            <a class="title-footer">Qui sommes nous</a>
+            <a class="title-footer">Qui sommes-nous ?</a>
             <a class="item-footer" href="#">NovArt</a>
-            <a class="item-footer" href="#">Galeris</a>
+            <a class="item-footer" href="https://galeris/Galeris-APPG1E/galeris">Galeris</a>
         </div>
         <div class="container-footer">
             <a class="title-footer">Aide</a>
             <a class="item-footer" href="https://galeris/Galeris-APPG1E/faq">Foire aux questions</a>
-            <a class="item-footer" href="https://galeris/Galeris-APPG1E/contact">Contacts</a>
+            <a class="item-footer" href="https://galeris/Galeris-APPG1E/contact">Contact</a>
         </div>
         <div class="container-footer">
             <a class="title-footer">Informations légales</a>

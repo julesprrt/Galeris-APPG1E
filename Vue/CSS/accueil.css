@@ -5,7 +5,11 @@ body {
 
 .page-content {
     display: flex;
-    flex-grow: 1;
+    flex-direction: column;
+    flex-grow: 1; /* Utiliser tout l'espace disponible */
+    width: 100%; /* S'assurer que l'élément prend toute la largeur */
+    padding: 0; /* Supprimer le padding existant */
+    margin: 0; /* Supprimer les marges */
     padding-top: 1.8em;
 }
 
@@ -56,16 +60,14 @@ body {
 /* Section principale des œuvres */
 .oeuvres {
     display: flex;
-    flex-wrap: wrap;
-    /* Permet le retour à la ligne */
-    justify-content: space-evenly;
-    /* Espacement uniforme */
-    gap: 20px;
-    /* Espacement entre les cartes */
-    padding: 2em 5%;
-    /* Espacement autour de la section */
-    background-color: #f9f9f9;
-    /* Fond léger pour démarquer */
+    flex-wrap: wrap; /* Les éléments sautent à la ligne si besoin */
+    justify-content: space-evenly; /* Espacement uniforme des éléments */
+    gap: 20px; /* Espacement entre les cartes */
+    padding: 2em 5%; /* Espacement autour de la section */
+    background-color: #f9f9f9; /* Fond léger */
+    box-sizing: border-box; /* Inclut le padding dans la largeur totale */
+    max-width: 100%; /* Assure que ça ne dépasse pas la largeur de la page */
+    margin: 0 auto; /* Centre la section */
 }
 
 /* Carte individuelle pour chaque œuvre */
@@ -118,5 +120,5 @@ body {
     font-size: 0.9em;
     color: #666;
     /* Texte plus clair */
-    padding: 0.5em;
+    padding: 0em 0.5em 0.5em 0.5em;
 }
