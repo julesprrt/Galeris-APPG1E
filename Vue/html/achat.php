@@ -52,6 +52,8 @@
             } else {
                 echo '<div class="utilisateur"><a href="https://galeris/Galeris-APPG1E/connexion"> 👤 </a></div>';
             }
+            
+            
             ?>
 
 
@@ -122,9 +124,20 @@
 
             <!-- Boutons d'actions -->
             <section class="actions">
-                <button class="boutton-message-vendeur">Ajouter au Panier</button>
-                <button class="boutton-favoris">Ajouter au favoris</button>
-            </section>
+
+    <?php
+    $oeuvreid = $oeuvre['id_utilisateur'];
+    if (isset($oeuvreid['id_utilisateur']) && $oeuvreid['id_utilisateur'] === $_SESSION['usersessionID']) {
+        
+        echo '<button class="bouton-modifier">Modifier</button>';
+    } else {
+        // Si l'utilisateur n'est pas le créateur
+        echo '<button class="bouton-message-vendeur">Ajouter au Panier</button>';
+        echo '<button class="bouton-favoris">Ajouter au favoris</button>';
+    }
+    ?>
+</section>
+
         </section>
     </main>
 

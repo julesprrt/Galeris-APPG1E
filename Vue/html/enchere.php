@@ -130,9 +130,17 @@
 
             <!-- Boutons d'actions -->
             <section class="actions">
-                <button class="boutton-offre">Enchérir</button>
-                <button class="boutton-favoris">Ajouter au favoris</button>
-            </section>
+            <?php
+            $oeuvreid = $oeuvre['id_utilisateur'];
+            if (isset($oeuvreid['id_utilisateur']) && $oeuvreid['id_utilisateur'] === $_SESSION['usersessionID']) {
+        
+            echo '<button class="bouton-offre">Modifier</button>';
+        } else {
+            // Si l'utilisateur n'est pas le créateur
+            echo '<button class="bouton-offre">Encherir</button>';
+            echo '<button class="bouton-favoris">Ajouter au favoris</button>';
+    }
+        ?>
             <?php
                 if(mysqli_num_rows($encheres) > 0){
                     echo "<table class='table-enchere'>
