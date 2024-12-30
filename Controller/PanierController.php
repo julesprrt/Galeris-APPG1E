@@ -6,6 +6,19 @@ require_once('Model/panier.php');
 class PanierController extends Controller
 { 
 
+    public function panier(Database $db){
+        session_start();
+
+        if(!isset($_SESSION["usersessionID"])){
+            header('Location: /Galeris-APPG1E/connexion');
+            exit;
+        }
+        $panier = new Panier();
+        $result = $panier->getAllPanier($db);
+        $role = isset($_SESSION["usersessionRole"]) === true && $_SESSION["usersessionRole"] === "Admin" ? true : false;
+        $this->render('panier', ["connectUser" =>  isset($_SESSION["usersessionID"]), "userRole" => $role, "panier" => $result["result"], "total" =>$result["total"]]);
+    }
+
     public function ajoutPanier(Database $db)
     { 
         $panier = new Panier();

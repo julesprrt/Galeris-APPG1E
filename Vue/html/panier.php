@@ -1,68 +1,67 @@
-<!DOCTYPE html>
-<html lang="fr">
+<html>
+    <head>
+        <title>Gomycode DOM checkpoints  Cart</title>
+        <base href="/Galeris-APPG1E/Vue/">
+        <link rel="stylesheet" href="CSS/panier.css">  
+        <link rel="stylesheet" href="CSS/header.css">
+        <link rel="stylesheet" href="CSS/footer.css">
+        <script src="https://galeris/Galeris-APPG1E/vue/JS/panier.js" defer></script>  
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <base href="/Galeris-APPG1E/Vue/">
-    <link rel="stylesheet" href="CSS/galeris.css">
-    <link rel="stylesheet" href="CSS/header.css">
-    <link rel="stylesheet" href="CSS/footer.css">
-    <title>galeris</title>
-</head>
-
-<body>
-    <div class="container">
-        <header>
-            <div class="logo"> <a href="https://galeris/Galeris-APPG1E/"><img src="../images/logo.png"></a></div>
-            <nav class="menu">
-                <ul>
-                    <li><a href="https://galeris/Galeris-APPG1E/">Accueil</a></li>
-                    <li><a href="https://galeris/Galeris-APPG1E/ventes">Vente</a></li>
-                    <li><a href="https://galeris/Galeris-APPG1E/exposes">Exposition</a></li>
-                    <li><a href="#">News</a></li>
-                    <li><a href="#">Plus</a></li>
-                </ul>
-            </nav>
-            <div class="barre_recherche">
-                <!-- Barre de recherche, les emojis sont responsives si on clique dessus -->
-                <input type="text" placeholder="Rechercher...">
-                <div class="favori"> <a href="favoris.html">❤️ </a></div>
-                <div class="panier"> <a href="https://galeris/Galeris-APPG1E/panier"> 🛒 </a></div>
-                <div class="utilisateur"><a href="https://galeris/Galeris-APPG1E/connexion"> 👤 </a></div>
-            </div>
-        </header>
-
-        <!-- Contenu de la page d'accueil -->
-        <div class="page-galeris">
-            <div class="contentbase">
-                <div class="content-description">
-                    <p class="description">"Galeris est une plateforme en ligne qui permet aux artistes de présenter 
-                        leurs œuvres à un public international, d’élargir leur notoriété et de valoriser leur travail. Grâce à galeris, 
-                        les artistes peuvent atteindre un marché bien plus vaste que les galeries physiques traditionnelles, tout en 
-                        limitant l’empreinte écologique et en offrant aux collectionneurs une expérience d’achat plus facile, personnalisée et responsable."
-                    </p>
-                </div>
-            </div>
+    </head>
+    <header>
+        <div class="logo"><a href="https://galeris/Galeris-APPG1E/"> <img src="../images/logo-sans-fond.png"></a></div>
+        <nav class="menu">
+            <ul>
+                <li><a href="https://galeris/Galeris-APPG1E/">Accueil</a></li>
+                <li><a href="#">Vente</a></li>
+                <li><a href="#">Exposition</a></li>
+                <li><a href="#">News</a></li>
+                <li><a href="#">Plus</a></li>
+            </ul>
+        </nav>
+        <div class="barre_recherche">
+            <input type="text" placeholder="Rechercher...">
+            <div class="favori"> <a href="favoris.html">❤️ </a></div>
+            <div class="panier"> <a href="https://galeris/Galeris-APPG1E/panier"> 🛒 </a></div>
+            <div class="utilisateur"><a href="https://galeris/Galeris-APPG1E/connexion"> 👤 </a></div>
         </div>
-
-        <div class="sphere-container">
-            <div class="sphere">
-                <div class="sphere-image"><img src="../images/oeuvre1-1.jpg" alt="art1"></div>
-                <div class="sphere-image"><img src="../images/oeuvresim-1.png" alt="art2"></div>
-                <div class="sphere-image"><img src="../images/oeuvresim-2.jpg" alt="art3"></div>
-                <div class="sphere-image"><img src="../images/oeuvresim-3.jpg" alt="art4"></div>
-                <div class="sphere-image"><img src="../images/p1.jpg" alt="art5"></div>
-                <div class="sphere-image"><img src="../images/p2.jpg" alt="art6"></div>
-                <div class="sphere-image"><img src="../images/p3.jpg" alt="art7"></div>
-                <div class="sphere-image"><img src="../images/p4.jpg" alt="art8"></div>
+    </header> 
+    <body >
+        <div class="container flex">
+            <div class="structure">
+              <h1>Votre panier</h1>
+          
+              <table id="table">
+                <thead>
+                  <tr>
+                    <th>Article</th>
+                    <th class="elm">Prix</th>
+                    <th class="elm"></th>
+                  </tr>
+                </thead>
+                <tbody id="all_products">
+                  <?php
+                      foreach($panier as $pan){
+                        echo "<tr> 
+                    <td class='article--name'><div style='margin-right:1rem'><img src='../". $pan["chemin_image"] ."'></div> <div>
+                        <h3>". $pan["Titre"] ."</h3> 
+                      </td>
+                      <td class='price elmprice'>" . $pan["Prix"] . " €</td>
+                      <td><a class='remove elm' id='". $pan["id_oeuvre"] ."'><button  type='button' class='btn-simple'>Supprimer</button></a></td>
+                  </tr>";
+                      }
+                  ?>
+                  </div>
+                </tbody>
+                <tfoot>
+                    <td><button type="button" class="btn-simple" id="add_button">Passer la commande</button></td>
+                </tfoot>
+              </table>
+              <h2>Total : <span id="total_display"><?php echo $total ?> €</span></h2>
             </div>
-        </div>
-        
-
+          </div>
         <footer>
 
-            <!-- icones réseaux sociaux -->
             <div class="social-network">
                 <a href="#"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"
                         xmlns="http://www.w3.org/2000/svg">
@@ -92,12 +91,11 @@
                     </svg>
                 </a>
             </div>
-
-            <!-- infos footer (aide, contact ...) -->
+        
             <div class="container-footer">
                 <a class="title-footer">Qui sommes nous</a>
                 <a class="item-footer" href="#">NovArt</a>
-                <a class="item-footer" href="https://galeris/Galeris-APPG1E/galeris">Galeris</a>
+                <a class="item-footer" href="#">Galeris</a>
             </div>
             <div class="container-footer">
                 <a class="title-footer">Aide</a>
@@ -109,10 +107,8 @@
                 <a class="item-footer" href="https://galeris/Galeris-APPG1E/cgu">Conditions d'utilisations</a>
                 <a class="item-footer" href="#">Mentions légales</a>
             </div>
-
+        
         </footer>
-    </div>
-</body>
-
-
+    </body>
+  
 </html>

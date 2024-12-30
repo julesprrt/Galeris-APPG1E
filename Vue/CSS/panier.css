@@ -1,0 +1,184 @@
+/* Global styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+/* Cible l'image spécifique */
+img[src="../images/tableau.png"] {
+  max-width: 100px;
+  height: auto;
+  display: block; 
+  margin: 0 auto;
+  border-radius: 5px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+  /* Conteneur global */
+.container {
+  width: 90%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+/* Structure principale du panier */
+.structure {
+  width: 100%;
+  max-width: 1200px;
+  background-color: #f9f9f9;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+ 
+  header {
+    background-color: #f8f8f8;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #ddd;
+  }
+
+  .nav-container {
+    display: flex;
+    align-items: center;
+  }
+  
+  .nav-container .logo {
+    font-size: 20px;
+    font-weight: bold;
+  }
+  
+  nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+  }
+  
+  nav ul li {
+    margin: 0 10px;
+  }
+  
+  nav ul li a {
+    text-decoration: none;
+    color: #333;
+  }
+  
+  .search input {
+    padding: 5px;
+    margin-right: 5px;
+  }
+  
+  .user-menu button {
+    margin-left: 10px;
+    padding: 5px;
+  }
+  
+  .breadcrumb {
+    padding: 15px;
+    background-color: #f0f0f0;
+    border-bottom: 1px solid #ddd;
+    font-size: 14px;
+  }
+  
+  .product-container {
+    display: flex;
+    margin: 20px;
+  }
+  
+  .left-section {
+    flex: 3;
+    margin-right: 20px;
+  }
+  
+  .left-section .main-image {
+    width: 100%;
+    border: 1px solid #ddd;
+  }
+  
+  .similar-products {
+    margin-top: 20px;
+  }
+  
+  .similar-products .thumbnails {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .similar-products img {
+    width: 80px;
+    height: auto;
+    border: 1px solid #ddd;
+  }
+  
+  .right-section {
+    flex: 2;
+    border: 1px solid #ddd;
+    padding: 20px;
+    border-radius: 5px;
+  }
+  
+  .artist-info h2 {
+    margin-top: 0;
+  }
+  
+  .price {
+    font-size: 24px;
+  }
+  
+  .discount {
+    font-size: 14px;
+    color: #27ae60;
+  }
+  
+  .map iframe {
+    margin-top: 20px;
+  }
+.product-container {
+  display: flex;
+  align-items: center;
+  gap: 200px; 
+}
+
+.product-container img {
+  max-width: 500px; 
+  height: auto;
+  border: 1px solid #000;
+  border-radius: 10px;
+}
+
+.btn-simple{
+  background-color: #D9A36A;
+  width: 8em;
+  border-radius: 0.2em;
+  border: none;
+  padding: 0.8em;
+  color: white;
+}
+
+.btn-simple:hover{
+  opacity : 0.9;
+}
+
+.elm {
+  padding-left: 4em;
+  padding-top: 2em;
+  text-align: center;
+}
+
+.elmprice{
+  padding-left: 4em;
+}
+
+img{
+  height : 12.5em;
+  width: 12.5em;
+}

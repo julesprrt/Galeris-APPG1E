@@ -80,5 +80,31 @@ Class Panier{
 
         return $panier["price"];
     }
+
+    public function getAllPanier(Database $db){
+        $conn = $db->connect();
+        $sql = "select * from panier p inner join oeuvre o on o.id_oeuvre = p.id_oeuvre left join oeuvre_images oi on oi.id_oeuvre = o.id_oeuvre where p.id_utilisateur = ? and o.type_vente = ? and o.est_vendu = ? and o.Date_fin > ? GROUP BY o.id_oeuvre";
+        $stmt = $conn->prepare($sql);
+        $id_utilisateur = $_SESSION["usersessionID"];
+        $type_vente = "vente";
+        $est_vendu = 0;
+        $actualDate = date('Y-m-d H:i:s');
+        $stmt->bind_param("isis",$id_utilisateur, $type_vente, $est_vendu, $actualDate);
+        $stmt->execute();
+
+        $result = $stmt->get_result();
+
+        $stmt->close();
+        $conn->close();
+
+        $prixMax = 0;
+        foreach($result as $res){
+            $prixMax += $res["Prix"];
+        }
+
+        return 
+        ["result" => $result,
+         "total" => $prixMax];
+    }
     
 }
