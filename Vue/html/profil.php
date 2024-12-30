@@ -49,6 +49,7 @@
                     <p><strong>Rôle :</strong> <?= htmlspecialchars($user['roles']) ?></p>
                     <p><strong>Date d'inscription :</strong> <?= htmlspecialchars($user['date_creation']) ?></p>
                     <p><strong>Inscrit à la newsletter :</strong> <?= $user['newsletter'] ? 'Oui' : 'Non' ?></p>
+                    <p><strong>Solde :</strong> <?= htmlspecialchars($user['solde']) ?></p>
                 </div>
             </div>
             <div class="actions">
