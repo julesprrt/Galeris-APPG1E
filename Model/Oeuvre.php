@@ -127,7 +127,8 @@ class Oeuvre
         return $result;
     }
 
-    public function getOeuvresEnAttente(Database $db){
+    public function getOeuvresEnAttente(Database $db)
+    {
         $Database = $db->connect();
         $sql = "SELECT o.*, c.*, u.*, COALESCE(oi.image_path, 'Aucune image') AS image_path FROM oeuvre o INNER JOIN categorie c ON c.id_categorie = o.id_categorie INNER join utilisateur u on u.id_utilisateur = o.id_utilisateur LEFT JOIN ( SELECT id_oeuvre, MIN(chemin_image) AS image_path FROM oeuvre_images GROUP BY id_oeuvre ) oi ON oi.id_oeuvre = o.id_oeuvre WHERE o.statut = ?";
         $stmt = $Database->prepare($sql);
@@ -140,19 +141,21 @@ class Oeuvre
         return $result;
     }
 
-    public function updateStatut(Database $db, $accept, $id){
+    public function updateStatut(Database $db, $accept, $id)
+    {
         $Database = $db->connect();
         $sql = "Update oeuvre set statut = ? where id_oeuvre = ?";
         $statut = $accept === true ? "accepte" : "refuse";
         $stmt = $Database->prepare($sql);
-        $realID = (int)$id;
-        $stmt->bind_param("si",$statut,$realID);
+        $realID = (int) $id;
+        $stmt->bind_param("si", $statut, $realID);
         $stmt->execute();
         $stmt->close();
         $Database->close();
     }
 
-    public function getAllEnchere($id, Database $db){
+    public function getAllEnchere($id, Database $db)
+    {
         $conn = $db->connect();
         $query = "SELECT * FROM enchere e left join utilisateur ut on ut.id_utilisateur = e.id_offreur WHERE e.id_oeuvre_enchere = ?";
 
@@ -168,16 +171,17 @@ class Oeuvre
         return $result;
     }
 
-    public function verifyEnchere(Database $db){
-        $user = new User(null,null,null,null,null,null,null);
-        $userLivraison = $user->getUserById($_SESSION["usersessionID"],$db);
-        if($userLivraison["adresse_livraison"] === null || $userLivraison["adresse_livraison"] === ""){
+    public function verifyEnchere(Database $db)
+    {
+        $user = new User(null, null, null, null, null, null, null);
+        $userLivraison = $user->getUserById($_SESSION["usersessionID"], $db);
+        if ($userLivraison["adresse_livraison"] === null || $userLivraison["adresse_livraison"] === "") {
             return 401;
         }
-        
+
         $oeuvre = $this->getOeuvreById($_SESSION['oeuvre_id'], $db);
 
-        if($oeuvre["prix_courant"] === null){
+        if ($oeuvre["prix_courant"] === null) {
             return [
                 "prixCourant" => $oeuvre["Prix"] * 1.10,
                 "adresse" => $userLivraison["adresse_livraison"]
@@ -190,15 +194,15 @@ class Oeuvre
         ];
     }
 
-    public function enchere(Database $db, $prix){
+    public function enchere(Database $db, $prix)
+    {
         $prixCourant = $this->verifyEnchere($db);
-        if(round(floatval($prix), 2) < round($prixCourant["prixCourant"],2)){
+        if (round(floatval($prix), 2) < round($prixCourant["prixCourant"], 2)) {
             return [
                 "prixCourant" => $prixCourant["prixCourant"],
                 "statut" => 401
             ];
-        }
-        else{
+        } else {
             $payment = new Payment();
             $paymentId = $payment->createObjectForAuction($db, $prix);
             $id = $paymentId["id"];
@@ -209,5 +213,83 @@ class Oeuvre
                 "statut" => 200
             ];
         }
+    }
+
+    public function CreateSaveEnchere(Database $db)
+    {
+        $oeuvresEncheres = $this->getAllEnchereForUpdate($db);
+        if (mysqli_num_rows($oeuvresEncheres) > 0) {
+            $this->updateUserSoldAndVenteTable($db, $oeuvresEncheres);
+            $this->updateOeuvreEnchere($db, $oeuvresEncheres);
+        }
+    }
+
+    public function getAllEnchereForUpdate(Database $db)
+    {
+        $conn = $db->connect();
+        $sql = "SELECT o.*, e.prix AS prix_courant, e.id_offreur AS offreur FROM oeuvre o LEFT JOIN enchere e ON e.id_oeuvre_enchere = o.id_oeuvre WHERE 
+    o.type_vente = ?
+    AND o.est_vendu = ? 
+    AND o.date_fin < ?
+    AND e.prix = (
+        SELECT MAX(e2.prix)
+        FROM enchere e2
+        WHERE e2.id_oeuvre_enchere = o.id_oeuvre
+    );
+";
+        $stmt = $conn->prepare($sql);
+        $est_vendu = 0;
+        $type_vente = "Enchere";
+        $now = new DateTime();
+        $now = $now->format('Y-m-d H:i:s');
+        $stmt->bind_param('sis', $type_vente, $est_vendu, $now);
+        $stmt->execute();
+
+        $result = $stmt->get_result();
+
+        $stmt->close();
+        $conn->close();
+
+        return $result;
+    }
+
+    public function updateUserSoldAndVenteTable(Database $db, $oeuvres)
+    {
+        $conn = $db->connect();
+        $sql = "update utilisateur set solde = solde + ? where id_utilisateur = ?";
+        $sqlVente = "insert into vente (prix, id_oeuvre, id_utilisateur) values (?,?,?)";
+        foreach ($oeuvres as $oeuvre) {
+            $solde = $oeuvre["Prix"];
+            $user = $oeuvre["id_utilisateur"];
+            $prixEnchere = $oeuvre["prix_courant"];
+            $id_oeuvre = $oeuvre["id_oeuvre"];
+            $user_offreur = $oeuvre["offreur"];
+
+            $stmtUtilisateur = $conn->prepare($sql);
+            $stmtUtilisateur->bind_param("di", $solde, $user);
+            $stmtUtilisateur->execute();
+            $stmtUtilisateur->close();
+
+            $stmtVente = $conn->prepare($sqlVente);
+            $stmtVente->bind_param('dii', $prixEnchere, $id_oeuvre, $user_offreur);
+            $stmtVente->execute();
+            $stmtVente->close();
+        }
+
+    }
+
+    public function updateOeuvreEnchere(Database $db, $oeuvres)
+    {
+        $conn = $db->connect();
+        foreach ($oeuvres as $oeuvre) {
+            $sql = "update oeuvre o set o.est_vendu = ? where o.id_oeuvre = ?";
+            $stmt = $conn->prepare($sql);
+            $est_vendu = 1;
+            $id_oeuvre = $oeuvre["id_oeuvre"];
+            $stmt->bind_param("ii", $est_vendu, $id_oeuvre);
+            $stmt->execute();
+            $stmt->close();
+        }
+        $conn->close();
     }
 }

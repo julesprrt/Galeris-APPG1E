@@ -1,6 +1,5 @@
 <?php
 require_once('Model/oeuvre.php');
-require_once('Model/oeuvre.php');
 require_once('Database/Database.php');
 require_once('Controller.php');
 require_once('Model/panier.php');
@@ -85,6 +84,12 @@ class AchatController extends Controller
             http_response_code(200);
             echo json_encode(["payment" => $result["url"]]);
         }
+    }
+
+    public function createEnchere(Database $db){
+        $oeuvre = new Oeuvre($Titre = null, $Description = null, $eco_responsable = null, $Date_debut = null, $Date_fin = null, $Prix = null, $type_vente = null, $est_vendu = null, $auteur = null, $id_utilisateur = null, $id_categorie = null, $status = null, $nomvendeur = null, $prenomvendeur = null, $chemin_image = null, $prix_actuel = null, $id_offreur = null);
+        $oeuvre->CreateSaveEnchere($db);
+        return;
     }
   
 }
