@@ -9,6 +9,7 @@
     <link href="CSS/connexion.css" rel="stylesheet">
     <link href="CSS/footer.css" rel="stylesheet">
     <link href="CSS/style.css" rel="stylesheet">
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <script src="https://galeris/Galeris-APPG1E/vue/JS/connexion.js" defer></script>
 </head>
 
@@ -34,7 +35,7 @@
                     <input name="email" type="text" class="input-user-first" placeholder="Entrez votre mail" />
                     <input name="password" type="password" class="input-user" placeholder="Mot de passe" />
                     <a href="https://galeris/Galeris-APPG1E/motdepasse" class="link">Mot de passe oublié ?</a>
-                    <button type="button" class="button-connection submit-button"></button>
+                    <button type="submit" class="button-connection submit-button"></button>
                     <br>
                     <div name="recaptcha" class="g-recaptcha" data-sitekey="6Lf0tIkqAAAAANfbK1JSkQByCF-s0YgdX1K2nCGs"></div>
                     <p class="error-message"></p>
