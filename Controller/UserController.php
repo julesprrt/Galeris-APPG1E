@@ -115,6 +115,7 @@ class UserController extends Controller
         }
 
         $userId = $_SESSION['usersessionID'];
+        $_SESSION["livraison"] = "profil";
 
         $user = new User(null, null,  null, null, null, null, null);
         $userData = $user->getUserById($userId, $db);

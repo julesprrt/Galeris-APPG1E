@@ -16,6 +16,17 @@ Class Utils {
         return filter_var($email, FILTER_VALIDATE_EMAIL);
     }
 
+    public function telComposition($tel)
+    {
+        $telWithoutSpace = trim($tel);
+        $containOnlyNumber = preg_match('/^\d+$/', $telWithoutSpace);
+        if (strlen($telWithoutSpace) === 10 && $containOnlyNumber) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     public function verifyImageAndSize($image){
         return getimagesize($image) ? true : false;
     }

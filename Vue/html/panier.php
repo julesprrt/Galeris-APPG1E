@@ -1,37 +1,33 @@
-<!DOCTYPE html>
-<html lang="fr">
+<html>
+    <head>
+        <title>Panier</title>
+        <base href="/Galeris-APPG1E/Vue/">
+        <link rel="stylesheet" href="CSS/panier.css">  
+        <link rel="stylesheet" href="CSS/header.css">
+        <link rel="stylesheet" href="CSS/footer.css">
+        <script src="https://galeris/Galeris-APPG1E/vue/JS/panier.js" defer></script>  
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <base href="/Galeris-APPG1E/Vue/">
-    <link rel="stylesheet" href="CSS/accueil.css">
-    <link rel="stylesheet" href="CSS/header.css">
-    <link rel="stylesheet" href="CSS/footer.css">
-    <script src="https://galeris/Galeris-APPG1E/vue/JS/header.js" defer></script>
-    <script src="https://galeris/Galeris-APPG1E/vue/JS/accueil.js" defer></script>
-    <title>Accueil</title>
-</head>
-
-<body>
-    <div class="container">
-        <header>
-            <div class="logo"> <a href="https://galeris/Galeris-APPG1E/"><img src="../images/logo.png"></a></div>
-            <nav class="menu">
-                <ul>
-                    <li><a href="https://galeris/Galeris-APPG1E/">Accueil</a></li>
-                    <li><a href="https://galeris/Galeris-APPG1E/ventes">Vente</a></li>
+    </head>
+    <header>
+        <div class="logo">
+            <a href="https://galeris/Galeris-APPG1E/">
+                <img src="../images/logo.png" alt="Logo">
+            </a>
+        </div>
+        <nav class="menu">
+            <ul>
+                <li><a href="https://galeris/Galeris-APPG1E/">Accueil</a></li>
+                <li><a href="https://galeris/Galeris-APPG1E/ventes">Vente</a></li>
                     <li><a href="https://galeris/Galeris-APPG1E/exposes">Exposition</a></li>
-                    <li><a href="#">News</a></li>
-                    <li><a href="#">Plus</a></li>
-                </ul>
-            </nav>
-            <div class="barre_recherche">
-                <!-- Barre de recherche, les emojis sont responsives si on clique dessus -->
-                <input type="text" placeholder="Rechercher...">
-                <div class="favori"> <a href="favoris.html">❤️ </a></div>
-                <div class="panier"> <a href="https://galeris/Galeris-APPG1E/panier"> 🛒 </a></div>
-                <?php
+                <li><a href="#">News</a></li>
+                <li><a href="#">Plus</a></li>
+            </ul>
+        </nav>
+        <div class="barre_recherche">
+            <input type="text" placeholder="Rechercher...">
+            <div class="favori"><a href="favoris.html">❤️</a></div>
+            <div class="panier"><a href="https://galeris/Galeris-APPG1E/panier">🛒</a></div>
+            <?php
                 if ($connectUser === true) {
                     echo '<div class="dropdown">
                             <div class="utilisateur"> 👤 </div>
@@ -47,57 +43,50 @@
                 } else {
                     echo '<div class="utilisateur"><a href="https://galeris/Galeris-APPG1E/connexion"> 👤 </a></div>';
                 }
-                ?>
+            ?>
 
-            </div>
-        </header>
 
-        <!-- Contenu de la page d'accueil -->
-        <div class="page-content">
-            <div class="contentbase">
-                <?php
-                if ($connectUser === true) {
-                    echo '<a href="https://galeris/Galeris-APPG1E/vente"><button type="button" class="sellproduct">Vendre une oeuvre</button></a> <a href="https://galeris/Galeris-APPG1E/exposition"><button type="button" class="demandeexpo">Demande exposition</button></a>';
-                }
-                ?>
-                <div class="content-description">
-                    <p class="description">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                        exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-                        reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-                        occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-                    </p>
-                </div>
-                <div>
-                    <div class="oeuvres">
-                        <?php
-                        foreach ($oeuvres as $oeuvre) {
-                            echo '<a class = "oeuvreOBJ" style="cursor:pointer" >';
-                            echo '<div class="oeuvre">';
-                            echo '<input type="hidden" id="id_oeuvre_' . $oeuvre["id_oeuvre"] . '" name="id_oeuvre" value="' . $oeuvre["id_oeuvre"] . '">';
-                            echo '<h3>' . $oeuvre["Titre"] . '</h3>';
-                            echo '<img src="../' . $oeuvre["chemin_image"] . '" alt="' . $oeuvre["Titre"] . '" />';
-                            echo '<p class="temps-restant" data-fin="' . $oeuvre["Date_fin"] . '">' . '</p>';
-                            if($oeuvre["type_vente"] === "vente" || $oeuvre["prix_courant"] === null){
-                                echo '<p>' . $oeuvre['Prix'] . ' €</p>';
-                            }
-                            else{
-                                echo '<p>' . $oeuvre["prix_courant"] . ' €</p>';
-                            }
-                            echo '<p>' . substr($oeuvre["Description"],0,250) . '(...)</p>';
-                            echo '</div>';
-                            echo '</a>';
-                        }
-                        ?>
-                    </div>
-
-                </div>
-            </div>
         </div>
+    </header>
 
+    <body >
+        <div class="container flex">
+            <div class="structure">
+              <h1 class="panier">Votre panier</h1>
+          
+              <table id="table">
+                <thead>
+                  <tr>
+                    <th></th>
+                    <th class="elm"></th>
+                    <th class="elm"></th>
+                    <th class="elm"></th>
+                  </tr>
+                </thead>
+                <tbody id="all_products">
+                  <?php
+                      foreach($panier as $pan){
+                        echo "<tr class='product' id='". $pan["id_oeuvre"] ."'> 
+                    <td class='article--name'><img src='../". $pan["chemin_image"] ."'>
+                      </td>
+                      <td class='titre'><p class='titrestyle'>" . $pan["Titre"] ."</p><p class='vendue'> Vendue par " . $pan["nom"] .  " " . $pan["prenom"] . "</p><p class='vendue'> Réalisé par " . $pan["auteur"] . "</p></td>
+                      <td class='price-elmprice'>" . $pan["Prix"] . " € <div class='remove'><a class='remove-elm' id='". $pan["id_panier"] ."'><button  type='button' class='btn-simple'>Supprimer</button></a></div></td>
+                      <td></td>
+                  </tr><tr class='spacer'></tr>";
+                      }
+                  ?>
+                </tbody>
+              </table>
+              <?php
+                if(mysqli_num_rows($panier) > 0){
+                    echo '<div class="btn-continuer"><a href="https://galeris/Galeris-APPG1E/livraison"><button type="button" class="btn-simple" id="add_button">Continuer</button></a></div>
+                    <h2>Total : <span id="total_display">' . $total . '€</span></h2>';
+                }
+              ?>
+            </div>
+          </div>
         <footer>
 
-            <!-- icones réseaux sociaux -->
             <div class="social-network">
                 <a href="#"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"
                         xmlns="http://www.w3.org/2000/svg">
@@ -127,27 +116,24 @@
                     </svg>
                 </a>
             </div>
-
-            <!-- infos footer (aide, contact ...) -->
+        
             <div class="container-footer">
-                <a class="title-footer">Qui sommes-nous ?</a>
+                <a class="title-footer">Qui sommes nous</a>
                 <a class="item-footer" href="#">NovArt</a>
-                <a class="item-footer" href="https://galeris/Galeris-APPG1E/galeris">Galeris</a>
+                <a class="item-footer" href="#">Galeris</a>
             </div>
             <div class="container-footer">
                 <a class="title-footer">Aide</a>
                 <a class="item-footer" href="https://galeris/Galeris-APPG1E/faq">Foire aux questions</a>
-                <a class="item-footer" href="https://galeris/Galeris-APPG1E/contact">Contact</a>
+                <a class="item-footer" href="https://galeris/Galeris-APPG1E/contact">Contacts</a>
             </div>
             <div class="container-footer">
                 <a class="title-footer">Informations légales</a>
                 <a class="item-footer" href="https://galeris/Galeris-APPG1E/cgu">Conditions d'utilisations</a>
                 <a class="item-footer" href="#">Mentions légales</a>
             </div>
-
+        
         </footer>
-    </div>
-</body>
-
-
+    </body>
+  
 </html>
