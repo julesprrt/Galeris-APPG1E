@@ -21,7 +21,7 @@ class Oeuvre
     private $chemin_image = [];
     private $prix_actuel;
     private $id_offreur;
-
+    private MailSender $sendMail;
     // Constructeur pour initialiser les valeurs
     public function __construct(
         $Titre,
@@ -60,6 +60,7 @@ class Oeuvre
         $this->chemin_image = $chemin_image;
         $this->prix_actuel = $prix_actuel;
         $this->id_offreur = $id_offreur;
+        $this->sendMail = new MailSender();
     }
 
     // Méthode pour récupérer une œuvre par son ID
@@ -175,7 +176,10 @@ class Oeuvre
     {
         $user = new User(null, null, null, null, null, null, null);
         $userLivraison = $user->getUserById($_SESSION["usersessionID"], $db);
-        if ($userLivraison["adresse_livraison"] === null || $userLivraison["adresse_livraison"] === "") {
+
+        $_SESSION["livraison"] = "enchere";
+
+        if ($userLivraison === null) {
             return 401;
         }
 
@@ -184,13 +188,19 @@ class Oeuvre
         if ($oeuvre["prix_courant"] === null) {
             return [
                 "prixCourant" => $oeuvre["Prix"] * 1.10,
-                "adresse" => $userLivraison["adresse_livraison"]
+                "adresse" => $userLivraison["adresse_livraison"],
+                "codepostale" => $userLivraison["codepostale"],
+                "ville" => $userLivraison["ville"],
+                "pays" => $userLivraison["pays"]
             ];
         }
 
         return [
             "prixCourant" => $oeuvre["prix_courant"] * 1.10,
-            "adresse" => $userLivraison["adresse_livraison"]
+            "adresse" => $userLivraison["adresse_livraison"],
+            "codepostale" => $userLivraison["codepostale"],
+            "ville" => $userLivraison["ville"],
+            "pays" => $userLivraison["pays"]
         ];
     }
 
@@ -221,13 +231,33 @@ class Oeuvre
         if (mysqli_num_rows($oeuvresEncheres) > 0) {
             $this->updateUserSoldAndVenteTable($db, $oeuvresEncheres);
             $this->updateOeuvreEnchere($db, $oeuvresEncheres);
+            $this->sendMailForUser($db, $oeuvresEncheres);
         }
+    }
+
+    public function sendMailForUser(Database $db, $oeuvres){
+        $conn = $db->connect();
+        $sql = "SELECT * from livraison where id_utilisateur = ?";
+        foreach ($oeuvres as $oeuvre) {
+            $email = $oeuvre["email"];
+            $id_user = $oeuvre["id_utilisateur"];
+            $stmt = $conn->prepare($sql);
+            $stmt->bind_param("i", $id_user);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $res = $result->fetch_assoc();
+            $stmt->close();
+
+            $this->sendMail->sendMailCommande($email, $res["adresse"], $res["codepostale"], $res["ville"], $res["pays"]);
+        }
+
+        $conn->close();
     }
 
     public function getAllEnchereForUpdate(Database $db)
     {
         $conn = $db->connect();
-        $sql = "SELECT o.*, e.prix AS prix_courant, e.id_offreur AS offreur FROM oeuvre o LEFT JOIN enchere e ON e.id_oeuvre_enchere = o.id_oeuvre WHERE 
+        $sql = "SELECT o.*, u.email, e.prix AS prix_courant, e.id_offreur AS offreur FROM oeuvre o LEFT JOIN enchere e ON e.id_oeuvre_enchere = o.id_oeuvre inner join utilisateur u on u.id_utilisateur = e.id_offreur WHERE 
     o.type_vente = ?
     AND o.est_vendu = ? 
     AND o.date_fin < ?
@@ -291,5 +321,17 @@ class Oeuvre
             $stmt->close();
         }
         $conn->close();
+    }
+
+    public function supprimerOeuvre(Database $db){
+        $Database = $db->connect();
+        $sql = "Delete from oeuvre where id_oeuvre = ?";
+        $stmt = $Database->prepare($sql);
+        $id = $_SESSION['oeuvre_id'];
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        $stmt->close();
+        $Database->close();
+        return 200;
     }
 }

@@ -29,13 +29,15 @@ class AchatController extends Controller
             exit();
         }
 
+        $user = $_SESSION["usersessionID"] === $oeuvreid["id_utilisateur"];
+
         $type =  $_SESSION['oeuvre_typevente'];
         if ($type === "Vente") {
-            $this->render('achat', ["connectUser" =>  isset($_SESSION["usersessionID"]), "userRole" => $role,'oeuvre' => $oeuvreid,"panier" => $panierExist]);
+            $this->render('achat', ["connectUser" =>  isset($_SESSION["usersessionID"]), "userRole" => $role,'oeuvre' => $oeuvreid,"panier" => $panierExist, "user" => $user]);
         }
         else {
             $encheres = $oeuvre->getAllEnchere($id, $db);
-            $this->render('enchere', ["connectUser" =>  isset($_SESSION["usersessionID"]), "userRole" => $role,'oeuvre' => $oeuvreid, 'encheres' => $encheres]);
+            $this->render('enchere', ["connectUser" =>  isset($_SESSION["usersessionID"]), "userRole" => $role,'oeuvre' => $oeuvreid, 'encheres' => $encheres, "user" => $user]);
         }
     }
 
@@ -62,11 +64,11 @@ class AchatController extends Controller
         $result = $oeuvre->verifyEnchere($db);
         if($result === 401){
             http_response_code(401);
-            echo json_encode(['Error' => "Veuillez renseigner votre adresse de livraison sur la page d'édition de profil avant d'enchérir sur une oeuvre"]);
+            echo json_encode(['Error' => "Veuillez renseigner vos données de livraison sur la page livraison avant d'enchérir sur une oeuvre"]);
         }
         else{
             http_response_code(200);
-            echo json_encode(['Success' => "Si vous remportez l'enchère votre commande sera livré à l'adresse suivante : " . $result["adresse"], 'prix' => number_format($result["prixCourant"], 2, '.', '')]);
+            echo json_encode(['Success' => "Si vous remportez l'enchère votre commande sera livré à l'adresse suivante : " . $result["adresse"] . " " . $result["codepostale"] . ", " . $result["ville"] . " " . $result["pays"], 'prix' => number_format($result["prixCourant"], 2, '.', '')]);
         }
     }
 
@@ -90,6 +92,14 @@ class AchatController extends Controller
         $oeuvre = new Oeuvre($Titre = null, $Description = null, $eco_responsable = null, $Date_debut = null, $Date_fin = null, $Prix = null, $type_vente = null, $est_vendu = null, $auteur = null, $id_utilisateur = null, $id_categorie = null, $status = null, $nomvendeur = null, $prenomvendeur = null, $chemin_image = null, $prix_actuel = null, $id_offreur = null);
         $oeuvre->CreateSaveEnchere($db);
         return;
+    }
+
+    public function supprimeroeuvre(Database $db){
+        session_start();
+        $oeuvre = new Oeuvre($Titre = null, $Description = null, $eco_responsable = null, $Date_debut = null, $Date_fin = null, $Prix = null, $type_vente = null, $est_vendu = null, $auteur = null, $id_utilisateur = null, $id_categorie = null, $status = null, $nomvendeur = null, $prenomvendeur = null, $chemin_image = null, $prix_actuel = null, $id_offreur = null);
+        $result = $oeuvre->supprimerOeuvre($db);
+        http_response_code(200);
+        echo json_encode(["Success" => "Oeuvre supprimé"]);
     }
   
 }

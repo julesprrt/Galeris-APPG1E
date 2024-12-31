@@ -1,6 +1,6 @@
 <html>
     <head>
-        <title>Gomycode DOM checkpoints  Cart</title>
+        <title>Panier</title>
         <base href="/Galeris-APPG1E/Vue/">
         <link rel="stylesheet" href="CSS/panier.css">  
         <link rel="stylesheet" href="CSS/header.css">
@@ -9,55 +9,80 @@
 
     </head>
     <header>
-        <div class="logo"><a href="https://galeris/Galeris-APPG1E/"> <img src="../images/logo-sans-fond.png"></a></div>
+        <div class="logo">
+            <a href="https://galeris/Galeris-APPG1E/">
+                <img src="../images/logo.png" alt="Logo">
+            </a>
+        </div>
         <nav class="menu">
             <ul>
                 <li><a href="https://galeris/Galeris-APPG1E/">Accueil</a></li>
-                <li><a href="#">Vente</a></li>
-                <li><a href="#">Exposition</a></li>
+                <li><a href="https://galeris/Galeris-APPG1E/ventes">Vente</a></li>
+                    <li><a href="https://galeris/Galeris-APPG1E/exposes">Exposition</a></li>
                 <li><a href="#">News</a></li>
                 <li><a href="#">Plus</a></li>
             </ul>
         </nav>
         <div class="barre_recherche">
             <input type="text" placeholder="Rechercher...">
-            <div class="favori"> <a href="favoris.html">❤️ </a></div>
-            <div class="panier"> <a href="https://galeris/Galeris-APPG1E/panier"> 🛒 </a></div>
-            <div class="utilisateur"><a href="https://galeris/Galeris-APPG1E/connexion"> 👤 </a></div>
+            <div class="favori"><a href="favoris.html">❤️</a></div>
+            <div class="panier"><a href="https://galeris/Galeris-APPG1E/panier">🛒</a></div>
+            <?php
+                if ($connectUser === true) {
+                    echo '<div class="dropdown">
+                            <div class="utilisateur"> 👤 </div>
+                            <div class="dropdown-child">
+                                <a href="https://galeris/Galeris-APPG1E/profil">Mon profil</a>
+                                <a href="#">Mon solde</a>'.
+                                (($userRole === true)?
+                                    '<a href="https://galeris/Galeris-APPG1E/listeoeuvreattente">Oeuvres en attente</a>
+                                    <a href="https://galeris/Galeris-APPG1E/listeexposeattente">Exposés en attente</a>':"").
+                                '<a id="deconnexion">Déconnexion</a>
+                            </div>
+                           </div>';
+                } else {
+                    echo '<div class="utilisateur"><a href="https://galeris/Galeris-APPG1E/connexion"> 👤 </a></div>';
+                }
+            ?>
+
+
         </div>
-    </header> 
+    </header>
+
     <body >
         <div class="container flex">
             <div class="structure">
-              <h1>Votre panier</h1>
+              <h1 class="panier">Votre panier</h1>
           
               <table id="table">
                 <thead>
                   <tr>
-                    <th>Article</th>
-                    <th class="elm">Prix</th>
+                    <th></th>
+                    <th class="elm"></th>
+                    <th class="elm"></th>
                     <th class="elm"></th>
                   </tr>
                 </thead>
                 <tbody id="all_products">
                   <?php
                       foreach($panier as $pan){
-                        echo "<tr> 
-                    <td class='article--name'><div style='margin-right:1rem'><img src='../". $pan["chemin_image"] ."'></div> <div>
-                        <h3>". $pan["Titre"] ."</h3> 
+                        echo "<tr class='product' id='". $pan["id_oeuvre"] ."'> 
+                    <td class='article--name'><img src='../". $pan["chemin_image"] ."'>
                       </td>
-                      <td class='price elmprice'>" . $pan["Prix"] . " €</td>
-                      <td><a class='remove elm' id='". $pan["id_oeuvre"] ."'><button  type='button' class='btn-simple'>Supprimer</button></a></td>
-                  </tr>";
+                      <td class='titre'><p class='titrestyle'>" . $pan["Titre"] ."</p><p class='vendue'> Vendue par " . $pan["nom"] .  " " . $pan["prenom"] . "</p><p class='vendue'> Réalisé par " . $pan["auteur"] . "</p></td>
+                      <td class='price-elmprice'>" . $pan["Prix"] . " € <div class='remove'><a class='remove-elm' id='". $pan["id_panier"] ."'><button  type='button' class='btn-simple'>Supprimer</button></a></div></td>
+                      <td></td>
+                  </tr><tr class='spacer'></tr>";
                       }
                   ?>
-                  </div>
                 </tbody>
-                <tfoot>
-                    <td><button type="button" class="btn-simple" id="add_button">Passer la commande</button></td>
-                </tfoot>
               </table>
-              <h2>Total : <span id="total_display"><?php echo $total ?> €</span></h2>
+              <?php
+                if(mysqli_num_rows($panier) > 0){
+                    echo '<div class="btn-continuer"><a href="https://galeris/Galeris-APPG1E/livraison"><button type="button" class="btn-simple" id="add_button">Continuer</button></a></div>
+                    <h2>Total : <span id="total_display">' . $total . '€</span></h2>';
+                }
+              ?>
             </div>
           </div>
         <footer>

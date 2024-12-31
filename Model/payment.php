@@ -4,16 +4,22 @@
 require_once('Constantes/constants.php');
 require_once('Database/Database.php');
 require_once('Model/panier.php');
+require_once('Model/mailSender.php');
+require_once('Model/livraison.php');
 
 class Payment
 {
     private $headers;
     private Panier $panier;
+    private MailSender $sendMail;
+    private Livraison $livraison;
 
     public function __construct()
     {//Constructeur -> Initialisation des données
         $this->headers = array('Authorization: Bearer '.STRIPE_API_KEY);
         $this->panier = new Panier();
+        $this->sendMail = new MailSender();
+        $this->livraison = new Livraison(null,null,null,null,null,null);
     }
 
     public function createObject(Database $db){
@@ -93,6 +99,12 @@ class Payment
         //insertion pour chaque vente dans la table vente
         $this->updateOeuvre($db);//Vente = 1
         $this->supprimerPanier($db);//Supprimer l'ensemble du panier de l'utilisateur
+        $this->confirmMail($db);
+    }
+
+    public function confirmMail(Database $db){
+        $result = $this->livraison->getLivraison($db);
+        $this->sendMail->sendMailCommande($_SESSION["usersessionMail"], $result["adresse"], $result["codepostale"], $result["ville"], $result["pays"]);
     }
 
     public function updateOeuvre(Database $db){

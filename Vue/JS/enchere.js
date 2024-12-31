@@ -53,7 +53,9 @@ function tempsRestants() {
 }
 
 
-document.querySelector(".boutton-offre").addEventListener('click', verifyEnchere);
+document.querySelectorAll(".boutton-offre").forEach(item => {
+    item.addEventListener('click', verifyEnchere);
+})
 
 async function verifyEnchere(){
     const myHeaders = new Headers();
@@ -80,13 +82,13 @@ async function verifyEnchere(){
             document.querySelector(".input-enchere").min = result.prix;
         }
         else{
-            alert("Vous pouvez modifier votre adresse de livraison sur la page edition de profil");
-            window.location.href = "https://galeris/Galeris-APPG1E/editionprofil";
+            alert("Vous pouvez modifier vos données de livraison sur la page livraison");
+            window.location.href = "https://galeris/Galeris-APPG1E/livraison";
         }
     }
     else if(statuscode === 401){
         alert(result.Error);
-        window.location.href = "https://galeris/Galeris-APPG1E/editionprofil";
+        window.location.href = "https://galeris/Galeris-APPG1E/livraison";
     }
 }
 
@@ -144,5 +146,37 @@ async function encherir(){
         alert(result.Error);
         document.querySelector(".input-enchere").value = result.prix;
         document.querySelector(".input-enchere").min = result.prix;
+    }
+}
+
+document.querySelectorAll(".boutton-supprimer").forEach(item => {
+    item.addEventListener("click", supprimerOeuvre)
+})
+
+async function supprimerOeuvre(){
+    const reponse = confirm("Etez-vous sûre de vouloir supprimer cette oeuvre ?");
+    if(reponse === true){
+        const myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+    
+        
+        const raw = JSON.stringify({
+        });
+    
+        const requestOptions = {
+            method: "POST",
+            headers: myHeaders,
+            body: raw,
+            redirect: "follow"
+        };
+    
+        const result = await fetch("https://galeris/Galeris-APPG1E/supprimeroeuvre", requestOptions);
+        const statut = result.status;
+        const text = await result.json();
+        
+        if(statut === 200){
+            alert(text.Success);
+            window.location.href = "https://galeris/Galeris-APPG1E/";
+        }
     }
 }

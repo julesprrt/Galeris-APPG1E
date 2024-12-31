@@ -123,15 +123,20 @@
             <!-- Boutons d'actions -->
             <section class="actions">
                 <?php
-                    if($panier === false){
-                        echo '<button class="boutton-panier">Ajouter au Panier</button>';
+                    if($user || $userRole){
+                        echo '<button class="boutton-modifier">Modifier</button>
+                        <button class="boutton-supprimer">Supprimer</button>';
                     }
                     else{
-                        echo '<button class="boutton-retirer-panier">Retirer du Panier</button>';
+                        if($panier === false){
+                            echo '<button class="boutton-panier">Ajouter au Panier</button>';
+                        }
+                        else{
+                            echo '<button class="boutton-retirer-panier">Retirer du Panier</button>';
+                        }
+                        echo '<button class="boutton-favoris">Ajouter au favoris</button>';
                     }
                 ?>
-                
-                <button class="boutton-favoris">Ajouter au favoris</button>
             </section>
         </section>
     </main>

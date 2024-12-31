@@ -3,13 +3,13 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Modification de Profil</title>
+    <title>Modification de livraison</title>
     <base href="/Galeris-APPG1E/Vue/">
-    <link rel="stylesheet" href="CSS/editionprofil.css">
+    <link rel="stylesheet" href="CSS/livraison.css">
     <link rel="stylesheet" href="CSS/header.css">
     <link rel="stylesheet" href="CSS/footer.css">
-    <script src="https://galeris/Galeris-APPG1E/vue/JS/nominatim.js" defer></script>
     <script src="https://galeris/Galeris-APPG1E/vue/JS/header.js" defer></script>
+    <script src="https://galeris/Galeris-APPG1E/vue/JS/livraison.js" defer></script>
 </head>
 
 <body>
@@ -54,8 +54,8 @@
     </header>
 
     <main>
-        <section class="profil">
-            <h2>Modification de votre profil</h2>
+        <section class="livraison">
+            <h2>Livraison</h2>
 
             <!-- Affichage d'un message d'erreur si nécessaire -->
             <?php if (isset($error) && !empty($error)) : ?>
@@ -64,53 +64,50 @@
                 </div>
             <?php endif; ?>
 
-            <form action="/Galeris-APPG1E/process-edition" method="POST" class="profil-form">
-                <div class="profil-info">
-                    <img src="images/avatar.png" alt="Photo de profil">
+            <form class="livraison-form">
+                <div class="livraison-info">
                     <div class="details">
                         <p>
                             <strong>Nom :</strong>
-                            <input type="text" name="nom" value="<?= htmlspecialchars($user['nom']) ?>" required>
+                            <input id="nom" type="text" name="nom" value="<?= htmlspecialchars($livraisonres['nom'] ?? '') ?>" required>
                         </p>
                         <p>
                             <strong>Prénom :</strong>
-                            <input type="text" name="prenom" value="<?= htmlspecialchars($user['prenom']) ?>" required>
+                            <input id="prenom" type="text" name="prenom" value="<?= htmlspecialchars($livraisonres['prenom'] ?? '') ?>" required>
                         </p>
                         <p>
-                            <strong>Email :</strong>
-                            <input type="email" name="email" value="<?= htmlspecialchars($user['email']) ?>" required>
+                            <strong>Pays :</strong>
+                            <input id="pays" type="text" name="pays" value="<?= htmlspecialchars($livraisonres['pays'] ?? '') ?>" required>
                         </p>
                         <p>
-                            <strong>Description :</strong>
-                            <textarea name="description" rows="3" placeholder="Parlez un peu de vous..."><?= htmlspecialchars($user['description'] ?? '') ?></textarea>
+                            <strong>Adresse Postale :</strong>
+                            <input id="adresse" type="text" name="adresseLivraison" placeholder="Commencez à saisir une adresse de livraison..." value="<?= htmlspecialchars($livraisonres['adresse'] ?? '') ?>">
                         </p>
                         <p>
-                            <strong>Adresse :</strong>
-                            <input type="text" id="autocomplete" name="adresse" placeholder="Commencez à saisir une adresse..." value="<?= htmlspecialchars($user['adresse'] ?? '') ?>">
-                        <ul id="suggestions" class="suggestions" style="display: none;"></ul>
+                            <strong>Code postal :</strong>
+                            <input id="codepostale" type="text" name="adresse" value="<?= htmlspecialchars($livraisonres['codepostale'] ?? '') ?>">
+                        </p>
+                        <p>
+                            <strong>Ville :</strong>
+                            <input id="ville" type="text" name="adresse" value="<?= htmlspecialchars($livraisonres['ville'] ?? '') ?>">
                         </p>
                     </div>
                 </div>
 
-                <h3>Modification du mot de passe</h3>
-                <div class="password-section">
-                    <p>
-                        <strong>Ancien mot de passe :</strong>
-                        <input type="password" name="old_password" placeholder="Entrez votre ancien mot de passe">
-                    </p>
-                    <p>
-                        <strong>Nouveau mot de passe :</strong>
-                        <input type="password" name="new_password" placeholder="Au moins 8 caractères, 1 majuscule, 1 chiffre">
-                    </p>
-                    <p>
-                        <strong>Confirmer le nouveau mot de passe :</strong>
-                        <input type="password" name="confirm_password" placeholder="Répétez le nouveau mot de passe">
-                    </p>
-                </div>
-
+               
+                
                 <div class="actions">
-                    <button type="submit" class="btn">Enregistrer les modifications</button>
-                    <a href="/Galeris-APPG1E/profil" class="btn">Annuler</a>
+                    <?php 
+                        if($livraison === "panier"){
+                            echo "<button type='button' class='btn-paiement btn'>Continuer vers le paièment</button>";
+                        }
+                        else if($livraison === "profil"){
+                            echo "<button type='button' class='btn-profil btn'>Valider</button>";
+                        }
+                        else{
+                            echo "<button type='button' class='btn-valider btn'>Valider</button>";
+                        }
+                    ?>
                 </div>
             </form>
         </section>

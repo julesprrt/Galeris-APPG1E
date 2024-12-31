@@ -115,6 +115,7 @@ class UserController extends Controller
         }
 
         $userId = $_SESSION['usersessionID'];
+        $_SESSION["livraison"] = "profil";
 
         $user = new User(null, null,  null, null, null, null, null);
         $userData = $user->getUserById($userId, $db);
@@ -166,7 +167,6 @@ class UserController extends Controller
         $email = $_POST['email'];
         $description = $_POST['description'];
         $adresse = $_POST['adresse'];
-        $adresse_livraison = $_POST['adresseLivraison'];
         $oldPassword = $_POST['old_password'];
         $newPassword = $_POST['new_password'];
         $confirmPassword = $_POST['confirm_password'];
@@ -204,7 +204,7 @@ class UserController extends Controller
         }
 
         // Mise à jour des données
-        $updated = $userModel->updateUser($userId, $nom, $prenom, $email, $description, $adresse,$adresse_livraison, $newPassword, $db);
+        $updated = $userModel->updateUser($userId, $nom, $prenom, $email, $description, $adresse, $newPassword, $db);
 
         if ($updated) {
             header('Location: /Galeris-APPG1E/profil');

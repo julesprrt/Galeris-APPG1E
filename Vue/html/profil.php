@@ -30,7 +30,7 @@
         <div class="barre_recherche">
             <input type="text" placeholder="Rechercher...">
             <div class="favori"><a href="favoris.html">❤️</a></div>
-            <div class="panier"><a href="panier.html">🛒</a></div>
+            <div class="panier"><a href="https://galeris/Galeris-APPG1E/panier">🛒</a></div>
             <?php
                 if ($connectUser === true) {
                     echo '<div class="dropdown">
@@ -72,6 +72,7 @@
             </div>
             <div class="actions">
                 <a href="https://galeris/Galeris-APPG1E/editionprofil" class="btn">Modifier le profil</a>
+                <a href="https://galeris/Galeris-APPG1E/livraison" class="btn">Livraison</a>
             </div>
         </section>
     </main>

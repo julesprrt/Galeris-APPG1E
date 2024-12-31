@@ -144,8 +144,16 @@
 
             <!-- Boutons d'actions -->
             <section class="actions">
-                <button class="boutton-offre">Enchérir</button>
-                <button class="boutton-favoris">Ajouter au favoris</button>
+                <?php
+                    if($user || $userRole){
+                        echo '<button class="boutton-modifier">Modifier</button>
+                        <button class="boutton-supprimer">Supprimer</button>';
+                    }
+                    else{
+                        echo '<button class="boutton-offre">Enchérir</button>
+                        <button class="boutton-favoris">Ajouter au favoris</button>';
+                    }
+                ?>
             </section>
             <?php
             if (mysqli_num_rows($encheres) > 0) {

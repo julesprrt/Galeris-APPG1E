@@ -83,7 +83,7 @@ Class Panier{
 
     public function getAllPanier(Database $db){
         $conn = $db->connect();
-        $sql = "select * from panier p inner join oeuvre o on o.id_oeuvre = p.id_oeuvre left join oeuvre_images oi on oi.id_oeuvre = o.id_oeuvre where p.id_utilisateur = ? and o.type_vente = ? and o.est_vendu = ? and o.Date_fin > ? GROUP BY o.id_oeuvre";
+        $sql = "select * from panier p inner join oeuvre o on o.id_oeuvre = p.id_oeuvre inner join utilisateur u on u.id_utilisateur = o.id_utilisateur left join oeuvre_images oi on oi.id_oeuvre = o.id_oeuvre where p.id_utilisateur = ? and o.type_vente = ? and o.est_vendu = ? and o.Date_fin > ? GROUP BY o.id_oeuvre";
         $stmt = $conn->prepare($sql);
         $id_utilisateur = $_SESSION["usersessionID"];
         $type_vente = "vente";
@@ -107,4 +107,14 @@ Class Panier{
          "total" => $prixMax];
     }
     
+    public function retirerPanierID(Database $db, $id) {
+        $conn = $db->connect();
+        $sql = "Delete from panier where id_panier = ?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        $stmt->close();
+        $conn->close();
+        return 200;
+    }
 }

@@ -13,6 +13,9 @@ class PanierController extends Controller
             header('Location: /Galeris-APPG1E/connexion');
             exit;
         }
+
+        $_SESSION["livraison"] = "panier";
+
         $panier = new Panier();
         $result = $panier->getAllPanier($db);
         $role = isset($_SESSION["usersessionRole"]) === true && $_SESSION["usersessionRole"] === "Admin" ? true : false;
@@ -26,6 +29,23 @@ class PanierController extends Controller
         if($result === 200){
             http_response_code($result);
             echo json_encode(["panier" => "Produit ajouté au panier"]);
+        }
+        else{
+            http_response_code($result);
+            echo json_encode(["panier" => "Erreur panier"]);
+        }
+        
+    }
+
+    public function retirerPanierId(Database $db)
+    { 
+        $paramData = file_get_contents("php://input");
+        $data = json_decode($paramData, true);
+        $panier = new Panier();
+        $result = $panier->retirerPanierID($db, $data["id"]);
+        if($result === 200){
+            http_response_code($result);
+            echo json_encode(["panier" => "Produit retirer du panier"]);
         }
         else{
             http_response_code($result);
