@@ -119,19 +119,3 @@ img {
     margin-top: 7px;
     font-family: Arial, Helvetica, sans-serif;
 }
-
-
-@media screen and (max-width: 1080px) 
-{   
-   
-        
-
-    main {
-        flex-direction: column;
-    }
-
-    .gauche {
-        margin-bottom: 1.3em;
-    }
-    
-}
