@@ -58,8 +58,8 @@
         <section class="profil">
             <h2>Bienvenue, <?= htmlspecialchars($user['prenom']) ?> <?= htmlspecialchars($user['nom']) ?></h2>
             <div class="profil-info">
-                <!--<img src="../images/avatar.png" alt="Photo de profil">-->
-                <div class="details">
+            <img src="../<?php echo htmlspecialchars($user['photodeprofil'] ?? 'ImageBD/Profil/avatarbasique.jpg'); ?>" alt="Photo de profil" class="profile-image">
+            <div class="details">
                     <p><strong>Nom :</strong> <?= htmlspecialchars($user['nom']) ?></p>
                     <p><strong>Prénom :</strong> <?= htmlspecialchars($user['prenom']) ?></p>
                     <p><strong>Email :</strong> <?= htmlspecialchars($user['email']) ?></p>
@@ -71,7 +71,9 @@
                 </div>
             </div>
             <div class="actions">
-                <a href="https://galeris/Galeris-APPG1E/editionprofil" class="btn">Modifier le profil</a>
+                <a href="https://galeris/Galeris-APPG1E/editionprofil" class="btn">Historique de mes ventes</a>
+                <a href="https://galeris/Galeris-APPG1E/editionprofil" class="btn">Modifier mon profil</a>
+                <a href="https://galeris/Galeris-APPG1E/editionprofil" class="btn">Historique de mes achats</a>
             </div>
         </section>
     </main>

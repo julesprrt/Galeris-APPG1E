@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="CSS/footer.css">
     <script src="https://galeris/Galeris-APPG1E/vue/JS/nominatim.js" defer></script>
     <script src="https://galeris/Galeris-APPG1E/vue/JS/header.js" defer></script>
+    <script src="https://galeris/Galeris-APPG1E/vue/JS/editionprofil.js" defer></script>
+
 </head>
 
 <body>
@@ -66,19 +68,23 @@
 
             <form action="/Galeris-APPG1E/process-edition" method="POST" class="profil-form">
                 <div class="profil-info">
-                    <img src="images/avatar.png" alt="Photo de profil">
-                    <div class="details">
+                <label for="photo-upload" class="profile-image-label">
+                <img id="preview-image" src="../<?php echo htmlspecialchars($user['photodeprofil'] ?? 'ImageBD/Profil/avatarbasique.jpg'); ?>" alt="Photo de profil" class="profile-image">
+                </label>
+                <input type="file" id="photo-upload" name="profile_photo" accept="image/png, image/jpeg" style="display: none;">
+
+                <div class="details">
                         <p>
                             <strong>Nom :</strong>
-                            <input type="text" name="nom" value="<?= htmlspecialchars($user['nom']) ?>" required>
+                            <input type="text" name="nom" value="<?= htmlspecialchars($user['nom']) ?>">
                         </p>
                         <p>
                             <strong>Prénom :</strong>
-                            <input type="text" name="prenom" value="<?= htmlspecialchars($user['prenom']) ?>" required>
+                            <input type="text" name="prenom" value="<?= htmlspecialchars($user['prenom']) ?>">
                         </p>
                         <p>
                             <strong>Email :</strong>
-                            <input type="email" name="email" value="<?= htmlspecialchars($user['email']) ?>" required>
+                            <input type="email" name="email" value="<?= htmlspecialchars($user['email']) ?>" required readonly>
                         </p>
                         <p>
                             <strong>Description :</strong>
@@ -89,6 +95,10 @@
                             <input type="text" id="autocomplete" name="adresse" placeholder="Commencez à saisir une adresse...">
                         <ul id="suggestions" class="suggestions" style="display: none;"></ul>
                         </p>
+                    <p>
+                        <strong>Newsletter :</strong>
+                        <input type="checkbox" name="newsletter" <?= $user['newsletter'] ? 'checked' : '' ?>>
+                    </p>
                     </div>
                 </div>
 

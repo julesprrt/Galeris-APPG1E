@@ -14,7 +14,11 @@ class User
     private $sendCode;
     private $utilsUser;
     private $cgu;
-    public function __construct($name, $firstName, $email, $telephone, $password, $confirmPassword, $cgu)
+    private $newsletter;
+    private $photodeprofil;
+    private Utils $utils;
+
+    public function __construct($name, $firstName, $email, $telephone, $password, $confirmPassword, $cgu, $newsletter, $photodeprofil)
     { //Constructeur -> Initialisation des données
         $this->name = $name;
         $this->firstName = $firstName;
@@ -25,6 +29,8 @@ class User
         $this->sendCode = new Code();
         $this->utilsUser = new Utils();
         $this->cgu = $cgu;
+        $this->newsletter = 0;
+        $this->photodeprofil = $photodeprofil;
     }
     /**
      * Summary of registerVerification
@@ -245,7 +251,14 @@ class User
     public function getUserById($id, Database $db)
     {
         $conn = $db->connect();
-        $sql = "SELECT * FROM utilisateur WHERE id_utilisateur = ?";
+
+        $sql = "SELECT utilisateur.*, utilisateur_image.chemin_image AS photodeprofil
+        FROM utilisateur 
+        LEFT JOIN utilisateur_image 
+        ON utilisateur.id_utilisateur = utilisateur_image.id_utilisateur 
+        WHERE utilisateur.id_utilisateur = ?";
+
+
         $stmt = $conn->prepare($sql);
         $stmt->bind_param('i', $id); // 'i' spécifie le type de données passées à la requête, ici integer. 
         $stmt->execute();
@@ -261,14 +274,14 @@ class User
         $conn->close();
         return null; // aucune ligne ne correspond dans la base, les ressources sont fermées et la méthode retourne null.
     }
-    public function updateUser($id, $nom, $prenom, $email, $description, $adresse, $newPassword, Database $db)
+    public function updateUser($id, $nom, $prenom, $email, $description, $adresse, $newsletter, $newPassword, Database $db)
     {
         $conn = $db->connect();
 
         // Prépare la requête SQL de base
-        $sql = "UPDATE utilisateur SET nom = ?, prenom = ?, email = ?, description = ?, adresse = ?";
-        $types = "sssss"; // Types pour bind_param
-        $params = [$nom, $prenom, $email, $description, $adresse];
+        $sql = "UPDATE utilisateur SET nom = ?, prenom = ?, email = ?, description = ?, adresse = ?, newsletter = ?";
+        $types = "sssssi"; // Types pour bind_param
+        $params = [$nom, $prenom, $email, $description, $adresse, $newsletter];
 
         // Si un nouveau mot de passe est fourni, on l'ajoute à la requête
         if (!empty($newPassword)) {
@@ -293,7 +306,8 @@ class User
         return $result;
     }
 
-    public function verifyEmailForPassword(Database $db){
+    public function verifyEmailForPassword(Database $db)
+    {
         session_start();
         $conn = $db->connect();
         $sql = "select * from utilisateur where email = ?";
@@ -304,36 +318,37 @@ class User
         $user = $result->fetch_assoc();
         $stmt->close();
         $conn->close();
-        if($result->num_rows > 0){
+        if ($result->num_rows > 0) {
             $email = $this->email;
             $_SESSION["usersessionID"] = $user["id_utilisateur"];
             $_SESSION["usersessionMail"] = $email;
             $_SESSION["usersessionType"] = "password";
             $this->sendCode->sendCode($this->email, $db);
             return true;
-        }
-        else{
+        } else {
             return false;
         }
     }
 
-    public function changePassword(Database $db){
+    public function changePassword(Database $db)
+    {
         if (!$this->passwordComposition($this->password)) {
             return "Votre mot de passe doit contenir une minuscule, une majucule, un nombre et un caractère spécial et plus que 8 caractères.";
         } else if ($this->password !== $this->confirmPassword) {
             return "Les deux mots de passe ne sont pas identiques";
-        }
-        else{
+        } else {
             $conn = $db->connect();
             $sql = "UPDATE utilisateur SET mot_de_passe = ? where id_utilisateur = ?";
             $stmt = $conn->prepare($sql);
             $id_user = $_SESSION['usersessionID'];
             $hashedPassword = password_hash($this->password, PASSWORD_DEFAULT);
-            $stmt->bind_param('si', $hashedPassword,$id_user);
+            $stmt->bind_param('si', $hashedPassword, $id_user);
             $stmt->execute();
             $stmt->close();
             $conn->close();
             return true;
         }
     }
+    
+    
 }
