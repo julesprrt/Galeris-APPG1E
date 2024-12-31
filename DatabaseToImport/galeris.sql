@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : dim. 29 déc. 2024 à 16:42
+-- Généré le : mar. 31 déc. 2024 à 18:33
 -- Version du serveur : 10.4.32-MariaDB
 -- Version de PHP : 8.2.12
 
@@ -193,7 +193,9 @@ INSERT INTO `code` (`ID`, `code`, `date_expiration`, `ID_user`) VALUES
 (133, 778411, '2024-12-18 21:50:27', 6),
 (134, 245747, '2024-12-18 21:50:39', 6),
 (135, 193310, '2024-12-18 21:50:42', 6),
-(144, 938551, '2024-12-25 19:53:16', 37);
+(144, 938551, '2024-12-25 19:53:16', 37),
+(145, 544742, '2024-12-31 17:16:18', 37),
+(146, 827235, '2024-12-31 17:16:20', 37);
 
 -- --------------------------------------------------------
 
@@ -215,7 +217,10 @@ CREATE TABLE `enchere` (
 
 INSERT INTO `enchere` (`id_enchere`, `id_oeuvre_enchere`, `prix`, `id_offreur`, `date_enchere`) VALUES
 (4, 48, 50.00, 6, '2022-06-07 00:00:00'),
-(5, 48, 55.00, 6, '2022-06-08 00:00:00');
+(5, 48, 55.00, 6, '2022-06-08 00:00:00'),
+(9, 52, 55.00, 37, '2024-12-31 17:38:59'),
+(10, 57, 55.00, 37, '2024-12-31 17:51:05'),
+(11, 58, 55.00, 37, '2024-12-31 17:59:56');
 
 -- --------------------------------------------------------
 
@@ -283,6 +288,31 @@ INSERT INTO `exposition_images` (`id_exposition_images`, `chemin_image`, `id_exp
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `livraison`
+--
+
+CREATE TABLE `livraison` (
+  `id_livraison` int(11) NOT NULL,
+  `nom` varchar(200) DEFAULT NULL,
+  `prenom` varchar(200) DEFAULT NULL,
+  `adresse` varchar(200) DEFAULT NULL,
+  `codepostale` varchar(200) DEFAULT NULL,
+  `ville` varchar(200) DEFAULT NULL,
+  `id_utilisateur` int(11) DEFAULT NULL,
+  `pays` varchar(200) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Déchargement des données de la table `livraison`
+--
+
+INSERT INTO `livraison` (`id_livraison`, `nom`, `prenom`, `adresse`, `codepostale`, `ville`, `id_utilisateur`, `pays`) VALUES
+(3, 'selvaratnam', 'akashs', '110 rue brancion 75015 Paris', '75015', 'paris', 6, 'france'),
+(5, 'selvaratnam', 'akash', '110 rue brancion', '75015', 'paris', 37, 'france');
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `oeuvre`
 --
 
@@ -315,10 +345,17 @@ INSERT INTO `oeuvre` (`id_oeuvre`, `Titre`, `Description`, `eco_responsable`, `D
 (39, 'l\'art pour tous', 'wow quelle oeuvre achetez ça me fait plaisir. Oh Oh Oh', 0, '2024-12-17 21:00:26', '2025-01-06 21:00:26', 50.00, 'Vente', 1, 'Boner', 6, 2, 'accepte'),
 (44, 'test', 'tetstettetststetststetetstetetetstetetstetetstet', 0, '2024-12-20 09:20:38', '2025-01-09 09:20:38', 50.00, 'Enchere', 0, 'jean', 6, 2, 'refuse'),
 (47, 'Solution du blocage de port', 'Pour une enchère débutant à 50 euros, je deviens prof pour savoir comment gérer les exceptions/erreurs sur Xampp. A vos marques prêts partez.', 0, '2024-12-24 15:30:05', '2024-12-24 15:35:05', 50.00, 'Enchere', 0, 'Akash Selvaratnam', 6, 3, 'accepte'),
-(48, 'Vente oeuvre Van Gogh', 'Enchères des tableaux de Van Gogh Achetez svp j\'ai pas beaucoup d\'argent', 0, '2024-12-29 14:29:26', '2025-01-08 14:29:26', 30.00, 'Enchere', 0, 'Van Gogh', 6, 2, 'accepte'),
-(49, 'test', 'sssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss', 0, '2024-12-29 14:40:37', '2025-01-28 14:40:37', 30.00, 'Vente', 0, 'test', 6, 2, 'accepte'),
-(50, 'test', 'ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss', 0, '2024-12-29 16:39:28', '2025-01-28 16:39:28', 50.00, 'Enchere', 0, 'test', 6, 2, 'accepte'),
-(51, 'ssssssssssssssssssssss', 'ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss', 0, '2024-12-29 16:40:11', '2025-01-28 16:40:11', 50.00, 'Vente', 0, 'ssssss', 6, 2, 'accepte');
+(48, 'Vente oeuvre Van Gogh', 'Enchères des tableaux de Van Gogh Achetez svp j\'ai pas beaucoup d\'argent', 0, '2024-12-29 14:29:26', '2024-12-30 14:29:26', 30.00, 'Enchere', 1, 'Van Gogh', 6, 2, 'accepte'),
+(49, 'test', 'sssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss', 0, '2024-12-29 14:40:37', '2025-01-28 14:40:37', 30.00, 'Vente', 1, 'test', 6, 2, 'accepte'),
+(51, 'ssssssssssssssssssssss', 'ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss', 0, '2024-12-29 16:40:11', '2025-01-28 16:40:11', 50.00, 'Vente', 1, 'ssssss', 6, 2, 'accepte'),
+(52, 'test_enchere', 'eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee', 0, '2024-12-30 17:53:26', '2025-01-29 17:53:26', 50.00, 'Enchere', 0, 'benjamin', 6, 2, 'accepte'),
+(55, 'test-mail-paiement', 'paiement test ssssssssssssssssssssssssssssssssssssssssssss', 0, '2024-12-31 17:22:30', '2025-01-20 17:22:30', 100.00, 'Vente', 1, 'test', 6, 2, 'accepte'),
+(56, 'napoleon', 'napoleon bonaparte nous vend son tableau le plus precieux', 0, '2024-12-31 17:27:26', '2025-01-25 17:27:26', 100.00, 'Vente', 1, 'nap', 6, 2, 'accepte'),
+(57, 'test_enchere', 'Test de mon enchère avec un prix de depart à 10 euros', 0, '2024-12-31 17:50:13', '2024-12-31 17:50:13', 50.00, 'Enchere', 1, 'benjamin', 6, 2, 'accepte'),
+(58, 'van goghe', 'enchere van goghee aya aya aya ta ta ta tam tam tam', 0, '2024-12-31 17:58:59', '2024-12-31 17:58:59', 50.00, 'Enchere', 1, 'benjamin', 6, 2, 'accepte'),
+(59, 'Van gogh', 'vente de van gogh au prix le plus bas du marché. acheter', 0, '2024-12-31 18:03:37', '2025-01-10 18:03:37', 100.00, 'Vente', 0, 'Van gogh', 6, 2, 'accepte'),
+(60, 'vente van gogh enchere', 'Enchère de van gogh, l\'un des plus grand artiste de tous les temps', 0, '2024-12-31 18:04:51', '2025-01-20 18:04:51', 30.00, 'Enchere', 0, 'ben', 6, 2, 'accepte'),
+(61, 'Napoleon', 'Napoleon, un tableau réalisé par Bonaparte, une main de maitre jamais égalé', 0, '2024-12-31 18:05:48', '2025-01-02 18:05:48', 50.00, 'Vente', 0, 'Le Bonaparte', 6, 2, 'accepte');
 
 -- --------------------------------------------------------
 
@@ -349,8 +386,15 @@ INSERT INTO `oeuvre_images` (`id_photo`, `chemin_image`, `id_oeuvre`) VALUES
 (49, 'ImageBD/Oeuvre/image_67714eb6d5aad8.17266380.jpeg', 48),
 (50, 'ImageBD/Oeuvre/image_67714eb6dbc1e1.18266037.jpeg', 48),
 (51, 'ImageBD/Oeuvre/image_677151559b8931.94486066.jpeg', 49),
-(52, 'ImageBD/Oeuvre/image_67716d3024b8c8.80852988.jpeg', 50),
-(53, 'ImageBD/Oeuvre/image_67716d5b357633.81323832.jpeg', 51);
+(53, 'ImageBD/Oeuvre/image_67716d5b357633.81323832.jpeg', 51),
+(54, 'ImageBD/Oeuvre/image_6772d0064d7b41.22725957.jpeg', 52),
+(58, 'ImageBD/Oeuvre/image_67741a46b52cc5.46339575.jpeg', 55),
+(59, 'ImageBD/Oeuvre/image_67741b6e1064c0.77963486.jpeg', 56),
+(60, 'ImageBD/Oeuvre/image_677420c52fcfa7.23079096.jpeg', 57),
+(61, 'ImageBD/Oeuvre/image_677422d3b74222.09770159.jpeg', 58),
+(62, 'ImageBD/Oeuvre/image_677423e991d264.85088622.jpeg', 59),
+(63, 'ImageBD/Oeuvre/image_67742433e5e414.00718719.jpeg', 60),
+(64, 'ImageBD/Oeuvre/image_6774246c43ebc3.22438674.jpeg', 61);
 
 -- --------------------------------------------------------
 
@@ -369,7 +413,7 @@ CREATE TABLE `panier` (
 --
 
 INSERT INTO `panier` (`id_panier`, `id_utilisateur`, `id_oeuvre`) VALUES
-(6, 37, 35);
+(28, 37, 59);
 
 -- --------------------------------------------------------
 
@@ -397,7 +441,7 @@ CREATE TABLE `utilisateur` (
 --
 
 INSERT INTO `utilisateur` (`id_utilisateur`, `nom`, `prenom`, `email`, `description`, `adresse`, `roles`, `mot_de_passe`, `date_creation`, `newsletter`, `actif`, `solde`) VALUES
-(6, 'selvaratnam', 'akash', 'kaladevi549@gmail.com', '', '110, Rue Brancion, Quartier Saint-Lambert, Paris 15e Arrondissement, Paris, Île-de-France, France mé', 'Admin', '$2y$10$lk08IJsZy7Oivka/WgY.pOLqDqnPhCtCs4sDqMY3KmkzPv57IDwm6', '2024-11-26', 0, 1, 50.00),
+(6, 'selvaratnam', 'akash', 'kaladevi549@gmail.com', '', '110, Rue Brancion, Quartier Saint-Lambert, Paris 15e Arrondissement, Paris, Île-de-France, France mé', 'Admin', '$2y$10$lk08IJsZy7Oivka/WgY.pOLqDqnPhCtCs4sDqMY3KmkzPv57IDwm6', '2024-11-26', 0, 1, 1240.00),
 (7, 'selvaratnam', 'akash', 'kaladevi549@gmail.ju', NULL, NULL, 'Utilisateur', '$2y$10$EMfeaZGsM4pt6A4676gI9u2ox6z4.PE14jaM8IAqXDbuEHwqBj4b2', '2024-11-28', 0, 1, 0.00),
 (8, 'selvaratnam', 'akash', 'kaladevi549@gmail.pm', NULL, NULL, 'Utilisateur', '$2y$10$3YzJizisFI1S2EUCiFj0OeNkXgC3oyb2DeWGo4QMsu.QUSYRXI5OK', '2024-11-28', 0, 0, 0.00),
 (10, 'selvaratnam', 'akash', 'kaladevi549@gmail.sss', NULL, NULL, 'Utilisateur', '$2y$10$.PR1AYeC0RqSjMi15T734.HhfPTIcgWVbev0krEkhs/l.kFXKahJO', '2024-12-08', 0, 1, 0.00),
@@ -420,7 +464,7 @@ INSERT INTO `utilisateur` (`id_utilisateur`, `nom`, `prenom`, `email`, `descript
 (27, 'Pierret ', 'Jules', 'jupi63473@eleve.isep.fr', NULL, NULL, 'Utilisateur', '$2y$10$mhdJtYwHue6QyA0O8xouH.2oDTekGIC1GEf1M7P5JT3zUqO1AynlK', '2024-12-16', 0, 0, 283.00),
 (28, 'selvaratnam', 'akash', 'larrykala@hotmail.fr', NULL, NULL, 'Utilisateur', '$2y$10$Upt78gmC9Qs5YtLrRAcCz.B4jcDdMbRgu.9UWz7IePanIsZ3nKVHS', '2024-12-18', 0, 1, 0.00),
 (29, 'selvaratnam', 'akash', 'kaladevi549@gmail.sjsj', NULL, NULL, 'Utilisateur', '$2y$10$NgMyTRBFYFM5kKj6H.CEHednJtmRdfYN5M5yt00ZR8ZgduYiTDg3S', '2024-12-18', 0, 0, 0.00),
-(37, 'selvaratnam', 'akash', 'akse63476@eleve.isep.fr', NULL, NULL, 'Utilisateur', '$2y$10$nW9LD3lbWK87gZ9mKhyL5.igcX9b6KBaTCfrUmYmaZctWKBqyLala', '2024-12-25', 0, 1, 0.00);
+(37, 'selvaratnam', 'akash', 'akse63476@eleve.isep.fr', NULL, NULL, 'Utilisateur', '$2y$10$lPpJHJedig9C7t.97rmYkekFAlT2JV1EOdRC6GxpBRednIHjMh9JO', '2024-12-25', 0, 1, 0.00);
 
 -- --------------------------------------------------------
 
@@ -442,11 +486,21 @@ CREATE TABLE `vente` (
 --
 
 INSERT INTO `vente` (`id_vente`, `prix`, `Date_vente`, `Type_vente`, `id_oeuvre`, `id_utilisateur`) VALUES
-(6, 100.00, '2024-12-26 22:40:55', 'vente', 38, 6),
-(7, 50.00, '2024-12-26 22:40:55', 'vente', 39, 6),
-(8, 50.00, '2024-12-26 22:40:55', 'vente', 34, 6),
-(9, 75.00, '2024-12-26 22:40:55', 'vente', 37, 6),
-(10, 58.00, '2024-12-26 22:40:55', 'vente', 35, 6);
+(36, 50.00, '2024-12-30 18:27:42', 'vente', 48, 6),
+(37, 55.00, '2024-12-30 18:27:42', 'vente', 48, 6),
+(38, 50.00, '2024-12-30 18:29:02', 'vente', 48, 6),
+(39, 55.00, '2024-12-30 18:29:02', 'vente', 48, 6),
+(40, 50.00, '2024-12-30 18:29:25', 'vente', 48, 6),
+(41, 55.00, '2024-12-30 18:30:10', 'vente', 48, 6),
+(42, 55.00, '2024-12-30 18:35:15', 'vente', 48, 6),
+(43, 55.00, '2024-12-30 18:39:02', 'vente', 48, 6),
+(44, 55.00, '2024-12-30 18:42:17', 'vente', 48, 6),
+(45, 50.00, '2024-12-31 15:57:48', 'vente', 51, 6),
+(46, 30.00, '2024-12-31 16:11:57', 'vente', 49, 6),
+(47, 100.00, '2024-12-31 17:23:38', 'vente', 55, 37),
+(48, 100.00, '2024-12-31 17:28:39', 'vente', 56, 37),
+(49, 55.00, '2024-12-31 17:54:02', 'vente', 57, 37),
+(50, 55.00, '2024-12-31 18:02:02', 'vente', 58, 37);
 
 --
 -- Index pour les tables déchargées
@@ -485,6 +539,12 @@ ALTER TABLE `exposition`
 ALTER TABLE `exposition_images`
   ADD PRIMARY KEY (`id_exposition_images`),
   ADD KEY `id_exposition` (`id_exposition`);
+
+--
+-- Index pour la table `livraison`
+--
+ALTER TABLE `livraison`
+  ADD PRIMARY KEY (`id_livraison`);
 
 --
 -- Index pour la table `oeuvre`
@@ -532,13 +592,13 @@ ALTER TABLE `categorie`
 -- AUTO_INCREMENT pour la table `code`
 --
 ALTER TABLE `code`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=145;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=147;
 
 --
 -- AUTO_INCREMENT pour la table `enchere`
 --
 ALTER TABLE `enchere`
-  MODIFY `id_enchere` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_enchere` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT pour la table `exposition`
@@ -553,22 +613,28 @@ ALTER TABLE `exposition_images`
   MODIFY `id_exposition_images` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
+-- AUTO_INCREMENT pour la table `livraison`
+--
+ALTER TABLE `livraison`
+  MODIFY `id_livraison` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
 -- AUTO_INCREMENT pour la table `oeuvre`
 --
 ALTER TABLE `oeuvre`
-  MODIFY `id_oeuvre` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
+  MODIFY `id_oeuvre` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
 
 --
 -- AUTO_INCREMENT pour la table `oeuvre_images`
 --
 ALTER TABLE `oeuvre_images`
-  MODIFY `id_photo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
+  MODIFY `id_photo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=65;
 
 --
 -- AUTO_INCREMENT pour la table `panier`
 --
 ALTER TABLE `panier`
-  MODIFY `id_panier` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id_panier` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT pour la table `utilisateur`
@@ -580,7 +646,7 @@ ALTER TABLE `utilisateur`
 -- AUTO_INCREMENT pour la table `vente`
 --
 ALTER TABLE `vente`
-  MODIFY `id_vente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id_vente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
 
 --
 -- Contraintes pour les tables déchargées
@@ -593,6 +659,12 @@ ALTER TABLE `code`
   ADD CONSTRAINT `code_ibfk_1` FOREIGN KEY (`ID_user`) REFERENCES `utilisateur` (`id_utilisateur`);
 
 --
+-- Contraintes pour la table `enchere`
+--
+ALTER TABLE `enchere`
+  ADD CONSTRAINT `FK_oeuvre_enchere` FOREIGN KEY (`id_oeuvre_enchere`) REFERENCES `oeuvre` (`id_oeuvre`) ON DELETE CASCADE ON UPDATE NO ACTION;
+
+--
 -- Contraintes pour la table `exposition_images`
 --
 ALTER TABLE `exposition_images`
@@ -602,7 +674,7 @@ ALTER TABLE `exposition_images`
 -- Contraintes pour la table `oeuvre_images`
 --
 ALTER TABLE `oeuvre_images`
-  ADD CONSTRAINT `oeuvre_images_ibfk_1` FOREIGN KEY (`id_oeuvre`) REFERENCES `oeuvre` (`id_oeuvre`);
+  ADD CONSTRAINT `FK_oeuvre_images` FOREIGN KEY (`id_oeuvre`) REFERENCES `oeuvre` (`id_oeuvre`) ON DELETE CASCADE ON UPDATE NO ACTION;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
