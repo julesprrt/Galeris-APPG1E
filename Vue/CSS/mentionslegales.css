@@ -1,17 +1,19 @@
 
-nav {
-    padding: 10px;
+.second-nav {
+    margin: 1rem auto;
     text-align: center;
 }
-
-nav a {
-    color: white;
-    text-decoration: none;
+html {
+    scroll-behavior: smooth;
+}
+.second-nav a {
     margin: 0 15px;
+    text-decoration: none;
+    color: #D9A36A;
 }
 
-nav a:hover {
-    text-decoration: underline;
+.second-nav a:hover {
+    color: #ae8355;
 }
 
 .about, .galeris, .contact {
@@ -21,7 +23,15 @@ nav a:hover {
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
+.contact a {
+    color: #D9A36A;
+    text-decoration: none;
+}
 
+.contact a:hover {
+    text-decoration: underline;
+    color: #ae8355;
+}
 
 ul {
     list-style-type: none;

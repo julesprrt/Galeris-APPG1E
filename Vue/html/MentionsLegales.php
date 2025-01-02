@@ -50,7 +50,7 @@
 </header>
 
 
-<nav>
+<nav class="second-nav">
     <a href="https://galeris/Galeris-APPG1E/mentionslegales#about" class="link">Présentation</a>
     <a href="https://galeris/Galeris-APPG1E/mentionslegales#infoslegales" class="link">Infos Légales</a>
     <a href="https://galeris/Galeris-APPG1E/mentionslegales#cond_util" class="link">Conditions d'utilisation</a>

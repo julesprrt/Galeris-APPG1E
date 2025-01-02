@@ -7,6 +7,7 @@
     <title>Novart - Accueil</title>
     <base href="/Galeris-APPG1E/Vue/">
     <link rel="stylesheet" href="CSS/NovArt.css">
+    <link rel="stylesheet" href="CSS/style.css">
 </head>
 <body>
 
@@ -23,25 +24,25 @@
 </nav>
 
 <div class="about" id="about">
-    <h2>À propos de Novart</h2>
-    <p>Novart est une entreprise spécialisée dans le développement de solutions technologiques pour les industries créatives. Notre mission est de connecter l'innovation et l'art pour repousser les limites de la créativité.</p>
+    <h2 class="bigTitle3">À propos de Novart</h2>
+    <p class="simpleBigText">Novart est une entreprise spécialisée dans le développement de solutions technologiques pour les industries créatives. Notre mission est de connecter l'innovation et l'art pour repousser les limites de la créativité.</p>
 </div>
 
 <div id="galeris" class="galeris">
-    <h2>Galeris - La filiale artistique de Novart</h2>
-    <p>Galeris est une plateforme en ligne dédiée à la vente et aux enchères d'œuvres d'art. Découvrez des collections exclusives, participez à des enchères en direct, et connectez-vous avec des artistes du monde entier.</p>
+    <h2 class="bigTitle3">Galeris - La filiale artistique de Novart</h2>
+    <p class="simpleBigText">Galeris est une plateforme en ligne dédiée à la vente et aux enchères d'œuvres d'art. Découvrez des collections exclusives, participez à des enchères en direct, et connectez-vous avec des artistes du monde entier.</p>
     <a href="https://www.galeris.com" class="btn" target="_blank">Visitez Galeris</a>
 </div>
 
 <div id="contact" class="contact">
-    <h2>Contactez-nous</h2>
-    <p>Email : <a href="mailto:contact@novart.com">contact@novart.com</a></p>
-    <p>Téléphone : +33 1 23 45 67 89</p>
-    <p>Adresse : 123 Avenue de la Création, 75000 Paris, France</p>
+    <h2 class="bigTitle3">Contactez-nous</h2>
+    <p class="simpleBigText">Email : <a href="mailto:contact@novart.com" class="link">contact@novart.com</a></p>
+    <p class="simpleBigText">Téléphone : +33 1 23 45 67 89</p>
+    <p class="simpleBigText">Adresse : 123 Avenue de la Création, 75000 Paris, France</p>
 </div>
 
 <footer>
-    <p>&copy; 2024 Novart. Tous droits réservés.</p>
+    <p class="simpleText">&copy; 2024 Novart. Tous droits réservés.</p>
 </footer>
 
 </body>
