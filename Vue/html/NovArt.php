@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Novart - Innovateur dans l'art et la technologie, avec sa filiale Galeris, dédiée aux ventes et enchères d'œuvres d'art.">
     <title>Novart - Accueil</title>
-    <link rel="stylesheet" href="Vue/CSS/NovArt.css">
+    <base href="/Galeris-APPG1E/Vue/">
+    <link rel="stylesheet" href="CSS/NovArt.css">
 </head>
 <body>
 
@@ -16,9 +17,9 @@
 </header>
 
 <nav>
-    <a href="#about">À propos</a>
-    <a href="#galeris">Galeris</a>
-    <a href="#contact">Contact</a>
+    <a href="https://galeris/Galeris-APPG1E/novart#about">À propos</a>
+    <a href="https://galeris/Galeris-APPG1E/novart#galeris">Galeris</a>
+    <a href="https://galeris/Galeris-APPG1E/novart#contact">Contact</a>
 </nav>
 
 <div class="about" id="about">

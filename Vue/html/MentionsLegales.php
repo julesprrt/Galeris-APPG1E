@@ -5,10 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Mentions légales de Galeris, la plateforme de vente et d'enchères d'œuvres d'art.">
     <title>Mentions Légales - Galeris</title>
-    <link rel="stylesheet" href="Vue/CSS/footer.css">
-    <link rel="stylesheet" href="Vue/CSS/header.css">
-    <link rel="stylesheet" href="Vue/CSS/mentionslegales.css">
-    <link rel="stylesheet" href="Vue/CSS/style.css">
+    <base href="/Galeris-APPG1E/Vue/">
+    <link rel="stylesheet" href="CSS/footer.css">
+    <link rel="stylesheet" href="CSS/header.css">
+    <link rel="stylesheet" href="CSS/mentionslegales.css">
+    <link rel="stylesheet" href="CSS/style.css">
 </head>
 <body>
 <header>
@@ -50,13 +51,13 @@
 
 
 <nav>
-    <a href="#about" class="link">Présentation</a>
-    <a href="#infoslegales" class="link">Infos Légales</a>
-    <a href="#cond_util" class="link">Conditions d'utilisation</a>
-    <a href="#protection" class="link">Protection</a>
-    <a href="#prop_intel" class="link">Propriété intellectuelle</a>
-    <a href="#resp" class="link">Responsabilité</a>
-    <a href="#contact" class="link">Contact</a>
+    <a href="https://galeris/Galeris-APPG1E/mentionslegales#about" class="link">Présentation</a>
+    <a href="https://galeris/Galeris-APPG1E/mentionslegales#infoslegales" class="link">Infos Légales</a>
+    <a href="https://galeris/Galeris-APPG1E/mentionslegales#cond_util" class="link">Conditions d'utilisation</a>
+    <a href="https://galeris/Galeris-APPG1E/mentionslegales#protection" class="link">Protection</a>
+    <a href="https://galeris/Galeris-APPG1E/mentionslegales#prop_intel" class="link">Propriété intellectuelle</a>
+    <a href="https://galeris/Galeris-APPG1E/mentionslegales#resp" class="link">Responsabilité</a>
+    <a href="https://galeris/Galeris-APPG1E/mentionslegales#contact" class="link">Contact</a>
 
 
 </nav>
@@ -151,7 +152,7 @@
 <!-- infos footer (aide, contact ...) -->
 <div class="container-footer">
     <a class="title-footer">Qui sommes-nous ?</a>
-    <a class="item-footer" href="#">NovArt</a>
+    <a class="item-footer" href="https://galeris/Galeris-APPG1E/novart">NovArt</a>
     <a class="item-footer" href="https://galeris/Galeris-APPG1E/galeris">Galeris</a>
 </div>
 <div class="container-footer">
@@ -162,7 +163,7 @@
 <div class="container-footer">
     <a class="title-footer">Informations légales</a>
     <a class="item-footer" href="https://galeris/Galeris-APPG1E/cgu">Conditions d'utilisations</a>
-    <a class="item-footer" href="#">Mentions légales</a>
+    <a class="item-footer" href="https://galeris/Galeris-APPG1E/mentionslegales">Mentions légales</a>
 </div>
 
 </footer>
