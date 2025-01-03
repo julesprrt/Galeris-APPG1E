@@ -5,25 +5,60 @@ body {
     background-color: #F9F9F9;
     color: #333;
     line-height: 1.6;
+    overflow-x: hidden; /* Évite le débordement horizontal */
 }
 
 main {
     max-width: 1200px;
     margin: 2em auto;
     padding: 0 2em;
+    animation: fadeIn 0.8s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .profil {
     background-color: #FFF;
     border-radius: 8px;
     padding: 2em;
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.15);
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.profil:hover {
+    transform: scale(1.02);
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
 }
 
 .profil h2 {
     text-align: center;
     color: #D9A36A;
     margin-bottom: 1.5em;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    position: relative;
+}
+
+.profil h2::after {
+    content: "";
+    width: 60px;
+    height: 2px;
+    background-color: #D9A36A;
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 .profil-info {
@@ -38,14 +73,44 @@ main {
     border-radius: 50%;
     object-fit: cover;
     border: 2px solid #D9A36A;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    animation: spin 20s linear infinite;
+}
+
+@keyframes spin {
+    0%, 90% {
+        transform: rotateY(0deg);
+    }
+    95% {
+        transform: rotateY(180deg);
+    }
+    100% {
+        transform: rotateY(0deg);
+    }
+}
+
+.profil-info img:hover {
+    transform: scale(1.1);
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.profil-info .details {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8em;
 }
 
 .profil-info .details p {
-    margin: 0.5em 0;
+    margin: 0;
+    padding: 0.5em 0;
+    font-size: 1em;
 }
 
 .profil-info .details p strong {
     color: #555;
+    font-weight: bold;
 }
 
 .actions {
@@ -65,8 +130,17 @@ main {
     text-decoration: none;
     text-align: center;
     cursor: pointer;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
 }
 
 .actions .btn:hover {
     background-color: #BF8A58;
+    box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.15);
+    transform: translateY(-3px);
+}
+
+.actions .btn:active {
+    transform: translateY(1px);
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
 }
