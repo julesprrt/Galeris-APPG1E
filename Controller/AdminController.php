@@ -80,4 +80,39 @@ class AdminController extends Controller
             echo json_encode(['Error' => "ID incorrect"]);
         }
     }
+    public function supprimerOeuvre(Database $db)
+    {
+        session_start();
+
+        // Vérifier rôle admin
+        if (!isset($_SESSION["usersessionRole"]) || $_SESSION["usersessionRole"] !== "Admin") {
+            http_response_code(403);
+            echo json_encode(["Error" => "Accès refusé : vous n'êtes pas admin."]);
+            return;
+        }
+
+        $paramData = file_get_contents("php://input");
+        $data = json_decode($paramData, true);
+
+        if (!isset($data['oeuvre_id'])) {
+            http_response_code(400);
+            echo json_encode(["Error" => "Paramètre 'oeuvre_id' manquant."]);
+            return;
+        }
+
+        require_once('Model/oeuvre.php');
+
+        $idOeuvre = (int)$data['oeuvre_id'];
+        
+        $oeuvreModel = new Oeuvre(null, null, null, null, null, null, null, null, null, null, null, null, null, null, [], null, null);
+        $result = $oeuvreModel->supprimerOeuvreParId($db, $idOeuvre);
+
+        if ($result === 200) {
+            http_response_code(200);
+            echo json_encode(["Success" => "Œuvre supprimée avec succès."]);
+        } else {
+            http_response_code(500);
+            echo json_encode(["Error" => "Erreur lors de la suppression de l'œuvre."]);
+        }
+    }
 }
