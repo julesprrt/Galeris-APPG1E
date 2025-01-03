@@ -33,7 +33,7 @@
         </nav>
         <div class="barre_recherche">
             <input type="text" placeholder="Rechercher...">
-            <div class="favori"> <a href="favoris.html">❤️ </a></div>
+            <div class="favori"> <a href="https://galeris/Galeris-APPG1E/favoris">❤️ </a></div>
             <div class="panier"> <a href="https://galeris/Galeris-APPG1E/panier"> 🛒 </a></div>
 
             <?php
@@ -145,15 +145,12 @@
     <footer>
         <div class="container-footer">
             <a class="title-footer">Qui sommes-nous ?</a>
-            <a class="title-footer">Qui sommes-nous ?</a>
             <a class="item-footer" href="#">NovArt</a>
-            <a class="item-footer" href="https://galeris/Galeris-APPG1E/galeris">Galeris</a>
             <a class="item-footer" href="https://galeris/Galeris-APPG1E/galeris">Galeris</a>
         </div>
         <div class="container-footer">
             <a class="title-footer">Aide</a>
             <a class="item-footer" href="https://galeris/Galeris-APPG1E/faq">Foire aux questions</a>
-            <a class="item-footer" href="https://galeris/Galeris-APPG1E/contact">Contact</a>
             <a class="item-footer" href="https://galeris/Galeris-APPG1E/contact">Contact</a>
         </div>
         <div class="container-footer">
