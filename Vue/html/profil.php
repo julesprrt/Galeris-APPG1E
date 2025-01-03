@@ -71,9 +71,9 @@
                 </div>
             </div>
             <div class="actions">
-                <a href="https://galeris/Galeris-APPG1E/editionprofil" class="btn">Historique de mes ventes</a>
+                <a href="https://galeris/Galeris-APPG1E/historique" class="btn">Historique de mes ventes</a>
                 <a href="https://galeris/Galeris-APPG1E/editionprofil" class="btn">Modifier mon profil</a>
-                <a href="https://galeris/Galeris-APPG1E/editionprofil" class="btn">Historique de mes achats</a>
+                <a href="https://galeris/Galeris-APPG1E/historique" class="btn">Historique de mes achats</a>
             </div>
         </section>
     </main>

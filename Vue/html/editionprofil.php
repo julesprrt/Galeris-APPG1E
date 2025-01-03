@@ -66,8 +66,8 @@
                 </div>
             <?php endif; ?>
 
-            <form action="/Galeris-APPG1E/process-edition" method="POST" class="profil-form">
-                <div class="profil-info">
+            <form action="/Galeris-APPG1E/process-edition" method="POST" enctype="multipart/form-data" class="profil-form">
+            <div class="profil-info">
                 <label for="photo-upload" class="profile-image-label">
                 <img id="preview-image" src="../<?php echo htmlspecialchars($user['photodeprofil'] ?? 'ImageBD/Profil/avatarbasique.jpg'); ?>" alt="Photo de profil" class="profile-image">
                 </label>

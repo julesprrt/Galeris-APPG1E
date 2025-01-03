@@ -349,6 +349,43 @@ class User
             return true;
         }
     }
+
+    public function updatePhoto($id, $photo, Database $db)
+    {
+        $conn = $db->connect();
+        $sql = "INSERT INTO utilisateur_image (chemin_image, id_utilisateur) VALUES (?, ?)";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param('si', $photo, $id);
+        $stmt->execute();
+        $stmt->close();
+        $conn->close();
+    }
+
+    public function SuppresionAnciennePDP($userId, Database $db)
+{
+    $conn = $db->connect();
+
+    $sql = "SELECT chemin_image FROM utilisateur_image WHERE id_utilisateur = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param('i', $userId);
+    $stmt->execute();
+    $stmt->bind_result($currentPhotoPath);
+    $stmt->fetch();
+    $stmt->close();
+
+    if ($currentPhotoPath && file_exists($currentPhotoPath)) {
+        unlink($currentPhotoPath);
+    }
+
+    $sqlDelete = "DELETE FROM utilisateur_image WHERE id_utilisateur = ?";
+    $stmtDelete = $conn->prepare($sqlDelete);
+    $stmtDelete->bind_param('i', $userId);
+    $stmtDelete->execute();
+    $stmtDelete->close();
+
+    $conn->close();
+}
+
     
     
 }

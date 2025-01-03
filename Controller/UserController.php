@@ -171,10 +171,27 @@ class UserController extends Controller
         $oldPassword = $_POST['old_password'];
         $newPassword = $_POST['new_password'];
         $confirmPassword = $_POST['confirm_password'];
-        $photodeprofil = $_POST['photodeprofil'];
-
+        
+        $photoFile = $_FILES['profile_photo'];
+        $photoPath = null;  
+        if ($photoFile && $photoFile['error'] === UPLOAD_ERR_OK) {
+    
+            // Génération d'un nom de fichier unique
+            $uploadDir = 'ImageBD/Profil/';
+            $fileName = uniqid('profile_', true) . '.' . pathinfo($photoFile['name'], PATHINFO_EXTENSION);
+    
+            // Déplacement du fichier vers le dossier `ImageBD/Profil`
+            if (!move_uploaded_file($photoFile['tmp_name'], $uploadDir . $fileName)) {
+                $this->render('editionprofil', ['error' => "Erreur lors du téléchargement de la photo."]);
+                return;
+            }
+    
+            // Stockage du chemin relatif
+            $photoPath = $uploadDir . $fileName;
+        }
         $userModel = new User(null, null,  null, null, null, null, null, null, null);
         $user = $userModel->getUserById($userId, $db);
+
 
         if (!$user) {
             echo "Utilisateur introuvable.";
@@ -207,7 +224,8 @@ class UserController extends Controller
 
         // Mise à jour des données
         $updated = $userModel->updateUser($userId, $nom, $prenom, $email, $description, $adresse, $newsletter, $newPassword, $db);
-        //$photoupdated = $userModel->updatePhoto($userId, $photodeprofil, $db);
+        $userModel->SuppresionAnciennePDP($userId, $db);
+        $photoupdated = $userModel->updatePhoto($userId, $photoPath, $db);
 
         if ($updated) {
             header('Location: /Galeris-APPG1E/profil');
