@@ -27,6 +27,10 @@ document.addEventListener("DOMContentLoaded", () => {
         // Ajouter la classe active à la nouvelle image
         images[currentIndex].classList.add('active');
     }
+    const btnFavoris = document.querySelector(".boutton-favoris");
+    if(btnFavoris){
+        btnFavoris.addEventListener("click", ajoutFavoris);
+    }
 });
 
 setInterval(tempsRestants, 1000);
@@ -131,5 +135,36 @@ async function supprimerOeuvre(){
             alert(text.Success);
             window.location.href = "https://galeris/Galeris-APPG1E/";
         }
+    }
+}
+
+async function ajoutFavoris(){
+    
+    const idOeuvre = document.querySelector("#id_oeuvre_<?php echo $oeuvre['id_oeuvre']?>")?.value 
+       || "<?php echo $oeuvre['id_oeuvre']?>";
+
+    const myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+
+    const rawBody = JSON.stringify({
+        "id_oeuvre": idOeuvre
+    });
+
+    const requestOptions = {
+        method: "POST",
+        headers: myHeaders,
+        body: rawBody,
+        redirect: "follow"
+    };
+
+    const response = await fetch("https://galeris/Galeris-APPG1E/favoris", requestOptions);
+    const status = response.status;
+    const data = await response.json();
+
+    if(status === 200){
+        alert(data.message);
+        
+    } else {
+        alert(data.error || "Une erreur s'est produite.");
     }
 }

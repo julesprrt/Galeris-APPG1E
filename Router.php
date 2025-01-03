@@ -1,7 +1,7 @@
 <?php
 
 require_once('Controller/UserController.php'); //  UserController
-require_once('Database/Database.php'); //  Database 类
+require_once('Database/Database.php'); //  Database 
 
 class Router {
     protected $routes = [];

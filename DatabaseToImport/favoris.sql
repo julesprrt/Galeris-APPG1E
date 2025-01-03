@@ -1,6 +1,2 @@
-CREATE TABLE IF NOT EXISTS favoris (
-    id_favori INT AUTO_INCREMENT PRIMARY KEY,
-    id_utilisateur INT NOT NULL,
-    id_oeuvre INT NOT NULL,
-    date_ajout TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
+ALTER TABLE `utilisateur`
+    ADD COLUMN `favoris` TEXT NULL AFTER `solde`;

@@ -120,6 +120,9 @@
                 </div>
             </section>
 
+            <!-- Avant la section actions -->
+            <input type="hidden" name="id_oeuvre" value="<?php echo $oeuvre['id_oeuvre']; ?>">
+
             <!-- Boutons d'actions -->
             <section class="actions">
                 <?php
