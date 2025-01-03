@@ -35,21 +35,21 @@
             <div class="favori"><a href="favoris.html">❤️</a></div>
             <div class="panier"><a href="panier.html">🛒</a></div>
             <?php
-                if ($connectUser === true) {
-                    echo '<div class="dropdown">
+            if ($connectUser === true) {
+                echo '<div class="dropdown">
                             <div class="utilisateur"> 👤 </div>
                             <div class="dropdown-child">
                                 <a href="https://galeris/Galeris-APPG1E/profil">Mon profil</a>
-                                <a href="#">Mon solde</a>'.
-                                (($userRole === true)?
-                                    '<a href="https://galeris/Galeris-APPG1E/listeoeuvreattente">Oeuvres en attente</a>
-                                    <a href="https://galeris/Galeris-APPG1E/listeexposeattente">Exposés en attente</a>':"").
-                                '<a id="deconnexion">Déconnexion</a>
+                                <a href="#">Mon solde</a>' .
+                    (($userRole === true) ?
+                        '<a href="https://galeris/Galeris-APPG1E/listeoeuvreattente">Oeuvres en attente</a>
+                                    <a href="https://galeris/Galeris-APPG1E/listeexposeattente">Exposés en attente</a>' : "") .
+                    '<a id="deconnexion">Déconnexion</a>
                             </div>
                            </div>';
-                } else {
-                    echo '<div class="utilisateur"><a href="https://galeris/Galeris-APPG1E/connexion"> 👤 </a></div>';
-                }
+            } else {
+                echo '<div class="utilisateur"><a href="https://galeris/Galeris-APPG1E/connexion"> 👤 </a></div>';
+            }
             ?>
 
         </div>
@@ -67,13 +67,13 @@
             <?php endif; ?>
 
             <form action="/Galeris-APPG1E/process-edition" method="POST" enctype="multipart/form-data" class="profil-form">
-            <div class="profil-info">
-                <label for="photo-upload" class="profile-image-label">
-                <img id="preview-image" src="../<?php echo htmlspecialchars($user['photodeprofil'] ?? 'ImageBD/Profil/avatarbasique.jpg'); ?>" alt="Photo de profil" class="profile-image">
-                </label>
-                <input type="file" id="photo-upload" name="profile_photo" accept="image/png, image/jpeg" style="display: none;">
+                <div class="profil-info">
+                    <label for="photo-upload" class="profile-image-label">
+                        <img id="preview-image" src="../<?php echo htmlspecialchars($user['photodeprofil'] ?? 'ImageBD/Profil/avatarbasique.jpg'); ?>" alt="Photo de profil" class="profile-image">
+                    </label>
+                    <input type="file" id="photo-upload" name="profile_photo" accept="image/png, image/jpeg" style="display: none;">
 
-                <div class="details">
+                    <div class="details">
                         <p>
                             <strong>Nom :</strong>
                             <input type="text" name="nom" value="<?= htmlspecialchars($user['nom']) ?>">
@@ -95,10 +95,12 @@
                             <input type="text" id="autocomplete" name="adresse" placeholder="Commencez à saisir une adresse...">
                         <ul id="suggestions" class="suggestions" style="display: none;"></ul>
                         </p>
-                    <p>
-                        <strong>Newsletter :</strong>
-                        <input type="checkbox" name="newsletter" <?= $user['newsletter'] ? 'checked' : '' ?>>
-                    </p>
+                        <p class="newsletter-section">
+                            <input type="checkbox" name="newsletter" id="newsletter-checkbox" <?= $user['newsletter'] ? 'checked' : '' ?>>
+                            <label for="newsletter-checkbox">
+                                Je souhaite recevoir chaque mois la newsletter de <strong>Galeris</strong> pour rester informé des dernières œuvres, expositions et nouveautés !
+                            </label>
+                        </p>
                     </div>
                 </div>
 

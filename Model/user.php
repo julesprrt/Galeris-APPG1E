@@ -316,7 +316,7 @@ class User
         $stmt->execute();
         $result = $stmt->get_result();
         $user = $result->fetch_assoc();
-        $stmt->close();
+        $stmt->close(); 
         $conn->close();
         if ($result->num_rows > 0) {
             $email = $this->email;
