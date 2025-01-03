@@ -33,7 +33,7 @@
         <div class="barre_recherche">
             <input type="text" placeholder="Rechercher...">
             <div class="favori"><a href="favoris.html">❤️</a></div>
-            <div class="panier"><a href="panier.html">🛒</a></div>
+            <div class="panier"><a href="https://galeris/Galeris-APPG1E/panier">🛒</a></div>
             <?php
             if ($connectUser === true) {
                 echo '<div class="dropdown">
@@ -92,7 +92,7 @@
                         </p>
                         <p>
                             <strong>Adresse :</strong>
-                            <input type="text" id="autocomplete" name="adresse" placeholder="Commencez à saisir une adresse...">
+                            <input type="text" id="autocomplete" name="adresse" placeholder="Commencez à saisir une adresse..." value="<?= htmlspecialchars($user['adresse'] ?? '') ?>">
                         <ul id="suggestions" class="suggestions" style="display: none;"></ul>
                         </p>
                         <p class="newsletter-section">
@@ -175,7 +175,6 @@
 
     </footer>
     <script src="https://maps.googleapis.com/maps/api/js?key=VOTRE_CLE_API&libraries=places"></script>
-    <script src="../JS/autocomplete.js"></script>
 </body>
 
 </html>

@@ -31,6 +31,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
 setInterval(tempsRestants, 1000);
 
+document.querySelectorAll(".boutton-retirer-panier").forEach(item => item.addEventListener("click", retirerpanier));
+document.querySelectorAll(".boutton-panier").forEach(item => item.addEventListener("click", ajoutpanier));
+
+
 function tempsRestants() {
     const elements = document.querySelectorAll('.temps-restant');
 
@@ -53,3 +57,79 @@ function tempsRestants() {
 }
 
 
+async function ajoutpanier(){
+    const myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+    
+    const raw = JSON.stringify({
+    });
+
+    const requestOptions = {
+        method: "POST",
+        headers: myHeaders,
+        body: raw,
+        redirect: "follow"
+    };
+    const result = await fetch("https://galeris/Galeris-APPG1E/ajoutpanier", requestOptions);
+    const statut = result.status;
+    const text = await result.json();
+    if(statut === 200){
+        alert(text.panier);
+        window.location.reload();
+   }
+}
+
+async function retirerpanier(){
+    const myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+    
+    const raw = JSON.stringify({
+    });
+
+    const requestOptions = {
+        method: "POST",
+        headers: myHeaders,
+        body: raw,
+        redirect: "follow"
+    };
+
+    const result = await fetch("https://galeris/Galeris-APPG1E/retirerpanier", requestOptions);
+    const statut = result.status;
+    const text = await result.json();
+    if(statut === 200){
+        alert(text.panier);
+        window.location.reload();
+   }
+}
+
+document.querySelectorAll(".boutton-supprimer").forEach(item => {
+    item.addEventListener("click", supprimerOeuvre)
+})
+
+async function supprimerOeuvre(){
+    const reponse = confirm("Etez-vous sûre de vouloir supprimer cette oeuvre ?");
+    if(reponse === true){
+        const myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+    
+        
+        const raw = JSON.stringify({
+        });
+    
+        const requestOptions = {
+            method: "POST",
+            headers: myHeaders,
+            body: raw,
+            redirect: "follow"
+        };
+    
+        const result = await fetch("https://galeris/Galeris-APPG1E/supprimeroeuvre", requestOptions);
+        const statut = result.status;
+        const text = await result.json();
+        
+        if(statut === 200){
+            alert(text.Success);
+            window.location.href = "https://galeris/Galeris-APPG1E/";
+        }
+    }
+}

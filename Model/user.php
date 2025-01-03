@@ -168,6 +168,7 @@ class User
         $stmt->execute();
         $id = $stmt->insert_id;
         $stmt->close();
+        $conn->close();
         session_start();
         $_SESSION["usersessionID"] = $id;
         $_SESSION["usersessionMail"] = $this->email;
@@ -252,27 +253,28 @@ class User
     {
         $conn = $db->connect();
 
-        $sql = "SELECT utilisateur.*, utilisateur_image.chemin_image AS photodeprofil
+        $sql = "SELECT utilisateur.*, utilisateur_image.chemin_image AS photodeprofil, l.adresse as adresse_livraison, l.codepostale, l.ville, l.pays
         FROM utilisateur 
+        inner join livraison l on l.id_utilisateur = utilisateur.id_utilisateur
         LEFT JOIN utilisateur_image 
         ON utilisateur.id_utilisateur = utilisateur_image.id_utilisateur 
         WHERE utilisateur.id_utilisateur = ?";
 
 
         $stmt = $conn->prepare($sql);
-        $stmt->bind_param('i', $id); // 'i' spécifie le type de données passées à la requête, ici integer. 
+        $stmt->bind_param('i', $id); 
         $stmt->execute();
         $result = $stmt->get_result();
-        if ($result->num_rows > 0) {   // Si aucun utilisateur n'est trouvé, on évite d'accéder à des données inexistantes.
-            $user = $result->fetch_assoc(); // Récupère la première ligne des résultats sous forme d'un tableau associatif.
+        if ($result->num_rows > 0) {   
+            $user = $result->fetch_assoc(); 
             $stmt->close();
             $conn->close();
-            return $user; // Ferme la requête préparée ($stmt) et la connexion à la base de données ($conn).
+            return $user; 
         }
 
         $stmt->close();
         $conn->close();
-        return null; // aucune ligne ne correspond dans la base, les ressources sont fermées et la méthode retourne null.
+        return null; 
     }
     public function updateUser($id, $nom, $prenom, $email, $description, $adresse, $newsletter, $newPassword, Database $db)
     {

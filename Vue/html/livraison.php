@@ -3,12 +3,13 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Profil utilisateur</title>
+    <title>Modification de livraison</title>
     <base href="/Galeris-APPG1E/Vue/">
-    <link rel="stylesheet" href="CSS/profil.css">
+    <link rel="stylesheet" href="CSS/livraison.css">
     <link rel="stylesheet" href="CSS/header.css">
     <link rel="stylesheet" href="CSS/footer.css">
     <script src="https://galeris/Galeris-APPG1E/vue/JS/header.js" defer></script>
+    <script src="https://galeris/Galeris-APPG1E/vue/JS/livraison.js" defer></script>
 </head>
 
 <body>
@@ -22,7 +23,7 @@
             <ul>
                 <li><a href="https://galeris/Galeris-APPG1E/">Accueil</a></li>
                 <li><a href="https://galeris/Galeris-APPG1E/ventes">Vente</a></li>
-                    <li><a href="https://galeris/Galeris-APPG1E/exposes">Exposition</a></li>
+                <li><a href="https://galeris/Galeris-APPG1E/exposes">Exposition</a></li>
                 <li><a href="#">News</a></li>
                 <li><a href="#">Plus</a></li>
             </ul>
@@ -49,37 +50,68 @@
                 }
             ?>
 
-
         </div>
     </header>
 
-
     <main>
-        <section class="profil">
-            <h2>Bienvenue, <?= htmlspecialchars($user['prenom']) ?> <?= htmlspecialchars($user['nom']) ?></h2>
-            <div class="profil-info">
-            <img src="../<?php echo htmlspecialchars($user['photodeprofil'] ?? 'ImageBD/Profil/avatarbasique.jpg'); ?>" alt="Photo de profil" class="profile-image">
-            <div class="details">
-                    <p><strong>Nom :</strong> <?= htmlspecialchars($user['nom']) ?></p>
-                    <p><strong>Prénom :</strong> <?= htmlspecialchars($user['prenom']) ?></p>
-                    <p><strong>Email :</strong> <?= htmlspecialchars($user['email']) ?></p>
-                    <p><strong>Description :</strong> <?= htmlspecialchars($user['description'] ?? 'Non renseignée') ?></p>
-                    <p><strong>Adresse :</strong> <?= htmlspecialchars($user['adresse'] ?? 'Non renseignée') ?></p>
-                    <p><strong>Rôle :</strong> <?= htmlspecialchars($user['roles']) ?></p>
-                    <p><strong>Date d'inscription :</strong> <?= htmlspecialchars($user['date_creation']) ?></p>
-                    <p><strong>Inscrit à la newsletter :</strong> <?= $user['newsletter'] ? 'Oui' : 'Non' ?></p>
+        <section class="livraison">
+            <h2>Livraison</h2>
+
+            <!-- Affichage d'un message d'erreur si nécessaire -->
+            <?php if (isset($error) && !empty($error)) : ?>
+                <div class="error-message">
+                    <?= htmlspecialchars($error) ?>
                 </div>
-            </div>
-            <div class="actions">
-                <a href="https://galeris/Galeris-APPG1E/historique" class="btn">Historique de mes ventes</a>
-                <a href="https://galeris/Galeris-APPG1E/editionprofil" class="btn">Modifier mon profil</a>
-                <a href="https://galeris/Galeris-APPG1E/historique" class="btn">Historique de mes achats</a>
-                <a href="https://galeris/Galeris-APPG1E/livraison" class="btn">Livraison</a>
-            </div>
+            <?php endif; ?>
+
+            <form class="livraison-form">
+                <div class="livraison-info">
+                    <div class="details">
+                        <p>
+                            <strong>Nom :</strong>
+                            <input id="nom" type="text" name="nom" value="<?= htmlspecialchars($livraisonres['nom'] ?? '') ?>" required>
+                        </p>
+                        <p>
+                            <strong>Prénom :</strong>
+                            <input id="prenom" type="text" name="prenom" value="<?= htmlspecialchars($livraisonres['prenom'] ?? '') ?>" required>
+                        </p>
+                        <p>
+                            <strong>Pays :</strong>
+                            <input id="pays" type="text" name="pays" value="<?= htmlspecialchars($livraisonres['pays'] ?? '') ?>" required>
+                        </p>
+                        <p>
+                            <strong>Adresse Postale :</strong>
+                            <input id="adresse" type="text" name="adresseLivraison" placeholder="Commencez à saisir une adresse de livraison..." value="<?= htmlspecialchars($livraisonres['adresse'] ?? '') ?>">
+                        </p>
+                        <p>
+                            <strong>Code postal :</strong>
+                            <input id="codepostale" type="text" name="adresse" value="<?= htmlspecialchars($livraisonres['codepostale'] ?? '') ?>">
+                        </p>
+                        <p>
+                            <strong>Ville :</strong>
+                            <input id="ville" type="text" name="adresse" value="<?= htmlspecialchars($livraisonres['ville'] ?? '') ?>">
+                        </p>
+                    </div>
+                </div>
+
+               
+                
+                <div class="actions">
+                    <?php 
+                        if($livraison === "panier"){
+                            echo "<button type='button' class='btn-paiement btn'>Continuer vers le paièment</button>";
+                        }
+                        else if($livraison === "profil"){
+                            echo "<button type='button' class='btn-profil btn'>Valider</button>";
+                        }
+                        else{
+                            echo "<button type='button' class='btn-valider btn'>Valider</button>";
+                        }
+                    ?>
+                </div>
+            </form>
         </section>
     </main>
-
-
     <footer>
         <div class="social-network">
             <a href="#"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"
@@ -127,6 +159,7 @@
         </div>
 
     </footer>
+    <script src="https://maps.googleapis.com/maps/api/js?key=VOTRE_CLE_API&libraries=places"></script>
 </body>
 
 </html>
