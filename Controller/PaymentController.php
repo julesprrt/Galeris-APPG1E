@@ -79,4 +79,11 @@ class PaymentController extends Controller
 
         
     }
+
+
+    public function solde(Database $db){
+        $this->render('solde', []);
+    }
+
+
 }

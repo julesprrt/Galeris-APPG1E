@@ -1,0 +1,67 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #F9F9F9;
+    color: #333;
+    line-height: 1.6;
+    overflow-x: hidden; /* Évite le débordement horizontal */
+}
+
+main {
+    max-width: 1200px;
+    margin: 2em auto;
+    padding: 0 2em;
+    animation: fadeIn 0.8s ease-in-out;
+}
+
+.general {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container-solde {
+    border : 0.3rem solid black;
+    border-radius : 1rem;
+    border-color : black;
+    width : 20rem;
+    height : 12rem;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    font-size: 2rem;
+
+}
+
+.container-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding : 4rem;
+
+}
+
+.Button-envoie {
+    width : 40%;
+    padding : 1rem;
+    background-color : rgba(217, 163, 106, 1);
+    color : black;
+    border : none;
+    border-radius: 0.5rem;
+    cursor : pointer;
+
+    font-weight : bold;
+}
+
+.Button-envoie:hover{
+    opacity: 0.8;
+}
