@@ -12,6 +12,7 @@ require_once("./Controller/VenteController.php");
 require_once("./Controller/ListeAttenteAdminController.php");
 require_once("./Controller/GalerisController.php");
 require_once("./Controller/FavorisController.php");
+require_once("./Controller/NewsController.php");
 require_once("./Controller/AdminController.php");
 require_once("./Controller/PaymentController.php");
 require_once("./Controller/PanierController.php");
@@ -35,6 +36,7 @@ $router->addRoute('/Galeris-APPG1E/motdepasse', UserController::class, 'password
 $router->addRoute('/Galeris-APPG1E/codeunique', UserController::class, 'code');
 $router->addRoute('/Galeris-APPG1E/galeris', GalerisController::class, 'controller');
 $router->addRoute('/Galeris-APPG1E/favoris', FavorisController::class, 'controller');
+$router->addRoute('/Galeris-APPG1E/news', NewsController::class, 'controller');
 $router->addRoute('/Galeris-APPG1E/vente', VenteController::class, 'vente');
 $router->addRoute('/Galeris-APPG1E/createvente', VenteController::class, 'createvente');
 $router->addRoute('/Galeris-APPG1E/profil', UserController::class, 'profil');
@@ -71,6 +73,7 @@ $router->addRoute('/Galeris-APPG1E/panier', PanierController::class, 'panier');
 $router->addRoute('/Galeris-APPG1E/livraison', LivraisonController::class, 'livraison');
 $router->addRoute('/Galeris-APPG1E/validerlivraison', LivraisonController::class, 'validerlivraison');
 $router->addRoute('/Galeris-APPG1E/supprimeroeuvre', AchatController::class, 'supprimeroeuvre');
+
 
 if ($uri !== null) {
     $router->dispatch($uri); //Appel a la méthode du controller dedié
