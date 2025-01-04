@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <link rel="stylesheet" href="../CSS/burgerbar.css">
     <script src="https://galeris/Galeris-APPG1E/vue/JS/burgerbar.js" defer></script>
