@@ -2,7 +2,8 @@
 <html lang="fr">
 
 <head>
-    <link rel="stylesheet" href="../CSS/burgerbar.css">
+    <base href="/Galeris-APPG1E/Vue/">
+    <link rel="stylesheet" href="CSS/burgerbar.css">
     <script src="https://galeris/Galeris-APPG1E/vue/JS/burgerbar.js" defer></script>
 </head> 
 <body>

@@ -72,7 +72,7 @@ $router->addRoute('/Galeris-APPG1E/panier', PanierController::class, 'panier');
 $router->addRoute('/Galeris-APPG1E/livraison', LivraisonController::class, 'livraison');
 $router->addRoute('/Galeris-APPG1E/validerlivraison', LivraisonController::class, 'validerlivraison');
 $router->addRoute('/Galeris-APPG1E/supprimeroeuvre', AchatController::class, 'supprimeroeuvre');
-$router->addRoute('/Galeris-APPG1E/burgerbar', BurgerController::class, 'burgerbar');
+$router->addRoute('/Galeris-APPG1E/burgerbar', BurgerController::class, 'burgerMenu');
 
 if ($uri !== null) {
     $router->dispatch($uri); //Appel a la méthode du controller dedié

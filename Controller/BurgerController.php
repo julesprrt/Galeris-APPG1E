@@ -15,6 +15,6 @@ class BurgerController extends Controller {
         ];
 
         // Appel à la méthode render() pour afficher la vue avec les données
-        $this->render('burgerbar.php', ['menuItems' => $menuItems]);
+        $this->render('burgerbar', ['menuItems' => $menuItems]);
     }
 }
