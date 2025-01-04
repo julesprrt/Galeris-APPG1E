@@ -15,6 +15,7 @@ require_once("./Controller/AdminController.php");
 require_once("./Controller/PaymentController.php");
 require_once("./Controller/PanierController.php");
 require_once("./controller/livraisonController.php");
+require_once("./controller/NewsController.php");
 
 $uri = $_SERVER['REQUEST_URI']; //Recupération de l'uri (la route)
 $router = new Router();
@@ -70,6 +71,7 @@ $router->addRoute('/Galeris-APPG1E/panier', PanierController::class, 'panier');
 $router->addRoute('/Galeris-APPG1E/livraison', LivraisonController::class, 'livraison');
 $router->addRoute('/Galeris-APPG1E/validerlivraison', LivraisonController::class, 'validerlivraison');
 $router->addRoute('/Galeris-APPG1E/supprimeroeuvre', AchatController::class, 'supprimeroeuvre');
+$router->addRoute('/Galeris-APPG1E/news', NewsController::class, 'news');
 
 if ($uri !== null) {
     $router->dispatch($uri); //Appel a la méthode du controller dedié

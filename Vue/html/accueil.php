@@ -59,6 +59,10 @@
                 if ($connectUser === true) {
                     echo '<a href="https://galeris/Galeris-APPG1E/vente"><button type="button" class="sellproduct">Vendre une oeuvre</button></a> <a href="https://galeris/Galeris-APPG1E/exposition"><button type="button" class="demandeexpo">Demande exposition</button></a>';
                 }
+                if($userRole === true){
+                    echo '<a href="https://galeris/Galeris-APPG1E/news"><button type="button" class="news">News</button></a>';
+
+                }
                 ?>
                 <div class="content-description">
                     <p class="description">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod

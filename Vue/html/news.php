@@ -3,12 +3,12 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>Exposition</title>
+  <title>News</title>
   <base href="/Galeris-APPG1E/Vue/">
-  <link rel="stylesheet" href="CSS/exposition.css">
+  <link rel="stylesheet" href="CSS/news.css">
   <link rel="stylesheet" href="CSS/header.css">
   <link rel="stylesheet" href="CSS/footer.css">
-  <script src="https://galeris/Galeris-APPG1E/vue/JS/exposition.js" defer></script>
+  <script src="https://galeris/Galeris-APPG1E/vue/JS/news.js" defer></script>
   <script src="https://galeris/Galeris-APPG1E/vue/JS/header.js" defer></script>
 </head>
 
@@ -55,15 +55,9 @@
   </header>
 
   <main>
-    <section class="exposition">
-    <p class="description-exposition">Notre site offre aux artistes une opportunité unique d’exposer leurs œuvres d’art dans nos locaux.
-      Que vous soyez peintre, sculpteur, photographe ou créateur multidisciplinaire, nous mettons à votre disposition un espace convivial
-      et professionnel pour présenter vos créations au public. Les expositions peuvent être organisées pour une durée maximale de 14 jours,
-      vous permettant de partager votre vision artistique et d’interagir directement avec vos spectateurs dans un cadre inspirant.
-      Rejoignez-nous et faites briller votre talent dans un lieu dédié à l’expression artistique et à la découverte culturelle.
-                    </p>
+    <section class="news">
       <form>
-        <h2>Demande d'exposition</h2>
+        <h2>News</h2>
         <strong class="strong-title">Vous pouvez ajouter jusqu'à 3 photos</strong>
         <div class="button-center">
           <label class="button" for="upload">📷</label>
@@ -76,23 +70,14 @@
         </div>
         <p>
           <strong>Titre :</strong>
-          <input type="text" class="input-exposition" id="title" name="title" value="" maxlength="50"
+          <input type="text" class="input-news" id="title" name="title" value="" maxlength="50"
             placeholder="50 caractères maximum" required>
         </p>
-        <p>
-          <strong>Date de début :</strong>
-          <input type="date" class="input-exposition" id="date_debut" name="date_debut" value="" required>
-        </p>
-        <p>
-          <strong>Date de fin :</strong>
-          <input type="date" class="input-exposition" id="date_fin" name="date_fin" value="" required>
-        </p>
-        <p>
         <strong>Description :</strong>
-        <textarea class="input-exposition" id="description" name="description" cols="3" minlength="50" placeholder="50 caractères minimum" required></textarea>
+        <textarea class="input-news" id="description" name="description" cols="3" minlength="50" placeholder="50 caractères minimum" required></textarea>
         </p>
         <div class="actions">
-          <a class="btn btn-exposition">Confirmer</a>
+          <a class="btn btn-news">Confirmer</a>
           <a href="/Galeris-APPG1E/" class="btn">Annuler</a>
         </div>
       </form>
