@@ -23,7 +23,6 @@ Class Livraison{
 
 
     public function saveLivraison(Database $db){
-        session_start();
 
         if(!ctype_alpha($this->nom)){
             return 401;

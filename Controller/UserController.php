@@ -60,6 +60,13 @@ class UserController extends Controller
     }
 
     public function PässwordMail(Database $db){
+        session_start();
+
+        if (!isset($_SESSION['usersessionID'])) {
+            header('Location: /Galeris-APPG1E/connexion');
+            exit();
+        }
+        
         $paramData = file_get_contents("php://input");
         $data = json_decode($paramData, true);
         if(isset($data["email"]) && trim($data["email"]) !== ""){
@@ -81,6 +88,12 @@ class UserController extends Controller
 
     public function code(Database $db) {
         session_start();
+
+        if (!isset($_SESSION['usersessionID'])) {
+            header('Location: /Galeris-APPG1E/connexion');
+            exit();
+        }
+
         $paramData = file_get_contents("php://input");
         $data = json_decode($paramData, true);
         if (isset($data['code'])) {
@@ -238,8 +251,15 @@ class UserController extends Controller
 
     public function resendcode(Database $db)
     {
-        $code = new Code();
         session_start();
+        
+        if (!isset($_SESSION['usersessionID'])) {
+            header('Location: /Galeris-APPG1E/connexion');
+            exit();
+        }
+
+        $code = new Code();
+
         $code->sendCode($_SESSION["usersessionMail"], $db);
 
         $code->sendCode($_SESSION["usersessionMail"],$db);
@@ -249,6 +269,12 @@ class UserController extends Controller
 
     public function Deconnexion(){
         session_start();
+
+        if (!isset($_SESSION['usersessionID'])) {
+            header('Location: /Galeris-APPG1E/connexion');
+            exit();
+        }
+        
         session_destroy();
 
         http_response_code(200);
@@ -257,6 +283,12 @@ class UserController extends Controller
 
     public function confirmationMDP(Database $db){
         session_start();
+
+        if(!isset($_SESSION["usersessionID"])){
+            header('Location: /Galeris-APPG1E/connexion');
+            exit;
+        }
+
         $paramData = file_get_contents("php://input");
         $data = json_decode($paramData, true);
         if (isset($data['password']) && isset($data['confirmPassword'])) {
