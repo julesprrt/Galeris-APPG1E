@@ -27,6 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
         // Ajouter la classe active à la nouvelle image
         images[currentIndex].classList.add('active');
     }
+   
 });
 
 setInterval(tempsRestants, 1000);
@@ -133,3 +134,37 @@ async function supprimerOeuvre(){
         }
     }
 }
+
+
+document.getElementById("btnSignaler").addEventListener("click", signaler)
+
+async function signaler(e){
+    console.log("123")
+    const btnSignaler = document.getElementById("btnSignaler");
+            const idOeuvre = e.target.getAttribute("data-oeuvre-id");
+            const raison = prompt("Quelle est la raison du signalement ?");
+            if (!raison) {
+                alert("Veuillez entrer une raison.");
+                return;
+            }
+
+            try {
+                const resp = await fetch("https://galeris/Galeris-APPG1E/signaleroeuvre", {
+                    method: "POST",
+                    headers: {"Content-Type": "application/json"},
+                    body: JSON.stringify({ oeuvre_id: idOeuvre, raison: raison })
+                });
+                const data = await resp.json();
+                if (resp.status === 200) {
+                    alert(data.Success);
+                } else {
+                    alert(data.Error || "Erreur inconnue");
+                }
+            } catch (err) {
+                console.error(err);
+                alert("Erreur lors de l'envoi du signalement.");
+            }
+
+    }
+
+

@@ -144,6 +144,7 @@
 
             <!-- Boutons d'actions -->
             <section class="actions">
+                
                 <?php
                     if($user || $userRole){
                         echo '<button class="boutton-modifier">Modifier</button>
@@ -154,6 +155,7 @@
                         <button class="boutton-favoris">Ajouter au favoris</button>';
                     }
                 ?>
+                <button id="btnSignaler" data-oeuvre-id="123">Signaler cette œuvre</button>
             </section>
             <?php
             if (mysqli_num_rows($encheres) > 0) {
