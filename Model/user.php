@@ -310,7 +310,6 @@ class User
 
     public function verifyEmailForPassword(Database $db)
     {
-        session_start();
         $conn = $db->connect();
         $sql = "select * from utilisateur where email = ?";
         $stmt = $conn->prepare($sql);

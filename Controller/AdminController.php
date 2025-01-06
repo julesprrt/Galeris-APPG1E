@@ -12,6 +12,13 @@ class AdminController extends Controller
         $oeuvre = new Oeuvre($Titre = null, $Description = null, $eco_responsable = null, $Date_debut = null, $Date_fin = null, $Prix = null, $type_vente = null, $est_vendu = null, $auteur = null, $id_utilisateur = null, $id_categorie = null, $status = null, $nomvendeur = null, $prenomvendeur = null, $chemin_image = [], null,null);
         session_start();
         $role = isset($_SESSION["usersessionRole"]) === true && $_SESSION["usersessionRole"] === "Admin" ? true : false;
+
+        if (!$role) {
+            http_response_code(404);
+            header('Location: /Galeris-APPG1E/');
+            exit();
+        }
+        
         $id =  $_SESSION['oeuvre_id'];
         $oeuvreid = $oeuvre->getOeuvreById($id, $db);
 
@@ -36,6 +43,13 @@ class AdminController extends Controller
         $expose = new Exposition(null,null,null,null,null,null,null);
         session_start();
         $role = isset($_SESSION["usersessionRole"]) === true && $_SESSION["usersessionRole"] === "Admin" ? true : false;
+
+        if (!$role) {
+            http_response_code(404);
+            header('Location: /Galeris-APPG1E/');
+            exit();
+        }
+
         $id =  $_SESSION['expose_id'];
         
         $exposeid = $expose->getExposeById($id, $db);
@@ -56,6 +70,16 @@ class AdminController extends Controller
     }
 
     public function acceptoeuvre(Database $db){
+        session_start();
+
+        $role = isset($_SESSION["usersessionRole"]) === true && $_SESSION["usersessionRole"] === "Admin" ? true : false;
+
+        if (!$role) {
+            http_response_code(404);
+            header('Location: /Galeris-APPG1E/');
+            exit();
+        }
+
         $paramData = file_get_contents("php://input");
         $data = json_decode($paramData, true);
         if (isset($data['id']) && isset($data['accept'])) {
@@ -69,6 +93,16 @@ class AdminController extends Controller
     }
 
     public function acceptexpose(Database $db){
+        session_start();
+
+        $role = isset($_SESSION["usersessionRole"]) === true && $_SESSION["usersessionRole"] === "Admin" ? true : false;
+        
+        if (!$role) {
+            http_response_code(404);
+            header('Location: /Galeris-APPG1E/');
+            exit();
+        }
+
         $paramData = file_get_contents("php://input");
         $data = json_decode($paramData, true);
         if (isset($data['id']) && isset($data['accept'])) {

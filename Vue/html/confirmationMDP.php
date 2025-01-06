@@ -10,11 +10,6 @@
     <script src="JS/confirmationmdp.js" defer></script>
 </head>
 <header>
-    <?php
-      if ($connectUser !== true) {
-        echo '<div><a href="https://galeris/Galeris-APPG1E/connexion"> </a></div>';
-      }
-    ?>
     <h1>Nouveau Mot de Passe</h1>
     <a href="./html/accueil.php"><img src="../images/logo-sans-fond.png" alt="Logo de Galeris"
             style="display: block; margin: 0 auto;" id="logogaleris"></a>

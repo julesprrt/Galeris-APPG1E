@@ -7,10 +7,23 @@ class ExpositionController extends Controller{
     public function exposition()
     {
         session_start();
+
+        if (!isset($_SESSION['usersessionID'])) {
+            header('Location: /Galeris-APPG1E/connexion');
+            exit();
+        }
+
         $role = isset($_SESSION["usersessionRole"]) === true && $_SESSION["usersessionRole"] === "Admin" ? true : false;
         $this->render('exposition', ["connectUser" =>  isset($_SESSION["usersessionID"]), "userRole" => $role]);
     }
     public function createexposition(Database $db){
+        session_start();
+
+        if (!isset($_SESSION['usersessionID'])) {
+            header('Location: /Galeris-APPG1E/connexion');
+            exit();
+        }
+
         $paramData = file_get_contents("php://input");
         $data = json_decode($paramData, true);
         if(isset($data['titre'])&& isset($data['date_debut'])&& isset($data['date_fin'])){
@@ -65,6 +78,12 @@ class ExpositionController extends Controller{
         $data = json_decode($paramData, true);
         if (isset($data['id'])) {
             session_start();
+
+            if (!isset($_SESSION['usersessionID'])) {
+                header('Location: /Galeris-APPG1E/connexion');
+                exit();
+            }
+
             $_SESSION['expose_id'] = (int)$data['id'];
             http_response_code(200);
         } else {
@@ -89,6 +108,11 @@ class ExpositionController extends Controller{
         // Récupérer l'œuvre depuis le modèle
         $expose = new Exposition(null,null,null,null,null,null,null);
         session_start();
+
+        if (!isset($_SESSION['usersessionID'])) {
+            header('Location: /Galeris-APPG1E/connexion');
+            exit();
+        }
         $role = isset($_SESSION["usersessionRole"]) === true && $_SESSION["usersessionRole"] === "Admin" ? true : false;
         $id =  $_SESSION['expose_id'];
         

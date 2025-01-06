@@ -26,7 +26,6 @@ Class Panier{
     }
 
     public function ajoutPanier(Database $db) {
-        session_start();
         $res = $this->existPanier($db);
         if($res){
             return 401;
@@ -44,7 +43,6 @@ Class Panier{
     }
 
     public function retirerPanier(Database $db) {
-        session_start();
         $res = $this->existPanier($db);
         if(!$res){
             return 401;

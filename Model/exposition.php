@@ -86,7 +86,6 @@ class Exposition
 
     public function saveExposition(Database $db)
     {
-        session_start();
         $Database = $db->connect();
         $sql = "insert into exposition (titre,description,date_debut,date_fin,user_id) values (?,?,?,?,?)";
         $stmt = $Database->prepare($sql);
