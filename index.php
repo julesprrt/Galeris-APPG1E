@@ -71,8 +71,8 @@ $router->addRoute('/Galeris-APPG1E/panier', PanierController::class, 'panier');
 $router->addRoute('/Galeris-APPG1E/livraison', LivraisonController::class, 'livraison');
 $router->addRoute('/Galeris-APPG1E/validerlivraison', LivraisonController::class, 'validerlivraison');
 $router->addRoute('/Galeris-APPG1E/supprimeroeuvre', AchatController::class, 'supprimeroeuvre');
-$router->addRoute('/Galeris-APPG1E/signaleroeuvre', VenteController::class, 'signalerOeuvre');
-$router->addRoute('/Galeris-APPG1E/admin/supprimer-oeuvre', AdminController::class, 'supprimerOeuvre');
+$router->addRoute('/Galeris-APPG1E/signaleroeuvre', UserController::class, 'signalerOeuvre');
+
 if ($uri !== null) {
     $router->dispatch($uri); //Appel a la méthode du controller dedié
 }

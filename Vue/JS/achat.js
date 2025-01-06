@@ -136,34 +136,48 @@ async function supprimerOeuvre(){
 }
 
 
+document.getElementById("btnSignaleropenform").addEventListener("click", openFormSignaler)
+
+async function openFormSignaler() {
+    document.querySelector(".signaler-form").style.display = "block";
+}
+
 document.getElementById("btnSignaler").addEventListener("click", signaler)
 
-async function signaler(e){
-    const btnSignaler = document.getElementById("btnSignaler");
-            const idOeuvre = e.target.getAttribute("data-oeuvre-id");
-            const raison = prompt("Quelle est la raison du signalement ?");
-            if (!raison) {
-                alert("Veuillez entrer une raison.");
-                return;
-            }
+async function signaler() {
+    document.getElementById("btnSignaler").disabled = true;
+    const raison = document.querySelector(".input-signalement").value;
 
-            try {
-                const resp = await fetch("https://galeris/Galeris-APPG1E/signaleroeuvre", {
-                    method: "POST",
-                    headers: {"Content-Type": "application/json"},
-                    body: JSON.stringify({ oeuvre_id: idOeuvre, raison: raison })
-                });
-                const data = await resp.json();
-                if (resp.status === 200) {
-                    alert(data.Success);
-                } else {
-                    alert(data.Error || "Erreur inconnue");
-                }
-            } catch (err) {
-                console.error(err);
-                alert("Erreur lors de l'envoi du signalement.");
-            }
-
+    if (raison.length < 25) {
+        alert("La raison de votre signalement doit contenir plus que 25 carctères.");
+        return;
     }
 
 
+    const resp = await fetch("https://galeris/Galeris-APPG1E/signaleroeuvre", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ raison: raison })
+    });
+    const data = await resp.json();
+    if (resp.status === 200) {
+        alert(data.Success);
+        signalercloseForm()
+        document.getElementById("btnSignaler").disabled = false;
+    } else {
+        alert(data.Error);
+    }
+}
+
+document.querySelector(".signaler-close-button").addEventListener("click", signalercloseForm);
+
+function closeForm() {
+    document.querySelector(".enchere-form").style.display = "none";
+    document.querySelector(".input-enchere").value = "";
+    document.querySelector(".input-enchere").min = "";
+}
+
+function signalercloseForm() {
+    document.querySelector(".signaler-form").style.display = "none";
+    document.querySelector(".input-signalement").value = "";
+}

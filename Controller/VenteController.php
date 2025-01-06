@@ -4,7 +4,7 @@ require_once('Controller.php');
 require_once('Model/categorie.php');
 require_once('Model/Utils.php');
 require_once('Model/Vente.php');
-require_once('Model/mailSender.php');
+
 Class VenteController extends Controller{//Controlleur accueil
     
     public function vente(Database $db) {
@@ -47,39 +47,5 @@ Class VenteController extends Controller{//Controlleur accueil
             $prices = $utils->getMaxAndMinPriceFromMySQL($oeuvres);
             $role = isset($_SESSION["usersessionRole"]) === true && $_SESSION["usersessionRole"] === "Admin" ? true : false;
             $this->render('listeVente', ["connectUser" =>  isset($_SESSION["usersessionID"]), "oeuvres" => $oeuvres, "userRole" => $role, "categories" => $categories, 'prices' => $prices]);
-    }
-    
-    public function signalerOeuvre(Database $db)
-    {
-        session_start();
-        // Récupération des données POST (JSON)
-        $paramData = file_get_contents("php://input");
-        $data = json_decode($paramData, true);
-
-        if (isset($data['oeuvre_id']) && isset($data['raison']) && trim($data['raison']) !== '') {
-            $oeuvreId = (int)$data['oeuvre_id'];
-            $raison = strip_tags($data['raison']);
-            $mailSender = new MailSender();
-
-            // Service destinataire
-            $to = "galeris2004@gmail.com";  
-            $subject = "[Signalement Œuvre #$oeuvreId]";
-            $message = "Un utilisateur a signalé l'œuvre #$oeuvreId pour la raison suivante :<br><b>$raison</b>";
-            // L'expéditeur peut être un no-reply ou l'email du user
-            $from = $_SESSION["usersessionMail"];
-
-            $sent = $mailSender->sendMail($to, $subject, $message, $from);
-
-            if ($sent) {
-                http_response_code(200);
-                echo json_encode(['Success' => 'Signalement envoyé avec succès.']);
-            } else {
-                http_response_code(500);
-                echo json_encode(['Error' => "Impossible d'envoyer l'email de signalement."]);
-            }
-        } else {
-            http_response_code(400);
-            echo json_encode(['Error' => "Données invalides pour le signalement (oeuvre_id, raison)."]);
-        }
     }
 }

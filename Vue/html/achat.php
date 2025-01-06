@@ -58,6 +58,20 @@
         </div>
     </header>
 
+    <div class="signaler-form">
+    <div class="btn-close-container">
+        <button class="signaler-close-button" type="submit">X</button>
+    </div>
+        <p class="title-signaler">Signaler une oeuvre</p>
+            <textarea type="text" class="input-signalement" cols="30" rows="10" name="signalement" placeholder="Raison : 25 caractères minimum"></textarea>
+        <br>
+        <p class="error"></p>
+        <br>
+        <div class="btn-container">
+            <button id="btnSignaler" type="submit">Signaler</button>
+        </div>
+    </div>
+
     <main>
     <section class="gauche">
             <section class="art-details">
@@ -144,10 +158,7 @@
                 ?>
 
                 <!-- bouton signaler -->
-                <button id="btnSignaler" data-oeuvre-id=<?php echo $oeuvre['id_oeuvre']?>>Signaler cette œuvre</button>
-
-            
-
+                <button id="btnSignaleropenform" data-oeuvre-id=<?php echo $oeuvre['id_oeuvre']?>>Signaler cette œuvre</button>
             </section>
         </section>
     </main>

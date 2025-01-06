@@ -68,6 +68,20 @@
             <button class="enchere-button" type="submit">Enchérir</button>
         </div>
     </div>
+
+    <div class="signaler-form">
+    <div class="btn-close-container">
+        <button class="signaler-close-button" type="submit">X</button>
+    </div>
+        <p class="title-signaler">Signaler une oeuvre</p>
+            <textarea type="text" class="input-signalement" cols="30" rows="10" name="signalement" placeholder="Raison : 25 caractères minimum"></textarea>
+        <br>
+        <p class="error"></p>
+        <br>
+        <div class="btn-container">
+            <button id="btnSignaler" type="submit">Signaler</button>
+        </div>
+    </div>
     <main>
         <section class="gauche">
             <section class="art-details">
@@ -155,7 +169,7 @@
                         <button class="boutton-favoris">Ajouter au favoris</button>';
                     }
                 ?>
-                <button id="btnSignaler" data-oeuvre-id="123">Signaler cette œuvre</button>
+                <button id="btnSignaleropenform">Signaler cette œuvre</button>
             </section>
             <?php
             if (mysqli_num_rows($encheres) > 0) {

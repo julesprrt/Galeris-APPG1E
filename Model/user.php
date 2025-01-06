@@ -2,7 +2,7 @@
 require_once('Database/Database.php');
 require_once('Model/code.php');
 require_once('Model/utils.php');
-
+require_once('Model/mailSender.php');
 class User
 {
     private $name;
@@ -13,6 +13,7 @@ class User
     private $confirmPassword;
     private $sendCode;
     private $utilsUser;
+    private MailSender $sendMail;
     private $cgu;
     public function __construct($name, $firstName, $email, $telephone, $password, $confirmPassword, $cgu)
     { //Constructeur -> Initialisation des données
@@ -25,6 +26,7 @@ class User
         $this->sendCode = new Code();
         $this->utilsUser = new Utils();
         $this->cgu = $cgu;
+        $this->sendMail = new MailSender();
     }
     /**
      * Summary of registerVerification
@@ -336,5 +338,16 @@ class User
             $conn->close();
             return true;
         }
+    }
+
+    public function signaler($raison, Database $db){
+        if(strlen(trim($raison)) < 25){
+            return 401;
+        }
+
+        $oeuvre = new Oeuvre(null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null);
+        $oeuvreInfo = $oeuvre-> getOeuvreById($_SESSION["oeuvre_id"], $db);
+        $userInfo = $this->getUserById($_SESSION["usersessionID"], $db);
+        $this->sendMail->signalement($_SESSION["oeuvre_id"], $raison, $oeuvreInfo["Titre"], $userInfo["nom"], $userInfo["prenom"]);
     }
 }
