@@ -59,6 +59,7 @@ function tempsRestants() {
             } else {
                 header.style.display = 'none';
             }
+        // manque burgerbar quand header disparait
         });  
     });
 };
