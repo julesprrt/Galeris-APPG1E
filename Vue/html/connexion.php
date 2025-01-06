@@ -10,7 +10,7 @@
     <link href="CSS/footer.css" rel="stylesheet">
     <link href="CSS/style.css" rel="stylesheet">
     <script src="https://galeris/Galeris-APPG1E/vue/JS/connexion.js" defer></script>
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script> 
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
 
 <body>
@@ -38,7 +38,7 @@
                     <button type="button" class="button-connection submit-button"></button>
                     <br>
                     <div name="recaptcha" class="g-recaptcha" data-sitekey="6Lf0tIkqAAAAANfbK1JSkQByCF-s0YgdX1K2nCGs"></div>
-                    <p class="error-message"></p>  	
+                    <p class="error-message"></p>
                 </form>
             </div>
         </div>
