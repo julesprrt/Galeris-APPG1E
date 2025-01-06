@@ -70,7 +70,7 @@ class UserController extends Controller
         $paramData = file_get_contents("php://input");
         $data = json_decode($paramData, true);
         if (isset($data["email"]) && trim($data["email"]) !== "") {
-            $user = new User("", "", $data["email"], "", "", "", "");
+            $user = new User("", "", $data["email"], "", "", "", "", null,null,null);
             if ($user->verifyEmailForPassword($db)) {
                 http_response_code(200);
                 echo json_encode(['Success' => "Un code vous à été envoyé sur votre adresse mail pour confirmer votre identité"]);
@@ -321,7 +321,7 @@ class UserController extends Controller
         $data = json_decode($paramData, true);
 
         if (isset($data['raison']) && trim($data['raison']) !== '') {
-            $user = new User(null, null, null, null, null, null, null);
+            $user = new User(null, null, null, null, null, null, null,null,null,null);
             $code = $user->signaler($data['raison'], $db);
 
             if($code === 401){
