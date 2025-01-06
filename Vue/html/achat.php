@@ -34,7 +34,7 @@
         <div class="barre_recherche">
             <input type="text" placeholder="Rechercher...">
             <div class="favori"> <a href="favoris.html">❤️ </a></div>
-            <div class="panier"> <a href="panier.html"> 🛒 </a></div>
+            <div class="panier"> <a href="https://galeris/Galeris-APPG1E/panier"> 🛒 </a></div>
 
             <?php
             if ($connectUser === true) {
@@ -122,8 +122,21 @@
 
             <!-- Boutons d'actions -->
             <section class="actions">
-                <button class="boutton-message-vendeur">Ajouter au Panier</button>
-                <button class="boutton-favoris">Ajouter au favoris</button>
+                <?php
+                    if($user || $userRole){
+                        echo '<button class="boutton-modifier">Modifier</button>
+                        <button class="boutton-supprimer">Supprimer</button>';
+                    }
+                    else{
+                        if($panier === false){
+                            echo '<button class="boutton-panier">Ajouter au Panier</button>';
+                        }
+                        else{
+                            echo '<button class="boutton-retirer-panier">Retirer du Panier</button>';
+                        }
+                        echo '<button class="boutton-favoris">Ajouter au favoris</button>';
+                    }
+                ?>
             </section>
         </section>
     </main>

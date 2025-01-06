@@ -30,7 +30,7 @@
         <div class="barre_recherche">
             <input type="text" placeholder="Rechercher...">
             <div class="favori"><a href="favoris.html">❤️</a></div>
-            <div class="panier"><a href="panier.html">🛒</a></div>
+            <div class="panier"><a href="https://galeris/Galeris-APPG1E/panier">🛒</a></div>
             <?php
                 if ($connectUser === true) {
                     echo '<div class="dropdown">
@@ -58,8 +58,8 @@
         <section class="profil">
             <h2>Bienvenue, <?= htmlspecialchars($user['prenom']) ?> <?= htmlspecialchars($user['nom']) ?></h2>
             <div class="profil-info">
-                <!--<img src="../images/avatar.png" alt="Photo de profil">-->
-                <div class="details">
+            <img src="../<?php echo htmlspecialchars($user['photodeprofil'] ?? 'ImageBD/Profil/avatarbasique.jpg'); ?>" alt="Photo de profil" class="profile-image">
+            <div class="details">
                     <p><strong>Nom :</strong> <?= htmlspecialchars($user['nom']) ?></p>
                     <p><strong>Prénom :</strong> <?= htmlspecialchars($user['prenom']) ?></p>
                     <p><strong>Email :</strong> <?= htmlspecialchars($user['email']) ?></p>
@@ -71,7 +71,10 @@
                 </div>
             </div>
             <div class="actions">
-                <a href="https://galeris/Galeris-APPG1E/editionprofil" class="btn">Modifier le profil</a>
+                <a href="https://galeris/Galeris-APPG1E/historique" class="btn">Historique de mes ventes</a>
+                <a href="https://galeris/Galeris-APPG1E/editionprofil" class="btn">Modifier mon profil</a>
+                <a href="https://galeris/Galeris-APPG1E/historique" class="btn">Historique de mes achats</a>
+                <a href="https://galeris/Galeris-APPG1E/livraison" class="btn">Livraison</a>
             </div>
         </section>
     </main>
