@@ -197,8 +197,8 @@ main {
 /* Responsive Adjustments */
 @media screen and (max-width: 1080px) {
     header {
-        display: none; 
-    }
+        display: none !important; 
+        }
 
     main {
         flex-direction: column;

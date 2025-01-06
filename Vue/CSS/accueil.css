@@ -126,7 +126,7 @@ body {
 /* Responsive Adjustments */
 @media screen and (max-width: 1080px) {
     header {
-        display: none !important; 
+        display: none; 
     }
 
     main {
@@ -169,7 +169,7 @@ body {
         word-wrap: break-word; /* Évite les débordements */
         white-space: normal; /* Permet les retours à la ligne naturels */
     }
-    }
 }
+
 
 
