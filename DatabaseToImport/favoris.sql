@@ -1,6 +1,7 @@
-CREATE TABLE IF NOT EXISTS favoris (
-    id_favori INT AUTO_INCREMENT PRIMARY KEY,
-    id_utilisateur INT NOT NULL,
-    id_oeuvre INT NOT NULL,
-    date_ajout TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+CREATE TABLE favoris(
+id_favoris INTEGER PRIMARY KEY AUTO_INCREMENT,
+id_utilisateur INTEGER,
+id_oeuvre INTEGER,
+FOREIGN KEY (id_utilisateur) REFERENCES utilisateur(id_utilisateur) ON DELETE CASCADE
+FOREIGN KEY (id_oeuvre) REFERENCES oeuvre(id_oeuvre) ON DELETE CASCADE
 );
