@@ -255,7 +255,7 @@ class User
 
         $sql = "SELECT utilisateur.*, utilisateur_image.chemin_image AS photodeprofil, l.adresse as adresse_livraison, l.codepostale, l.ville, l.pays
         FROM utilisateur 
-        inner join livraison l on l.id_utilisateur = utilisateur.id_utilisateur
+        left join livraison l on l.id_utilisateur = utilisateur.id_utilisateur
         LEFT JOIN utilisateur_image 
         ON utilisateur.id_utilisateur = utilisateur_image.id_utilisateur 
         WHERE utilisateur.id_utilisateur = ?";
