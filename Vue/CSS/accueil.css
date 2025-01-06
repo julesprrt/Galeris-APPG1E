@@ -124,11 +124,12 @@ body {
 }
 /* Cacher le menu sur petits écrans */
 /* Responsive Adjustments */
-@media screen and (max-width: 1080px) {
-    header {
-        display: none; 
-    }
+header {
+    display: none;
+}
 
+@media screen and (min-width: 768px) {
+  
     main {
         flex-direction: column;
         padding: 10px;
