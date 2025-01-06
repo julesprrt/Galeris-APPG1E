@@ -9,15 +9,16 @@
     <link rel="stylesheet" href="CSS/contact.css">
     <link rel="stylesheet" href="CSS/style.css">
     <script src="https://galeris/Galeris-APPG1E/vue/JS/contact.js" defer></script>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
 </head>
 
 <body>
     <section id="contact">
         <div class="container">
-                <p class="bigTitle6"> Une question ? Un conseil ?</p>
-                <p class="bigTitle3"> Contactez-nous </p>
-
+            <p class="bigTitle6"> Une question ? Un conseil ?</p>
+            <p class="bigTitle3"> Contactez-nous </p>
+            <p><a href="../" class="home-link">Retour à l'accueil</a></p>
 
             <form>
                 <input class="contact-input simpleInput" type="text" name="firstName" placeholder="Prénom" required>
@@ -34,6 +35,8 @@
 
                 <textarea class="contact-input" name="message" cols="30" rows="10" placeholder="Message"></textarea>
                 <button type="button" id="btn-contact" class="smallButton">Envoyer</button>
+                <br>
+                <div name="recaptcha" class="g-recaptcha" data-sitekey="6Lf0tIkqAAAAANfbK1JSkQByCF-s0YgdX1K2nCGs"></div>
                 <p class="error-message"></p>
             </form>
         </div>
