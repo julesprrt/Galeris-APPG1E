@@ -122,3 +122,54 @@ body {
     /* Texte plus clair */
     padding: 0em 0.5em 0.5em 0.5em;
 }
+/* Cacher le menu sur petits écrans */
+/* Responsive Adjustments */
+@media screen and (max-width: 1080px) {
+    header {
+        display: none !important; 
+    }
+
+    main {
+        flex-direction: column;
+        padding: 10px;
+    }
+
+    .gauche,
+    .droite {
+        margin-bottom: 1.5em;
+        width: 100%;
+    }
+
+    .tableau-similaire {
+        flex-wrap: wrap;
+        gap: 20px;
+        justify-content: center;
+    }
+
+    .tableau-similaire img {
+        width: 90%;
+        max-width: 100px;
+        margin: 5px;
+    }
+
+    .prix {
+        font-size: 14px;
+    }
+
+    .actions button {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+    .description {
+        padding: 0 5%; /* Utilise un pourcentage pour adapter l'espace */
+        margin: 0 auto; /* Centre le texte horizontalement */
+        max-width: 800px; /* Limite la largeur maximale pour éviter un texte trop étalé */
+        line-height: 1.6; /* Augmente l'interligne pour une meilleure lisibilité */
+        text-align: justify; /* Aligne le texte des deux côtés pour une présentation plus propre */
+        word-wrap: break-word; /* Évite les débordements */
+        white-space: normal; /* Permet les retours à la ligne naturels */
+    }
+    }
+}
+
+
