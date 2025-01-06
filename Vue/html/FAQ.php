@@ -195,7 +195,7 @@
         <div class="container-footer">
             <a class="title-footer">Qui sommes-nous ?</a>
             <a class="item-footer" href="#">NovArt</a>
-            <a class="item-footer" href="#">Galeris</a>
+            <a class="item-footer" href="https://galeris/Galeris-APPG1E/galeris">Galeris</a>
         </div>
         <div class="container-footer">
             <a class="title-footer">Aide</a>

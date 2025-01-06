@@ -1,8 +1,8 @@
 document.querySelector(".submit-button").addEventListener('click', register)
-document.getElementById("showmdp").addEventListener('click', passwordToggle);
+/*document.getElementById("showmdp").addEventListener('click', passwordToggle);
 document.getElementById("hidemdp").addEventListener('click', HidepasswordToggle);
 document.getElementById("showmdp2").addEventListener('click', passwordToggle2);
-document.getElementById("hidemdp2").addEventListener('click', HidepasswordToggle2);
+document.getElementById("hidemdp2").addEventListener('click', HidepasswordToggle2);*/
 
 
 async function register() {
@@ -17,7 +17,8 @@ async function register() {
         "telephone": document.getElementsByName("telephone")[0].value,
         "password" : document.getElementsByName("password")[0].value,
         "confirmPassword" : document.getElementsByName("confirmPassword")[0].value,
-        "cgu" : document.getElementById("check-inscription").checked
+        "cgu" : document.getElementById("check-inscription").checked,
+        "g-recaptcha-response": document.getElementById("g-recaptcha-response").value
     });
 
     const requestOptions = {

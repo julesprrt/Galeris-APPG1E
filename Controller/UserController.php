@@ -12,8 +12,8 @@ class UserController extends Controller
     {
         $paramData = file_get_contents("php://input");
         $data = json_decode($paramData, true);
-        if (isset($data['name']) && isset($data['firstName']) && isset($data['email']) && isset($data['telephone']) && isset($data['password']) && isset($data['confirmPassword']) && isset($data['cgu'])) { //Verification données entré dans le formulaire
-            $user = new User($data["name"], $data["firstName"], $data["email"], $data["telephone"], $data["password"], $data["confirmPassword"], $data["cgu"]);
+        if (isset($data['name']) && isset($data['firstName']) &&  isset($data['email']) && isset($data['telephone']) && isset($data['password']) && isset($data['confirmPassword']) && isset($data['cgu']) && isset($data['g-recaptcha-response'])) { //Verification données entré dans le formulaire
+            $user = new User($data["name"], $data["firstName"],  $data["email"], $data["telephone"], $data["password"], $data["confirmPassword"], $data["cgu"], null, null, $data['g-recaptcha-response']);
             $result = $user->registerVerification($db); //Verifier les données d'inscription
             if ($result === true) { //Si les données sont correct alors envoie du code a usage unique + redirection vers la page  avec le code à usage unique
                 http_response_code(200);
@@ -35,8 +35,8 @@ class UserController extends Controller
     {
         $paramData = file_get_contents("php://input");
         $data = json_decode($paramData, true);
-        if (isset($data['email']) && isset($data['password'])) {
-            $user = new User(null, null, $data['email'], null, $data['password'], null, null);
+        if (isset($data['email']) && isset($data['password']) && isset($data['g-recaptcha-response'])) {
+            $user = new User(null, null, $data['email'], null, $data['password'], null, null, null, null, $data['g-recaptcha-response']);
             // Obtenir une connexion à la base de données
             $result = $user->connectUser($db);
             if ($result === true) {
@@ -59,8 +59,14 @@ class UserController extends Controller
         $this->render('motdepasseoublie', ['message' => '']);
     }
 
-    public function PässwordMail(Database $db)
-    {
+    public function PässwordMail(Database $db){
+        session_start();
+
+        if (!isset($_SESSION['usersessionID'])) {
+            header('Location: /Galeris-APPG1E/connexion');
+            exit();
+        }
+        
         $paramData = file_get_contents("php://input");
         $data = json_decode($paramData, true);
         if (isset($data["email"]) && trim($data["email"]) !== "") {
@@ -81,11 +87,17 @@ class UserController extends Controller
     public function code(Database $db)
     {
         session_start();
+
+        if (!isset($_SESSION['usersessionID'])) {
+            header('Location: /Galeris-APPG1E/connexion');
+            exit();
+        }
+
         $paramData = file_get_contents("php://input");
         $data = json_decode($paramData, true);
         if (isset($data['code'])) {
-            $user = new User(null, null, null, null, null, null, null);
-            $response = $user->verifyCode($data['code'], $db);
+            $user = new User(null,null,null,null,null,null,null, null, null, null);
+            $response = $user->verifyCode($data['code'],$db);
             $type = $_SESSION["usersessionType"];
             if ($response == 200 && $type === "") {
                 http_response_code(200);
@@ -115,7 +127,7 @@ class UserController extends Controller
         $userId = $_SESSION['usersessionID'];
         $_SESSION["livraison"] = "profil";
 
-        $user = new User(null, null, null, null, null, null, null);
+        $user = new User(null, null,  null, null, null, null, null, null, null, null);
         $userData = $user->getUserById($userId, $db);
 
         if (!$userData) {
@@ -137,7 +149,7 @@ class UserController extends Controller
         }
 
         $userId = $_SESSION['usersessionID'];
-        $userModel = new User(null, null, null, null, null, null, null);
+        $userModel = new User(null, null,  null, null, null, null, null, null, null, null); 
         $user = $userModel->getUserById($userId, $db);
 
         if (!$user) {
@@ -158,6 +170,7 @@ class UserController extends Controller
         }
 
         $userId = $_SESSION['usersessionID'];
+        
 
         // Récupération des données du formulaire
         $nom = $_POST['nom'];
@@ -165,12 +178,31 @@ class UserController extends Controller
         $email = $_POST['email'];
         $description = $_POST['description'];
         $adresse = $_POST['adresse'];
+        $newsletter = isset($_POST['newsletter']) ? 1 : 0; 
         $oldPassword = $_POST['old_password'];
         $newPassword = $_POST['new_password'];
         $confirmPassword = $_POST['confirm_password'];
-
-        $userModel = new User(null, null, null, null, null, null, null);
+        
+        $photoFile = $_FILES['profile_photo'];
+        $photoPath = null;  
+        if ($photoFile && $photoFile['error'] === UPLOAD_ERR_OK) {
+    
+            // Génération d'un nom de fichier unique
+            $uploadDir = 'ImageBD/Profil/';
+            $fileName = uniqid('profile_', true) . '.' . pathinfo($photoFile['name'], PATHINFO_EXTENSION);
+    
+            // Déplacement du fichier vers le dossier `ImageBD/Profil`
+            if (!move_uploaded_file($photoFile['tmp_name'], $uploadDir . $fileName)) {
+                $this->render('editionprofil', ['error' => "Erreur lors du téléchargement de la photo."]);
+                return;
+            }
+    
+            // Stockage du chemin relatif
+            $photoPath = $uploadDir . $fileName;
+        }
+        $userModel = new User(null, null,  null, null, null, null, null, null, null, null);
         $user = $userModel->getUserById($userId, $db);
+
 
         if (!$user) {
             echo "Utilisateur introuvable.";
@@ -202,7 +234,9 @@ class UserController extends Controller
         }
 
         // Mise à jour des données
-        $updated = $userModel->updateUser($userId, $nom, $prenom, $email, $description, $adresse, $newPassword, $db);
+        $updated = $userModel->updateUser($userId, $nom, $prenom, $email, $description, $adresse, $newsletter, $newPassword, $db);
+        $userModel->SuppresionAnciennePDP($userId, $db);
+        $photoupdated = $userModel->updatePhoto($userId, $photoPath, $db);
 
         if ($updated) {
             header('Location: /Galeris-APPG1E/profil');
@@ -214,8 +248,15 @@ class UserController extends Controller
 
     public function resendcode(Database $db)
     {
-        $code = new Code();
         session_start();
+        
+        if (!isset($_SESSION['usersessionID'])) {
+            header('Location: /Galeris-APPG1E/connexion');
+            exit();
+        }
+
+        $code = new Code();
+
         $code->sendCode($_SESSION["usersessionMail"], $db);
 
         $code->sendCode($_SESSION["usersessionMail"], $db);
@@ -226,6 +267,12 @@ class UserController extends Controller
     public function Deconnexion()
     {
         session_start();
+
+        if (!isset($_SESSION['usersessionID'])) {
+            header('Location: /Galeris-APPG1E/connexion');
+            exit();
+        }
+        
         session_destroy();
 
         http_response_code(200);
@@ -235,10 +282,16 @@ class UserController extends Controller
     public function confirmationMDP(Database $db)
     {
         session_start();
+
+        if(!isset($_SESSION["usersessionID"])){
+            header('Location: /Galeris-APPG1E/connexion');
+            exit;
+        }
+
         $paramData = file_get_contents("php://input");
         $data = json_decode($paramData, true);
         if (isset($data['password']) && isset($data['confirmPassword'])) {
-            $user = new User(null, null, null, null, $data['password'], $data['confirmPassword'], null);
+            $user = new User(null, null,  null, null, $data['password'], $data['confirmPassword'],null, null, null, null );
             $result = $user->changePassword($db);
             if ($result === true) {
                 http_response_code(200);

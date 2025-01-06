@@ -16,9 +16,12 @@ async function connexion() {
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
     
+    console.log(document.getElementById("g-recaptcha-response").value)
+
     const raw = JSON.stringify({
         "email": document.getElementsByName("email")[0].value,
-        "password" : document.getElementsByName("password")[0].value
+        "password" : document.getElementsByName("password")[0].value,
+        "g-recaptcha-response": document.getElementById("g-recaptcha-response").value
     });
 
     const requestOptions = {

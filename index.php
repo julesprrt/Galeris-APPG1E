@@ -30,7 +30,6 @@ $router->addRoute('/Galeris-APPG1E/achat', AchatController::class, 'achat');
 $router->addRoute('/Galeris-APPG1E/enchere', AchatController::class, 'achat');
 $router->addRoute('/Galeris-APPG1E/faq', FAQController::class, 'faq');
 $router->addRoute('/Galeris-APPG1E/cgu', CGUController::class, 'cgu');
-$router->addRoute('/Galeris-APPG1E/achat', AchatController::class, 'achat');
 $router->addRoute('/Galeris-APPG1E/motdepasse', UserController::class, 'password');
 $router->addRoute('/Galeris-APPG1E/codeunique', UserController::class, 'code');
 $router->addRoute('/Galeris-APPG1E/galeris', GalerisController::class, 'controller');
@@ -52,7 +51,6 @@ $router->addRoute('/Galeris-APPG1E/statutexpose', AdminController::class, 'accep
 $router->addRoute('/Galeris-APPG1E/listeexposeattente', ListeAttenteAdminController::class, 'listeattenteexpose');
 $router->addRoute('/Galeris-APPG1E/saveidexpose', ExpositionController::class, 'saveidexpose');
 $router->addRoute('/Galeris-APPG1E/attenteexpose', AdminController::class, 'attenteexpose');
-$router->addRoute('/Galeris-APPG1E/send-verification-code', UserController::class, 'sendVerificationCode');
 $router->addRoute('/Galeris-APPG1E/confirmationmdp', UserController::class, 'confirmationMDP');
 $router->addRoute('/Galeris-APPG1E/verifyMail', UserController::class, 'PässwordMail');
 $router->addRoute('/Galeris-APPG1E/exposes', ExpositionController::class, 'listeExpose');

@@ -174,7 +174,7 @@ class Oeuvre
 
     public function verifyEnchere(Database $db)
     {
-        $user = new User(null, null, null, null, null, null, null);
+        $user = new User(null, null,  null, null, null, null, null, null, null, null);
         $userLivraison = $user->getUserById($_SESSION["usersessionID"], $db);
 
         $_SESSION["livraison"] = "enchere";

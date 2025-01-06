@@ -10,7 +10,6 @@
 </head>
 
 <body>
-
     <div class="container">
         <h1>Entrez le code à 6 chiffres</h1>
         <form>
