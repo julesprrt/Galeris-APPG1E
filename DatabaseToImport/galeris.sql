@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : mar. 31 déc. 2024 à 18:33
+-- Généré le : ven. 03 jan. 2025 à 18:34
 -- Version du serveur : 10.4.32-MariaDB
 -- Version de PHP : 8.2.12
 
@@ -354,7 +354,6 @@ INSERT INTO `oeuvre` (`id_oeuvre`, `Titre`, `Description`, `eco_responsable`, `D
 (57, 'test_enchere', 'Test de mon enchère avec un prix de depart à 10 euros', 0, '2024-12-31 17:50:13', '2024-12-31 17:50:13', 50.00, 'Enchere', 1, 'benjamin', 6, 2, 'accepte'),
 (58, 'van goghe', 'enchere van goghee aya aya aya ta ta ta tam tam tam', 0, '2024-12-31 17:58:59', '2024-12-31 17:58:59', 50.00, 'Enchere', 1, 'benjamin', 6, 2, 'accepte'),
 (59, 'Van gogh', 'vente de van gogh au prix le plus bas du marché. acheter', 0, '2024-12-31 18:03:37', '2025-01-10 18:03:37', 100.00, 'Vente', 0, 'Van gogh', 6, 2, 'accepte'),
-(60, 'vente van gogh enchere', 'Enchère de van gogh, l\'un des plus grand artiste de tous les temps', 0, '2024-12-31 18:04:51', '2025-01-20 18:04:51', 30.00, 'Enchere', 0, 'ben', 6, 2, 'accepte'),
 (61, 'Napoleon', 'Napoleon, un tableau réalisé par Bonaparte, une main de maitre jamais égalé', 0, '2024-12-31 18:05:48', '2025-01-02 18:05:48', 50.00, 'Vente', 0, 'Le Bonaparte', 6, 2, 'accepte');
 
 -- --------------------------------------------------------
@@ -393,7 +392,6 @@ INSERT INTO `oeuvre_images` (`id_photo`, `chemin_image`, `id_oeuvre`) VALUES
 (60, 'ImageBD/Oeuvre/image_677420c52fcfa7.23079096.jpeg', 57),
 (61, 'ImageBD/Oeuvre/image_677422d3b74222.09770159.jpeg', 58),
 (62, 'ImageBD/Oeuvre/image_677423e991d264.85088622.jpeg', 59),
-(63, 'ImageBD/Oeuvre/image_67742433e5e414.00718719.jpeg', 60),
 (64, 'ImageBD/Oeuvre/image_6774246c43ebc3.22438674.jpeg', 61);
 
 -- --------------------------------------------------------
@@ -441,7 +439,7 @@ CREATE TABLE `utilisateur` (
 --
 
 INSERT INTO `utilisateur` (`id_utilisateur`, `nom`, `prenom`, `email`, `description`, `adresse`, `roles`, `mot_de_passe`, `date_creation`, `newsletter`, `actif`, `solde`) VALUES
-(6, 'selvaratnam', 'akash', 'kaladevi549@gmail.com', '', '110, Rue Brancion, Quartier Saint-Lambert, Paris 15e Arrondissement, Paris, Île-de-France, France mé', 'Admin', '$2y$10$lk08IJsZy7Oivka/WgY.pOLqDqnPhCtCs4sDqMY3KmkzPv57IDwm6', '2024-11-26', 0, 1, 1240.00),
+(6, 'selvaratnam', 'akash', 'kaladevi549@gmail.com', '', '', 'Admin', '$2y$10$lk08IJsZy7Oivka/WgY.pOLqDqnPhCtCs4sDqMY3KmkzPv57IDwm6', '2024-11-26', 1, 1, 1240.00),
 (7, 'selvaratnam', 'akash', 'kaladevi549@gmail.ju', NULL, NULL, 'Utilisateur', '$2y$10$EMfeaZGsM4pt6A4676gI9u2ox6z4.PE14jaM8IAqXDbuEHwqBj4b2', '2024-11-28', 0, 1, 0.00),
 (8, 'selvaratnam', 'akash', 'kaladevi549@gmail.pm', NULL, NULL, 'Utilisateur', '$2y$10$3YzJizisFI1S2EUCiFj0OeNkXgC3oyb2DeWGo4QMsu.QUSYRXI5OK', '2024-11-28', 0, 0, 0.00),
 (10, 'selvaratnam', 'akash', 'kaladevi549@gmail.sss', NULL, NULL, 'Utilisateur', '$2y$10$.PR1AYeC0RqSjMi15T734.HhfPTIcgWVbev0krEkhs/l.kFXKahJO', '2024-12-08', 0, 1, 0.00),
@@ -465,6 +463,27 @@ INSERT INTO `utilisateur` (`id_utilisateur`, `nom`, `prenom`, `email`, `descript
 (28, 'selvaratnam', 'akash', 'larrykala@hotmail.fr', NULL, NULL, 'Utilisateur', '$2y$10$Upt78gmC9Qs5YtLrRAcCz.B4jcDdMbRgu.9UWz7IePanIsZ3nKVHS', '2024-12-18', 0, 1, 0.00),
 (29, 'selvaratnam', 'akash', 'kaladevi549@gmail.sjsj', NULL, NULL, 'Utilisateur', '$2y$10$NgMyTRBFYFM5kKj6H.CEHednJtmRdfYN5M5yt00ZR8ZgduYiTDg3S', '2024-12-18', 0, 0, 0.00),
 (37, 'selvaratnam', 'akash', 'akse63476@eleve.isep.fr', NULL, NULL, 'Utilisateur', '$2y$10$lPpJHJedig9C7t.97rmYkekFAlT2JV1EOdRC6GxpBRednIHjMh9JO', '2024-12-25', 0, 1, 0.00);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `utilisateur_image`
+--
+
+CREATE TABLE `utilisateur_image` (
+  `id_photo` int(11) NOT NULL,
+  `chemin_image` varchar(100) DEFAULT NULL,
+  `id_utilisateur` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Déchargement des données de la table `utilisateur_image`
+--
+
+INSERT INTO `utilisateur_image` (`id_photo`, `chemin_image`, `id_utilisateur`) VALUES
+(1, 'ImageBD/Profil/test1.png', 27),
+(19, 'ImageBD/Profil/profile_6777f350840a70.32925958.png', 38),
+(22, 'ImageBD/Profil/profile_67781f6dd261b9.43026680.jpg', 6);
 
 -- --------------------------------------------------------
 
@@ -573,6 +592,13 @@ ALTER TABLE `utilisateur`
   ADD UNIQUE KEY `email` (`email`);
 
 --
+-- Index pour la table `utilisateur_image`
+--
+ALTER TABLE `utilisateur_image`
+  ADD PRIMARY KEY (`id_photo`),
+  ADD KEY `fk_utilisateur` (`id_utilisateur`);
+
+--
 -- Index pour la table `vente`
 --
 ALTER TABLE `vente`
@@ -641,6 +667,12 @@ ALTER TABLE `panier`
 --
 ALTER TABLE `utilisateur`
   MODIFY `id_utilisateur` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+
+--
+-- AUTO_INCREMENT pour la table `utilisateur_image`
+--
+ALTER TABLE `utilisateur_image`
+  MODIFY `id_photo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT pour la table `vente`
