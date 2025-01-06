@@ -9,7 +9,7 @@
 <body>
 <div class="off-screen-menu">
     <ul>
-    <ul><a href="/Galeris-APPG1E/">Accueil</a></ul>
+        <ul><a href="/Galeris-APPG1E/">Accueil</a></ul>
         <ul><a href="/Galeris-APPG1E/vente">Vente</a></ul>
         <ul><a href="/Galeris-APPG1E/exposition">Exposition</a></ul>
         <ul><a href="/Galeris-APPG1E/news">News</a></ul>
@@ -23,6 +23,5 @@
         <span></span>
         <span></span>
 </body>
-
 </nav>
 </html>

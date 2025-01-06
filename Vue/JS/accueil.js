@@ -59,16 +59,8 @@ function tempsRestants() {
             } else {
                 header.style.display = 'none';
             }
-        });
-        
-        document.addEventListener('DOMContentLoaded', function () {
-            const header = document.querySelector('header');
-            if (window.innerWidth >= 768) {
-                header.style.display = 'block';
-            } else {
-                header.style.display = 'none';
-            }
-        });
+        });  
     });
-}
+};
+
 

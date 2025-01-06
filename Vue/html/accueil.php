@@ -10,10 +10,28 @@
     <link rel="stylesheet" href="CSS/footer.css">
     <script src="https://galeris/Galeris-APPG1E/vue/JS/header.js" defer></script>
     <script src="https://galeris/Galeris-APPG1E/vue/JS/accueil.js" defer></script>
+    <script src="https://galeris/Galeris-APPG1E/vue/JS/burgerbar.js" defer></script>
     <title>Accueil</title>
+    
 </head>
 
 <body>
+<div class="off-screen-menu">
+    <ul>
+        <ul><a href="/Galeris-APPG1E/">Accueil</a></ul>
+        <ul><a href="/Galeris-APPG1E/vente">Vente</a></ul>
+        <ul><a href="/Galeris-APPG1E/exposition">Exposition</a></ul>
+        <ul><a href="/Galeris-APPG1E/news">News</a></ul>
+        <ul><a href="/Galeris-APPG1E/plus">Plus</a></ul>
+    </ul>
+</div>
+
+<nav>
+    <div class="ham-menu">
+        <span></span>
+        <span></span>
+        <span></span>
+</nav>
     <div class="container">
         <header>
             <div class="logo"> <a href="https://galeris/Galeris-APPG1E/"><img src="../images/logo.png"></a></div>
