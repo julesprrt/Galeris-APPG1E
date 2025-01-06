@@ -4,7 +4,7 @@ require_once('Controller.php');
 require_once('Model/categorie.php');
 require_once('Model/Utils.php');
 require_once('Model/Vente.php');
-
+require_once('Model/mailSender.php');
 Class VenteController extends Controller{//Controlleur accueil
     
     public function vente(Database $db) {
@@ -51,6 +51,7 @@ Class VenteController extends Controller{//Controlleur accueil
     
     public function signalerOeuvre(Database $db)
     {
+        session_start();
         // Récupération des données POST (JSON)
         $paramData = file_get_contents("php://input");
         $data = json_decode($paramData, true);
@@ -58,29 +59,18 @@ Class VenteController extends Controller{//Controlleur accueil
         if (isset($data['oeuvre_id']) && isset($data['raison']) && trim($data['raison']) !== '') {
             $oeuvreId = (int)$data['oeuvre_id'];
             $raison = strip_tags($data['raison']);
-            require_once('Model/mailSender.php');
             $mailSender = new MailSender();
 
             // Service destinataire
-            $to = "service@galeris.com";  
+            $to = "galeris2004@gmail.com";  
             $subject = "[Signalement Œuvre #$oeuvreId]";
             $message = "Un utilisateur a signalé l'œuvre #$oeuvreId pour la raison suivante :<br><b>$raison</b>";
             // L'expéditeur peut être un no-reply ou l'email du user
-            $from = "no-reply@galeris.com";
+            $from = $_SESSION["usersessionMail"];
 
             $sent = $mailSender->sendMail($to, $subject, $message, $from);
 
             if ($sent) {
-                // (Optionnel) Enregistrer le signalement en BDD
-                // $conn = $db->connect();
-                // $sql = "INSERT INTO signalements (id_oeuvre, raison, date_signalement, id_utilisateur) VALUES (?, ?, NOW(), ?)";
-                // $stmt = $conn->prepare($sql);
-                // $userId = $_SESSION["usersessionID"] ?? null; // si besoin
-                // $stmt->bind_param("isi", $oeuvreId, $raison, $userId);
-                // $stmt->execute();
-                // $stmt->close();
-                // $conn->close();
-
                 http_response_code(200);
                 echo json_encode(['Success' => 'Signalement envoyé avec succès.']);
             } else {

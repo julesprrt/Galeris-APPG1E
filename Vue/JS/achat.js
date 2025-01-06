@@ -139,7 +139,6 @@ async function supprimerOeuvre(){
 document.getElementById("btnSignaler").addEventListener("click", signaler)
 
 async function signaler(e){
-    console.log("123")
     const btnSignaler = document.getElementById("btnSignaler");
             const idOeuvre = e.target.getAttribute("data-oeuvre-id");
             const raison = prompt("Quelle est la raison du signalement ?");
