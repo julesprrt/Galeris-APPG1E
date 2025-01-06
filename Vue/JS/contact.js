@@ -1,8 +1,12 @@
 document.getElementById("btn-contact").addEventListener('click', contact);
 
+
+
+
 async function contact() {
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
+    console.log(document.getElementsByName("email")[0].value)
     const raw = JSON.stringify({
         "email": document.getElementsByName("email")[0].value,
         "firstName": document.getElementsByName("firstName")[0].value,
@@ -17,16 +21,17 @@ async function contact() {
         body: raw,
         redirect: "follow"
     };
-    const response = await fetch("https://galeris/Galeris-APPG1E/contact", requestOptions)
+
+    const response = await fetch("http://localhost:80/Galeris-APPG1E/contact", requestOptions)
     const statuscode = response.status;
     const result = await response.json();
     if(statuscode === 200){
         alert(result.Success);
         document.querySelector('.error-message').innerHTML = "";
         document.querySelectorAll('.contact-input').forEach((item)=> {
-            item.value = "";
+        item.value = "";
         })
-        window.location.href = "https://galeris/Galeris-APPG1E/";
+        window.location.href = "http://localhost:80/Galeris-APPG1E/";
     }
     else{
         alert(result.Error);
