@@ -6,6 +6,11 @@
     <script src="https://galeris/Galeris-APPG1E/vue/JS/successPayment.js" defer></script>
   </head>
     <body>
+    <?php
+      if ($connectUser !== true) {
+        echo '<div><a href="https://galeris/Galeris-APPG1E/connexion"> </a></div>';
+      }
+    ?>
       <div class="card">
       <div class="success">
         <i class="checkmark">✓</i>

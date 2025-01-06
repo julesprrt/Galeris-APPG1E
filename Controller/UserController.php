@@ -81,6 +81,12 @@ class UserController extends Controller
 
     public function code(Database $db) {
         session_start();
+
+        if (!isset($_SESSION['usersessionID'])) {
+            header('Location: /Galeris-APPG1E/connexion');
+            exit();
+        }
+
         $paramData = file_get_contents("php://input");
         $data = json_decode($paramData, true);
         if (isset($data['code'])) {
@@ -235,6 +241,12 @@ class UserController extends Controller
 
     public function confirmationMDP(Database $db){
         session_start();
+
+        if(!isset($_SESSION["usersessionID"])){
+            header('Location: /Galeris-APPG1E/connexion');
+            exit;
+        }
+
         $paramData = file_get_contents("php://input");
         $data = json_decode($paramData, true);
         if (isset($data['password']) && isset($data['confirmPassword'])) {

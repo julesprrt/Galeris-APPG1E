@@ -10,7 +10,11 @@
 </head>
 
 <body>
-
+    <?php
+      if ($connectUser !== true) {
+        echo '<div><a href="https://galeris/Galeris-APPG1E/connexion"> </a></div>';
+      }
+    ?>
     <div class="container">
         <h1>Entrez le code à 6 chiffres</h1>
         <form>
