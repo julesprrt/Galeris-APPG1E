@@ -28,12 +28,14 @@ async function contact() {
         document.querySelectorAll('.contact-input').forEach((item) => {
             item.value = "";
         })
-        window.location.href = "https://galeris/Galeris-APPG1E/";
+        grecaptcha.reset();
         document.getElementById("btn-contact").disabled = false;
+        window.location.href = "https://galeris/Galeris-APPG1E/";
     }
     else {
         alert(result.Error);
         document.querySelector('.error-message').innerHTML = result.Error;
         document.getElementById("btn-contact").disabled = false;
+        grecaptcha.reset();
     }
 }
