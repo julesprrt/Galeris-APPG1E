@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport">
     <meta name="description" content="Mentions légales de Galeris, la plateforme de vente et d'enchères d'œuvres d'art.">
     <title>Mentions Légales - Galeris</title>
     <base href="/Galeris-APPG1E/Vue/">

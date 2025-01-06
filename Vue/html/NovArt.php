@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport">
     <meta name="description" content="Novart - Innovateur dans l'art et la technologie, avec sa filiale Galeris, dédiée aux ventes et enchères d'œuvres d'art.">
     <title>Novart - Accueil</title>
     <base href="/Galeris-APPG1E/Vue/">
