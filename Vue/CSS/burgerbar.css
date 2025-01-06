@@ -16,6 +16,15 @@
 .off-screen-menu.active{
     right: 0;
 }
+.off-screen-menu a {
+    text-decoration: none;
+    color: white;
+    font-weight: calibri;
+}
+
+.off-screen-menu a:hover {
+    opacity: 0.8;
+}
 nav{
     padding: 1rem;
     display: flex;

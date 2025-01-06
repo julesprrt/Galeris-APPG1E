@@ -9,11 +9,11 @@
 <body>
 <div class="off-screen-menu">
     <ul>
-        <ul>Accueil</ul>
-        <ul>Vente</ul>
-        <ul>Exposition</ul>
-        <ul>News</ul>
-        <ul>Plus</ul>
+    <ul><a href="/Galeris-APPG1E/">Accueil</a></ul>
+        <ul><a href="/Galeris-APPG1E/vente">Vente</a></ul>
+        <ul><a href="/Galeris-APPG1E/exposition">Exposition</a></ul>
+        <ul><a href="/Galeris-APPG1E/news">News</a></ul>
+        <ul><a href="/Galeris-APPG1E/plus">Plus</a></ul>
     </ul>
 </div>
 
