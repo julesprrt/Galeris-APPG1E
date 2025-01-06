@@ -71,6 +71,7 @@ $router->addRoute('/Galeris-APPG1E/livraison', LivraisonController::class, 'livr
 $router->addRoute('/Galeris-APPG1E/validerlivraison', LivraisonController::class, 'validerlivraison');
 $router->addRoute('/Galeris-APPG1E/supprimeroeuvre', AchatController::class, 'supprimeroeuvre');
 $router->addRoute('/Galeris-APPG1E/solde', PaymentController::class, 'solde');
+$router->addRoute('/Galeris-APPG1E/envoiesolde', PaymentController::class, 'envoiesolde');
 
 if ($uri !== null) {
     $router->dispatch($uri); //Appel a la méthode du controller dedié

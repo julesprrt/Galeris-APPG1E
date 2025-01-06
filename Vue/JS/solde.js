@@ -1,17 +1,64 @@
-
 document.getElementById("btn-env-banc").addEventListener('click', solde);
 
-
 function solde() {
-    
-    const button = document.getElementById('btn-env-banc');
-    
-    button.textContent = 'Envoie en cours';
+    console.log("ok")
+    document.querySelector(".solde-form").style.display = "block";
+}
 
-    button.disabled = true;
+document.querySelector(".close-button").addEventListener("click", closeForm);
 
-    setTimeout(() => {
-        button.textContent = 'Envoyer vers compte bancaire';
-        button.disabled = false;
-    }, 3000);
+function closeForm() {
+    document.querySelector(".solde-form").style.display = "none";
+    document.querySelector(".input-solde").value = "";
+    document.querySelector(".input-idStripe").value = "";
+}
+
+document.querySelector(".solde-button").addEventListener("click", EnvoieSolde);
+
+async function EnvoieSolde() {
+    const myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+    const solde = document.querySelector(".input-solde").value;
+    const soldeMax = document.querySelector(".input-solde").max;
+    const stripe = document.querySelector(".input-idStripe").value
+
+    if(stripe.trim() === "" || solde.trim() === ""){
+        alert("Veuillez remplir l'ensemble des champs.")
+        return;
+    }
+
+    if (isNaN(parseFloat(solde)) || parseFloat(solde) > parseFloat(soldeMax) || parseFloat(solde) < 1) {
+        alert("Le solde ne doit pas être supérieur à " + soldeMax + " €")
+        return;
+    }
+
+    const confirmation = confirm("Etez vous-sure de vouloir transférer " + solde + " € à votre compte Stripe ?");
+
+    if (confirmation) {
+
+        const raw = JSON.stringify({
+            "solde": solde,
+            "idStripe" : stripe
+        });
+
+        const requestOptions = {
+            method: "POST",
+            headers: myHeaders,
+            body: raw,
+            redirect: "follow"
+        };
+        const response = await fetch("https://galeris/Galeris-APPG1E/envoiesolde", requestOptions)
+        const statuscode = response.status;
+        const result = await response.json();
+
+        if (statuscode === 200) {
+            console.log(result)
+            //window.location.href = result.payment.url;
+        }
+        else if (statuscode === 400) {
+            /*alert(result.Error);
+            document.querySelector(".input-solde").value = result.solde;
+            document.querySelector(".input-solde").min = result.solde;*/
+        }
+    }
 }
