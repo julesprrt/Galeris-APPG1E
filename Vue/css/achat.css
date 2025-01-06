@@ -1,24 +1,24 @@
-
+/* Style global */
 body {
     font-family: Arial, Helvetica, sans-serif;
     background-color: #f5f5f5;
     color: #333;
+    margin: 0;
+    padding: 0;
 }
 
 /* Main */
-
 main {
     display: flex;
-    margin: 1.3em;
-    gap: 1.3em;
+    gap: 1.5em;
+    margin: 1.5em;
 }
 
-/* Section de gauche */
-
+/* Section gauche */
 .gauche {
     flex: 2;
     background-color: #fff;
-    padding: 3em;
+    padding: 2em;
     border: 1px solid #ccc;
     border-radius: 4px;
 }
@@ -26,16 +26,23 @@ main {
 .carousel-container {
     position: relative;
     width: 100%;
-    max-width: 25em;
+    max-width: 500px; /* Limite la largeur du carrousel */
     margin: 0 auto;
+    overflow: hidden; /* Cache les débordements */
 }
 
-.art-image img {
-    width: 100%;
+.art-image {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.carousel-image {
     display: none;
+    width: 100%;
+    object-fit: contain;
 }
 
-.art-image img.active {
+.carousel-image.active {
     display: block;
 }
 
@@ -44,33 +51,29 @@ main {
     top: 50%;
     background: none;
     border: none;
-    font-size: 1.4em;
-    padding: 0.8em;
+    font-size: 2em;
     cursor: pointer;
-    color: #333;
     transform: translateY(-50%);
-    /* Box autour de la flèche, à changer peut-être. */
-    background-color: #fff;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+    color: #333;
+    z-index: 10;
 }
 
 .carousel-fleche.gauche {
-    left: -3.5em;
+    left: 10px;
 }
 
 .carousel-fleche.droite {
-    right: -3.5em;
+    right: 10px;
 }
 
 .art-info {
     text-align: center;
-    margin-top: 0.3em;
+    margin-top: 1em;
 }
 
 .art-info h1 {
     font-size: 20px;
-    margin: 10px 0;
+    margin: 0.5em 0;
 }
 
 .art-info p {
@@ -78,49 +81,48 @@ main {
     color: #777;
 }
 
-/* Oeuvres similaires*/
-
+/* Section œuvres similaires */
 .art-image-similaire {
-    margin-top: 30px;
+    margin-top: 2em;
 }
 
 .art-image-similaire h2 {
     font-size: 18px;
-    margin-bottom: 10px;
+    margin-bottom: 1em;
+    text-align: center;
 }
 
 .tableau-similaire {
     display: flex;
-    gap: 50px;
-    margin-top: 10px;
-    justify-content: space-evenly;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
 }
- 
 
 .tableau-similaire img {
     width: 100px;
     height: auto;
     border: 1px solid #ccc;
+    border-radius: 4px;
 }
 
-/* Section de droite*/
-
+/* Section droite */
 .droite {
     flex: 1;
     background-color: #fff;
-    padding: 20px;
+    padding: 2em;
     border: 1px solid #ccc;
     border-radius: 4px;
 }
 
 .profil-section {
-    margin-bottom: 20px;
+    margin-bottom: 1.5em;
 }
 
 .profil-info {
     display: flex;
     align-items: center;
-    gap: 40px;
+    gap: 20px;
 }
 
 .photo-profil {
@@ -130,107 +132,65 @@ main {
 }
 
 .profil-nom {
-    font-size: 18px;
+    font-size: 16px;
     font-weight: bold;
 }
 
-.note {
-    font-size: 18px;
-    color: #777;
+.info-prix {
+    font-size: 14px;
+    margin-top: 1em;
+}
+
+.info-prix span {
+    display: block;
 }
 
 .actions {
-    margin: 15px 0;
-    
+    margin-top: 1.5em;
 }
 
 .actions button {
-    background-color: rgba(217, 163, 106, 1);
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: #d9a36a;
     color: #fff;
     border: none;
-    padding: 10px 20px;
-    cursor: pointer;
-    margin-right: 10px;
     border-radius: 4px;
-    font-size: 16px;
-    
+    cursor: pointer;
+    font-size: 14px;
 }
 
 .actions button:hover {
-    opacity : 0.9;
+    opacity: 0.9;
 }
 
-.info-prix {
-    font-size: 18px;
-    color: #333;
-}
-
-.info-prix .réduction {
-    font-size: 14px;
-    font-style: bold;
-    color: rgba(217, 163, 106, 1);
-}
-
-.eco-info {
-    font-size: 14px;
-    color: #777;
-}
-
-.details {
-    font-size: 14px;
-    color: #777;
-    margin-top: 20px;
-}
-
-.details .publication, .details .livraison {
-    margin-bottom: 10px;
-}
-
-.map-Maps iframe {
-    width: 100%;
-    border: none;
-    border-radius: 4px;
-}
-
-
-/* Cacher le menu sur petits écrans */
-/* Responsive Adjustments */
+/* Responsive Design */
 @media screen and (max-width: 1080px) {
     header {
-        display: none !important; 
-        }
+        display: none; /* Cache le header */
+    }
 
     main {
         flex-direction: column;
+        margin: 10px;
         padding: 10px;
     }
 
-    .gauche,
-    .droite {
-        margin-bottom: 1.5em;
+    .gauche, .droite {
         width: 100%;
+        margin-bottom: 1em;
     }
 
     .tableau-similaire {
-        flex-wrap: wrap;
-        gap: 20px;
         justify-content: center;
     }
 
     .tableau-similaire img {
-        width: 90%;
-        max-width: 100px;
-        margin: 5px;
+        max-width: 80px;
     }
 
-    .prix {
-        font-size: 14px;
-    }
-
-    .actions button {
-        width: 100%;
-        margin-bottom: 10px;
+    .carousel-fleche {
+        font-size: 1.5em;
     }
 }
-
-
