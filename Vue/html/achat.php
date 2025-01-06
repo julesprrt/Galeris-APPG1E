@@ -144,7 +144,7 @@
                 ?>
 
                 <!-- bouton signaler -->
-                <button id="btnSignaler" data-oeuvre-id="123">Signaler cette œuvre</button>
+                <button id="btnSignaler" data-oeuvre-id=<?php echo $oeuvre['id_oeuvre']?>>Signaler cette œuvre</button>
 
             
 
