@@ -8,7 +8,8 @@ async function contact() {
         "firstName": document.getElementsByName("firstName")[0].value,
         "name": document.getElementsByName("name")[0].value,
         "subject": document.getElementsByName("subject")[0].value,
-        "message": document.getElementsByName("message")[0].value
+        "message": document.getElementsByName("message")[0].value,
+        "g-recaptcha-response": document.getElementById("g-recaptcha-response").value
     });
 
     const requestOptions = {
@@ -20,15 +21,15 @@ async function contact() {
     const response = await fetch("https://galeris/Galeris-APPG1E/contact", requestOptions)
     const statuscode = response.status;
     const result = await response.json();
-    if(statuscode === 200){
+    if (statuscode === 200) {
         alert(result.Success);
         document.querySelector('.error-message').innerHTML = "";
-        document.querySelectorAll('.contact-input').forEach((item)=> {
+        document.querySelectorAll('.contact-input').forEach((item) => {
             item.value = "";
         })
         window.location.href = "https://galeris/Galeris-APPG1E/";
     }
-    else{
+    else {
         alert(result.Error);
         document.querySelector('.error-message').innerHTML = result.Error;
     }

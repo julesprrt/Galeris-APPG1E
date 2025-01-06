@@ -12,8 +12,8 @@ class UserController extends Controller
     {
         $paramData = file_get_contents("php://input");
         $data = json_decode($paramData, true);
-        if (isset($data['name']) && isset($data['firstName']) &&  isset($data['email']) && isset($data['telephone']) && isset($data['password']) && isset($data['confirmPassword']) && isset($data['cgu'])) { //Verification données entré dans le formulaire
-            $user = new User($data["name"], $data["firstName"],  $data["email"], $data["telephone"], $data["password"], $data["confirmPassword"], $data["cgu"], null, null);
+        if (isset($data['name']) && isset($data['firstName']) &&  isset($data['email']) && isset($data['telephone']) && isset($data['password']) && isset($data['confirmPassword']) && isset($data['cgu']) && isset($data['g-recaptcha-response'])) { //Verification données entré dans le formulaire
+            $user = new User($data["name"], $data["firstName"],  $data["email"], $data["telephone"], $data["password"], $data["confirmPassword"], $data["cgu"], null, null, $data['g-recaptcha-response']);
             $result = $user->registerVerification($db); //Verifier les données d'inscription
             if ($result === true) { //Si les données sont correct alors envoie du code a usage unique + redirection vers la page  avec le code à usage unique
                 http_response_code(200);
@@ -35,8 +35,8 @@ class UserController extends Controller
     {
         $paramData = file_get_contents("php://input");
         $data = json_decode($paramData, true);
-        if (isset($data['email']) && isset($data['password'])) {
-            $user = new User(null, null, $data['email'], null, $data['password'], null, null, null, null);
+        if (isset($data['email']) && isset($data['password']) && isset($data['g-recaptcha-response'])) {
+            $user = new User(null, null, $data['email'], null, $data['password'], null, null, null, null, $data['g-recaptcha-response']);
             // Obtenir une connexion à la base de données
             $result = $user->connectUser($db);
             if ($result === true) {
@@ -70,7 +70,7 @@ class UserController extends Controller
         $paramData = file_get_contents("php://input");
         $data = json_decode($paramData, true);
         if(isset($data["email"]) && trim($data["email"]) !== ""){
-            $user = new User("","", $data["email"], "","","","", null, null);
+            $user = new User("","", $data["email"], "","","","", null, null, null);
             if($user->verifyEmailForPassword($db)){
                 http_response_code(200);
                 echo json_encode(['Success' => "Un code vous à été envoyé sur votre adresse mail pour confirmer votre identité"]);
@@ -97,7 +97,7 @@ class UserController extends Controller
         $paramData = file_get_contents("php://input");
         $data = json_decode($paramData, true);
         if (isset($data['code'])) {
-            $user = new User(null,null,null,null,null,null,null, null, null);
+            $user = new User(null,null,null,null,null,null,null, null, null, null);
             $response = $user->verifyCode($data['code'],$db);
             $type = $_SESSION["usersessionType"];
             if ($response == 200 && $type === ""){
@@ -130,7 +130,7 @@ class UserController extends Controller
         $userId = $_SESSION['usersessionID'];
         $_SESSION["livraison"] = "profil";
 
-        $user = new User(null, null,  null, null, null, null, null, null, null);
+        $user = new User(null, null,  null, null, null, null, null, null, null, null);
         $userData = $user->getUserById($userId, $db);
 
         if (!$userData) {
@@ -152,7 +152,7 @@ class UserController extends Controller
         }
 
         $userId = $_SESSION['usersessionID'];
-        $userModel = new User(null, null,  null, null, null, null, null, null, null); 
+        $userModel = new User(null, null,  null, null, null, null, null, null, null, null); 
         $user = $userModel->getUserById($userId, $db);
 
         if (!$user) {
@@ -203,7 +203,7 @@ class UserController extends Controller
             // Stockage du chemin relatif
             $photoPath = $uploadDir . $fileName;
         }
-        $userModel = new User(null, null,  null, null, null, null, null, null, null);
+        $userModel = new User(null, null,  null, null, null, null, null, null, null, null);
         $user = $userModel->getUserById($userId, $db);
 
 
@@ -292,7 +292,7 @@ class UserController extends Controller
         $paramData = file_get_contents("php://input");
         $data = json_decode($paramData, true);
         if (isset($data['password']) && isset($data['confirmPassword'])) {
-            $user = new User(null, null,  null, null, $data['password'], $data['confirmPassword'],null, null, null);
+            $user = new User(null, null,  null, null, $data['password'], $data['confirmPassword'],null, null, null, null );
             $result = $user->changePassword($db);
             if($result === true){
                 http_response_code(200);

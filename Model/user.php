@@ -17,8 +17,9 @@ class User
     private $newsletter;
     private $photodeprofil;
     private Utils $utils;
+    private $captcha;
 
-    public function __construct($name, $firstName, $email, $telephone, $password, $confirmPassword, $cgu, $newsletter, $photodeprofil)
+    public function __construct($name, $firstName, $email, $telephone, $password, $confirmPassword, $cgu, $newsletter, $photodeprofil, $captcha)
     { //Constructeur -> Initialisation des données
         $this->name = $name;
         $this->firstName = $firstName;
@@ -31,6 +32,7 @@ class User
         $this->cgu = $cgu;
         $this->newsletter = 0;
         $this->photodeprofil = $photodeprofil;
+        $this->captcha = $captcha;
     }
     /**
      * Summary of registerVerification
@@ -39,6 +41,8 @@ class User
      */
     public function registerVerification(Database $db)
     {
+
+
         $value = $this->VerifyExistMail($db);
         if ($this->name === "" || $this->firstName === "" || $this->email === "" || $this->telephone === "" || $this->password === "" || $this->confirmPassword === "") {
             return "Vous devez remplir l'ensemble des champs du formulaire";
@@ -54,6 +58,8 @@ class User
             return "Les deux mots de passe ne sont pas identiques";
         } else if ($value === false) {
             return "Vous avez déja un compte";
+        } else  if ($this->utilsUser->verifyCaptcha($this->captcha) == false) {
+            return "Veuillez valider le Captcha";
         } else {
             if ($value === true) {
                 $this->saveUser($db);
@@ -66,6 +72,9 @@ class User
 
     public function connectUser(Database $db)
     {
+        if ($this->utilsUser->verifyCaptcha($this->captcha) == false) {
+            return "Veuillez valider le Captcha";
+        }
         $database = $db->connect();
         // Interroger les données utilisateur dans la base de données
         $query = "SELECT * FROM utilisateur WHERE email = '$this->email'";
@@ -262,19 +271,19 @@ class User
 
 
         $stmt = $conn->prepare($sql);
-        $stmt->bind_param('i', $id); 
+        $stmt->bind_param('i', $id);
         $stmt->execute();
         $result = $stmt->get_result();
-        if ($result->num_rows > 0) {   
-            $user = $result->fetch_assoc(); 
+        if ($result->num_rows > 0) {
+            $user = $result->fetch_assoc();
             $stmt->close();
             $conn->close();
-            return $user; 
+            return $user;
         }
 
         $stmt->close();
         $conn->close();
-        return null; 
+        return null;
     }
     public function updateUser($id, $nom, $prenom, $email, $description, $adresse, $newsletter, $newPassword, Database $db)
     {
@@ -317,7 +326,7 @@ class User
         $stmt->execute();
         $result = $stmt->get_result();
         $user = $result->fetch_assoc();
-        $stmt->close(); 
+        $stmt->close();
         $conn->close();
         if ($result->num_rows > 0) {
             $email = $this->email;
@@ -363,30 +372,27 @@ class User
     }
 
     public function SuppresionAnciennePDP($userId, Database $db)
-{
-    $conn = $db->connect();
+    {
+        $conn = $db->connect();
 
-    $sql = "SELECT chemin_image FROM utilisateur_image WHERE id_utilisateur = ?";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param('i', $userId);
-    $stmt->execute();
-    $stmt->bind_result($currentPhotoPath);
-    $stmt->fetch();
-    $stmt->close();
+        $sql = "SELECT chemin_image FROM utilisateur_image WHERE id_utilisateur = ?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param('i', $userId);
+        $stmt->execute();
+        $stmt->bind_result($currentPhotoPath);
+        $stmt->fetch();
+        $stmt->close();
 
-    if ($currentPhotoPath && file_exists($currentPhotoPath)) {
-        unlink($currentPhotoPath);
+        if ($currentPhotoPath && file_exists($currentPhotoPath)) {
+            unlink($currentPhotoPath);
+        }
+
+        $sqlDelete = "DELETE FROM utilisateur_image WHERE id_utilisateur = ?";
+        $stmtDelete = $conn->prepare($sqlDelete);
+        $stmtDelete->bind_param('i', $userId);
+        $stmtDelete->execute();
+        $stmtDelete->close();
+
+        $conn->close();
     }
-
-    $sqlDelete = "DELETE FROM utilisateur_image WHERE id_utilisateur = ?";
-    $stmtDelete = $conn->prepare($sqlDelete);
-    $stmtDelete->bind_param('i', $userId);
-    $stmtDelete->execute();
-    $stmtDelete->close();
-
-    $conn->close();
-}
-
-    
-    
 }
