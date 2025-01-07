@@ -23,7 +23,6 @@ class Payment
     }
 
     public function createObject(Database $db){
-        session_start();
         $amount = $this->panier->getTotalAmountPanier($db);
         if($amount == 0){
             return 401;

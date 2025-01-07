@@ -42,7 +42,8 @@ class Router {
             // Appeler l'action avec la base de données
             $controller->$actionName(new Database());
         } else {
-            throw new \Exception("Route non trouvée: $uri");
+            header('Location: /Galeris-APPG1E/');
+            exit();
         }
     }
 }
