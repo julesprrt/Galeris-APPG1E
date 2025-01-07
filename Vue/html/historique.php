@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="CSS/footer.css">
     <link rel="stylesheet" href="CSS/style.css">
     <script src="https://galeris/Galeris-APPG1E/vue/JS/header.js" defer></script>
+    <script src="https://galeris/Galeris-APPG1E/vue/JS/historique.js" defer></script>
     <title>Historique</title>
 </head>
 
@@ -64,16 +65,61 @@
                     <div class="oeuvres">
                         <?php
                         foreach ($historique as $his) {
-                            echo '<a class = "oeuvreOBJ" style="cursor:pointer" nomCategorie="' .'" prix="' . $his["Prix"] . '" type="'.'" titre="'. $his["Titre"] .'" auteur="'. $his["auteur"] .'" datefin="'. $his["Date_fin"] .'"">';
+                            echo '<div class="oeuvreOBJ" style="cursor:pointer">';
                             echo '<div class="oeuvre">';
                             echo '<input type="hidden" id="id_oeuvre_' . $his["id_oeuvre"] . '" name="id_oeuvre" value="' . $his["id_oeuvre"] . '">';
                             echo '<h3>' . $his["Titre"] . '</h3>';
                             echo '<img src="../' . $his["image_path"] . '" alt="' . $his["Titre"] . '" />';
-                            echo '<p class="temps-restant" data-fin="' . $his["Date_fin"] . '">' . '</p>';
-
                             echo '<p>' . substr($his["Description"], 0, 250) . '(...)</p>';
+                            if ($his['statut'] == 'en attente de validation' or $his['statut'] == 'accepte'){
+                                echo '<p>' . $his['statut'] . '</p>';
+                            }
+                            if ($his['est_vendu']==1){
+                                echo '<p> Vendu pour ' . $his['Prix'] . '€  à' .$his['id_utilisateur'].'le' .$his['Date_vente']. '</p>';
+                            }
+                            else {
+                                echo "<p> Pas vendu </p>";
+                            }
+
+
+                            
                             echo '</div>';
-                            echo '</a>';
+                            echo '</div>';
+                        }
+                        ?>
+                    </div>
+
+                </div>
+            </div>
+
+            <h1 class="panier">Historique des Achats</h1>
+          
+              
+              <div class="contentbase">
+                <div>
+                    <div class="oeuvres">
+                        <?php
+                        foreach ($historique as $his) {
+                            echo '<div class="oeuvreOBJ" style="cursor:pointer">';
+                            echo '<div class="oeuvre">';
+                            echo '<input type="hidden" id="id_oeuvre_' . $his["id_oeuvre"] . '" name="id_oeuvre" value="' . $his["id_oeuvre"] . '">';
+                            echo '<h3>' . $his["Titre"] . '</h3>';
+                            echo '<img src="../' . $his["image_path"] . '" alt="' . $his["Titre"] . '" />';
+                            echo '<p>' . substr($his["Description"], 0, 250) . '(...)</p>';
+                            if ($his['statut'] == 'en attente de validation' or $his['statut'] == 'accepte'){
+                                echo '<p>' . $his['statut'] . '</p>';
+                            }
+                            if ($his['est_vendu']==1){
+                                echo '<p> Vendu pour ' . $his['Prix'] . '€  à' .$his['id_utilisateur'].'le' .$his['Date_vente']. '</p>';
+                            }
+                            else {
+                                echo "<p> Pas vendu </p>";
+                            }
+
+
+                            
+                            echo '</div>';
+                            echo '</div>';
                         }
                         ?>
                     </div>
@@ -81,17 +127,6 @@
                 </div>
             </div>
         </div>
-                  <?php
-                      // foreach($historique as $his){
-                      //   echo "<tr class='product' id='". $his["id_oeuvre"] ."'> 
-                      // <td class='article--name'><img src='../". $his["image_path"] ."'>
-                      //   </td>
-                      //   <td class='titre'><p class='titrestyle'>" . $his["Titre"] ."</p><p class='vendue'> Vendue par " . $his["auteur"] ."</p></td>
-                      //   <td class='price-elmprice'>" . $his["Prix"] . " € <div class='remove'><a class='remove-elm'><button type='button' class='btn-simple'>Supprimer</button></a></div></td>
-                      //   <td></td>
-                      // </tr><tr class='spacer'></tr>";
-                      // }
-                  ?>
                   
                 </tbody>
               </table>
