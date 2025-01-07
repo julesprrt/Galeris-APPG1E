@@ -19,7 +19,7 @@
                 <li><a href="https://galeris/Galeris-APPG1E/">Accueil</a></li>
                 <li><a href="https://galeris/Galeris-APPG1E/ventes">Vente</a></li>
                     <li><a href="https://galeris/Galeris-APPG1E/exposes">Exposition</a></li>
-                <li><a href="#">News</a></li>
+                <li><a href="https://galeris/Galeris-APPG1E/listenews">News</a></li>
                 <li><a href="#">Plus</a></li>
             </ul>
         </nav>

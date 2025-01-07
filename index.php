@@ -16,6 +16,7 @@ require_once("./Controller/AdminController.php");
 require_once("./Controller/PaymentController.php");
 require_once("./Controller/PanierController.php");
 require_once("./controller/livraisonController.php");
+require_once("./controller/NewsController.php");
 
 $uri = $_SERVER['REQUEST_URI']; //Recupération de l'uri (la route)
 $router = new Router();
@@ -73,6 +74,12 @@ $router->addRoute('/Galeris-APPG1E/signaleroeuvre', UserController::class, 'sign
 $router->addRoute('/Galeris-APPG1E/saveiduser', UserController::class, 'consultation');
 $router->addRoute('/Galeris-APPG1E/utilisateur', UserController::class, 'profil_consultation');
 
+
+$router->addRoute('/Galeris-APPG1E/news', NewsController::class, 'news');
+$router->addRoute('/Galeris-APPG1E/createnews', NewsController::class, 'createNews');
+$router->addRoute('/Galeris-APPG1E/listenews', NewsController::class, 'listeNews');
+$router->addRoute('/Galeris-APPG1E/saveidnews', NewsController::class, 'saveidnews');
+$router->addRoute('/Galeris-APPG1E/newsactu', NewsController::class, 'newsByID');
 
 
 if ($uri !== null) {

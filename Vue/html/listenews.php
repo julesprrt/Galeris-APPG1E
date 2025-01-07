@@ -5,12 +5,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <base href="/Galeris-APPG1E/Vue/">
-    <link rel="stylesheet" href="CSS/listeattentexpose.css">
+    <link rel="stylesheet" href="CSS/listenews.css">
     <link rel="stylesheet" href="CSS/header.css">
     <link rel="stylesheet" href="CSS/footer.css">
     <script src="https://galeris/Galeris-APPG1E/vue/JS/header.js" defer></script>
-    <script src="https://galeris/Galeris-APPG1E/vue/JS/listeexposes.js" defer></script>
-    <title>Expositions</title>
+    <script src="https://galeris/Galeris-APPG1E/vue/JS/listenews.js" defer></script>
+    <title>News</title>
 </head>
 
 <body>
@@ -55,17 +55,17 @@
         <!-- Contenu de la page d'accueil -->
         <div class="page-content">
             <div class="contentbase">
-            <h2 class="title-expose">Exposés</h2>
-                    <div class="exposes">
+            <h2 class="title-news">News</h2>
+                    <div class="listenews">
                         <?php
-                        foreach ($exposes as $expose) {
-                            echo '<a class = "exposeOBJ" style="cursor:pointer" >';
-                            echo '<div class="expose">';
-                            echo '<input type="hidden" id="id_expose_' . $expose["id_exhibition"] . '" name="id_expose" value="' . $expose["id_exhibition"] . '">';
-                            echo '<h3>' . $expose["titre"] . '</h3>';
+                        foreach ($listenews as $news) {
+                            echo '<a class = "newsOBJ" style="cursor:pointer" >';
+                            echo '<div class="news">';
+                            echo '<input type="hidden" id="id_news_' . $news["id_news"] . '" name="id_news" value="' . $news["id_news"] . '">';
+                            echo '<h3>' . $news["titre"] . '</h3>';
                             // Ajout de l'image
-                            echo '<img src="../' . $expose["image_path"] . '" alt="' . $expose["titre"] . '" />';
-                            echo '<p>' . substr($expose["desc"],0,250) . '(...)</p>';
+                            echo '<img src="../' . $news["image_path"] . '" alt="' . $news["titre"] . '" />';
+                            echo '<p>' . substr($news["description"],0,250) . '(...)</p>';
                             echo '</div>';
                             echo '</a>';
                         }

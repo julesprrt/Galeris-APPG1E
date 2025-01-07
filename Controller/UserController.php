@@ -237,7 +237,7 @@ class UserController extends Controller
         // Mise à jour des données
         $updated = $userModel->updateUser($userId, $nom, $prenom, $email, $description, $adresse, $newsletter, $newPassword, $db);
         $userModel->SuppresionAnciennePDP($userId, $db);
-        $photoupdated = $userModel->updatePhoto($userId, $photoPath, $db);
+        $userModel->updatePhoto($userId, $photoPath, $db);
 
         if ($updated) {
             header('Location: /Galeris-APPG1E/profil');
