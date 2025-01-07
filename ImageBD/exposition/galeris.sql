@@ -120,7 +120,22 @@ CREATE TABLE `exposition_images` (
 -- Déchargement des données de la table `exposition_images`
 --
 
-
+INSERT INTO `exposition_images` (`id_exposition_images`, `chemin_image`, `id_exposition`) VALUES
+(1, 'ImageBD/exposition/La-Ronde-de-nuit-Rembrandt.png', 1),
+(2, 'ImageBD/exposition/La-Tour-de-Babel-Bruegel-lancien.png', 2),
+(3, 'ImageBD/exposition/LAbsinthe-Edgar-Degas.png', 3),
+(4, 'ImageBD/exposition/Le-cri-Edvard-Munch.png', 4),
+(5, 'ImageBD/exposition/Le-dejeuner-Claude-Monet.png', 5),
+(6, 'ImageBD/exposition/Le-Desespere-Gustave-Courbet.png', 6),
+(7, 'ImageBD/exposition/Le-Radeau-de-la-Meduse.png', 7),
+(8, 'ImageBD/exposition/Lecole-dAthenes-Raphael.png', 8),
+(9, 'ImageBD/exposition/LEnlevement-des-Sabines-Nicolas-Poussin.png', 9),
+(10, 'ImageBD/exposition/Les-Joueurs-de-Cartes-Paul-Cezanne.png', 10),
+(11, 'ImageBD/exposition/Les-Menines-Diego-Velazquez.png', 11),
+(12, 'ImageBD/exposition/Les-Saisons-Giusepe-Arcimboldo.png', 12),
+(13, 'ImageBD/exposition/Les-Tournesols-Van-Gogh.png', 13),
+(14, 'ImageBD/exposition/Portrait-louis-XIV.png', 14),
+(15, 'ImageBD/exposition/Terrasse-du-cafe-le-soir-Van-Gogh.png', 15),
 
 -- --------------------------------------------------------
 
@@ -203,21 +218,6 @@ INSERT INTO `oeuvre_images` (`id_photo`, `chemin_image`, `id_oeuvre`) VALUES
 (13, 'ImageBD/Oeuvre/La-Liberte-guidant-le-peuple-Delacroix.png', 13),
 (14, 'ImageBD/Oeuvre/La-mort-de-Socrate-Jacques-Louis-David.png', 14),
 (15, 'ImageBD/Oeuvre/La-Nuit-etoilee-Van-Gogh-.png', 15),
-(16, 'ImageBD/Oeuvre/La-Ronde-de-nuit-Rembrandt.png', 16),
-(17, 'ImageBD/Oeuvre/La-Tour-de-Babel-Bruegel-lancien.png', 17),
-(18, 'ImageBD/Oeuvre/LAbsinthe-Edgar-Degas.png', 18),
-(19, 'ImageBD/Oeuvre/Le-cri-Edvard-Munch.png', 19),
-(20, 'ImageBD/Oeuvre/Le-dejeuner-Claude-Monet.png', 20),
-(21, 'ImageBD/Oeuvre/Le-Desespere-Gustave-Courbet.png', 21),
-(22, 'ImageBD/Oeuvre/Le-Radeau-de-la-Meduse.png', 22),
-(23, 'ImageBD/Oeuvre/Lecole-dAthenes-Raphael.png', 23),
-(24, 'ImageBD/Oeuvre/LEnlevement-des-Sabines-Nicolas-Poussin.png', 24),
-(25, 'ImageBD/Oeuvre/Les-Joueurs-de-Cartes-Paul-Cezanne.png', 25),
-(26, 'ImageBD/Oeuvre/Les-Menines-Diego-Velazquez.png', 26),
-(27, 'ImageBD/Oeuvre/Les-Saisons-Giusepe-Arcimboldo.png', 27),
-(28, 'ImageBD/Oeuvre/Les-Tournesols-Van-Gogh.png', 28),
-(29, 'ImageBD/Oeuvre/Portrait-louis-XIV.png', 29),
-(30, 'ImageBD/Oeuvre/Terrasse-du-cafe-le-soir-Van-Gogh.png', 30),
 
 -- --------------------------------------------------------
 
