@@ -59,18 +59,19 @@ class UserController extends Controller
         $this->render('motdepasseoublie', ['message' => '']);
     }
 
-    public function PässwordMail(Database $db){
+    public function PässwordMail(Database $db)
+    {
         session_start();
 
         if (!isset($_SESSION['usersessionID'])) {
             header('Location: /Galeris-APPG1E/connexion');
             exit();
         }
-        
+
         $paramData = file_get_contents("php://input");
         $data = json_decode($paramData, true);
         if (isset($data["email"]) && trim($data["email"]) !== "") {
-            $user = new User("", "", $data["email"], "", "", "", "", null,null,null);
+            $user = new User("", "", $data["email"], "", "", "", "", null, null, null);
             if ($user->verifyEmailForPassword($db)) {
                 http_response_code(200);
                 echo json_encode(['Success' => "Un code vous à été envoyé sur votre adresse mail pour confirmer votre identité"]);
@@ -96,8 +97,8 @@ class UserController extends Controller
         $paramData = file_get_contents("php://input");
         $data = json_decode($paramData, true);
         if (isset($data['code'])) {
-            $user = new User(null,null,null,null,null,null,null, null, null, null);
-            $response = $user->verifyCode($data['code'],$db);
+            $user = new User(null, null, null, null, null, null, null, null, null, null);
+            $response = $user->verifyCode($data['code'], $db);
             $type = $_SESSION["usersessionType"];
             if ($response == 200 && $type === "") {
                 http_response_code(200);
@@ -149,7 +150,7 @@ class UserController extends Controller
         }
 
         $userId = $_SESSION['usersessionID'];
-        $userModel = new User(null, null,  null, null, null, null, null, null, null, null); 
+        $userModel = new User(null, null,  null, null, null, null, null, null, null, null);
         $user = $userModel->getUserById($userId, $db);
 
         if (!$user) {
@@ -170,7 +171,7 @@ class UserController extends Controller
         }
 
         $userId = $_SESSION['usersessionID'];
-        
+
 
         // Récupération des données du formulaire
         $nom = $_POST['nom'];
@@ -178,25 +179,25 @@ class UserController extends Controller
         $email = $_POST['email'];
         $description = $_POST['description'];
         $adresse = $_POST['adresse'];
-        $newsletter = isset($_POST['newsletter']) ? 1 : 0; 
+        $newsletter = isset($_POST['newsletter']) ? 1 : 0;
         $oldPassword = $_POST['old_password'];
         $newPassword = $_POST['new_password'];
         $confirmPassword = $_POST['confirm_password'];
-        
+
         $photoFile = $_FILES['profile_photo'];
-        $photoPath = null;  
+        $photoPath = null;
         if ($photoFile && $photoFile['error'] === UPLOAD_ERR_OK) {
-    
+
             // Génération d'un nom de fichier unique
             $uploadDir = 'ImageBD/Profil/';
             $fileName = uniqid('profile_', true) . '.' . pathinfo($photoFile['name'], PATHINFO_EXTENSION);
-    
+
             // Déplacement du fichier vers le dossier `ImageBD/Profil`
             if (!move_uploaded_file($photoFile['tmp_name'], $uploadDir . $fileName)) {
                 $this->render('editionprofil', ['error' => "Erreur lors du téléchargement de la photo."]);
                 return;
             }
-    
+
             // Stockage du chemin relatif
             $photoPath = $uploadDir . $fileName;
         }
@@ -249,7 +250,7 @@ class UserController extends Controller
     public function resendcode(Database $db)
     {
         session_start();
-        
+
         if (!isset($_SESSION['usersessionID'])) {
             header('Location: /Galeris-APPG1E/connexion');
             exit();
@@ -272,7 +273,7 @@ class UserController extends Controller
             header('Location: /Galeris-APPG1E/connexion');
             exit();
         }
-        
+
         session_destroy();
 
         http_response_code(200);
@@ -283,7 +284,7 @@ class UserController extends Controller
     {
         session_start();
 
-        if(!isset($_SESSION["usersessionID"])){
+        if (!isset($_SESSION["usersessionID"])) {
             header('Location: /Galeris-APPG1E/connexion');
             exit;
         }
@@ -291,7 +292,7 @@ class UserController extends Controller
         $paramData = file_get_contents("php://input");
         $data = json_decode($paramData, true);
         if (isset($data['password']) && isset($data['confirmPassword'])) {
-            $user = new User(null, null,  null, null, $data['password'], $data['confirmPassword'],null, null, null, null );
+            $user = new User(null, null,  null, null, $data['password'], $data['confirmPassword'], null, null, null, null);
             $result = $user->changePassword($db);
             if ($result === true) {
                 http_response_code(200);
@@ -301,7 +302,6 @@ class UserController extends Controller
                 http_response_code(400);
                 echo json_encode(["Error" => $result]);
             }
-
         } else {
             $this->render('confirmationMDP', []);
         }
@@ -315,16 +315,16 @@ class UserController extends Controller
             header('Location: /Galeris-APPG1E/connexion');
             exit();
         }
-        
+
         // Récupération des données POST (JSON)
         $paramData = file_get_contents("php://input");
         $data = json_decode($paramData, true);
 
         if (isset($data['raison']) && trim($data['raison']) !== '') {
-            $user = new User(null, null, null, null, null, null, null,null,null,null);
+            $user = new User(null, null, null, null, null, null, null, null, null, null);
             $code = $user->signaler($data['raison'], $db);
 
-            if($code === 401){
+            if ($code === 401) {
                 http_response_code(401);
                 echo json_encode(['Error' => 'La raison de votre signalement doit contenir plus que 25 caractères.']);
             }
@@ -332,10 +332,37 @@ class UserController extends Controller
 
             http_response_code(200);
             echo json_encode(['Success' => 'Signalement envoyé avec succès.']);
-
         } else {
             http_response_code(400);
             echo json_encode(['Error' => "Données invalides pour le signalement (oeuvre_id, raison)."]);
         }
+    }
+    public function profilUtilisateur(Database $db, $id)
+    {
+        session_start();
+
+        if (!isset($_SESSION['usersessionID'])) {
+            header('Location: /Galeris-APPG1E/connexion');
+            exit();
+        }
+
+        // Récupérer les informations publiques de l'utilisateur
+        $userModel = new User(null, null, null, null, null, null, null, null, null, null);
+        $userData = $userModel->getPublicUserById($id, $db);
+
+        if (!$userData) {
+            echo "Utilisateur introuvable.";
+            exit();
+        }
+
+        // Récupérer les œuvres de l'utilisateur
+        $oeuvres = $userModel->getOeuvresByUserId($id, $db);
+
+        // Afficher la vue profil utilisateur avec les données
+        $this->render('profil_utilisateur', [
+            'user' => $userData,
+            'oeuvres' => $oeuvres,
+            'connectUser' => isset($_SESSION['usersessionID']),
+        ]);
     }
 }

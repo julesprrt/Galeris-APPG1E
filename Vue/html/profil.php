@@ -22,7 +22,7 @@
             <ul>
                 <li><a href="https://galeris/Galeris-APPG1E/">Accueil</a></li>
                 <li><a href="https://galeris/Galeris-APPG1E/ventes">Vente</a></li>
-                    <li><a href="https://galeris/Galeris-APPG1E/exposes">Exposition</a></li>
+                <li><a href="https://galeris/Galeris-APPG1E/exposes">Exposition</a></li>
                 <li><a href="#">News</a></li>
                 <li><a href="#">Plus</a></li>
             </ul>
@@ -32,21 +32,21 @@
             <div class="favori"><a href="https://galeris/Galeris-APPG1E/favoris">❤️</a></div>
             <div class="panier"><a href="https://galeris/Galeris-APPG1E/panier">🛒</a></div>
             <?php
-                if ($connectUser === true) {
-                    echo '<div class="dropdown">
+            if ($connectUser === true) {
+                echo '<div class="dropdown">
                             <div class="utilisateur"> 👤 </div>
                             <div class="dropdown-child">
                                 <a href="https://galeris/Galeris-APPG1E/profil">Mon profil</a>
-                                <a href="#">Mon solde</a>'.
-                                (($userRole === true)?
-                                    '<a href="https://galeris/Galeris-APPG1E/listeoeuvreattente">Oeuvres en attente</a>
-                                    <a href="https://galeris/Galeris-APPG1E/listeexposeattente">Exposés en attente</a>':"").
-                                '<a id="deconnexion">Déconnexion</a>
+                                <a href="#">Mon solde</a>' .
+                    (($userRole === true) ?
+                        '<a href="https://galeris/Galeris-APPG1E/listeoeuvreattente">Oeuvres en attente</a>
+                                    <a href="https://galeris/Galeris-APPG1E/listeexposeattente">Exposés en attente</a>' : "") .
+                    '<a id="deconnexion">Déconnexion</a>
                             </div>
                            </div>';
-                } else {
-                    echo '<div class="utilisateur"><a href="https://galeris/Galeris-APPG1E/connexion"> 👤 </a></div>';
-                }
+            } else {
+                echo '<div class="utilisateur"><a href="https://galeris/Galeris-APPG1E/connexion"> 👤 </a></div>';
+            }
             ?>
 
 
@@ -58,8 +58,8 @@
         <section class="profil">
             <h2>Bienvenue, <?= htmlspecialchars($user['prenom']) ?> <?= htmlspecialchars($user['nom']) ?></h2>
             <div class="profil-info">
-            <img src="../<?php echo htmlspecialchars($user['photodeprofil'] ?? 'ImageBD/Profil/avatarbasique.jpg'); ?>" alt="Photo de profil" class="profile-image">
-            <div class="details">
+                <img src="../<?php echo htmlspecialchars($user['photodeprofil'] ?? 'ImageBD/Profil/avatarbasique.jpg'); ?>" alt="Photo de profil" class="profile-image">
+                <div class="details">
                     <p><strong>Nom :</strong> <?= htmlspecialchars($user['nom']) ?></p>
                     <p><strong>Prénom :</strong> <?= htmlspecialchars($user['prenom']) ?></p>
                     <p><strong>Email :</strong> <?= htmlspecialchars($user['email']) ?></p>

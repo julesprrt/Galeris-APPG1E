@@ -398,14 +398,50 @@ class User
         $conn->close();
     }
 
-    public function signaler($raison, Database $db){
-        if(strlen(trim($raison)) < 25){
+    public function signaler($raison, Database $db)
+    {
+        if (strlen(trim($raison)) < 25) {
             return 401;
         }
 
-        $oeuvre = new Oeuvre(null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null);
-        $oeuvreInfo = $oeuvre-> getOeuvreById($_SESSION["oeuvre_id"], $db);
+        $oeuvre = new Oeuvre(null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
+        $oeuvreInfo = $oeuvre->getOeuvreById($_SESSION["oeuvre_id"], $db);
         $userInfo = $this->getUserById($_SESSION["usersessionID"], $db);
         $this->sendMail->signalement($_SESSION["oeuvre_id"], $raison, $oeuvreInfo["Titre"], $userInfo["nom"], $userInfo["prenom"]);
+    }
+    public function getPublicUserById($id, Database $db)
+    {
+        $conn = $db->connect();
+        $sql = "SELECT id_utilisateur, nom, prenom, email, description, photodeprofil 
+            FROM utilisateur 
+            LEFT JOIN utilisateur_image ON utilisateur.id_utilisateur = utilisateur_image.id_utilisateur
+            WHERE utilisateur.id_utilisateur = ?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param('i', $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $user = $result->fetch_assoc();
+        $stmt->close();
+        $conn->close();
+        return $user;
+    }
+
+    public function getOeuvresByUserId($id, Database $db)
+    {
+        $conn = $db->connect();
+        $sql = "SELECT o.id_oeuvre, o.Titre, o.Description, o.Prix, o.auteur, oi.chemin_image
+            FROM oeuvre as o JOIN oeuvre_images as oi ON o.id_oeuvre = oi.id_oeuvre
+            WHERE O.id_utilisateur = ?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param('i', $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $oeuvres = [];
+        while ($row = $result->fetch_assoc()) {
+            $oeuvres[] = $row;
+        }
+        $stmt->close();
+        $conn->close();
+        return $oeuvres;
     }
 }

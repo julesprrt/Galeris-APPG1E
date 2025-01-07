@@ -119,7 +119,8 @@
         <section class="droite">
             <section class="profil-section">
                 <div class="profil-info">
-                    <img src="../images/photodeprofil.jpg" alt="Photo de profil" class="photo-profil">
+                    <img src="../<?php echo htmlspecialchars($user['photodeprofil'] ?? 'ImageBD/Profil/avatarbasique.jpg'); ?>" alt="Photo de profil" class="photo-profil ">
+
                     <div class="profil-nom">
                         <strong>Vendeur : <?php echo htmlspecialchars($oeuvre['nom']) . " " . htmlspecialchars($oeuvre['prenom']); ?></strong>
                     </div>
