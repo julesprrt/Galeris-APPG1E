@@ -1,0 +1,130 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    font-size: 16px;
+    box-sizing: border-box;
+  }
+  
+  /* Conteneur global */
+  .container {
+    width: 90%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+  
+  /* Structure principale du panier */
+  .structure {
+    width: 100%;
+    max-width: 1200px;
+    background-color: #f2f2f2;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .price {
+    font-size: 24px;
+  }
+  
+  
+  .btn-simple {
+    background-color: #D9A36A;
+    width: 8em;
+    border-radius: 0.2em;
+    border: none;
+    padding: 0.8em;
+    color: white;
+  }
+  
+  .btn-simple:hover {
+    opacity: 0.9;
+  }
+  
+  img {
+    height: 12.5em;
+    width: 12.5em;
+    padding-left: 2em;
+    padding-right: 3em;
+  }
+  table{
+    border-collapse: collapse;
+    max-width:100%;
+    white-space:nowrap;
+  }
+  
+  .product{
+    border: 1px solid white;
+    background-color: white;
+    padding-top: 2em;
+  }
+  
+  .titre {
+    vertical-align: top;
+    padding-right: 12.5em;
+  }
+  
+  .panier{
+    padding-bottom: 1em;
+  }
+  
+  .titrestyle{
+    font-weight: bold;
+  }
+  
+  .vendue{
+    padding-top: 0.5em;
+    font-size: 13px;
+    color: #5f5f5f;
+  }
+  .spacer {
+    height: 3em;
+  }
+  
+  .product td{
+    padding-top: 2em;
+    padding-bottom: 2em;
+  }
+  
+  .product{
+    cursor: pointer;
+  }
+  
+  .price-elmprice{
+    vertical-align: top;
+    font-size: 24px;
+    font-weight: bold;
+    color: #D9A36A;
+    padding-right: 2em;
+  }
+  
+  .remove{
+    padding-top: 1em;
+  }
+  
+  tfoot{
+    width: 100%;
+  }
+  
+  tfoot tr{
+    width: 100%;
+  }
+  
+  tfoot td {
+    width: 100%;
+    text-align: center;
+  }
+  
+  h2{
+    text-align: center;
+    color: #D9A36A;
+  }
+  
+  .btn-continuer{
+    text-align: center;
+  }
