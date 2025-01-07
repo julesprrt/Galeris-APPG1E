@@ -69,24 +69,19 @@
                 </thead>
                 <tbody id="all_products">
                   <?php
-                      foreach($panier as $pan){
-                        echo "<tr class='product' id='". $pan["id_oeuvre"] ."'> 
-                    <td class='article--name'><img src='../". $pan["chemin_image"] ."'>
+                      foreach($historique as $his){
+                        echo "<tr class='product' id='". $his["id_oeuvre"] ."'> 
+                    <td class='article--name'><img src='../". $his["chemin_image"] ."'>
                       </td>
-                      <td class='titre'><p class='titrestyle'>" . $pan["Titre"] ."</p><p class='vendue'> Vendue par " . $pan["nom"] .  " " . $pan["prenom"] . "</p><p class='vendue'> Réalisé par " . $pan["auteur"] . "</p></td>
-                      <td class='price-elmprice'>" . $pan["Prix"] . " € <div class='remove'><a class='remove-elm' id='". $pan["id_panier"] ."'><button  type='button' class='btn-simple'>Supprimer</button></a></div></td>
+                      <td class='titre'><p class='titrestyle'>" . $his["Titre"] ."</p><p class='vendue'> Vendue par " . $his["nom"] .  " " . $his["prenom"] . "</p><p class='vendue'> Réalisé par " . $his["auteur"] . "</p></td>
+                      <td class='price-elmprice'>" . $his["Prix"] . " € <div class='remove'><a class='remove-elm' id='". $his["id_panier"] ."'><button  type='button' class='btn-simple'>Supprimer</button></a></div></td>
                       <td></td>
                   </tr><tr class='spacer'></tr>";
                       }
                   ?>
+                  
                 </tbody>
               </table>
-              <?php
-                if(mysqli_num_rows($panier) > 0){
-                    echo '<div class="btn-continuer"><a href="https://galeris/Galeris-APPG1E/livraison"><button type="button" class="btn-simple" id="add_button">Continuer</button></a></div>
-                    <h2>Total : <span id="total_display">' . $total . '€</span></h2>';
-                }
-              ?>
             </div>
           </div>
     </main>
