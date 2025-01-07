@@ -43,8 +43,6 @@ class User
      */
     public function registerVerification(Database $db)
     {
-
-
         $value = $this->VerifyExistMail($db);
         if ($this->name === "" || $this->firstName === "" || $this->email === "" || $this->telephone === "" || $this->password === "" || $this->confirmPassword === "") {
             return "Vous devez remplir l'ensemble des champs du formulaire";
