@@ -22,7 +22,7 @@
                     <li><a href="https://galeris/Galeris-APPG1E/">Accueil</a></li>
                     <li><a href="https://galeris/Galeris-APPG1E/ventes">Vente</a></li>
                     <li><a href="https://galeris/Galeris-APPG1E/exposes">Exposition</a></li>
-                    <li><a href="#">News</a></li>
+                    <li><a href="https://galeris/Galeris-APPG1E/listenews">News</a></li>
                     <li><a href="#">Plus</a></li>
                 </ul>
             </nav>
@@ -58,6 +58,10 @@
                 <?php
                 if ($connectUser === true) {
                     echo '<a href="https://galeris/Galeris-APPG1E/vente"><button type="button" class="sellproduct">Vendre une oeuvre</button></a> <a href="https://galeris/Galeris-APPG1E/exposition"><button type="button" class="demandeexpo">Demande exposition</button></a>';
+                }
+                if($userRole === true){
+                    echo '<a href="https://galeris/Galeris-APPG1E/news"><button type="button" class="news">News</button></a>';
+
                 }
                 ?>
                 <div class="content-description">
