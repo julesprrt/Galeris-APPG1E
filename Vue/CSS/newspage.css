@@ -1,0 +1,97 @@
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #f5f5f5;
+    color: #333;
+}
+
+/* Main */
+
+main {
+    display: flex;
+    justify-content: center;
+}
+
+/* Section de gauche */
+
+.carousel-container {
+    position: relative;
+    width: 100%;
+    max-width: 25em;
+    margin: 0 auto;
+    padding-top: 1em;
+}
+
+.art-image img {
+    width: 100%;
+    display: none;
+}
+
+.art-image img.active {
+    display: block;
+}
+
+.gauche {
+    flex: 2;
+    background-color: #fff;
+    padding: 3em;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.carousel-fleche {
+    position: absolute;
+    top: 50%;
+    background: none;
+    border: none;
+    font-size: 1.4em;
+    padding: 0.8em;
+    cursor: pointer;
+    color: #333;
+    transform: translateY(-50%);
+    /* Box autour de la flèche, à changer peut-être. */
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.carousel-fleche.gauche {
+    left: -3.5em;
+}
+
+.carousel-fleche.droite {
+    right: -3.5em;
+}
+
+.news-info {
+    text-align: center;
+    margin-top: 0.3em;
+}
+
+/* Section de droite*/
+
+.droite {
+    flex: 1;
+    background-color: #fff;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+h2 {
+    text-align: center;
+}
+
+.description{
+    padding-top: 2em;
+    padding-bottom: 5em;
+    padding-right: 6em;
+    padding-left: 6em;
+    font-size: 14px;
+    color: #777;
+}
+
+.info{
+    font-size: 14px;
+    color: #777;
+}

@@ -40,7 +40,9 @@ function eventNews(event) {
     }
 }
 
-async function exposition() {
+document.querySelector(".btn-news").addEventListener('click', news);
+
+async function news() {
     const title = document.getElementById('title').value;
     const description = document.getElementById('description').value.trim();
 
@@ -57,8 +59,6 @@ async function exposition() {
 
     const raw = JSON.stringify({
         "titre": title,
-        "date_debut": date_debut,
-        "date_fin": date_fin,
         "description": description,
         "image1": image1,
         "image2": image2,
@@ -71,12 +71,12 @@ async function exposition() {
         body: raw,
         redirect: "follow"
     };
-    const response = await fetch("https://galeris/Galeris-APPG1E/createexposition", requestOptions)
+    const response = await fetch("https://galeris/Galeris-APPG1E/createnews", requestOptions)
     const statuscode = response.status;
     const result = await response.json();
     if (statuscode === 200) {
         alert(result.Success)
-        const expo = document.querySelectorAll(".input-exposition");
+        const expo = document.querySelectorAll(".input-news");
         expo.forEach(item => {
             item.value = "";
         })
@@ -94,7 +94,7 @@ async function exposition() {
     }
 }
 
-function verificationData(title, description){
+function verificationData(title, description, image1){
     if (title.trim() === "" || title.length > 50) {
         alert("Le titre est obligatoire et doit contenir moins de 50 caractères.")
         return false;
@@ -105,24 +105,6 @@ function verificationData(title, description){
     }
     if (image1 === "") {
         alert("Vous devez ajouter au moins une image")
-        return false;
-    }
-    if (date_debut === "" || isDateBeforeToday(date_debut) == false) {
-        alert("La date de début est requise et doit être ultérieure à la date actuelle.")
-        return false;
-    }
-    if (date_fin === "") {
-        alert("La date de fin est requise.")
-        return false;
-    }
-    const diffTime = Math.abs(new Date(date_fin) - new Date(date_debut));
-    const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
-    if (diffDays > 14) {
-        alert("La durée maximale est de 14 jours.")
-        return false;
-    }
-    if (verifDate(date_debut, date_fin) === false) {
-        alert("La date de fin doit être supérieure à la date de début.")
         return false;
     }
 }
