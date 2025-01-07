@@ -27,10 +27,6 @@ document.addEventListener("DOMContentLoaded", () => {
         // Ajouter la classe active à la nouvelle image
         images[currentIndex].classList.add('active');
     }
-    const btnFavoris = document.querySelector(".boutton-favoris");
-    if(btnFavoris){
-        btnFavoris.addEventListener("click", ajoutfavoris);
-    }
 });
 
 setInterval(tempsRestants, 1000);
@@ -138,7 +134,12 @@ async function supprimerOeuvre(){
     }
 }
 
+
+document.querySelector(".boutton-favoris").addEventListener("click", ajoutfavoris);
+
+
 async function ajoutfavoris(){
+    console.log("ok")
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
     
