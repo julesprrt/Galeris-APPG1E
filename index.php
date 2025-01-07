@@ -71,8 +71,8 @@ $router->addRoute('/Galeris-APPG1E/panier', PanierController::class, 'panier');
 $router->addRoute('/Galeris-APPG1E/livraison', LivraisonController::class, 'livraison');
 $router->addRoute('/Galeris-APPG1E/validerlivraison', LivraisonController::class, 'validerlivraison');
 $router->addRoute('/Galeris-APPG1E/supprimeroeuvre', AchatController::class, 'supprimeroeuvre');
-$router->addRoute('/Galeris-APPG1E/addFavoris', FavorisController::class, 'addFavoris');
-$router->addRoute('/Galeris-APPG1E/removeFavoris', FavorisController::class, 'removeFavoris');
+$router->addRoute('/Galeris-APPG1E/ajoutfavoris', FavorisController::class, 'ajoutFavoris');
+$router->addRoute('/Galeris-APPG1E/retirerfavoris', FavorisController::class, 'retirerFavoris');
 
 
 if ($uri !== null) {

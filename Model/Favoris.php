@@ -1,159 +1,74 @@
 <?php
-require_once __DIR__ . '/../Database/Database.php';
-require_once __DIR__ . '/../Model/Oeuvre.php';
 
+require_once('Constantes/constants.php');
+require_once('Database/Database.php');
 
- 
-class Favoris
-{
-    
-    public function isFavoris($idUtilisateur, $idOeuvre, Database $db)
-    {
+Class Favoris{
+    public function __construct() {//Constructeur -> Initialisation des données
+       
+    }
+
+    public function existFavoris(Database $db){
         $conn = $db->connect();
-        $sql = "SELECT favoris FROM utilisateur WHERE id_utilisateur = ?";
+        $sql = "select * from favoris where id_utilisateur = ? and id_oeuvre= ?";
         $stmt = $conn->prepare($sql);
-        $stmt->bind_param("i", $idUtilisateur);
+        $id_utilisateur = $_SESSION["usersessionID"];
+        $id_oeuvre =  $_SESSION['oeuvre_id'];
+        $stmt->bind_param("ii", $id_utilisateur, $id_oeuvre);
         $stmt->execute();
-        $result = $stmt->get_result()->fetch_assoc();
+        $result = $stmt->get_result();
+        $stmt->close();
+        if(mysqli_num_rows($result) > 0){
+            return true;
+        }
+        return false;
+    }
+
+    public function ajoutFavoris(Database $db) {
+        session_start();
+        $res = $this->existFavoris($db);
+        if($res){
+            return 401;
+        }
+        $conn = $db->connect();
+        $sql = "insert into favoris (id_utilisateur, id_oeuvre) values (?,?)";
+        $stmt = $conn->prepare($sql);
+        $id_utilisateur = $_SESSION["usersessionID"];
+        $id_oeuvre =  $_SESSION['oeuvre_id'];
+        $stmt->bind_param("ii", $id_utilisateur, $id_oeuvre);
+        $stmt->execute();
         $stmt->close();
         $conn->close();
-
-        if (!$result || empty($result['favoris'])) {
-            return false;
-        }
-
-    
-        $favorisArray = explode(',', $result['favoris']);
-
-       
-        return in_array($idOeuvre, $favorisArray);
+        return 200;
     }
 
-   
-    public function addFavoris($idUtilisateur, $idOeuvre, Database $db)
-    {
-       
-        if ($this->isFavoris($idUtilisateur, $idOeuvre, $db)) {
-            return; 
+    public function retirerFavoris(Database $db) {
+        session_start();
+        $res = $this->existFavoris($db);
+        if(!$res){
+            return 401;
         }
-
         $conn = $db->connect();
-
-       
-        $sqlSelect = "SELECT favoris FROM utilisateur WHERE id_utilisateur = ?";
-        $stmtSelect = $conn->prepare($sqlSelect);
-        $stmtSelect->bind_param("i", $idUtilisateur);
-        $stmtSelect->execute();
-        $row = $stmtSelect->get_result()->fetch_assoc();
-        $stmtSelect->close();
-
-        $oldFavoris = $row ? $row['favoris'] : "";
-        $newFavoris = "";
-
-        if (empty($oldFavoris)) {
-          
-            $newFavoris = $idOeuvre;
-        } else {
-          
-            $newFavoris = $oldFavoris . "," . $idOeuvre;
-        }
-
-        
-        $sqlUpdate = "UPDATE utilisateur SET favoris = ? WHERE id_utilisateur = ?";
-        $stmtUpdate = $conn->prepare($sqlUpdate);
-        $stmtUpdate->bind_param("si", $newFavoris, $idUtilisateur);
-        $stmtUpdate->execute();
-        $stmtUpdate->close();
-        $conn->close();
-    }
-
-   
-    public function removeFavoris($idUtilisateur, $idOeuvre, Database $db)
-    {
-        
-        if (!$this->isFavoris($idUtilisateur, $idOeuvre, $db)) {
-            return;
-        }
-
-        $conn = $db->connect();
-        
-        $sqlSelect = "SELECT favoris FROM utilisateur WHERE id_utilisateur = ?";
-        $stmtSelect = $conn->prepare($sqlSelect);
-        $stmtSelect->bind_param("i", $idUtilisateur);
-        $stmtSelect->execute();
-        $row = $stmtSelect->get_result()->fetch_assoc();
-        $stmtSelect->close();
-
-        if ($row && !empty($row['favoris'])) {
-            $favorisArray = explode(',', $row['favoris']);
-            
-            $favorisArray = array_filter($favorisArray, function($value) use ($idOeuvre){
-                return $value != $idOeuvre;
-            });
-            
-            $newFavoris = implode(',', $favorisArray);
-
-            
-            $sqlUpdate = "UPDATE utilisateur SET favoris = ? WHERE id_utilisateur = ?";
-            $stmtUpdate = $conn->prepare($sqlUpdate);
-            $stmtUpdate->bind_param("si", $newFavoris, $idUtilisateur);
-            $stmtUpdate->execute();
-            $stmtUpdate->close();
-        }
-        $conn->close();
-    }
-
-    
-    public function getUserFavoris($idUtilisateur, Database $db)
-    {
-        $conn = $db->connect();
-        $sql = "SELECT favoris FROM utilisateur WHERE id_utilisateur = ?";
+        $sql = "Delete from favoris where id_utilisateur = ? and id_oeuvre = ?";
         $stmt = $conn->prepare($sql);
-        $stmt->bind_param("i", $idUtilisateur);
+        $id_utilisateur = $_SESSION["usersessionID"];
+        $id_oeuvre =  $_SESSION['oeuvre_id'];
+        $stmt->bind_param("ii", $id_utilisateur, $id_oeuvre);
         $stmt->execute();
-        $row = $stmt->get_result()->fetch_assoc();
         $stmt->close();
-
-        if (!$row || empty($row['favoris'])) {
-            
-            $conn->close();
-            return [];
-        }
-
-        $favorisArray = explode(',', $row['favoris']);
-
-       
-        $placeholders = implode(',', array_fill(0, count($favorisArray), '?'));
-        $sqlOeuvre = "
-            SELECT o.*, 
-                   (SELECT chemin_image 
-                    FROM oeuvre_images 
-                    WHERE oeuvre_images.id_oeuvre = o.id_oeuvre 
-                    LIMIT 1) AS chemin_image,
-                   u.nom AS vendeur_nom,
-                   u.prenom AS vendeur_prenom
-            FROM oeuvre o
-            INNER JOIN utilisateur u ON u.id_utilisateur = o.id_utilisateur
-            WHERE o.id_oeuvre IN ($placeholders)
-        ";
-
-        $stmtOeuvre = $conn->prepare($sqlOeuvre);
-
-        
-        $types = str_repeat("i", count($favorisArray));
-        $stmtOeuvre->bind_param($types, ...$favorisArray);
-
-        $stmtOeuvre->execute();
-        $result = $stmtOeuvre->get_result();
-
-        $oeuvres = [];
-        while ($oeuvre = $result->fetch_assoc()) {
-            $oeuvres[] = $oeuvre;
-        }
-
-        $stmtOeuvre->close();
         $conn->close();
+        return 200;
+    }
 
-        return $oeuvres;
+    
+    public function retirerFavorisID(Database $db, $id) {
+        $conn = $db->connect();
+        $sql = "Delete from favoris where id_favoris = ?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        $stmt->close();
+        $conn->close();
+        return 200;
     }
 }

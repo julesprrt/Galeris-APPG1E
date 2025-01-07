@@ -1,73 +1,71 @@
 <?php
-require_once __DIR__ . '/../Model/Favoris.php'; 
-require_once __DIR__ . '/../Database/Database.php';
 
-class FavorisController {
-  
-    public function controller() {
-        $viewPath = __DIR__ . '/../Vue/html/favoris.php';
+require_once('Database/Database.php');
+require_once('Controller.php');
+require_once('Model/Favoris.php');
+class FavorisController extends Controller
+{ 
 
-        if (file_exists($viewPath)) {
-            require_once $viewPath;
-        } else {
-            http_response_code(404);
-            echo "La page Galeris est introuvable.";
+    public function favoris(Database $db){
+        session_start();
+
+        if(!isset($_SESSION["usersessionID"])){
+            header('Location: /Galeris-APPG1E/connexion');
+            exit;
         }
+
+        $_SESSION["livraison"] = "favoris";
+
+        $favoris = new Favoris();
+        $result = $favoris->getAllFavoris($db);
+        $role = isset($_SESSION["usersessionRole"]) === true && $_SESSION["usersessionRole"] === "Admin" ? true : false;
+        $this->render('favoris', ["connectUser" =>  isset($_SESSION["usersessionID"]), "userRole" => $role, "favoris" => $result["result"], "total" =>$result["total"]]);
     }
 
-  
-    public function addFavoris(Database $db)
-    {
-        session_start();
-      
-        if (!isset($_SESSION['usersessionID'])) {
-            http_response_code(401);
-            echo json_encode(["error"=>"Veuillez vous connecter."]);
-            return;
+    public function ajoutFavoris(Database $db)
+    { 
+        $favoris = new Favoris();
+        $result = $favoris->ajoutFavoris($db);
+        if($result === 200){
+            http_response_code($result);
+            echo json_encode(["favoris" => "Produit ajouté au favoris"]);
         }
-
-     
-        $postData = json_decode(file_get_contents('php://input'), true);
-        if (!isset($postData["id_oeuvre"])) {
-            http_response_code(400);
-            echo json_encode(["error"=>"Paramètre 'id_oeuvre' manquant."]);
-            return;
+        else{
+            http_response_code($result);
+            echo json_encode(["favoris" => "Erreur favoris"]);
         }
-        $idOeuvre = (int) $postData["id_oeuvre"];
-        $idUser = (int) $_SESSION['usersessionID'];
-
         
-        $favorisModel = new Favoris();
-        $favorisModel->addFavoris($idUser, $idOeuvre, $db);
-
-       
-        http_response_code(200);
-        echo json_encode(["message"=>"Œuvre ajoutée aux favoris !"]);
     }
 
-   
-    public function removeFavoris(Database $db)
-    {
-        session_start();
-        if (!isset($_SESSION['usersessionID'])) {
-            http_response_code(401);
-            echo json_encode(["error"=>"Veuillez vous connecter."]);
-            return;
+    public function retirerFavorisId(Database $db)
+    { 
+        $paramData = file_get_contents("php://input");
+        $data = json_decode($paramData, true);
+        $favoris = new Favoris();
+        $result = $favoris->retirerFavorisID($db, $data["id"]);
+        if($result === 200){
+            http_response_code($result);
+            echo json_encode(["favoris" => "Produit retirer du favoris"]);
         }
-
-        $postData = json_decode(file_get_contents('php://input'), true);
-        if (!isset($postData["id_oeuvre"])) {
-            http_response_code(400);
-            echo json_encode(["error"=>"Paramètre 'id_oeuvre' manquant."]);
-            return;
+        else{
+            http_response_code($result);
+            echo json_encode(["favoris" => "Erreur favoris"]);
         }
-        $idOeuvre = (int) $postData["id_oeuvre"];
-        $idUser = (int) $_SESSION['usersessionID'];
+        
+    }
 
-        $favorisModel = new Favoris();
-        $favorisModel->removeFavoris($idUser, $idOeuvre, $db);
-
-        http_response_code(200);
-        echo json_encode(["message"=>"Œuvre retirée des favoris !"]);
+    public function retirerFavoris(Database $db)
+    { 
+        $favoris = new Favoris();
+        $result = $favoris->retirerFavoris($db);
+        if($result === 200){
+            http_response_code($result);
+            echo json_encode(["favoris" => "Produit retirer du favoris"]);
+        }
+        else{
+            http_response_code($result);
+            echo json_encode(["favoris" => "Erreur favoris"]);
+        }
+        
     }
 }

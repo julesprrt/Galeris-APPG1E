@@ -12,26 +12,6 @@
 </head>
 
 <body>
-<?php
-session_start();
-require_once __DIR__ . '/../../Model/Favoris.php';
-require_once __DIR__ . '/../../Database/Database.php';
-
-// Si l'utilisateur n'est pas connecté, on peut rediriger ou juste afficher un message
-if(!isset($_SESSION['usersessionID'])){
-    echo "<p>Vous devez être connecté pour voir vos favoris.</p>";
-    exit;
-}
-
-
-$db = new Database();
-$favorisModel = new Favoris();
-$idUser = $_SESSION['usersessionID'];
-$oeuvresFavoris = $favorisModel->getUserFavoris($idUser, $db);
-
-
-?>
-
     <div class="container">
         <header>
             <div class="logo"> <a href="https://galeris/Galeris-APPG1E/"><img src="../images/logo.png"></a></div>
@@ -53,44 +33,17 @@ $oeuvresFavoris = $favorisModel->getUserFavoris($idUser, $db);
             </div>
         </header>
 
-        <main>
-
-            <div class="page-favoris">
-                <div class="contentbase">
-                    <div class="content-description">
-                        <p>"Vos favoris sont tous ici."
-                        </p>
-                    </div>
+        <!-- Contenu  -->
+        <div class="page-favoris">
+            <div class="contentbase">
+                <div class="content-description">
+                    <p class="description">"Vos favoris sont tous ici."
+                    </p>
                 </div>
             </div>
-            <?php
-            if(empty($oeuvresFavoris)){
-                echo "<p>Vous n'avez pas encore de favoris.</p>";
-            } else {
-                echo '<div class="oeuvres">';
-                foreach($oeuvresFavoris as $oeuvre){
-                    echo '<div class="oeuvre-item">';
-                    echo '<h3>' . htmlspecialchars($oeuvre["Titre"]) . '</h3>';
-                   
-                    if(!empty($oeuvre["chemin_image"])){
-                        echo '<img src="../' . $oeuvre["chemin_image"] . '" alt="' . htmlspecialchars($oeuvre["Titre"]) . '">';
-                    }
-                    echo '<p>Auteur: '. htmlspecialchars($oeuvre["auteur"]) . '</p>';
-                    echo '<p>Prix : '. htmlspecialchars($oeuvre["Prix"]) . '€</p>';
-                    echo '<p>Vendu par : '. htmlspecialchars($oeuvre["vendeur_nom"]) . ' ' . htmlspecialchars($oeuvre["vendeur_prenom"]) . '</p>';
-                    echo '<p>Date fin : '. htmlspecialchars($oeuvre["Date_fin"]) . '</p>';
-
-                    
-                    echo '<button class="remove-favoris" data-oeuvreid="'.$oeuvre["id_oeuvre"].'">Retirer des favoris</button>';
-
-                    echo '</div>';
-                }
-                echo '</div>';
-            }
-            ?>
+        </div>
         
-        </main>
-        
+
         <footer>
 
             <!-- icones réseaux sociaux -->
@@ -142,35 +95,7 @@ $oeuvresFavoris = $favorisModel->getUserFavoris($idUser, $db);
             </div>
 
         </footer>
-        
     </div>
-    <script>
-    document.addEventListener("DOMContentLoaded", () => {
-        document.querySelectorAll(".remove-favoris").forEach(btn => {
-            btn.addEventListener("click", async function(){
-                const id_oeuvre = this.dataset.oeuvreid;
-                const rep = confirm("Voulez-vous retirer cette œuvre de vos favoris?");
-                if(!rep) return;
-
-                const res = await fetch("https://galeris/Galeris-APPG1E/removefavoris", {
-                    method: "POST",
-                    headers: {"Content-Type": "application/json"},
-                    body: JSON.stringify({id_oeuvre})
-                });
-                const status = res.status;
-                const data = await res.json();
-                if(status === 200){
-                    alert(data.message);
-                    window.location.reload();
-                } else {
-                    alert(data.error || "Erreur lors de la suppression des favoris.");
-                }
-            });
-        });
-});
-</script>
-
-    
 </body>
 
 

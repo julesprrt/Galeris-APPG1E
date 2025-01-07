@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     const btnFavoris = document.querySelector(".boutton-favoris");
     if(btnFavoris){
-        btnFavoris.addEventListener("click", ajoutFavoris);
+        btnFavoris.addEventListener("click", ajoutfavoris);
     }
 });
 
@@ -138,33 +138,47 @@ async function supprimerOeuvre(){
     }
 }
 
-async function ajoutFavoris(){
-    
-    const idOeuvre = document.querySelector("#id_oeuvre_<?php echo $oeuvre['id_oeuvre']?>")?.value 
-       || "<?php echo $oeuvre['id_oeuvre']?>";
-
+async function ajoutfavoris(){
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
-
-    const rawBody = JSON.stringify({
-        "id_oeuvre": idOeuvre
+    
+    const raw = JSON.stringify({
     });
 
     const requestOptions = {
         method: "POST",
         headers: myHeaders,
-        body: rawBody,
+        body: raw,
+        redirect: "follow"
+    };
+    const result = await fetch("https://galeris/Galeris-APPG1E/ajoutfavoris", requestOptions);
+    const statut = result.status;
+    const text = await result.json();
+    if(statut === 200){
+        alert(text.favoris);
+        window.location.reload();
+   }
+}
+
+async function retirerfavoris(){
+    const myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+    
+    const raw = JSON.stringify({
+    });
+
+    const requestOptions = {
+        method: "POST",
+        headers: myHeaders,
+        body: raw,
         redirect: "follow"
     };
 
-    const response = await fetch("https://galeris/Galeris-APPG1E/favoris", requestOptions);
-    const status = response.status;
-    const data = await response.json();
-
-    if(status === 200){
-        alert(data.message);
-        
-    } else {
-        alert(data.error || "Une erreur s'est produite.");
-    }
+    const result = await fetch("https://galeris/Galeris-APPG1E/retirerfavoris", requestOptions);
+    const statut = result.status;
+    const text = await result.json();
+    if(statut === 200){
+        alert(text.panier);
+        window.location.reload();
+   }
 }
