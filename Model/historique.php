@@ -9,7 +9,7 @@ Class Historique {
     {}
     public function getAllHistorique(Database $db){
         $conn = $db->connect();
-        $sql = "select * from oeuvre where id_utilisateur = ? and statut = ? or statut = ? and id_utilisateur = ?";
+        $sql = "select * from oeuvre o LEFT JOIN ( SELECT id_oeuvre, MIN(chemin_image) as 'image_path' FROM oeuvre_images GROUP BY id_oeuvre) oi ON oi.id_oeuvre = o.id_oeuvre where id_utilisateur = ? and statut = ? or statut =? and id_utilisateur = ?";
         $stmt = $conn->prepare($sql);
         $id_utilisateur = $_SESSION["usersessionID"];   
         $statut = "accepte";

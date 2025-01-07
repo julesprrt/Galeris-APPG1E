@@ -58,26 +58,39 @@
             <div class="structure">
               <h1 class="panier">Historique des Ventes</h1>
           
-              <table id="table">
-                <thead>
-                  <tr>
-                    <th></th>
-                    <th class="elm"></th>
-                    <th class="elm"></th>
-                    <th class="elm"></th>
-                  </tr>
-                </thead>
-                <tbody id="all_products">
+              
+              <div class="contentbase">
+                <div>
+                    <div class="oeuvres">
+                        <?php
+                        foreach ($historique as $his) {
+                            echo '<a class = "oeuvreOBJ" style="cursor:pointer" nomCategorie="' .'" prix="' . $his["Prix"] . '" type="'.'" titre="'. $his["Titre"] .'" auteur="'. $his["auteur"] .'" datefin="'. $his["Date_fin"] .'"">';
+                            echo '<div class="oeuvre">';
+                            echo '<input type="hidden" id="id_oeuvre_' . $his["id_oeuvre"] . '" name="id_oeuvre" value="' . $his["id_oeuvre"] . '">';
+                            echo '<h3>' . $his["Titre"] . '</h3>';
+                            echo '<img src="../' . $his["image_path"] . '" alt="' . $his["Titre"] . '" />';
+                            echo '<p class="temps-restant" data-fin="' . $his["Date_fin"] . '">' . '</p>';
+
+                            echo '<p>' . substr($his["Description"], 0, 250) . '(...)</p>';
+                            echo '</div>';
+                            echo '</a>';
+                        }
+                        ?>
+                    </div>
+
+                </div>
+            </div>
+        </div>
                   <?php
-                      foreach($historique as $his){
-                        echo "<tr class='product' id='". $his["id_oeuvre"] ."'> 
-                    <td class='article--name'><img src='../". $his["chemin_image"] ."'>
-                      </td>
-                      <td class='titre'><p class='titrestyle'>" . $his["Titre"] ."</p><p class='vendue'> Vendue par " . $his["nom"] .  " " . $his["prenom"] . "</p><p class='vendue'> Réalisé par " . $his["auteur"] . "</p></td>
-                      <td class='price-elmprice'>" . $his["Prix"] . " € <div class='remove'><a class='remove-elm' id='". $his["id_panier"] ."'><button  type='button' class='btn-simple'>Supprimer</button></a></div></td>
-                      <td></td>
-                  </tr><tr class='spacer'></tr>";
-                      }
+                      // foreach($historique as $his){
+                      //   echo "<tr class='product' id='". $his["id_oeuvre"] ."'> 
+                      // <td class='article--name'><img src='../". $his["image_path"] ."'>
+                      //   </td>
+                      //   <td class='titre'><p class='titrestyle'>" . $his["Titre"] ."</p><p class='vendue'> Vendue par " . $his["auteur"] ."</p></td>
+                      //   <td class='price-elmprice'>" . $his["Prix"] . " € <div class='remove'><a class='remove-elm'><button type='button' class='btn-simple'>Supprimer</button></a></div></td>
+                      //   <td></td>
+                      // </tr><tr class='spacer'></tr>";
+                      // }
                   ?>
                   
                 </tbody>
