@@ -70,7 +70,7 @@ class Oeuvre
         $query = "SELECT * FROM oeuvre o 
         INNER JOIN utilisateur u ON u.id_utilisateur = o.id_utilisateur 
         LEFT JOIN utilisateur_image ui ON ui.id_utilisateur = o.id_utilisateur
-        INNER JOIN enchere e on e.id_oeuvre_enchere = o.id_oeuvre  
+        LEFT JOIN enchere e on e.id_oeuvre_enchere = o.id_oeuvre  
         WHERE o.id_oeuvre = ?";
 
         $stmt = $conn->prepare($query);

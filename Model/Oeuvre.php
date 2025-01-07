@@ -67,7 +67,7 @@ class Oeuvre
     public static function getOeuvreById($id, Database $db)
     {
         $conn = $db->connect();
-        $query = "SELECT o.*, u.nom, u.prenom, Max(e.prix) AS prix_courant, e.date_enchere, ut.nom AS nom_offreur, ut.prenom AS prenom_offreur FROM oeuvre o INNER JOIN utilisateur u ON u.id_utilisateur = o.id_utilisateur left JOIN enchere e on e.id_oeuvre_enchere = o.id_oeuvre left join utilisateur ut on ut.id_utilisateur = e.id_offreur LEFT JOIN panier p ON p.id_utilisateur = u.id_utilisateur WHERE o.id_oeuvre = ?;";
+        $query = "SELECT o.*, u.nom, u.prenom, Max(e.prix) AS prix_courant, e.date_enchere, ut.nom AS nom_offreur, ut.prenom AS prenom_offreur, ui.chemin_image as profil FROM oeuvre o INNER JOIN utilisateur u ON u.id_utilisateur = o.id_utilisateur left JOIN enchere e on e.id_oeuvre_enchere = o.id_oeuvre left join utilisateur ut on ut.id_utilisateur = e.id_offreur LEFT JOIN panier p ON p.id_utilisateur = u.id_utilisateur LEFT JOIN utilisateur_image ui on ui.id_utilisateur = u.id_utilisateur WHERE o.id_oeuvre = ?;";
 
         $stmt = $conn->prepare($query);
         $stmt->bind_param('i', $id);

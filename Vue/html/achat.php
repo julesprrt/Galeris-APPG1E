@@ -120,7 +120,7 @@
             <section class="profil-section">
                 <div class="profil-info">
                     <?php echo '<input type="hidden" id="id_utilisateur" name="id_utilisateur" value="' . $oeuvre["id_utilisateur"] . '">'; ?>
-                    <img src="../<?php echo htmlspecialchars($user['chemin_image'] ?? 'ImageBD/Profil/avatarbasique.jpg'); ?>" alt="Photo de profil" class="photo-profil ">
+                    <img src="../<?php echo $oeuvre['profil'] ?? 'ImageBD/Profil/avatarbasique.jpg'; ?>" alt="Photo de profil" class="photo-profil ">
 
                     <div class="profil-nom">
                         <strong>Vendeur : <?php echo htmlspecialchars($oeuvre['nom']) . " " . htmlspecialchars($oeuvre['prenom']); ?></strong>
