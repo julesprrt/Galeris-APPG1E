@@ -27,14 +27,14 @@
                 <li><a href="https://galeris/Galeris-APPG1E/">Accueil</a></li>
                 <li><a href="https://galeris/Galeris-APPG1E/ventes">Vente</a></li>
                 <li><a href="https://galeris/Galeris-APPG1E/exposes">Exposition</a></li>
-                <li><a href="https://galeris/Galeris-APPG1E/listenews">News</a></li>Galeris-APPG1E/listenews">News</a></li>
+                <li><a href="https://galeris/Galeris-APPG1E/listenews">News</a></li>
                 <li><a href="#">Plus</a></li>
             </ul>
         </nav>
         <div class="barre_recherche">
             <input type="text" placeholder="Rechercher...">
-            <div class="favori"> <a href="https://galeris/Galeris-APPG1E/favoris">❤️ </a></div>
-            <div class="panier"> <a href="https://galeris/Galeris-APPG1E/panier"> 🛒 </a></div>
+            <div class="favori"> <a href="https://galeris/Galeris-APPG1E/favoris">❤️</a></div>
+            <div class="panier"> <a href="https://galeris/Galeris-APPG1E/panier">🛒</a></div>
 
             <?php
             if ($connectUser === true) {
