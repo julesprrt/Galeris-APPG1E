@@ -3,7 +3,8 @@
 require_once('Controller/UserController.php'); //  UserController
 require_once('Database/Database.php'); //  Database 类
 
-class Router {
+class Router
+{
     protected $routes = [];
 
     /**
@@ -12,7 +13,8 @@ class Router {
      * @param string $controller
      * @param string $action
      */
-    public function addRoute($route, $controller, $action) {
+    public function addRoute($route, $controller, $action)
+    {
         $this->routes[$route] = ['controller' => $controller, 'action' => $action];
     }
 
@@ -21,8 +23,10 @@ class Router {
      * @param string $uri
      * @throws \Exception
      */
-    public function dispatch($uri) {
+    public function dispatch($uri)
+    {
         $uri = strtok($uri, '?'); // Supprimer les paramètres GET
+
         if (array_key_exists($uri, $this->routes)) {
             $controllerName = $this->routes[$uri]['controller'];
             $actionName = $this->routes[$uri]['action'];

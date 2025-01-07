@@ -70,7 +70,9 @@ $router->addRoute('/Galeris-APPG1E/livraison', LivraisonController::class, 'livr
 $router->addRoute('/Galeris-APPG1E/validerlivraison', LivraisonController::class, 'validerlivraison');
 $router->addRoute('/Galeris-APPG1E/supprimeroeuvre', AchatController::class, 'supprimeroeuvre');
 $router->addRoute('/Galeris-APPG1E/signaleroeuvre', UserController::class, 'signalerOeuvre');
-$router->addRoute('/Galeris-APPG1E/utilisateur/{id}', UserController::class, 'profilUtilisateur');
+$router->addRoute('/Galeris-APPG1E/saveiduser', UserController::class, 'consultation');
+$router->addRoute('/Galeris-APPG1E/utilisateur', UserController::class, 'profil_consultation');
+
 
 
 if ($uri !== null) {

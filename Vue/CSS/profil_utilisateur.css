@@ -1,0 +1,154 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #F9F9F9;
+    color: #333;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+main {
+    max-width: 1200px;
+    margin: 2em auto;
+    padding: 0 2em;
+    animation: fadeIn 0.8s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Section Profil */
+.profil {
+    background-color: #FFF;
+    border-radius: 8px;
+    padding: 2em;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.15);
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin-bottom: 2em;
+}
+
+.profil:hover {
+    transform: scale(1.02);
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.profil img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #D9A36A;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 1.5em;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.profil p {
+    margin: 0.5em 0;
+    text-align: center;
+    font-size: 1em;
+}
+
+.profil p strong {
+    color: #555;
+    font-weight: bold;
+}
+
+/* Section Œuvres */
+.oeuvres {
+    background-color: #FFF;
+    border-radius: 8px;
+    padding: 2em;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.oeuvres h2 {
+    text-align: center;
+    color: #D9A36A;
+    margin-bottom: 1.5em;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    position: relative;
+}
+
+.oeuvres h2::after {
+    content: "";
+    width: 60px;
+    height: 2px;
+    background-color: #D9A36A;
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.oeuvres ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5em;
+    justify-content: center;
+}
+
+.oeuvres li {
+    background-color: #FFF;
+    border: 1px solid #E0E0E0;
+    border-radius: 8px;
+    padding: 1em;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 200px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.oeuvres li:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 8px 12px rgba(0, 0, 0, 0.15);
+}
+
+.oeuvres img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 0.5em;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.oeuvres img:hover {
+    transform: scale(1.1);
+}
+
+.oeuvres p {
+    margin: 0.5em 0;
+    font-size: 0.9em;
+    color: #333;
+}
+
+.oeuvres p strong {
+    color: #555;
+    font-weight: bold;
+}
+
+/* Message lorsqu'il n'y a pas d'œuvres */
+.oeuvres p:last-child {
+    text-align: center;
+    color: #999;
+    font-style: italic;
+}

@@ -337,7 +337,8 @@ class UserController extends Controller
             echo json_encode(['Error' => "Données invalides pour le signalement (oeuvre_id, raison)."]);
         }
     }
-    public function profilUtilisateur(Database $db, $id)
+
+    public function consultation(Database $db)
     {
         session_start();
 
@@ -346,23 +347,39 @@ class UserController extends Controller
             exit();
         }
 
-        // Récupérer les informations publiques de l'utilisateur
-        $userModel = new User(null, null, null, null, null, null, null, null, null, null);
-        $userData = $userModel->getPublicUserById($id, $db);
+        $paramData = file_get_contents("php://input");
+        $data = json_decode($paramData, true);
+        if (isset($data['id'])) {
+            $_SESSION['utilisateur_consultation_id'] = (int)$data['id'];
+            http_response_code(200);
+        } else {
+            http_response_code(400);
+            echo json_encode(['Error' => "ID incorrect"]);
+        }
+    }
+
+    public function profil_consultation(Database $db)
+    {
+        session_start();
+        $role = isset($_SESSION["usersessionRole"]) === true && $_SESSION["usersessionRole"] === "Admin" ? true : false;
+
+        if (!isset($_SESSION['usersessionID'])) {
+            header('Location: /Galeris-APPG1E/connexion');
+            exit();
+        }
+
+        $userId = $_SESSION['utilisateur_consultation_id'];
+        $_SESSION["livraison"] = "profil";
+
+        $user = new User(null, null,  null, null, null, null, null, null, null, null);
+        $userData = $user->getUserById($userId, $db);
 
         if (!$userData) {
             echo "Utilisateur introuvable.";
             exit();
         }
 
-        // Récupérer les œuvres de l'utilisateur
-        $oeuvres = $userModel->getOeuvresByUserId($id, $db);
-
-        // Afficher la vue profil utilisateur avec les données
-        $this->render('profil_utilisateur', [
-            'user' => $userData,
-            'oeuvres' => $oeuvres,
-            'connectUser' => isset($_SESSION['usersessionID']),
-        ]);
+        // Transmet les données utilisateur à la vue
+        $this->render('profil_utilisateur', ['user' => $userData, "connectUser" => isset($_SESSION["usersessionID"]), "userRole" => $role]);
     }
 }

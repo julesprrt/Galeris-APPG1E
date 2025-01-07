@@ -38,11 +38,10 @@ class AchatController extends Controller
 
         $type =  $_SESSION['oeuvre_typevente'];
         if ($type === "Vente") {
-            $this->render('achat', ["connectUser" =>  isset($_SESSION["usersessionID"]), "userRole" => $role,'oeuvre' => $oeuvreid,"panier" => $panierExist, "user" => $user]);
-        }
-        else {
+            $this->render('achat', ["connectUser" =>  isset($_SESSION["usersessionID"]), "userRole" => $role, 'oeuvre' => $oeuvreid, "panier" => $panierExist, "user" => $user]);
+        } else {
             $encheres = $oeuvre->getAllEnchere($id, $db);
-            $this->render('enchere', ["connectUser" =>  isset($_SESSION["usersessionID"]), "userRole" => $role,'oeuvre' => $oeuvreid, 'encheres' => $encheres, "user" => $user]);
+            $this->render('enchere', ["connectUser" =>  isset($_SESSION["usersessionID"]), "userRole" => $role, 'oeuvre' => $oeuvreid, 'encheres' => $encheres, "user" => $user]);
         }
     }
 
@@ -61,7 +60,7 @@ class AchatController extends Controller
             $_SESSION['oeuvre_id'] = (int)$data['id'];
             $oeuvre = new Oeuvre($Titre = null, $Description = null, $eco_responsable = null, $Date_debut = null, $Date_fin = null, $Prix = null, $type_vente = null, $est_vendu = null, $auteur = null, $id_utilisateur = null, $id_categorie = null, $status = null, $nomvendeur = null, $prenomvendeur = null, $chemin_image = null, $prix_actuel = null, $id_offreur = null);
             $oeuvreid = $oeuvre->getOeuvreById((int)$data['id'], $db);
-            $_SESSION['oeuvre_typevente']= $oeuvreid['type_vente'];
+            $_SESSION['oeuvre_typevente'] = $oeuvreid['type_vente'];
             http_response_code(200);
         } else {
             http_response_code(400);
@@ -69,7 +68,8 @@ class AchatController extends Controller
         }
     }
 
-    public function verifierEnchere(Database $db){
+    public function verifierEnchere(Database $db)
+    {
         session_start();
 
         if (!isset($_SESSION['usersessionID'])) {
@@ -79,17 +79,17 @@ class AchatController extends Controller
 
         $oeuvre = new Oeuvre($Titre = null, $Description = null, $eco_responsable = null, $Date_debut = null, $Date_fin = null, $Prix = null, $type_vente = null, $est_vendu = null, $auteur = null, $id_utilisateur = null, $id_categorie = null, $status = null, $nomvendeur = null, $prenomvendeur = null, $chemin_image = null, $prix_actuel = null, $id_offreur = null);
         $result = $oeuvre->verifyEnchere($db);
-        if($result === 401){
+        if ($result === 401) {
             http_response_code(401);
             echo json_encode(['Error' => "Veuillez renseigner vos données de livraison sur la page livraison avant d'enchérir sur une oeuvre"]);
-        }
-        else{
+        } else {
             http_response_code(200);
             echo json_encode(['Success' => "Si vous remportez l'enchère votre commande sera livré à l'adresse suivante : " . $result["adresse"] . " " . $result["codepostale"] . ", " . $result["ville"] . " " . $result["pays"], 'prix' => number_format($result["prixCourant"], 2, '.', '')]);
         }
     }
 
-    public function encherir(Database $db){
+    public function encherir(Database $db)
+    {
         session_start();
 
         if (!isset($_SESSION['usersessionID'])) {
@@ -101,17 +101,17 @@ class AchatController extends Controller
         $data = json_decode($paramData, true);
         $oeuvre = new Oeuvre($Titre = null, $Description = null, $eco_responsable = null, $Date_debut = null, $Date_fin = null, $Prix = null, $type_vente = null, $est_vendu = null, $auteur = null, $id_utilisateur = null, $id_categorie = null, $status = null, $nomvendeur = null, $prenomvendeur = null, $chemin_image = null, $prix_actuel = null, $id_offreur = null);
         $result = $oeuvre->enchere($db, $data["prix"]);
-        if($result["statut"] === 401){
+        if ($result["statut"] === 401) {
             http_response_code(401);
             echo json_encode(['Error' => "Le prix ne doit pas être inférieur à " . $result["prixCourant"] . " €", 'prix' => number_format($result["prixCourant"], 2, '.', '')]);
-        }
-        else{
+        } else {
             http_response_code(200);
             echo json_encode(["payment" => $result["url"]]);
         }
     }
 
-    public function createEnchere(Database $db){
+    public function createEnchere(Database $db)
+    {
         session_start();
 
         if (!isset($_SESSION['usersessionID'])) {
@@ -124,7 +124,8 @@ class AchatController extends Controller
         return;
     }
 
-    public function supprimeroeuvre(Database $db){
+    public function supprimeroeuvre(Database $db)
+    {
         session_start();
 
         if (!isset($_SESSION['usersessionID'])) {
@@ -137,6 +138,4 @@ class AchatController extends Controller
         http_response_code(200);
         echo json_encode(["Success" => "Oeuvre supprimé"]);
     }
-  
 }
-
