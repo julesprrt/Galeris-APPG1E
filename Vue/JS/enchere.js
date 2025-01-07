@@ -230,3 +230,29 @@ async function signaler() {
 
 
 }
+
+
+document.querySelector(".profil-section").addEventListener('click', saveUserid)
+
+async function saveUserid() {
+    const id_utilisateur = document.getElementById("id_utilisateur").value;
+
+    const myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+
+    const raw = JSON.stringify({
+        "id": id_utilisateur
+    });
+
+    const requestOptions = {
+        method: "POST",
+        headers: myHeaders,
+        body: raw,
+        redirect: "follow"
+    };
+    const response = await fetch("https://galeris/Galeris-APPG1E/saveiduser", requestOptions)
+    const statuscode = response.status;
+    if (statuscode === 200) {
+        window.location.href = "https://galeris/Galeris-APPG1E/utilisateur";
+    }
+}

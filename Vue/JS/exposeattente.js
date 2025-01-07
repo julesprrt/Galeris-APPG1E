@@ -105,3 +105,29 @@ var marker = L.marker([48.82, 2.28]).addTo(map);
 L.marker([48.82, 2.28]).addTo(map)
     .bindPopup('<p class="maplocaux">10 Rue de Vanves, 92130 Vanves,<br> France<br><br>Latitude : 48,82 | Longitude : 2.28</p>')
     .openPopup();
+
+
+document.querySelector(".profil-section").addEventListener('click', saveUserid)
+
+async function saveUserid() {
+    const id_utilisateur = document.getElementById("id_utilisateur").value;
+
+    const myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+
+    const raw = JSON.stringify({
+        "id": id_utilisateur
+    });
+
+    const requestOptions = {
+        method: "POST",
+        headers: myHeaders,
+        body: raw,
+        redirect: "follow"
+    };
+    const response = await fetch("https://galeris/Galeris-APPG1E/saveiduser", requestOptions)
+    const statuscode = response.status;
+    if (statuscode === 200) {
+        window.location.href = "https://galeris/Galeris-APPG1E/utilisateur";
+    }
+}

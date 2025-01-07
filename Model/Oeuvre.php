@@ -179,7 +179,7 @@ class Oeuvre
 
         $_SESSION["livraison"] = "enchere";
 
-        if ($userLivraison === null) {
+        if ($userLivraison["adresse_livraison"] === null) {
             return 401;
         }
 

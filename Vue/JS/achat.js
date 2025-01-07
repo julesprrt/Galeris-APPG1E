@@ -184,7 +184,7 @@ function signalercloseForm() {
 
 document.querySelector(".profil-section").addEventListener('click', saveUserid)
 
-async function saveUserid(event) {
+async function saveUserid() {
     const id_utilisateur = document.getElementById("id_utilisateur").value;
 
     const myHeaders = new Headers();

@@ -106,7 +106,8 @@
         <section class="droite">
             <section class="profil-section">
                 <div class="profil-info">
-                    <img src="../images/photodeprofil.jpg" alt="Photo de profil" class="photo-profil">
+                <?php echo '<input type="hidden" id="id_utilisateur" name="id_utilisateur" value="' . $expose["id_utilisateur"] . '">'; ?>
+                    <img src="../<?php echo $expose['profil'] ?? 'ImageBD/Profil/avatarbasique.jpg'; ?>" alt="Photo de profil" class="photo-profil">
                     <div class="profil-nom">
                         <strong>Exposition par : <?php echo htmlspecialchars($expose['nom']) . " " . htmlspecialchars($expose['prenom']); ?></strong>
                     </div>
