@@ -187,7 +187,37 @@ CREATE TABLE `oeuvre_images` (
 -- Déchargement des données de la table `oeuvre_images`
 --
 
-
+INSERT INTO `oeuvre_images` (`id_photo`, `chemin_image`, `id_oeuvre`) VALUES
+(1, 'ImageBD/Oeuvre/Arrangement-en-gris-et-noir-n1-McNeil-Whistler.png', 1),
+(2, 'ImageBD/Oeuvre/autoportrait-VanGogh.jpeg', 2),
+(3, 'ImageBD/Oeuvre/Bonaparte-SaintGermain.jpeg', 3),
+(4, 'ImageBD/Oeuvre/Composition-II-en-rouge-bleu-et-jaune-Piet-Mondrian.png', 4),
+(5, 'ImageBD/Oeuvre/Des-Glaneuses-Jean-Francois-Millet.png', 5),
+(6, 'ImageBD/Oeuvre/Guernica-Pablo-Picasso.png', 6),
+(7, 'ImageBD/Oeuvre/Impression-soleil-levant-claude-monet.png', 7),
+(8, 'ImageBD/Oeuvre/la_joconde_leonard_de_vinci.png', 8),
+(9, 'ImageBD/Oeuvre/La-Cene-Leonard-de-Vinci.png', 9),
+(10, 'ImageBD/Oeuvre/La-Creation-dAdam-Michel-Ange.png', 10),
+(11, 'ImageBD/Oeuvre/La-Grande-Vague-de-Kanagawa-Katsuhika-Hokusai.png', 11),
+(12, 'ImageBD/Oeuvre/La-Jeune-Fille-a-la-perle.png', 12),
+(13, 'ImageBD/Oeuvre/La-Liberte-guidant-le-peuple-Delacroix.png', 13),
+(14, 'ImageBD/Oeuvre/La-mort-de-Socrate-Jacques-Louis-David.png', 14),
+(15, 'ImageBD/Oeuvre/La-Nuit-etoilee-Van-Gogh-.png', 15),
+(16, 'ImageBD/Oeuvre/La-Ronde-de-nuit-Rembrandt.png', 16),
+(17, 'ImageBD/Oeuvre/La-Tour-de-Babel-Bruegel-lancien.png', 17),
+(18, 'ImageBD/Oeuvre/LAbsinthe-Edgar-Degas.png', 18),
+(19, 'ImageBD/Oeuvre/Le-cri-Edvard-Munch.png', 19),
+(20, 'ImageBD/Oeuvre/Le-dejeuner-Claude-Monet.png', 20),
+(21, 'ImageBD/Oeuvre/Le-Desespere-Gustave-Courbet.png', 21),
+(22, 'ImageBD/Oeuvre/Le-Radeau-de-la-Meduse.png', 22),
+(23, 'ImageBD/Oeuvre/Lecole-dAthenes-Raphael.png', 23),
+(24, 'ImageBD/Oeuvre/LEnlevement-des-Sabines-Nicolas-Poussin.png', 24),
+(25, 'ImageBD/Oeuvre/Les-Joueurs-de-Cartes-Paul-Cezanne.png', 25),
+(26, 'ImageBD/Oeuvre/Les-Menines-Diego-Velazquez.png', 26),
+(27, 'ImageBD/Oeuvre/Les-Saisons-Giusepe-Arcimboldo.png', 27),
+(28, 'ImageBD/Oeuvre/Les-Tournesols-Van-Gogh.png', 28),
+(29, 'ImageBD/Oeuvre/Portrait-louis-XIV.png', 29),
+(30, 'ImageBD/Oeuvre/Terrasse-du-cafe-le-soir-Van-Gogh.png', 30),
 
 -- --------------------------------------------------------
 
