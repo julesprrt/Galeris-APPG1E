@@ -39,7 +39,7 @@
         </nav>
         <div class="barre_recherche">
             <input type="text" placeholder="Rechercher...">
-            <div class="favori"> <a href="favoris.html">❤️ </a></div>
+            <div class="favori"> <a href="https://galeris/Galeris-APPG1E/favoris">❤️ </a></div>
             <div class="panier"> <a href="https://galeris/Galeris-APPG1E/panier"> 🛒 </a></div>
             <?php
                 if ($connectUser === true) {

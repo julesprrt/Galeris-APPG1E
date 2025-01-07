@@ -334,4 +334,25 @@ class Oeuvre
         $Database->close();
         return 200;
     }
+
+    public function supprimerOeuvreParId(Database $db, $idOeuvre)
+    {
+        $conn = $db->connect();
+
+        $sql = "DELETE FROM oeuvre WHERE id_oeuvre = ?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("i", $idOeuvre);
+        $stmt->execute();
+        $affectedRows = $stmt->affected_rows;
+        
+        $stmt->close();
+        $conn->close();
+
+        if ($affectedRows > 0) {
+            return 200;
+        } else {
+            return 500; 
+        }
+    }
+
 }

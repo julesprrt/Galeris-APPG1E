@@ -69,24 +69,23 @@ class UserController extends Controller
         
         $paramData = file_get_contents("php://input");
         $data = json_decode($paramData, true);
-        if(isset($data["email"]) && trim($data["email"]) !== ""){
-            $user = new User("","", $data["email"], "","","","", null, null, null);
-            if($user->verifyEmailForPassword($db)){
+        if (isset($data["email"]) && trim($data["email"]) !== "") {
+            $user = new User("", "", $data["email"], "", "", "", "", null,null,null);
+            if ($user->verifyEmailForPassword($db)) {
                 http_response_code(200);
                 echo json_encode(['Success' => "Un code vous à été envoyé sur votre adresse mail pour confirmer votre identité"]);
-            }
-            else{
+            } else {
                 http_response_code(400);
                 echo json_encode(['Error' => "Mail invalide"]);
             }
-        }
-        else{
+        } else {
             http_response_code(400);
             echo json_encode(['Error' => "Entrez votre mail"]);
         }
     }
 
-    public function code(Database $db) {
+    public function code(Database $db)
+    {
         session_start();
 
         if (!isset($_SESSION['usersessionID'])) {
@@ -100,15 +99,13 @@ class UserController extends Controller
             $user = new User(null,null,null,null,null,null,null, null, null, null);
             $response = $user->verifyCode($data['code'],$db);
             $type = $_SESSION["usersessionType"];
-            if ($response == 200 && $type === ""){
+            if ($response == 200 && $type === "") {
                 http_response_code(200);
                 echo json_encode(['Success' => "Inscription reussie"]);
-            }
-            else if($response == 200 && $type === "password"){
+            } else if ($response == 200 && $type === "password") {
                 http_response_code(200);
                 echo json_encode(['Success' => $type]);
-            }
-            else { 
+            } else {
                 http_response_code(400);
                 echo json_encode(['Error' => "Code incorrect"]);
             }
@@ -139,7 +136,7 @@ class UserController extends Controller
         }
 
         // Transmet les données utilisateur à la vue
-        $this->render('profil', ['user' => $userData, "connectUser" =>  isset($_SESSION["usersessionID"]), "userRole" => $role]);
+        $this->render('profil', ['user' => $userData, "connectUser" => isset($_SESSION["usersessionID"]), "userRole" => $role]);
     }
     public function editionprofil(Database $db)
     {
@@ -160,7 +157,7 @@ class UserController extends Controller
             exit();
         }
 
-        $this->render('editionprofil', ['user' => $user, "connectUser" =>  isset($_SESSION["usersessionID"]), "userRole" => $role]);
+        $this->render('editionprofil', ['user' => $user, "connectUser" => isset($_SESSION["usersessionID"]), "userRole" => $role]);
     }
 
     public function processEdition(Database $db)
@@ -262,12 +259,13 @@ class UserController extends Controller
 
         $code->sendCode($_SESSION["usersessionMail"], $db);
 
-        $code->sendCode($_SESSION["usersessionMail"],$db);
+        $code->sendCode($_SESSION["usersessionMail"], $db);
         http_response_code(200);
         echo json_encode(['Success' => "Code envoyé"]);
     }
 
-    public function Deconnexion(){
+    public function Deconnexion()
+    {
         session_start();
 
         if (!isset($_SESSION['usersessionID'])) {
@@ -281,7 +279,8 @@ class UserController extends Controller
         echo json_encode(['Success' => "Déconnexion réussie"]);
     }
 
-    public function confirmationMDP(Database $db){
+    public function confirmationMDP(Database $db)
+    {
         session_start();
 
         if(!isset($_SESSION["usersessionID"])){
@@ -294,19 +293,49 @@ class UserController extends Controller
         if (isset($data['password']) && isset($data['confirmPassword'])) {
             $user = new User(null, null,  null, null, $data['password'], $data['confirmPassword'],null, null, null, null );
             $result = $user->changePassword($db);
-            if($result === true){
+            if ($result === true) {
                 http_response_code(200);
                 echo json_encode(["Success" => "Mot de passe modifié"]);
                 session_destroy();
-            }
-            else{
+            } else {
                 http_response_code(400);
                 echo json_encode(["Error" => $result]);
             }
-            
-        }
-        else{
+
+        } else {
             $this->render('confirmationMDP', []);
+        }
+    }
+
+    public function signalerOeuvre(Database $db)
+    {
+        session_start();
+
+        if (!isset($_SESSION['usersessionID'])) {
+            header('Location: /Galeris-APPG1E/connexion');
+            exit();
+        }
+        
+        // Récupération des données POST (JSON)
+        $paramData = file_get_contents("php://input");
+        $data = json_decode($paramData, true);
+
+        if (isset($data['raison']) && trim($data['raison']) !== '') {
+            $user = new User(null, null, null, null, null, null, null,null,null,null);
+            $code = $user->signaler($data['raison'], $db);
+
+            if($code === 401){
+                http_response_code(401);
+                echo json_encode(['Error' => 'La raison de votre signalement doit contenir plus que 25 caractères.']);
+            }
+
+
+            http_response_code(200);
+            echo json_encode(['Success' => 'Signalement envoyé avec succès.']);
+
+        } else {
+            http_response_code(400);
+            echo json_encode(['Error' => "Données invalides pour le signalement (oeuvre_id, raison)."]);
         }
     }
 }

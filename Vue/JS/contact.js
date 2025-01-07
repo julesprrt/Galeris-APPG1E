@@ -2,6 +2,7 @@ document.getElementById("btn-contact").addEventListener('click', contact);
 
 async function contact() {
     const myHeaders = new Headers();
+    document.getElementById("btn-contact").disabled = true;
     myHeaders.append("Content-Type", "application/json");
     const raw = JSON.stringify({
         "email": document.getElementsByName("email")[0].value,
@@ -27,10 +28,14 @@ async function contact() {
         document.querySelectorAll('.contact-input').forEach((item) => {
             item.value = "";
         })
+        grecaptcha.reset();
+        document.getElementById("btn-contact").disabled = false;
         window.location.href = "https://galeris/Galeris-APPG1E/";
     }
     else {
         alert(result.Error);
         document.querySelector('.error-message').innerHTML = result.Error;
+        document.getElementById("btn-contact").disabled = false;
+        grecaptcha.reset();
     }
 }

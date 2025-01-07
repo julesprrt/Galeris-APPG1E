@@ -1,25 +1,28 @@
 <?php
 require_once('Database/Database.php');
 
-Class MailSender {
-    public function __construct() {//Constructeur -> Initialisation des données
+class MailSender
+{
+    public function __construct()
+    {//Constructeur -> Initialisation des données
 
     }
 
-    public function sendMail($to, $subject, $message, $from) {
+    public function sendMail($to, $subject, $message, $from)
+    {
         $headers = [
-            'From' =>  $from . '<' . $to .'>',
+            'From' => $from . '<' . $to . '>',
             'Content-Type' => 'text/html; charset=UTF-8'
         ];
-        if(mail($to,$subject, $message,$headers)){
+        if (mail($to, $subject, $message, $headers)) {
             return true;
-        }
-        else{
+        } else {
             return false;
         }
     }
 
-    public function sendMailCommande($to, $adresse, $codePostale, $ville, $pays){
+    public function sendMailCommande($to, $adresse, $codePostale, $ville, $pays)
+    {
         $message = '<div style="max-width: 600px; margin: 20px auto; background-color: #ffffff; border: 1px solid #ddd; border-radius: 8px; overflow: hidden;">
         <div style="background-color: #0078d4; color: #ffffff; padding: 20px; text-align: center;">
             <h1 style="margin: 0; font-size: 24px;">Confirmation de Livraison</h1>
@@ -28,8 +31,8 @@ Class MailSender {
             <p>Bonjour,</p>
             <p>Nous sommes heureux de vous informer que votre commande sera bientôt livrée à l adresse suivante :</p>
             <div style="font-weight: bold; background-color: #f0f8ff; padding: 10px; border-left: 4px solid #0078d4; margin: 10px 0;">
-                ' . $adresse .',<br>
-                '. $codePostale. ' ' . $ville .', '. $pays .'
+                ' . $adresse . ',<br>
+                ' . $codePostale . ' ' . $ville . ', ' . $pays . '
             </div>
             <p>Si cette adresse est incorrecte ou si vous souhaitez la modifier, veuillez nous contacter dès que possible.</p>
             <p>Merci de votre confiance,</p>
@@ -40,19 +43,54 @@ Class MailSender {
         </div>
     </div>';
 
-    $headers = [
-        'From' =>  email_galeris,
-        'Content-Type' => 'text/html; charset=UTF-8'
-    ];
+        $headers = [
+            'From' => email_galeris,
+            'Content-Type' => 'text/html; charset=UTF-8'
+        ];
 
-    $subject = "Confirmation de Livraison";
+        $subject = "Confirmation de Livraison";
 
-    if(mail($to,$subject, $message, $headers)){
-        return true;
+        if (mail($to, $subject, $message, $headers)) {
+            return true;
+        } else {
+            return false;
+        }
     }
-    else{
-        return false;
+
+    public function signalement($oeuvreId, $raison,$titre,$nom,$prenom)
+    {
+        $mail = $_SESSION['usersessionMail'];
+        $user_id = $_SESSION["usersessionID"];
+        $to = "galeris2004@gmail.com";
+        $subject = "[Signalement Œuvre #$oeuvreId - $titre]";
+        $message = '<body style="font-family: Arial, sans-serif; line-height: 1.6; color: #333; background-color: #f9f9f9; padding: 20px;">
+    <div style="background-color: #fff; border: 1px solid #ddd; border-radius: 8px; padding: 20px; max-width: 600px; margin: auto; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+        <h2 style="color: #d9534f; font-size: 24px; margin-top: 0;">Signalement d œuvre</h2>
+        <p style="margin: 16px 0;">
+            L utilisateur 
+            <span style="font-weight: bold; color: #5bc0de;">'.$nom . ' ' . $prenom . '</span> 
+            (<a href="mailto:$mail" style="color: #5bc0de; text-decoration: none;">'. $mail .'</a>, id : 
+            <span style="font-weight: bold; color: #5bc0de;">' . $user_id .'</span>) a signalé l œuvre 
+            <span style="font-weight: bold; color: #d9534f;">#' . $oeuvreId . '</span> - 
+            <span style="font-style: italic; color: #d9534f;">' . $titre . '</span> pour la raison suivante :
+        </p>
+        <blockquote style="margin: 20px 0; padding: 15px; border-left: 5px solid #d9534f; background-color: #f7f7f7; color: #555;">
+            <b>'.$raison.'</b>
+        </blockquote>
+    </div>
+</body>';
+
+        $headers = [
+            'From' => email_galeris,
+            'Content-Type' => 'text/html; charset=UTF-8'
+        ];
+
+        if(mail($to, $subject, $message, $headers)){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
-    }
-    
+
 }
