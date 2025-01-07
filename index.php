@@ -73,8 +73,6 @@ $router->addRoute('/Galeris-APPG1E/supprimeroeuvre', AchatController::class, 'su
 $router->addRoute('/Galeris-APPG1E/signaleroeuvre', UserController::class, 'signalerOeuvre');
 $router->addRoute('/Galeris-APPG1E/saveiduser', UserController::class, 'consultation');
 $router->addRoute('/Galeris-APPG1E/utilisateur', UserController::class, 'profil_consultation');
-
-
 $router->addRoute('/Galeris-APPG1E/news', NewsController::class, 'news');
 $router->addRoute('/Galeris-APPG1E/createnews', NewsController::class, 'createNews');
 $router->addRoute('/Galeris-APPG1E/listenews', NewsController::class, 'listeNews');
