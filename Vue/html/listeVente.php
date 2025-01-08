@@ -112,7 +112,12 @@
                     <div class="oeuvres">
                         <?php
                         foreach ($oeuvres as $oeuvre) {
-                            echo '<a class = "oeuvreOBJ" style="cursor:pointer" nomCategorie="' . $oeuvre["Nom_categorie"] . '" prix="' . $oeuvre["Prix"] . '" type="'. $oeuvre["type_vente"] .'" titre="'. $oeuvre["Titre"] .'" auteur="'. $oeuvre["auteur"] .'" datefin="'. $oeuvre["Date_fin"] .'"">';
+                            if($oeuvre["type_vente"] === "vente" || $oeuvre["prix_courant"] === null){
+                                echo '<a class = "oeuvreOBJ" style="cursor:pointer" nomCategorie="' . $oeuvre["Nom_categorie"] . '" prix="' . $oeuvre["Prix"] . '" type="'. $oeuvre["type_vente"] .'" titre="'. $oeuvre["Titre"] .'" auteur="'. $oeuvre["auteur"] .'" datefin="'. $oeuvre["Date_fin"] .'"">';
+                            }
+                            else{
+                                echo '<a class = "oeuvreOBJ" style="cursor:pointer" nomCategorie="' . $oeuvre["Nom_categorie"] . '" prix="' . $oeuvre["prix_courant"] . '" type="'. $oeuvre["type_vente"] .'" titre="'. $oeuvre["Titre"] .'" auteur="'. $oeuvre["auteur"] .'" datefin="'. $oeuvre["Date_fin"] .'"">';
+                            }
                             echo '<div class="oeuvre">';
                             echo '<input type="hidden" id="id_oeuvre_' . $oeuvre["id_oeuvre"] . '" name="id_oeuvre" value="' . $oeuvre["id_oeuvre"] . '">';
                             echo '<h3>' . $oeuvre["Titre"] . '</h3>';
