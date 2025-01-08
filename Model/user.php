@@ -2,7 +2,7 @@
 require_once('Database/Database.php');
 require_once('Model/code.php');
 require_once('Model/utils.php');
-
+require_once('Model/mailSender.php');
 class User
 {
     private $name;
@@ -13,12 +13,14 @@ class User
     private $confirmPassword;
     private $sendCode;
     private $utilsUser;
+    private MailSender $sendMail;
     private $cgu;
     private $newsletter;
     private $photodeprofil;
     private Utils $utils;
+    private $captcha;
 
-    public function __construct($name, $firstName, $email, $telephone, $password, $confirmPassword, $cgu, $newsletter, $photodeprofil)
+    public function __construct($name, $firstName, $email, $telephone, $password, $confirmPassword, $cgu, $newsletter, $photodeprofil, $captcha)
     { //Constructeur -> Initialisation des données
         $this->name = $name;
         $this->firstName = $firstName;
@@ -31,6 +33,8 @@ class User
         $this->cgu = $cgu;
         $this->newsletter = 0;
         $this->photodeprofil = $photodeprofil;
+        $this->captcha = $captcha;
+        $this->sendMail = new MailSender();
     }
     /**
      * Summary of registerVerification
@@ -54,6 +58,8 @@ class User
             return "Les deux mots de passe ne sont pas identiques";
         } else if ($value === false) {
             return "Vous avez déja un compte";
+        } else  if ($this->utilsUser->verifyCaptcha($this->captcha) == false) {
+            return "Veuillez valider le Captcha";
         } else {
             if ($value === true) {
                 $this->saveUser($db);
@@ -66,6 +72,9 @@ class User
 
     public function connectUser(Database $db)
     {
+        if ($this->utilsUser->verifyCaptcha($this->captcha) == false) {
+            return "Veuillez valider le Captcha";
+        }
         $database = $db->connect();
         // Interroger les données utilisateur dans la base de données
         $query = "SELECT * FROM utilisateur WHERE email = '$this->email'";
@@ -255,26 +264,26 @@ class User
 
         $sql = "SELECT utilisateur.*, utilisateur_image.chemin_image AS photodeprofil, l.adresse as adresse_livraison, l.codepostale, l.ville, l.pays
         FROM utilisateur 
-        inner join livraison l on l.id_utilisateur = utilisateur.id_utilisateur
+        left join livraison l on l.id_utilisateur = utilisateur.id_utilisateur
         LEFT JOIN utilisateur_image 
         ON utilisateur.id_utilisateur = utilisateur_image.id_utilisateur 
         WHERE utilisateur.id_utilisateur = ?";
 
 
         $stmt = $conn->prepare($sql);
-        $stmt->bind_param('i', $id); 
+        $stmt->bind_param('i', $id);
         $stmt->execute();
         $result = $stmt->get_result();
-        if ($result->num_rows > 0) {   
-            $user = $result->fetch_assoc(); 
+        if ($result->num_rows > 0) {
+            $user = $result->fetch_assoc();
             $stmt->close();
             $conn->close();
-            return $user; 
+            return $user;
         }
 
         $stmt->close();
         $conn->close();
-        return null; 
+        return null;
     }
     public function updateUser($id, $nom, $prenom, $email, $description, $adresse, $newsletter, $newPassword, Database $db)
     {
@@ -310,7 +319,6 @@ class User
 
     public function verifyEmailForPassword(Database $db)
     {
-        session_start();
         $conn = $db->connect();
         $sql = "select * from utilisateur where email = ?";
         $stmt = $conn->prepare($sql);
@@ -318,7 +326,7 @@ class User
         $stmt->execute();
         $result = $stmt->get_result();
         $user = $result->fetch_assoc();
-        $stmt->close(); 
+        $stmt->close();
         $conn->close();
         if ($result->num_rows > 0) {
             $email = $this->email;
@@ -364,30 +372,38 @@ class User
     }
 
     public function SuppresionAnciennePDP($userId, Database $db)
-{
-    $conn = $db->connect();
+    {
+        $conn = $db->connect();
 
-    $sql = "SELECT chemin_image FROM utilisateur_image WHERE id_utilisateur = ?";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param('i', $userId);
-    $stmt->execute();
-    $stmt->bind_result($currentPhotoPath);
-    $stmt->fetch();
-    $stmt->close();
+        $sql = "SELECT chemin_image FROM utilisateur_image WHERE id_utilisateur = ?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param('i', $userId);
+        $stmt->execute();
+        $stmt->bind_result($currentPhotoPath);
+        $stmt->fetch();
+        $stmt->close();
 
-    if ($currentPhotoPath && file_exists($currentPhotoPath)) {
-        unlink($currentPhotoPath);
+        if ($currentPhotoPath && file_exists($currentPhotoPath)) {
+            unlink($currentPhotoPath);
+        }
+
+        $sqlDelete = "DELETE FROM utilisateur_image WHERE id_utilisateur = ?";
+        $stmtDelete = $conn->prepare($sqlDelete);
+        $stmtDelete->bind_param('i', $userId);
+        $stmtDelete->execute();
+        $stmtDelete->close();
+
+        $conn->close();
     }
 
-    $sqlDelete = "DELETE FROM utilisateur_image WHERE id_utilisateur = ?";
-    $stmtDelete = $conn->prepare($sqlDelete);
-    $stmtDelete->bind_param('i', $userId);
-    $stmtDelete->execute();
-    $stmtDelete->close();
+    public function signaler($raison, Database $db){
+        if(strlen(trim($raison)) < 25){
+            return 401;
+        }
 
-    $conn->close();
-}
-
-    
-    
+        $oeuvre = new Oeuvre(null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null);
+        $oeuvreInfo = $oeuvre-> getOeuvreById($_SESSION["oeuvre_id"], $db);
+        $userInfo = $this->getUserById($_SESSION["usersessionID"], $db);
+        $this->sendMail->signalement($_SESSION["oeuvre_id"], $raison, $oeuvreInfo["Titre"], $userInfo["nom"], $userInfo["prenom"]);
+    }
 }

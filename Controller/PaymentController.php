@@ -9,6 +9,12 @@ class PaymentController extends Controller
 
     public function payment(Database $db)
     {
+        session_start();
+
+        if (!isset($_SESSION['usersessionID'])) {
+            header('Location: /Galeris-APPG1E/connexion');
+            exit();
+        }
         $payment = new Payment();
         $result = $payment->createObject($db);
 
@@ -28,6 +34,11 @@ class PaymentController extends Controller
     public function successPayment(Database $db)
     {
         session_start();
+
+        if (!isset($_SESSION["usersessionID"])) {
+            header('Location: /Galeris-APPG1E/connexion');
+            exit;
+        }
 
         if (!isset($_SESSION["payment"])) {
             http_response_code(404);
@@ -58,6 +69,12 @@ class PaymentController extends Controller
     public function cancelPayment(Database $db)
     {
         session_start();
+
+        if (!isset($_SESSION["usersessionID"])) {
+            header('Location: /Galeris-APPG1E/connexion');
+            exit;
+        }
+
         $this->render('cancelPayment', []);
 
         if (!isset($_SESSION["payment"])) {

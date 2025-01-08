@@ -23,13 +23,13 @@
                 <li><a href="https://galeris/Galeris-APPG1E/">Accueil</a></li>
                 <li><a href="https://galeris/Galeris-APPG1E/ventes">Vente</a></li>
                     <li><a href="https://galeris/Galeris-APPG1E/exposes">Exposition</a></li>
-                <li><a href="#">News</a></li>
+                <li><a href="https://galeris/Galeris-APPG1E/listenews">News</a></li>
                 <li><a href="#">Plus</a></li>
             </ul>
         </nav>
         <div class="barre_recherche">
             <input type="text" placeholder="Rechercher...">
-            <div class="favori"><a href="favoris.html">❤️</a></div>
+            <div class="favori"><a href="https://galeris/Galeris-APPG1E/favoris">❤️</a></div>
             <div class="panier"><a href="https://galeris/Galeris-APPG1E/panier">🛒</a></div>
             <?php
                 if ($connectUser === true) {
@@ -113,7 +113,7 @@
         <div class="container-footer">
             <a class="title-footer">Qui sommes-nous ?</a>
             <a class="item-footer" href="#">NovArt</a>
-            <a class="item-footer" href="#">Galeris</a>
+            <a class="item-footer" href="https://galeris/Galeris-APPG1E/galeris">Galeris</a>
         </div>
         <div class="container-footer">
             <a class="title-footer">Aide</a>

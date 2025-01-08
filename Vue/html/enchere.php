@@ -23,14 +23,14 @@
             <li><a href="https://galeris/Galeris-APPG1E/">Accueil</a></li>
             <li><a href="https://galeris/Galeris-APPG1E/ventes">Vente</a></li>
             <li><a href="https://galeris/Galeris-APPG1E/exposes">Exposition</a></li>
-            <li><a href="#">News</a></li>
+            <li><a href="https://galeris/Galeris-APPG1E/listenews">News</a></li>
             <li><a href="#">Plus</a></li>
         </ul>
     </nav>
     <div class="barre_recherche">
         <!-- Barre de recherche, les emojis sont responsives si on clique dessus -->
         <input type="text" placeholder="Rechercher...">
-        <div class="favori"> <a href="favoris.html">❤️ </a></div>
+        <div class="favori"> <a href="https://galeris/Galeris-APPG1E/favoris">❤️ </a></div>
         <div class="panier"> <a href="https://galeris/Galeris-APPG1E/panier"> 🛒 </a></div>
         <?php
         if ($connectUser === true) {
@@ -66,6 +66,20 @@
         <br>
         <div class="btn-container">
             <button class="enchere-button" type="submit">Enchérir</button>
+        </div>
+    </div>
+
+    <div class="signaler-form">
+    <div class="btn-close-container">
+        <button class="signaler-close-button" type="submit">X</button>
+    </div>
+        <p class="title-signaler">Signaler une oeuvre</p>
+            <textarea type="text" class="input-signalement" cols="30" rows="10" name="signalement" placeholder="Raison : 25 caractères minimum"></textarea>
+        <br>
+        <p class="error"></p>
+        <br>
+        <div class="btn-container">
+            <button id="btnSignaler" type="submit">Signaler</button>
         </div>
     </div>
     <main>
@@ -144,6 +158,7 @@
 
             <!-- Boutons d'actions -->
             <section class="actions">
+                
                 <?php
                     if($user || $userRole){
                         echo '<button class="boutton-modifier">Modifier</button>
@@ -154,6 +169,7 @@
                         <button class="boutton-favoris">Ajouter au favoris</button>';
                     }
                 ?>
+                <button id="btnSignaleropenform">Signaler cette œuvre</button>
             </section>
             <?php
             if (mysqli_num_rows($encheres) > 0) {
@@ -218,16 +234,16 @@
     <div class="container-footer">
         <a class="title-footer">Qui sommes-nous ?</a>
         <a class="item-footer" href="#">NovArt</a>
-        <a class="item-footer" href="#">Galeris</a>
+        <a class="item-footer" href="https://galeris/Galeris-APPG1E/galeris">Galeris</a>
     </div>
     <div class="container-footer">
         <a class="title-footer">Aide</a>
-        <a class="item-footer" href="#">Foire aux questions</a>
-        <a class="item-footer" href="#">Contact</a>
+        <a class="item-footer" href="https://galeris/Galeris-APPG1E/faq">Foire aux questions</a>
+        <a class="item-footer" href="https://galeris/Galeris-APPG1E/contact">Contact</a>
     </div>
     <div class="container-footer">
         <a class="title-footer">Informations légales</a>
-        <a class="item-footer" href="#">Conditions d'utilisations</a>
+        <a class="item-footer" href="https://galeris/Galeris-APPG1E/cgu">Conditions d'utilisations</a>
         <a class="item-footer" href="#">Mentions légales</a>
     </div>
 

@@ -10,6 +10,8 @@
     <link href="CSS/footer.css" rel="stylesheet">
     <link href="CSS/style.css" rel="stylesheet">
     <script src="https://galeris/Galeris-APPG1E/vue/JS/inscription.js" defer></script>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
 </head>
 
 <body>
@@ -48,6 +50,8 @@
                     <span class="checkmark"></span>
                     Je reconnais avoir pris connaissance des <a href="https://galeris/Galeris-APPG1E/cgu" target="_blank">conditions générales d’utilisation</> de Galeris
                 </label>
+                <br>
+                <div name="recaptcha" class="g-recaptcha" data-sitekey="6Lf0tIkqAAAAANfbK1JSkQByCF-s0YgdX1K2nCGs"></div>
                 </form>
             </div>
         </div>

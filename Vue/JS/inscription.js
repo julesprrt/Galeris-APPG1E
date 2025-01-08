@@ -1,12 +1,12 @@
 document.querySelector(".submit-button").addEventListener('click', register)
-document.getElementById("showmdp").addEventListener('click', passwordToggle);
+/*document.getElementById("showmdp").addEventListener('click', passwordToggle);
 document.getElementById("hidemdp").addEventListener('click', HidepasswordToggle);
 document.getElementById("showmdp2").addEventListener('click', passwordToggle2);
-document.getElementById("hidemdp2").addEventListener('click', HidepasswordToggle2);
+document.getElementById("hidemdp2").addEventListener('click', HidepasswordToggle2);*/
 
 
 async function register() {
-    document.querySelector(".submit-button").disable = true;
+    document.querySelector(".submit-button").disabled = true;
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
     
@@ -17,7 +17,8 @@ async function register() {
         "telephone": document.getElementsByName("telephone")[0].value,
         "password" : document.getElementsByName("password")[0].value,
         "confirmPassword" : document.getElementsByName("confirmPassword")[0].value,
-        "cgu" : document.getElementById("check-inscription").checked
+        "cgu" : document.getElementById("check-inscription").checked,
+        "g-recaptcha-response": document.getElementById("g-recaptcha-response").value
     });
 
     const requestOptions = {
@@ -40,14 +41,16 @@ async function register() {
         })
         document.getElementById("check-inscription").checked = false;
         document.querySelector('.error-message').innerHTML = "";
-        document.querySelector(".submit-button").disable = false;
+        document.querySelector(".submit-button").disabled = false;
+        grecaptcha.reset();
         window.location.href = "https://galeris/Galeris-APPG1E/codeunique"
     }
     
     else{
         alert(result.Error);
-        document.querySelector(".submit-button").disable = false;
+        document.querySelector(".submit-button").disabled = false;
         document.querySelector('.error-message').innerHTML = result.Error;
+        grecaptcha.reset();
     }
 }
 

@@ -1,7 +1,7 @@
 //document.getElementById("togglePassword").addEventListener('click', passwordToggle);
 document.querySelector(".submit-button").addEventListener('click', connexion);
-document.getElementById("showmdp").addEventListener('click', passwordToggle);
-document.getElementById("hidemdp").addEventListener('click', HidepasswordToggle);
+/*document.getElementById("showmdp").addEventListener('click', passwordToggle);
+document.getElementById("hidemdp").addEventListener('click', HidepasswordToggle);*/
 
 //Afficher ou non le mot de passe
 function passwordToggle(){
@@ -15,10 +15,14 @@ function passwordToggle(){
 async function connexion() {
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
+    console.log(grecaptcha);
     
+    console.log(document.getElementById("g-recaptcha-response").value)
+
     const raw = JSON.stringify({
         "email": document.getElementsByName("email")[0].value,
-        "password" : document.getElementsByName("password")[0].value
+        "password" : document.getElementsByName("password")[0].value,
+        "g-recaptcha-response": document.getElementById("g-recaptcha-response").value
     });
 
     const requestOptions = {
@@ -30,7 +34,6 @@ async function connexion() {
     const response = await fetch("https://galeris/Galeris-APPG1E/connexion", requestOptions)
     const statuscode = response.status;
     const result = await response.json();
-    console.log(statuscode);
     
     if(statuscode === 200){
         alert(result.Success)
@@ -41,6 +44,7 @@ async function connexion() {
         document.querySelectorAll('.input-user-first').forEach((item)=> {
             item.value = "";
         })
+        grecaptcha.reset();
         window.location.href = "https://galeris/Galeris-APPG1E";
     }
     else if(statuscode === 401){
@@ -51,9 +55,11 @@ async function connexion() {
         document.querySelectorAll('.input-user-first').forEach((item)=> {
             item.value = "";
         })
+        grecaptcha.reset();
         window.location.href = "https://galeris/Galeris-APPG1E/inscription";
     }
     else{
+        grecaptcha.reset();
         alert(result.Error);
         document.querySelector('.error-message').innerHTML = result.Error;
         document.querySelectorAll('.input-user').forEach((item)=> {

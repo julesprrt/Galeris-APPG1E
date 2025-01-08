@@ -27,6 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
         // Ajouter la classe active à la nouvelle image
         images[currentIndex].classList.add('active');
     }
+   
 });
 
 setInterval(tempsRestants, 1000);
@@ -132,4 +133,51 @@ async function supprimerOeuvre(){
             window.location.href = "https://galeris/Galeris-APPG1E/";
         }
     }
+}
+
+
+document.getElementById("btnSignaleropenform").addEventListener("click", openFormSignaler)
+
+async function openFormSignaler() {
+    document.querySelector(".signaler-form").style.display = "block";
+}
+
+document.getElementById("btnSignaler").addEventListener("click", signaler)
+
+async function signaler() {
+    document.getElementById("btnSignaler").disabled = true;
+    const raison = document.querySelector(".input-signalement").value;
+
+    if (raison.length < 25) {
+        alert("La raison de votre signalement doit contenir plus que 25 carctères.");
+        return;
+    }
+
+
+    const resp = await fetch("https://galeris/Galeris-APPG1E/signaleroeuvre", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ raison: raison })
+    });
+    const data = await resp.json();
+    if (resp.status === 200) {
+        alert(data.Success);
+        signalercloseForm()
+        document.getElementById("btnSignaler").disabled = false;
+    } else {
+        alert(data.Error);
+    }
+}
+
+document.querySelector(".signaler-close-button").addEventListener("click", signalercloseForm);
+
+function closeForm() {
+    document.querySelector(".enchere-form").style.display = "none";
+    document.querySelector(".input-enchere").value = "";
+    document.querySelector(".input-enchere").min = "";
+}
+
+function signalercloseForm() {
+    document.querySelector(".signaler-form").style.display = "none";
+    document.querySelector(".input-signalement").value = "";
 }
