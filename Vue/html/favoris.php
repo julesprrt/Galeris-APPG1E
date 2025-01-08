@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="CSS/header.css">
     <link rel="stylesheet" href="CSS/footer.css">
     <title>favoris</title>
+    <script src="https://galeris/Galeris-APPG1E/vue/JS/favoris.js" defer></script>
 </head>
 
 <body>
@@ -41,7 +42,35 @@
                     </p>
                 </div>
             </div>
+            
         </div>
+        <?php
+                    foreach($favoris as $fav){
+                        echo "
+                        <tr class='product' id='". $fav["id_oeuvre"] ."'>
+                            <td class='article--name'>
+                                <img src='../". htmlspecialchars($fav["chemin_image"]) ."' alt='image'/>
+                            </td>
+                            <td class='titre'>
+                                <p class='titrestyle'>" . htmlspecialchars($fav["Titre"]) . "</p>
+                                <p class='vendue'>Vendu par " . htmlspecialchars($fav["nom"]) . " " . htmlspecialchars($fav["prenom"]) . "</p>
+                                <p class='vendue'>Réalisé par " . htmlspecialchars($fav["auteur"]) . "</p>
+                            </td>
+                            <td class='price-elmprice'>
+                                " . htmlspecialchars($fav["Prix"]) . " € 
+                                <div class='remove'>
+                                    <a class='remove-elm' id='". $fav["id_favoris"] ."'>
+                                        <button type='button' class='btn-simple'>Supprimer</button>
+                                    </a>
+                                </div>
+                            </td>
+                            <td></td>
+                        </tr>
+                        <tr class='spacer'></tr>";
+                    }
+                ?>
+                </tbody>
+        
         
 
         <footer>

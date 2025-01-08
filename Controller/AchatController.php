@@ -40,6 +40,39 @@ class AchatController extends Controller
             $this->render('enchere', ["connectUser" =>  isset($_SESSION["usersessionID"]), "userRole" => $role,'oeuvre' => $oeuvreid, 'encheres' => $encheres, "user" => $user]);
         }
     }
+    public function achat_favoris(Database $db)
+    {
+        // Récupérer l'œuvre depuis le modèle
+        $oeuvre = new Oeuvre($Titre = null, $Description = null, $eco_responsable = null, $Date_debut = null, $Date_fin = null, $Prix = null, $type_vente = null, $est_vendu = null, $auteur = null, $id_utilisateur = null, $id_categorie = null, $status = null, $nomvendeur = null, $prenomvendeur = null, $chemin_image = [], $prix_actuel = null, $id_offreur = null);
+        session_start();
+        $role = isset($_SESSION["usersessionRole"]) === true && $_SESSION["usersessionRole"] === "Admin" ? true : false;
+        $role = isset($_SESSION["usersessionRole"]) === true && $_SESSION["usersessionRole"] === "Admin" ? true : false;
+        $id =  $_SESSION['oeuvre_id'];
+        $oeuvreid = $oeuvre->getOeuvreById($id, $db);
+
+        $favoris = new Favoris();
+        $favorisExist = $favoris->existFavoris($db);
+
+        // Vérifier si l'œuvre existe
+        if (!$oeuvre) {
+            http_response_code(404);
+            echo "L'œuvre demandée est introuvable.";
+            //echo "<script>alert('Oeuvre n\'existe pas');</script>"; A tester si ça fonctionne
+            header('Location: /Galeris-APPG1E/');
+            exit();
+        }
+
+        $user = $_SESSION["usersessionID"] === $oeuvreid["id_utilisateur"];
+
+        $type =  $_SESSION['oeuvre_typevente'];
+        if ($type === "Vente") {
+            $this->render('achat', ["connectUser" =>  isset($_SESSION["usersessionID"]), "userRole" => $role,'oeuvre' => $oeuvreid,"panier" => $panierExist, "user" => $user]);
+        }
+        else {
+            $encheres = $oeuvre->getAllEnchere($id, $db);
+            $this->render('enchere', ["connectUser" =>  isset($_SESSION["usersessionID"]), "userRole" => $role,'oeuvre' => $oeuvreid, 'encheres' => $encheres, "user" => $user]);
+        }
+    }
 
     public function saveid(Database $db)
     {
