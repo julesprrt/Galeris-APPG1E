@@ -24,7 +24,6 @@ class Payment
 
     public function createObject(Database $db)
     {
-        session_start();
         $amount = $this->panier->getTotalAmountPanier($db);
         if ($amount == 0) {
             return 401;
@@ -184,92 +183,4 @@ class Payment
         $stmt->close();
         $conn->close();
     }
-
-    public function createTransfert($montant, $stripe, $userSolde)
-    {
-        if (floatval($montant) > $userSolde || floatval($montant) < 1.0) {
-            return 401;
-        } else {
-            $resultAccount = $this->createAccount();
-            $this->accountUpdate($resultAccount["id"]);
-            $result = $this->transfert(floatval($montant), $resultAccount["id"]);
-            return $result;
-        }
-    }
-
-    public function accountUpdate($stripe)
-    {
-        $curl = curl_init();
-        $fields = [
-            'capabilities[transfers][requested]' => 'true', 
-        ];
-
-       curl_setopt($curl, CURLOPT_HTTPHEADER, $this->headers);
-        curl_setopt($curl, CURLOPT_URL, "https://api.stripe.com/v1/accounts/$stripe");
-        curl_setopt($curl, CURLOPT_POST, true);
-
-
-        curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query($fields));
-        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
-
-        $output = curl_exec($curl);
-        $response = json_decode($output, true);
-
-        if (isset($response['error'])) {
-            echo "Error: " . $response['error']['message'];
-        } else {
-            echo "Transfers Capability Requested Successfully.";
-        }
-
-        curl_close($curl);
-
-    }
-
-    public function createAccount()
-    {
-        $curl = curl_init();
-
-        $fields["type"] = 'express';
-        $fields['country'] ='FR';
-        $fields['email'] = $_SESSION["usersessionMail"];
-        
-
-        curl_setopt($curl, CURLOPT_HTTPHEADER, $this->headers);
-        curl_setopt($curl, CURLOPT_URL, stripe_account);
-        curl_setopt($curl, CURLOPT_POST, true);
-
-
-        curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query($fields));
-        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
-        $output = curl_exec($curl);
-        curl_close($curl);
-
-        return json_decode($output, true);
-
-    }
-
-    public function transfert($montant, $stripe)
-    {
-        $curl = curl_init();
-        $fields = array();
-        $fields["currency"] = 'eur';
-        $fields['amount'] = $montant * 100;
-        $fields['destination'] = $stripe;
-        $fields['transfer_group'] = "test";
-
-        curl_setopt($curl, CURLOPT_HTTPHEADER, $this->headers);
-        curl_setopt($curl, CURLOPT_URL, stripe_transfert);
-        curl_setopt($curl, CURLOPT_POST, true);
-        curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query($fields));
-        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
-        $output = curl_exec($curl);
-        curl_close($curl);
-
-        return json_decode($output, true);
-    }
-
-
 }

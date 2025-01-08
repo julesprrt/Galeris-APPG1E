@@ -3,7 +3,7 @@
 require_once('Database/Database.php');
 require_once('Controller.php');
 require_once('Model/payment.php');
-require_once('Model/user.php');
+
 class PaymentController extends Controller
 {
 
@@ -94,41 +94,4 @@ class PaymentController extends Controller
 
 
     }
-
-
-    public function solde(Database $db)
-    {
-        session_start();
-
-        if(!isset($_SESSION["usersessionID"])){
-            header('Location: /Galeris-APPG1E/connexion');
-            return;
-        }
-
-        $user = new User(null,null,null,null,null,null,null,null,null);
-        $userAccount = $user->getUserById($_SESSION["usersessionID"], $db);
-        $role = isset($_SESSION["usersessionRole"]) === true && $_SESSION["usersessionRole"] === "Admin" ? true : false;
-        $this->render('solde', ["connectUser" =>  isset($_SESSION["usersessionID"]), "userRole" => $role, "solde" => $userAccount["solde"]]);
-    }
-
-    public function envoiesolde(Database $db){
-        session_start();
-        $paramData = file_get_contents("php://input");
-        $data = json_decode($paramData, true);
-        if(isset($data["idStripe"]) && isset($data["solde"])){
-            $user = new User(null,null,null,null,null,null,null,null,null);
-            $userAccount = $user->getUserById($_SESSION["usersessionID"], $db);
-            $payment = new Payment();
-            $response = $payment->createTransfert($data["solde"], $data["idStripe"], $userAccount["solde"]);
-            if($response === 401){
-                http_response_code(401);
-                echo json_encode(['Error' => "Le solde ne doit pas être supérieur à " . $userAccount["solde"] . " €"]);
-            }
-        }
-        else{
-            http_response_code(400);
-            echo json_encode(['Error' => "Veuillez remplir l'ensemble des champs."]);
-        }
-    }
-
 }

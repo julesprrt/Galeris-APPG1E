@@ -338,4 +338,42 @@ class UserController extends Controller
             echo json_encode(['Error' => "Données invalides pour le signalement (oeuvre_id, raison)."]);
         }
     }
+
+    public function solde(Database $db)
+    {
+        session_start();
+
+        if(!isset($_SESSION["usersessionID"])){
+            header('Location: /Galeris-APPG1E/connexion');
+            return;
+        }
+
+        $user = new User(null,null,null,null,null,null,null,null,null,null);
+        $userAccount = $user->getUserById($_SESSION["usersessionID"], $db);
+        $role = isset($_SESSION["usersessionRole"]) === true && $_SESSION["usersessionRole"] === "Admin" ? true : false;
+        $this->render('solde', ["connectUser" =>  isset($_SESSION["usersessionID"]), "userRole" => $role, "solde" => $userAccount["solde"]]);
+    }
+
+    public function envoiesolde(Database $db){
+        session_start();
+        $paramData = file_get_contents("php://input");
+        $data = json_decode($paramData, true);
+        if(isset($data["solde"])){
+            $user = new User(null,null,null,null,null,null,null,null,null,null);
+            $userAccount = $user->getUserById($_SESSION["usersessionID"], $db);
+            $response = $user->createTransfert($data["solde"], $userAccount["solde"], $db);
+            if($response === 401){
+                http_response_code(401);
+                echo json_encode(['Error' => "Le solde ne doit pas être supérieur à " . $userAccount["solde"] . " €"]);
+            }
+            else{
+                http_response_code(200);
+                echo json_encode(['Success' => "La somme de " . $data["solde"] . " € à était envoyé sur votre compte Stripe."]);
+            }
+        }
+        else{
+            http_response_code(400);
+            echo json_encode(['Error' => "Veuillez remplir l'ensemble des champs."]);
+        }
+    }
 }

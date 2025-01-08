@@ -63,8 +63,6 @@
                 <button class="close-button" type="submit">X</button>
             </div>
             <p class="title-solde">Transfert</p>
-            <input type="text" class="input-idStripe" name="idstripe" placeholder="ID de votre compte Stripe" />
-            <br>
             <input type="text" class="input-solde" name="solde" placeholder="Montant (Maximum : <?= $solde ?> €)" max="<?= $solde ?>" min="1.0" />
             <br>
             <p class="error"></p>

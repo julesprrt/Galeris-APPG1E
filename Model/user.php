@@ -406,4 +406,24 @@ class User
         $userInfo = $this->getUserById($_SESSION["usersessionID"], $db);
         $this->sendMail->signalement($_SESSION["oeuvre_id"], $raison, $oeuvreInfo["Titre"], $userInfo["nom"], $userInfo["prenom"]);
     }
+
+    public function createTransfert($montant, $userSolde, Database $db)
+    {
+        if (floatval($montant) > $userSolde || floatval($montant) < 1.0) {
+            return 401;
+        } else {
+            $this->transfert(floatval($montant), $_SESSION["usersessionID"], $db);
+            return 200;
+        }
+    }
+
+    public function transfert($montant, $id, Database $db){
+        $conn = $db->connect();
+        $sql = "update utilisateur set solde = solde - ? where id_utilisateur = ?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param('di',$montant, $id);
+        $stmt->execute();
+        $stmt->close();
+        $conn->close();
+    }
 }

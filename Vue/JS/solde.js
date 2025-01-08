@@ -20,9 +20,8 @@ async function EnvoieSolde() {
     myHeaders.append("Content-Type", "application/json");
     const solde = document.querySelector(".input-solde").value;
     const soldeMax = document.querySelector(".input-solde").max;
-    const stripe = document.querySelector(".input-idStripe").value
 
-    if(stripe.trim() === "" || solde.trim() === ""){
+    if(solde.trim() === ""){
         alert("Veuillez remplir l'ensemble des champs.")
         return;
     }
@@ -38,7 +37,6 @@ async function EnvoieSolde() {
 
         const raw = JSON.stringify({
             "solde": solde,
-            "idStripe" : stripe
         });
 
         const requestOptions = {
@@ -52,13 +50,12 @@ async function EnvoieSolde() {
         const result = await response.json();
 
         if (statuscode === 200) {
-            console.log(result)
-            //window.location.href = result.payment.url;
+            window.location.reload();
+            alert(result.Success)
+            closeForm()
         }
         else if (statuscode === 400) {
-            /*alert(result.Error);
-            document.querySelector(".input-solde").value = result.solde;
-            document.querySelector(".input-solde").min = result.solde;*/
+            alert(result.Error);
         }
     }
 }
