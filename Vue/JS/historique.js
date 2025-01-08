@@ -21,10 +21,20 @@ async function saveId(event) {
         body: raw,
         redirect: "follow"
     };
-    const response = await fetch("https://galeris/Galeris-APPG1E/saveid", requestOptions)
+    const response = await fetch("https://galeris/Galeris-APPG1E/saveidhistorique", requestOptions)
     const statuscode = response.status;
+    const text = await response.json();
     if (statuscode === 200) {
-        window.location.href = "https://galeris/Galeris-APPG1E/achat";
+        let datefin = new Date(text.datefin);
+        let today = new Date();
+        console.log(today)
+        if(text.estVendu === 0 && datefin.getTime() > today.getTime()){
+            window.location.href = "https://galeris/Galeris-APPG1E/achat";
+        }
+        else{
+            console.log("nok")
+            //autre page dedié historique seulement
+        }
     }
 }
 

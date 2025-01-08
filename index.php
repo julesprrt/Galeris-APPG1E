@@ -72,6 +72,7 @@ $router->addRoute('/Galeris-APPG1E/validerlivraison', LivraisonController::class
 $router->addRoute('/Galeris-APPG1E/supprimeroeuvre', AchatController::class, 'supprimeroeuvre');
 $router->addRoute('/Galeris-APPG1E/signaleroeuvre', UserController::class, 'signalerOeuvre');
 $router->addRoute('/Galeris-APPG1E/historique',HistoriqueController::class, 'historique');
+$router->addRoute('/Galeris-APPG1E/saveidhistorique', HistoriqueController::class, 'saveidhistorique');
 
 if ($uri !== null) {
     $router->dispatch($uri); //Appel a la méthode du controller dedié

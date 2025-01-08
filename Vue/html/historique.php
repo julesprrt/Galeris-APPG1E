@@ -67,7 +67,7 @@
                         foreach ($historique as $his) {
                             echo '<div class="oeuvreOBJ" style="cursor:pointer">';
                             echo '<div class="oeuvre">';
-                            echo '<input type="hidden" id="id_oeuvre_' . $his["id_oeuvre"] . '" name="id_oeuvre" value="' . $his["id_oeuvre"] . '">';
+                            echo '<input type="hidden" id="id_oeuvre_' . $his["id"] . '" name="id_oeuvre" value="' . $his["id"] . '">';
                             echo '<h3>' . $his["Titre"] . '</h3>';
                             echo '<img src="../' . $his["image_path"] . '" alt="' . $his["Titre"] . '" />';
                             echo '<p>' . substr($his["Description"], 0, 250) . '(...)</p>';
@@ -102,7 +102,7 @@
                         foreach ($achat as $ach) {
                             echo '<div class="oeuvreOBJ" style="cursor:pointer">';
                             echo '<div class="oeuvre">';
-                            echo '<input type="hidden" id="id_oeuvre_' . $ach["id_oeuvre"] . '" name="id_oeuvre" value="' . $ach["id_oeuvre"] . '">';
+                            echo '<input type="hidden" id="id_oeuvre_' . $ach["id"] . '" name="id_oeuvre" value="' . $ach["id"] . '">';
                             echo '<h3>' . $ach["Titre"] . '</h3>';
                             echo '<img src="../' . $ach["image_path"] . '" alt="' . $ach["Titre"] . '" />';
                             
