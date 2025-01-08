@@ -113,12 +113,6 @@ class AchatController extends Controller
 
     public function createEnchere(Database $db){
         session_start();
-
-        if (!isset($_SESSION['usersessionID'])) {
-            header('Location: /Galeris-APPG1E/connexion');
-            exit();
-        }
-
         $oeuvre = new Oeuvre($Titre = null, $Description = null, $eco_responsable = null, $Date_debut = null, $Date_fin = null, $Prix = null, $type_vente = null, $est_vendu = null, $auteur = null, $id_utilisateur = null, $id_categorie = null, $status = null, $nomvendeur = null, $prenomvendeur = null, $chemin_image = null, $prix_actuel = null, $id_offreur = null);
         $oeuvre->CreateSaveEnchere($db);
         return;
