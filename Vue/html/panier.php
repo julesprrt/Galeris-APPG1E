@@ -33,7 +33,7 @@
                             <div class="utilisateur"> 👤 </div>
                             <div class="dropdown-child">
                                 <a href="https://galeris/Galeris-APPG1E/profil">Mon profil</a>
-                                <a href="#">Mon solde</a>'.
+                                <a href="https://galeris/Galeris-APPG1E/solde">Mon solde</a>'.
                                 (($userRole === true)?
                                     '<a href="https://galeris/Galeris-APPG1E/listeoeuvreattente">Oeuvres en attente</a>
                                     <a href="https://galeris/Galeris-APPG1E/listeexposeattente">Exposés en attente</a>':"").

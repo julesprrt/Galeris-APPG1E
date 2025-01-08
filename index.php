@@ -70,6 +70,8 @@ $router->addRoute('/Galeris-APPG1E/panier', PanierController::class, 'panier');
 $router->addRoute('/Galeris-APPG1E/livraison', LivraisonController::class, 'livraison');
 $router->addRoute('/Galeris-APPG1E/validerlivraison', LivraisonController::class, 'validerlivraison');
 $router->addRoute('/Galeris-APPG1E/supprimeroeuvre', AchatController::class, 'supprimeroeuvre');
+$router->addRoute('/Galeris-APPG1E/solde', UserController::class, 'solde');
+$router->addRoute('/Galeris-APPG1E/envoiesolde', UserController::class, 'envoiesolde');
 $router->addRoute('/Galeris-APPG1E/signaleroeuvre', UserController::class, 'signalerOeuvre');
 $router->addRoute('/Galeris-APPG1E/news', NewsController::class, 'news');
 $router->addRoute('/Galeris-APPG1E/createnews', NewsController::class, 'createNews');
