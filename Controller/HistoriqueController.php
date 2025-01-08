@@ -13,9 +13,12 @@ Class HistoriqueController extends Controller{
         }
 
         $historique = new Historique();
-        $result = $historique->getAllHistorique($db);
-        $role = isset($_SESSION["usersessionRole"]) === true && $_SESSION["usersessionRole"] === "Admin" ? true : false;
-        $this->render('historique', ["connectUser" => isset($_SESSION["usersessionID"]), "userRole" => $role, "historique" => $result]);
+        $historiqueResult = $historique->getAllHistorique($db);
+        $achat = new Historique();
+        $achatResult = $achat->getAllAchat($db);
+        $role = isset($_SESSION["usersessionRole"]) && $_SESSION["usersessionRole"] === "Admin";
+        $this->render('historique', ["connectUser" => isset($_SESSION["usersessionID"]), "userRole" => $role, "historique" => $historiqueResult, "achat" => $achatResult]);
+
     }
         
     }
