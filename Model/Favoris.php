@@ -61,7 +61,7 @@ Class Favoris{
     }
 
     
-    public function retirerFavorisID(Database $db, $id) {
+    public function retirerFavorisId(Database $db, $id) {
         $conn = $db->connect();
         $sql = "Delete from favoris where id_favoris = ?";
         $stmt = $conn->prepare($sql);
@@ -73,32 +73,28 @@ Class Favoris{
     }
 
     public function getAllFavoris(Database $db){
-        session_start();
         $conn = $db->connect();
-        
-       
-        $sql = "SELECT * 
-                FROM favoris f
-                INNER JOIN oeuvre o ON o.id_oeuvre = f.id_oeuvre 
-                INNER JOIN utilisateur u ON u.id_utilisateur = o.id_utilisateur
-                LEFT JOIN oeuvre_images oi ON oi.id_oeuvre = o.id_oeuvre
-                WHERE f.id_utilisateur = ? 
-                  AND o.type_vente = ? 
-                  AND o.est_vendu = ? 
-                  AND o.Date_fin > ?
-                GROUP BY o.id_oeuvre";
-    
+        $sql = "select * from favoris p inner join oeuvre o on o.id_oeuvre = p.id_oeuvre inner join utilisateur u on u.id_utilisateur = o.id_utilisateur left join oeuvre_images oi on oi.id_oeuvre = o.id_oeuvre where p.id_utilisateur = ?  and o.Date_fin > ? GROUP BY o.id_oeuvre";
         $stmt = $conn->prepare($sql);
         $id_utilisateur = $_SESSION["usersessionID"];
         $type_vente = "vente";
         $est_vendu = 0;
         $actualDate = date('Y-m-d H:i:s');
-    
-        $stmt->bind_param("isis", $id_utilisateur, $type_vente, $est_vendu, $actualDate);
+        $stmt->bind_param("is",$id_utilisateur,  $actualDate);
         $stmt->execute();
+
         $result = $stmt->get_result();
-        $favoris = $result->fetch_assoc();
+
         $stmt->close();
         $conn->close();
+
+        $prixMax = 0;
+        foreach($result as $res){
+            $prixMax += $res["Prix"];
+        }
+
+        return 
+        ["result" => $result,
+         "total" => $prixMax];
     }
 }

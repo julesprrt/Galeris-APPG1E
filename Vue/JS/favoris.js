@@ -70,7 +70,7 @@ async function retirerfavoris(e){
     };
 
     try {
-        const result = await fetch("https://galeris/Galeris-APPG1E/retirerFavoris", requestOptions);
+        const result = await fetch("https://galeris/Galeris-APPG1E/retirerfavorisid", requestOptions);
         const statut = result.status;
         const text = await result.json();
         if(statut === 200){

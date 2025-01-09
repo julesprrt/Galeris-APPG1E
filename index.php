@@ -73,7 +73,7 @@ $router->addRoute('/Galeris-APPG1E/supprimeroeuvre', AchatController::class, 'su
 $router->addRoute('/Galeris-APPG1E/ajoutfavoris', FavorisController::class, 'ajoutFavoris');
 $router->addRoute('/Galeris-APPG1E/retirerfavoris', FavorisController::class, 'retirerFavoris');
 $router->addRoute('/Galeris-APPG1E/favoris', FavorisController::class, 'favoris');
-
+$router->addRoute('/Galeris-APPG1E/retirerfavorisid', FavorisController::class, 'retirerFavorisId');
 
 if ($uri !== null) {
     $router->dispatch($uri); //Appel a la méthode du controller dedié

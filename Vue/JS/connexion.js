@@ -3,6 +3,8 @@ document.querySelector(".submit-button").addEventListener('click', connexion);
 document.getElementById("showmdp").addEventListener('click', passwordToggle);
 document.getElementById("hidemdp").addEventListener('click', HidepasswordToggle);
 
+
+
 //Afficher ou non le mot de passe
 function passwordToggle(){
     const type = document.getElementById("passwordInput").getAttribute("type") === "password" ? "text" : "password";

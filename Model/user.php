@@ -246,7 +246,7 @@ class User
     public function getUserById($id, Database $db)
     {
         $conn = $db->connect();
-        $sql = "SELECT u.*, l.adresse as adresse_livraison, l.codepostale, l.ville, l.pays FROM utilisateur u inner join livraison l on l.id_utilisateur = u.id_utilisateur WHERE u.id_utilisateur = ?";
+        $sql = "SELECT u.*, l.adresse as adresse_livraison, l.codepostale, l.ville, l.pays FROM utilisateur u left join livraison l on l.id_utilisateur = u.id_utilisateur WHERE u.id_utilisateur = ?";
         $stmt = $conn->prepare($sql);
         $stmt->bind_param('i', $id); 
         $stmt->execute();

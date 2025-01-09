@@ -135,8 +135,11 @@ async function supprimerOeuvre(){
 }
 
 
-document.querySelector(".boutton-favoris").addEventListener("click", ajoutfavoris);
+document.querySelectorAll(".boutton-favoris").forEach(item => {
+    item.addEventListener("click", ajoutfavoris);
+});
 
+document.querySelectorAll(".boutton-retirer-favoris").forEach(item => item.addEventListener("click", retirerfavoris));
 
 async function ajoutfavoris(){
     console.log("ok")
@@ -179,7 +182,7 @@ async function retirerfavoris(){
     const statut = result.status;
     const text = await result.json();
     if(statut === 200){
-        alert(text.panier);
+        alert(text.favoris);
         window.location.reload();
    }
 }

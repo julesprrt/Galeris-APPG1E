@@ -5,15 +5,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <base href="/Galeris-APPG1E/Vue/">
-    <link rel="stylesheet" href="CSS/favoris.css">
+    <link rel="stylesheet" href="CSS/panier.css">
     <link rel="stylesheet" href="CSS/header.css">
     <link rel="stylesheet" href="CSS/footer.css">
     <title>favoris</title>
     <script src="https://galeris/Galeris-APPG1E/vue/JS/favoris.js" defer></script>
 </head>
 
-<body>
-    <div class="container">
+
+    
         <header>
             <div class="logo"> <a href="https://galeris/Galeris-APPG1E/"><img src="../images/logo.png"></a></div>
             <nav class="menu">
@@ -35,41 +35,38 @@
         </header>
 
         <!-- Contenu  -->
-        <div class="page-favoris">
-            <div class="contentbase">
-                <div class="content-description">
-                    <p class="description">"Vos favoris sont tous ici."
-                    </p>
+        <body> 
+            <div class="container flex">
+                <div class="structure">
+                    <h1 class="panier">Votre favoris</h1>
+                    <table id="table">
+                        <thead>
+                            <tr>
+                            <th></th>
+                            <th class="elm"></th>
+                            <th class="elm"></th>
+                            <th class="elm"></th>
+                            </tr>
+                        </thead>
+                        <tbody id="all_products">
+                            <?php
+                                foreach($favoris as $pan){
+                                    echo "<tr class='product' id='". $pan["id_oeuvre"] ."'> 
+                                <td class='article--name'><img src='../". $pan["chemin_image"] ."'>
+                                </td>
+                                <td class='titre'><p class='titrestyle'>" . $pan["Titre"] ."</p><p class='vendue'> Vendue par " . $pan["nom"] .  " " . $pan["prenom"] . "</p><p class='vendue'> Réalisé par " . $pan["auteur"] . "</p></td>
+                                <td class='price-elmprice'>" . $pan["Prix"] . " € <div class='remove'><a class='remove-elm' id='". $pan["id_favoris"] ."'><button  type='button' class='btn-simple'>Supprimer</button></a></div></td>
+                                <td></td>
+                            </tr><tr class='spacer'></tr>";
+                                }
+                            ?>
+                        </tbody>
+                    </table>
+                    
                 </div>
             </div>
-            
-        </div>
-        <?php
-                    foreach($favoris as $fav){
-                        echo "
-                        <tr class='product' id='". $fav["id_oeuvre"] ."'>
-                            <td class='article--name'>
-                                <img src='../". htmlspecialchars($fav["chemin_image"]) ."' alt='image'/>
-                            </td>
-                            <td class='titre'>
-                                <p class='titrestyle'>" . htmlspecialchars($fav["Titre"]) . "</p>
-                                <p class='vendue'>Vendu par " . htmlspecialchars($fav["nom"]) . " " . htmlspecialchars($fav["prenom"]) . "</p>
-                                <p class='vendue'>Réalisé par " . htmlspecialchars($fav["auteur"]) . "</p>
-                            </td>
-                            <td class='price-elmprice'>
-                                " . htmlspecialchars($fav["Prix"]) . " € 
-                                <div class='remove'>
-                                    <a class='remove-elm' id='". $fav["id_favoris"] ."'>
-                                        <button type='button' class='btn-simple'>Supprimer</button>
-                                    </a>
-                                </div>
-                            </td>
-                            <td></td>
-                        </tr>
-                        <tr class='spacer'></tr>";
-                    }
-                ?>
-                </tbody>
+        
+                
         
         
 
@@ -124,8 +121,8 @@
             </div>
 
         </footer>
-    </div>
-</body>
+    
+    </body>
 
 
 </html>

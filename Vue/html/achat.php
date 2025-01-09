@@ -131,18 +131,19 @@
                         <button class="boutton-supprimer">Supprimer</button>';
                     }
                     else{
+                        
                         if($panier === false){
                             echo '<button class="boutton-panier">Ajouter au Panier</button>';
                         }
                         else{
                             echo '<button class="boutton-retirer-panier">Retirer du Panier</button>';
                         }
-                        if($favoris === false){
-                            
+                     
+                        if($favoris === false){   
                             echo '<button class="boutton-favoris">Ajouter au favoris</button>';
-                        } else {
-                            
-                            echo '<button class="boutton-retirer-favoris">Retirer des favoris</button>';
+                        }
+                        else{
+                            echo '<button class="boutton-retirer-favoris">Retirer du Favoris</button>';
                         }
                     }
                 ?>

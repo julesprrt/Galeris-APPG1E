@@ -7,6 +7,7 @@ class FavorisController extends Controller
 { 
 
     public function favoris(Database $db){
+        
         session_start();
 
         if(!isset($_SESSION["usersessionID"])){
@@ -37,12 +38,11 @@ class FavorisController extends Controller
         
     }
 
-    public function retirerFavorisId(Database $db)
-    { 
-        $paramData = file_get_contents("php://input");
-        $data = json_decode($paramData, true);
+
+    public function retirerFavoris(Database $db)
+    {   
         $favoris = new Favoris();
-        $result = $favoris->retirerFavorisID($db, $data["id"]);
+        $result = $favoris->retirerFavoris($db);
         if($result === 200){
             http_response_code($result);
             echo json_encode(["favoris" => "Produit retirer du favoris"]);
@@ -53,11 +53,12 @@ class FavorisController extends Controller
         }
         
     }
-
-    public function retirerFavoris(Database $db)
+    public function retirerFavorisId(Database $db)
     { 
+        $paramData = file_get_contents("php://input");
+        $data = json_decode($paramData, true);
         $favoris = new Favoris();
-        $result = $favoris->retirerFavoris($db);
+        $result = $favoris->retirerFavorisId($db, $data["id"]);
         if($result === 200){
             http_response_code($result);
             echo json_encode(["favoris" => "Produit retirer du favoris"]);
