@@ -442,4 +442,20 @@ class User
         $conn->close();
         return $oeuvres;
     }
+    public function getAllHistorique(Database $db)
+    {
+        $conn = $db->connect();
+        $sql = "SELECT *, o.id_oeuvre as id FROM oeuvre o LEFT JOIN (SELECT id_oeuvre, MIN(chemin_image) AS 'image_path' FROM oeuvre_images GROUP BY id_oeuvre) oi ON oi.id_oeuvre = o.id_oeuvre
+        LEFT JOIN vente ON vente.id_oeuvre = o.id_oeuvre
+        WHERE (o.id_utilisateur = ? AND (statut = ?) AND o.id_utilisateur = ?)";
+        $stmt = $conn->prepare($sql);
+        $id_utilisateur = $_SESSION["usersessionID"];
+        $statut = "accepte";
+        $stmt->bind_param("issi", $id_utilisateur, $statut, $id_utilisateur);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $stmt->close();
+        $conn->close();
+        return $result;
+    }
 }

@@ -64,19 +64,33 @@
 
         <section class="oeuvres">
             <h2>Œuvres publiées</h2>
-            <?php if (!empty($oeuvres)) : ?>
-                <ul>
-                    <?php foreach ($oeuvres as $oeuvre) : ?>
-                        <li>
-                            <img src="../<?= htmlspecialchars($oeuvre['chemin_image']) ?>" alt="<?= htmlspecialchars($oeuvre['titre']) ?>" class="oeuvre-image">
-                            <p><strong><?= htmlspecialchars($oeuvre['titre']) ?></strong></p>
-                            <p><?= htmlspecialchars($oeuvre['description']) ?></p>
-                        </li>
-                    <?php endforeach; ?>
-                </ul>
-            <?php else : ?>
-                <p>Aucune œuvre publiée.</p>
-            <?php endif; ?>
+            <<div class="oeuvres">
+                <?php
+                foreach ($historique as $his) {
+                    echo '<div class="oeuvreOBJ" style="cursor:pointer">';
+                    echo '<div class="oeuvre">';
+                    echo '<input type="hidden" id="id_oeuvre_' . $his["id"] . '" name="id_oeuvre" value="' . $his["id"] . '">';
+                    echo '<h3>' . $his["Titre"] . '</h3>';
+                    echo '<img src="../' . $his["image_path"] . '" alt="' . $his["Titre"] . '" />';
+                    echo '<p>' . substr($his["Description"], 0, 250) . '(...)</p>';
+                    if ($his['statut'] == 'en attente de validation' or $his['statut'] == 'accepte') {
+                        echo '<p>' . $his['statut'] . '</p>';
+                    }
+                    if ($his['est_vendu'] == 1) {
+                        echo '<p> Vendu pour ' . $his['Prix'] . '€  à' . $his['id_utilisateur'] . 'le' . $his['Date_vente'] . '</p>';
+                    } else {
+                        echo "<p> Pas vendu </p>";
+                    }
+
+
+
+                    echo '</div>';
+                    echo '</div>';
+                }
+                ?>
+                </div>
+
+
         </section>
     </main>
     <footer>
