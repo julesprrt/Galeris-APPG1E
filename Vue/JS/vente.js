@@ -106,7 +106,7 @@ async function verificateAndSaveData() {
             item.src = "";
             item.title = "";
         })
-        window.location.href = "https://galeris/Galeris-APPG1E";
+        window.location.href = "./";
     }
     else {
         alert(result.Error);

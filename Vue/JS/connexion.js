@@ -45,7 +45,7 @@ async function connexion() {
             item.value = "";
         })
         grecaptcha.reset();
-        window.location.href = "https://galeris/Galeris-APPG1E";
+        window.location.href = "./";
     }
     else if(statuscode === 401){
         alert(result.Information);
