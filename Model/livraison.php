@@ -61,7 +61,7 @@ Class Livraison{
         $stmt->close();
         $conn->close();
 
-        if($result->num_rows > 0){
+        if(mysqli_num_rows($result) > 0){
             return true;
         }
         else{

@@ -19,7 +19,7 @@ Class Panier{
         $stmt->execute();
         $result = $stmt->get_result();
         $stmt->close();
-        if($result->num_rows > 0){
+        if(mysqli_num_rows($result) > 0){
             return true;
         }
         return false;

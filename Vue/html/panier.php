@@ -78,7 +78,7 @@
                 </tbody>
               </table>
               <?php
-                if($panier->num_rows > 0){
+                if(mysqli_num_rows($panier) > 0){
                     echo '<div class="btn-continuer"><a href="./livraison"><button type="button" class="btn-simple" id="add_button">Continuer</button></a></div>
                     <h2>Total : <span id="total_display">' . $total . '€</span></h2>';
                 }
