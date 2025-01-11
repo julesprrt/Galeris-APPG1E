@@ -77,8 +77,12 @@ class User
         }
         $database = $db->connect();
         // Interroger les données utilisateur dans la base de données
-        $query = "SELECT * FROM utilisateur WHERE email = '$this->email'";
-        $result = $database->execute_query($query);
+        $query = "SELECT * FROM utilisateur WHERE email = ?";
+        $stmt = $database->prepare($query);
+        $stmt->bind_param("s", $this->email);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $stmt->close();
         $database->close();
         if ($result->num_rows > 0) {
             // Obtenir les données utilisateur
@@ -144,8 +148,12 @@ class User
     public function VerifyExistMail(Database $db)
     {
         $conn = $db->connect();
-        $sql = "SELECT * FROM utilisateur where email = '$this->email'";
-        $result = $conn->execute_query($sql);
+        $sql = "SELECT * FROM utilisateur where email = ?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("s", $this->email);
+        $stmt->execute(); 
+        $stmt->close();
+        $result = $stmt->get_result();
         $conn->close();
         if ($result->num_rows > 0) {
             $user = mysqli_fetch_assoc($result);
