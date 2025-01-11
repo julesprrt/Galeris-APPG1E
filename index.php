@@ -15,8 +15,8 @@ require_once("./Controller/FavorisController.php");
 require_once("./Controller/AdminController.php");
 require_once("./Controller/PaymentController.php");
 require_once("./Controller/PanierController.php");
-require_once("./controller/LivraisonController.php");
-require_once("./controller/NewsController.php");
+require_once("./Controller/LivraisonController.php");
+require_once("./Controller/NewsController.php");
 
 $uri = $_SERVER['REQUEST_URI']; //Recupération de l'uri (la route)
 $router = new Router();
