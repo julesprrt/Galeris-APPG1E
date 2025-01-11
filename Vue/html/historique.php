@@ -53,12 +53,12 @@
             ?>
         </div>
     </header>
-    <main> 
+
+<main> 
     <body >
         <div class="container flex">
             <div class="structure">
               <h1 class="panier">Historique des Ventes</h1>
-          
               
               <div class="contentbase">
                 <div>
@@ -80,20 +80,15 @@
                             else {
                                 echo "<p> Pas vendu </p>";
                             }
-
-
-                            
                             echo '</div>';
                             echo '</div>';
                         }
                         ?>
                     </div>
-
                 </div>
-            </div>
+              </div>
 
-            <h1 class="panier">Historique des Achats</h1>
-          
+              <h1 class="panier">Historique des Achats</h1>
               
               <div class="contentbase">
                 <div>
@@ -105,22 +100,19 @@
                             echo '<input type="hidden" id="id_oeuvre_' . $ach["id"] . '" name="id_oeuvre" value="' . $ach["id"] . '">';
                             echo '<h3>' . $ach["Titre"] . '</h3>';
                             echo '<img src="../' . $ach["image_path"] . '" alt="' . $ach["Titre"] . '" />';
-                            
                             echo '<p> Vendu pour ' . $ach['Prix'] . '€  à le' .$ach['Date_vente']. '</p>';
                             echo '</div>';
-                            }
+                            echo '</div>';
+                        }
                         ?>
                     </div>
-
                 </div>
+              </div>
             </div>
         </div>
-                  
-                </tbody>
-              </table>
-            </div>
-          </div>
     </main>
+
+
     <footer>
 
 <div class="social-network">

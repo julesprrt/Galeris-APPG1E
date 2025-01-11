@@ -129,36 +129,40 @@
             <section class="info-prix">
                 <div class="prix">
                     <span><strong>Auteur :</strong> <?php echo htmlspecialchars($oeuvre['auteur']) ?></span><br><br>
-                    <span><strong>Prix :</strong> <?php echo number_format($oeuvre['Prix'], 2, ',', ' '); ?> € </span>
-                    <p><small>Publié le : <?php echo htmlspecialchars($oeuvre['Date_debut']); ?></small></p>
-                    <p><small class="temps-restant" data-fin="<?php echo $oeuvre["Date_fin"]  ?>">Temps restant : </small></p>
+                    <?php if ($oeuvre['est_vendu'] == 0): ?>
+                        <span><strong>Prix :</strong> <?php echo number_format($oeuvre['Prix'], 2, ',', ' '); ?> € </span>
+                        <p><small>Publié le : <?php echo htmlspecialchars($oeuvre['Date_debut']); ?></small></p>
+                        <p><small class="temps-restant" data-fin="<?php echo $oeuvre["Date_fin"] ?>">Temps restant : </small></p>
+                    <?php else: ?>
+                        <span><strong>Prix vendu :</strong> <?php echo number_format($oeuvre['prix'], 2, ',', ' '); ?> € </span>
+                        <p><small>Vendu le : <?php echo htmlspecialchars($oeuvre['Date_vente']); ?></small></p>
+                    <?php endif; ?>
                 </div>
             </section>
 
-            
-
             <!-- Boutons d'actions -->
-             
             <section class="actions">
-                
-                <?php
-                    if($user || $userRole){
-                        echo '<button class="boutton-modifier">Modifier</button>
-                        <button class="boutton-supprimer">Supprimer</button>';
-                    }
-                    else{
-                        if($panier === false){
-                            echo '<button class="boutton-panier">Ajouter au Panier</button>';
-                        }
-                        else{
-                            echo '<button class="boutton-retirer-panier">Retirer du Panier</button>';
-                        }
-                        echo '<button class="boutton-favoris">Ajouter au favoris</button>';
-                    }
-                ?>
+                <?php if ($oeuvre['est_vendu'] == 0): ?>
+                    <?php
+                    if (new DateTime() < new DateTime($oeuvre["Date_fin"])) {
+                        if ($user || $userRole) {
+                            echo '<button class="boutton-modifier">Modifier</button>
+                                  <button class="boutton-supprimer">Supprimer</button>';
 
-                <!-- bouton signaler -->
-                <button id="btnSignaleropenform" data-oeuvre-id=<?php echo $oeuvre['id_oeuvre']?>>Signaler cette œuvre</button>
+                        } else {
+                            if ($panier === false) {
+                                echo '<button class="boutton-panier">Ajouter au Panier</button>';
+                            } else {
+                                echo '<button class="boutton-retirer-panier">Retirer du Panier</button>';
+                            }
+                            echo '<button class="boutton-favoris">Ajouter au favoris</button>';
+                            echo '<button id="btnSignaleropenform" data-oeuvre-id="' . $oeuvre['id_oeuvre'] . '">Signaler cette œuvre</button>';
+                        }
+                        
+                    }
+                    ?>
+                <?php endif; ?>
+
             </section>
         </section>
     </main>

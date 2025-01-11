@@ -25,16 +25,7 @@ async function saveId(event) {
     const statuscode = response.status;
     const text = await response.json();
     if (statuscode === 200) {
-        let datefin = new Date(text.datefin);
-        let today = new Date();
-        console.log(today)
-        if(text.estVendu === 0 && datefin.getTime() > today.getTime()){
-            window.location.href = "https://galeris/Galeris-APPG1E/achat";
-        }
-        else{
-            console.log("nok")
-            //autre page dedié historique seulement
+        window.location.href = "https://galeris/Galeris-APPG1E/achat";
         }
     }
-}
 
