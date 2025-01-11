@@ -51,7 +51,7 @@
                     Je reconnais avoir pris connaissance des <a href="./cgu" target="_blank">conditions générales d’utilisation</> de Galeris
                 </label>
                 <br>
-                <div name="recaptcha" class="g-recaptcha" data-sitekey="6Lf0tIkqAAAAANfbK1JSkQByCF-s0YgdX1K2nCGs"></div>
+                <div name="recaptcha" class="g-recaptcha" data-sitekey="6LfGYYkqAAAAAKgMjRbrHHI64B8NFOIA-3wKM1wp"></div>
                 </form>
             </div>
         </div>

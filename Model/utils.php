@@ -76,7 +76,7 @@ Class Utils {
         return $result;
     }
     public function verifyCaptcha($response){
-        $secretKey = "6Lf0tIkqAAAAAAATTCwNZELpV0tpppZAjBwAXBoc";
+        $secretKey = "6LfGYYkqAAAAACV2D1t7AQ_Tgi1tnc6oCENSgzlr";
         $url = 'https://www.google.com/recaptcha/api/siteverify?secret=' . urlencode($secretKey) .  '&response=' . urlencode($response);
         $response = file_get_contents($url);
         $responseKeys = json_decode($response,true);
