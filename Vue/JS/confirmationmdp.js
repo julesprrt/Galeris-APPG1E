@@ -55,7 +55,7 @@ async function confpassword (){
 
 
 
-        const response = await fetch("https://galeris/Galeris-APPG1E/confirmationmdp", requestOptions);
+        const response = await fetch("./confirmationmdp", requestOptions);
         const statuscode = response.status;
         const result = await response.json();
 

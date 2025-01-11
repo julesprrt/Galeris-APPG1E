@@ -30,7 +30,7 @@ async function register1() {
         body: raw,
         redirect: "follow"
     };
-    const response = await fetch("https://galeris/Galeris-APPG1E/codeunique", requestOptions)
+    const response = await fetch("./codeunique", requestOptions)
     const statuscode = response.status;
     const result = await response.json();
     console.log(result.Success !== "password")
@@ -63,7 +63,7 @@ async function resendcode() {
         body: raw,
         redirect: "follow"
     };
-    const response = await fetch("https://galeris/Galeris-APPG1E/renvoiecode", requestOptions)
+    const response = await fetch("./renvoiecode", requestOptions)
     const statuscode = response.status;
     const result = await response.json();
     

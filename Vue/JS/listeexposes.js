@@ -21,7 +21,7 @@ async function saveId(event) {
         body: raw,
         redirect: "follow"
     };
-    const response = await fetch("https://galeris/Galeris-APPG1E/saveidexpose", requestOptions)
+    const response = await fetch("./saveidexpose", requestOptions)
     const statuscode = response.status;
     if (statuscode === 200) {
        window.location.href = "./expose";

@@ -14,7 +14,7 @@ async function verifyMail() {
         body: raw,
         redirect: "follow"
     };
-    const response = await fetch("https://galeris/Galeris-APPG1E/verifyMail", requestOptions)
+    const response = await fetch("./verifyMail", requestOptions)
     const statuscode = response.status;
     const result = await response.json();
     

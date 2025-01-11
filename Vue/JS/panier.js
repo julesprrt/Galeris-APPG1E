@@ -33,7 +33,7 @@ async function GoToProduct(e){
         body: raw,
         redirect: "follow"
     };
-    const response = await fetch("https://galeris/Galeris-APPG1E/saveid", requestOptions)
+    const response = await fetch("./saveid", requestOptions)
     const statuscode = response.status;
     if (statuscode === 200) {
        window.location.href = "./achat";
@@ -56,7 +56,7 @@ async function retirerpanier(e){
         redirect: "follow"
     };
 
-    const result = await fetch("https://galeris/Galeris-APPG1E/retirerpanierid", requestOptions);
+    const result = await fetch("./retirerpanierid", requestOptions);
     const statut = result.status;
     const text = await result.json();
     console.log(text)

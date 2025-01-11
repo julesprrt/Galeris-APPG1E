@@ -31,7 +31,7 @@ async function connexion() {
         body: raw,
         redirect: "follow"
     };
-    const response = await fetch("https://galeris/Galeris-APPG1E/connexion", requestOptions)
+    const response = await fetch("./connexion", requestOptions)
     const statuscode = response.status;
     const result = await response.json();
     

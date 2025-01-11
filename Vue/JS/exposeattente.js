@@ -52,7 +52,7 @@ async function acceptExpose() {
             body: raw,
             redirect: "follow"
         };
-        const response = await fetch("https://galeris/Galeris-APPG1E/statutexpose", requestOptions)
+        const response = await fetch("./statutexpose", requestOptions)
         const statuscode = response.status;
         if (statuscode === 200) {
             window.location.href = "./listeexposeattente";
@@ -82,7 +82,7 @@ async function cancelExpose() {
             body: raw,
             redirect: "follow"
         };
-        const response = await fetch("https://galeris/Galeris-APPG1E/statutexpose", requestOptions)
+        const response = await fetch("./statutexpose", requestOptions)
         const statuscode = response.status;
         if (statuscode === 200) {
             window.location.href = "./listeexposeattente";

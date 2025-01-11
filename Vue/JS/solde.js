@@ -45,7 +45,7 @@ async function EnvoieSolde() {
             body: raw,
             redirect: "follow"
         };
-        const response = await fetch("https://galeris/Galeris-APPG1E/envoiesolde", requestOptions)
+        const response = await fetch("./envoiesolde", requestOptions)
         const statuscode = response.status;
         const result = await response.json();
 
