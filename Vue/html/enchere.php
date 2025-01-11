@@ -172,7 +172,7 @@
                 <button id="btnSignaleropenform">Signaler cette œuvre</button>
             </section>
             <?php
-            if (mysqli_num_rows($encheres) > 0) {
+            if ($enchere->num_rows > 0) {
                 echo "<table class='table-enchere'>
                     <caption class='enchere'>Enchères</caption>
                     <thead>

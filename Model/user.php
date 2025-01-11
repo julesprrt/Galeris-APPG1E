@@ -80,7 +80,7 @@ class User
         $query = "SELECT * FROM utilisateur WHERE email = '$this->email'";
         $result = $database->execute_query($query);
         $database->close();
-        if (mysqli_num_rows($result) > 0) {
+        if ($result->num_rows > 0) {
             // Obtenir les données utilisateur
             $user = mysqli_fetch_assoc($result);
             // Vérifier le mot de passe
@@ -147,7 +147,7 @@ class User
         $sql = "SELECT * FROM utilisateur where email = '$this->email'";
         $result = $conn->execute_query($sql);
         $conn->close();
-        if (mysqli_num_rows($result) > 0) {
+        if ($result->num_rows > 0) {
             $user = mysqli_fetch_assoc($result);
             if ($user["actif"] === 0) {
                 session_start();
