@@ -1,14 +1,9 @@
 <?php
-
-class GalerisController {
+require_once('Controller.php');
+class GalerisController extends Controller{
     public function controller() {
-        $viewPath = __DIR__ . '/../Vue/html/galeris.php';
-
-        if (file_exists($viewPath)) {
-            require_once $viewPath;
-        } else {
-            http_response_code(404);
-            echo "La page Galeris est introuvable.";
-        }
+        session_start();
+        $role = isset($_SESSION["usersessionRole"]) === true && $_SESSION["usersessionRole"] === "Admin" ? true : false;
+        $this->render('galeris', ["connectUser" =>  isset($_SESSION["usersessionID"]),  "userRole" => $role]);
     }
 }

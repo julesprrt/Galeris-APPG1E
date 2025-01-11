@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="Vue/CSS/header.css">
     <link rel="stylesheet" href="Vue/CSS/style.css">
     <script src="Vue/JS/Faq.js" defer></script>
+    <script src="Vue/JS/Header.js" defer></script>
 </head>
 <div class="container">
 <header>
@@ -29,7 +30,23 @@
             <input type="text" placeholder="Rechercher...">
             <div class="favori"> <a href="./favoris">❤️ </a></div>
             <div class="panier"> <a href="./panier"> 🛒 </a></div>
-            <div class="utilisateur"><a href="./profil"> 👤 </a></div>
+            <?php
+                if ($connectUser === true) {
+                    echo '<div class="dropdown">
+                            <div class="utilisateur"> 👤 </div>
+                            <div class="dropdown-child">
+                                <a href="./profil">Mon profil</a>
+                                <a href="./solde">Mon solde</a>'.
+                                (($userRole === true)?
+                                    '<a href="./listeoeuvreattente">Oeuvres en attente</a>
+                                    <a href="./listeexposeattente">Exposés en attente</a>':"").
+                                '<a id="deconnexion">Déconnexion</a>
+                            </div>
+                           </div>';
+                } else {
+                    echo '<div class="utilisateur"><a href="./connexion"> 👤 </a></div>';
+                }
+                ?>
         </div>
     </header>     
 <body>

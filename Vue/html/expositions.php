@@ -16,7 +16,7 @@
 <body>
     <div class="container">
         <header>
-            <div class="logo"> <a href="./"><img src="images/o.png"></a></div>
+            <div class="logo"> <a href="./"><img src="images/logo.png"></a></div>
             <nav class="menu">
                 <ul>
                     <li><a href="./">Accueil</a></li>

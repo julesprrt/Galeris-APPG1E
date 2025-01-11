@@ -3,13 +3,12 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accueil</title>
     <link rel="stylesheet" href="Vue/CSS/accueil.css">
     <link rel="stylesheet" href="Vue/CSS/header.css">
     <link rel="stylesheet" href="Vue/CSS/footer.css">
-    <script src=Vue/JS/header.js" defer></script>
+    <script src="Vue/JS/header.js" defer></script>
     <script src="Vue/JS/accueil.js" defer></script>
-    <title>Accueil</title>
 </head>
 
 <body>

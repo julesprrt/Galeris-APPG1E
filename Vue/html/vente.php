@@ -4,7 +4,6 @@
 <head>
     <meta charset="UTF-8">
     <title>Vente</title>
-    
     <link rel="stylesheet" href="Vue/CSS/vente.css">
     <link rel="stylesheet" href="Vue/CSS/header.css">
     <link rel="stylesheet" href="Vue/CSS/footer.css">

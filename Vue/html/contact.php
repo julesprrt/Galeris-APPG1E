@@ -18,7 +18,7 @@
         <div class="container">
             <p class="bigTitle6"> Une question ? Un conseil ?</p>
             <p class="bigTitle3"> Contactez-nous </p>
-            <p><a href="../" class="home-link">Retour à l'accueil</a></p>
+            <p><a href="./" class="home-link">Retour à l'accueil</a></p>
 
             <form>
                 <input class="contact-input simpleInput" type="text" name="firstName" placeholder="Prénom" required>
