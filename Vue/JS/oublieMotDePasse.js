@@ -21,7 +21,7 @@ async function verifyMail() {
     if(statuscode === 200){
         document.getElementById("btn-omdp").disable = false;
         alert(result.Success)
-        window.location.href = "https://galeris/Galeris-APPG1E/codeunique";
+        window.location.href = "./codeunique";
     }
     else{
         document.getElementById("btn-omdp").disable = false;

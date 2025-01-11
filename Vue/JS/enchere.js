@@ -47,7 +47,7 @@ function tempsRestants() {
 
             el.textContent = `${jours}j ${heures}h ${minutes}m ${secondes}s restant`;
         } else {
-            window.location.href = "https://galeris/Galeris-APPG1E/";
+            window.location.href = "./";
         }
     });
 }
@@ -83,12 +83,12 @@ async function verifyEnchere() {
         }
         else {
             alert("Vous pouvez modifier vos données de livraison sur la page livraison");
-            window.location.href = "https://galeris/Galeris-APPG1E/livraison";
+            window.location.href = "./livraison";
         }
     }
     else if (statuscode === 401) {
         alert(result.Error);
-        window.location.href = "https://galeris/Galeris-APPG1E/livraison";
+        window.location.href = "./livraison";
     }
 }
 
@@ -189,7 +189,7 @@ async function supprimerOeuvre() {
 
         if (statut === 200) {
             alert(text.Success);
-            window.location.href = "https://galeris/Galeris-APPG1E/";
+            window.location.href = "./";
         }
     }
 }

@@ -5,14 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mot de Passe Oublié</title>
-    <base href="/Galeris-APPG1E/Vue/">
-    <link rel="stylesheet" href="CSS\motdepasseoublie.css">
-    <link rel="stylesheet" href="CSS\style.css">
+    <link rel="stylesheet" href="Vue/CSS/motdepasseoublie.css">
+    <link rel="stylesheet" href="Vue/CSS/style.css">
     <script src="http://localhost/Galeris-APPG1E/vue/JS/oublieMotDePasse.js" defer></script>
 </head>
 <body>
 <h1 class="simpleTitle">Mot de Passe Oublié</h1>
-<a href="https://galeris/Galeris-APPG1E/"><img src="../images/logo-sans-fond.png" alt="Logo de Galeris" style="display: block; margin: 0 auto;" ></a>
+<a href="./"><img src="images/logo-sans-fond.png" alt="Logo de Galeris" style="display: block; margin: 0 auto;" ></a>
 </header>
 <main>
     <form>

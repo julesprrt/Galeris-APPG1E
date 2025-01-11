@@ -40,7 +40,7 @@ async function encherirCase(){
     
     if(statut === 200){
         alert(text.Success);
-        window.location.href = "https://galeris/Galeris-APPG1E/achat";
+        window.location.href = "./achat";
     }
     else{
         alert(text.Error);
@@ -159,7 +159,7 @@ async function saveLivraisonProfil(){
     
     if(statut === 200){
         alert(text.Success);
-        window.location.href = "https://galeris/Galeris-APPG1E/profil";
+        window.location.href = "./profil";
     }
     else{
         alert(text.Error);

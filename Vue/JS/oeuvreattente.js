@@ -54,7 +54,7 @@ async function acceptOeuvre() {
         const response = await fetch("https://galeris/Galeris-APPG1E/statutoeuvre", requestOptions)
         const statuscode = response.status;
         if (statuscode === 200) {
-            window.location.href = "https://galeris/Galeris-APPG1E/listeoeuvreattente";
+            window.location.href = "./listeoeuvreattente";
         }
     }
     else {
@@ -84,7 +84,7 @@ async function cancelOeuvre() {
         const response = await fetch("https://galeris/Galeris-APPG1E/statutoeuvre", requestOptions)
         const statuscode = response.status;
         if (statuscode === 200) {
-            window.location.href = "https://galeris/Galeris-APPG1E/listeoeuvreattente";
+            window.location.href = "./listeoeuvreattente";
         }
     }
     else {

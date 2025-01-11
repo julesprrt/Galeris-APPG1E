@@ -52,7 +52,7 @@ function tempsRestants() {
 
             el.textContent = `${jours}j ${heures}h ${minutes}m ${secondes}s restant`;
         } else {
-            window.location.href = "https://galeris/Galeris-APPG1E/";
+            window.location.href = "./";
         }
     });
 }
@@ -130,7 +130,7 @@ async function supprimerOeuvre(){
         
         if(statut === 200){
             alert(text.Success);
-            window.location.href = "https://galeris/Galeris-APPG1E/";
+            window.location.href = "./";
         }
     }
 }

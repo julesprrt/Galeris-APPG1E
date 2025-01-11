@@ -36,7 +36,7 @@ async function GoToProduct(e){
     const response = await fetch("https://galeris/Galeris-APPG1E/saveid", requestOptions)
     const statuscode = response.status;
     if (statuscode === 200) {
-       window.location.href = "https://galeris/Galeris-APPG1E/achat";
+       window.location.href = "./achat";
     }
 }
 

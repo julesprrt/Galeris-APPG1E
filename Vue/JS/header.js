@@ -20,7 +20,7 @@ async function Deconnexion(){
     
     if(statuscode === 200){
         alert(result.Success)
-        window.location.href = "https://galeris/Galeris-APPG1E/";
+        window.location.href = "./";
     }
     
     else{

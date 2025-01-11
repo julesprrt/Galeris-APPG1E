@@ -37,11 +37,11 @@ async function register1() {
     if(statuscode === 200 && result.Success !== "password"){
         document.querySelector(".valid-code").disabled = false;
         alert(result.Success);
-        window.location.href = "https://galeris/Galeris-APPG1E/"
+        window.location.href = "./"
     }
     else if(statuscode === 200 && result.Success === "password"){
         document.querySelector(".valid-code").disabled = false;
-        window.location.href = "https://galeris/Galeris-APPG1E/confirmationmdp";
+        window.location.href = "./confirmationmdp";
     }
     else{ 
         document.querySelector(".valid-code").disabled = false;

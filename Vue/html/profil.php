@@ -4,48 +4,48 @@
 <head>
     <meta charset="UTF-8">
     <title>Profil utilisateur</title>
-    <base href="/Galeris-APPG1E/Vue/">
-    <link rel="stylesheet" href="CSS/profil.css">
-    <link rel="stylesheet" href="CSS/header.css">
-    <link rel="stylesheet" href="CSS/footer.css">
-    <script src="https://galeris/Galeris-APPG1E/vue/JS/header.js" defer></script>
+    
+    <link rel="stylesheet" href="Vue/CSS/profil.css">
+    <link rel="stylesheet" href="Vue/CSS/header.css">
+    <link rel="stylesheet" href="Vue/CSS/footer.css">
+    <script src="Vue/JS/header.js" defer></script>
 </head>
 
 <body>
     <header>
         <div class="logo">
-            <a href="https://galeris/Galeris-APPG1E/">
-                <img src="../images/logo.png" alt="Logo">
+            <a href="./">
+                <img src="images/logo.png" alt="Logo">
             </a>
         </div>
         <nav class="menu">
             <ul>
-                <li><a href="https://galeris/Galeris-APPG1E/">Accueil</a></li>
-                <li><a href="https://galeris/Galeris-APPG1E/ventes">Vente</a></li>
-                    <li><a href="https://galeris/Galeris-APPG1E/exposes">Exposition</a></li>
-                <li><a href="https://galeris/Galeris-APPG1E/listenews">News</a></li>
+                <li><a href="./">Accueil</a></li>
+                <li><a href="./ventes">Vente</a></li>
+                    <li><a href="./exposes">Exposition</a></li>
+                <li><a href="./listenews">News</a></li>
                 <li><a href="#">Plus</a></li>
             </ul>
         </nav>
         <div class="barre_recherche">
             <input type="text" placeholder="Rechercher...">
-            <div class="favori"><a href="https://galeris/Galeris-APPG1E/favoris">❤️</a></div>
-            <div class="panier"><a href="https://galeris/Galeris-APPG1E/panier">🛒</a></div>
+            <div class="favori"><a href="./favoris">❤️</a></div>
+            <div class="panier"><a href="./panier">🛒</a></div>
             <?php
                 if ($connectUser === true) {
                     echo '<div class="dropdown">
                             <div class="utilisateur"> 👤 </div>
                             <div class="dropdown-child">
-                                <a href="https://galeris/Galeris-APPG1E/profil">Mon profil</a>
-                                <a href="https://galeris/Galeris-APPG1E/solde">Mon solde</a>'.
+                                <a href="./profil">Mon profil</a>
+                                <a href="./solde">Mon solde</a>'.
                                 (($userRole === true)?
-                                    '<a href="https://galeris/Galeris-APPG1E/listeoeuvreattente">Oeuvres en attente</a>
-                                    <a href="https://galeris/Galeris-APPG1E/listeexposeattente">Exposés en attente</a>':"").
+                                    '<a href="./listeoeuvreattente">Oeuvres en attente</a>
+                                    <a href="./listeexposeattente">Exposés en attente</a>':"").
                                 '<a id="deconnexion">Déconnexion</a>
                             </div>
                            </div>';
                 } else {
-                    echo '<div class="utilisateur"><a href="https://galeris/Galeris-APPG1E/connexion"> 👤 </a></div>';
+                    echo '<div class="utilisateur"><a href="./connexion"> 👤 </a></div>';
                 }
             ?>
 
@@ -58,7 +58,7 @@
         <section class="profil">
             <h2>Bienvenue, <?= htmlspecialchars($user['prenom']) ?> <?= htmlspecialchars($user['nom']) ?></h2>
             <div class="profil-info">
-            <img src="../<?php echo htmlspecialchars($user['photodeprofil'] ?? 'ImageBD/Profil/avatarbasique.jpg'); ?>" alt="Photo de profil" class="profile-image">
+            <img src="./<?php echo htmlspecialchars($user['photodeprofil'] ?? 'ImageBD/Profil/avatarbasique.jpg'); ?>" alt="Photo de profil" class="profile-image">
             <div class="details">
                     <p><strong>Nom :</strong> <?= htmlspecialchars($user['nom']) ?></p>
                     <p><strong>Prénom :</strong> <?= htmlspecialchars($user['prenom']) ?></p>
@@ -71,10 +71,10 @@
                 </div>
             </div>
             <div class="actions">
-                <a href="https://galeris/Galeris-APPG1E/historique" class="btn">Historique de mes ventes</a>
-                <a href="https://galeris/Galeris-APPG1E/editionprofil" class="btn">Modifier mon profil</a>
-                <a href="https://galeris/Galeris-APPG1E/historique" class="btn">Historique de mes achats</a>
-                <a href="https://galeris/Galeris-APPG1E/livraison" class="btn">Livraison</a>
+                <a href="./historique" class="btn">Historique de mes ventes</a>
+                <a href="./editionprofil" class="btn">Modifier mon profil</a>
+                <a href="./historique" class="btn">Historique de mes achats</a>
+                <a href="./livraison" class="btn">Livraison</a>
             </div>
         </section>
     </main>
@@ -113,16 +113,16 @@
         <div class="container-footer">
             <a class="title-footer">Qui sommes-nous ?</a>
             <a class="item-footer" href="#">NovArt</a>
-            <a class="item-footer" href="https://galeris/Galeris-APPG1E/galeris">Galeris</a>
+            <a class="item-footer" href="./galeris">Galeris</a>
         </div>
         <div class="container-footer">
             <a class="title-footer">Aide</a>
-            <a class="item-footer" href="https://galeris/Galeris-APPG1E/faq">Foire aux questions</a>
-            <a class="item-footer" href="https://galeris/Galeris-APPG1E/contact">Contact</a>
+            <a class="item-footer" href="./faq">Foire aux questions</a>
+            <a class="item-footer" href="./contact">Contact</a>
         </div>
         <div class="container-footer">
             <a class="title-footer">Informations légales</a>
-            <a class="item-footer" href="https://galeris/Galeris-APPG1E/cgu">Conditions d'utilisations</a>
+            <a class="item-footer" href="./cgu">Conditions d'utilisations</a>
             <a class="item-footer" href="#">Mentions légales</a>
         </div>
 

@@ -43,7 +43,7 @@ async function register() {
         document.querySelector('.error-message').innerHTML = "";
         document.querySelector(".submit-button").disabled = false;
         grecaptcha.reset();
-        window.location.href = "https://galeris/Galeris-APPG1E/codeunique"
+        window.location.href = "./codeunique"
     }
     
     else{

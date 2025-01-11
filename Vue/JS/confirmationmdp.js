@@ -64,7 +64,7 @@ async function confpassword (){
             document.querySelectorAll(".inputpassword").forEach(item => {
                 item.value = "";
             });
-            window.location.href = "https://galeris/Galeris-APPG1E/";
+            window.location.href = "./";
         }
         else {
             alert(result.Error);

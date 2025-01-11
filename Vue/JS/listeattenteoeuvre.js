@@ -29,6 +29,6 @@ async function saveId(event) {
     const response = await fetch("https://galeris/Galeris-APPG1E/saveid", requestOptions)
     const statuscode = response.status;
     if (statuscode === 200) {
-       window.location.href = "https://galeris/Galeris-APPG1E/attenteoeuvre";
+       window.location.href = "./attenteoeuvre";
     }
 }

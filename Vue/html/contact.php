@@ -5,10 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <base href="/Galeris-APPG1E/Vue/">
-    <link rel="stylesheet" href="CSS/contact.css">
-    <link rel="stylesheet" href="CSS/style.css">
-    <script src="https://galeris/Galeris-APPG1E/vue/JS/contact.js" defer></script>
+    
+    <link rel="stylesheet" href="Vue/CSS/contact.css">
+    <link rel="stylesheet" href="Vue/CSS/style.css">
+    <script src="Vue/JS/contact.js" defer></script>
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
 </head>

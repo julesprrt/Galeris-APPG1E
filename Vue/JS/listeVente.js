@@ -41,7 +41,7 @@ async function saveId(event) {
     const statuscode = response.status;
     if (statuscode === 200) {
         reinit();
-        window.location.href = "https://galeris/Galeris-APPG1E/achat";
+        window.location.href = "./achat";
     }
 }
 

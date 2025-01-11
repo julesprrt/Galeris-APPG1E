@@ -5,42 +5,42 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FAQ Galeris</title>
-    <base href="/Galeris-APPG1E/Vue/">
-    <link rel="stylesheet" href="CSS/FAQ.css">
-    <link rel="stylesheet" href="CSS/footer.css">
-    <link rel="stylesheet" href="CSS/header.css">
-    <link rel="stylesheet" href="CSS/style.css">
-    <script src="https://galeris/Galeris-APPG1E/vue/JS/Faq.js" defer></script>
+    
+    <link rel="stylesheet" href="Vue/CSS/FAQ.css">
+    <link rel="stylesheet" href="Vue/CSS/footer.css">
+    <link rel="stylesheet" href="Vue/CSS/header.css">
+    <link rel="stylesheet" href="Vue/CSS/style.css">
+    <script src="Vue/JS/Faq.js" defer></script>
 </head>
 <div class="container">
 <header>
-        <div class="logo"><a href="https://galeris/Galeris-APPG1E/"> <img width="150" height="150" src="../images/logo-sans-fond.png" src="../images/logo.png"></a></div>
+        <div class="logo"><a href="./"> <img width="150" height="150" src="images/logo-sans-fond.png" src="images/logo.png"></a></div>
         <nav class="menu">
             <ul>
-                <li><a href="https://galeris/Galeris-APPG1E/">Accueil</a></li>
-                <li><a href="https://galeris/Galeris-APPG1E/ventes">Vente</a></li>
-                    <li><a href="https://galeris/Galeris-APPG1E/exposes">Exposition</a></li>
-                <li><a href="https://galeris/Galeris-APPG1E/listenews">News</a></li>
+                <li><a href="./">Accueil</a></li>
+                <li><a href="./ventes">Vente</a></li>
+                    <li><a href="./exposes">Exposition</a></li>
+                <li><a href="./listenews">News</a></li>
                 <li><a href="#">Plus</a></li>
             </ul>
         </nav>
         <div class="barre_recherche">
             <!-- Barre de recherche, les emojis sont responsives si on clique dessus -->
             <input type="text" placeholder="Rechercher...">
-            <div class="favori"> <a href="https://galeris/Galeris-APPG1E/favoris">❤️ </a></div>
-            <div class="panier"> <a href="https://galeris/Galeris-APPG1E/panier"> 🛒 </a></div>
-            <div class="utilisateur"><a href="https://galeris/Galeris-APPG1E/profil"> 👤 </a></div>
+            <div class="favori"> <a href="./favoris">❤️ </a></div>
+            <div class="panier"> <a href="./panier"> 🛒 </a></div>
+            <div class="utilisateur"><a href="./profil"> 👤 </a></div>
         </div>
     </header>     
 <body>
     <h1> Foire aux questions </h1>
     <h2>Trouvez toutes les réponses à vos questions !</h2>
         <p>
-            <img src="../images/tableau.png" class="tableau" />
-            <img src="../images/tableau2.png" class="tableau2" />
+            <img src="images/tableau.png" class="tableau" />
+            <img src="images/tableau2.png" class="tableau2" />
         </p>
     <div class="Page">
-        <img src="../images/sculpture2.png" class="image1" />
+        <img src="images/sculpture2.png" class="image1" />
 
         <il>Général</il><br>
 
@@ -195,16 +195,16 @@
         <div class="container-footer">
             <a class="title-footer">Qui sommes-nous ?</a>
             <a class="item-footer" href="#">NovArt</a>
-            <a class="item-footer" href="https://galeris/Galeris-APPG1E/galeris">Galeris</a>
+            <a class="item-footer" href="./galeris">Galeris</a>
         </div>
         <div class="container-footer">
             <a class="title-footer">Aide</a>
-            <a class="item-footer" href="https://galeris/Galeris-APPG1E/faq">Foire aux questions</a>
-            <a class="item-footer" href="https://galeris/Galeris-APPG1E/contact">Contact</a>
+            <a class="item-footer" href="./faq">Foire aux questions</a>
+            <a class="item-footer" href="./contact">Contact</a>
         </div>
         <div class="container-footer">
             <a class="title-footer">Informations légales</a>
-            <a class="item-footer" href="https://galeris/Galeris-APPG1E/cgu">Conditions d'utilisations</a>
+            <a class="item-footer" href="./cgu">Conditions d'utilisations</a>
             <a class="item-footer" href="#">Mentions légales</a>
         </div>
 

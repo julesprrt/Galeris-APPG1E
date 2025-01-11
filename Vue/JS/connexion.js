@@ -56,7 +56,7 @@ async function connexion() {
             item.value = "";
         })
         grecaptcha.reset();
-        window.location.href = "https://galeris/Galeris-APPG1E/inscription";
+        window.location.href = "./inscription";
     }
     else{
         grecaptcha.reset();

@@ -30,7 +30,7 @@ async function contact() {
         })
         grecaptcha.reset();
         document.getElementById("btn-contact").disabled = false;
-        window.location.href = "https://galeris/Galeris-APPG1E/";
+        window.location.href = "./";
     }
     else {
         alert(result.Error);

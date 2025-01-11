@@ -5,9 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <base href="/Galeris-APPG1E/Vue/">
-    <link rel="stylesheet" href="CSS/cgu.css">
-    <link rel="stylesheet" href="CSS/style.css">
+    
+    <link rel="stylesheet" href="Vue/CSS/cgu.css">
+    <link rel="stylesheet" href="Vue/CSS/style.css">
 </head>
 
 <body>
@@ -19,7 +19,7 @@
     <main>
         <h1 class="titre">
             <span>Conditions Générales d'Utilisation</span>
-            <a href="https://galeris/Galeris-APPG1E/"><img src="../images/logo-sans-fond.png" alt="Langue" class="photo"></a>
+            <a href="./"><img src="images/logo-sans-fond.png" alt="Langue" class="photo"></a>
         </h1>
         
         <br>
@@ -142,7 +142,7 @@
         </div>
 
         <div class="bas">
-            <p class="haut"> <a href="https://galeris/Galeris-APPG1E/cgu#revenirenhaut">Revenir en haut</a> </p>
+            <p class="haut"> <a href="./cgu#revenirenhaut">Revenir en haut</a> </p>
         
         </div>
         
