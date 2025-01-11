@@ -2,7 +2,7 @@
 require_once('Database/Database.php');
 require_once('Controller.php');
 require_once('Model/categorie.php');
-require_once('Model/Utils.php');
+require_once('Model/utils.php');
 require_once('Model/Vente.php');
 
 Class VenteController extends Controller{//Controlleur accueil
