@@ -11,7 +11,7 @@ Class VenteController extends Controller{//Controlleur accueil
         session_start();
 
         if (!isset($_SESSION['usersessionID'])) {
-            header('Location: /Galeris-APPG1E/connexion');
+            header('Location: ./connexion');
             exit();
         }
 
@@ -25,7 +25,7 @@ Class VenteController extends Controller{//Controlleur accueil
         session_start();
 
         if (!isset($_SESSION['usersessionID'])) {
-            header('Location: /Galeris-APPG1E/connexion');
+            header('Location: ./connexion');
             exit();
         }
 

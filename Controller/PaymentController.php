@@ -12,7 +12,7 @@ class PaymentController extends Controller
         session_start();
 
         if (!isset($_SESSION['usersessionID'])) {
-            header('Location: /Galeris-APPG1E/connexion');
+            header('Location: ./connexion');
             exit();
         }
         $payment = new Payment();
@@ -36,7 +36,7 @@ class PaymentController extends Controller
         session_start();
 
         if (!isset($_SESSION["usersessionID"])) {
-            header('Location: /Galeris-APPG1E/connexion');
+            header('Location: ./connexion');
             exit;
         }
 
@@ -71,7 +71,7 @@ class PaymentController extends Controller
         session_start();
 
         if (!isset($_SESSION["usersessionID"])) {
-            header('Location: /Galeris-APPG1E/connexion');
+            header('Location: ./connexion');
             exit;
         }
 

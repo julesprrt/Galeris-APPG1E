@@ -12,7 +12,7 @@ class AchatController extends Controller
         session_start();
 
         if (!isset($_SESSION['usersessionID'])) {
-            header('Location: /Galeris-APPG1E/connexion');
+            header('Location: ./connexion');
             exit();
         }
         // Récupérer l'œuvre depuis le modèle
@@ -30,7 +30,7 @@ class AchatController extends Controller
             http_response_code(404);
             echo "L'œuvre demandée est introuvable.";
             //echo "<script>alert('Oeuvre n\'existe pas');</script>"; A tester si ça fonctionne
-            header('Location: /Galeris-APPG1E/');
+            header('Location: ./');
             exit();
         }
 
@@ -51,7 +51,7 @@ class AchatController extends Controller
         session_start();
 
         if (!isset($_SESSION['usersessionID'])) {
-            header('Location: /Galeris-APPG1E/connexion');
+            header('Location: ./connexion');
             exit();
         }
 
@@ -73,7 +73,7 @@ class AchatController extends Controller
         session_start();
 
         if (!isset($_SESSION['usersessionID'])) {
-            header('Location: /Galeris-APPG1E/connexion');
+            header('Location: ./connexion');
             exit();
         }
 
@@ -93,7 +93,7 @@ class AchatController extends Controller
         session_start();
 
         if (!isset($_SESSION['usersessionID'])) {
-            header('Location: /Galeris-APPG1E/connexion');
+            header('Location: ./connexion');
             exit();
         }
 
@@ -122,7 +122,7 @@ class AchatController extends Controller
         session_start();
 
         if (!isset($_SESSION['usersessionID'])) {
-            header('Location: /Galeris-APPG1E/connexion');
+            header('Location: ./connexion');
             exit();
         }
 

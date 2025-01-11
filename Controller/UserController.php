@@ -63,7 +63,7 @@ class UserController extends Controller
         session_start();
 
         if (!isset($_SESSION['usersessionID'])) {
-            header('Location: /Galeris-APPG1E/connexion');
+            header('Location: ./connexion');
             exit();
         }
         
@@ -89,7 +89,7 @@ class UserController extends Controller
         session_start();
 
         if (!isset($_SESSION['usersessionID'])) {
-            header('Location: /Galeris-APPG1E/connexion');
+            header('Location: ./connexion');
             exit();
         }
 
@@ -120,7 +120,7 @@ class UserController extends Controller
         $role = isset($_SESSION["usersessionRole"]) === true && $_SESSION["usersessionRole"] === "Admin" ? true : false;
 
         if (!isset($_SESSION['usersessionID'])) {
-            header('Location: /Galeris-APPG1E/connexion');
+            header('Location: ./connexion');
             exit();
         }
 
@@ -144,7 +144,7 @@ class UserController extends Controller
         $role = isset($_SESSION["usersessionRole"]) === true && $_SESSION["usersessionRole"] === "Admin" ? true : false;
 
         if (!isset($_SESSION['usersessionID'])) {
-            header('Location: /Galeris-APPG1E/connexion');
+            header('Location: ./connexion');
             exit();
         }
 
@@ -165,7 +165,7 @@ class UserController extends Controller
         session_start();
 
         if (!isset($_SESSION['usersessionID'])) {
-            header('Location: /Galeris-APPG1E/connexion');
+            header('Location: ./connexion');
             exit();
         }
 
@@ -239,7 +239,7 @@ class UserController extends Controller
         $userModel->updatePhoto($userId, $photoPath, $db);
 
         if ($updated) {
-            header('Location: /Galeris-APPG1E/profil');
+            header('Location: ./profil');
             exit();
         } else {
             $this->render('editionprofil', ['user' => $user, 'error' => "Une erreur est survenue lors de la mise à jour."]);
@@ -251,7 +251,7 @@ class UserController extends Controller
         session_start();
         
         if (!isset($_SESSION['usersessionID'])) {
-            header('Location: /Galeris-APPG1E/connexion');
+            header('Location: ./connexion');
             exit();
         }
 
@@ -269,7 +269,7 @@ class UserController extends Controller
         session_start();
 
         if (!isset($_SESSION['usersessionID'])) {
-            header('Location: /Galeris-APPG1E/connexion');
+            header('Location: ./connexion');
             exit();
         }
         
@@ -284,7 +284,7 @@ class UserController extends Controller
         session_start();
 
         if(!isset($_SESSION["usersessionID"])){
-            header('Location: /Galeris-APPG1E/connexion');
+            header('Location: ./connexion');
             exit;
         }
 
@@ -312,7 +312,7 @@ class UserController extends Controller
         session_start();
 
         if (!isset($_SESSION['usersessionID'])) {
-            header('Location: /Galeris-APPG1E/connexion');
+            header('Location: ./connexion');
             exit();
         }
         
@@ -344,7 +344,7 @@ class UserController extends Controller
         session_start();
 
         if(!isset($_SESSION["usersessionID"])){
-            header('Location: /Galeris-APPG1E/connexion');
+            header('Location: ./connexion');
             return;
         }
 

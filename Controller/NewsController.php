@@ -11,7 +11,7 @@ class NewsController extends Controller
         $role = isset($_SESSION["usersessionRole"]) === true && $_SESSION["usersessionRole"] === "Admin" ? true : false;
 
         if (!$role) {
-            header('Location: /Galeris-APPG1E/connexion');
+            header('Location: ./connexion');
             exit();
         }
 
@@ -22,7 +22,7 @@ class NewsController extends Controller
         session_start();
 
         if (!isset($_SESSION['usersessionID'])) {
-            header('Location: /Galeris-APPG1E/connexion');
+            header('Location: ./connexion');
             exit();
         }
 
@@ -81,7 +81,7 @@ class NewsController extends Controller
             session_start();
 
             if (!isset($_SESSION['usersessionID'])) {
-                header('Location: /Galeris-APPG1E/connexion');
+                header('Location: ./connexion');
                 exit();
             }
 
@@ -100,7 +100,7 @@ class NewsController extends Controller
         session_start();
 
         if (!isset($_SESSION['usersessionID'])) {
-            header('Location: /Galeris-APPG1E/connexion');
+            header('Location: ./connexion');
             exit();
         }
         $role = isset($_SESSION["usersessionRole"]) === true && $_SESSION["usersessionRole"] === "Admin" ? true : false;
@@ -114,7 +114,7 @@ class NewsController extends Controller
             http_response_code(404);
             echo "L'œuvre demandée est introuvable.";
             //echo "<script>alert('Oeuvre n\'existe pas');</script>"; A tester si ça fonctionne
-            header('Location: /Galeris-APPG1E/');
+            header('Location: ./');
             exit();
         }
 

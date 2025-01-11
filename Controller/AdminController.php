@@ -15,7 +15,7 @@ class AdminController extends Controller
 
         if (!$role) {
             http_response_code(404);
-            header('Location: /Galeris-APPG1E/');
+            header('Location: ./');
             exit();
         }
         
@@ -28,7 +28,7 @@ class AdminController extends Controller
             http_response_code(404);
             echo "L'œuvre demandée est introuvable.";
             //echo "<script>alert('Oeuvre n\'existe pas');</script>"; A tester si ça fonctionne
-            header('Location: /Galeris-APPG1E/');
+            header('Location: ./');
             exit();
         }
 
@@ -46,7 +46,7 @@ class AdminController extends Controller
 
         if (!$role) {
             http_response_code(404);
-            header('Location: /Galeris-APPG1E/');
+            header('Location: ./');
             exit();
         }
 
@@ -60,7 +60,7 @@ class AdminController extends Controller
             http_response_code(404);
             echo "L'œuvre demandée est introuvable.";
             //echo "<script>alert('Oeuvre n\'existe pas');</script>"; A tester si ça fonctionne
-            header('Location: /Galeris-APPG1E/');
+            header('Location: ./');
             exit();
         }
 
@@ -76,7 +76,7 @@ class AdminController extends Controller
 
         if (!$role) {
             http_response_code(404);
-            header('Location: /Galeris-APPG1E/');
+            header('Location: ./');
             exit();
         }
 
@@ -99,7 +99,7 @@ class AdminController extends Controller
         
         if (!$role) {
             http_response_code(404);
-            header('Location: /Galeris-APPG1E/');
+            header('Location: ./');
             exit();
         }
 

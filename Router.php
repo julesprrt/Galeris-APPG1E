@@ -45,7 +45,7 @@ class Router {
             // Appeler l'action avec la base de données
             $controller->$actionName(new Database());
         } else {
-            //header('Location: /Galeris-APPG1E/');
+            header('Location: ./');
             exit();
         }
     }
