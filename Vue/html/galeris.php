@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="Vue/CSS/galeris.css">
     <link rel="stylesheet" href="Vue/CSS/header.css">
     <link rel="stylesheet" href="Vue/CSS/footer.css">
-    <script src=Vue/JS/header.js" defer></script>
+    <script src="Vue/JS/header.js" defer></script>
     <title>galeris</title>
 </head>
 
