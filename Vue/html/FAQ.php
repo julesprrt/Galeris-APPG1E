@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="Vue/CSS/header.css">
     <link rel="stylesheet" href="Vue/CSS/footer.css">
     <script src="Vue/JS/header.js" defer></script>
-    <script src="Vue/JS/accueil.js" defer></script>
+    <script src="Vue/JS/FAQ.js" defer></script>
 </head>
 
 <body>
