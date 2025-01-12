@@ -13,9 +13,10 @@ class Router
      * @param string $controller
      * @param string $action
      */
-    public function addRoute($route, $controller, $action)
-    {
-        $this->routes[$route] = ['controller' => $controller, 'action' => $action];
+    public function addRoute($route, $controller, $action) {
+        $uri = str_replace("?", "", $route);
+        $uri = str_replace("/Galeris-APPG1E", "", $uri);
+        $this->routes[$uri] = ['controller' => $controller, 'action' => $action];
     }
 
     /**
@@ -23,10 +24,9 @@ class Router
      * @param string $uri
      * @throws \Exception
      */
-    public function dispatch($uri)
-    {
-        $uri = strtok($uri, '?'); // Supprimer les paramètres GET
-
+    public function dispatch($uri) {
+        $uri = str_replace("?", "", $uri);
+        $uri = str_replace("/Galeris-APPG1E", "", $uri);
         if (array_key_exists($uri, $this->routes)) {
             $controllerName = $this->routes[$uri]['controller'];
             $actionName = $this->routes[$uri]['action'];
@@ -46,7 +46,7 @@ class Router
             // Appeler l'action avec la base de données
             $controller->$actionName(new Database());
         } else {
-            header('Location: /Galeris-APPG1E/');
+            header('Location: ./');
             exit();
         }
     }

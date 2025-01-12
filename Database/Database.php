@@ -5,12 +5,11 @@
          * @return bool|mysqli
          */
         public function connect(){
-            $env = parse_ini_file('.env');//init fichier .env
-            $host =  $env['HOST'];
-            $user = $env['USER'];
-            $pass = $env['PASSWORD'];
-            $db = $env['DB'];
-            $port = $env['PORT'];   
+            $host =  getenv("MYSQL_HOST") == false ? 'localhost' : getenv("MYSQL_HOST") ;
+            $user = getenv("MYSQL_USER") == false ? 'root' : getenv("MYSQL_USER");
+            $pass = getenv("MYSQL_PASSWORD") == false ? '' : getenv("MYSQL_PASSWORD");;
+            $db = getenv("MYSQL_DATABASE") == false ? 'galeris' : getenv("MYSQL_DATABASE");;
+            $port = 3306;   
             $connection = mysqli_connect($host, $user, $pass, $db,$port);
             return $connection;
         }

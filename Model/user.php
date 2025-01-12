@@ -77,10 +77,14 @@ class User
         }
         $database = $db->connect();
         // Interroger les données utilisateur dans la base de données
-        $query = "SELECT * FROM utilisateur WHERE email = '$this->email'";
-        $result = $database->execute_query($query);
+        $query = "SELECT * FROM utilisateur WHERE email = ?";
+        $stmt = $database->prepare($query);
+        $stmt->bind_param("s", $this->email);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $stmt->close();
         $database->close();
-        if (mysqli_num_rows($result) > 0) {
+        if ($result->num_rows > 0) {
             // Obtenir les données utilisateur
             $user = mysqli_fetch_assoc($result);
             // Vérifier le mot de passe
@@ -144,10 +148,14 @@ class User
     public function VerifyExistMail(Database $db)
     {
         $conn = $db->connect();
-        $sql = "SELECT * FROM utilisateur where email = '$this->email'";
-        $result = $conn->execute_query($sql);
+        $sql = "SELECT * FROM utilisateur where email = ?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("s", $this->email);
+        $stmt->execute(); 
+        $stmt->close();
+        $result = $stmt->get_result();
         $conn->close();
-        if (mysqli_num_rows($result) > 0) {
+        if ($result->num_rows > 0) {
             $user = mysqli_fetch_assoc($result);
             if ($user["actif"] === 0) {
                 session_start();
@@ -211,6 +219,17 @@ class User
         $conn->close();
         return 200;
     }
+
+    public function getAllUsers(Database $db){
+        $conn = $db->connect();
+        $sql= "select nom, prenom, id_utilisateur from utilisateur";
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $stmt->close();
+        $conn->close();
+        return $result;
+    }   
 
     public function getAllUsers(Database $db){
         $conn = $db->connect();
@@ -417,6 +436,26 @@ class User
         $oeuvreInfo = $oeuvre->getOeuvreById($_SESSION["oeuvre_id"], $db);
         $userInfo = $this->getUserById($_SESSION["usersessionID"], $db);
         $this->sendMail->signalement($_SESSION["oeuvre_id"], $raison, $oeuvreInfo["Titre"], $userInfo["nom"], $userInfo["prenom"]);
+    }
+
+    public function createTransfert($montant, $userSolde, Database $db)
+    {
+        if (floatval($montant) > $userSolde || floatval($montant) < 1.0) {
+            return 401;
+        } else {
+            $this->transfert(floatval($montant), $_SESSION["usersessionID"], $db);
+            return 200;
+        }
+    }
+
+    public function transfert($montant, $id, Database $db){
+        $conn = $db->connect();
+        $sql = "update utilisateur set solde = solde - ? where id_utilisateur = ?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param('di',$montant, $id);
+        $stmt->execute();
+        $stmt->close();
+        $conn->close();
     }
     public function getPublicUserById($id, Database $db)
     {

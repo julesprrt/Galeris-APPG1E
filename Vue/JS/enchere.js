@@ -47,7 +47,7 @@ function tempsRestants() {
 
             el.textContent = `${jours}j ${heures}h ${minutes}m ${secondes}s restant`;
         } else {
-            window.location.href = "https://galeris/Galeris-APPG1E/";
+            window.location.href = "./";
         }
     });
 }
@@ -70,7 +70,7 @@ async function verifyEnchere() {
         body: raw,
         redirect: "follow"
     };
-    const response = await fetch("https://galeris/Galeris-APPG1E/verifyenchere", requestOptions)
+    const response = await fetch("./s")
     const statuscode = response.status;
     const result = await response.json();
 
@@ -83,12 +83,12 @@ async function verifyEnchere() {
         }
         else {
             alert("Vous pouvez modifier vos données de livraison sur la page livraison");
-            window.location.href = "https://galeris/Galeris-APPG1E/livraison";
+            window.location.href = "./livraison";
         }
     }
     else if (statuscode === 401) {
         alert(result.Error);
-        window.location.href = "https://galeris/Galeris-APPG1E/livraison";
+        window.location.href = "./livraison";
     }
 }
 
@@ -147,7 +147,7 @@ async function encherir() {
         body: raw,
         redirect: "follow"
     };
-    const response = await fetch("https://galeris/Galeris-APPG1E/encherir", requestOptions)
+    const response = await fetch("./encherir", requestOptions)
     const statuscode = response.status;
     const result = await response.json();
 
@@ -183,13 +183,13 @@ async function supprimerOeuvre() {
             redirect: "follow"
         };
 
-        const result = await fetch("https://galeris/Galeris-APPG1E/supprimeroeuvre", requestOptions);
+        const result = await fetch("./supprimeroeuvre", requestOptions);
         const statut = result.status;
         const text = await result.json();
 
         if (statut === 200) {
             alert(text.Success);
-            window.location.href = "https://galeris/Galeris-APPG1E/";
+            window.location.href = "./";
         }
     }
 }
@@ -214,7 +214,7 @@ async function signaler() {
     }
 
 
-    const resp = await fetch("https://galeris/Galeris-APPG1E/signaleroeuvre", {
+    const resp = await fetch("./signaleroeuvre", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ raison: raison })

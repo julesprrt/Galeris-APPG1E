@@ -1,7 +1,7 @@
 <?php
 
 require_once('Model/exposition.php');
-require_once('Model/oeuvre.php');
+require_once('Model/Oeuvre.php');
 require_once('Database/Database.php');
 require_once('Controller.php');
 Class ListeAttenteAdminController extends Controller{//Controlleur accueil
@@ -13,7 +13,7 @@ Class ListeAttenteAdminController extends Controller{//Controlleur accueil
 
         if (!$role) {
             http_response_code(404);
-            header('Location: /Galeris-APPG1E/');
+            header('Location: ./');
             exit();
         }
 
@@ -29,7 +29,7 @@ Class ListeAttenteAdminController extends Controller{//Controlleur accueil
         
         if (!$role) {
             http_response_code(404);
-            header('Location: /Galeris-APPG1E/');
+            header('Location: ./');
             exit();
         }
         

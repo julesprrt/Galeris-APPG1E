@@ -228,7 +228,7 @@ class Oeuvre
     public function CreateSaveEnchere(Database $db)
     {
         $oeuvresEncheres = $this->getAllEnchereForUpdate($db);
-        if (mysqli_num_rows($oeuvresEncheres) > 0) {
+        if ($oeuvresEncheres->num_rows > 0) {
             $this->updateUserSoldAndVenteTable($db, $oeuvresEncheres);
             $this->updateOeuvreEnchere($db, $oeuvresEncheres);
             $this->sendMailForUser($db, $oeuvresEncheres);

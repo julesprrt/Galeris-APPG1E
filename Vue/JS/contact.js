@@ -19,7 +19,7 @@ async function contact() {
         body: raw,
         redirect: "follow"
     };
-    const response = await fetch("https://galeris/Galeris-APPG1E/contact", requestOptions)
+    const response = await fetch("./contact")
     const statuscode = response.status;
     const result = await response.json();
     if (statuscode === 200) {
@@ -30,7 +30,7 @@ async function contact() {
         })
         grecaptcha.reset();
         document.getElementById("btn-contact").disabled = false;
-        window.location.href = "https://galeris/Galeris-APPG1E/";
+        window.location.href = "./";
     }
     else {
         alert(result.Error);

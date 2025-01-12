@@ -2,7 +2,7 @@
 require_once('Database/Database.php');
 require_once('Controller.php');
 require_once('Model/categorie.php');
-require_once('Model/Utils.php');
+require_once('Model/utils.php');
 require_once('Model/Vente.php');
 
 Class VenteController extends Controller{//Controlleur accueil
@@ -11,7 +11,7 @@ Class VenteController extends Controller{//Controlleur accueil
         session_start();
 
         if (!isset($_SESSION['usersessionID'])) {
-            header('Location: /Galeris-APPG1E/connexion');
+            header('Location: ./connexion');
             exit();
         }
 
@@ -25,7 +25,7 @@ Class VenteController extends Controller{//Controlleur accueil
         session_start();
 
         if (!isset($_SESSION['usersessionID'])) {
-            header('Location: /Galeris-APPG1E/connexion');
+            header('Location: ./connexion');
             exit();
         }
 
