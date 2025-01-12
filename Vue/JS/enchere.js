@@ -250,7 +250,7 @@ async function ajoutfavoris(){
         body: raw,
         redirect: "follow"
     };
-    const result = await fetch("https://galeris/Galeris-APPG1E/ajoutfavoris", requestOptions);
+    const result = await fetch("./ajoutfavoris", requestOptions);
     const statut = result.status;
     const text = await result.json();
     if(statut === 200){
@@ -273,7 +273,7 @@ async function retirerfavoris(){
         redirect: "follow"
     };
 
-    const result = await fetch("https://galeris/Galeris-APPG1E/retirerfavoris", requestOptions);
+    const result = await fetch("./retirerfavoris", requestOptions);
     const statut = result.status;
     const text = await result.json();
     if(statut === 200){
@@ -302,9 +302,9 @@ async function saveUserid() {
         body: raw,
         redirect: "follow"
     };
-    const response = await fetch("https://galeris/Galeris-APPG1E/saveiduser", requestOptions)
+    const response = await fetch("./saveiduser", requestOptions)
     const statuscode = response.status;
     if (statuscode === 200) {
-        window.location.href = "https://galeris/Galeris-APPG1E/utilisateur";
+        window.location.href = "./utilisateur";
     }
 }

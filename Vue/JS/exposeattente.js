@@ -125,9 +125,9 @@ async function saveUserid() {
         body: raw,
         redirect: "follow"
     };
-    const response = await fetch("https://galeris/Galeris-APPG1E/saveiduser", requestOptions)
+    const response = await fetch("./saveiduser", requestOptions)
     const statuscode = response.status;
     if (statuscode === 200) {
-        window.location.href = "https://galeris/Galeris-APPG1E/utilisateur";
+        window.location.href = "./utilisateur";
     }
 }

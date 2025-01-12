@@ -38,10 +38,10 @@ async function GoToProduct(e){
     };
 
     try {
-        const response = await fetch("https://galeris/Galeris-APPG1E/saveid", requestOptions);
+        const response = await fetch("./saveid", requestOptions);
         if(response.status === 200){
             
-            window.location.href = "https://galeris/Galeris-APPG1E/achat";
+            window.location.href = "./achat";
         }
     } catch(err){
         console.error(err);
@@ -70,7 +70,7 @@ async function retirerfavoris(e){
     };
 
     try {
-        const result = await fetch("https://galeris/Galeris-APPG1E/retirerfavorisid", requestOptions);
+        const result = await fetch("./retirerfavorisid", requestOptions);
         const statut = result.status;
         const text = await result.json();
         if(statut === 200){

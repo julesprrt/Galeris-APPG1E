@@ -11,7 +11,7 @@
         <i class="checkmark">✓</i>
       </div>
         <h1>Merci pour votre achat</h1> 
-        <a href="https://galeris/Galeris-APPG1E"><button class="btn-accueil">Accueil</button></a>
+        <a href="./"><button class="btn-accueil">Accueil</button></a>
       </div>
     </body>
 </html>
