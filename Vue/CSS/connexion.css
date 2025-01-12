@@ -160,10 +160,9 @@ input:-internal-autofill-selected {
   .inscrivez-vous {
     display: flex;
     text-align: center;
-    font-size: 70%;
     width: 90%;
     height: 80%;
-    padding: 0px 20px 0px 10px;
+    padding: 10px 20px 0px 10px;
   }
 
   .connexion-content {
@@ -185,5 +184,10 @@ input:-internal-autofill-selected {
     display: flex;
     align-items: center;
     justify-content: center;
+  }
+
+  footer {
+    display: flex;
+    flex-direction: column;
   }
 }

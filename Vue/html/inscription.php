@@ -18,7 +18,7 @@
             <a href="https://galeris/Galeris-APPG1E/"><img width="150" height="150"
                     src="../images/logo-sans-fond.png" /></a>
         </div>
-        <div class="Page-content">s
+        <div class="Page-content">
             <div class="infos-inscription">
                 <div class="inscrivez-vous">
                     <div class="inscription-content">
