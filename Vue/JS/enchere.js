@@ -70,7 +70,7 @@ async function verifyEnchere() {
         body: raw,
         redirect: "follow"
     };
-    const response = await fetch("./s)
+    const response = await fetch("./s")
     const statuscode = response.status;
     const result = await response.json();
 
