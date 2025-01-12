@@ -4,35 +4,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <link rel="stylesheet" href="Vue/CSS/favoris.css">
+    <link rel="stylesheet" href="Vue/CSS/panier.css">
     <link rel="stylesheet" href="Vue/CSS/header.css">
     <link rel="stylesheet" href="Vue/CSS/footer.css">
     <title>favoris</title>
-    <script src="https://galeris/Galeris-APPG1E/vue/JS/favoris.js" defer></script>
+    <script src="Vue/JS/favoris.js" defer></script>
 </head>
 
-<body>
-    <div class="container">
-        <header>
-            <div class="logo"> <a href="./"><img src="images/logo.png"></a></div>
-            <nav class="menu">
-                <ul>
-                    <li><a href="./">Accueil</a></li>
-                    <li><a href="./ventes">Vente</a></li>
-                    <li><a href="./exposes">Exposition</a></li>
-                    <li><a href="./listenews">News</a></li>
-                    <li><a href="#">Plus</a></li>
-                </ul>
-            </nav>
-            <div class="barre_recherche">
-                <!-- Barre de recherche, les emojis sont responsives si on clique dessus -->
-                <input type="text" placeholder="Rechercher...">
-                <div class="favori"> <a href="./favoris">❤️ </a></div>
-                <div class="panier"> <a href="./panier"> 🛒 </a></div>
-                <div class="utilisateur"><a href="./connexion"> 👤 </a></div>
-            </div>
-        </header>
+
+    
+<header>
+        <div class="logo">
+            <a href=./">
+                <img src="./images/logo.png" alt="Logo">
+            </a>
+        </div>
+        <nav class="menu">
+            <ul>
+                <li><a href=./">Accueil</a></li>
+                <li><a href=./ventes">Vente</a></li>
+                    <li><a href=./exposes">Exposition</a></li>
+                <li><a href="#">News</a></li>
+                <li><a href="#">Plus</a></li>
+            </ul>
+        </nav>
+        <div class="barre_recherche">
+            <input type="text" placeholder="Rechercher...">
+            <div class="favori"><a href=./favoris">❤️</a></div>
+            <div class="panier"><a href=./panier">🛒</a></div>
+            <?php
+                if ($connectUser === true) {
+                    echo '<div class="dropdown">
+                            <div class="utilisateur"> 👤 </div>
+                            <div class="dropdown-child">
+                                <a href=./profil">Mon profil</a>
+                                <a href="#">Mon solde</a>'.
+                                (($userRole === true)?
+                                    '<a href=./listeoeuvreattente">Oeuvres en attente</a>
+                                    <a href=./listeexposeattente">Exposés en attente</a>':"").
+                                '<a id="deconnexion">Déconnexion</a>
+                            </div>
+                           </div>';
+                } else {
+                    echo '<div class="utilisateur"><a href=./connexion"> 👤 </a></div>';
+                }
+            ?>
+
+
+        </div>
+    </header>
 
         <!-- Contenu  -->
         <body> 
@@ -52,7 +72,7 @@
                             <?php
                                 foreach($favoris as $pan){
                                     echo "<tr class='product' id='". $pan["id_oeuvre"] ."'> 
-                                <td class='article--name'><img src='../". $pan["chemin_image"] ."'>
+                                <td class='article--name'><img src='./". $pan["chemin_image"] ."'>
                                 </td>
                                 <td class='titre'><p class='titrestyle'>" . $pan["Titre"] ."</p><p class='vendue'> Vendue par " . $pan["nom"] .  " " . $pan["prenom"] . "</p><p class='vendue'> Réalisé par " . $pan["auteur"] . "</p></td>
                                 <td class='price-elmprice'>" . $pan["Prix"] . " € <div class='remove'><a class='remove-elm' id='". $pan["id_favoris"] ."'><button  type='button' class='btn-simple'>Supprimer</button></a></div></td>
@@ -107,16 +127,16 @@
             <div class="container-footer">
                 <a class="title-footer">Qui sommes nous</a>
                 <a class="item-footer" href="#">NovArt</a>
-                <a class="item-footer" href="./galeris">Galeris</a>
+                <a class="item-footer" href=./galeris">Galeris</a>
             </div>
             <div class="container-footer">
                 <a class="title-footer">Aide</a>
-                <a class="item-footer" href="./faq">Foire aux questions</a>
-                <a class="item-footer" href="./contact">Contacts</a>
+                <a class="item-footer" href=./faq">Foire aux questions</a>
+                <a class="item-footer" href=./contact">Contacts</a>
             </div>
             <div class="container-footer">
                 <a class="title-footer">Informations légales</a>
-                <a class="item-footer" href="./cgu">Conditions d'utilisations</a>
+                <a class="item-footer" href=./cgu">Conditions d'utilisations</a>
                 <a class="item-footer" href="#">Mentions légales</a>
             </div>
 
