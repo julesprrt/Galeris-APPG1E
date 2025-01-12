@@ -21,7 +21,7 @@
                     <li><a href="./ventes">Vente</a></li>
                     <li><a href="./exposes">Exposition</a></li>
                     <li><a href="./listenews">News</a></li>
-                    <li><a href="#">Plus</a></li>
+                    
                 </ul>
             </nav>
             <div class="barre_recherche">
