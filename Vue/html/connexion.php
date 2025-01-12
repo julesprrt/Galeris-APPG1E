@@ -30,7 +30,7 @@
             </div>
             <div class="form-connexion">
                 <p class="Title-connexion">Connectez-vous</p>
-                <form>
+                <form class="form">
                     <input name="email" type="text" class="input-user-first" placeholder="Entrez votre mail" />
                     <input name="password" type="password" class="input-user" placeholder="Mot de passe" />
                     <a href="https://galeris/Galeris-APPG1E/motdepasse" class="link">Mot de passe oublié ?</a>

@@ -122,4 +122,22 @@ img {
 
 @media screen and (max-width: 1080px){
     header {
-        display : none;}}
+        display : none;
+    }
+}
+
+
+
+
+@media (max-width: 450px){
+    .bigTitle {
+        font-weight: bold;
+        font-size: 30px;
+        color: black;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+}
+
+
+
+
