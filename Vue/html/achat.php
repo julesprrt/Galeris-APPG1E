@@ -134,7 +134,8 @@
                 </div>
             </section>
 
-            
+            <!-- Avant la section actions -->
+            <input type="hidden" name="id_oeuvre" value="<?php echo $oeuvre['id_oeuvre']; ?>">
 
             <!-- Boutons d'actions -->
              
@@ -146,13 +147,20 @@
                         <button class="boutton-supprimer">Supprimer</button>';
                     }
                     else{
+                        
                         if($panier === false){
                             echo '<button class="boutton-panier">Ajouter au Panier</button>';
                         }
                         else{
                             echo '<button class="boutton-retirer-panier">Retirer du Panier</button>';
                         }
-                        echo '<button class="boutton-favoris">Ajouter au favoris</button>';
+                     
+                        if($favoris === false){   
+                            echo '<button class="boutton-favoris">Ajouter au favoris</button>';
+                        }
+                        else{
+                            echo '<button class="boutton-retirer-favoris">Retirer du Favoris</button>';
+                        }
                     }
                 ?>
 

@@ -165,8 +165,13 @@
                         <button class="boutton-supprimer">Supprimer</button>';
                     }
                     else{
-                        echo '<button class="boutton-offre">Enchérir</button>
-                        <button class="boutton-favoris">Ajouter au favoris</button>';
+                        echo '<button class="boutton-offre">Enchérir</button>';
+                        if($favoris === false){   
+                            echo '<button class="boutton-favoris">Ajouter au favoris</button>';
+                        }
+                        else{
+                            echo '<button class="boutton-retirer-favoris">Retirer du Favoris</button>';
+                        }
                     }
                 ?>
                 <button id="btnSignaleropenform">Signaler cette œuvre</button>

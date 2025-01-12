@@ -230,3 +230,107 @@ async function signaler() {
 
 
 }
+
+document.querySelectorAll(".boutton-favoris").forEach(item => {
+    item.addEventListener("click", ajoutfavoris);
+});
+
+document.querySelectorAll(".boutton-retirer-favoris").forEach(item => item.addEventListener("click", retirerfavoris));
+
+async function ajoutfavoris(){
+    console.log("ok")
+    const myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+    
+    const raw = JSON.stringify({
+    });
+
+    const requestOptions = {
+        method: "POST",
+        headers: myHeaders,
+        body: raw,
+        redirect: "follow"
+    };
+    const result = await fetch("https://galeris/Galeris-APPG1E/ajoutfavoris", requestOptions);
+    const statut = result.status;
+    const text = await result.json();
+    if(statut === 200){
+        alert(text.favoris);
+        window.location.reload();
+   }
+}
+
+async function retirerfavoris(){
+    const myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+    
+    const raw = JSON.stringify({
+    });
+
+    const requestOptions = {
+        method: "POST",
+        headers: myHeaders,
+        body: raw,
+        redirect: "follow"
+    };
+
+    const result = await fetch("https://galeris/Galeris-APPG1E/retirerfavoris", requestOptions);
+    const statut = result.status;
+    const text = await result.json();
+    if(statut === 200){
+        alert(text.favoris);
+        window.location.reload();
+   }
+}
+
+document.querySelectorAll(".boutton-favoris").forEach(item => {
+    item.addEventListener("click", ajoutfavoris);
+});
+
+document.querySelectorAll(".boutton-retirer-favoris").forEach(item => item.addEventListener("click", retirerfavoris));
+
+async function ajoutfavoris(){
+    console.log("ok")
+    const myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+    
+    const raw = JSON.stringify({
+    });
+
+    const requestOptions = {
+        method: "POST",
+        headers: myHeaders,
+        body: raw,
+        redirect: "follow"
+    };
+    const result = await fetch("./ajoutfavoris", requestOptions);
+    const statut = result.status;
+    const text = await result.json();
+    if(statut === 200){
+        alert(text.favoris);
+        window.location.reload();
+   }
+}
+
+async function retirerfavoris(){
+    const myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+    
+    const raw = JSON.stringify({
+    });
+
+    const requestOptions = {
+        method: "POST",
+        headers: myHeaders,
+        body: raw,
+        redirect: "follow"
+    };
+
+    const result = await fetch("./retirerfavoris", requestOptions);
+    const statut = result.status;
+    const text = await result.json();
+    if(statut === 200){
+        alert(text.favoris);
+        window.location.reload();
+   }
+}

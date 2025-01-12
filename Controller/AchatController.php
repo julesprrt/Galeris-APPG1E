@@ -18,12 +18,14 @@ class AchatController extends Controller
         // Récupérer l'œuvre depuis le modèle
         $oeuvre = new Oeuvre($Titre = null, $Description = null, $eco_responsable = null, $Date_debut = null, $Date_fin = null, $Prix = null, $type_vente = null, $est_vendu = null, $auteur = null, $id_utilisateur = null, $id_categorie = null, $status = null, $nomvendeur = null, $prenomvendeur = null, $chemin_image = [], $prix_actuel = null, $id_offreur = null);
         $role = isset($_SESSION["usersessionRole"]) === true && $_SESSION["usersessionRole"] === "Admin" ? true : false;
-        $role = isset($_SESSION["usersessionRole"]) === true && $_SESSION["usersessionRole"] === "Admin" ? true : false;
         $id =  $_SESSION['oeuvre_id'];
         $oeuvreid = $oeuvre->getOeuvreById($id, $db);
 
         $panier = new Panier();
         $panierExist = $panier->existPanier($db);
+        $favoris = new Favoris();
+        $favorisExist = $favoris->existFavoris($db);
+    
 
         // Vérifier si l'œuvre existe
         if (!$oeuvre) {
@@ -38,13 +40,16 @@ class AchatController extends Controller
 
         $type =  $_SESSION['oeuvre_typevente'];
         if ($type === "Vente") {
-            $this->render('achat', ["connectUser" =>  isset($_SESSION["usersessionID"]), "userRole" => $role,'oeuvre' => $oeuvreid,"panier" => $panierExist, "user" => $user]);
+            $this->render('achat', ["connectUser" =>  isset($_SESSION["usersessionID"]), "userRole" => $role,'oeuvre' => $oeuvreid,"panier" => $panierExist, "favoris" => $favorisExist, "user" => $user]);
         }
         else {
             $encheres = $oeuvre->getAllEnchere($id, $db);
-            $this->render('enchere', ["connectUser" =>  isset($_SESSION["usersessionID"]), "userRole" => $role,'oeuvre' => $oeuvreid, 'encheres' => $encheres, "user" => $user]);
+            $this->render('enchere', ["connectUser" =>  isset($_SESSION["usersessionID"]), "userRole" => $role,'oeuvre' => $oeuvreid, 'encheres' => $encheres, "user" => $user,"favoris" => $favorisExist]);
         }
     }
+
+
+   
 
     public function saveid(Database $db)
     {
@@ -101,6 +106,8 @@ class AchatController extends Controller
         $data = json_decode($paramData, true);
         $oeuvre = new Oeuvre($Titre = null, $Description = null, $eco_responsable = null, $Date_debut = null, $Date_fin = null, $Prix = null, $type_vente = null, $est_vendu = null, $auteur = null, $id_utilisateur = null, $id_categorie = null, $status = null, $nomvendeur = null, $prenomvendeur = null, $chemin_image = null, $prix_actuel = null, $id_offreur = null);
         $result = $oeuvre->enchere($db, $data["prix"]);
+
+        
         if($result["statut"] === 401){
             http_response_code(401);
             echo json_encode(['Error' => "Le prix ne doit pas être inférieur à " . $result["prixCourant"] . " €", 'prix' => number_format($result["prixCourant"], 2, '.', '')]);
