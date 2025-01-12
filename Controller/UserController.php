@@ -4,7 +4,7 @@ require_once('Model/code.php');
 require_once('Database/Database.php');
 require_once('Controller.php');
 require_once('Model/exposition.php');
-require_once('Model/oeuvre.php');
+require_once('Model/Oeuvre.php');
 
 //Controller utilisateur
 class UserController extends Controller
