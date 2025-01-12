@@ -78,6 +78,10 @@ $router->addRoute('/createnews', NewsController::class, 'createNews');
 $router->addRoute('/listenews', NewsController::class, 'listeNews');
 $router->addRoute('/saveidnews', NewsController::class, 'saveidnews');
 $router->addRoute('/newsactu', NewsController::class, 'newsByID');
+$router->addRoute('/ajoutfavoris', FavorisController::class, 'ajoutFavoris');
+$router->addRoute('/retirerfavoris', FavorisController::class, 'retirerFavoris');
+$router->addRoute('/favoris', FavorisController::class, 'favoris');
+$router->addRoute('/retirerfavorisid', FavorisController::class, 'retirerFavorisId');
 $router->addRoute('/saveiduser', UserController::class, 'consultation');
 $router->addRoute('/utilisateur', UserController::class, 'profil_consultation');
 
