@@ -7,7 +7,7 @@
     <title>Mot de Passe Oublié</title>
     <link rel="stylesheet" href="Vue/CSS/motdepasseoublie.css">
     <link rel="stylesheet" href="Vue/CSS/style.css">
-    <script src="http://localhost/Galeris-APPG1E/vue/JS/oublieMotDePasse.js" defer></script>
+    <script src="Vue/JS/oublieMotDePasse.js" defer></script>
 </head>
 <body>
 <h1 class="simpleTitle">Mot de Passe Oublié</h1>
