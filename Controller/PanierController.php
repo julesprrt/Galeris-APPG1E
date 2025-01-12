@@ -17,10 +17,18 @@ class PanierController extends Controller
 
         $_SESSION["livraison"] = "panier";
 
+        $expose = new Exposition(null,null,null,null,null,null,null);
+        $oeuvre = new Oeuvre($Titre = null, $Description = null, $eco_responsable = null, $Date_debut = null, $Date_fin = null, $Prix = null, $type_vente = null, $est_vendu = null, $auteur = null, $id_utilisateur = null, $id_categorie = null, $status = null, $nomvendeur = null, $prenomvendeur = null, $chemin_image = null, $prix_actuel = null, $id_offreur = null);
+        $oeuvres_list = $oeuvre->getAllOeuvre($db);
+        $exposes_list = $expose->getExposes($db);
+        $user = new User(null,null,null,null,null,null,null,null,null,null);
+        $users = $user->getAllUsers($db);
+
+
         $panier = new Panier();
         $result = $panier->getAllPanier($db);
         $role = isset($_SESSION["usersessionRole"]) === true && $_SESSION["usersessionRole"] === "Admin" ? true : false;
-        $this->render('panier', ["connectUser" => isset($_SESSION["usersessionID"]), "userRole" => $role, "panier" => $result["result"], "total" => $result["total"]]);
+        $this->render('panier', ["connectUser" => isset($_SESSION["usersessionID"]), "userRole" => $role, "panier" => $result["result"], "total" => $result["total"], "exposes_barre" => $exposes_list, "users" => $users, "oeuvres" => $oeuvres_list]);
     }
 
     public function ajoutPanier(Database $db)

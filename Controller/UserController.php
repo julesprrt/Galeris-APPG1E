@@ -3,6 +3,8 @@ require_once('Model/user.php');
 require_once('Model/code.php');
 require_once('Database/Database.php');
 require_once('Controller.php');
+require_once('Model/exposition.php');
+require_once('Model/oeuvre.php');
 
 //Controller utilisateur
 class UserController extends Controller
@@ -136,8 +138,14 @@ class UserController extends Controller
             exit();
         }
 
+        $oeuvre = new Oeuvre($Titre = null, $Description = null, $eco_responsable = null, $Date_debut = null, $Date_fin = null, $Prix = null, $type_vente = null, $est_vendu = null, $auteur = null, $id_utilisateur = null, $id_categorie = null, $status = null, $nomvendeur = null, $prenomvendeur = null, $chemin_image = null, $prix_actuel = null, $id_offreur = null);
+        $oeuvres = $oeuvre->getAllOeuvre($db);
+        $expose = new Exposition(null,null,null,null,null,null,null);
+        $exposes = $expose->getExposes($db);
+        $users = $user->getAllUsers($db);
+
         // Transmet les données utilisateur à la vue
-        $this->render('profil', ['user' => $userData, "connectUser" => isset($_SESSION["usersessionID"]), "userRole" => $role]);
+        $this->render('profil', ['user' => $userData, "connectUser" => isset($_SESSION["usersessionID"]), "userRole" => $role, "oeuvres" => $oeuvres, "exposes" => $exposes, "users" => $users]);
     }
     public function editionprofil(Database $db)
     {
@@ -158,7 +166,13 @@ class UserController extends Controller
             exit();
         }
 
-        $this->render('editionprofil', ['user' => $user, "connectUser" => isset($_SESSION["usersessionID"]), "userRole" => $role]);
+        $oeuvre = new Oeuvre($Titre = null, $Description = null, $eco_responsable = null, $Date_debut = null, $Date_fin = null, $Prix = null, $type_vente = null, $est_vendu = null, $auteur = null, $id_utilisateur = null, $id_categorie = null, $status = null, $nomvendeur = null, $prenomvendeur = null, $chemin_image = null, $prix_actuel = null, $id_offreur = null);
+        $oeuvres = $oeuvre->getAllOeuvre($db);
+        $expose = new Exposition(null,null,null,null,null,null,null);
+        $exposes = $expose->getExposes($db);
+        $users = $userModel->getAllUsers($db);
+
+        $this->render('editionprofil', ['user' => $user, "connectUser" => isset($_SESSION["usersessionID"]), "userRole" => $role,"oeuvres" => $oeuvres, "exposes" => $exposes, "users" => $users]);
     }
 
     public function processEdition(Database $db)
@@ -350,7 +364,14 @@ class UserController extends Controller
         $user = new User(null,null,null,null,null,null,null,null,null,null);
         $userAccount = $user->getUserById($_SESSION["usersessionID"], $db);
         $role = isset($_SESSION["usersessionRole"]) === true && $_SESSION["usersessionRole"] === "Admin" ? true : false;
-        $this->render('solde', ["connectUser" =>  isset($_SESSION["usersessionID"]), "userRole" => $role, "solde" => $userAccount["solde"]]);
+
+        $oeuvre = new Oeuvre($Titre = null, $Description = null, $eco_responsable = null, $Date_debut = null, $Date_fin = null, $Prix = null, $type_vente = null, $est_vendu = null, $auteur = null, $id_utilisateur = null, $id_categorie = null, $status = null, $nomvendeur = null, $prenomvendeur = null, $chemin_image = null, $prix_actuel = null, $id_offreur = null);
+        $oeuvres = $oeuvre->getAllOeuvre($db);
+        $expose = new Exposition(null,null,null,null,null,null,null);
+        $exposes = $expose->getExposes($db);
+        $users = $user->getAllUsers($db);
+
+        $this->render('solde', ["connectUser" =>  isset($_SESSION["usersessionID"]), "userRole" => $role, "solde" => $userAccount["solde"], "oeuvres" => $oeuvres, "exposes" => $exposes, "users" => $users]);
     }
 
     public function envoiesolde(Database $db){
@@ -411,13 +432,20 @@ class UserController extends Controller
 
         $user = new User(null, null,  null, null, null, null, null, null, null, null);
         $userData = $user->getUserById($userId, $db);
+        $oeuvres = $user->getAllOeuvreSoldByUser($userId, $db);
 
         if (!$userData) {
             echo "Utilisateur introuvable.";
             exit();
         }
 
+        $oeuvre = new Oeuvre($Titre = null, $Description = null, $eco_responsable = null, $Date_debut = null, $Date_fin = null, $Prix = null, $type_vente = null, $est_vendu = null, $auteur = null, $id_utilisateur = null, $id_categorie = null, $status = null, $nomvendeur = null, $prenomvendeur = null, $chemin_image = null, $prix_actuel = null, $id_offreur = null);
+        $oeuvres_barre = $oeuvre->getAllOeuvre($db);
+        $expose = new Exposition(null,null,null,null,null,null,null);
+        $exposes = $expose->getExposes($db);
+        $users = $user->getAllUsers($db);
+
         // Transmet les données utilisateur à la vue
-        $this->render('profil_utilisateur', ['user' => $userData, "connectUser" => isset($_SESSION["usersessionID"]), "userRole" => $role]);
+        $this->render('profil_utilisateur', ['user' => $userData, "connectUser" => isset($_SESSION["usersessionID"]), "userRole" => $role,"oeuvres_barre" => $oeuvres_barre, "exposes" => $exposes, "users" => $users, "oeuvres" => $oeuvres]);
     }
 }

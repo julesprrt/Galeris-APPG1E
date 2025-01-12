@@ -61,7 +61,6 @@ async function verifyEnchere() {
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
     const raw = JSON.stringify({
-
     });
 
     const requestOptions = {
@@ -70,7 +69,7 @@ async function verifyEnchere() {
         body: raw,
         redirect: "follow"
     };
-    const response = await fetch("./s")
+    const response = await fetch("./verifyenchere")
     const statuscode = response.status;
     const result = await response.json();
 

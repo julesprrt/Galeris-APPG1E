@@ -34,14 +34,20 @@ class AchatController extends Controller
             exit();
         }
 
+        $oeuvres = $oeuvre->getAllOeuvre($db);
+        $expose = new Exposition(null,null,null,null,null,null,null);
+        $exposes = $expose->getExposes($db);
+        $user = new User(null,null,null,null,null,null,null,null,null,null);
+        $users = $user->getAllUsers($db);
+
         $user = $_SESSION["usersessionID"] === $oeuvreid["id_utilisateur"];
 
         $type =  $_SESSION['oeuvre_typevente'];
         if ($type === "Vente") {
-            $this->render('achat', ["connectUser" =>  isset($_SESSION["usersessionID"]), "userRole" => $role, 'oeuvre' => $oeuvreid, "panier" => $panierExist, "user" => $user]);
+            $this->render('achat', ["connectUser" =>  isset($_SESSION["usersessionID"]), "userRole" => $role, 'oeuvre' => $oeuvreid, "panier" => $panierExist, "user" => $user, "oeuvres" => $oeuvres, "exposes" => $exposes, "users" => $users]);
         } else {
             $encheres = $oeuvre->getAllEnchere($id, $db);
-            $this->render('enchere', ["connectUser" =>  isset($_SESSION["usersessionID"]), "userRole" => $role, 'oeuvre' => $oeuvreid, 'encheres' => $encheres, "user" => $user]);
+            $this->render('enchere', ["connectUser" =>  isset($_SESSION["usersessionID"]), "userRole" => $role, 'oeuvre' => $oeuvreid, 'encheres' => $encheres, "user" => $user, "oeuvres" => $oeuvres, "exposes" => $exposes, "users" => $users]);
         }
     }
 

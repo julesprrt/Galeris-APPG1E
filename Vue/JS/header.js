@@ -44,14 +44,17 @@ function displayListOrNot(){
    console.log(item.attributes[0].value)
    if(item.attributes[0].value.includes("utilisateur_")){
         let element = item.attributes[0].value.split("utilisateur_")[1];
+        document.querySelector(".shearch").value = "";
         saveIdUser(Number(element))
    }
    else if(item.attributes[0].value.includes("expose_")){
         let element = item.attributes[0].value.split("expose_")[1];
+        document.querySelector(".shearch").value = "";
         saveIdExpose(Number(element))
    }
    else if(item.attributes[0].value.includes("oeuvre_")){
         let element = item.attributes[0].value.split("oeuvre_")[1];
+        document.querySelector(".shearch").value = "";
         saveIdOeuvre(Number(element))
    }
 }

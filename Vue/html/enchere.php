@@ -29,7 +29,21 @@
     </nav>
     <div class="barre_recherche">
         <!-- Barre de recherche, les emojis sont responsives si on clique dessus -->
-        <input type="text" placeholder="Rechercher...">
+        <input type="text" placeholder="Rechercher..." class="shearch">
+                <datalist id="galeris-list">
+                        <?php
+                            foreach($users as $user_barre){
+                                echo '<option data-value="utilisateur_' . $user_barre["id_utilisateur"] . '" value="' . $user_barre["nom"] . ' ' . $user_barre["prenom"] . ' ' . $user_barre["id_utilisateur"] .' (utilisateur)">';
+                            }
+                            foreach($exposes as $expose_barre){
+                                echo '<option data-value="expose_' . $expose_barre["id_exhibition"] . '" value="' . $expose_barre["titre"] . ' ' . $expose_barre["id_exhibition"] . ' (exposé)">';
+                            }
+                            foreach($oeuvres as $oeuvre_barre){
+                                echo '<option data-value="oeuvre_' . $oeuvre_barre["id_oeuvre"] . '" value="' . $oeuvre_barre["Titre"] . ' ' . $oeuvre_barre["auteur"] . ' ' . $oeuvre_barre["id_oeuvre"] . ' (Oeuvre)">';
+                            }
+                                
+                        ?>
+                </datalist>
         <div class="favori"> <a href="./favoris">❤️ </a></div>
         <div class="panier"> <a href="./panier"> 🛒 </a></div>
         <?php
@@ -173,7 +187,7 @@
                 <button id="btnSignaleropenform">Signaler cette œuvre</button>
             </section>
             <?php
-            if ($enchere->num_rows > 0) {
+            if ($encheres->num_rows > 0) {
                 echo "<table class='table-enchere'>
                     <caption class='enchere'>Enchères</caption>
                     <thead>

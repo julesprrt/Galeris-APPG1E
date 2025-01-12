@@ -86,7 +86,7 @@ class User
         $database->close();
         if ($result->num_rows > 0) {
             // Obtenir les données utilisateur
-            $user = mysqli_fetch_assoc($result);
+            $user = $result->fetch_assoc();
             // Vérifier le mot de passe
             if (password_verify($this->password, $user['mot_de_passe']) && $user["actif"] === 1) {
                 session_start();
@@ -156,7 +156,7 @@ class User
         $result = $stmt->get_result();
         $conn->close();
         if ($result->num_rows > 0) {
-            $user = mysqli_fetch_assoc($result);
+            $user = $result->fetch_assoc();
             if ($user["actif"] === 0) {
                 session_start();
                 $_SESSION["usersessionID"] = $user["id_utilisateur"];
@@ -301,6 +301,19 @@ class User
         $stmt->close();
         $conn->close();
         return null;
+    }
+
+    public function getAllOeuvreSoldByUser($id, Database $db){
+        $conn = $db->connect();
+        $sql = "SELECT o.*, COALESCE(oi.image_path, 'Aucune image') AS image_path  from oeuvre o LEFT JOIN ( SELECT id_oeuvre, MIN(chemin_image) AS image_path FROM oeuvre_images GROUP BY id_oeuvre ) oi ON oi.id_oeuvre = o.id_oeuvre where id_utilisateur = ? and est_vendu = ?";
+        $stmt = $conn->prepare($sql);
+        $estVendue = 1;
+        $stmt->bind_param('ii', $id, $estVendue);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $stmt->close();
+        $conn->close();
+        return $result;
     }
     public function updateUser($id, $nom, $prenom, $email, $description, $adresse, $newsletter, $newPassword, Database $db)
     {
