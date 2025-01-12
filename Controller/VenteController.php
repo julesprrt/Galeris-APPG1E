@@ -2,13 +2,19 @@
 require_once('Database/Database.php');
 require_once('Controller.php');
 require_once('Model/categorie.php');
-require_once('Model/Utils.php');
+require_once('Model/utils.php');
 require_once('Model/Vente.php');
 
 Class VenteController extends Controller{//Controlleur accueil
     
     public function vente(Database $db) {
         session_start();
+
+        if (!isset($_SESSION['usersessionID'])) {
+            header('Location: ./connexion');
+            exit();
+        }
+
         $role = isset($_SESSION["usersessionRole"]) === true && $_SESSION["usersessionRole"] === "Admin" ? true : false;
         $categorie = new Categorie();
         $result = $categorie->getAllCategorie($db);
@@ -16,6 +22,13 @@ Class VenteController extends Controller{//Controlleur accueil
     }
 
     public function createvente(Database $db){
+        session_start();
+
+        if (!isset($_SESSION['usersessionID'])) {
+            header('Location: ./connexion');
+            exit();
+        }
+
         $paramData = file_get_contents("php://input");
         $data = json_decode($paramData, true);
         if(isset($data["titre"]) && isset($data["type"]) && isset($data["prix"]) && isset($data["nbJours"]) && isset($data["auteurs"]) && isset($data["description"]) && isset($data["categorie"]) && isset($data["image1"]) && isset($data["image2"]) && isset($data["image3"])){

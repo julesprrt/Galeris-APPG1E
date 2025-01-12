@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : mar. 31 déc. 2024 à 18:33
+-- Généré le : mar. 07 jan. 2025 à 18:31
 -- Version du serveur : 10.4.32-MariaDB
 -- Version de PHP : 8.2.12
 
@@ -193,9 +193,13 @@ INSERT INTO `code` (`ID`, `code`, `date_expiration`, `ID_user`) VALUES
 (133, 778411, '2024-12-18 21:50:27', 6),
 (134, 245747, '2024-12-18 21:50:39', 6),
 (135, 193310, '2024-12-18 21:50:42', 6),
-(144, 938551, '2024-12-25 19:53:16', 37),
-(145, 544742, '2024-12-31 17:16:18', 37),
-(146, 827235, '2024-12-31 17:16:20', 37);
+(147, 850630, '2025-01-06 10:10:36', 38),
+(148, 665841, '2025-01-06 10:10:40', 38),
+(149, 366535, '2025-01-06 20:56:24', 39),
+(150, 933538, '2025-01-06 23:00:59', 13),
+(151, 645784, '2025-01-06 23:01:01', 13),
+(152, 994035, '2025-01-06 23:01:05', 13),
+(153, 401683, '2025-01-06 23:02:38', 40);
 
 -- --------------------------------------------------------
 
@@ -217,10 +221,7 @@ CREATE TABLE `enchere` (
 
 INSERT INTO `enchere` (`id_enchere`, `id_oeuvre_enchere`, `prix`, `id_offreur`, `date_enchere`) VALUES
 (4, 48, 50.00, 6, '2022-06-07 00:00:00'),
-(5, 48, 55.00, 6, '2022-06-08 00:00:00'),
-(9, 52, 55.00, 37, '2024-12-31 17:38:59'),
-(10, 57, 55.00, 37, '2024-12-31 17:51:05'),
-(11, 58, 55.00, 37, '2024-12-31 17:59:56');
+(5, 48, 55.00, 6, '2022-06-08 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -253,7 +254,8 @@ INSERT INTO `exposition` (`id_exhibition`, `titre`, `description`, `date_debut`,
 (51, 's', 'ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss', '2024-12-29 00:00:00', '2024-12-30 00:00:00', 6, 'refuse'),
 (52, 'sss', 'ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss', '2024-12-24 00:00:00', '2024-12-29 00:00:00', 6, 'refuse'),
 (53, 'sss', 'ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss', '2024-12-24 00:00:00', '2024-12-29 00:00:00', 6, 'refuse'),
-(54, 'sss', 'ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss', '2024-12-23 00:00:00', '2024-12-29 00:00:00', 6, 'refuse');
+(54, 'sss', 'ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss', '2024-12-23 00:00:00', '2024-12-29 00:00:00', 6, 'refuse'),
+(55, 'test van gogh', 'sssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss', '2025-01-08 00:00:00', '2025-01-16 00:00:00', 6, 'accepte');
 
 -- --------------------------------------------------------
 
@@ -283,7 +285,27 @@ INSERT INTO `exposition_images` (`id_exposition_images`, `chemin_image`, `id_exp
 (36, 'ImageBD/exposition/image_67685113a6ebd2.21020732.jpeg', 51),
 (37, 'ImageBD/exposition/image_676852648ffde4.59232398.jpeg', 52),
 (38, 'ImageBD/exposition/image_676852685415c3.78190913.jpeg', 53),
-(39, 'ImageBD/exposition/image_6768528db06623.12771135.jpeg', 54);
+(39, 'ImageBD/exposition/image_6768528db06623.12771135.jpeg', 54),
+(40, 'ImageBD/exposition/image_677d3590c71032.45397649.jpeg', 55);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `favoris`
+--
+
+CREATE TABLE `favoris` (
+  `id_favoris` int(11) NOT NULL,
+  `id_utilisateur` int(11) DEFAULT NULL,
+  `id_oeuvre` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Déchargement des données de la table `favoris`
+--
+
+INSERT INTO `favoris` (`id_favoris`, `id_utilisateur`, `id_oeuvre`) VALUES
+(1, 38, 59);
 
 -- --------------------------------------------------------
 
@@ -307,8 +329,57 @@ CREATE TABLE `livraison` (
 --
 
 INSERT INTO `livraison` (`id_livraison`, `nom`, `prenom`, `adresse`, `codepostale`, `ville`, `id_utilisateur`, `pays`) VALUES
-(3, 'selvaratnam', 'akashs', '110 rue brancion 75015 Paris', '75015', 'paris', 6, 'france'),
-(5, 'selvaratnam', 'akash', '110 rue brancion', '75015', 'paris', 37, 'france');
+(3, 'selvaratnam', 'akash', '110 rue brancion 75015 Paris', '75015', 'paris', 6, 'france');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `news`
+--
+
+CREATE TABLE `news` (
+  `id_news` int(11) NOT NULL,
+  `titre` varchar(200) DEFAULT NULL,
+  `description` text DEFAULT NULL,
+  `id_utilisateur` int(11) DEFAULT NULL,
+  `date_news` date DEFAULT curdate()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Déchargement des données de la table `news`
+--
+
+INSERT INTO `news` (`id_news`, `titre`, `description`, `id_utilisateur`, `date_news`) VALUES
+(4, 'ISEP', 'ISEP a ouvert une cagnotte de plus de 50 000 euros pour l\'ensemble des artiste de rue.', 6, '2025-01-07'),
+(5, 'Van Gogh et napoleon', 'Napoléon serait l\'un des plus grand fan de Van Gogh WTF. Vrai ou faux ?', 6, '2025-01-08'),
+(6, 'van gogh', 'sssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss', 6, '2025-01-07'),
+(7, 'Napoleon', 'Lorem ipsum odor amet, consectetuer adipiscing elit. Etiam pellentesque porta elit non venenatis tortor orci pellentesque. Morbi suscipit viverra netus phasellus ipsum. Diam ex faucibus lacinia finibus hendrerit tempor. Consequat posuere porta convallis montes; faucibus semper lobortis laoreet. Interdum parturient duis neque tellus consectetur enim lacus nam. Conubia efficitur metus morbi tristique finibus tristique egestas et. Habitant molestie dui eu cubilia phasellus iaculis convallis; accumsan faucibus. Aptent parturient convallis malesuada scelerisque; dolor adipiscing amet.\n\nSuscipit elementum lectus vitae dui nisi. Fermentum eleifend nisl ex vitae in porttitor taciti blandit praesent. Sociosqu odio eu cursus ligula faucibus. Vivamus sed dapibus, montes parturient posuere sed. Magna mauris etiam enim taciti risus magnis dolor nullam. Senectus nascetur pretium tristique finibus aliquam. Dolor condimentum nisl, primis quisque vitae in fermentum vulputate.\n\nParturient habitant interdum class faucibus; leo iaculis pharetra. Suscipit elit egestas elementum euismod proin eu. Integer praesent risus tristique habitant condimentum integer metus. Sit volutpat morbi dis nascetur, elementum ad ligula porttitor. Cras ut at lacinia malesuada facilisis mauris. Leo posuere finibus accumsan lectus; nunc turpis sollicitudin. Lectus commodo congue auctor cursus conubia volutpat.\n\nUrna vitae ex sociosqu mi auctor purus ut. Dis fermentum elit interdum placerat eu odio. Etiam inceptos tincidunt proin consequat risus class eu suspendisse quam. Ut ridiculus morbi finibus ullamcorper aliquam? Dignissim velit eu vehicula suspendisse mus sociosqu ullamcorper. Consectetur nostra montes, interdum ridiculus nibh interdum. Risus integer dictumst auctor mus turpis. Accumsan dictum egestas urna aliquet, velit viverra rutrum varius. Velit turpis enim faucibus donec molestie dapibus at.\n\nFacilisis montes molestie non porttitor integer mauris himenaeos. Libero nascetur posuere lacus; natoque consequat lorem volutpat mattis. Parturient lectus nullam quam class purus pretium? Pharetra nullam ante bibendum tristique sem mollis nibh imperdiet rutrum. Aliquam lacinia fringilla ante congue sagittis tempus. Rhoncus id sociosqu lectus vitae ultrices ut laoreet? Quisque tellus egestas vel erat efficitur efficitur phasellus. Nibh mus rhoncus aenean at vestibulum ex fermentum.\n\nLacinia arcu adipiscing natoque lobortis dictum. Hendrerit ante ex leo amet, tortor nunc scelerisque fringilla massa. Ad montes aliquet senectus dui eget quis. Netus tristique et nisl phasellus ac pretium feugiat cubilia ac. Non tellus justo iaculis accumsan sit egestas tristique. Vehicula odio nisl per a quis primis phasellus turpis ad. Faucibus parturient scelerisque; odio condimentum felis facilisis ipsum. Dignissim curabitur semper et sociosqu auctor ultrices platea nullam. Scelerisque finibus suscipit nulla; ligula aptent congue lectus aliquam felis. Litora suspendisse aliquam vestibulum odio molestie inceptos mi.\n\nNam vitae auctor lacinia litora condimentum eget netus volutpat. Volutpat non arcu condimentum tincidunt turpis ornare. Nostra rutrum sed turpis ligula metus at? Massa mattis ex; ultrices cras nisi habitant. Est nulla et, inceptos neque ut fusce. Sit a quis vivamus massa tellus. Imperdiet quis libero platea curae nec. Eleifend magnis primis sit dis at viverra suspendisse.\n\nMagna ultricies iaculis velit purus; enim semper curae curae. Magna vitae taciti suscipit donec fusce elit varius sapien libero. Vel maecenas sed elementum sed; cras tortor aliquam ut. Dapibus nullam arcu primis porta est justo morbi ut. Quam mi semper sagittis placerat varius duis mus nullam? Feugiat iaculis curabitur sagittis curabitur tellus? Mollis ipsum mattis tortor nam; eu tincidunt. Ullamcorper lacus libero mauris, ligula pellentesque montes.\n\nVitae nullam platea dis phasellus risus iaculis potenti. Ad dui porttitor fusce est pharetra turpis quam mus. Aptent dolor pulvinar praesent laoreet orci; id auctor. Sapien dapibus posuere torquent sociosqu mattis elit pharetra. Sem vitae rutrum vestibulum curabitur dolor congue viverra primis ante. Egestas nisi eleifend eleifend nec nisl nec. Dolor ac nulla himenaeos at rutrum. Pulvinar cubilia ornare ac commodo himenaeos sit. Orci placerat tincidunt blandit; lacinia auctor nulla donec a nisi.\n\nEuismod fringilla euismod fringilla dignissim ante odio phasellus. Curabitur aliquet cras sit habitasse in potenti erat est. Habitant phasellus mauris litora non mus condimentum, bibendum quis. Finibus posuere proin massa sagittis interdum. Amet viverra ullamcorper a sociosqu sollicitudin penatibus luctus a. Porta sagittis aenean vehicula eros posuere nostra. Nullam nostra nunc; porta eu sem et condimentum. Per habitant erat penatibus hendrerit in penatibus lectus felis accumsan? Turpis a inceptos litora fermentum amet cubilia quisque.\n\nNatoque fusce nulla natoque proin quam; scelerisque ligula dictum neque. Ultrices facilisis mus a vestibulum; lectus at etiam lacus. Dictum hac ante interdum volutpat fringilla! Sit nunc iaculis gravida netus maecenas vitae risus. Condimentum faucibus praesent egestas penatibus ad. Turpis primis amet adipiscing nibh lacus? Ac neque feugiat netus tempus faucibus pellentesque est mi. Orci blandit magna, est maximus feugiat himenaeos integer sit.\n\nNascetur venenatis curabitur dis ad dis, consequat sed. Posuere auctor velit nunc lobortis nisi adipiscing aptent tincidunt. Conubia felis amet et arcu platea nisl. Ut sit quis lacinia natoque aliquet imperdiet sociosqu fermentum sit. Litora tellus leo torquent urna torquent justo conubia odio. Feugiat vestibulum nascetur mus senectus efficitur tortor. Ultrices feugiat integer vivamus fames maximus tortor.\n\nLaoreet metus dui taciti leo quis semper. Velit interdum neque pharetra eleifend vel laoreet suscipit. Malesuada feugiat platea maecenas tristique posuere porta vitae maximus. Venenatis congue aliquam nec nostra ipsum mollis malesuada primis. Fusce magnis massa dictumst in nullam mauris. Dapibus ornare nec viverra maximus morbi erat penatibus. Nunc finibus rutrum justo faucibus cursus rutrum finibus. Quis etiam torquent amet, in non in?\n\nMetus adipiscing suspendisse, velit egestas odio sit cursus. Nullam ex scelerisque lectus nostra sollicitudin eget. Eget tempor finibus nibh enim risus iaculis ex lobortis mauris. Accumsan consectetur enim fames molestie; accumsan ut sem. Sapien nam consectetur orci erat magnis class aliquet. Class augue donec vestibulum posuere vulputate; ultricies eleifend netus. Gravida montes et diam rutrum tempus enim vehicula est nisi.\n\nAccumsan ullamcorper porttitor ante at amet senectus mollis quis. Euismod ultrices class sociosqu viverra odio inceptos dignissim. Facilisis justo hendrerit sociosqu egestas dignissim. Nisl mus enim varius consectetur placerat. Nascetur scelerisque quis ante; mattis odio duis elementum. Blandit mollis interdum vitae ante pellentesque ut.\n\nSapien viverra suspendisse velit non sem. Auctor auctor a sem odio dapibus. Bibendum dapibus justo adipiscing; rutrum enim tempus. Odio ligula viverra nostra enim litora. Aptent at praesent nulla auctor mattis urna enim per. Commodo vehicula at est convallis interdum curae. Himenaeos laoreet eleifend gravida libero pharetra augue commodo. Lobortis magna cursus consectetur nisl ullamcorper felis consequat mattis vestibulum.\n\nCongue sit maximus fames amet pharetra cras interdum ante donec. Diam lacus tellus nostra vestibulum netus tellus imperdiet. At tempus mus placerat volutpat lobortis vulputate dapibus maecenas. Sociosqu dignissim posuere maecenas sociosqu sed etiam nascetur. Phasellus imperdiet nisl consectetur imperdiet potenti. Velit arcu placerat quam pulvinar aliquet ultricies nisi. Duis fusce euismod aliquam elit felis mauris neque felis. Tempor tortor tincidunt; facilisis sagittis integer phasellus. Inceptos rutrum diam gravida amet id faucibus mus accumsan.\n\nUltricies suscipit elementum pellentesque risus urna dignissim. Netus ac cursus et primis magna faucibus. Mauris odio urna penatibus maximus aenean cras. Nunc placerat et lacinia condimentum laoreet dui hendrerit facilisis. Nulla morbi netus neque euismod volutpat nam praesent. Arcu gravida curabitur lacinia metus nisi elit fermentum ut. Ullamcorper ultricies viverra; finibus porttitor suspendisse odio. Molestie iaculis felis integer; proin cubilia parturient magnis feugiat arcu. Eleifend potenti lacus fermentum, ultrices tincidunt magna.\n\nAugue fermentum nullam pharetra sociosqu, eleifend magna curabitur nostra. Blandit class pharetra montes congue dui. Quisque viverra ut pharetra suspendisse lobortis varius tristique primis magnis. Netus est orci porttitor, vivamus porta porttitor torquent massa. Quisque maximus nunc, ex parturient dis quisque turpis. Dictum velit vivamus semper dis laoreet etiam nisi eget rhoncus. Malesuada taciti vitae tempus amet, nunc tempor taciti feugiat.\n\nVenenatis placerat praesent, facilisi tempor velit pulvinar. Dis justo libero neque penatibus quis inceptos tristique proin. Ligula parturient proin tincidunt rutrum sociosqu. Litora fringilla aliquam torquent praesent fames finibus magnis pharetra suspendisse. Mi turpis tellus nullam vestibulum velit aptent libero facilisi. Tortor parturient semper ullamcorper nunc platea. Dictum aptent placerat eu cursus facilisi ridiculus. Finibus vivamus elit quis at parturient consectetur. Feugiat class ac blandit est per venenatis arcu quisque nascetur.', 6, '2025-01-07');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `news_images`
+--
+
+CREATE TABLE `news_images` (
+  `id_news_images` int(11) NOT NULL,
+  `chemin_image` text DEFAULT NULL,
+  `id_news` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Déchargement des données de la table `news_images`
+--
+
+INSERT INTO `news_images` (`id_news_images`, `chemin_image`, `id_news`) VALUES
+(1, 'ImageBD/news/image_677d2203bc8ad5.47530439.png', 1),
+(2, 'ImageBD/news/image_677d22650b1a46.81117357.png', 2),
+(3, 'ImageBD/news/image_677d22d86ec7c8.59535952.png', 3),
+(4, 'ImageBD/news/image_677d28ce828c53.13949482.png', 4),
+(5, 'ImageBD/news/image_677d2980b285d7.71501341.jpeg', 5),
+(6, 'ImageBD/news/image_677d2980b7b465.87797676.jpeg', 5),
+(7, 'ImageBD/news/image_677d598a9daac5.44108566.jpeg', 6),
+(8, 'ImageBD/news/image_677d59b0dab212.54180355.jpeg', 7);
 
 -- --------------------------------------------------------
 
@@ -354,8 +425,10 @@ INSERT INTO `oeuvre` (`id_oeuvre`, `Titre`, `Description`, `eco_responsable`, `D
 (57, 'test_enchere', 'Test de mon enchère avec un prix de depart à 10 euros', 0, '2024-12-31 17:50:13', '2024-12-31 17:50:13', 50.00, 'Enchere', 1, 'benjamin', 6, 2, 'accepte'),
 (58, 'van goghe', 'enchere van goghee aya aya aya ta ta ta tam tam tam', 0, '2024-12-31 17:58:59', '2024-12-31 17:58:59', 50.00, 'Enchere', 1, 'benjamin', 6, 2, 'accepte'),
 (59, 'Van gogh', 'vente de van gogh au prix le plus bas du marché. acheter', 0, '2024-12-31 18:03:37', '2025-01-10 18:03:37', 100.00, 'Vente', 0, 'Van gogh', 6, 2, 'accepte'),
-(60, 'vente van gogh enchere', 'Enchère de van gogh, l\'un des plus grand artiste de tous les temps', 0, '2024-12-31 18:04:51', '2025-01-20 18:04:51', 30.00, 'Enchere', 0, 'ben', 6, 2, 'accepte'),
-(61, 'Napoleon', 'Napoleon, un tableau réalisé par Bonaparte, une main de maitre jamais égalé', 0, '2024-12-31 18:05:48', '2025-01-02 18:05:48', 50.00, 'Vente', 0, 'Le Bonaparte', 6, 2, 'accepte');
+(61, 'Napoleon', 'Napoleon, un tableau réalisé par Bonaparte, une main de maitre jamais égalé', 0, '2024-12-31 18:05:48', '2025-01-02 18:05:48', 50.00, 'Vente', 0, 'Le Bonaparte', 6, 2, 'accepte'),
+(62, 'test', 'testetetseteteteteteeteteteteteteteteeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee', 0, '2025-01-07 15:06:53', '2025-01-17 15:06:53', 50.00, 'Vente', 0, 'benjamin', 6, 2, 'accepte'),
+(63, 'test_enchere', 'sssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss', 0, '2025-01-07 15:08:39', '2025-01-27 15:08:39', 50.00, 'Vente', 0, 'benjamin', 6, 2, 'accepte'),
+(64, 'vng', 'ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss', 0, '2025-01-07 15:09:54', '2025-01-17 15:09:54', 50.00, 'Vente', 0, 'vng', 6, 2, 'accepte');
 
 -- --------------------------------------------------------
 
@@ -377,7 +450,6 @@ INSERT INTO `oeuvre_images` (`id_photo`, `chemin_image`, `id_oeuvre`) VALUES
 (33, 'ImageBD/Oeuvre/image_675fecff445a41.97423138.png', 34),
 (34, 'ImageBD/Oeuvre/image_675fecff4b7969.61541123.png', 34),
 (35, 'ImageBD/Oeuvre/image_675fed29d7ed16.67414203.png', 35),
-(37, 'ImageBD/Oeuvre/image_675fed888eb3f0.27949733.png', 37),
 (38, 'ImageBD/Oeuvre/image_675feda6e9a416.81705887.png', 38),
 (39, 'ImageBD/Oeuvre/image_6761d85ac85a51.58806564.png', 39),
 (40, 'ImageBD/Oeuvre/image_6761d85ad06e69.37601475.jpeg', 39),
@@ -393,8 +465,10 @@ INSERT INTO `oeuvre_images` (`id_photo`, `chemin_image`, `id_oeuvre`) VALUES
 (60, 'ImageBD/Oeuvre/image_677420c52fcfa7.23079096.jpeg', 57),
 (61, 'ImageBD/Oeuvre/image_677422d3b74222.09770159.jpeg', 58),
 (62, 'ImageBD/Oeuvre/image_677423e991d264.85088622.jpeg', 59),
-(63, 'ImageBD/Oeuvre/image_67742433e5e414.00718719.jpeg', 60),
-(64, 'ImageBD/Oeuvre/image_6774246c43ebc3.22438674.jpeg', 61);
+(64, 'ImageBD/Oeuvre/image_6774246c43ebc3.22438674.jpeg', 61),
+(65, 'ImageBD/Oeuvre/image_677d34fd8a2474.22187134.jpeg', 62),
+(66, 'ImageBD/Oeuvre/image_677d3567726541.69828845.jpeg', 63),
+(67, 'ImageBD/Oeuvre/image_677d35b2d03620.52262699.jpeg', 64);
 
 -- --------------------------------------------------------
 
@@ -407,13 +481,6 @@ CREATE TABLE `panier` (
   `id_utilisateur` int(11) DEFAULT NULL,
   `id_oeuvre` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Déchargement des données de la table `panier`
---
-
-INSERT INTO `panier` (`id_panier`, `id_utilisateur`, `id_oeuvre`) VALUES
-(28, 37, 59);
 
 -- --------------------------------------------------------
 
@@ -441,7 +508,7 @@ CREATE TABLE `utilisateur` (
 --
 
 INSERT INTO `utilisateur` (`id_utilisateur`, `nom`, `prenom`, `email`, `description`, `adresse`, `roles`, `mot_de_passe`, `date_creation`, `newsletter`, `actif`, `solde`) VALUES
-(6, 'selvaratnam', 'akash', 'kaladevi549@gmail.com', '', '110, Rue Brancion, Quartier Saint-Lambert, Paris 15e Arrondissement, Paris, Île-de-France, France mé', 'Admin', '$2y$10$lk08IJsZy7Oivka/WgY.pOLqDqnPhCtCs4sDqMY3KmkzPv57IDwm6', '2024-11-26', 0, 1, 1240.00),
+(6, 'selvaratnam', 'akash', 'kaladevi549@gmail.com', '', '', 'Admin', '$2y$10$lk08IJsZy7Oivka/WgY.pOLqDqnPhCtCs4sDqMY3KmkzPv57IDwm6', '2024-11-26', 1, 1, 1240.00),
 (7, 'selvaratnam', 'akash', 'kaladevi549@gmail.ju', NULL, NULL, 'Utilisateur', '$2y$10$EMfeaZGsM4pt6A4676gI9u2ox6z4.PE14jaM8IAqXDbuEHwqBj4b2', '2024-11-28', 0, 1, 0.00),
 (8, 'selvaratnam', 'akash', 'kaladevi549@gmail.pm', NULL, NULL, 'Utilisateur', '$2y$10$3YzJizisFI1S2EUCiFj0OeNkXgC3oyb2DeWGo4QMsu.QUSYRXI5OK', '2024-11-28', 0, 0, 0.00),
 (10, 'selvaratnam', 'akash', 'kaladevi549@gmail.sss', NULL, NULL, 'Utilisateur', '$2y$10$.PR1AYeC0RqSjMi15T734.HhfPTIcgWVbev0krEkhs/l.kFXKahJO', '2024-12-08', 0, 1, 0.00),
@@ -464,7 +531,30 @@ INSERT INTO `utilisateur` (`id_utilisateur`, `nom`, `prenom`, `email`, `descript
 (27, 'Pierret ', 'Jules', 'jupi63473@eleve.isep.fr', NULL, NULL, 'Utilisateur', '$2y$10$mhdJtYwHue6QyA0O8xouH.2oDTekGIC1GEf1M7P5JT3zUqO1AynlK', '2024-12-16', 0, 0, 283.00),
 (28, 'selvaratnam', 'akash', 'larrykala@hotmail.fr', NULL, NULL, 'Utilisateur', '$2y$10$Upt78gmC9Qs5YtLrRAcCz.B4jcDdMbRgu.9UWz7IePanIsZ3nKVHS', '2024-12-18', 0, 1, 0.00),
 (29, 'selvaratnam', 'akash', 'kaladevi549@gmail.sjsj', NULL, NULL, 'Utilisateur', '$2y$10$NgMyTRBFYFM5kKj6H.CEHednJtmRdfYN5M5yt00ZR8ZgduYiTDg3S', '2024-12-18', 0, 0, 0.00),
-(37, 'selvaratnam', 'akash', 'akse63476@eleve.isep.fr', NULL, NULL, 'Utilisateur', '$2y$10$lPpJHJedig9C7t.97rmYkekFAlT2JV1EOdRC6GxpBRednIHjMh9JO', '2024-12-25', 0, 1, 0.00);
+(38, 'selvaratnam', 'akash', 'akse63476@eleve.isep.fr', NULL, NULL, 'Utilisateur', '$2y$10$ChFmNGsx.fBocM3XdjjEJeNFY6hDpxfwd.qiTcAP3wtPejtzHDAzq', '2025-01-06', 0, 1, 0.00),
+(39, 'selvaratnam', 'akash', 'sss@ssms.ss', NULL, NULL, 'Utilisateur', '$2y$10$iOxS1A7ugBNINWQGq15Uv.eGZP7LCmPZXQU0ELMipuFT0SoNPZrHe', '2025-01-06', 0, 0, 0.00),
+(40, 'selvaratnam', 'akash', 'kaladevi549@gmail.cos', NULL, NULL, 'Utilisateur', '$2y$10$fOsSPA5qILMGULxtOlkiGOuruEMqN8Rtdet3ncDjXHkHfZeqttbYe', '2025-01-06', 0, 0, 0.00);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `utilisateur_image`
+--
+
+CREATE TABLE `utilisateur_image` (
+  `id_photo` int(11) NOT NULL,
+  `chemin_image` varchar(100) DEFAULT NULL,
+  `id_utilisateur` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Déchargement des données de la table `utilisateur_image`
+--
+
+INSERT INTO `utilisateur_image` (`id_photo`, `chemin_image`, `id_utilisateur`) VALUES
+(1, 'ImageBD/Profil/test1.png', 27),
+(19, 'ImageBD/Profil/profile_6777f350840a70.32925958.png', 38),
+(22, 'ImageBD/Profil/profile_67781f6dd261b9.43026680.jpg', 6);
 
 -- --------------------------------------------------------
 
@@ -541,10 +631,30 @@ ALTER TABLE `exposition_images`
   ADD KEY `id_exposition` (`id_exposition`);
 
 --
+-- Index pour la table `favoris`
+--
+ALTER TABLE `favoris`
+  ADD PRIMARY KEY (`id_favoris`),
+  ADD KEY `id_utilisateur` (`id_utilisateur`),
+  ADD KEY `id_oeuvre` (`id_oeuvre`);
+
+--
 -- Index pour la table `livraison`
 --
 ALTER TABLE `livraison`
   ADD PRIMARY KEY (`id_livraison`);
+
+--
+-- Index pour la table `news`
+--
+ALTER TABLE `news`
+  ADD PRIMARY KEY (`id_news`);
+
+--
+-- Index pour la table `news_images`
+--
+ALTER TABLE `news_images`
+  ADD PRIMARY KEY (`id_news_images`);
 
 --
 -- Index pour la table `oeuvre`
@@ -573,6 +683,13 @@ ALTER TABLE `utilisateur`
   ADD UNIQUE KEY `email` (`email`);
 
 --
+-- Index pour la table `utilisateur_image`
+--
+ALTER TABLE `utilisateur_image`
+  ADD PRIMARY KEY (`id_photo`),
+  ADD KEY `fk_utilisateur` (`id_utilisateur`);
+
+--
 -- Index pour la table `vente`
 --
 ALTER TABLE `vente`
@@ -592,7 +709,7 @@ ALTER TABLE `categorie`
 -- AUTO_INCREMENT pour la table `code`
 --
 ALTER TABLE `code`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=147;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=154;
 
 --
 -- AUTO_INCREMENT pour la table `enchere`
@@ -604,13 +721,19 @@ ALTER TABLE `enchere`
 -- AUTO_INCREMENT pour la table `exposition`
 --
 ALTER TABLE `exposition`
-  MODIFY `id_exhibition` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
+  MODIFY `id_exhibition` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
 
 --
 -- AUTO_INCREMENT pour la table `exposition_images`
 --
 ALTER TABLE `exposition_images`
-  MODIFY `id_exposition_images` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+  MODIFY `id_exposition_images` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+
+--
+-- AUTO_INCREMENT pour la table `favoris`
+--
+ALTER TABLE `favoris`
+  MODIFY `id_favoris` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT pour la table `livraison`
@@ -619,16 +742,28 @@ ALTER TABLE `livraison`
   MODIFY `id_livraison` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
+-- AUTO_INCREMENT pour la table `news`
+--
+ALTER TABLE `news`
+  MODIFY `id_news` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT pour la table `news_images`
+--
+ALTER TABLE `news_images`
+  MODIFY `id_news_images` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
 -- AUTO_INCREMENT pour la table `oeuvre`
 --
 ALTER TABLE `oeuvre`
-  MODIFY `id_oeuvre` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
+  MODIFY `id_oeuvre` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=65;
 
 --
 -- AUTO_INCREMENT pour la table `oeuvre_images`
 --
 ALTER TABLE `oeuvre_images`
-  MODIFY `id_photo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=65;
+  MODIFY `id_photo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=68;
 
 --
 -- AUTO_INCREMENT pour la table `panier`
@@ -640,7 +775,13 @@ ALTER TABLE `panier`
 -- AUTO_INCREMENT pour la table `utilisateur`
 --
 ALTER TABLE `utilisateur`
-  MODIFY `id_utilisateur` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `id_utilisateur` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+
+--
+-- AUTO_INCREMENT pour la table `utilisateur_image`
+--
+ALTER TABLE `utilisateur_image`
+  MODIFY `id_photo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT pour la table `vente`
@@ -669,6 +810,13 @@ ALTER TABLE `enchere`
 --
 ALTER TABLE `exposition_images`
   ADD CONSTRAINT `exposition_images_ibfk_1` FOREIGN KEY (`id_exposition`) REFERENCES `exposition` (`id_exhibition`);
+
+--
+-- Contraintes pour la table `favoris`
+--
+ALTER TABLE `favoris`
+  ADD CONSTRAINT `favoris_ibfk_1` FOREIGN KEY (`id_utilisateur`) REFERENCES `utilisateur` (`id_utilisateur`) ON DELETE CASCADE,
+  ADD CONSTRAINT `favoris_ibfk_2` FOREIGN KEY (`id_oeuvre`) REFERENCES `oeuvre` (`id_oeuvre`) ON DELETE CASCADE;
 
 --
 -- Contraintes pour la table `oeuvre_images`

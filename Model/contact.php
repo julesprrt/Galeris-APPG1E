@@ -5,7 +5,8 @@ require_once('Constantes/constants.php');
 require_once('Database/Database.php');
 require_once('Model/utils.php');
 
-Class Contact {
+class Contact
+{
     private $sendMail;
     private $name;
     private $firstName;
@@ -13,8 +14,10 @@ Class Contact {
     private $message;
     private $subject;
     private $utilsContact;
+    private $recaptcha;
 
-    public function __construct($firstName, $name, $email,$message,$subject) {//Constructeur -> Initialisation des données
+    public function __construct($firstName, $name, $email, $message, $subject, $recaptcha)
+    { //Constructeur -> Initialisation des données
         $this->sendMail = new MailSender();
         $this->name = $name;
         $this->firstName = $firstName;
@@ -22,58 +25,64 @@ Class Contact {
         $this->message = $message;
         $this->subject = $subject;
         $this->utilsContact = new Utils();
+        $this->recaptcha = $recaptcha;
     }
 
-    public function verifyAllInput(){
-        if($this->email == '' || $this->name == '' || $this->firstName == '' || $this->message == '' || $this->subject == ''){
+    public function verifyAllInput()
+    {
+
+        if ($this->email == '' || $this->name == '' || $this->firstName == '' || $this->message == '' || $this->subject == '') {
             return false;
-        }
-        else{
+        } else {
             return true;
         }
     }
 
-    public function LimitLengthMessage(){
-        if(strlen($this->message) < 15){
+    public function LimitLengthMessage()
+    {
+        if (strlen($this->message) < 15) {
             return false;
-        }
-        else{
+        } else {
             return true;
         }
     }
 
-    public function LimitLengthFirstName(){
-        if(strlen($this->name) <= 1){
+    public function LimitLengthFirstName()
+    {
+        if (strlen($this->name) <= 1) {
             return false;
-        }
-        else{
+        } else {
             return true;
         }
     }
 
-    public function LimitLengthName(){
-        if(strlen($this->firstName) <= 1){
+    public function LimitLengthName()
+    {
+        if (strlen($this->firstName) <= 1) {
             return false;
-        }
-        else{
+        } else {
             return true;
         }
     }
 
-    public function contactPlatformGaleris() {
-        if($this->verifyAllInput() == false){
+    public function contactPlatformGaleris()
+    {
+        if ($this->utilsContact->verifyCaptcha($this->recaptcha) == false) {
+            return "Veuillez valider le Captcha";
+        }
+        if ($this->verifyAllInput() == false) {
             return "Veuillez remplir l'ensemble des champs du formulaire";
         }
-        if($this->LimitLengthFirstName() == false){
+        if ($this->LimitLengthFirstName() == false) {
             return "Nombre de caractère minimale pour le champ Prénom est de 2 caractères";
         }
-        if($this->LimitLengthName() == false){
+        if ($this->LimitLengthName() == false) {
             return "Nombre de caractère minimale pour le champs nom est de 2 caractères";
         }
-        if($this->LimitLengthMessage() == false){
+        if ($this->LimitLengthMessage() == false) {
             return "Nombre de caractère minimale pour le champs message est de 15 caractères";
         }
-        if( $this->utilsContact->emailComposition($this->email) == false){
+        if ($this->utilsContact->emailComposition($this->email) == false) {
             return "Email invalide";
         }
         $subject_options = [
@@ -87,5 +96,4 @@ Class Contact {
 
         return $this->sendMail->sendMail(email_galeris, $subject_label, $this->message, $this->email);
     }
-    
 }

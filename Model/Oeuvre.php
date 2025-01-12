@@ -174,12 +174,12 @@ class Oeuvre
 
     public function verifyEnchere(Database $db)
     {
-        $user = new User(null, null, null, null, null, null, null);
+        $user = new User(null, null,  null, null, null, null, null, null, null, null);
         $userLivraison = $user->getUserById($_SESSION["usersessionID"], $db);
 
         $_SESSION["livraison"] = "enchere";
 
-        if ($userLivraison === null) {
+        if ($userLivraison["adresse_livraison"] === null) {
             return 401;
         }
 
@@ -228,7 +228,7 @@ class Oeuvre
     public function CreateSaveEnchere(Database $db)
     {
         $oeuvresEncheres = $this->getAllEnchereForUpdate($db);
-        if (mysqli_num_rows($oeuvresEncheres) > 0) {
+        if ($oeuvresEncheres->num_rows > 0) {
             $this->updateUserSoldAndVenteTable($db, $oeuvresEncheres);
             $this->updateOeuvreEnchere($db, $oeuvresEncheres);
             $this->sendMailForUser($db, $oeuvresEncheres);
@@ -334,4 +334,25 @@ class Oeuvre
         $Database->close();
         return 200;
     }
+
+    public function supprimerOeuvreParId(Database $db, $idOeuvre)
+    {
+        $conn = $db->connect();
+
+        $sql = "DELETE FROM oeuvre WHERE id_oeuvre = ?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("i", $idOeuvre);
+        $stmt->execute();
+        $affectedRows = $stmt->affected_rows;
+        
+        $stmt->close();
+        $conn->close();
+
+        if ($affectedRows > 0) {
+            return 200;
+        } else {
+            return 500; 
+        }
+    }
+
 }

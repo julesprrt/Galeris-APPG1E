@@ -8,6 +8,12 @@ class LivraisonController extends Controller
     public function livraison(Database $db)
     {
         session_start();
+
+        if (!isset($_SESSION['usersessionID'])) {
+            header('Location: ./connexion');
+            exit();
+        }
+
         $role = isset($_SESSION["usersessionRole"]) === true && $_SESSION["usersessionRole"] === "Admin" ? true : false;
         $livraison = new Livraison(null,null,null,null,null,null);
         $result = $livraison->getLivraison($db);
@@ -15,6 +21,13 @@ class LivraisonController extends Controller
     }
 
     public function validerlivraison(Database $db){
+        session_start();
+
+        if (!isset($_SESSION['usersessionID'])) {
+            header('Location: ./connexion');
+            exit();
+        }
+        
         $paramData = file_get_contents("php://input");
         $data = json_decode($paramData, true);
         if (isset($data['nom']) && isset($data['prenom']) && isset($data['pays']) && isset($data['adresse']) && isset($data['postale']) && isset($data['ville'])) {

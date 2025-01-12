@@ -74,7 +74,6 @@ Class Vente{
     }
 
     public function saveProduct(Database $db){
-        session_start();
         $Database = $db->connect();
         $sql = "insert into oeuvre (Titre, Description, Date_fin, Prix, type_vente, auteur, id_utilisateur, id_categorie) values (?,?,?,?,?,?,?,?)";
         $stmt = $Database->prepare($sql);
