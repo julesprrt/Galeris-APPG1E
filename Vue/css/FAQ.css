@@ -1,158 +1,138 @@
-/* Style global */
 body {
     font-family: Arial, Helvetica, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #ffffff; /* Fond blanc */
-    color: #333;
+    height: 100%;
 }
 
-.Page {
-    padding-bottom: 100px;
+.page-content {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1; /* Utiliser tout l'espace disponible */
+    width: 100%; /* S'assurer que l'élément prend toute la largeur */
+    padding: 0; /* Supprimer le padding existant */
+    margin: 0; /* Supprimer les marges */
+    padding-top: 1.8em;
 }
 
-header {
+.description {
+    padding: 0em 12em 0em 12em;
+}
+
+.contentbase {
     text-align: center;
-    background-color: #ffffff; /* Fond blanc */
-    color: #000000; /* Écriture noire */
-    padding: 20px;
 }
 
-body h1 {
-    margin: 0;
-    font-size: 2rem;
-    color: #000000; /* Écriture noire */
-    background-color: #fff;
-    border-radius: 100px;
-    padding: 25px;
-    margin-bottom: 10px;
-    transition: all 0.3s ease;
-    max-width: 500px;
-    margin-left: 550px;
-}
-body h2 {
-    margin: 0;
-    font-size: 1.2rem; /* Réduction de la taille du texte */
-    color: #000000; /* Écriture noire */
-    background-color: #fff;
-    border-radius: 20px; /* Réduction du rayon des bords arrondis */
-    padding-left: 450px; /* Réduction de l'espace intérieur */
-    max-width: 440px; /* Réduction de la largeur maximale */
-    margin-left: 80px; /* Réduction de la marge gauche */
-    position: relative;
-    top: -20px; 
-}
-
-.image1{
-    position: absolute;
-    margin-top: 107px;
-    padding: 35px;
-    top: 0;
-    right: 10;
-    width: 350px; /* Ajuste la taille du logo si nécessaire */
-    height: auto;
-    border-radius: 50px;
-    padding-top:50px;
-}
-
-.tableau {
-    position: absolute;
-    margin-top: 170px;
-    top: 20;
-    right: 60px;
-    width: 350px; /* Ajuste la taille du logo si nécessaire */
-    height: auto;
-    border-radius: 15px;
-}
-
-.tableau2 {
-    position: absolute;
-    margin-top: 530px;
-    top: 20;
-    right: 60px;
-    width: 350px; /* Ajuste la taille du logo si nécessaire */
-    height: auto;
-    border-radius: 15px;
-}
-
-header p {
-    font-size: 1.2rem;
-    margin-top: 10px;
-    color: #000000; /* Écriture noire */
-    
-}
-
-/* Style des sections */
-il {
-    display: block;
-    font-size: 1.3rem;
-    font-weight: bold;
-    color: #000000; /* Écriture noire */
-    margin: 20px 0 10px;
-    padding-left: 440px;
-}
-
-/* Style des détails et questions */
-details {
-    background-color: #fff;
-    border: 1px solid #ddd;
+.sellproduct {
+    border: none;
+    background-color: #D9A36A;
+    padding: 1.1em;
     border-radius: 5px;
-    padding: 10px;
-    margin-bottom: 10px;
-    transition: all 0.3s ease;
-    max-width: 550px;
-    margin-left: 440px;
-}
-
-summary {
-    font-size: 1.1rem;
-    font-weight: bold;
-    color: #000000; /* Écriture noire */
+    color: white;
     cursor: pointer;
 }
 
-details[open] summary {
-    color: #000000; /* Écriture noire */
+.news{
+    border: none;
+    background-color: #D9A36A;
+    padding: 1.1em;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+    margin-left: 0.2em;
 }
 
-details p {
-    font-size: 1rem;
-    color: #555;
-    margin-top: 10px;
-    text-align: justify;
+.news:hover {
+    opacity: 0.9;
 }
 
-details ul {
-    margin-left: 20px;
-    list-style-type: disc;
+.demandeexpo {
+    border: none;
+    background-color: #D9A36A;
+    padding: 1.1em;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
 }
 
-/* Ajout d'un effet au survol */
-summary:hover {
-    color: #bca657;
+.sellproduct:hover {
+    opacity: 0.9;
 }
 
-/* Espacement et organisation */
-br {
-    margin-bottom: 10px;
+.demandeexpo:hover {
+    opacity: 0.9;
 }
 
-/* Adaptation pour mobile */
-@media (max-width: 600px) {
-    header h2 {
-        font-size: 1.5rem;
-    }
-
-    header p {
-        font-size: 1rem;
-    }
-
-    details {
-        padding: 8px;
-    }
-
-    summary {
-        font-size: 1rem;
-    }
+.content-description {
+    padding-top: 0.8em;
 }
 
+.container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Section principale des œuvres */
+.oeuvres {
+    display: flex;
+    flex-wrap: wrap; /* Les éléments sautent à la ligne si besoin */
+    justify-content: space-evenly; /* Espacement uniforme des éléments */
+    gap: 20px; /* Espacement entre les cartes */
+    padding: 2em 5%; /* Espacement autour de la section */
+    background-color: #f9f9f9; /* Fond léger */
+    box-sizing: border-box; /* Inclut le padding dans la largeur totale */
+    max-width: 100%; /* Assure que ça ne dépasse pas la largeur de la page */
+    margin: 0 auto; /* Centre la section */
+}
+
+/* Carte individuelle pour chaque œuvre */
+.oeuvre {
+    background-color: #fff;
+    /* Fond blanc pour la carte */
+    border: 1px solid #ddd;
+    /* Bordure fine grise */
+    border-radius: 8px;
+    /* Coins arrondis */
+    width: 250px;
+    /* Taille fixe pour uniformité */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    /* Ombre légère */
+    transition: transform 0.3s ease-in-out;
+    /* Animation au survol */
+    text-align: center;
+    /* Contenu centré */
+    overflow: hidden;
+    /* Coupe le contenu dépassant */
+}
+
+.oeuvre:hover {
+    transform: translateY(-5px);
+    /* Effet d'élévation au survol */
+}
+
+/* Image des œuvres */
+.oeuvre img {
+    width: 100%;
+    /* Image responsive */
+    height: 160px;
+    /* Hauteur fixe pour uniformité */
+    object-fit: cover;
+    /* Ajustement sans déformation */
+    border-bottom: 1px solid #ddd;
+    /* Séparation visuelle */
+}
+
+/* Titre des œuvres */
+.oeuvre h3 {
+    font-size: 1.1em;
+    margin: 0.5em 0;
+    color: #333;
+    /* Couleur sobre */
+}
+
+/* Description des œuvres */
+.oeuvre p {
+    font-size: 0.9em;
+    color: #666;
+    /* Texte plus clair */
+    padding: 0em 0.5em 0.5em 0.5em;
+}
