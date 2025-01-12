@@ -61,7 +61,6 @@ async function verifyEnchere() {
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
     const raw = JSON.stringify({
-
     });
 
     const requestOptions = {
@@ -70,7 +69,7 @@ async function verifyEnchere() {
         body: raw,
         redirect: "follow"
     };
-    const response = await fetch("./s")
+    const response = await fetch("./verifyenchere")
     const statuscode = response.status;
     const result = await response.json();
 
@@ -283,18 +282,18 @@ async function retirerfavoris(){
    }
 }
 
-document.querySelectorAll(".boutton-favoris").forEach(item => {
-    item.addEventListener("click", ajoutfavoris);
-});
 
-document.querySelectorAll(".boutton-retirer-favoris").forEach(item => item.addEventListener("click", retirerfavoris));
 
-async function ajoutfavoris(){
-    console.log("ok")
+document.querySelector(".profil-section").addEventListener('click', saveUserid)
+
+async function saveUserid() {
+    const id_utilisateur = document.getElementById("id_utilisateur").value;
+
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
-    
+
     const raw = JSON.stringify({
+        "id": id_utilisateur
     });
 
     const requestOptions = {
@@ -303,34 +302,9 @@ async function ajoutfavoris(){
         body: raw,
         redirect: "follow"
     };
-    const result = await fetch("./ajoutfavoris", requestOptions);
-    const statut = result.status;
-    const text = await result.json();
-    if(statut === 200){
-        alert(text.favoris);
-        window.location.reload();
-   }
-}
-
-async function retirerfavoris(){
-    const myHeaders = new Headers();
-    myHeaders.append("Content-Type", "application/json");
-    
-    const raw = JSON.stringify({
-    });
-
-    const requestOptions = {
-        method: "POST",
-        headers: myHeaders,
-        body: raw,
-        redirect: "follow"
-    };
-
-    const result = await fetch("./retirerfavoris", requestOptions);
-    const statut = result.status;
-    const text = await result.json();
-    if(statut === 200){
-        alert(text.favoris);
-        window.location.reload();
-   }
+    const response = await fetch("https://galeris/Galeris-APPG1E/saveiduser", requestOptions)
+    const statuscode = response.status;
+    if (statuscode === 200) {
+        window.location.href = "https://galeris/Galeris-APPG1E/utilisateur";
+    }
 }

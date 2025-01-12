@@ -27,11 +27,25 @@
                 <li><a href="./ventes">Vente</a></li>
                 <li><a href="./exposes">Exposition</a></li>
                 <li><a href="./listenews">News</a></li>
-                <li><a href="#">Plus</a></li>
+                
             </ul>
         </nav>
         <div class="barre_recherche">
-            <input type="text" placeholder="Rechercher...">
+        <input type="text" placeholder="Rechercher..." class="shearch">
+            <datalist id="galeris-list">
+                        <?php
+                            foreach($users as $user_barre){
+                                echo '<option data-value="utilisateur_' . $user_barre["id_utilisateur"] . '" value="' . $user_barre["nom"] . ' ' . $user_barre["prenom"] . ' ' . $user_barre["id_utilisateur"] .' (utilisateur)">';
+                            }
+                            foreach($exposes as $expose_barre){
+                                echo '<option data-value="expose_' . $expose_barre["id_exhibition"] . '" value="' . $expose_barre["titre"] . ' ' . $expose_barre["id_exhibition"] . ' (exposé)">';
+                            }
+                            foreach($oeuvres as $oeuvre_barre){
+                                echo '<option data-value="oeuvre_' . $oeuvre_barre["id_oeuvre"] . '" value="' . $oeuvre_barre["Titre"] . ' ' . $oeuvre_barre["auteur"] . ' ' . $oeuvre_barre["id_oeuvre"] . ' (Oeuvre)">';
+                            }
+                                
+                        ?>
+            </datalist>
             <div class="favori"> <a href="./favoris">❤️</a></div>
             <div class="panier"> <a href="./panier">🛒</a></div>
 
@@ -58,11 +72,11 @@
     </header>
 
     <div class="signaler-form">
-    <div class="btn-close-container">
-        <button class="signaler-close-button" type="submit">X</button>
-    </div>
+        <div class="btn-close-container">
+            <button class="signaler-close-button" type="submit">X</button>
+        </div>
         <p class="title-signaler">Signaler une oeuvre</p>
-            <textarea type="text" class="input-signalement" cols="30" rows="10" name="signalement" placeholder="Raison : 25 caractères minimum"></textarea>
+        <textarea type="text" class="input-signalement" cols="30" rows="10" name="signalement" placeholder="Raison : 25 caractères minimum"></textarea>
         <br>
         <p class="error"></p>
         <br>
@@ -72,7 +86,7 @@
     </div>
 
     <main>
-    <section class="gauche">
+        <section class="gauche">
             <section class="art-details">
                 <div class="carousel-container">
                     <!-- Flèche gauche -->
@@ -114,11 +128,13 @@
         </section>
 
         <!-- Droite : Informations supplémentaires -->
-         
+
         <section class="droite">
             <section class="profil-section">
                 <div class="profil-info">
-                    <img src="images/photodeprofil.jpg" alt="Photo de profil" class="photo-profil">
+                    <?php echo '<input type="hidden" id="id_utilisateur" name="id_utilisateur" value="' . $oeuvre["id_utilisateur"] . '">'; ?>
+                    <img src="./<?php echo $oeuvre['profil'] ?? 'ImageBD/Profil/avatarbasique.jpg'; ?>" alt="Photo de profil" class="photo-profil ">
+
                     <div class="profil-nom">
                         <strong>Vendeur : <?php echo htmlspecialchars($oeuvre['nom']) . " " . htmlspecialchars($oeuvre['prenom']); ?></strong>
                     </div>
@@ -138,12 +154,12 @@
             <input type="hidden" name="id_oeuvre" value="<?php echo $oeuvre['id_oeuvre']; ?>">
 
             <!-- Boutons d'actions -->
-             
+
             <section class="actions">
-                
+
                 <?php
-                    if($user || $userRole){
-                        echo '<button class="boutton-modifier">Modifier</button>
+                if ($user || $userRole) {
+                    echo '<button class="boutton-modifier">Modifier</button>
                         <button class="boutton-supprimer">Supprimer</button>';
                     }
                     else{
@@ -165,7 +181,7 @@
                 ?>
 
                 <!-- bouton signaler -->
-                <button id="btnSignaleropenform" data-oeuvre-id=<?php echo $oeuvre['id_oeuvre']?>>Signaler cette œuvre</button>
+                <button id="btnSignaleropenform" data-oeuvre-id=<?php echo $oeuvre['id_oeuvre'] ?>>Signaler cette œuvre</button>
             </section>
         </section>
     </main>

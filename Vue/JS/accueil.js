@@ -4,14 +4,14 @@ const cbox = document.querySelectorAll(".oeuvreOBJ");
 setInterval(tempsRestants, 1000);
 
 
- for (let i = 0; i < cbox.length; i++) {
-     cbox[i].addEventListener("click", saveId);
- }
+for (let i = 0; i < cbox.length; i++) {
+    cbox[i].addEventListener("click", saveId);
+}
 
 async function saveId(event) {
     const divParent = event.currentTarget.querySelector(".oeuvre");
     const inputCache = divParent.querySelector("input[type='hidden']");
-    
+
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
 

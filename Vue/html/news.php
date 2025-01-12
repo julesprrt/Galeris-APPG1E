@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <title>News</title>
-  
+
   <link rel="stylesheet" href="Vue/CSS/news.css">
   <link rel="stylesheet" href="Vue/CSS/header.css">
   <link rel="stylesheet" href="Vue/CSS/footer.css">
@@ -25,30 +25,44 @@
         <li><a href="./ventes">Vente</a></li>
         <li><a href="./exposes">Exposition</a></li>
         <li><a href="./listenews">News</a></li>
-        <li><a href="#">Plus</a></li>
+        
       </ul>
     </nav>
     <div class="barre_recherche">
-      <input type="text" placeholder="Rechercher...">
+      <input type="text" placeholder="Rechercher..." class="shearch">
+      <datalist id="galeris-list">
+        <?php
+        foreach ($users as $user_barre) {
+          echo '<option data-value="utilisateur_' . $user_barre["id_utilisateur"] . '" value="' . $user_barre["nom"] . ' ' . $user_barre["prenom"] . ' ' . $user_barre["id_utilisateur"] . ' (utilisateur)">';
+        }
+        foreach ($exposes_barre as $expose_barre) {
+          echo '<option data-value="expose_' . $expose_barre["id_exhibition"] . '" value="' . $expose_barre["titre"] . ' ' . $expose_barre["id_exhibition"] . ' (exposé)">';
+        }
+        foreach ($oeuvres as $oeuvre_barre) {
+          echo '<option data-value="oeuvre_' . $oeuvre_barre["id_oeuvre"] . '" value="' . $oeuvre_barre["Titre"] . ' ' . $oeuvre_barre["auteur"] . ' ' . $oeuvre_barre["id_oeuvre"] . ' (Oeuvre)">';
+        }
+
+        ?>
+      </datalist>
       <div class="favori"><a href="favoris.html">❤️</a></div>
       <div class="panier"><a href="./panier">🛒</a></div>
       <?php
-                if ($connectUser === true) {
-                    echo '<div class="dropdown">
+      if ($connectUser === true) {
+        echo '<div class="dropdown">
                             <div class="utilisateur"> 👤 </div>
                             <div class="dropdown-child">
                                 <a href="./profil">Mon profil</a>
-                                <a href="#">Mon solde</a>'.
-                                (($userRole === true)?
-                                    '<a href="./listeoeuvreattente">Oeuvres en attente</a>
-                                    <a href="./listeexposeattente">Exposés en attente</a>':"").
-                                '<a id="deconnexion">Déconnexion</a>
+                                <a href="#">Mon solde</a>' .
+          (($userRole === true) ?
+            '<a href="./listeoeuvreattente">Oeuvres en attente</a>
+                                    <a href="./listeexposeattente">Exposés en attente</a>' : "") .
+          '<a id="deconnexion">Déconnexion</a>
                             </div>
                            </div>';
-                } else {
-                    echo '<div class="utilisateur"><a href="./connexion"> 👤 </a></div>';
-                }
-                ?>
+      } else {
+        echo '<div class="utilisateur"><a href="./connexion"> 👤 </a></div>';
+      }
+      ?>
 
 
     </div>
@@ -74,7 +88,8 @@
             placeholder="50 caractères maximum" required>
         </p>
         <strong>Description :</strong>
-        <textarea class="input-news" id="description" name="description" cols="3" minlength="50" placeholder="50 caractères minimum" required></textarea>
+        <textarea class="input-news" id="description" name="description" cols="3" minlength="50"
+          placeholder="50 caractères minimum" required></textarea>
         </p>
         <div class="actions">
           <a class="btn btn-news">Confirmer</a>

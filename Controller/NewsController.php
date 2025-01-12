@@ -2,6 +2,9 @@
 require_once('Database/Database.php');
 require_once('Controller.php');
 require_once('Model/news.php');
+require_once('Model/exposition.php');
+require_once('Model/Oeuvre.php');
+require_once('Model/user.php');
 class NewsController extends Controller
 { //Controlleur accueil
 
@@ -15,7 +18,14 @@ class NewsController extends Controller
             exit();
         }
 
-        $this->render('news', ["connectUser" =>  isset($_SESSION["usersessionID"]), "userRole" => $role]);
+        $oeuvre = new Oeuvre($Titre = null, $Description = null, $eco_responsable = null, $Date_debut = null, $Date_fin = null, $Prix = null, $type_vente = null, $est_vendu = null, $auteur = null, $id_utilisateur = null, $id_categorie = null, $status = null, $nomvendeur = null, $prenomvendeur = null, $chemin_image = null, $prix_actuel = null, $id_offreur = null);
+        $oeuvres = $oeuvre->getAllOeuvre($db);
+        $expose = new Exposition(null, null, null, null, null, null, null);
+        $exposes = $expose->getExposes($db);
+        $user = new User(null, null, null, null, null, null, null, null, null, null);
+        $users = $user->getAllUsers($db);
+
+        $this->render('news', ["connectUser" =>  isset($_SESSION["usersessionID"]), "userRole" => $role, "oeuvres" => $oeuvres, "exposes" => $exposes, "users" => $users]);
     }
 
     public function createNews(Database $db){
@@ -69,7 +79,14 @@ class NewsController extends Controller
         $news = new news(null,null,null,null,null);
         $news = $news->getNews($db);
 
-        $this->render('listenews', ["connectUser" =>  isset($_SESSION["usersessionID"]), "userRole" => $role, "listenews" => $news]);
+        $oeuvre = new Oeuvre($Titre = null, $Description = null, $eco_responsable = null, $Date_debut = null, $Date_fin = null, $Prix = null, $type_vente = null, $est_vendu = null, $auteur = null, $id_utilisateur = null, $id_categorie = null, $status = null, $nomvendeur = null, $prenomvendeur = null, $chemin_image = null, $prix_actuel = null, $id_offreur = null);
+        $oeuvres = $oeuvre->getAllOeuvre($db);
+        $expose = new Exposition(null, null, null, null, null, null, null);
+        $exposes = $expose->getExposes($db);
+        $user = new User(null, null, null, null, null, null, null, null, null, null);
+        $users = $user->getAllUsers($db);
+
+        $this->render('listenews', ["connectUser" =>  isset($_SESSION["usersessionID"]), "userRole" => $role, "listenews" => $news, "oeuvres" => $oeuvres, "exposes" => $exposes, "users" => $users]);
         
     }
 
@@ -118,8 +135,15 @@ class NewsController extends Controller
             exit();
         }
 
+        $expose = new Exposition(null,null,null,null,null,null,null);
+        $oeuvre = new Oeuvre($Titre = null, $Description = null, $eco_responsable = null, $Date_debut = null, $Date_fin = null, $Prix = null, $type_vente = null, $est_vendu = null, $auteur = null, $id_utilisateur = null, $id_categorie = null, $status = null, $nomvendeur = null, $prenomvendeur = null, $chemin_image = null, $prix_actuel = null, $id_offreur = null);
+        $oeuvres_list = $oeuvre->getAllOeuvre($db);
+        $exposes_list = $expose->getExposes($db);
+        $user = new User(null,null,null,null,null,null,null,null,null,null);
+        $users = $user->getAllUsers($db);
+
         // Transmettre les données à la vue
-        $this->render('newspage', ["connectUser" =>  isset($_SESSION["usersessionID"]), "userRole" => $role,'news' => $newsByID]);
+        $this->render('newspage', ["connectUser" =>  isset($_SESSION["usersessionID"]), "userRole" => $role,'news' => $newsByID, "exposes_barre" => $exposes_list, "users" => $users, "oeuvres" => $oeuvres_list]);
         
     }
 }

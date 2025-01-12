@@ -3,7 +3,8 @@
 require_once('Controller/UserController.php'); //  UserController
 require_once('Database/Database.php'); //  Database 
 
-class Router {
+class Router
+{
     protected $routes = [];
 
     /**

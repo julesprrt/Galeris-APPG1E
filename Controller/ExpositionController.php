@@ -2,9 +2,11 @@
 require_once('Database/Database.php');
 require_once('Controller.php');
 require_once('Model/exposition.php');
+require_once('Model/oeuvre.php');
+require_once('Model/user.php');
 
 class ExpositionController extends Controller{ 
-    public function exposition()
+    public function exposition(Database $db)
     {
         session_start();
 
@@ -14,7 +16,15 @@ class ExpositionController extends Controller{
         }
 
         $role = isset($_SESSION["usersessionRole"]) === true && $_SESSION["usersessionRole"] === "Admin" ? true : false;
-        $this->render('exposition', ["connectUser" =>  isset($_SESSION["usersessionID"]), "userRole" => $role]);
+        
+        $oeuvre = new Oeuvre($Titre = null, $Description = null, $eco_responsable = null, $Date_debut = null, $Date_fin = null, $Prix = null, $type_vente = null, $est_vendu = null, $auteur = null, $id_utilisateur = null, $id_categorie = null, $status = null, $nomvendeur = null, $prenomvendeur = null, $chemin_image = null, $prix_actuel = null, $id_offreur = null);
+        $oeuvres = $oeuvre->getAllOeuvre($db);
+        $expose = new Exposition(null,null,null,null,null,null,null);
+        $exposes = $expose->getExposes($db);
+        $user = new User(null,null,null,null,null,null,null,null,null,null);
+        $users = $user->getAllUsers($db);
+        
+        $this->render('exposition', ["connectUser" =>  isset($_SESSION["usersessionID"]), "userRole" => $role, "oeuvres" => $oeuvres, "exposes" => $exposes, "users" => $users]);
     }
     public function createexposition(Database $db){
         session_start();
@@ -99,7 +109,13 @@ class ExpositionController extends Controller{
         $expose = new Exposition(null,null,null,null,null,null,null);
         $exposes = $expose->getExposes($db);
 
-        $this->render('expositions', ["connectUser" =>  isset($_SESSION["usersessionID"]), "userRole" => $role, "exposes" => $exposes]);
+        $oeuvre = new Oeuvre($Titre = null, $Description = null, $eco_responsable = null, $Date_debut = null, $Date_fin = null, $Prix = null, $type_vente = null, $est_vendu = null, $auteur = null, $id_utilisateur = null, $id_categorie = null, $status = null, $nomvendeur = null, $prenomvendeur = null, $chemin_image = null, $prix_actuel = null, $id_offreur = null);
+        $oeuvres = $oeuvre->getAllOeuvre($db);
+        $exposes_list = $expose->getExposes($db);
+        $user = new User(null,null,null,null,null,null,null,null,null,null);
+        $users = $user->getAllUsers($db);
+
+        $this->render('expositions', ["connectUser" =>  isset($_SESSION["usersessionID"]), "userRole" => $role, "exposes" => $exposes, "oeuvres" => $oeuvres, "exposes_barre" => $exposes_list, "users" => $users]);
         
     }
 
@@ -128,8 +144,15 @@ class ExpositionController extends Controller{
             exit();
         }
 
+        $oeuvre = new Oeuvre($Titre = null, $Description = null, $eco_responsable = null, $Date_debut = null, $Date_fin = null, $Prix = null, $type_vente = null, $est_vendu = null, $auteur = null, $id_utilisateur = null, $id_categorie = null, $status = null, $nomvendeur = null, $prenomvendeur = null, $chemin_image = null, $prix_actuel = null, $id_offreur = null);
+        $oeuvres = $oeuvre->getAllOeuvre($db);
+        $expose = new Exposition(null,null,null,null,null,null,null);
+        $exposes = $expose->getExposes($db);
+        $user = new User(null,null,null,null,null,null,null,null,null,null);
+        $users = $user->getAllUsers($db);
+
         // Transmettre les données à la vue
-        $this->render('expose', ["connectUser" =>  isset($_SESSION["usersessionID"]), "userRole" => $role,'expose' => $exposeid]);
+        $this->render('expose', ["connectUser" =>  isset($_SESSION["usersessionID"]), "userRole" => $role,'expose' => $exposeid, "oeuvres" => $oeuvres, "exposes" => $exposes, "users" => $users]);
         
     }
 }

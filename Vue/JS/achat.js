@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
         // Ajouter la classe active à la nouvelle image
         images[currentIndex].classList.add('active');
     }
-   
+
 });
 
 setInterval(tempsRestants, 1000);
@@ -58,10 +58,10 @@ function tempsRestants() {
 }
 
 
-async function ajoutpanier(){
+async function ajoutpanier() {
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
-    
+
     const raw = JSON.stringify({
     });
 
@@ -74,16 +74,16 @@ async function ajoutpanier(){
     const result = await fetch("./ajoutpanier", requestOptions);
     const statut = result.status;
     const text = await result.json();
-    if(statut === 200){
+    if (statut === 200) {
         alert(text.panier);
         window.location.reload();
-   }
+    }
 }
 
-async function retirerpanier(){
+async function retirerpanier() {
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
-    
+
     const raw = JSON.stringify({
     });
 
@@ -97,26 +97,26 @@ async function retirerpanier(){
     const result = await fetch("./retirerpanier", requestOptions);
     const statut = result.status;
     const text = await result.json();
-    if(statut === 200){
+    if (statut === 200) {
         alert(text.panier);
         window.location.reload();
-   }
+    }
 }
 
 document.querySelectorAll(".boutton-supprimer").forEach(item => {
     item.addEventListener("click", supprimerOeuvre)
 })
 
-async function supprimerOeuvre(){
+async function supprimerOeuvre() {
     const reponse = confirm("Etez-vous sûre de vouloir supprimer cette oeuvre ?");
-    if(reponse === true){
+    if (reponse === true) {
         const myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
-    
-        
+
+
         const raw = JSON.stringify({
         });
-    
+
         const requestOptions = {
             method: "POST",
             headers: myHeaders,
@@ -127,8 +127,8 @@ async function supprimerOeuvre(){
         const result = await fetch("./supprimeroeuvre", requestOptions);
         const statut = result.status;
         const text = await result.json();
-        
-        if(statut === 200){
+
+        if (statut === 200) {
             alert(text.Success);
             window.location.href = "./";
         }
@@ -235,3 +235,29 @@ async function retirerfavoris(){
    }
 }
 
+
+
+document.querySelector(".profil-section").addEventListener('click', saveUserid)
+
+async function saveUserid() {
+    const id_utilisateur = document.getElementById("id_utilisateur").value;
+
+    const myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+
+    const raw = JSON.stringify({
+        "id": id_utilisateur
+    });
+
+    const requestOptions = {
+        method: "POST",
+        headers: myHeaders,
+        body: raw,
+        redirect: "follow"
+    };
+    const response = await fetch("https://galeris/Galeris-APPG1E/saveiduser", requestOptions)
+    const statuscode = response.status;
+    if (statuscode === 200) {
+        window.location.href = "https://galeris/Galeris-APPG1E/utilisateur";
+    }
+}

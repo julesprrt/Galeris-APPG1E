@@ -21,6 +21,7 @@ class Oeuvre
     private $prix_actuel;
     private $id_offreur;
 
+
     // Constructeur pour initialiser les valeurs
     public function __construct(
         $Titre,
@@ -39,7 +40,8 @@ class Oeuvre
         $prenomvendeur,
         $chemin_image,
         $prix_actuel,
-        $id_offreur
+        $id_offreur,
+
 
 
     ) {
@@ -65,7 +67,11 @@ class Oeuvre
     public static function getOeuvreById($id, Database $db)
     {
         $conn = $db->connect();
-        $query = "SELECT * FROM oeuvre o INNER JOIN utilisateur u ON u.id_utilisateur = o.id_utilisateur INNER JOIN enchere e on e.id_oeuvre = o.id_oeuvre  WHERE o.id_oeuvre = ?";
+        $query = "SELECT * FROM oeuvre o 
+        INNER JOIN utilisateur u ON u.id_utilisateur = o.id_utilisateur 
+        LEFT JOIN utilisateur_image ui ON ui.id_utilisateur = o.id_utilisateur
+        LEFT JOIN enchere e on e.id_oeuvre_enchere = o.id_oeuvre  
+        WHERE o.id_oeuvre = ?";
 
         $stmt = $conn->prepare($query);
         $stmt->bind_param('i', $id);
@@ -222,4 +228,3 @@ class Oeuvre
 
     
 }
-

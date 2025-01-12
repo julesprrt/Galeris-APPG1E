@@ -82,9 +82,10 @@ $router->addRoute('/ajoutfavoris', FavorisController::class, 'ajoutFavoris');
 $router->addRoute('/retirerfavoris', FavorisController::class, 'retirerFavoris');
 $router->addRoute('/favoris', FavorisController::class, 'favoris');
 $router->addRoute('/retirerfavorisid', FavorisController::class, 'retirerFavorisId');
+$router->addRoute('/saveiduser', UserController::class, 'consultation');
+$router->addRoute('/utilisateur', UserController::class, 'profil_consultation');
 
 
 if ($uri !== null) {
     $router->dispatch($uri); //Appel a la méthode du controller dedié
 }
-

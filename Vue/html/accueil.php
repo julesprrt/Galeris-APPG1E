@@ -21,14 +21,28 @@
                     <li><a href="./ventes">Vente</a></li>
                     <li><a href="./exposes">Exposition</a></li>
                     <li><a href="./listenews">News</a></li>
-                    <li><a href="#">Plus</a></li>
+                    
                 </ul>
             </nav>
             <div class="barre_recherche">
                 <!-- Barre de recherche, les emojis sont responsives si on clique dessus -->
-                <input type="text" placeholder="Rechercher...">
-                <div class="favori"> <a href="./favoris">❤️ </a></div>
-                <div class="panier"> <a href="./panier"> 🛒 </a></div>
+                <input type="text" placeholder="Rechercher..." class="shearch">
+                <datalist id="galeris-list">
+                        <?php
+                            foreach($users as $user){
+                                echo '<option data-value="utilisateur_' . $user["id_utilisateur"] . '" value="' . $user["nom"] . ' ' . $user["prenom"] . ' ' . $user["id_utilisateur"] .' (utilisateur)">';
+                            }
+                            foreach($exposes as $expose){
+                                echo '<option data-value="expose_' . $expose["id_exhibition"] . '" value="' . $expose["titre"] . ' ' . $expose["id_exhibition"] . ' (exposé)">';
+                            }
+                            foreach($oeuvres as $oeuvre){
+                                echo '<option data-value="oeuvre_' . $oeuvre["id_oeuvre"] . '" value="' . $oeuvre["Titre"] . ' ' . $oeuvre["auteur"] . ' ' . $oeuvre["id_oeuvre"] . ' (Oeuvre)">';
+                            }
+                                
+                        ?>
+                </datalist>
+                <div class="favori"> <a href="https://galeris/Galeris-APPG1E/favoris">❤️ </a></div>
+                <div class="panier"> <a href="https://galeris/Galeris-APPG1E/panier"> 🛒 </a></div>
                 <?php
                 if ($connectUser === true) {
                     echo '<div class="dropdown">
@@ -80,13 +94,12 @@
                             echo '<h3>' . $oeuvre["Titre"] . '</h3>';
                             echo '<img src="./' . $oeuvre["chemin_image"] . '" alt="' . $oeuvre["Titre"] . '" />';
                             echo '<p class="temps-restant" data-fin="' . $oeuvre["Date_fin"] . '">' . '</p>';
-                            if($oeuvre["type_vente"] === "vente" || $oeuvre["prix_courant"] === null){
+                            if ($oeuvre["type_vente"] === "vente" || $oeuvre["prix_courant"] === null) {
                                 echo '<p>' . $oeuvre['Prix'] . ' €</p>';
-                            }
-                            else{
+                            } else {
                                 echo '<p>' . $oeuvre["prix_courant"] . ' €</p>';
                             }
-                            echo '<p>' . substr($oeuvre["Description"],0,250) . '(...)</p>';
+                            echo '<p>' . substr($oeuvre["Description"], 0, 250) . '(...)</p>';
                             echo '</div>';
                             echo '</a>';
                         }

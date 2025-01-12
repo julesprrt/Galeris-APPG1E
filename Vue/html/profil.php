@@ -24,16 +24,30 @@
                 <li><a href="./ventes">Vente</a></li>
                     <li><a href="./exposes">Exposition</a></li>
                 <li><a href="./listenews">News</a></li>
-                <li><a href="#">Plus</a></li>
+                
             </ul>
         </nav>
         <div class="barre_recherche">
-            <input type="text" placeholder="Rechercher...">
+        <input type="text" placeholder="Rechercher..." class="shearch">
+                <datalist id="galeris-list">
+                        <?php
+                            foreach($users as $user_barre){
+                                echo '<option data-value="utilisateur_' . $user_barre["id_utilisateur"] . '" value="' . $user_barre["nom"] . ' ' . $user_barre["prenom"] . ' ' . $user_barre["id_utilisateur"] .' (utilisateur)">';
+                            }
+                            foreach($exposes as $expose_barre){
+                                echo '<option data-value="expose_' . $expose_barre["id_exhibition"] . '" value="' . $expose_barre["titre"] . ' ' . $expose_barre["id_exhibition"] . ' (exposé)">';
+                            }
+                            foreach($oeuvres as $oeuvre_barre){
+                                echo '<option data-value="oeuvre_' . $oeuvre_barre["id_oeuvre"] . '" value="' . $oeuvre_barre["Titre"] . ' ' . $oeuvre_barre["auteur"] . ' ' . $oeuvre_barre["id_oeuvre"] . ' (Oeuvre)">';
+                            }
+                                
+                        ?>
+                </datalist>
             <div class="favori"><a href="./favoris">❤️</a></div>
             <div class="panier"><a href="./panier">🛒</a></div>
             <?php
-                if ($connectUser === true) {
-                    echo '<div class="dropdown">
+            if ($connectUser === true) {
+                echo '<div class="dropdown">
                             <div class="utilisateur"> 👤 </div>
                             <div class="dropdown-child">
                                 <a href="./profil">Mon profil</a>
