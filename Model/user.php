@@ -231,19 +231,6 @@ class User
         return $result;
     }   
 
-    public function getAllUsers(Database $db){
-        $conn = $db->connect();
-        $sql= "select nom, prenom, id_utilisateur from utilisateur";
-        $stmt = $conn->prepare($sql);
-        $stmt->execute();
-        $result = $stmt->get_result();
-        $stmt->close();
-        $conn->close();
-        return $result;
-    }   
-
-
-
     public function verifyCode($code, Database $db)
     {
         try {
