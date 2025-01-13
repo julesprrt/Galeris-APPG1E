@@ -121,3 +121,13 @@ async function saveIdOeuvre(id) {
         window.location.href = "./achat";
     }
 }
+
+
+
+const hamburgerImage = document.getElementById("hamburger-image");
+const hamburgerMenu = document.getElementById("hamburgermenu");
+
+hamburgerImage.addEventListener("click", () => {
+   
+    hamburgerMenu.classList.toggle("active");
+});
