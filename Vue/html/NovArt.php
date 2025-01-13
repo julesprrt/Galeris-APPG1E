@@ -11,7 +11,7 @@
 <body>
 
 <header>
-    <img src="images/logo-sans-fond.png" alt="Logo Novart" class="logo">
+    <a href="./"><img src="images/logo-sans-fond.png" alt="Logo Novart" class="logo"></a>
     <h1>Bienvenue chez Novart</h1>
     <p>Innovateur dans l'art et la technologie</p>
 </header>

@@ -60,11 +60,11 @@ async function verificateAndSaveData() {
         }
     })
 
-    console.log(document.getElementById("image1").attributes);
+    console.log(document.getElementById("image1").getAttribute("src"))
 
-    const image1 = document.getElementById("image1").attributes[4] === undefined ? "" : document.getElementById("image1").attributes[4].value;
-    const image2 = document.getElementById("image2").attributes[4] === undefined ? "" : document.getElementById("image2").attributes[4].value;
-    const image3 = document.getElementById("image3").attributes[4] === undefined ? "" : document.getElementById("image3").attributes[4].value;
+    const image1 = document.getElementById("image1").getAttribute("src") === null ? "" : document.getElementById("image1").getAttribute("src");
+    const image2 = document.getElementById("image2").getAttribute("src") === null ? "" : document.getElementById("image2").getAttribute("src");
+    const image3 = document.getElementById("image3").getAttribute("src")  === null ? "" : document.getElementById("image2").getAttribute("src");
 
     if (verificationData(titre, categorie, type, prix, nbJours, description, image1) === false) {
         return;
