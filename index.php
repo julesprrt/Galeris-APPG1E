@@ -19,7 +19,8 @@ require_once("./Controller/LivraisonController.php");
 require_once("./Controller/NewsController.php");
 require_once("./Controller/NovArtController.php");
 require_once("./Controller/MentionsLegalesController.php");
-require_once("./Controller/BurgerController.php");require_once("./Controller/DashBoardController.php");
+require_once("./Controller/BurgerController.php");
+require_once("./Controller/DashBoardController.php");
 require_once("./Controller/HistoriqueController.php");
 
 $uri = $_SERVER['REQUEST_URI']; //Recupération de l'uri (la route)
