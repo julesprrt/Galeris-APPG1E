@@ -44,7 +44,7 @@
 
         ?>
       </datalist>
-            <div class="favori"><a href="favoris.html">❤️</a></div>
+            <div class="favori"><a href="./favoris">❤️</a></div>
             <div class="panier"><a href="./panier">🛒</a></div>
             <?php
             if ($connectUser === true) {
