@@ -52,7 +52,8 @@
                                 <a href="./solde">Mon solde</a>'.
                                 (($userRole === true)?
                                     '<a href="./listeoeuvreattente">Oeuvres en attente</a>
-                                    <a href="./listeexposeattente">Exposés en attente</a>':"").
+                                    <a href="./listeexposeattente">Exposés en attente</a>
+                                    <a href="./dashboard">Tableau de bord</a>' : "") .
                                 '<a id="deconnexion">Déconnexion</a>
                             </div>
                            </div>';
