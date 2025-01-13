@@ -55,7 +55,7 @@ async function confpassword (){
 
 
 
-        const response = await fetch("https://galeris/Galeris-APPG1E/confirmationmdp", requestOptions);
+        const response = await fetch("./confirmationmdp", requestOptions);
         const statuscode = response.status;
         const result = await response.json();
 
@@ -64,7 +64,7 @@ async function confpassword (){
             document.querySelectorAll(".inputpassword").forEach(item => {
                 item.value = "";
             });
-            window.location.href = "https://galeris/Galeris-APPG1E/";
+            window.location.href = "./";
         }
         else {
             alert(result.Error);

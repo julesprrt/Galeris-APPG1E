@@ -3,63 +3,78 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FAQ Galeris</title>
-    <base href="/Galeris-APPG1E/Vue/">
-    <link rel="stylesheet" href="CSS/FAQ.css">
-    <link rel="stylesheet" href="CSS/footer.css">
-    <link rel="stylesheet" href="CSS/header.css">
-    <link rel="stylesheet" href="CSS/style.css">
-    <script src="https://galeris/Galeris-APPG1E/vue/JS/Faq.js" defer></script>
+    <title>Accueil</title>
+    <link rel="stylesheet" href="Vue/CSS/FAQ.css">
+    <link rel="stylesheet" href="Vue/CSS/header.css">
+    <link rel="stylesheet" href="Vue/CSS/footer.css">
+    <script src="Vue/JS/header.js" defer></script>
+    <script src="Vue/JS/FAQ.js" defer></script>
 </head>
-<div class="container">
-    <header>
-        <div class="logo"><a href="https://galeris/Galeris-APPG1E/"> <img width="150" height="150" src="../images/logo-sans-fond.png" src="../images/logo.png"></a></div>
-        <nav class="menu">
-            <ul>
-                <li><a href="https://galeris/Galeris-APPG1E/">Accueil</a></li>
-                <li><a href="https://galeris/Galeris-APPG1E/ventes">Vente</a></li>
-                <li><a href="https://galeris/Galeris-APPG1E/exposes">Exposition</a></li>
-                <li><a href="https://galeris/Galeris-APPG1E/listenews">News</a></li>
-                <li><a href="#">Plus</a></li>
-            </ul>
-        </nav>
-        <div class="barre_recherche">
-            <input type="text" placeholder="Rechercher...">
-            <div class="favori"><a href="https://galeris/Galeris-APPG1E/favoris">❤️</a></div>
-            <div class="panier"><a href="https://galeris/Galeris-APPG1E/panier">🛒</a></div>
-            <?php
-            if ($connectUser === true) {
-                echo '<div class="dropdown">
+
+<body>
+    <div class="container">
+        <header>
+            <div class="logo"> <a href="./"><img src="images/logo.png"></a></div>
+            <nav class="menu">
+                <ul>
+                    <li><a href="./">Accueil</a></li>
+                    <li><a href="./ventes">Vente</a></li>
+                    <li><a href="./exposes">Exposition</a></li>
+                    <li><a href="./listenews">News</a></li>
+                    
+                </ul>
+            </nav>
+            <div class="barre_recherche">
+                <!-- Barre de recherche, les emojis sont responsives si on clique dessus -->
+                <input type="text" placeholder="Rechercher..." class="shearch">
+                <datalist id="galeris-list">
+                        <?php
+                            foreach($users as $user_barre){
+                                echo '<option data-value="utilisateur_' . $user_barre["id_utilisateur"] . '" value="' . $user_barre["nom"] . ' ' . $user_barre["prenom"] . ' ' . $user_barre["id_utilisateur"] .' (utilisateur)">';
+                            }
+                            foreach($exposes as $expose_barre){
+                                echo '<option data-value="expose_' . $expose_barre["id_exhibition"] . '" value="' . $expose_barre["titre"] . ' ' . $expose_barre["id_exhibition"] . ' (exposé)">';
+                            }
+                            foreach($oeuvres as $oeuvre_barre){
+                                echo '<option data-value="oeuvre_' . $oeuvre_barre["id_oeuvre"] . '" value="' . $oeuvre_barre["Titre"] . ' ' . $oeuvre_barre["auteur"] . ' ' . $oeuvre_barre["id_oeuvre"] . ' (Oeuvre)">';
+                            }
+                                
+                        ?>
+                </datalist>
+                <div class="favori"> <a href="./favoris">❤️ </a></div>
+                <div class="panier"> <a href="./panier"> 🛒 </a></div>
+                <?php
+                if ($connectUser === true) {
+                    echo '<div class="dropdown">
                             <div class="utilisateur"> 👤 </div>
                             <div class="dropdown-child">
-                                <a href="https://galeris/Galeris-APPG1E/profil">Mon profil</a>
-                                <a href="https://galeris/Galeris-APPG1E/solde">Mon solde</a>' .
-                    (($userRole === true) ?
-                        '<a href="https://galeris/Galeris-APPG1E/listeoeuvreattente">Oeuvres en attente</a>
-                                    <a href="https://galeris/Galeris-APPG1E/listeexposeattente">Exposés en attente</a>
-                                    <a href="https://galeris/Galeris-APPG1E/dashboard">Tableau de bord</a>' : "") .
-                    '<a id="deconnexion">Déconnexion</a>
+                                <a href="./profil">Mon profil</a>
+                                <a href="./solde">Mon solde</a>'.
+                                (($userRole === true)?
+                                    '<a href="./listeoeuvreattente">Oeuvres en attente</a>
+                                    <a href="./listeexposeattente">Exposés en attente</a>
+                                    <a href="./dashboard">Tableau de bord</a>' : "") .
+                    '<a id="deconnexion">Déconnexion</a>).
+                                '<a id="deconnexion">Déconnexion</a>
                             </div>
                            </div>';
-            } else {
-                echo '<div class="utilisateur"><a href="https://galeris/Galeris-APPG1E/connexion"> 👤 </a></div>';
-            }
-            ?>
+                } else {
+                    echo '<div class="utilisateur"><a href="./connexion"> 👤 </a></div>';
+                }
+                ?>
 
+            </div>
+        </header>
 
-        </div>
-    </header>
-
-    <body>
-        <h1> Foire aux questions </h1>
-        <h2>Trouvez toutes les réponses à vos questions !</h2>
+        <body>
+    <h1> Foire aux questions </h1>
+    <h2>Trouvez toutes les réponses à vos questions !</h2>
         <p>
-            <img src="../images/tableau.png" class="tableau" />
-            <img src="../images/tableau2.png" class="tableau2" />
+            <img src="images/tableau.png" class="tableau" />
+            <img src="images/tableau2.png" class="tableau2" />
         </p>
-        <div class="Page">
-            <img src="../images/sculpture2.png" class="image1" />
+    <div class="Page">
+        <img src="images/sculpture2.png" class="image1" />
 
             <il>Général</il><br>
 
@@ -126,16 +141,16 @@
                     Avant la vente aux enchères ou à tout moment pendant celle-ci, vous avez la possibilité de vous inscrire.</p>
             </details>
 
-            <details>
-                <summary>Comment payer mon achat ?</summary>
-                <p>Si vous remportez une enchère, vous trouverez toutes les informations relatives à votre achat sur votre compte
-                    dans l'onglet « Acheter », puis « Finaliser ma commande ».<br><br>
+        <details>
+            <summary>Comment payer mon achat ?</summary>
+            <p>Si vous remportez une enchère, vous trouverez toutes les informations relatives à votre achat sur votre compte
+                dans l'onglet « Acheter », puis « Finaliser ma commande ».<br><br>
 
-                    Ici, vous pourrez consulter les factures de vos lots, payer et organiser l'expédition des commandes jusqu'à
-                    100 000 USD / 100 000 £ / 100 000 € / 1 000 000 HK$ / 100 000 CHF. Veuillez noter qu'il peut s'écouler jusqu'à
-                    48 heures avant que les lots soient disponibles pour le paiement en ligne. <br><br>Pour les lots supérieurs à ce montant
-                    ou d'autres options de paiement, y compris le virement bancaire, veuillez vérifier le verso de votre facture.</p>
-            </details>
+                Ici, vous pourrez consulter les factures de vos lots, payer et organiser l'expédition des commandes jusqu'à
+                100 000 USD / 100 000 £ / 100 000 € / 1 000 000 HK$ / 100 000 CHF. Veuillez noter qu'il peut s'écouler jusqu'à
+                48 heures avant que les lots soient disponibles pour le paiement en ligne. <br><br>Pour les lots supérieurs à ce montant
+                ou d'autres options de paiement, y compris le virement bancaire, veuillez vérifier le verso de votre facture.</p>
+        </details>
 
             <details>
                 <summary>Comment suivre les articles qui m'intéressent ?</summary>
@@ -164,18 +179,18 @@
                 </p>
             </details>
 
-            <details>
-                <summary>Comment vendre un article avec Galeris ?</summary>
-                <p>Merci d'avoir envisagé de confier la vente de votre article à Galeris. La première
-                    étape consiste à demander une estimation gratuite de la vente aux enchères et à déterminer
-                    si votre article convient à la vente aux enchères de Galeris.<br><br> Un spécialiste de Galeris vous
-                    contactera ensuite pour discuter des estimations, vous conseiller sur les dates de vente aux
-                    enchères et vous expliquer votre accord de vente ainsi que la structure de commission.<br><br>Après la vente
-                    aux enchères, vous recevrez une notification vous informant du prix atteint par votre article.
-                    À condition que nous ayons reçu le paiement intégral de l'acheteur, environ 35 jours après la
-                    vente aux enchères, votre paiement sera envoyé sur votre compte désigné.</p>
-            </details>
-        </div>
+        <details>
+            <summary>Comment vendre un article avec Galeris ?</summary>
+            <p>Merci d'avoir envisagé de confier la vente de votre article à Galeris. La première
+                étape consiste à demander une estimation gratuite de la vente aux enchères et à déterminer
+                si votre article convient à la vente aux enchères de Galeris.<br><br> Un spécialiste de Galeris vous
+                contactera ensuite pour discuter des estimations, vous conseiller sur les dates de vente aux
+                enchères et vous expliquer votre accord de vente ainsi que la structure de commission.<br><br>Après la vente
+                aux enchères, vous recevrez une notification vous informant du prix atteint par votre article.
+                À condition que nous ayons reçu le paiement intégral de l'acheteur, environ 35 jours après la
+                vente aux enchères, votre paiement sera envoyé sur votre compte désigné.</p>
+        </details>
+        
 
         <footer>
 
@@ -213,24 +228,23 @@
             <!-- infos footer (aide, contact ...) -->
             <div class="container-footer">
                 <a class="title-footer">Qui sommes-nous ?</a>
-                <a class="item-footer" href="#">NovArt</a>
-                <a class="item-footer" href="https://galeris/Galeris-APPG1E/galeris">Galeris</a>
+                <a class="item-footer" href="./novart">NovArt</a>
+                <a class="item-footer" href="./galeris">Galeris</a>
             </div>
             <div class="container-footer">
                 <a class="title-footer">Aide</a>
-                <a class="item-footer" href="https://galeris/Galeris-APPG1E/faq">Foire aux questions</a>
-                <a class="item-footer" href="https://galeris/Galeris-APPG1E/contact">Contact</a>
+                <a class="item-footer" href="./faq">Foire aux questions</a>
+                <a class="item-footer" href="./contact">Contact</a>
             </div>
             <div class="container-footer">
                 <a class="title-footer">Informations légales</a>
-                <a class="item-footer" href="https://galeris/Galeris-APPG1E/cgu">Conditions d'utilisations</a>
-                <a class="item-footer" href="#">Mentions légales</a>
+                <a class="item-footer" href="./cgu">Conditions d'utilisations</a>
+                <a class="item-footer" href="./mentionslegales">Mentions légales</a>
             </div>
 
         </footer>
-
-    </body>
-
+    </div>
+</body>
 
 
 </html>

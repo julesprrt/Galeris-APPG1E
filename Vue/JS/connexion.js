@@ -3,6 +3,8 @@ document.querySelector(".submit-button").addEventListener('click', connexion);
 /*document.getElementById("showmdp").addEventListener('click', passwordToggle);
 document.getElementById("hidemdp").addEventListener('click', HidepasswordToggle);*/
 
+
+
 //Afficher ou non le mot de passe
 function passwordToggle(){
     const type = document.getElementById("passwordInput").getAttribute("type") === "password" ? "text" : "password";
@@ -31,7 +33,7 @@ async function connexion() {
         body: raw,
         redirect: "follow"
     };
-    const response = await fetch("https://galeris/Galeris-APPG1E/connexion", requestOptions)
+    const response = await fetch("./connexion", requestOptions)
     const statuscode = response.status;
     const result = await response.json();
     
@@ -45,7 +47,7 @@ async function connexion() {
             item.value = "";
         })
         grecaptcha.reset();
-        window.location.href = "https://galeris/Galeris-APPG1E";
+        window.location.href = "./";
     }
     else if(statuscode === 401){
         alert(result.Information);
@@ -56,7 +58,7 @@ async function connexion() {
             item.value = "";
         })
         grecaptcha.reset();
-        window.location.href = "https://galeris/Galeris-APPG1E/inscription";
+        window.location.href = "./inscription";
     }
     else{
         grecaptcha.reset();

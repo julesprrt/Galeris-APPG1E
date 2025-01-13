@@ -59,8 +59,8 @@ class Payment
                 'quantity' => 1,
             )
         );
-        $fields["success_url"] = 'https://galeris/Galeris-APPG1E/success';
-        $fields["cancel_url"] = 'https://galeris/Galeris-APPG1E/cancel';
+        $fields["success_url"] = getenv("URL_SUCCESS") === false ?'https://galeris/Galeris-APPG1E/success' : getenv("URL_SUCCESS");
+        $fields["cancel_url"] = getenv("URL_CANCEL") === false ? 'https://galeris/Galeris-APPG1E/cancel' : getenv("URL_CANCEL");
         $fields['mode'] = "payment";
         curl_setopt($curl, CURLOPT_HTTPHEADER, $this->headers);
         curl_setopt($curl, CURLOPT_URL, stripe_create_payment_url);

@@ -77,12 +77,16 @@ class User
         }
         $database = $db->connect();
         // Interroger les données utilisateur dans la base de données
-        $query = "SELECT * FROM utilisateur WHERE email = '$this->email'";
-        $result = $database->execute_query($query);
+        $query = "SELECT * FROM utilisateur WHERE email = ?";
+        $stmt = $database->prepare($query);
+        $stmt->bind_param("s", $this->email);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $stmt->close();
         $database->close();
-        if (mysqli_num_rows($result) > 0) {
+        if ($result->num_rows > 0) {
             // Obtenir les données utilisateur
-            $user = mysqli_fetch_assoc($result);
+            $user = $result->fetch_assoc();
             // Vérifier le mot de passe
             if (password_verify($this->password, $user['mot_de_passe']) && $user["actif"] === 1) {
                 session_start();
@@ -144,11 +148,15 @@ class User
     public function VerifyExistMail(Database $db)
     {
         $conn = $db->connect();
-        $sql = "SELECT * FROM utilisateur where email = '$this->email'";
-        $result = $conn->execute_query($sql);
+        $sql = "SELECT * FROM utilisateur where email = ?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("s", $this->email);
+        $stmt->execute(); 
+        $result = $stmt->get_result();
+        $stmt->close();
         $conn->close();
-        if (mysqli_num_rows($result) > 0) {
-            $user = mysqli_fetch_assoc($result);
+        if ($result->num_rows > 0) {
+            $user = $result->fetch_assoc();
             if ($user["actif"] === 0) {
                 session_start();
                 $_SESSION["usersessionID"] = $user["id_utilisateur"];
@@ -212,7 +220,16 @@ class User
         return 200;
     }
 
-
+    public function getAllUsers(Database $db){
+        $conn = $db->connect();
+        $sql= "select nom, prenom, id_utilisateur from utilisateur";
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $stmt->close();
+        $conn->close();
+        return $result;
+    }   
 
     public function verifyCode($code, Database $db)
     {
@@ -284,6 +301,19 @@ class User
         $stmt->close();
         $conn->close();
         return null;
+    }
+
+    public function getAllOeuvreSoldByUser($id, Database $db){
+        $conn = $db->connect();
+        $sql = "SELECT o.*, COALESCE(oi.image_path, 'Aucune image') AS image_path  from oeuvre o LEFT JOIN ( SELECT id_oeuvre, MIN(chemin_image) AS image_path FROM oeuvre_images GROUP BY id_oeuvre ) oi ON oi.id_oeuvre = o.id_oeuvre where id_utilisateur = ? and est_vendu = ?";
+        $stmt = $conn->prepare($sql);
+        $estVendue = 1;
+        $stmt->bind_param('ii', $id, $estVendue);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $stmt->close();
+        $conn->close();
+        return $result;
     }
     public function updateUser($id, $nom, $prenom, $email, $description, $adresse, $newsletter, $newPassword, Database $db)
     {
@@ -396,13 +426,14 @@ class User
         $conn->close();
     }
 
-    public function signaler($raison, Database $db){
-        if(strlen(trim($raison)) < 25){
+    public function signaler($raison, Database $db)
+    {
+        if (strlen(trim($raison)) < 25) {
             return 401;
         }
 
-        $oeuvre = new Oeuvre(null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null);
-        $oeuvreInfo = $oeuvre-> getOeuvreById($_SESSION["oeuvre_id"], $db);
+        $oeuvre = new Oeuvre(null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
+        $oeuvreInfo = $oeuvre->getOeuvreById($_SESSION["oeuvre_id"], $db);
         $userInfo = $this->getUserById($_SESSION["usersessionID"], $db);
         $this->sendMail->signalement($_SESSION["oeuvre_id"], $raison, $oeuvreInfo["Titre"], $userInfo["nom"], $userInfo["prenom"]);
     }
@@ -425,5 +456,40 @@ class User
         $stmt->execute();
         $stmt->close();
         $conn->close();
+    }
+    public function getPublicUserById($id, Database $db)
+    {
+        $conn = $db->connect();
+        $sql = "SELECT id_utilisateur, nom, prenom, email, description, photodeprofil 
+            FROM utilisateur 
+            LEFT JOIN utilisateur_image ON utilisateur.id_utilisateur = utilisateur_image.id_utilisateur
+            WHERE utilisateur.id_utilisateur = ?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param('i', $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $user = $result->fetch_assoc();
+        $stmt->close();
+        $conn->close();
+        return $user;
+    }
+
+    public function getOeuvresByUserId($id, Database $db)
+    {
+        $conn = $db->connect();
+        $sql = "SELECT o.id_oeuvre, o.Titre, o.Description, o.Prix, o.auteur, oi.chemin_image
+            FROM oeuvre as o JOIN oeuvre_images as oi ON o.id_oeuvre = oi.id_oeuvre
+            WHERE O.id_utilisateur = ?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param('i', $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $oeuvres = [];
+        while ($row = $result->fetch_assoc()) {
+            $oeuvres[] = $row;
+        }
+        $stmt->close();
+        $conn->close();
+        return $oeuvres;
     }
 }

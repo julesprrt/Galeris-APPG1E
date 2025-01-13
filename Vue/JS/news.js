@@ -46,9 +46,9 @@ async function news() {
     const title = document.getElementById('title').value;
     const description = document.getElementById('description').value.trim();
 
-    const image1 = document.getElementById("image1").attributes[4] === undefined ? "" : document.getElementById("image1").attributes[4].value;
-    const image2 = document.getElementById("image2").attributes[4] === undefined ? "" : document.getElementById("image2").attributes[4].value;
-    const image3 = document.getElementById("image3").attributes[4] === undefined ? "" : document.getElementById("image3").attributes[4].value;
+    const image1 = document.getElementById("image1").getAttribute("src") === null ? "" : document.getElementById("image1").getAttribute("src") ;
+    const image2 = document.getElementById("image2").getAttribute("src")  === null ? "" : document.getElementById("image2").getAttribute("src") ;
+    const image3 = document.getElementById("image3").getAttribute("src")  === null ? "" : document.getElementById("image3").getAttribute("src") ;
 
     if(verificationData(title,description,image1) === false){
         return;
@@ -71,7 +71,7 @@ async function news() {
         body: raw,
         redirect: "follow"
     };
-    const response = await fetch("https://galeris/Galeris-APPG1E/createnews", requestOptions)
+    const response = await fetch("./createnews", requestOptions)
     const statuscode = response.status;
     const result = await response.json();
     if (statuscode === 200) {
@@ -87,7 +87,7 @@ async function news() {
             item.src = "";
             item.title = "";
         })
-        window.location.href = "https://galeris/Galeris-APPG1E";
+        window.location.href = "./";
     }
     else {
         alert(result.Error);
