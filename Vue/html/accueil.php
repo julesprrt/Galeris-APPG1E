@@ -20,7 +20,7 @@
     <div class="container">
 
         <header>
-            <div class="logo"> <a href="https://galeris/Galeris-APPG1E/"><img src="images/logo.png"></a></div>
+            <div class="logo"> <a href="./"><img src="images/logo.png"></a></div>
 
             <div class="ham-search-cote">
                 <div class="hamburger-container">
