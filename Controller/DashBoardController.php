@@ -1,6 +1,6 @@
 <?php
 require_once('Controller.php');
-require_once('Model/vente.php');
+require_once('Model/Vente.php');
 require_once('Model/dashboard.php');
 require_once('Database/Database.php');
 
