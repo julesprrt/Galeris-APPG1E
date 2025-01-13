@@ -55,7 +55,8 @@
                                 <a href="./solde">Mon solde</a>' .
                 (($userRole === true) ?
                     '<a href="./listeoeuvreattente">Oeuvres en attente</a>
-                                    <a href="./listeexposeattente">Exposés en attente</a>' : "") .
+                                    <a href="./listeexposeattente">Exposés en attente</a>
+                                     <a href="./dashboard">Tableau de bord</a>' : "") .
                 '<a id="deconnexion">Déconnexion</a>
                             </div>
                            </div>';
@@ -70,11 +71,11 @@
 
 <body>
     <div class="enchere-form">
-    <div class="btn-close-container">
-        <button class="close-button" type="submit">X</button>
-    </div>
+        <div class="btn-close-container">
+            <button class="close-button" type="submit">X</button>
+        </div>
         <p class="title-enchere">Place ton enchère</p>
-            <input type="text" class="input-enchere" name="enchere" placeholder="Enchere" value="" min="" />
+        <input type="text" class="input-enchere" name="enchere" placeholder="Enchere" value="" min="" />
         <br>
         <p class="error"></p>
         <br>
@@ -84,11 +85,11 @@
     </div>
 
     <div class="signaler-form">
-    <div class="btn-close-container">
-        <button class="signaler-close-button" type="submit">X</button>
-    </div>
+        <div class="btn-close-container">
+            <button class="signaler-close-button" type="submit">X</button>
+        </div>
         <p class="title-signaler">Signaler une oeuvre</p>
-            <textarea type="text" class="input-signalement" cols="30" rows="10" name="signalement" placeholder="Raison : 25 caractères minimum"></textarea>
+        <textarea type="text" class="input-signalement" cols="30" rows="10" name="signalement" placeholder="Raison : 25 caractères minimum"></textarea>
         <br>
         <p class="error"></p>
         <br>
@@ -121,16 +122,6 @@
                 <div class="art-info">
                     <h1><?php echo htmlspecialchars($oeuvre['Titre']); ?></h1>
                     <p><?php echo nl2br(htmlspecialchars($oeuvre['Description'])); ?></p>
-                </div>
-            </section>
-
-            <!-- Section : Œuvres similaires -->
-            <section class="art-image-similaire">
-                <h2>Oeuvres similaires</h2>
-                <div class="tableau-similaire">
-                    <img src="images/oeuvresim-1.png" alt="Tableau similaire 1">
-                    <img src="images/oeuvresim-2.jpg" alt="Tableau similaire 2">
-                    <img src="images/oeuvresim-3.jpg" alt="Tableau similaire 3">
                 </div>
             </section>
         </section>
@@ -173,10 +164,10 @@
 
             <!-- Boutons d'actions -->
             <section class="actions">
-                
+
                 <?php
-                    if($user || $userRole){
-                        echo '<button class="boutton-modifier">Modifier</button>
+                if ($user || $userRole) {
+                    echo '<button class="boutton-modifier">Modifier</button>
                         <button class="boutton-supprimer">Supprimer</button>';
                     }
                     else{

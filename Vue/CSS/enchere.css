@@ -151,6 +151,7 @@ main {
     cursor: pointer;
     margin-top: 0.3em;
     border-radius: 4px;
+    margin-left: 0.3em;
     font-size: 16px;
 
 }

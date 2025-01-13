@@ -25,8 +25,7 @@
                 <li><a href="./">Accueil</a></li>
                 <li><a href="./ventes">Vente</a></li>
                     <li><a href="./exposes">Exposition</a></li>
-                <li><a href="#">News</a></li>
-                <li><a href="#">Plus</a></li>
+                <li><a href="./news">News</a></li>
             </ul>
         </nav>
         <div class="barre_recherche">
@@ -36,7 +35,7 @@
                             foreach($users as $user_barre){
                                 echo '<option data-value="utilisateur_' . $user_barre["id_utilisateur"] . '" value="' . $user_barre["nom"] . ' ' . $user_barre["prenom"] . ' ' . $user_barre["id_utilisateur"] .' (utilisateur)">';
                             }
-                            foreach($exposes_barre as $expose_barre){
+                            foreach($exposes as $expose_barre){
                                 echo '<option data-value="expose_' . $expose_barre["id_exhibition"] . '" value="' . $expose_barre["titre"] . ' ' . $expose_barre["id_exhibition"] . ' (exposé)">';
                             }
                             foreach($oeuvres as $oeuvre_barre){
@@ -53,10 +52,11 @@
                             <div class="utilisateur"> 👤 </div>
                             <div class="dropdown-child">
                                 <a href=./profil">Mon profil</a>
-                                <a href="#">Mon solde</a>'.
+                                <a href="./solde>Mon solde</a>'.
                                 (($userRole === true)?
                                     '<a href=./listeoeuvreattente">Oeuvres en attente</a>
-                                    <a href=./listeexposeattente">Exposés en attente</a>':"").
+                                    <a href=./listeexposeattente">Exposés en attente</a>
+                                    <a href="./dashboard">Tableau de bord</a>' : "") .
                                 '<a id="deconnexion">Déconnexion</a>
                             </div>
                            </div>';
@@ -100,10 +100,8 @@
                     
                 </div>
             </div>
-        
-                
-        
-        
+        </div>
+
 
         <footer>
 
