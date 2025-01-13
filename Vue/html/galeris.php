@@ -52,7 +52,8 @@
                                 <a href="./solde">Mon solde</a>'.
                                 (($userRole === true)?
                                     '<a href="./listeoeuvreattente">Oeuvres en attente</a>
-                                    <a href="./listeexposeattente">Exposés en attente</a>':"").
+                                    <a href="./listeexposeattente">Exposés en attente</a>
+                                    <a href="./dashboard">Tableau de bord</a>' : "") .
                                 '<a id="deconnexion">Déconnexion</a>
                             </div>
                            </div>';
@@ -67,9 +68,9 @@
         <div class="page-galeris">
             <div class="contentbase">
                 <div class="content-description">
-                    <p class="description">"Galeris est une plateforme en ligne qui permet aux artistes de présenter 
-                        leurs œuvres à un public international, d’élargir leur notoriété et de valoriser leur travail. Grâce à galeris, 
-                        les artistes peuvent atteindre un marché bien plus vaste que les galeries physiques traditionnelles, tout en 
+                    <p class="description">"Galeris est une plateforme en ligne qui permet aux artistes de présenter
+                        leurs œuvres à un public international, d’élargir leur notoriété et de valoriser leur travail. Grâce à galeris,
+                        les artistes peuvent atteindre un marché bien plus vaste que les galeries physiques traditionnelles, tout en
                         limitant l’empreinte écologique et en offrant aux collectionneurs une expérience d’achat plus facile, personnalisée et responsable."
                     </p>
                 </div>
@@ -88,7 +89,7 @@
                 <div class="sphere-image"><img src="images/p4.jpg" alt="art8"></div>
             </div>
         </div>
-        
+
 
         <footer>
 

@@ -50,7 +50,8 @@
                                 <a href="./solde">Mon solde</a>'.
                                 (($userRole === true)?
                                     '<a href="./listeoeuvreattente">Oeuvres en attente</a>
-                                    <a href="./listeexposeattente">Exposés en attente</a>':"").
+                                    <a href="./listeexposeattente">Exposés en attente</a>
+                                     <a href="./dashboard">Tableau de bord</a>' : "") .
                                 '<a id="deconnexion">Déconnexion</a>
                             </div>
                            </div>';
@@ -60,22 +61,22 @@
             ?>
 
 
-        </div>
-    </header>
+    </div>
+</header>
 
-    <body >
-        <div class="container flex">
-            <div class="structure">
-              <h1 class="panier">Votre panier</h1>
-          
-              <table id="table">
+<body>
+    <div class="container flex">
+        <div class="structure">
+            <h1 class="panier">Votre panier</h1>
+
+            <table id="table">
                 <thead>
-                  <tr>
-                    <th></th>
-                    <th class="elm"></th>
-                    <th class="elm"></th>
-                    <th class="elm"></th>
-                  </tr>
+                    <tr>
+                        <th></th>
+                        <th class="elm"></th>
+                        <th class="elm"></th>
+                        <th class="elm"></th>
+                    </tr>
                 </thead>
                 <tbody id="all_products">
                   <?php
@@ -83,23 +84,23 @@
                         echo "<tr class='product' id='". $pan["id_oeuvre"] ."'> 
                     <td class='article--name'><img src='./". $pan["chemin_image"] ."'>
                       </td>
-                      <td class='titre'><p class='titrestyle'>" . $pan["Titre"] ."</p><p class='vendue'> Vendue par " . $pan["nom"] .  " " . $pan["prenom"] . "</p><p class='vendue'> Réalisé par " . $pan["auteur"] . "</p></td>
-                      <td class='price-elmprice'>" . $pan["Prix"] . " € <div class='remove'><a class='remove-elm' id='". $pan["id_panier"] ."'><button  type='button' class='btn-simple'>Supprimer</button></a></div></td>
+                      <td class='titre'><p class='titrestyle'>" . $pan["Titre"] . "</p><p class='vendue'> Vendue par " . $pan["nom"] .  " " . $pan["prenom"] . "</p><p class='vendue'> Réalisé par " . $pan["auteur"] . "</p></td>
+                      <td class='price-elmprice'>" . $pan["Prix"] . " € <div class='remove'><a class='remove-elm' id='" . $pan["id_panier"] . "'><button  type='button' class='btn-simple'>Supprimer</button></a></div></td>
                       <td></td>
                   </tr><tr class='spacer'></tr>";
-                      }
-                  ?>
+                    }
+                    ?>
                 </tbody>
               </table>
               <?php
                 if($panier->num_rows > 0){
                     echo '<div class="btn-continuer"><a href="./livraison"><button type="button" class="btn-simple" id="add_button">Continuer</button></a></div>
                     <h2>Total : <span id="total_display">' . $total . '€</span></h2>';
-                }
-              ?>
-            </div>
-          </div>
-        <footer>
+            }
+            ?>
+        </div>
+    </div>
+    <footer>
 
             <div class="social-network">
                 <a href="#"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"

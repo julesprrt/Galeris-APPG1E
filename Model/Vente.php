@@ -4,7 +4,8 @@ require_once('Model/utils.php');
 require_once('Constantes/constants.php');
 require_once('Database/Database.php');
 
-Class Vente{
+class Vente
+{
     private $titre;
     private $auteur;
     private $categorie;
@@ -16,7 +17,8 @@ Class Vente{
     private $image2;
     private $image3;
     private Utils $utils;
-    public function __construct($titre, $auteur, $categorie, $type_vente, $prix, $nbJours, $description, $image1, $image2, $image3) {//Constructeur -> Initialisation des données
+    public function __construct($titre, $auteur, $categorie, $type_vente, $prix, $nbJours, $description, $image1, $image2, $image3)
+    { //Constructeur -> Initialisation des données
         $this->titre = $titre;
         $this->auteur = $auteur;
         $this->categorie = $categorie;
@@ -30,50 +32,43 @@ Class Vente{
         $this->utils = new Utils();
     }
 
-    public function VerifyAndSaveProduct(Database $db){
-        if($this->titre === ""){
+    public function VerifyAndSaveProduct(Database $db)
+    {
+        if ($this->titre === "") {
             return "Le titre est obligatoire";
-        }
-        else if($this->categorie === ""){
+        } else if ($this->categorie === "") {
             return "La categorie est obligatoire";
-        }
-        else if(strlen($this->description) < 50){
+        } else if (strlen($this->description) < 50) {
             return "La description est obligatoire et doit contenir plus de 50 caractères.";
-        }
-        else if($this->image1 === ""){
+        } else if ($this->image1 === "") {
             return "Vous devez ajouter au moins une image";
-        }
-        else if($this->type_vente === ""){
+        } else if ($this->type_vente === "") {
             return "Le type de vente est obligatoire";
-        }
-        else if($this->prix === ""){
+        } else if ($this->prix === "") {
             return "Le prix est obligatoire";
-        }
-        else if($this->nbJours === "" || (int)$this->nbJours > 30) {
+        } else if ($this->nbJours === "" || (int)$this->nbJours > 30) {
             return "Le nombre de jours est obligatoire et doit être inférieur ou égal à 30 jours";
-        }
-        else if($this->image1 !== "" && !$this->utils->verifyImageAndSize($this->image1) || $this->image2 !== "" && !$this->utils->verifyImageAndSize($this->image2) || $this->image3 !== "" && !$this->utils->verifyImageAndSize($this->image3)){
+        } else if ($this->image1 !== "" && !$this->utils->verifyImageAndSize($this->image1) || $this->image2 !== "" && !$this->utils->verifyImageAndSize($this->image2) || $this->image3 !== "" && !$this->utils->verifyImageAndSize($this->image3)) {
             return "Type de fichier autorisé : image";
-        }
-        else if($this->image1 !== "" && $this->utils->human_filesize($this->image1) >= 1 || $this->image2 !== "" && $this->utils->human_filesize($this->image2) >= 1 || $this->image3 !== "" && $this->utils->human_filesize($this->image3) >= 1){
+        } else if ($this->image1 !== "" && $this->utils->human_filesize($this->image1) >= 1 || $this->image2 !== "" && $this->utils->human_filesize($this->image2) >= 1 || $this->image3 !== "" && $this->utils->human_filesize($this->image3) >= 1) {
             return "Fichier trop lourd, 1 MB maximum";
-        }
-        else{
+        } else {
             $this->saveProduct($db);
-            if($this->image1 !== ""){
+            if ($this->image1 !== "") {
                 $this->saveImage($db, $this->image1);
             }
-            if($this->image2 !== ""){
+            if ($this->image2 !== "") {
                 $this->saveImage($db, $this->image2);
             }
-            if($this->image3 !== ""){
+            if ($this->image3 !== "") {
                 $this->saveImage($db, $this->image3);
             }
             return 200;
         }
     }
 
-    public function saveProduct(Database $db){
+    public function saveProduct(Database $db)
+    {
         $Database = $db->connect();
         $sql = "insert into oeuvre (Titre, Description, Date_fin, Prix, type_vente, auteur, id_utilisateur, id_categorie) values (?,?,?,?,?,?,?,?)";
         $stmt = $Database->prepare($sql);
@@ -86,7 +81,8 @@ Class Vente{
         $Database->close();
     }
 
-    public function saveImage(Database $db, $image){
+    public function saveImage(Database $db, $image)
+    {
         $filename = $this->utils->saveFile($image, "Oeuvre");
         $Database = $db->connect();
         $sql = "insert into oeuvre_images (chemin_image, id_oeuvre) values (?,?)";
@@ -95,9 +91,5 @@ Class Vente{
         $stmt->execute();
         $stmt->close();
         $Database->close();
-
     }
-
-    
-
 }

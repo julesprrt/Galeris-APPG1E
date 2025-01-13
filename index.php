@@ -21,6 +21,7 @@ require_once("./Controller/NovArtController.php");
 require_once("./Controller/MentionsLegalesController.php");
 
 
+require_once("./Controller/DashBoardController.php");
 
 $uri = $_SERVER['REQUEST_URI']; //Recupération de l'uri (la route)
 $router = new Router();
@@ -92,7 +93,7 @@ $router->addRoute('/utilisateur', UserController::class, 'profil_consultation');
 $router->addRoute('/novart', NovArtController::class, 'novart');
 $router->addRoute('/mentionslegales', MentionsLegalesController::class, 'mentionslegales');
 
-
+$router->addRoute('/dashboard', DashBoardController::class, 'dashboard');
 
 if ($uri !== null) {
     $router->dispatch($uri); //Appel a la méthode du controller dedié

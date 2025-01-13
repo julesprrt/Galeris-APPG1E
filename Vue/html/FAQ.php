@@ -52,7 +52,8 @@
                                 <a href="./solde">Mon solde</a>'.
                                 (($userRole === true)?
                                     '<a href="./listeoeuvreattente">Oeuvres en attente</a>
-                                    <a href="./listeexposeattente">Exposés en attente</a>':"").
+                                    <a href="./listeexposeattente">Exposés en attente</a>
+                                    <a href="./dashboard">Tableau de bord</a>' : "") .
                                 '<a id="deconnexion">Déconnexion</a>
                             </div>
                            </div>';
@@ -74,70 +75,70 @@
     <div class="Page">
         <img src="images/sculpture2.png" class="image1" />
 
-        <il>Général</il><br>
+            <il>Général</il><br>
 
-        <details>
-            <summary>Mini-quiz</summary>
-            <p>Ceci est le texte qui se déroule lorsque vous cliquez sur le mot.</p>
-        </details>
+            <details>
+                <summary>Mini-quiz</summary>
+                <p>Ceci est le texte qui se déroule lorsque vous cliquez sur le mot.</p>
+            </details>
 
-        <details>
-            <summary>Newsletters</summary>
-            <p>Ceci est le texte qui se déroule lorsque vous cliquez sur le mot.</p>
-        </details>
+            <details>
+                <summary>Newsletters</summary>
+                <p>Ceci est le texte qui se déroule lorsque vous cliquez sur le mot.</p>
+            </details>
 
-        <details>
-            <summary>Eco-responsabilité</summary>
-            <p>Ceci est le texte qui se déroule lorsque vous cliquez sur le mot.</p>
-        </details>
+            <details>
+                <summary>Eco-responsabilité</summary>
+                <p>Ceci est le texte qui se déroule lorsque vous cliquez sur le mot.</p>
+            </details>
 
-        <il>Compte</il><br>
+            <il>Compte</il><br>
 
-        <details>
-            <summary>Quels sont les avantages de créer un compte Galeris ?</summary>
-            <p>Créer un compte Galeris vous donne accès à un monde d’art et d’objets extraordinaires. Dès que vous créez un compte, vous pouvez :
+            <details>
+                <summary>Quels sont les avantages de créer un compte Galeris ?</summary>
+                <p>Créer un compte Galeris vous donne accès à un monde d’art et d’objets extraordinaires. Dès que vous créez un compte, vous pouvez :
 
-            <ul>
-                <li>Enregistrer vos intérêts pour des recommandations personnalisées</li>
-                <li>Suivre les lots et les enchères</li>
-                <li>Garder une trace dans votre compte</li>
-                <li>Consulter vos factures</li>
-                <li>organiser l'expédition et le paiement en ligne</li>
-                <li>Garder une trace dans votre compte</li>
-                <li>Suivre la progression de tous les articles que vous vendez</li>
-                <li>S'inscrire et enchérir</li>
-            </ul>
-            </p>
-        </details>
-        <details>
-            <summary>Comment réinitialiser mon mot de passe ?</summary>
-            <p>Cliquez ici et saisissez l'adresse e-mail associée à votre compte Galeris pour recevoir
-                un lien de réinitialisation du mot de passe.
-            </p>
-        </details>
-
-
+                <ul>
+                    <li>Enregistrer vos intérêts pour des recommandations personnalisées</li>
+                    <li>Suivre les lots et les enchères</li>
+                    <li>Garder une trace dans votre compte</li>
+                    <li>Consulter vos factures</li>
+                    <li>organiser l'expédition et le paiement en ligne</li>
+                    <li>Garder une trace dans votre compte</li>
+                    <li>Suivre la progression de tous les articles que vous vendez</li>
+                    <li>S'inscrire et enchérir</li>
+                </ul>
+                </p>
+            </details>
+            <details>
+                <summary>Comment réinitialiser mon mot de passe ?</summary>
+                <p>Cliquez ici et saisissez l'adresse e-mail associée à votre compte Galeris pour recevoir
+                    un lien de réinitialisation du mot de passe.
+                </p>
+            </details>
 
 
-        <il>Achat</il><br>
 
-        <details>
-            <summary>Comment acheter des œuvres d'art via Galeris ?</summary>
-            <p>Il y a différentes méthodes d'achat chez Galeris. Il est possible d'acheter une œuvre lors d'une de nos ventes 
-                aux enchères en direct ou en ligne qui se déroulent régulièrement. Voir le calendrier des ventes pour obtenir 
-                des informations sur les dates à venir. <br><br>Il est possible d'acquérir des œuvres d'art en utilisant notre site.
-                Service de vente en ligne, offrant des œuvres à l'achat immédiat. Explorez les différentes catégories, explorez quelque 
-                chose de nouveau dans nos expositions de vente thématiques ou contactez un expert si vous avez une question particulière en tête.</p>
-        </details>
 
-        <details>
-            <summary>Comment m'inscrire à une vente aux enchères ?</summary>
-            <p>Il est nécessaire de créer un compte Galeris et de vérifier votre identité avant de vous inscrire.
-                Après avoir accompli cette étape, vous avez la possibilité de vous inscrire pour participer à n'importe quelle vente aux enchères.<br><br>
-                Pour participer aux enchères en ligne, veuillez vous connecter à votre compte, vous rendre sur la page de vente et cliquer sur le bouton « S'inscrire ».
-                Certaines informations de votre compte, comme votre adresse de livraison préférée, seront nécessaires pour être confirmées.
-                Avant la vente aux enchères ou à tout moment pendant celle-ci, vous avez la possibilité de vous inscrire.</p>
-        </details>
+            <il>Achat</il><br>
+
+            <details>
+                <summary>Comment acheter des œuvres d'art via Galeris ?</summary>
+                <p>Il y a différentes méthodes d'achat chez Galeris. Il est possible d'acheter une œuvre lors d'une de nos ventes
+                    aux enchères en direct ou en ligne qui se déroulent régulièrement. Voir le calendrier des ventes pour obtenir
+                    des informations sur les dates à venir. <br><br>Il est possible d'acquérir des œuvres d'art en utilisant notre site.
+                    Service de vente en ligne, offrant des œuvres à l'achat immédiat. Explorez les différentes catégories, explorez quelque
+                    chose de nouveau dans nos expositions de vente thématiques ou contactez un expert si vous avez une question particulière en tête.</p>
+            </details>
+
+            <details>
+                <summary>Comment m'inscrire à une vente aux enchères ?</summary>
+                <p>Il est nécessaire de créer un compte Galeris et de vérifier votre identité avant de vous inscrire.
+                    Après avoir accompli cette étape, vous avez la possibilité de vous inscrire pour participer à n'importe quelle vente aux enchères.<br><br>
+                    Pour participer aux enchères en ligne, veuillez vous connecter à votre compte, vous rendre sur la page de vente et cliquer sur le bouton « S'inscrire ».
+                    Certaines informations de votre compte, comme votre adresse de livraison préférée, seront nécessaires pour être confirmées.
+                    Avant la vente aux enchères ou à tout moment pendant celle-ci, vous avez la possibilité de vous inscrire.</p>
+            </details>
 
         <details>
             <summary>Comment payer mon achat ?</summary>
@@ -150,32 +151,32 @@
                 ou d'autres options de paiement, y compris le virement bancaire, veuillez vérifier le verso de votre facture.</p>
         </details>
 
-        <details>
-            <summary>Comment suivre les articles qui m'intéressent ?</summary>
-            <p>Le moyen le plus simple de suivre les articles qui vous intéressent est de les suivre.
-                Vous pouvez trouver les articles que vous suivez en cliquant sur le bouton favoris.</p>
-        </details>
+            <details>
+                <summary>Comment suivre les articles qui m'intéressent ?</summary>
+                <p>Le moyen le plus simple de suivre les articles qui vous intéressent est de les suivre.
+                    Vous pouvez trouver les articles que vous suivez en cliquant sur le bouton favoris.</p>
+            </details>
 
-        <il>Vente</il><br>
+            <il>Vente</il><br>
 
-        <details>
-            <summary>Comment puis-je obtenir une estimation ?</summary>
-            <p>Essayez notre outil gratuit d'estimation d'enchères pour fournir des images et des informations supplémentaires 
-            pour chaque article. <br><br>Galeris fournit les estimations d'enchères dans un délai de 3 à 4 semaines concernant les articles pour lesquels elle a été sollicitée.
-            Il existe une catégorie de vente qui correspond à notre valeur minimale de consignation.
-            Si vous disposez de plus de six articles à évaluer, nous vous prions de prendre contact avec nos services d'estimation et d'évaluation des successions.</p>
-        </details>
+            <details>
+                <summary>Comment puis-je obtenir une estimation ?</summary>
+                <p>Essayez notre outil gratuit d'estimation d'enchères pour fournir des images et des informations supplémentaires
+                    pour chaque article. <br><br>Galeris fournit les estimations d'enchères dans un délai de 3 à 4 semaines concernant les articles pour lesquels elle a été sollicitée.
+                    Il existe une catégorie de vente qui correspond à notre valeur minimale de consignation.
+                    Si vous disposez de plus de six articles à évaluer, nous vous prions de prendre contact avec nos services d'estimation et d'évaluation des successions.</p>
+            </details>
 
-        <details>
-            <summary>Combien coûte une vente avec Galeris ?</summary>
-            <p>Galeris facture un taux de commission vendeur unique pour les services que nous fournissons.
-                La commission est calculée sur chaque article sous forme de pourcentage fixe basé sur le prix d'adjudication
-                final aux enchères. <br>
-                <br>Ce taux comprend les frais de marketing et la couverture d'assurance. Si votre article se
-                vend au-dessus de l'estimation haute que nous avons convenue avec vous, il y aura également une commission de
-                performance supplémentaire de 2 %.
-            </p>
-        </details>
+            <details>
+                <summary>Combien coûte une vente avec Galeris ?</summary>
+                <p>Galeris facture un taux de commission vendeur unique pour les services que nous fournissons.
+                    La commission est calculée sur chaque article sous forme de pourcentage fixe basé sur le prix d'adjudication
+                    final aux enchères. <br>
+                    <br>Ce taux comprend les frais de marketing et la couverture d'assurance. Si votre article se
+                    vend au-dessus de l'estimation haute que nous avons convenue avec vous, il y aura également une commission de
+                    performance supplémentaire de 2 %.
+                </p>
+            </details>
 
         <details>
             <summary>Comment vendre un article avec Galeris ?</summary>

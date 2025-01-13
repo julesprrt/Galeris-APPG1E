@@ -70,11 +70,11 @@
 
 <body>
     <div class="enchere-form">
-    <div class="btn-close-container">
-        <button class="close-button" type="submit">X</button>
-    </div>
+        <div class="btn-close-container">
+            <button class="close-button" type="submit">X</button>
+        </div>
         <p class="title-enchere">Place ton enchère</p>
-            <input type="text" class="input-enchere" name="enchere" placeholder="Enchere" value="" min="" />
+        <input type="text" class="input-enchere" name="enchere" placeholder="Enchere" value="" min="" />
         <br>
         <p class="error"></p>
         <br>
@@ -84,11 +84,11 @@
     </div>
 
     <div class="signaler-form">
-    <div class="btn-close-container">
-        <button class="signaler-close-button" type="submit">X</button>
-    </div>
+        <div class="btn-close-container">
+            <button class="signaler-close-button" type="submit">X</button>
+        </div>
         <p class="title-signaler">Signaler une oeuvre</p>
-            <textarea type="text" class="input-signalement" cols="30" rows="10" name="signalement" placeholder="Raison : 25 caractères minimum"></textarea>
+        <textarea type="text" class="input-signalement" cols="30" rows="10" name="signalement" placeholder="Raison : 25 caractères minimum"></textarea>
         <br>
         <p class="error"></p>
         <br>
@@ -173,10 +173,10 @@
 
             <!-- Boutons d'actions -->
             <section class="actions">
-                
+
                 <?php
-                    if($user || $userRole){
-                        echo '<button class="boutton-modifier">Modifier</button>
+                if ($user || $userRole) {
+                    echo '<button class="boutton-modifier">Modifier</button>
                         <button class="boutton-supprimer">Supprimer</button>';
                     }
                     else{
