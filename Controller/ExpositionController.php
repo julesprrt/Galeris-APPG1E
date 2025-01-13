@@ -2,15 +2,38 @@
 require_once('Database/Database.php');
 require_once('Controller.php');
 require_once('Model/exposition.php');
+require_once('Model/Oeuvre.php');
+require_once('Model/user.php');
 
 class ExpositionController extends Controller{ 
-    public function exposition()
+    public function exposition(Database $db)
     {
         session_start();
+
+        if (!isset($_SESSION['usersessionID'])) {
+            header('Location: ./connexion');
+            exit();
+        }
+
         $role = isset($_SESSION["usersessionRole"]) === true && $_SESSION["usersessionRole"] === "Admin" ? true : false;
-        $this->render('exposition', ["connectUser" =>  isset($_SESSION["usersessionID"]), "userRole" => $role]);
+        
+        $oeuvre = new Oeuvre($Titre = null, $Description = null, $eco_responsable = null, $Date_debut = null, $Date_fin = null, $Prix = null, $type_vente = null, $est_vendu = null, $auteur = null, $id_utilisateur = null, $id_categorie = null, $status = null, $nomvendeur = null, $prenomvendeur = null, $chemin_image = null, $prix_actuel = null, $id_offreur = null);
+        $oeuvres = $oeuvre->getAllOeuvre($db);
+        $expose = new Exposition(null,null,null,null,null,null,null);
+        $exposes = $expose->getExposes($db);
+        $user = new User(null,null,null,null,null,null,null,null,null,null);
+        $users = $user->getAllUsers($db);
+        
+        $this->render('exposition', ["connectUser" =>  isset($_SESSION["usersessionID"]), "userRole" => $role, "oeuvres" => $oeuvres, "exposes" => $exposes, "users" => $users]);
     }
     public function createexposition(Database $db){
+        session_start();
+
+        if (!isset($_SESSION['usersessionID'])) {
+            header('Location: ./connexion');
+            exit();
+        }
+
         $paramData = file_get_contents("php://input");
         $data = json_decode($paramData, true);
         if(isset($data['titre'])&& isset($data['date_debut'])&& isset($data['date_fin'])){
@@ -65,6 +88,12 @@ class ExpositionController extends Controller{
         $data = json_decode($paramData, true);
         if (isset($data['id'])) {
             session_start();
+
+            if (!isset($_SESSION['usersessionID'])) {
+                header('Location: ./connexion');
+                exit();
+            }
+
             $_SESSION['expose_id'] = (int)$data['id'];
             http_response_code(200);
         } else {
@@ -80,7 +109,13 @@ class ExpositionController extends Controller{
         $expose = new Exposition(null,null,null,null,null,null,null);
         $exposes = $expose->getExposes($db);
 
-        $this->render('expositions', ["connectUser" =>  isset($_SESSION["usersessionID"]), "userRole" => $role, "exposes" => $exposes]);
+        $oeuvre = new Oeuvre($Titre = null, $Description = null, $eco_responsable = null, $Date_debut = null, $Date_fin = null, $Prix = null, $type_vente = null, $est_vendu = null, $auteur = null, $id_utilisateur = null, $id_categorie = null, $status = null, $nomvendeur = null, $prenomvendeur = null, $chemin_image = null, $prix_actuel = null, $id_offreur = null);
+        $oeuvres = $oeuvre->getAllOeuvre($db);
+        $exposes_list = $expose->getExposes($db);
+        $user = new User(null,null,null,null,null,null,null,null,null,null);
+        $users = $user->getAllUsers($db);
+
+        $this->render('expositions', ["connectUser" =>  isset($_SESSION["usersessionID"]), "userRole" => $role, "exposes" => $exposes, "oeuvres" => $oeuvres, "exposes_barre" => $exposes_list, "users" => $users]);
         
     }
 
@@ -89,6 +124,11 @@ class ExpositionController extends Controller{
         // Récupérer l'œuvre depuis le modèle
         $expose = new Exposition(null,null,null,null,null,null,null);
         session_start();
+
+        if (!isset($_SESSION['usersessionID'])) {
+            header('Location: ./connexion');
+            exit();
+        }
         $role = isset($_SESSION["usersessionRole"]) === true && $_SESSION["usersessionRole"] === "Admin" ? true : false;
         $id =  $_SESSION['expose_id'];
         
@@ -100,12 +140,19 @@ class ExpositionController extends Controller{
             http_response_code(404);
             echo "L'œuvre demandée est introuvable.";
             //echo "<script>alert('Oeuvre n\'existe pas');</script>"; A tester si ça fonctionne
-            header('Location: /Galeris-APPG1E/');
+            header('Location: ./');
             exit();
         }
 
+        $oeuvre = new Oeuvre($Titre = null, $Description = null, $eco_responsable = null, $Date_debut = null, $Date_fin = null, $Prix = null, $type_vente = null, $est_vendu = null, $auteur = null, $id_utilisateur = null, $id_categorie = null, $status = null, $nomvendeur = null, $prenomvendeur = null, $chemin_image = null, $prix_actuel = null, $id_offreur = null);
+        $oeuvres = $oeuvre->getAllOeuvre($db);
+        $expose = new Exposition(null,null,null,null,null,null,null);
+        $exposes = $expose->getExposes($db);
+        $user = new User(null,null,null,null,null,null,null,null,null,null);
+        $users = $user->getAllUsers($db);
+
         // Transmettre les données à la vue
-        $this->render('expose', ["connectUser" =>  isset($_SESSION["usersessionID"]), "userRole" => $role,'expose' => $exposeid]);
+        $this->render('expose', ["connectUser" =>  isset($_SESSION["usersessionID"]), "userRole" => $role,'expose' => $exposeid, "oeuvres" => $oeuvres, "exposes" => $exposes, "users" => $users]);
         
     }
 }

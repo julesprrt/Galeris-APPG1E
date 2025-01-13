@@ -34,13 +34,13 @@ async function encherirCase(){
         redirect: "follow"
     };
 
-    const result = await fetch("https://galeris/Galeris-APPG1E/validerlivraison", requestOptions);
+    const result = await fetch("./validerlivraison", requestOptions);
     const statut = result.status;
     const text = await result.json();
     
     if(statut === 200){
         alert(text.Success);
-        window.location.href = "https://galeris/Galeris-APPG1E/achat";
+        window.location.href = "./achat";
     }
     else{
         alert(text.Error);
@@ -83,7 +83,7 @@ async function venteCase(){
         redirect: "follow"
     };
 
-    const result = await fetch("https://galeris/Galeris-APPG1E/validerlivraison", requestOptions);
+    const result = await fetch("./validerlivraison", requestOptions);
     const statut = result.status;
     const text = await result.json();
     
@@ -109,7 +109,7 @@ async function payer() {
         redirect: "follow"
     };
 
-    const result = await fetch("https://galeris/Galeris-APPG1E/paiement", requestOptions);
+    const result = await fetch("./paiement", requestOptions);
     const statut = result.status;
     const text = await result.json();
     if(statut === 200){
@@ -153,13 +153,13 @@ async function saveLivraisonProfil(){
         redirect: "follow"
     };
 
-    const result = await fetch("https://galeris/Galeris-APPG1E/validerlivraison", requestOptions);
+    const result = await fetch("./validerlivraison", requestOptions);
     const statut = result.status;
     const text = await result.json();
     
     if(statut === 200){
         alert(text.Success);
-        window.location.href = "https://galeris/Galeris-APPG1E/profil";
+        window.location.href = "./profil";
     }
     else{
         alert(text.Error);
