@@ -58,7 +58,8 @@
                                 <a href="./solde">Mon solde</a>' .
                     (($userRole === true) ?
                         '<a href="./listeoeuvreattente">Oeuvres en attente</a>
-                                    <a href="./listeexposeattente">Exposés en attente</a>' : "") .
+                                    <a href="./listeexposeattente">Exposés en attente</a>
+                                     <a href="./dashboard">Tableau de bord</a>' : "") .
                     '<a id="deconnexion">Déconnexion</a>
                             </div>
                            </div>';
@@ -115,16 +116,7 @@
                     <p><?php echo nl2br(htmlspecialchars($oeuvre['Description'])); ?></p>
                 </div>
             </section>
-
-            <!-- Section : Œuvres similaires -->
-            <section class="art-image-similaire">
-                <h2>Oeuvres similaires</h2>
-                <div class="tableau-similaire">
-                    <img src="images/oeuvresim-1.png" alt="Tableau similaire 1">
-                    <img src="images/oeuvresim-2.jpg" alt="Tableau similaire 2">
-                    <img src="images/oeuvresim-3.jpg" alt="Tableau similaire 3">
-                </div>
-            </section>
+         
         </section>
 
         <!-- Droite : Informations supplémentaires -->
@@ -144,9 +136,16 @@
             <section class="info-prix">
                 <div class="prix">
                     <span><strong>Auteur :</strong> <?php echo htmlspecialchars($oeuvre['auteur']) ?></span><br><br>
-                    <span><strong>Prix :</strong> <?php echo number_format($oeuvre['Prix'], 2, ',', ' '); ?> € </span>
-                    <p><small>Publié le : <?php echo htmlspecialchars($oeuvre['Date_debut']); ?></small></p>
-                    <p><small class="temps-restant" data-fin="<?php echo $oeuvre["Date_fin"]  ?>">Temps restant : </small></p>
+                    <?php if ($oeuvre['est_vendu'] == 0): ?>
+                        <span><strong>Prix :</strong> <?php echo number_format($oeuvre['Prix'], 2, ',', ' '); ?> € </span>
+                        <p><small>Publié le : <?php echo htmlspecialchars($oeuvre['Date_debut']); ?></small></p>
+                        <p><small class="temps-restant" data-fin="<?php echo $oeuvre["Date_fin"] ?>">Temps restant : </small></p>
+                    <?php else: ?>
+                        <span><strong>Prix vendu : <?php echo number_format($oeuvre['Prix'], 2, ',', ' '); ?> €</strong></span>
+                        <?php if (isset($oeuvre['Date_vente'])): ?>
+                            <p><small>Vendu le : <?php echo htmlspecialchars($oeuvre['Date_vente']); ?></small></p>
+                        <?php endif; ?>
+                    <?php endif; ?>
                 </div>
             </section>
 
@@ -154,31 +153,26 @@
             <input type="hidden" name="id_oeuvre" value="<?php echo $oeuvre['id_oeuvre']; ?>">
 
             <!-- Boutons d'actions -->
-
             <section class="actions">
+                <?php if ($oeuvre['est_vendu'] == 0): ?>
+                    <?php
+                    if (new DateTime() < new DateTime($oeuvre["Date_fin"])) {
+                        if ($user || $userRole) {
+                            echo '<button class="boutton-modifier">Modifier</button>
+                                  <button class="boutton-supprimer">Supprimer</button>';
 
-                <?php
-                if ($user || $userRole) {
-                    echo '<button class="boutton-modifier">Modifier</button>
-                        <button class="boutton-supprimer">Supprimer</button>';
-                    }
-                    else{
-                        
-                        if($panier === false){
-                            echo '<button class="boutton-panier">Ajouter au Panier</button>';
-                        }
-                        else{
-                            echo '<button class="boutton-retirer-panier">Retirer du Panier</button>';
-                        }
-                     
-                        if($favoris === false){   
+                        } else {
+                            if ($panier === false) {
+                                echo '<button class="boutton-panier">Ajouter au Panier</button>';
+                            } else {
+                                echo '<button class="boutton-retirer-panier">Retirer du Panier</button>';
+                            }
                             echo '<button class="boutton-favoris">Ajouter au favoris</button>';
                         }
-                        else{
-                            echo '<button class="boutton-retirer-favoris">Retirer du Favoris</button>';
-                        }
+                        
                     }
-                ?>
+                    ?>
+                <?php endif; ?>
 
                 <!-- bouton signaler -->
                 <button id="btnSignaleropenform" data-oeuvre-id=<?php echo $oeuvre['id_oeuvre'] ?>>Signaler cette œuvre</button>

@@ -1,0 +1,100 @@
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  height: 100%;
+}
+
+.page-content, .achats, .oeuvres {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 2em 5%;
+  width: 100%;
+}
+
+.contentbase {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.filter, .Tri-container, .Title-container, .auteur-container, .categorie-container, .price-container, .typevente-container {
+  border: 1px solid #ccc;
+  padding: 0.5em;
+  margin-top: 0.5em;
+}
+
+.filter {
+  flex: 0 0 200px;
+  padding: 1em 2.5em 1em 1em;
+  margin-bottom: 2em;
+}
+
+#tri-select, .oeuvre-input, .auteur-input {
+  padding: 0.3em 0.5em;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.title-filter, .subtitle-filter {
+  font-weight: bold;
+}
+
+.title-filter {
+  padding-bottom: 1em;
+  font-size: 24px;
+}
+
+.subtitle-filter {
+  font-size: 16px;
+}
+
+.oeuvre {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  width: 250px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out;
+  text-align: center;
+  overflow: hidden;
+}
+
+.oeuvre:hover {
+  transform: translateY(-5px);
+}
+
+.oeuvre img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  border-bottom: 1px solid #ddd;
+}
+
+.oeuvre h3 {
+  font-size: 1.1em;
+  margin: 0.5em 0;
+  color: #333;
+}
+
+.oeuvre p {
+  font-size: 0.9em;
+  color: #666;
+  padding: 0 0.5em 0.5em;
+}
+
+#reinit {
+  background-color: #D9A36A;
+  padding: 0.7em;
+  border-radius: 0.2em;
+  border: none;
+}
+
+.div-reinit {
+  padding-top: 1em;
+  display: flex;
+  justify-content: center;
+}
+
+#reinit:hover {
+  opacity: 0.9;
+}

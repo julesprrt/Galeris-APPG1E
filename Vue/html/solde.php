@@ -25,7 +25,7 @@
                 <li><a href="./">Accueil</a></li>
                 <li><a href="./ventes">Vente</a></li>
                 <li><a href="./exposes">Exposition</a></li>
-                <li><a href="#">News</a></li>
+                <li><a href="./news">News</a></li>
                 
             </ul>
         </nav>
@@ -56,7 +56,8 @@
                                 <a href="./solde">Mon solde</a>' .
                     (($userRole === true) ?
                         '<a href="./listeoeuvreattente">Oeuvres en attente</a>
-                                    <a href="./listeexposeattente">Exposés en attente</a>' : "") .
+                                    <a href="./listeexposeattente">Exposés en attente</a>
+                                     <a href="./dashboard">Tableau de bord</a>' : "") .
                     '<a id="deconnexion">Déconnexion</a>
                             </div>
                            </div>';
@@ -106,8 +107,8 @@
 
             <div class="container-button">
                 <Button class="Button-envoie" id="btn-env-banc" <?php if ($solde <= 1) {
-                    echo "disabled";
-                } ?>>Envoyer
+                                                                    echo "disabled";
+                                                                } ?>>Envoyer
                     vers compte bancaire (Stripe)</Button>
             </div>
 

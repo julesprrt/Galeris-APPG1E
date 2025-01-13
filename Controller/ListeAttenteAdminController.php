@@ -5,9 +5,11 @@ require_once('Model/Oeuvre.php');
 require_once('Model/user.php');
 require_once('Database/Database.php');
 require_once('Controller.php');
-Class ListeAttenteAdminController extends Controller{//Controlleur accueil
-    
-    public function listeattenteoeuvre(Database $db) {
+class ListeAttenteAdminController extends Controller
+{ //Controlleur accueil
+
+    public function listeattenteoeuvre(Database $db)
+    {
         session_start();
 
         $role = isset($_SESSION["usersessionRole"]) === true && $_SESSION["usersessionRole"] === "Admin" ? true : false;
@@ -18,7 +20,7 @@ Class ListeAttenteAdminController extends Controller{//Controlleur accueil
             exit();
         }
 
-        $oeuvre = new Oeuvre(null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null);
+        $oeuvre = new Oeuvre(null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
         $oeuvres = $oeuvre->getOeuvresEnAttente($db);
 
 
@@ -33,17 +35,18 @@ Class ListeAttenteAdminController extends Controller{//Controlleur accueil
         
     }
 
-    public function listeattenteexpose(Database $db) {
+    public function listeattenteexpose(Database $db)
+    {
         session_start();
         $role = isset($_SESSION["usersessionRole"]) === true && $_SESSION["usersessionRole"] === "Admin" ? true : false;
-        
+
         if (!$role) {
             http_response_code(404);
             header('Location: ./');
             exit();
         }
-        
-        $expose = new Exposition(null,null,null,null,null,null,null);
+
+        $expose = new Exposition(null, null, null, null, null, null, null);
         $exposes = $expose->getExposesEnAttente($db);
         $oeuvre = new Oeuvre($Titre = null, $Description = null, $eco_responsable = null, $Date_debut = null, $Date_fin = null, $Prix = null, $type_vente = null, $est_vendu = null, $auteur = null, $id_utilisateur = null, $id_categorie = null, $status = null, $nomvendeur = null, $prenomvendeur = null, $chemin_image = null, $prix_actuel = null, $id_offreur = null);
         $oeuvres = $oeuvre->getAllOeuvre($db);

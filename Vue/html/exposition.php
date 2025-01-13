@@ -47,15 +47,16 @@
       <div class="favori"><a href="favoris.html">❤️</a></div>
       <div class="panier"><a href="./panier">🛒</a></div>
       <?php
-                if ($connectUser === true) {
-                    echo '<div class="dropdown">
+      if ($connectUser === true) {
+        echo '<div class="dropdown">
                             <div class="utilisateur"> 👤 </div>
                             <div class="dropdown-child">
                                 <a href="./profil">Mon profil</a>
                                 <a href="./solde">Mon solde</a>'.
                                 (($userRole === true)?
                                     '<a href="./listeoeuvreattente">Oeuvres en attente</a>
-                                    <a href="./listeexposeattente">Exposés en attente</a>':"").
+                                    <a href="./listeexposeattente">Exposés en attente</a>
+                                    <a href="./dashboard">Tableau de bord</a>' : "") .
                                 '<a id="deconnexion">Déconnexion</a>
                             </div>
                            </div>';
@@ -70,12 +71,12 @@
 
   <main>
     <section class="exposition">
-    <p class="description-exposition">Notre site offre aux artistes une opportunité unique d’exposer leurs œuvres d’art dans nos locaux.
-      Que vous soyez peintre, sculpteur, photographe ou créateur multidisciplinaire, nous mettons à votre disposition un espace convivial
-      et professionnel pour présenter vos créations au public. Les expositions peuvent être organisées pour une durée maximale de 14 jours,
-      vous permettant de partager votre vision artistique et d’interagir directement avec vos spectateurs dans un cadre inspirant.
-      Rejoignez-nous et faites briller votre talent dans un lieu dédié à l’expression artistique et à la découverte culturelle.
-                    </p>
+      <p class="description-exposition">Notre site offre aux artistes une opportunité unique d’exposer leurs œuvres d’art dans nos locaux.
+        Que vous soyez peintre, sculpteur, photographe ou créateur multidisciplinaire, nous mettons à votre disposition un espace convivial
+        et professionnel pour présenter vos créations au public. Les expositions peuvent être organisées pour une durée maximale de 14 jours,
+        vous permettant de partager votre vision artistique et d’interagir directement avec vos spectateurs dans un cadre inspirant.
+        Rejoignez-nous et faites briller votre talent dans un lieu dédié à l’expression artistique et à la découverte culturelle.
+      </p>
       <form>
         <h2>Demande d'exposition</h2>
         <strong class="strong-title">Vous pouvez ajouter jusqu'à 3 photos</strong>
@@ -102,8 +103,8 @@
           <input type="date" class="input-exposition" id="date_fin" name="date_fin" value="" required>
         </p>
         <p>
-        <strong>Description :</strong>
-        <textarea class="input-exposition" id="description" name="description" cols="3" minlength="50" placeholder="50 caractères minimum" required></textarea>
+          <strong>Description :</strong>
+          <textarea class="input-exposition" id="description" name="description" cols="3" minlength="50" placeholder="50 caractères minimum" required></textarea>
         </p>
         <div class="actions">
           <a class="btn btn-exposition">Confirmer</a>

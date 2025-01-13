@@ -49,15 +49,16 @@
             <div class="favori"> <a href="./favoris">❤️ </a></div>
             <div class="panier"> <a href="./panier"> 🛒 </a></div>
             <?php
-                if ($connectUser === true) {
-                    echo '<div class="dropdown">
+            if ($connectUser === true) {
+                echo '<div class="dropdown">
                             <div class="utilisateur"> 👤 </div>
                             <div class="dropdown-child">
                                 <a href="./profil">Mon profil</a>
                                 <a href="./solde">Mon solde</a>'.
                                 (($userRole === true)?
                                     '<a href="./listeoeuvreattente">Oeuvres en attente</a>
-                                    <a href="./listeexposeattente">Exposés en attente</a>':"").
+                                    <a href="./listeexposeattente">Exposés en attente</a>
+                                    <a href="./dashboard">Tableau de bord</a>' : "") .
                                 '<a id="deconnexion">Déconnexion</a>
                             </div>
                            </div>';
@@ -98,15 +99,6 @@
                 </div>
             </section>
 
-            <!-- Section : Œuvres similaires -->
-            <section class="art-image-similaire">
-                <h2>Oeuvres similaires</h2>
-                <div class="tableau-similaire">
-                    <img src="images/oeuvresim-1.png" alt="Tableau similaire 1">
-                    <img src="images/oeuvresim-2.jpg" alt="Tableau similaire 2">
-                    <img src="images/oeuvresim-3.jpg" alt="Tableau similaire 3">
-                </div>
-            </section>
         </section>
 
         <!-- Droite : Informations supplémentaires -->
@@ -123,10 +115,10 @@
 
             <section class="info-prix">
                 <div class="prix">
-                   <span><strong>Auteur :</strong> <?php echo htmlspecialchars($oeuvre['auteur']) ?></span><br><br>
+                    <span><strong>Auteur :</strong> <?php echo htmlspecialchars($oeuvre['auteur']) ?></span><br><br>
                     <span><strong>Prix :</strong> € <?php echo number_format($oeuvre['Prix'], 2, ',', ' '); ?></span>
                     <p><small>Publié le : <?php echo htmlspecialchars($oeuvre['Date_debut']); ?></small></p>
-               </div>
+                </div>
             </section>
 
             <!-- Boutons d'actions -->

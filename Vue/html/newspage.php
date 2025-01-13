@@ -52,10 +52,11 @@
                             <div class="utilisateur"> 👤 </div>
                             <div class="dropdown-child">
                                 <a href="./profil">Mon profil</a>
-                                <a href="#">Mon solde</a>' .
+                                <a href="./solde">Mon solde</a>' .
                     (($userRole === true) ?
                         '<a href="./listeoeuvreattente">Oeuvres en attente</a>
-                                    <a href="./listeexposeattente">Exposés en attente</a>' : "") .
+                                    <a href="./listeexposeattente">Exposés en attente</a>
+                                     <a href="./dashboard">Tableau de bord</a>' : "") .
                     '<a id="deconnexion">Déconnexion</a>
                             </div>
                            </div>';
@@ -89,9 +90,9 @@
                 <p class="info">Publiée le <?php echo htmlspecialchars($news['date_news']); ?> par <?php echo ucfirst(htmlspecialchars($news['nom'])); ?> <?php echo ucfirst(htmlspecialchars($news['prenom'])); ?></p>
                 <p class="description"><?php echo nl2br(htmlspecialchars($news['desc'])); ?></p>
             </div>
-            </body>
-        </section>
-    </main>
+</body>
+</section>
+</main>
 
 <footer>
     <div class="social-network">

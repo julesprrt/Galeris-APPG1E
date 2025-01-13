@@ -20,6 +20,10 @@ class Oeuvre
     private $chemin_image = [];
     private $prix_actuel;
     private $id_offreur;
+    private $id_vente;
+    private $prix;
+    private $Date_vente;
+    
 
 
     // Constructeur pour initialiser les valeurs
@@ -41,6 +45,9 @@ class Oeuvre
         $chemin_image,
         $prix_actuel,
         $id_offreur,
+        $id_vente,
+        $prix,
+        $Date_vente
 
 
 
@@ -62,16 +69,19 @@ class Oeuvre
         $this->chemin_image = $chemin_image;
         $this->prix_actuel = $prix_actuel;
         $this->id_offreur = $id_offreur;
+        $this->id_vente = $id_vente;
+        $this->prix = $prix;
+        $this->Date_vente = $Date_vente;
     }
     // Méthode pour récupérer une œuvre par son ID
     public static function getOeuvreById($id, Database $db)
     {
         $conn = $db->connect();
         $query = "SELECT * FROM oeuvre o 
-        INNER JOIN utilisateur u ON u.id_utilisateur = o.id_utilisateur 
-        LEFT JOIN utilisateur_image ui ON ui.id_utilisateur = o.id_utilisateur
-        LEFT JOIN enchere e on e.id_oeuvre_enchere = o.id_oeuvre  
-        WHERE o.id_oeuvre = ?";
+                  INNER JOIN utilisateur u ON u.id_utilisateur = o.id_utilisateur 
+                  LEFT JOIN enchere e ON e.id_oeuvre = o.id_oeuvre 
+                  LEFT JOIN vente v ON o.id_oeuvre = v.id_oeuvre  
+                  WHERE o.id_oeuvre = ?";
 
         $stmt = $conn->prepare($query);
         $stmt->bind_param('i', $id);
@@ -95,11 +105,25 @@ class Oeuvre
             $chemin_image[] = $row['chemin_image'];
         }
         $stmtImages->close();
-        $conn->close();
 
         // Ajouter les chemins des images à l'œuvre
         $oeuvre['chemin_image'] = $chemin_image;
 
+        // Récupérer le prix de vente si l'œuvre est vendue et de type vente
+        if ($oeuvre['est_vendu'] == 1 && $oeuvre['type_vente'] == 'vente') {
+            $queryVente = "SELECT prix FROM vente WHERE id_vente = ?";
+            $stmtVente = $conn->prepare($queryVente);
+            $stmtVente->bind_param('i', $id);
+            $stmtVente->execute();
+
+            $resultVente = $stmtVente->get_result();
+            $vente = $resultVente->fetch_assoc();
+            $oeuvre['prix'] = $vente['prix'];
+
+            $stmtVente->close();
+        }
+
+        $conn->close();
 
         return $oeuvre;
     }

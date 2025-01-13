@@ -19,8 +19,8 @@ require_once("./Controller/LivraisonController.php");
 require_once("./Controller/NewsController.php");
 require_once("./Controller/NovArtController.php");
 require_once("./Controller/MentionsLegalesController.php");
-require_once("./Controller/BurgerController.php");
-
+require_once("./Controller/BurgerController.php");require_once("./Controller/DashBoardController.php");
+require_once("./Controller/HistoriqueController.php");
 
 $uri = $_SERVER['REQUEST_URI']; //Recupération de l'uri (la route)
 $router = new Router();
@@ -93,7 +93,9 @@ $router->addRoute('/novart', NovArtController::class, 'novart');
 $router->addRoute('/mentionslegales', MentionsLegalesController::class, 'mentionslegales');
 $router->addRoute('/burgerbar', BurgerController::class, 'burgerMenu');
 
-
+$router->addRoute('/dashboard', DashBoardController::class, 'dashboard');
+$router->addRoute('/historique',HistoriqueController::class, 'historique');
+$router->addRoute('/saveidhistorique', HistoriqueController::class, 'saveidhistorique');
 
 if ($uri !== null) {
     $router->dispatch($uri); //Appel a la méthode du controller dedié
