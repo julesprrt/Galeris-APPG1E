@@ -17,6 +17,10 @@ require_once("./Controller/PaymentController.php");
 require_once("./Controller/PanierController.php");
 require_once("./Controller/LivraisonController.php");
 require_once("./Controller/NewsController.php");
+require_once("./controller/NovArtController.php");
+require_once("./controller/MentionsLegalesController.php");
+
+
 
 $uri = $_SERVER['REQUEST_URI']; //Recupération de l'uri (la route)
 $router = new Router();
@@ -84,6 +88,10 @@ $router->addRoute('/favoris', FavorisController::class, 'favoris');
 $router->addRoute('/retirerfavorisid', FavorisController::class, 'retirerFavorisId');
 $router->addRoute('/saveiduser', UserController::class, 'consultation');
 $router->addRoute('/utilisateur', UserController::class, 'profil_consultation');
+
+$router->addRoute('/novart', NovArtController::class, 'novart');
+$router->addRoute('/mentionslegales', MentionsLegalesController::class, 'mentionslegales');
+
 
 
 if ($uri !== null) {

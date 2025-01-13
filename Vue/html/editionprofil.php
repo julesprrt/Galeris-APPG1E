@@ -46,7 +46,7 @@
                                 
                         ?>
                 </datalist>
-            <div class="favori"><a href="favoris.html">❤️</a></div>
+            <div class="favori"><a href="./favoris">❤️</a></div>
             <div class="panier"><a href="./panier">🛒</a></div>
             <?php
             if ($connectUser === true) {
@@ -173,7 +173,7 @@
         </div>
         <div class="container-footer">
             <a class="title-footer">Qui sommes-nous ?</a>
-            <a class="item-footer" href="#">NovArt</a>
+            <a class="item-footer" href="./novart">NovArt</a>
             <a class="item-footer" href="./galeris">Galeris</a>
         </div>
         <div class="container-footer">
@@ -184,7 +184,7 @@
         <div class="container-footer">
             <a class="title-footer">Informations légales</a>
             <a class="item-footer" href="./cgu">Conditions d'utilisations</a>
-            <a class="item-footer" href="#">Mentions légales</a>
+            <a class="item-footer" href="./mentionslegales">Mentions légales</a>
         </div>
 
     </footer>
