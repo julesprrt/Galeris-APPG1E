@@ -169,6 +169,7 @@ body {
     color: #666;
     /* Texte plus clair */
     padding: 0em 0.5em 0.5em 0.5em;
+    overflow-wrap: break-word;
 }
 
 #reinit{

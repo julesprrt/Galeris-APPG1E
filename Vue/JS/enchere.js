@@ -47,7 +47,7 @@ function tempsRestants() {
 
             el.textContent = `${jours}j ${heures}h ${minutes}m ${secondes}s restant`;
         } else {
-            window.location.href = "https://galeris/Galeris-APPG1E/";
+            window.location.href = "./";
         }
     });
 }
@@ -57,11 +57,10 @@ document.querySelectorAll(".boutton-offre").forEach(item => {
     item.addEventListener('click', verifyEnchere);
 })
 
-async function verifyEnchere(){
+async function verifyEnchere() {
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
     const raw = JSON.stringify({
-       
     });
 
     const requestOptions = {
@@ -70,62 +69,75 @@ async function verifyEnchere(){
         body: raw,
         redirect: "follow"
     };
-    const response = await fetch("https://galeris/Galeris-APPG1E/verifyenchere", requestOptions)
+    const response = await fetch("./verifyenchere")
     const statuscode = response.status;
     const result = await response.json();
-    
-    if(statuscode === 200){
+
+    if (statuscode === 200) {
         const validation = confirm(result.Success);
-        if(validation){
+        if (validation) {
             document.querySelector(".enchere-form").style.display = "block";
             document.querySelector(".input-enchere").value = result.prix;
             document.querySelector(".input-enchere").min = result.prix;
         }
-        else{
+        else {
             alert("Vous pouvez modifier vos données de livraison sur la page livraison");
-            window.location.href = "https://galeris/Galeris-APPG1E/livraison";
+            window.location.href = "./livraison";
         }
     }
-    else if(statuscode === 401){
+    else if (statuscode === 401) {
         alert(result.Error);
-        window.location.href = "https://galeris/Galeris-APPG1E/livraison";
+        window.location.href = "./livraison";
     }
 }
 
 document.querySelector(".input-enchere").addEventListener('input', changeInput);
 
-function changeInput(e){
-    if(isNaN(parseFloat(e.target.value)) || parseFloat(e.target.value) < parseFloat(e.target.min)){
+function changeInput(e) {
+    if (isNaN(parseFloat(e.target.value)) || parseFloat(e.target.value) < parseFloat(e.target.min)) {
         document.querySelector(".error").innerHTML = "Le prix ne doit pas être inférieur à " + e.target.min + " €";
     }
-    else{
+    else {
         document.querySelector(".error").innerHTML = "";
     }
 }
 
 document.querySelector(".close-button").addEventListener("click", closeForm);
 
-function closeForm(){
+function closeForm() {
     document.querySelector(".enchere-form").style.display = "none";
     document.querySelector(".input-enchere").value = "";
     document.querySelector(".input-enchere").min = "";
 }
 
+document.querySelector(".signaler-close-button").addEventListener("click", signalercloseForm);
+
+function closeForm() {
+    document.querySelector(".enchere-form").style.display = "none";
+    document.querySelector(".input-enchere").value = "";
+    document.querySelector(".input-enchere").min = "";
+}
+
+function signalercloseForm() {
+    document.querySelector(".signaler-form").style.display = "none";
+    document.querySelector(".input-signalement").value = "";
+}
+
 document.querySelector(".enchere-button").addEventListener("click", encherir);
 
-async function encherir(){
+async function encherir() {
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
     const prix = document.querySelector(".input-enchere").value;
     const prixMin = document.querySelector(".input-enchere").min;
 
-    if(isNaN(parseFloat(prix)) || parseFloat(prix) < parseFloat(prixMin)){
+    if (isNaN(parseFloat(prix)) || parseFloat(prix) < parseFloat(prixMin)) {
         alert("Le prix ne doit pas être inférieur à " + prixMin + " €")
         return;
     }
 
     const raw = JSON.stringify({
-       "prix" : prix
+        "prix": prix
     });
 
     const requestOptions = {
@@ -134,15 +146,15 @@ async function encherir(){
         body: raw,
         redirect: "follow"
     };
-    const response = await fetch("https://galeris/Galeris-APPG1E/encherir", requestOptions)
+    const response = await fetch("./encherir", requestOptions)
     const statuscode = response.status;
     const result = await response.json();
-    
-    if(statuscode === 200){
+
+    if (statuscode === 200) {
         console.log(result.payment.url)
         window.location.href = result.payment.url;
     }
-    else if(statuscode === 401){
+    else if (statuscode === 401) {
         alert(result.Error);
         document.querySelector(".input-enchere").value = result.prix;
         document.querySelector(".input-enchere").min = result.prix;
@@ -153,30 +165,146 @@ document.querySelectorAll(".boutton-supprimer").forEach(item => {
     item.addEventListener("click", supprimerOeuvre)
 })
 
-async function supprimerOeuvre(){
+async function supprimerOeuvre() {
     const reponse = confirm("Etez-vous sûre de vouloir supprimer cette oeuvre ?");
-    if(reponse === true){
+    if (reponse === true) {
         const myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
-    
-        
+
+
         const raw = JSON.stringify({
         });
-    
+
         const requestOptions = {
             method: "POST",
             headers: myHeaders,
             body: raw,
             redirect: "follow"
         };
-    
-        const result = await fetch("https://galeris/Galeris-APPG1E/supprimeroeuvre", requestOptions);
+
+        const result = await fetch("./supprimeroeuvre", requestOptions);
         const statut = result.status;
         const text = await result.json();
-        
-        if(statut === 200){
+
+        if (statut === 200) {
             alert(text.Success);
-            window.location.href = "https://galeris/Galeris-APPG1E/";
+            window.location.href = "./";
         }
+    }
+}
+
+
+document.getElementById("btnSignaleropenform").addEventListener("click", openFormSignaler)
+
+async function openFormSignaler() {
+    document.querySelector(".signaler-form").style.display = "block";
+}
+
+
+document.getElementById("btnSignaler").addEventListener("click", signaler)
+
+async function signaler() {
+    document.getElementById("btnSignaler").disabled = true;
+    const raison = document.querySelector(".input-signalement").value;
+
+    if (raison.length < 25) {
+        alert("La raison de votre signalement doit contenir plus que 25 carctères.");
+        return;
+    }
+
+
+    const resp = await fetch("./signaleroeuvre", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ raison: raison })
+    });
+    const data = await resp.json();
+    if (resp.status === 200) {
+        alert(data.Success);
+        signalercloseForm()
+        document.getElementById("btnSignaler").disabled = false;
+    } else {
+        alert(data.Error);
+    }
+
+
+}
+
+document.querySelectorAll(".boutton-favoris").forEach(item => {
+    item.addEventListener("click", ajoutfavoris);
+});
+
+document.querySelectorAll(".boutton-retirer-favoris").forEach(item => item.addEventListener("click", retirerfavoris));
+
+async function ajoutfavoris(){
+    console.log("ok")
+    const myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+    
+    const raw = JSON.stringify({
+    });
+
+    const requestOptions = {
+        method: "POST",
+        headers: myHeaders,
+        body: raw,
+        redirect: "follow"
+    };
+    const result = await fetch("./ajoutfavoris", requestOptions);
+    const statut = result.status;
+    const text = await result.json();
+    if(statut === 200){
+        alert(text.favoris);
+        window.location.reload();
+   }
+}
+
+async function retirerfavoris(){
+    const myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+    
+    const raw = JSON.stringify({
+    });
+
+    const requestOptions = {
+        method: "POST",
+        headers: myHeaders,
+        body: raw,
+        redirect: "follow"
+    };
+
+    const result = await fetch("./retirerfavoris", requestOptions);
+    const statut = result.status;
+    const text = await result.json();
+    if(statut === 200){
+        alert(text.favoris);
+        window.location.reload();
+   }
+}
+
+
+
+document.querySelector(".profil-section").addEventListener('click', saveUserid)
+
+async function saveUserid() {
+    const id_utilisateur = document.getElementById("id_utilisateur").value;
+
+    const myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+
+    const raw = JSON.stringify({
+        "id": id_utilisateur
+    });
+
+    const requestOptions = {
+        method: "POST",
+        headers: myHeaders,
+        body: raw,
+        redirect: "follow"
+    };
+    const response = await fetch("./saveiduser", requestOptions)
+    const statuscode = response.status;
+    if (statuscode === 200) {
+        window.location.href = "./utilisateur";
     }
 }
