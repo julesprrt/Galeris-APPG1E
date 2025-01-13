@@ -58,7 +58,8 @@
                                 <a href="./solde">Mon solde</a>' .
                     (($userRole === true) ?
                         '<a href="./listeoeuvreattente">Oeuvres en attente</a>
-                                    <a href="./listeexposeattente">Exposés en attente</a>' : "") .
+                                    <a href="./listeexposeattente">Exposés en attente</a>
+                                     <a href="./dashboard">Tableau de bord</a>' : "") .
                     '<a id="deconnexion">Déconnexion</a>
                             </div>
                            </div>';
@@ -167,7 +168,6 @@
                                 echo '<button class="boutton-retirer-panier">Retirer du Panier</button>';
                             }
                             echo '<button class="boutton-favoris">Ajouter au favoris</button>';
-                            echo '<button id="btnSignaleropenform" data-oeuvre-id="' . $oeuvre['id_oeuvre'] . '">Signaler cette œuvre</button>';
                         }
                         
                     }
