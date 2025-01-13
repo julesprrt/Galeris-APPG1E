@@ -46,9 +46,11 @@ async function news() {
     const title = document.getElementById('title').value;
     const description = document.getElementById('description').value.trim();
 
-    const image1 = document.getElementById("image1").attributes[4] === undefined ? "" : document.getElementById("image1").attributes[4].value;
-    const image2 = document.getElementById("image2").attributes[4] === undefined ? "" : document.getElementById("image2").attributes[4].value;
-    const image3 = document.getElementById("image3").attributes[4] === undefined ? "" : document.getElementById("image3").attributes[4].value;
+    console.log(document.getElementById("image1").attributes)
+
+    const image1 = document.getElementById("image1").attributes[3] === undefined ? "" : document.getElementById("image1").attributes[3].value;
+    const image2 = document.getElementById("image2").attributes[3] === undefined ? "" : document.getElementById("image2").attributes[3].value;
+    const image3 = document.getElementById("image3").attributes[3] === undefined ? "" : document.getElementById("image3").attributes[3].value;
 
     if(verificationData(title,description,image1) === false){
         return;
