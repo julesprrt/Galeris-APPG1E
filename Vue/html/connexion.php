@@ -30,12 +30,11 @@
             </div>
             <div class="form-connexion">
                 <p class="Title-connexion">Connectez-vous</p>
-                <form>
+                <form class="form">
                     <input name="email" type="text" class="input-user-first" placeholder="Entrez votre mail" />
                     <input name="password" type="password" class="input-user" placeholder="Mot de passe" />
                     <a href="./motdepasse" class="link">Mot de passe oublié ?</a>
                     <button type="button" class="button-connection submit-button"></button>
-                    <br>
                     <div name="recaptcha" class="g-recaptcha" data-sitekey="6LfGYYkqAAAAAKgMjRbrHHI64B8NFOIA-3wKM1wp"></div>
                     <p class="error-message"></p>
                 </form>

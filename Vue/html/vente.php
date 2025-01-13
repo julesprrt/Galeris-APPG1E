@@ -27,6 +27,17 @@
                 
             </ul>
         </nav>
+
+
+<!--        <nav>
+            <div class="ham-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+        </nav>
+-->
+
+
         <div class="barre_recherche">
         <input type="text" placeholder="Rechercher..." class="shearch">
                 <datalist id="galeris-list">

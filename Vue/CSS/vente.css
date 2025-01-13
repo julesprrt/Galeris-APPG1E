@@ -105,3 +105,19 @@ main {
     font-size: 1em;
     background-color: #F9F9F9;
 }
+
+
+
+
+
+@media (max-width: 1050px) {
+
+    .menu {
+        display: none;
+    }
+
+    .menu-burger {
+        display: block;
+    }
+
+}

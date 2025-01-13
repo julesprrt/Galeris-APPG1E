@@ -51,6 +51,9 @@ function tempsRestants() {
         } else {
             el.parentNode.style.display = 'none';
         }
-    });
-}
+        
+    }
+    );
+};
+
 
