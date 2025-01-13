@@ -51,10 +51,10 @@ async function acceptOeuvre() {
             body: raw,
             redirect: "follow"
         };
-        const response = await fetch("https://galeris/Galeris-APPG1E/statutoeuvre", requestOptions)
+        const response = await fetch("./statutoeuvre", requestOptions)
         const statuscode = response.status;
         if (statuscode === 200) {
-            window.location.href = "https://galeris/Galeris-APPG1E/listeoeuvreattente";
+            window.location.href = "./listeoeuvreattente";
         }
     }
     else {
@@ -81,13 +81,38 @@ async function cancelOeuvre() {
             body: raw,
             redirect: "follow"
         };
-        const response = await fetch("https://galeris/Galeris-APPG1E/statutoeuvre", requestOptions)
+        const response = await fetch("./statutoeuvre", requestOptions)
         const statuscode = response.status;
         if (statuscode === 200) {
-            window.location.href = "https://galeris/Galeris-APPG1E/listeoeuvreattente";
+            window.location.href = "./listeoeuvreattente";
         }
     }
     else {
         return;
+    }
+}
+
+document.querySelector(".profil-section").addEventListener('click', saveUserid)
+
+async function saveUserid() {
+    const id_utilisateur = document.getElementById("id_utilisateur").value;
+
+    const myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+
+    const raw = JSON.stringify({
+        "id": id_utilisateur
+    });
+
+    const requestOptions = {
+        method: "POST",
+        headers: myHeaders,
+        body: raw,
+        redirect: "follow"
+    };
+    const response = await fetch("./saveiduser", requestOptions)
+    const statuscode = response.status;
+    if (statuscode === 200) {
+        window.location.href = "./utilisateur";
     }
 }

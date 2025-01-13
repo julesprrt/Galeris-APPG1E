@@ -23,7 +23,6 @@ Class Livraison{
 
 
     public function saveLivraison(Database $db){
-        session_start();
 
         if(!ctype_alpha($this->nom)){
             return 401;
@@ -62,7 +61,7 @@ Class Livraison{
         $stmt->close();
         $conn->close();
 
-        if(mysqli_num_rows($result) > 0){
+        if($result->num_rows > 0){
             return true;
         }
         else{

@@ -1,8 +1,14 @@
 RewriteEngine On
 
+# Exclusion des fichiers statiques
+RewriteCond %{REQUEST_FILENAME} !\.(css|js|png|jpg|jpeg|gif|ico|svg|woff|woff2|ttf|otf|eot)$
+
+# Exclusion de phpMyAdmin
 RewriteCond %{REQUEST_URI} !^/phpmyadmin
 
+# Si fichier ou dossier existe, ne pas rediriger
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 
+# Redirection vers index.php
 RewriteRule ^ index.php [QSA,L]

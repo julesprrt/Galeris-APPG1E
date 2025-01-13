@@ -1,22 +1,22 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inscription - Galeris</title>
-    <base href="/Galeris-APPG1E/Vue/">
-    <link href="CSS/inscription.css" rel="stylesheet">
-    <link href="CSS/footer.css" rel="stylesheet">
-    <link href="CSS/style.css" rel="stylesheet">
-    <script src="https://galeris/Galeris-APPG1E/vue/JS/inscription.js" defer></script>
+    <link href="Vue/CSS/inscription.css" rel="stylesheet">
+    <link href="Vue/CSS/footer.css" rel="stylesheet">
+    <link href="Vue/CSS/style.css" rel="stylesheet">
+    <script src="Vue/JS/inscription.js" defer></script>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
 </head>
 
 <body>
     <div class="Page-User">
         <div class="logo-galeris">
-            <a href="https://galeris/Galeris-APPG1E/"><img width="150" height="150"
-                    src="../images/logo-sans-fond.png" /></a>
+            <a href="./"><img width="150" height="150"
+                    src="images/logo-sans-fond.png" /></a>
         </div>
         <div class="Page-content">s
             <div class="infos-inscription">
@@ -26,7 +26,7 @@
                         <h1 class="text-galeris">Galeris</h1>
                         <p class="simpleBigText">Si vous avez déjà un compte</p>
                         <p class="simpleBigText">vous pouvez vous connecter <a
-                                href="https://galeris/Galeris-APPG1E/connexion">ici !</a></p>
+                                href="./connexion">ici !</a></p>
                     </div>
                 </div>
             </div>
@@ -46,8 +46,10 @@
                 <label class="checkbox-container">
                     <input type="checkbox" id="check-inscription">
                     <span class="checkmark"></span>
-                    Je reconnais avoir pris connaissance des <a href="https://galeris/Galeris-APPG1E/cgu" target="_blank">conditions générales d’utilisation</> de Galeris
+                    Je reconnais avoir pris connaissance des <a href="./cgu" target="_blank">conditions générales d’utilisation</> de Galeris
                 </label>
+                <br>
+                <div name="recaptcha" class="g-recaptcha" data-sitekey="6LfGYYkqAAAAAKgMjRbrHHI64B8NFOIA-3wKM1wp"></div>
                 </form>
             </div>
         </div>
@@ -86,18 +88,18 @@
         <!-- infos footer (aide, contact ...) -->
         <div class="container-footer">
             <a class="title-footer">Qui sommes-nous ?</a>
-            <a class="item-footer" href="https://galeris/Galeris-APPG1E/novart">NovArt</a>
-            <a class="item-footer" href="https://galeris/Galeris-APPG1E/galeris">Galeris</a>
+            <a class="item-footer" href="#">NovArt</a>
+            <a class="item-footer" href="./galeris">Galeris</a>
         </div>
         <div class="container-footer">
             <a class="title-footer">Aide</a>
-            <a class="item-footer" href="https://galeris/Galeris-APPG1E/faq">Foire aux questions</a>
-            <a class="item-footer" href="https://galeris/Galeris-APPG1E/contact">Contact</a>
+            <a class="item-footer" href="./faq">Foire aux questions</a>
+            <a class="item-footer" href="./contact">Contact</a>
         </div>
         <div class="container-footer">
             <a class="title-footer">Informations légales</a>
-            <a class="item-footer" href="https://galeris/Galeris-APPG1E/cgu">Conditions d'utilisations</a>
-            <a class="item-footer" href="https://galeris/Galeris-APPG1E/mentionslegales">Mentions légales</a>
+            <a class="item-footer" href="./cgu">Conditions d'utilisations</a>
+            <a class="item-footer" href="#">Mentions légales</a>
         </div>
 
     </footer>

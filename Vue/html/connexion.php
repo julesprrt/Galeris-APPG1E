@@ -5,17 +5,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Connexion - Galeris</title>
-    <base href="/Galeris-APPG1E/Vue/">
-    <link href="CSS/connexion.css" rel="stylesheet">
-    <link href="CSS/footer.css" rel="stylesheet">
-    <link href="CSS/style.css" rel="stylesheet">
-    <script src="https://galeris/Galeris-APPG1E/vue/JS/connexion.js" defer></script>
+    <link href="Vue/CSS/connexion.css" rel="stylesheet">
+    <link href="Vue/CSS/footer.css" rel="stylesheet">
+    <link href="Vue/CSS/style.css" rel="stylesheet">
+    <script src="Vue/JS/connexion.js" defer></script>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
 
 <body>
     <div class="Page-User">
         <div class="logo-galeris">
-            <a href="https://galeris/Galeris-APPG1E/"><img width="150" height="150" src="../images/logo-sans-fond.png" /></a>
+            <a href="./"><img width="150" height="150" src="images/logo-sans-fond.png" /></a>
         </div>
         <div class="Page-content">
             <div class="infos-connexion">
@@ -24,7 +24,7 @@
                         <h1 class="bigTitle">Connectez-vous à</h1>
                         <h1 class="text-galeris">Galeris</h1>
                         <p class="simpleBigText">Si vous n’avez pas de compte vous</p>
-                        <p class="simpleBigText">pouvez vous <a href="https://galeris/Galeris-APPG1E/inscription">Inscrire ici </a>! </p>
+                        <p class="simpleBigText">pouvez vous <a href="./inscription">Inscrire ici </a>! </p>
                     </div>
                 </div>
             </div>
@@ -33,8 +33,10 @@
                 <form>
                     <input name="email" type="text" class="input-user-first" placeholder="Entrez votre mail" />
                     <input name="password" type="password" class="input-user" placeholder="Mot de passe" />
-                    <a href="https://galeris/Galeris-APPG1E/motdepasse" class="link">Mot de passe oublié ?</a>
+                    <a href="./motdepasse" class="link">Mot de passe oublié ?</a>
                     <button type="button" class="button-connection submit-button"></button>
+                    <br>
+                    <div name="recaptcha" class="g-recaptcha" data-sitekey="6LfGYYkqAAAAAKgMjRbrHHI64B8NFOIA-3wKM1wp"></div>
                     <p class="error-message"></p>
                 </form>
             </div>
@@ -74,18 +76,18 @@
         <!-- infos footer (aide, contact ...) -->
         <div class="container-footer">
             <a class="title-footer">Qui sommes-nous ?</a>
-            <a class="item-footer" href="https://galeris/Galeris-APPG1E/novart">NovArt</a>
-            <a class="item-footer" href="https://galeris/Galeris-APPG1E/galeris">Galeris</a>
+            <a class="item-footer" href="./novart">NovArt</a>
+            <a class="item-footer" href="./galeris">Galeris</a>
         </div>
         <div class="container-footer">
             <a class="title-footer">Aide</a>
-            <a class="item-footer" href="https://galeris/Galeris-APPG1E/faq">Foire aux questions</a>
-            <a class="item-footer" href="https://galeris/Galeris-APPG1E/contact">Contact</a>
+            <a class="item-footer" href="./faq">Foire aux questions</a>
+            <a class="item-footer" href="./contact">Contact</a>
         </div>
         <div class="container-footer">
             <a class="title-footer">Informations légales</a>
-            <a class="item-footer" href="https://galeris/Galeris-APPG1E/cgu">Conditions d'utilisations</a>
-            <a class="item-footer" href="https://galeris/Galeris-APPG1E/mentionslegales">Mentions légales</a>
+            <a class="item-footer" href="./cgu">Conditions d'utilisations</a>
+            <a class="item-footer" href="./mentionslegales">Mentions légales</a>
         </div>
 
     </footer>
