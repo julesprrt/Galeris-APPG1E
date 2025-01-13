@@ -60,10 +60,11 @@ async function verificateAndSaveData() {
         }
     })
 
+    console.log(document.getElementById("image1").getAttribute("src"))
 
-    const image1 = document.getElementById("image1").attributes[5] === undefined ? "" : document.getElementById("image1").attributes[5].value;
-    const image2 = document.getElementById("image2").attributes[5] === undefined ? "" : document.getElementById("image2").attributes[5].value;
-    const image3 = document.getElementById("image3").attributes[5] === undefined ? "" : document.getElementById("image3").attributes[5].value;
+    const image1 = document.getElementById("image1").getAttribute("src") === null ? "" : document.getElementById("image1").getAttribute("src");
+    const image2 = document.getElementById("image2").getAttribute("src") === null ? "" : document.getElementById("image2").getAttribute("src");
+    const image3 = document.getElementById("image3").getAttribute("src")  === null ? "" : document.getElementById("image2").getAttribute("src");
 
     if (verificationData(titre, categorie, type, prix, nbJours, description, image1) === false) {
         return;
@@ -91,7 +92,7 @@ async function verificateAndSaveData() {
         body: raw,
         redirect: "follow"
     };
-    const response = await fetch("https://galeris/Galeris-APPG1E/createvente", requestOptions)
+    const response = await fetch("./createvente", requestOptions)
     const statuscode = response.status;
     const result = await response.json();
 
@@ -106,7 +107,7 @@ async function verificateAndSaveData() {
             item.src = "";
             item.title = "";
         })
-        window.location.href = "https://galeris/Galeris-APPG1E";
+        window.location.href = "./";
     }
     else {
         alert(result.Error);

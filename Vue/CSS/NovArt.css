@@ -1,0 +1,77 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+}
+
+header .logo {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 135px; 
+    height: auto;
+    margin: 5px; 
+}
+header {
+    position: relative;
+    background-color: #ffff;
+    padding: 1rem 2rem;
+    text-align: center;
+}
+
+nav {
+    margin: 1rem auto;
+    text-align: center;
+}
+html {
+    scroll-behavior: smooth;
+}
+nav a {
+    margin: 0 15px;
+    text-decoration: none;
+    color: #D9A36A;
+}
+
+nav a:hover {
+    color: #ae8355;
+}
+div {
+    margin: 2rem;
+    padding: 1rem;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.contact a {
+    color: #D9A36A;
+    text-decoration: none;
+}
+
+.contact a:hover {
+    text-decoration: underline;
+    color: #ae8355;
+}
+
+footer {
+    text-align: center;
+    padding: 1rem;
+    background-color: #ffffff;
+    color: rgb(0, 0, 0);
+    margin-top: 2rem;
+}
+
+.btn {
+    display: inline-block;
+    margin-top: 1rem;
+    padding: 10px 20px;
+    background-color: #D9A36A;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.btn:hover {
+    background-color: #ae8355;
+}

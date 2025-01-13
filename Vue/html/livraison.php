@@ -4,51 +4,67 @@
 <head>
     <meta charset="UTF-8">
     <title>Modification de livraison</title>
-    <base href="/Galeris-APPG1E/Vue/">
-    <link rel="stylesheet" href="CSS/livraison.css">
-    <link rel="stylesheet" href="CSS/header.css">
-    <link rel="stylesheet" href="CSS/footer.css">
-    <script src="https://galeris/Galeris-APPG1E/vue/JS/header.js" defer></script>
-    <script src="https://galeris/Galeris-APPG1E/vue/JS/livraison.js" defer></script>
+    
+    <link rel="stylesheet" href="Vue/CSS/livraison.css">
+    <link rel="stylesheet" href="Vue/CSS/header.css">
+    <link rel="stylesheet" href="Vue/CSS/footer.css">
+    <script src="Vue/JS/header.js" defer></script>
+    <script src="Vue/JS/livraison.js" defer></script>
 </head>
 
 <body>
     <header>
         <div class="logo">
-            <a href="https://galeris/Galeris-APPG1E/">
-                <img src="../images/logo.png" alt="Logo">
+            <a href="./">
+                <img src="images/logo.png" alt="Logo">
             </a>
         </div>
         <nav class="menu">
             <ul>
-                <li><a href="https://galeris/Galeris-APPG1E/">Accueil</a></li>
-                <li><a href="https://galeris/Galeris-APPG1E/ventes">Vente</a></li>
-                <li><a href="https://galeris/Galeris-APPG1E/exposes">Exposition</a></li>
-                <li><a href="#">News</a></li>
-                <li><a href="#">Plus</a></li>
+                <li><a href="./">Accueil</a></li>
+                <li><a href="./ventes">Vente</a></li>
+                <li><a href="./exposes">Exposition</a></li>
+                <li><a href="./listenews">News</a></li>
+                
             </ul>
         </nav>
         <div class="barre_recherche">
-            <input type="text" placeholder="Rechercher...">
+        <input type="text" placeholder="Rechercher..." class="shearch">
+                <datalist id="galeris-list">
+                        <?php
+                            foreach($users as $user_barre){
+                                echo '<option data-value="utilisateur_' . $user_barre["id_utilisateur"] . '" value="' . $user_barre["nom"] . ' ' . $user_barre["prenom"] . ' ' . $user_barre["id_utilisateur"] .' (utilisateur)">';
+                            }
+                            foreach($exposes_barre as $expose_barre){
+                                echo '<option data-value="expose_' . $expose_barre["id_exhibition"] . '" value="' . $expose_barre["titre"] . ' ' . $expose_barre["id_exhibition"] . ' (exposé)">';
+                            }
+                            foreach($oeuvres as $oeuvre_barre){
+                                echo '<option data-value="oeuvre_' . $oeuvre_barre["id_oeuvre"] . '" value="' . $oeuvre_barre["Titre"] . ' ' . $oeuvre_barre["auteur"] . ' ' . $oeuvre_barre["id_oeuvre"] . ' (Oeuvre)">';
+                            }
+                                
+                        ?>
+                        </datalist>
             <div class="favori"><a href="favoris.html">❤️</a></div>
-            <div class="panier"><a href="https://galeris/Galeris-APPG1E/panier">🛒</a></div>
+            <div class="panier"><a href="./panier">🛒</a></div>
             <?php
-                if ($connectUser === true) {
-                    echo '<div class="dropdown">
+            if ($connectUser === true) {
+                echo '<div class="dropdown">
                             <div class="utilisateur"> 👤 </div>
                             <div class="dropdown-child">
-                                <a href="https://galeris/Galeris-APPG1E/profil">Mon profil</a>
-                                <a href="#">Mon solde</a>'.
+                                <a href="./profil">Mon profil</a>
+                                <a href="./solde">Mon solde</a>'.
                                 (($userRole === true)?
-                                    '<a href="https://galeris/Galeris-APPG1E/listeoeuvreattente">Oeuvres en attente</a>
-                                    <a href="https://galeris/Galeris-APPG1E/listeexposeattente">Exposés en attente</a>':"").
+                                    '<a href="./listeoeuvreattente">Oeuvres en attente</a>
+                                    <a href="./listeexposeattente">Exposés en attente</a>
+                                    <a href="./dashboard">Tableau de bord</a>' : "") .
                                 '<a id="deconnexion">Déconnexion</a>
                             </div>
                            </div>';
                 } else {
-                    echo '<div class="utilisateur"><a href="https://galeris/Galeris-APPG1E/connexion"> 👤 </a></div>';
+                    echo '<div class="utilisateur"><a href="./connexion"> 👤 </a></div>';
                 }
             ?>
+
 
         </div>
     </header>
@@ -94,19 +110,17 @@
                     </div>
                 </div>
 
-               
-                
+
+
                 <div class="actions">
-                    <?php 
-                        if($livraison === "panier"){
-                            echo "<button type='button' class='btn-paiement btn'>Continuer vers le paièment</button>";
-                        }
-                        else if($livraison === "profil"){
-                            echo "<button type='button' class='btn-profil btn'>Valider</button>";
-                        }
-                        else{
-                            echo "<button type='button' class='btn-valider btn'>Valider</button>";
-                        }
+                    <?php
+                    if ($livraison === "panier") {
+                        echo "<button type='button' class='btn-paiement btn'>Continuer vers le paièment</button>";
+                    } else if ($livraison === "profil") {
+                        echo "<button type='button' class='btn-profil btn'>Valider</button>";
+                    } else {
+                        echo "<button type='button' class='btn-valider btn'>Valider</button>";
+                    }
                     ?>
                 </div>
             </form>
@@ -144,18 +158,18 @@
         </div>
         <div class="container-footer">
             <a class="title-footer">Qui sommes-nous ?</a>
-            <a class="item-footer" href="#">NovArt</a>
-            <a class="item-footer" href="https://galeris/Galeris-APPG1E/galeris">Galeris</a>
+            <a class="item-footer" href="./novart">NovArt</a>
+            <a class="item-footer" href="./galeris">Galeris</a>
         </div>
         <div class="container-footer">
             <a class="title-footer">Aide</a>
-            <a class="item-footer" href="https://galeris/Galeris-APPG1E/faq">Foire aux questions</a>
-            <a class="item-footer" href="https://galeris/Galeris-APPG1E/contact">Contact</a>
+            <a class="item-footer" href="./faq">Foire aux questions</a>
+            <a class="item-footer" href="./contact">Contact</a>
         </div>
         <div class="container-footer">
             <a class="title-footer">Informations légales</a>
-            <a class="item-footer" href="https://galeris/Galeris-APPG1E/cgu">Conditions d'utilisations</a>
-            <a class="item-footer" href="#">Mentions légales</a>
+            <a class="item-footer" href="./cgu">Conditions d'utilisations</a>
+            <a class="item-footer" href="./mentionslegales">Mentions légales</a>
         </div>
 
     </footer>

@@ -137,7 +137,7 @@ class Exposition
 
     public function getExposeById($id, Database $db){
         $conn = $db->connect();
-        $query = "SELECT e.*, u.*, e.description as 'desc' FROM exposition e INNER JOIN utilisateur u ON u.id_utilisateur = e.user_id WHERE id_exhibition = ?";
+        $query = "SELECT e.*, u.*, e.description as 'desc', ui.chemin_image as 'profil' FROM exposition e INNER JOIN utilisateur u ON u.id_utilisateur = e.user_id left join utilisateur_image ui on u.id_utilisateur = ui.id_utilisateur WHERE id_exhibition = ?";
 
         $stmt = $conn->prepare($query);
         $stmt->bind_param('i', $id);

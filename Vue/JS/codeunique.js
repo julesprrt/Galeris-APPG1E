@@ -30,18 +30,18 @@ async function register1() {
         body: raw,
         redirect: "follow"
     };
-    const response = await fetch("https://galeris/Galeris-APPG1E/codeunique", requestOptions)
+    const response = await fetch("./codeunique", requestOptions)
     const statuscode = response.status;
     const result = await response.json();
     console.log(result.Success !== "password")
     if(statuscode === 200 && result.Success !== "password"){
         document.querySelector(".valid-code").disabled = false;
         alert(result.Success);
-        window.location.href = "https://galeris/Galeris-APPG1E/"
+        window.location.href = "./"
     }
     else if(statuscode === 200 && result.Success === "password"){
         document.querySelector(".valid-code").disabled = false;
-        window.location.href = "https://galeris/Galeris-APPG1E/confirmationmdp";
+        window.location.href = "./confirmationmdp";
     }
     else{ 
         document.querySelector(".valid-code").disabled = false;
@@ -63,7 +63,7 @@ async function resendcode() {
         body: raw,
         redirect: "follow"
     };
-    const response = await fetch("https://galeris/Galeris-APPG1E/renvoiecode", requestOptions)
+    const response = await fetch("./renvoiecode", requestOptions)
     const statuscode = response.status;
     const result = await response.json();
     

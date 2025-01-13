@@ -27,7 +27,7 @@ async function register() {
         body: raw,
         redirect: "follow"
     };
-    const response = await fetch("https://galeris/Galeris-APPG1E/inscription", requestOptions)
+    const response = await fetch("./inscription", requestOptions)
     const statuscode = response.status;
     const result = await response.json();
     
@@ -43,7 +43,7 @@ async function register() {
         document.querySelector('.error-message').innerHTML = "";
         document.querySelector(".submit-button").disabled = false;
         grecaptcha.reset();
-        window.location.href = "https://galeris/Galeris-APPG1E/codeunique"
+        window.location.href = "./codeunique"
     }
     
     else{

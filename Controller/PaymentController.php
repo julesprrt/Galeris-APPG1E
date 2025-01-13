@@ -3,6 +3,7 @@
 require_once('Database/Database.php');
 require_once('Controller.php');
 require_once('Model/payment.php');
+
 class PaymentController extends Controller
 {
 
@@ -11,7 +12,7 @@ class PaymentController extends Controller
         session_start();
 
         if (!isset($_SESSION['usersessionID'])) {
-            header('Location: /Galeris-APPG1E/connexion');
+            header('Location: ./connexion');
             exit();
         }
         $payment = new Payment();
@@ -35,19 +36,19 @@ class PaymentController extends Controller
         session_start();
 
         if (!isset($_SESSION["usersessionID"])) {
-            header('Location: /Galeris-APPG1E/connexion');
+            header('Location: ./connexion');
             exit;
         }
 
         if (!isset($_SESSION["payment"])) {
             http_response_code(404);
-            header("Location: /Galeris-APPG1E/");
+            header("Location: ./");
 
             exit();
         } else {
             if ($_SESSION["payment"] === false) {
                 http_response_code(404);
-                header("Location: /Galeris-APPG1E/");
+                header("Location: ./");
                 exit();
             } else {
                 $_SESSION["payment"] = false;
@@ -70,7 +71,7 @@ class PaymentController extends Controller
         session_start();
 
         if (!isset($_SESSION["usersessionID"])) {
-            header('Location: /Galeris-APPG1E/connexion');
+            header('Location: ./connexion');
             exit;
         }
 
@@ -78,12 +79,12 @@ class PaymentController extends Controller
 
         if (!isset($_SESSION["payment"])) {
             http_response_code(404);
-            header("Location: /Galeris-APPG1E/");
+            header("Location: ./");
             exit();
         } else {
             if ($_SESSION["payment"] === false) {
                 http_response_code(404);
-                header("Location: /Galeris-APPG1E/");
+                header("Location: ./");
                 exit();
             } else {
                 $_SESSION["payment"] = false;

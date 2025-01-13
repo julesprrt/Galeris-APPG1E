@@ -102,6 +102,8 @@ body {
 .oeuvre p {
     font-size: 0.9em;
     color: #666;
+    overflow-wrap: break-word;
     /* Texte plus clair */
     padding: 0.5em;
+    overflow-wrap: break-word;
 }

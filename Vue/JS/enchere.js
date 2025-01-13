@@ -47,7 +47,7 @@ function tempsRestants() {
 
             el.textContent = `${jours}j ${heures}h ${minutes}m ${secondes}s restant`;
         } else {
-            window.location.href = "https://galeris/Galeris-APPG1E/";
+            window.location.href = "./";
         }
     });
 }
@@ -61,7 +61,6 @@ async function verifyEnchere() {
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
     const raw = JSON.stringify({
-
     });
 
     const requestOptions = {
@@ -70,7 +69,7 @@ async function verifyEnchere() {
         body: raw,
         redirect: "follow"
     };
-    const response = await fetch("https://galeris/Galeris-APPG1E/verifyenchere", requestOptions)
+    const response = await fetch("./verifyenchere")
     const statuscode = response.status;
     const result = await response.json();
 
@@ -83,12 +82,12 @@ async function verifyEnchere() {
         }
         else {
             alert("Vous pouvez modifier vos données de livraison sur la page livraison");
-            window.location.href = "https://galeris/Galeris-APPG1E/livraison";
+            window.location.href = "./livraison";
         }
     }
     else if (statuscode === 401) {
         alert(result.Error);
-        window.location.href = "https://galeris/Galeris-APPG1E/livraison";
+        window.location.href = "./livraison";
     }
 }
 
@@ -147,7 +146,7 @@ async function encherir() {
         body: raw,
         redirect: "follow"
     };
-    const response = await fetch("https://galeris/Galeris-APPG1E/encherir", requestOptions)
+    const response = await fetch("./encherir", requestOptions)
     const statuscode = response.status;
     const result = await response.json();
 
@@ -183,13 +182,13 @@ async function supprimerOeuvre() {
             redirect: "follow"
         };
 
-        const result = await fetch("https://galeris/Galeris-APPG1E/supprimeroeuvre", requestOptions);
+        const result = await fetch("./supprimeroeuvre", requestOptions);
         const statut = result.status;
         const text = await result.json();
 
         if (statut === 200) {
             alert(text.Success);
-            window.location.href = "https://galeris/Galeris-APPG1E/";
+            window.location.href = "./";
         }
     }
 }
@@ -214,7 +213,7 @@ async function signaler() {
     }
 
 
-    const resp = await fetch("https://galeris/Galeris-APPG1E/signaleroeuvre", {
+    const resp = await fetch("./signaleroeuvre", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ raison: raison })
@@ -229,4 +228,83 @@ async function signaler() {
     }
 
 
+}
+
+document.querySelectorAll(".boutton-favoris").forEach(item => {
+    item.addEventListener("click", ajoutfavoris);
+});
+
+document.querySelectorAll(".boutton-retirer-favoris").forEach(item => item.addEventListener("click", retirerfavoris));
+
+async function ajoutfavoris(){
+    console.log("ok")
+    const myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+    
+    const raw = JSON.stringify({
+    });
+
+    const requestOptions = {
+        method: "POST",
+        headers: myHeaders,
+        body: raw,
+        redirect: "follow"
+    };
+    const result = await fetch("./ajoutfavoris", requestOptions);
+    const statut = result.status;
+    const text = await result.json();
+    if(statut === 200){
+        alert(text.favoris);
+        window.location.reload();
+   }
+}
+
+async function retirerfavoris(){
+    const myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+    
+    const raw = JSON.stringify({
+    });
+
+    const requestOptions = {
+        method: "POST",
+        headers: myHeaders,
+        body: raw,
+        redirect: "follow"
+    };
+
+    const result = await fetch("./retirerfavoris", requestOptions);
+    const statut = result.status;
+    const text = await result.json();
+    if(statut === 200){
+        alert(text.favoris);
+        window.location.reload();
+   }
+}
+
+
+
+document.querySelector(".profil-section").addEventListener('click', saveUserid)
+
+async function saveUserid() {
+    const id_utilisateur = document.getElementById("id_utilisateur").value;
+
+    const myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+
+    const raw = JSON.stringify({
+        "id": id_utilisateur
+    });
+
+    const requestOptions = {
+        method: "POST",
+        headers: myHeaders,
+        body: raw,
+        redirect: "follow"
+    };
+    const response = await fetch("./saveiduser", requestOptions)
+    const statuscode = response.status;
+    if (statuscode === 200) {
+        window.location.href = "./utilisateur";
+    }
 }

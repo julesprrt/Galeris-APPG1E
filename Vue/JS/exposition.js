@@ -47,9 +47,9 @@ async function exposition() {
     const date_fin = document.getElementById('date_fin').value;
     const description = document.getElementById('description').value.trim();
 
-    const image1 = document.getElementById("image1").attributes[4] === undefined ? "" : document.getElementById("image1").attributes[4].value;
-    const image2 = document.getElementById("image2").attributes[4] === undefined ? "" : document.getElementById("image2").attributes[4].value;
-    const image3 = document.getElementById("image3").attributes[4] === undefined ? "" : document.getElementById("image3").attributes[4].value;
+    const image1 = document.getElementById("image1").getAttribute("src") === null  ? "" : document.getElementById("image1").getAttribute("src");
+    const image2 = document.getElementById("image2").getAttribute("src") === null  ? "" : document.getElementById("image2").getAttribute("src");
+    const image3 = document.getElementById("image3").getAttribute("src") === null ? "" : document.getElementById("image3").getAttribute("src");
 
     if(verificationData(title,description,image1,date_debut,date_fin) === false){
         return;
@@ -74,7 +74,7 @@ async function exposition() {
         body: raw,
         redirect: "follow"
     };
-    const response = await fetch("https://galeris/Galeris-APPG1E/createexposition", requestOptions)
+    const response = await fetch("./createexposition", requestOptions)
     const statuscode = response.status;
     const result = await response.json();
     if (statuscode === 200) {
@@ -90,7 +90,7 @@ async function exposition() {
             item.src = "";
             item.title = "";
         })
-        window.location.href = "https://galeris/Galeris-APPG1E";
+        window.location.href = "./";
     }
     else {
         alert(result.Error);
