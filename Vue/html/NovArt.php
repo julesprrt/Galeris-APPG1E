@@ -30,7 +30,7 @@
 <div id="galeris" class="galeris">
     <h2 class="bigTitle3">Galeris - La filiale artistique de Novart</h2>
     <p class="simpleBigText">Galeris est une plateforme en ligne dédiée à la vente et aux enchères d'œuvres d'art. Découvrez des collections exclusives, participez à des enchères en direct, et connectez-vous avec des artistes du monde entier.</p>
-    <a href="https://www.galeris.com" class="btn" target="_blank">Visitez Galeris</a>
+    <a href="./" class="btn" target="_blank">Visitez Galeris</a>
 </div>
 
 <div id="contact" class="contact">
