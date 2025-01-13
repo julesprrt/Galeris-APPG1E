@@ -121,6 +121,44 @@ header {
   display: block;
 }
 
+.dropdown2 {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown2-child {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  background-color: #f1f1f1;
+  right: -5em;
+  top: 1.3em;
+  text-align: center;
+}
+
+.dropdown2-child a {
+  color: black;
+  padding: 0.5em 0.8em;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown2-child a:hover {
+  opacity: 0.4;
+}
+
+.dropdown2:hover .dropdown2-child {
+  display: block;
+}
+
+.ham-menu-resp {
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
 #deconnexion {
   cursor: pointer;
 }
@@ -200,11 +238,11 @@ header {
     margin: 0;
     padding: 0;
   }
-  
+
   .hamburgermenu ul li {
     margin: 10px 0;
   }
-  
+
   .hamburgermenu ul li a {
     text-decoration: none;
     color: #000;
@@ -218,5 +256,45 @@ header {
   }
   .utilisateur {
     padding-left: 5px;
+  }
+  .favori2 {
+    display: none;
+  }
+  .panier2 {
+    display: none;
+  }
+  .utilisateur2 {
+    display: none;
+  }
+}
+
+@media (max-width: 420px) {
+  .favori {
+    display: none;
+  }
+  .panier {
+    display: none;
+  }
+  .utilisateur {
+    display: none;
+  }
+  .favori2 {
+    display: block;
+  }
+  .panier2 {
+    display: block;
+  }
+  .utilisateur2 {
+    display: block;
+  }
+}
+
+@media (max-width: 330px) {
+  .shearch {
+    width: 100%;
+  }
+
+  .ham-search-cote {
+    gap: 10px;
   }
 }

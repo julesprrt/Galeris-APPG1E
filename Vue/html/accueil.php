@@ -26,11 +26,30 @@
                 <div class="hamburger-container">
                     <img src="images/hamMenu.png" alt="Menu hamburger" id="ham-img" class="hamburger-image">
                     <nav id="ham-menu" class="hamburgermenu">
-                        <ul>
+                        <ul class="ham-menu-resp">
                             <li><a href="./">Accueil</a></li>
                             <li><a href="./ventes">Vente</a></li>
                             <li><a href="./exposes">Exposition</a></li>
                             <li><a href="./listenews">News</a></li>
+                            <div class="favori2"> <a href="./favoris">❤️</a></div>
+                            <div class="panier2"> <a href="./panier">🛒</a></div>
+                            <?php
+                            if ($connectUser === true) {
+                                echo '<div class="dropdown2">
+                                <div class="utilisateur2"> 👤 </div>
+                                <div class="dropdown2-child">
+                                    <a href="./profil">Mon profil</a>
+                                    <a href="./solde">Mon solde</a>' .
+                                    (($userRole === true) ?
+                                        '<a href="./listeoeuvreattente">Oeuvres en attente</a>
+                                        <a href="./listeexposeattente">Exposés en attente</a>' : "") .
+                                    '<a id="deconnexion">Déconnexion</a>
+                                </div>
+                            </div>';
+                            } else {
+                                echo '<div class="utilisateur2"><a href="./connexion"> 👤 </a></div>';
+                            }
+                            ?>
 
                         </ul>
                     </nav>
@@ -121,12 +140,12 @@
                             <div class="utilisateur"> 👤 </div>
                             <div class="dropdown-child">
                                 <a href="./profil">Mon profil</a>
-                                <a href="./solde">Mon solde</a>'.
-                                (($userRole === true)?
-                                    '<a href="./listeoeuvreattente">Oeuvres en attente</a>
+                                <a href="./solde">Mon solde</a>' .
+                        (($userRole === true) ?
+                            '<a href="./listeoeuvreattente">Oeuvres en attente</a>
                                     <a href="./listeexposeattente">Exposés en attente</a>
                                     <a href="./dashboard">Tableau de bord</a>' : "") .
-                                '<a id="deconnexion">Déconnexion</a>
+                        '<a id="deconnexion">Déconnexion</a>
                             </div>
                            </div>';
                 } else {
