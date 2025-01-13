@@ -142,6 +142,9 @@ header {
   display: none;
   background-color: #fff;
   padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+  font-size: 25px;
 }
 
 .ham-search-cote {
@@ -191,6 +194,20 @@ header {
     flex-direction: row;
     gap: 40px;
     width: 100%;
+  }
+  .hamburgermenu ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .hamburgermenu ul li {
+    margin: 10px 0;
+  }
+  
+  .hamburgermenu ul li a {
+    text-decoration: none;
+    color: #000;
   }
 
   .favori {
