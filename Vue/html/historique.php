@@ -75,7 +75,7 @@
                                 echo '<p>' . $his['statut'] . '</p>';
                             }
                             if ($his['est_vendu']==1){
-                                echo '<p> Vendu pour ' . $his['Prix'] . '€  à' .$his['id_utilisateur'].'le' .$his['Date_vente']. '</p>';
+                                echo '<p> Vendu pour ' . $his['Prix'] . '€ </p>';
                             }
                             else {
                                 echo "<p> Pas vendu </p>";
@@ -95,12 +95,12 @@
                     <div class="oeuvres">
                         <?php
                         foreach ($achat as $ach) {
-                            echo '<div class="oeuvreOBJ" style="cursor:pointer">';
+                            echo '<div class="oeuvreOBJ1" style="cursor:pointer">';
                             echo '<div class="oeuvre">';
                             echo '<input type="hidden" id="id_oeuvre_' . $ach["id"] . '" name="id_oeuvre" value="' . $ach["id"] . '">';
                             echo '<h3>' . $ach["Titre"] . '</h3>';
                             echo '<img src="../' . $ach["image_path"] . '" alt="' . $ach["Titre"] . '" />';
-                            echo '<p> Vendu pour ' . $ach['Prix'] . '€  à le' .$ach['Date_vente']. '</p>';
+                            echo '<p> Vendu pour ' . $ach['Prix'] . '€ le ' . $ach['Date_vente']. '</p>';
                             echo '</div>';
                             echo '</div>';
                         }

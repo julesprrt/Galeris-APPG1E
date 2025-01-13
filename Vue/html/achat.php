@@ -102,16 +102,7 @@
                     <p><?php echo nl2br(htmlspecialchars($oeuvre['Description'])); ?></p>
                 </div>
             </section>
-
-            <!-- Section : Œuvres similaires -->
-            <section class="art-image-similaire">
-                <h2>Oeuvres similaires</h2>
-                <div class="tableau-similaire">
-                    <img src="..\images\oeuvresim-1.png" alt="Tableau similaire 1">
-                    <img src="..\images\oeuvresim-2.jpg" alt="Tableau similaire 2">
-                    <img src="..\images\oeuvresim-3.jpg" alt="Tableau similaire 3">
-                </div>
-            </section>
+         
         </section>
 
         <!-- Droite : Informations supplémentaires -->
@@ -134,8 +125,10 @@
                         <p><small>Publié le : <?php echo htmlspecialchars($oeuvre['Date_debut']); ?></small></p>
                         <p><small class="temps-restant" data-fin="<?php echo $oeuvre["Date_fin"] ?>">Temps restant : </small></p>
                     <?php else: ?>
-                        <span><strong>Prix vendu :</strong> <?php echo number_format($oeuvre['prix'], 2, ',', ' '); ?> € </span>
-                        <p><small>Vendu le : <?php echo htmlspecialchars($oeuvre['Date_vente']); ?></small></p>
+                        <span><strong>Prix vendu : <?php echo number_format($oeuvre['Prix'], 2, ',', ' '); ?> €</strong></span>
+                        <?php if (isset($oeuvre['Date_vente'])): ?>
+                            <p><small>Vendu le : <?php echo htmlspecialchars($oeuvre['Date_vente']); ?></small></p>
+                        <?php endif; ?>
                     <?php endif; ?>
                 </div>
             </section>

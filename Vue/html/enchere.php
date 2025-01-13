@@ -109,16 +109,6 @@
                     <p><?php echo nl2br(htmlspecialchars($oeuvre['Description'])); ?></p>
                 </div>
             </section>
-
-            <!-- Section : Œuvres similaires -->
-            <section class="art-image-similaire">
-                <h2>Oeuvres similaires</h2>
-                <div class="tableau-similaire">
-                    <img src="..\images\oeuvresim-1.png" alt="Tableau similaire 1">
-                    <img src="..\images\oeuvresim-2.jpg" alt="Tableau similaire 2">
-                    <img src="..\images\oeuvresim-3.jpg" alt="Tableau similaire 3">
-                </div>
-            </section>
         </section>
 
         <!-- Droite : Informations supplémentaires -->
