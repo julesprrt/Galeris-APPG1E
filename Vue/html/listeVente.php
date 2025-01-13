@@ -28,10 +28,9 @@
                 </ul>
             </nav>
             <div class="barre_recherche">
-                <!-- Barre de recherche, les emojis sont responsives si on clique dessus -->
                 <input type="text" placeholder="Rechercher...">
-                <div class="favori"> <a href="https://galeris/Galeris-APPG1E/favoris">❤️ </a></div>
-                <div class="panier"> <a href="https://galeris/Galeris-APPG1E/panier"> 🛒 </a></div>
+                <div class="favori"><a href="https://galeris/Galeris-APPG1E/favoris">❤️</a></div>
+                <div class="panier"><a href="https://galeris/Galeris-APPG1E/panier">🛒</a></div>
                 <?php
                 if ($connectUser === true) {
                     echo '<div class="dropdown">
@@ -41,7 +40,8 @@
                                 <a href="https://galeris/Galeris-APPG1E/solde">Mon solde</a>' .
                         (($userRole === true) ?
                             '<a href="https://galeris/Galeris-APPG1E/listeoeuvreattente">Oeuvres en attente</a>
-                                    <a href="https://galeris/Galeris-APPG1E/listeexposeattente">Exposés en attente</a>' : "") .
+                                    <a href="https://galeris/Galeris-APPG1E/listeexposeattente">Exposés en attente</a>
+                                    <a href="https://galeris/Galeris-APPG1E/dashboard">Tableau de bord</a>' : "") .
                         '<a id="deconnexion">Déconnexion</a>
                             </div>
                            </div>';
@@ -49,6 +49,7 @@
                     echo '<div class="utilisateur"><a href="https://galeris/Galeris-APPG1E/connexion"> 👤 </a></div>';
                 }
                 ?>
+
 
             </div>
         </header>
@@ -60,18 +61,18 @@
                 <div class="Tri-container">
                     <p class="subtitle-filter">Trier par</p>
                     <select name="tri" id="tri-select" required>
-                    <option value="date">Bientôt terminées</option>
-                    <option value="prixmin">Prix minimum</option>
-                    <option value="prixdec">Prix décroissants</option>
-                </select>
+                        <option value="date">Bientôt terminées</option>
+                        <option value="prixmin">Prix minimum</option>
+                        <option value="prixdec">Prix décroissants</option>
+                    </select>
                 </div>
                 <div class="Title-container">
                     <p class="subtitle-filter">Titre oeuvre</p>
-                    <input type="text" id="titre-oeuvre" class="oeuvre-input" placeholder="Nom de l'oeuvre" >
+                    <input type="text" id="titre-oeuvre" class="oeuvre-input" placeholder="Nom de l'oeuvre">
                 </div>
                 <div class="auteur-container">
                     <p class="subtitle-filter">Auteur oeuvre</p>
-                    <input type="text" id="auteur-oeuvre" class="auteur-input" placeholder="Nom de l'auteur" >
+                    <input type="text" id="auteur-oeuvre" class="auteur-input" placeholder="Nom de l'auteur">
                 </div>
                 <div class="categorie-container">
                     <p class="subtitle-filter">Catégories</p>
@@ -88,12 +89,12 @@
                 <div class="typevente-container">
                     <p class="subtitle-filter">Type de vente</p>
                     <div class="typevente-liste">
-                        <input type="checkbox" class="check-vente" checked="true" vente="Vente" name="Vente"/>
+                        <input type="checkbox" class="check-vente" checked="true" vente="Vente" name="Vente" />
                         <label for="Vente">Vente</label>
                     </div>
                     <br>
                     <div class="typevente-liste">
-                        <input type="checkbox" class="check-vente" checked="true" vente="Enchere" name="Enchere"/>
+                        <input type="checkbox" class="check-vente" checked="true" vente="Enchere" name="Enchere" />
                         <label for="Enchere">Enchere</label>
                     </div>
                     <br>
@@ -101,7 +102,7 @@
                 <div class="price-container">
                     <p class="subtitle-filter">Prix</p>
                     <input id="slider-price" type="range" min="<?php echo $prices["min"]; ?>" max="<?php echo $prices["max"]; ?>" value="<?php echo $prices["max"]; ?>" step="0.1">
-                    <p class="subtitle-filter" id="value-slider">Prix : <?php echo $prices["max"]; ?>  €</p>
+                    <p class="subtitle-filter" id="value-slider">Prix : <?php echo $prices["max"]; ?> €</p>
                 </div>
                 <div class="div-reinit">
                     <button id="reinit">Réinitialiser</button>
@@ -112,21 +113,19 @@
                     <div class="oeuvres">
                         <?php
                         foreach ($oeuvres as $oeuvre) {
-                            if($oeuvre["type_vente"] === "vente" || $oeuvre["prix_courant"] === null){
-                                echo '<a class = "oeuvreOBJ" style="cursor:pointer" nomCategorie="' . $oeuvre["Nom_categorie"] . '" prix="' . $oeuvre["Prix"] . '" type="'. $oeuvre["type_vente"] .'" titre="'. $oeuvre["Titre"] .'" auteur="'. $oeuvre["auteur"] .'" datefin="'. $oeuvre["Date_fin"] .'"">';
-                            }
-                            else{
-                                echo '<a class = "oeuvreOBJ" style="cursor:pointer" nomCategorie="' . $oeuvre["Nom_categorie"] . '" prix="' . $oeuvre["prix_courant"] . '" type="'. $oeuvre["type_vente"] .'" titre="'. $oeuvre["Titre"] .'" auteur="'. $oeuvre["auteur"] .'" datefin="'. $oeuvre["Date_fin"] .'"">';
+                            if ($oeuvre["type_vente"] === "vente" || $oeuvre["prix_courant"] === null) {
+                                echo '<a class = "oeuvreOBJ" style="cursor:pointer" nomCategorie="' . $oeuvre["Nom_categorie"] . '" prix="' . $oeuvre["Prix"] . '" type="' . $oeuvre["type_vente"] . '" titre="' . $oeuvre["Titre"] . '" auteur="' . $oeuvre["auteur"] . '" datefin="' . $oeuvre["Date_fin"] . '"">';
+                            } else {
+                                echo '<a class = "oeuvreOBJ" style="cursor:pointer" nomCategorie="' . $oeuvre["Nom_categorie"] . '" prix="' . $oeuvre["prix_courant"] . '" type="' . $oeuvre["type_vente"] . '" titre="' . $oeuvre["Titre"] . '" auteur="' . $oeuvre["auteur"] . '" datefin="' . $oeuvre["Date_fin"] . '"">';
                             }
                             echo '<div class="oeuvre">';
                             echo '<input type="hidden" id="id_oeuvre_' . $oeuvre["id_oeuvre"] . '" name="id_oeuvre" value="' . $oeuvre["id_oeuvre"] . '">';
                             echo '<h3>' . $oeuvre["Titre"] . '</h3>';
                             echo '<img src="../' . $oeuvre["chemin_image"] . '" alt="' . $oeuvre["Titre"] . '" />';
                             echo '<p class="temps-restant" data-fin="' . $oeuvre["Date_fin"] . '">' . '</p>';
-                            if($oeuvre["type_vente"] === "vente" || $oeuvre["prix_courant"] === null){
+                            if ($oeuvre["type_vente"] === "vente" || $oeuvre["prix_courant"] === null) {
                                 echo '<p>' . $oeuvre['Prix'] . ' €</p>';
-                            }
-                            else{
+                            } else {
                                 echo '<p>' . $oeuvre["prix_courant"] . ' €</p>';
                             }
 
@@ -188,11 +187,11 @@
             <div class="container-footer">
                 <a class="title-footer">Informations légales</a>
                 <a class="item-footer" href="https://galeris/Galeris-APPG1E/cgu">Conditions d' utilisations</a>
-                        <a class="item-footer" href="#">Mentions légales</a>
-                    </div>
+                <a class="item-footer" href="#">Mentions légales</a>
+            </div>
 
-                    </footer>
-                </div>
+        </footer>
+    </div>
 </body>
 
 

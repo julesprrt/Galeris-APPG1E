@@ -10,14 +10,14 @@
     <link rel="stylesheet" href="CSS/footer.css">
     <link rel="stylesheet" href="CSS/style.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-     integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
-     crossorigin=""/>
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+        crossorigin="" />
     <title><?php echo htmlspecialchars($expose['titre']); ?></title>
     <script src="https://galeris/Galeris-APPG1E/vue/JS/header.js" defer></script>
     <script src="https://galeris/Galeris-APPG1E/vue/JS/exposeattente.js" defer></script>
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-     integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
-     crossorigin=""></script>
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+        crossorigin=""></script>
     <title>Attente exposé</title>
 </head>
 
@@ -39,24 +39,25 @@
         </nav>
         <div class="barre_recherche">
             <input type="text" placeholder="Rechercher...">
-            <div class="favori"> <a href="https://galeris/Galeris-APPG1E/favoris">❤️ </a></div>
-            <div class="panier"> <a href="https://galeris/Galeris-APPG1E/panier"> 🛒 </a></div>
+            <div class="favori"><a href="https://galeris/Galeris-APPG1E/favoris">❤️</a></div>
+            <div class="panier"><a href="https://galeris/Galeris-APPG1E/panier">🛒</a></div>
             <?php
-                if ($connectUser === true) {
-                    echo '<div class="dropdown">
+            if ($connectUser === true) {
+                echo '<div class="dropdown">
                             <div class="utilisateur"> 👤 </div>
                             <div class="dropdown-child">
                                 <a href="https://galeris/Galeris-APPG1E/profil">Mon profil</a>
-                                <a href="https://galeris/Galeris-APPG1E/solde">Mon solde</a>'.
-                                (($userRole === true)?
-                                    '<a href="https://galeris/Galeris-APPG1E/listeoeuvreattente">Oeuvres en attente</a>
-                                    <a href="https://galeris/Galeris-APPG1E/listeexposeattente">Exposés en attente</a>':"").
-                                '<a id="deconnexion">Déconnexion</a>
+                                <a href="https://galeris/Galeris-APPG1E/solde">Mon solde</a>' .
+                    (($userRole === true) ?
+                        '<a href="https://galeris/Galeris-APPG1E/listeoeuvreattente">Oeuvres en attente</a>
+                                    <a href="https://galeris/Galeris-APPG1E/listeexposeattente">Exposés en attente</a>
+                                    <a href="https://galeris/Galeris-APPG1E/dashboard">Tableau de bord</a>' : "") .
+                    '<a id="deconnexion">Déconnexion</a>
                             </div>
                            </div>';
-                } else {
-                    echo '<div class="utilisateur"><a href="https://galeris/Galeris-APPG1E/connexion"> 👤 </a></div>';
-                }
+            } else {
+                echo '<div class="utilisateur"><a href="https://galeris/Galeris-APPG1E/connexion"> 👤 </a></div>';
+            }
             ?>
 
 

@@ -8,6 +8,16 @@ class DashBoardController extends Controller
 {
     public function dashboard()
     {
+        session_start();
+
+        $role = isset($_SESSION["usersessionRole"]) === true && $_SESSION["usersessionRole"] === "Admin" ? true : false;
+
+        if (!$role) {
+            http_response_code(404);
+            header('Location: /Galeris-APPG1E/');
+            exit();
+        }
+
         $db = new Database();
         $vente = new Dashboard();
 

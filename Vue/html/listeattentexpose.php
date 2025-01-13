@@ -27,10 +27,9 @@
                 </ul>
             </nav>
             <div class="barre_recherche">
-                <!-- Barre de recherche, les emojis sont responsives si on clique dessus -->
                 <input type="text" placeholder="Rechercher...">
-                <div class="favori"> <a href="https://galeris/Galeris-APPG1E/favoris">❤️ </a></div>
-                <div class="panier"> <a href="https://galeris/Galeris-APPG1E/panier"> 🛒 </a></div>
+                <div class="favori"><a href="https://galeris/Galeris-APPG1E/favoris">❤️</a></div>
+                <div class="panier"><a href="https://galeris/Galeris-APPG1E/panier">🛒</a></div>
                 <?php
                 if ($connectUser === true) {
                     echo '<div class="dropdown">
@@ -40,7 +39,8 @@
                                 <a href="https://galeris/Galeris-APPG1E/solde">Mon solde</a>' .
                         (($userRole === true) ?
                             '<a href="https://galeris/Galeris-APPG1E/listeoeuvreattente">Oeuvres en attente</a>
-                                    <a href="https://galeris/Galeris-APPG1E/listeexposeattente">Exposés en attente</a>' : "") .
+                                    <a href="https://galeris/Galeris-APPG1E/listeexposeattente">Exposés en attente</a>
+                                    <a href="https://galeris/Galeris-APPG1E/dashboard">Tableau de bord</a>' : "") .
                         '<a id="deconnexion">Déconnexion</a>
                             </div>
                            </div>';
@@ -49,29 +49,30 @@
                 }
                 ?>
 
+
             </div>
         </header>
 
         <!-- Contenu de la page d'accueil -->
         <div class="page-content">
             <div class="contentbase">
-            <h2 class="title-expose">Liste des exposés en attente</h2>
-                    <div class="exposes">
-                        <?php
-                        foreach ($exposes as $expose) {
-                            echo '<a class = "exposeOBJ" style="cursor:pointer" >';
-                            echo '<div class="expose">';
-                            echo '<input type="hidden" id="id_expose_' . $expose["id_exhibition"] . '" name="id_expose" value="' . $expose["id_exhibition"] . '">';
-                            echo '<h3>' . $expose["titre"] . '</h3>';
-                            // Ajout de l'image
-                            echo '<img src="../' . $expose["image_path"] . '" alt="' . $expose["titre"] . '" />';
-                            echo '<p>' . substr($expose["desc"], 0, 250) . '(...)</p>';
-                            echo '</div>';
-                            echo '</a>';
-                        }
-                        ?>
-                    </div>
-        </div>
+                <h2 class="title-expose">Liste des exposés en attente</h2>
+                <div class="exposes">
+                    <?php
+                    foreach ($exposes as $expose) {
+                        echo '<a class = "exposeOBJ" style="cursor:pointer" >';
+                        echo '<div class="expose">';
+                        echo '<input type="hidden" id="id_expose_' . $expose["id_exhibition"] . '" name="id_expose" value="' . $expose["id_exhibition"] . '">';
+                        echo '<h3>' . $expose["titre"] . '</h3>';
+                        // Ajout de l'image
+                        echo '<img src="../' . $expose["image_path"] . '" alt="' . $expose["titre"] . '" />';
+                        echo '<p>' . substr($expose["desc"], 0, 250) . '(...)</p>';
+                        echo '</div>';
+                        echo '</a>';
+                    }
+                    ?>
+                </div>
+            </div>
         </div>
 
 

@@ -25,11 +25,29 @@
                 </ul>
             </nav>
             <div class="barre_recherche">
-                <!-- Barre de recherche, les emojis sont responsives si on clique dessus -->
                 <input type="text" placeholder="Rechercher...">
-                <div class="favori"> <a href="https://galeris/Galeris-APPG1E/favoris">❤️ </a></div>
-                <div class="panier"> <a href="https://galeris/Galeris-APPG1E/panier"> 🛒 </a></div>
-                <div class="utilisateur"><a href="https://galeris/Galeris-APPG1E/connexion"> 👤 </a></div>
+                <div class="favori"><a href="https://galeris/Galeris-APPG1E/favoris">❤️</a></div>
+                <div class="panier"><a href="https://galeris/Galeris-APPG1E/panier">🛒</a></div>
+                <?php
+                if ($connectUser === true) {
+                    echo '<div class="dropdown">
+                            <div class="utilisateur"> 👤 </div>
+                            <div class="dropdown-child">
+                                <a href="https://galeris/Galeris-APPG1E/profil">Mon profil</a>
+                                <a href="https://galeris/Galeris-APPG1E/solde">Mon solde</a>' .
+                        (($userRole === true) ?
+                            '<a href="https://galeris/Galeris-APPG1E/listeoeuvreattente">Oeuvres en attente</a>
+                                    <a href="https://galeris/Galeris-APPG1E/listeexposeattente">Exposés en attente</a>
+                                    <a href="https://galeris/Galeris-APPG1E/dashboard">Tableau de bord</a>' : "") .
+                        '<a id="deconnexion">Déconnexion</a>
+                            </div>
+                           </div>';
+                } else {
+                    echo '<div class="utilisateur"><a href="https://galeris/Galeris-APPG1E/connexion"> 👤 </a></div>';
+                }
+                ?>
+
+
             </div>
         </header>
 
@@ -37,9 +55,9 @@
         <div class="page-galeris">
             <div class="contentbase">
                 <div class="content-description">
-                    <p class="description">"Galeris est une plateforme en ligne qui permet aux artistes de présenter 
-                        leurs œuvres à un public international, d’élargir leur notoriété et de valoriser leur travail. Grâce à galeris, 
-                        les artistes peuvent atteindre un marché bien plus vaste que les galeries physiques traditionnelles, tout en 
+                    <p class="description">"Galeris est une plateforme en ligne qui permet aux artistes de présenter
+                        leurs œuvres à un public international, d’élargir leur notoriété et de valoriser leur travail. Grâce à galeris,
+                        les artistes peuvent atteindre un marché bien plus vaste que les galeries physiques traditionnelles, tout en
                         limitant l’empreinte écologique et en offrant aux collectionneurs une expérience d’achat plus facile, personnalisée et responsable."
                     </p>
                 </div>
@@ -58,7 +76,7 @@
                 <div class="sphere-image"><img src="../images/p4.jpg" alt="art8"></div>
             </div>
         </div>
-        
+
 
         <footer>
 

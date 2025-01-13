@@ -28,10 +28,9 @@
         </ul>
     </nav>
     <div class="barre_recherche">
-        <!-- Barre de recherche, les emojis sont responsives si on clique dessus -->
         <input type="text" placeholder="Rechercher...">
-        <div class="favori"> <a href="https://galeris/Galeris-APPG1E/favoris">❤️ </a></div>
-        <div class="panier"> <a href="https://galeris/Galeris-APPG1E/panier"> 🛒 </a></div>
+        <div class="favori"><a href="https://galeris/Galeris-APPG1E/favoris">❤️</a></div>
+        <div class="panier"><a href="https://galeris/Galeris-APPG1E/panier">🛒</a></div>
         <?php
         if ($connectUser === true) {
             echo '<div class="dropdown">
@@ -41,7 +40,8 @@
                                 <a href="https://galeris/Galeris-APPG1E/solde">Mon solde</a>' .
                 (($userRole === true) ?
                     '<a href="https://galeris/Galeris-APPG1E/listeoeuvreattente">Oeuvres en attente</a>
-                                    <a href="https://galeris/Galeris-APPG1E/listeexposeattente">Exposés en attente</a>' : "") .
+                                    <a href="https://galeris/Galeris-APPG1E/listeexposeattente">Exposés en attente</a>
+                                    <a href="https://galeris/Galeris-APPG1E/dashboard">Tableau de bord</a>' : "") .
                 '<a id="deconnexion">Déconnexion</a>
                             </div>
                            </div>';
@@ -56,11 +56,11 @@
 
 <body>
     <div class="enchere-form">
-    <div class="btn-close-container">
-        <button class="close-button" type="submit">X</button>
-    </div>
+        <div class="btn-close-container">
+            <button class="close-button" type="submit">X</button>
+        </div>
         <p class="title-enchere">Place ton enchère</p>
-            <input type="text" class="input-enchere" name="enchere" placeholder="Enchere" value="" min="" />
+        <input type="text" class="input-enchere" name="enchere" placeholder="Enchere" value="" min="" />
         <br>
         <p class="error"></p>
         <br>
@@ -70,11 +70,11 @@
     </div>
 
     <div class="signaler-form">
-    <div class="btn-close-container">
-        <button class="signaler-close-button" type="submit">X</button>
-    </div>
+        <div class="btn-close-container">
+            <button class="signaler-close-button" type="submit">X</button>
+        </div>
         <p class="title-signaler">Signaler une oeuvre</p>
-            <textarea type="text" class="input-signalement" cols="30" rows="10" name="signalement" placeholder="Raison : 25 caractères minimum"></textarea>
+        <textarea type="text" class="input-signalement" cols="30" rows="10" name="signalement" placeholder="Raison : 25 caractères minimum"></textarea>
         <br>
         <p class="error"></p>
         <br>
@@ -158,16 +158,15 @@
 
             <!-- Boutons d'actions -->
             <section class="actions">
-                
+
                 <?php
-                    if($user || $userRole){
-                        echo '<button class="boutton-modifier">Modifier</button>
+                if ($user || $userRole) {
+                    echo '<button class="boutton-modifier">Modifier</button>
                         <button class="boutton-supprimer">Supprimer</button>';
-                    }
-                    else{
-                        echo '<button class="boutton-offre">Enchérir</button>
+                } else {
+                    echo '<button class="boutton-offre">Enchérir</button>
                         <button class="boutton-favoris">Ajouter au favoris</button>';
-                    }
+                }
                 ?>
                 <button id="btnSignaleropenform">Signaler cette œuvre</button>
             </section>

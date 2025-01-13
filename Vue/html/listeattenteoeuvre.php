@@ -27,10 +27,9 @@
                 </ul>
             </nav>
             <div class="barre_recherche">
-                <!-- Barre de recherche, les emojis sont responsives si on clique dessus -->
                 <input type="text" placeholder="Rechercher...">
-                <div class="favori"> <a href="https://galeris/Galeris-APPG1E/favoris">❤️ </a></div>
-                <div class="panier"> <a href="https://galeris/Galeris-APPG1E/panier"> 🛒 </a></div>
+                <div class="favori"><a href="https://galeris/Galeris-APPG1E/favoris">❤️</a></div>
+                <div class="panier"><a href="https://galeris/Galeris-APPG1E/panier">🛒</a></div>
                 <?php
                 if ($connectUser === true) {
                     echo '<div class="dropdown">
@@ -40,7 +39,8 @@
                                 <a href="https://galeris/Galeris-APPG1E/solde">Mon solde</a>' .
                         (($userRole === true) ?
                             '<a href="https://galeris/Galeris-APPG1E/listeoeuvreattente">Oeuvres en attente</a>
-                                    <a href="https://galeris/Galeris-APPG1E/listeexposeattente">Exposés en attente</a>' : "") .
+                                    <a href="https://galeris/Galeris-APPG1E/listeexposeattente">Exposés en attente</a>
+                                    <a href="https://galeris/Galeris-APPG1E/dashboard">Tableau de bord</a>' : "") .
                         '<a id="deconnexion">Déconnexion</a>
                             </div>
                            </div>';
@@ -49,29 +49,30 @@
                 }
                 ?>
 
+
             </div>
         </header>
 
         <!-- Contenu de la page d'accueil -->
         <div class="page-content">
             <div class="contentbase">
-            <h2 class="title-oeuvre">Liste des oeuvres d'arts en attente</h2>
-                    <div class="oeuvres">
-                        <?php
-                        foreach ($oeuvres as $oeuvre) {
-                            echo '<a class = "oeuvreOBJ" style="cursor:pointer" >';
-                            echo '<div class="oeuvre">';
-                            echo '<input type="hidden" id="id_oeuvre_' . $oeuvre["id_oeuvre"] . '" name="id_oeuvre" value="' . $oeuvre["id_oeuvre"] . '">';
-                            echo '<h3>' . $oeuvre["Titre"] . '</h3>';
-                            // Ajout de l'image
-                            echo '<img src="../' . $oeuvre["image_path"] . '" alt="' . $oeuvre["Titre"] . '" />';
-                            echo '<p>' . substr($oeuvre["Description"], 0, 250) . '(...)</p>';
-                            echo '</div>';
-                            echo '</a>';
-                        }
-                        ?>
-                    </div>
-        </div>
+                <h2 class="title-oeuvre">Liste des oeuvres d'arts en attente</h2>
+                <div class="oeuvres">
+                    <?php
+                    foreach ($oeuvres as $oeuvre) {
+                        echo '<a class = "oeuvreOBJ" style="cursor:pointer" >';
+                        echo '<div class="oeuvre">';
+                        echo '<input type="hidden" id="id_oeuvre_' . $oeuvre["id_oeuvre"] . '" name="id_oeuvre" value="' . $oeuvre["id_oeuvre"] . '">';
+                        echo '<h3>' . $oeuvre["Titre"] . '</h3>';
+                        // Ajout de l'image
+                        echo '<img src="../' . $oeuvre["image_path"] . '" alt="' . $oeuvre["Titre"] . '" />';
+                        echo '<p>' . substr($oeuvre["Description"], 0, 250) . '(...)</p>';
+                        echo '</div>';
+                        echo '</a>';
+                    }
+                    ?>
+                </div>
+            </div>
         </div>
 
 

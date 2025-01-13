@@ -30,25 +30,26 @@
     </nav>
     <div class="barre_recherche">
       <input type="text" placeholder="Rechercher...">
-      <div class="favori"><a href="favoris.html">❤️</a></div>
+      <div class="favori"><a href="https://galeris/Galeris-APPG1E/favoris">❤️</a></div>
       <div class="panier"><a href="https://galeris/Galeris-APPG1E/panier">🛒</a></div>
       <?php
-                if ($connectUser === true) {
-                    echo '<div class="dropdown">
+      if ($connectUser === true) {
+        echo '<div class="dropdown">
                             <div class="utilisateur"> 👤 </div>
                             <div class="dropdown-child">
                                 <a href="https://galeris/Galeris-APPG1E/profil">Mon profil</a>
-                                <a href="#">Mon solde</a>'.
-                                (($userRole === true)?
-                                    '<a href="https://galeris/Galeris-APPG1E/listeoeuvreattente">Oeuvres en attente</a>
-                                    <a href="https://galeris/Galeris-APPG1E/listeexposeattente">Exposés en attente</a>':"").
-                                '<a id="deconnexion">Déconnexion</a>
+                                <a href="https://galeris/Galeris-APPG1E/solde">Mon solde</a>' .
+          (($userRole === true) ?
+            '<a href="https://galeris/Galeris-APPG1E/listeoeuvreattente">Oeuvres en attente</a>
+                                    <a href="https://galeris/Galeris-APPG1E/listeexposeattente">Exposés en attente</a>
+                                    <a href="https://galeris/Galeris-APPG1E/dashboard">Tableau de bord</a>' : "") .
+          '<a id="deconnexion">Déconnexion</a>
                             </div>
                            </div>';
-                } else {
-                    echo '<div class="utilisateur"><a href="https://galeris/Galeris-APPG1E/connexion"> 👤 </a></div>';
-                }
-                ?>
+      } else {
+        echo '<div class="utilisateur"><a href="https://galeris/Galeris-APPG1E/connexion"> 👤 </a></div>';
+      }
+      ?>
 
 
     </div>

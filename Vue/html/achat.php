@@ -33,9 +33,8 @@
         </nav>
         <div class="barre_recherche">
             <input type="text" placeholder="Rechercher...">
-            <div class="favori"> <a href="https://galeris/Galeris-APPG1E/favoris">❤️</a></div>
-            <div class="panier"> <a href="https://galeris/Galeris-APPG1E/panier">🛒</a></div>
-
+            <div class="favori"><a href="https://galeris/Galeris-APPG1E/favoris">❤️</a></div>
+            <div class="panier"><a href="https://galeris/Galeris-APPG1E/panier">🛒</a></div>
             <?php
             if ($connectUser === true) {
                 echo '<div class="dropdown">
@@ -45,7 +44,8 @@
                                 <a href="https://galeris/Galeris-APPG1E/solde">Mon solde</a>' .
                     (($userRole === true) ?
                         '<a href="https://galeris/Galeris-APPG1E/listeoeuvreattente">Oeuvres en attente</a>
-                                    <a href="https://galeris/Galeris-APPG1E/listeexposeattente">Exposés en attente</a>' : "") .
+                                    <a href="https://galeris/Galeris-APPG1E/listeexposeattente">Exposés en attente</a>
+                                    <a href="https://galeris/Galeris-APPG1E/dashboard">Tableau de bord</a>' : "") .
                     '<a id="deconnexion">Déconnexion</a>
                             </div>
                            </div>';
@@ -59,11 +59,11 @@
     </header>
 
     <div class="signaler-form">
-    <div class="btn-close-container">
-        <button class="signaler-close-button" type="submit">X</button>
-    </div>
+        <div class="btn-close-container">
+            <button class="signaler-close-button" type="submit">X</button>
+        </div>
         <p class="title-signaler">Signaler une oeuvre</p>
-            <textarea type="text" class="input-signalement" cols="30" rows="10" name="signalement" placeholder="Raison : 25 caractères minimum"></textarea>
+        <textarea type="text" class="input-signalement" cols="30" rows="10" name="signalement" placeholder="Raison : 25 caractères minimum"></textarea>
         <br>
         <p class="error"></p>
         <br>
@@ -73,7 +73,7 @@
     </div>
 
     <main>
-    <section class="gauche">
+        <section class="gauche">
             <section class="art-details">
                 <div class="carousel-container">
                     <!-- Flèche gauche -->
@@ -115,7 +115,7 @@
         </section>
 
         <!-- Droite : Informations supplémentaires -->
-         
+
         <section class="droite">
             <section class="profil-section">
                 <div class="profil-info">
@@ -135,30 +135,28 @@
                 </div>
             </section>
 
-            
+
 
             <!-- Boutons d'actions -->
-             
+
             <section class="actions">
-                
+
                 <?php
-                    if($user || $userRole){
-                        echo '<button class="boutton-modifier">Modifier</button>
+                if ($user || $userRole) {
+                    echo '<button class="boutton-modifier">Modifier</button>
                         <button class="boutton-supprimer">Supprimer</button>';
+                } else {
+                    if ($panier === false) {
+                        echo '<button class="boutton-panier">Ajouter au Panier</button>';
+                    } else {
+                        echo '<button class="boutton-retirer-panier">Retirer du Panier</button>';
                     }
-                    else{
-                        if($panier === false){
-                            echo '<button class="boutton-panier">Ajouter au Panier</button>';
-                        }
-                        else{
-                            echo '<button class="boutton-retirer-panier">Retirer du Panier</button>';
-                        }
-                        echo '<button class="boutton-favoris">Ajouter au favoris</button>';
-                    }
+                    echo '<button class="boutton-favoris">Ajouter au favoris</button>';
+                }
                 ?>
 
                 <!-- bouton signaler -->
-                <button id="btnSignaleropenform" data-oeuvre-id=<?php echo $oeuvre['id_oeuvre']?>>Signaler cette œuvre</button>
+                <button id="btnSignaleropenform" data-oeuvre-id=<?php echo $oeuvre['id_oeuvre'] ?>>Signaler cette œuvre</button>
             </section>
         </section>
     </main>

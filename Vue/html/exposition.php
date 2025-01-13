@@ -30,25 +30,26 @@
     </nav>
     <div class="barre_recherche">
       <input type="text" placeholder="Rechercher...">
-      <div class="favori"><a href="favoris.html">❤️</a></div>
+      <div class="favori"><a href="https://galeris/Galeris-APPG1E/favoris">❤️</a></div>
       <div class="panier"><a href="https://galeris/Galeris-APPG1E/panier">🛒</a></div>
       <?php
-                if ($connectUser === true) {
-                    echo '<div class="dropdown">
+      if ($connectUser === true) {
+        echo '<div class="dropdown">
                             <div class="utilisateur"> 👤 </div>
                             <div class="dropdown-child">
                                 <a href="https://galeris/Galeris-APPG1E/profil">Mon profil</a>
-                                <a href="https://galeris/Galeris-APPG1E/solde">Mon solde</a>'.
-                                (($userRole === true)?
-                                    '<a href="https://galeris/Galeris-APPG1E/listeoeuvreattente">Oeuvres en attente</a>
-                                    <a href="https://galeris/Galeris-APPG1E/listeexposeattente">Exposés en attente</a>':"").
-                                '<a id="deconnexion">Déconnexion</a>
+                                <a href="https://galeris/Galeris-APPG1E/solde">Mon solde</a>' .
+          (($userRole === true) ?
+            '<a href="https://galeris/Galeris-APPG1E/listeoeuvreattente">Oeuvres en attente</a>
+                                    <a href="https://galeris/Galeris-APPG1E/listeexposeattente">Exposés en attente</a>
+                                    <a href="https://galeris/Galeris-APPG1E/dashboard">Tableau de bord</a>' : "") .
+          '<a id="deconnexion">Déconnexion</a>
                             </div>
                            </div>';
-                } else {
-                    echo '<div class="utilisateur"><a href="https://galeris/Galeris-APPG1E/connexion"> 👤 </a></div>';
-                }
-                ?>
+      } else {
+        echo '<div class="utilisateur"><a href="https://galeris/Galeris-APPG1E/connexion"> 👤 </a></div>';
+      }
+      ?>
 
 
     </div>
@@ -56,12 +57,12 @@
 
   <main>
     <section class="exposition">
-    <p class="description-exposition">Notre site offre aux artistes une opportunité unique d’exposer leurs œuvres d’art dans nos locaux.
-      Que vous soyez peintre, sculpteur, photographe ou créateur multidisciplinaire, nous mettons à votre disposition un espace convivial
-      et professionnel pour présenter vos créations au public. Les expositions peuvent être organisées pour une durée maximale de 14 jours,
-      vous permettant de partager votre vision artistique et d’interagir directement avec vos spectateurs dans un cadre inspirant.
-      Rejoignez-nous et faites briller votre talent dans un lieu dédié à l’expression artistique et à la découverte culturelle.
-                    </p>
+      <p class="description-exposition">Notre site offre aux artistes une opportunité unique d’exposer leurs œuvres d’art dans nos locaux.
+        Que vous soyez peintre, sculpteur, photographe ou créateur multidisciplinaire, nous mettons à votre disposition un espace convivial
+        et professionnel pour présenter vos créations au public. Les expositions peuvent être organisées pour une durée maximale de 14 jours,
+        vous permettant de partager votre vision artistique et d’interagir directement avec vos spectateurs dans un cadre inspirant.
+        Rejoignez-nous et faites briller votre talent dans un lieu dédié à l’expression artistique et à la découverte culturelle.
+      </p>
       <form>
         <h2>Demande d'exposition</h2>
         <strong class="strong-title">Vous pouvez ajouter jusqu'à 3 photos</strong>
@@ -88,8 +89,8 @@
           <input type="date" class="input-exposition" id="date_fin" name="date_fin" value="" required>
         </p>
         <p>
-        <strong>Description :</strong>
-        <textarea class="input-exposition" id="description" name="description" cols="3" minlength="50" placeholder="50 caractères minimum" required></textarea>
+          <strong>Description :</strong>
+          <textarea class="input-exposition" id="description" name="description" cols="3" minlength="50" placeholder="50 caractères minimum" required></textarea>
         </p>
         <div class="actions">
           <a class="btn btn-exposition">Confirmer</a>
