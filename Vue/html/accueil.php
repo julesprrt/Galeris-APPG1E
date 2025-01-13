@@ -10,7 +10,6 @@
     <link rel="stylesheet" href="Vue/CSS/footer.css">
     <script src="Vue/JS/header.js" defer></script>
     <script src="Vue/JS/accueil.js" defer></script>
-    <script src="Vue/JS/burgerbar.js" defer></script>
 </head>
 <!-- Burgerbar -->
 
@@ -75,7 +74,7 @@
                             (($userRole === true) ?
                                 '<a href="./listeoeuvreattente">Oeuvres en attente</a>
                                         <a href="./listeexposeattente">Exposés en attente</a>' : "") .
-                            '<a id="deconnexion">Déconnexion</a>
+                            '<a class="deconnexion">Déconnexion</a>
                                 </div>
                             </div>';
                     } else {
@@ -126,7 +125,7 @@
                                     '<a href="./listeoeuvreattente">Oeuvres en attente</a>
                                     <a href="./listeexposeattente">Exposés en attente</a>
                                     <a href="./dashboard">Tableau de bord</a>' : "") .
-                                '<a id="deconnexion">Déconnexion</a>
+                                '<a class="deconnexion">Déconnexion</a>
                             </div>
                            </div>';
                 } else {

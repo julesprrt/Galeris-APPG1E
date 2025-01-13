@@ -3,6 +3,7 @@ RewriteEngine On
 # Autoriser explicitement CSS
 RewriteRule ^Vue/CSS/.*\.css$ - [L]
 
+
 # Redirection simple
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d

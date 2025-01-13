@@ -1,4 +1,6 @@
-document.getElementById("deconnexion").addEventListener("click", Deconnexion);
+
+
+document.querySelectorAll(".deconnexion").forEach(item => item.addEventListener("click", Deconnexion))
 
 async function Deconnexion(){
     const myHeaders = new Headers();
@@ -28,15 +30,15 @@ async function Deconnexion(){
     }
 }
 
-document.querySelector(".shearch").addEventListener('input', displayListOrNot)
+document.querySelectorAll(".shearch").forEach(item => item.addEventListener('input', displayListOrNot))
 
-function displayListOrNot(){
-   const valeur =  document.querySelector(".shearch").value;
+function displayListOrNot(event){
+   const valeur =  event.target.value;
    if(valeur.length >= 3){
-        document.querySelector(".shearch").setAttribute('list', 'galeris-list')
+        event.target.setAttribute('list', 'galeris-list')
    }
    else{
-        document.querySelector(".shearch").removeAttribute('list');
+        event.target.removeAttribute('list');
    } 
 
    const list = Array.from(document.querySelectorAll("#galeris-list option"));
@@ -44,17 +46,17 @@ function displayListOrNot(){
    console.log(item.attributes[0].value)
    if(item.attributes[0].value.includes("utilisateur_")){
         let element = item.attributes[0].value.split("utilisateur_")[1];
-        document.querySelector(".shearch").value = "";
+        event.target.value = "";
         saveIdUser(Number(element))
    }
    else if(item.attributes[0].value.includes("expose_")){
         let element = item.attributes[0].value.split("expose_")[1];
-        document.querySelector(".shearch").value = "";
+        event.target.value = "";
         saveIdExpose(Number(element))
    }
    else if(item.attributes[0].value.includes("oeuvre_")){
         let element = item.attributes[0].value.split("oeuvre_")[1];
-        document.querySelector(".shearch").value = "";
+        event.target.value= "";
         saveIdOeuvre(Number(element))
    }
 }
@@ -127,6 +129,6 @@ async function saveIdOeuvre(id) {
 const hamburgerImage = document.getElementById("ham-img");
 const hamburgerMenu = document.getElementById("ham-menu");
 
-ham-img.addEventListener("click", () => {
+hamburgerImage.addEventListener("click", () => {
     hamburgerMenu.classList.toggle("active");
 });
