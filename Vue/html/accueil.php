@@ -22,9 +22,21 @@
         <header>
             <div class="logo"> <a href="https://galeris/Galeris-APPG1E/"><img src="images/logo.png"></a></div>
 
-            <div class="hamburger-container">
-                <img src="images/hamMenu.png" alt="Menu hamburger" class="hamburger-image">
-                <nav class="hamburgermenu">
+            <div class="ham-search-cote">
+                <div class="hamburger-container">
+                    <img src="images/hamMenu.png" alt="Menu hamburger" id="ham-img" class="hamburger-image">
+                    <nav id="ham-menu" class="hamburgermenu">
+                        <ul>
+                            <li><a href="./">Accueil</a></li>
+                            <li><a href="./ventes">Vente</a></li>
+                            <li><a href="./exposes">Exposition</a></li>
+                            <li><a href="./listenews">News</a></li>
+
+                        </ul>
+                    </nav>
+                </div>
+
+                <nav class="menu">
                     <ul>
                         <li><a href="./">Accueil</a></li>
                         <li><a href="./ventes">Vente</a></li>
@@ -35,41 +47,42 @@
                 </nav>
 
                 <div class="barre_recherche">
-                    <!-- Barre de recherche, les emojis sont responsives si on clique dessus -->
                     <input type="text" placeholder="Rechercher..." class="shearch">
                     <datalist id="galeris-list">
                         <?php
-                        foreach ($users as $user) {
-                            echo '<option data-value="utilisateur_' . $user["id_utilisateur"] . '" value="' . $user["nom"] . ' ' . $user["prenom"] . ' ' . $user["id_utilisateur"] . ' (utilisateur)">';
+                        foreach ($users as $user_barre) {
+                            echo '<option data-value="utilisateur_' . $user_barre["id_utilisateur"] . '" value="' . $user_barre["nom"] . ' ' . $user_barre["prenom"] . ' ' . $user_barre["id_utilisateur"] . ' (utilisateur)">';
                         }
-                        foreach ($exposes as $expose) {
-                            echo '<option data-value="expose_' . $expose["id_exhibition"] . '" value="' . $expose["titre"] . ' ' . $expose["id_exhibition"] . ' (exposé)">';
+                        foreach ($exposes as $expose_barre) {
+                            echo '<option data-value="expose_' . $expose_barre["id_exhibition"] . '" value="' . $expose_barre["titre"] . ' ' . $expose_barre["id_exhibition"] . ' (exposé)">';
                         }
-                        foreach ($oeuvres as $oeuvre) {
-                            echo '<option data-value="oeuvre_' . $oeuvre["id_oeuvre"] . '" value="' . $oeuvre["Titre"] . ' ' . $oeuvre["auteur"] . ' ' . $oeuvre["id_oeuvre"] . ' (Oeuvre)">';
+                        foreach ($oeuvres as $oeuvre_barre) {
+                            echo '<option data-value="oeuvre_' . $oeuvre_barre["id_oeuvre"] . '" value="' . $oeuvre_barre["Titre"] . ' ' . $oeuvre_barre["auteur"] . ' ' . $oeuvre_barre["id_oeuvre"] . ' (Oeuvre)">';
                         }
 
                         ?>
                     </datalist>
-                    <div class="favori"> <a href="./favoris">❤️ </a></div>
-                    <div class="panier"> <a href="./panier"> 🛒 </a></div>
+                    <div class="favori"> <a href="./favoris">❤️</a></div>
+                    <div class="panier"> <a href="./panier">🛒</a></div>
+
                     <?php
                     if ($connectUser === true) {
                         echo '<div class="dropdown">
-                            <div class="utilisateur"> 👤 </div>
-                            <div class="dropdown-child">
-                                <a href="https://galeris/Galeris-APPG1E/profil">Mon profil</a>
-                                <a href="#">Mon solde</a>' .
+                                <div class="utilisateur"> 👤 </div>
+                                <div class="dropdown-child">
+                                    <a href="./profil">Mon profil</a>
+                                    <a href="./solde">Mon solde</a>' .
                             (($userRole === true) ?
-                                '<a href="https://galeris/Galeris-APPG1E/listeoeuvreattente">Oeuvres en attente</a>
-                                    <a href="https://galeris/Galeris-APPG1E/listeexposeattente">Exposés en attente</a>' : "") .
+                                '<a href="./listeoeuvreattente">Oeuvres en attente</a>
+                                        <a href="./listeexposeattente">Exposés en attente</a>' : "") .
                             '<a id="deconnexion">Déconnexion</a>
-                            </div>
-                           </div>';
+                                </div>
+                            </div>';
                     } else {
                         echo '<div class="utilisateur"><a href="./connexion"> 👤 </a></div>';
                     }
                     ?>
+
 
                 </div>
             </div>
@@ -83,7 +96,7 @@
 
                 </ul>
             </nav>
-            <div class="barre_recherche">
+            <div class="barre_recherche2">
                 <input type="text" placeholder="Rechercher..." class="shearch">
                 <datalist id="galeris-list">
                     <?php
