@@ -17,8 +17,8 @@ require_once("./Controller/PaymentController.php");
 require_once("./Controller/PanierController.php");
 require_once("./Controller/LivraisonController.php");
 require_once("./Controller/NewsController.php");
-require_once("./controller/NovArtController.php");
-require_once("./controller/MentionsLegalesController.php");
+require_once("./Controller/NovArtController.php");
+require_once("./Controller/MentionsLegalesController.php");
 
 
 
