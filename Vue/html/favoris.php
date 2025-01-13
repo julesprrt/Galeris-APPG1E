@@ -16,15 +16,15 @@
     
 <header>
         <div class="logo">
-            <a href=./">
+            <a href="./">
                 <img src="./images/logo.png" alt="Logo">
             </a>
         </div>
         <nav class="menu">
             <ul>
-                <li><a href=./">Accueil</a></li>
-                <li><a href=./ventes">Vente</a></li>
-                    <li><a href=./exposes">Exposition</a></li>
+                <li><a href="./">Accueil</a></li>
+                <li><a href="./ventes">Vente</a></li>
+                    <li><a href="./exposes">Exposition</a></li>
                 <li><a href="#">News</a></li>
                 <li><a href="#">Plus</a></li>
             </ul>
@@ -45,8 +45,8 @@
                                 
                         ?>
                 </datalist>
-            <div class="favori"><a href=./favoris">❤️</a></div>
-            <div class="panier"><a href=./panier">🛒</a></div>
+            <div class="favori"><a href="./favoris">❤️</a></div>
+            <div class="panier"><a href="./panier">🛒</a></div>
             <?php
                 if ($connectUser === true) {
                     echo '<div class="dropdown">
@@ -142,16 +142,16 @@
             <div class="container-footer">
                 <a class="title-footer">Qui sommes nous</a>
                 <a class="item-footer" href="#">NovArt</a>
-                <a class="item-footer" href=./galeris">Galeris</a>
+                <a class="item-footer" href="./galeris">Galeris</a>
             </div>
             <div class="container-footer">
                 <a class="title-footer">Aide</a>
-                <a class="item-footer" href=./faq">Foire aux questions</a>
-                <a class="item-footer" href=./contact">Contacts</a>
+                <a class="item-footer" href="./faq">Foire aux questions</a>
+                <a class="item-footer" href="./contact">Contacts</a>
             </div>
             <div class="container-footer">
                 <a class="title-footer">Informations légales</a>
-                <a class="item-footer" href=./cgu">Conditions d'utilisations</a>
+                <a class="item-footer" href="./cgu">Conditions d'utilisations</a>
                 <a class="item-footer" href="#">Mentions légales</a>
             </div>
 
