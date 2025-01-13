@@ -109,16 +109,12 @@ input:-internal-autofill-selected {
   .Page-content {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    text-align: center;
-    justify-content: center;
+    
   }
 
   .infos-inscription {
     display: flex;
     justify-content: center;
-    padding-left: 90px;
-    padding-right: 30px;
     padding-top: 10px;
     width: 40%;
     height: 40%;
@@ -130,13 +126,10 @@ input:-internal-autofill-selected {
     justify-content: center;
     padding-left: 0px;
     padding-right: 0px;
-    width: 100%;
-    height: 100%;
+    padding-top: 50px;
+ 
   }
 
-  .checkbox-container{
-    width:100%;
-  }
 }
 
 @media (max-width: 450px) {
