@@ -1,249 +1,240 @@
-
 body {
-    font-family: Arial, Helvetica, sans-serif;
-    background-color: #f5f5f5;
-    color: #333;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #f5f5f5;
+  color: #333;
 }
 
 /* Main */
 
 main {
-    display: flex;
-    margin: 1.3em;
-    gap: 1.3em;
+  display: flex;
+  margin: 1.3em;
+  gap: 1.3em;
 }
 
 /* Section de gauche */
 
 .gauche {
-    flex: 2;
-    background-color: #fff;
-    padding: 3em;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+  flex: 2;
+  background-color: #fff;
+  padding: 3em;
+  border: 1px solid #ccc;
+  border-radius: 4px;
 }
 
 .carousel-container {
-    position: relative;
-    width: 100%;
-    max-width: 25em;
-    margin: 0 auto;
+  position: relative;
+  width: 100%;
+  max-width: 25em;
+  margin: 0 auto;
 }
 
 .art-image img {
-    width: 100%;
-    display: none;
+  width: 100%;
+  display: none;
 }
 
 .art-image img.active {
-    display: block;
+  display: block;
 }
 
 .carousel-fleche {
-    position: absolute;
-    top: 50%;
-    background: none;
-    border: none;
-    font-size: 1.4em;
-    padding: 0.8em;
-    cursor: pointer;
-    color: #333;
-    transform: translateY(-50%);
-    /* Box autour de la flèche, à changer peut-être. */
-    background-color: #fff;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+  position: absolute;
+  top: 50%;
+  background: none;
+  border: none;
+  font-size: 1.4em;
+  padding: 0.8em;
+  cursor: pointer;
+  color: #333;
+  transform: translateY(-50%);
+  /* Box autour de la flèche, à changer peut-être. */
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
 }
 
 .carousel-fleche.gauche {
-    left: -3.5em;
+  left: -3.5em;
 }
 
 .carousel-fleche.droite {
-    right: -3.5em;
+  right: -3.5em;
 }
 
 .art-info {
-    text-align: center;
-    margin-top: 0.3em;
+  text-align: center;
+  margin-top: 0.3em;
 }
 
 .art-info h1 {
-    font-size: 20px;
-    margin: 10px 0;
+  font-size: 20px;
+  margin: 10px 0;
 }
 
 .art-info p {
-    font-size: 14px;
-    color: #777;
+  font-size: 14px;
+  color: #777;
 }
 
 /* Oeuvres similaires*/
 
 .art-image-similaire {
-    margin-top: 30px;
+  margin-top: 30px;
 }
 
 .art-image-similaire h2 {
-    font-size: 18px;
-    margin-bottom: 10px;
+  font-size: 18px;
+  margin-bottom: 10px;
 }
 
 .tableau-similaire {
-    display: flex;
-    gap: 50px;
-    margin-top: 10px;
-    justify-content: space-evenly;
+  display: flex;
+  gap: 50px;
+  margin-top: 10px;
+  justify-content: space-evenly;
 }
- 
 
 .tableau-similaire img {
-    width: 100px;
-    height: auto;
-    border: 1px solid #ccc;
+  width: 100px;
+  height: auto;
+  border: 1px solid #ccc;
 }
 
 /* Section de droite*/
 
 .droite {
-    flex: 1;
-    background-color: #fff;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+  flex: 1;
+  background-color: #fff;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
 }
 
 .profil-section {
-    margin-bottom: 20px;
+  margin-bottom: 20px;
 }
 
 .profil-info {
-    display: flex;
-    align-items: center;
-    gap: 40px;
+  display: flex;
+  align-items: center;
+  gap: 40px;
 }
 
 .photo-profil {
-    border-radius: 50%;
-    width: 50px;
-    height: 50px;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
 }
 
 .profil-nom {
-    font-size: 18px;
-    font-weight: bold;
+  font-size: 18px;
+  font-weight: bold;
 }
 
 .note {
-    font-size: 18px;
-    color: #777;
+  font-size: 18px;
+  color: #777;
 }
 
 .actions {
-    margin: 15px 0;
-    
+  margin: 15px 0;
 }
 
 .actions button {
-    background-color: rgba(217, 163, 106, 1);
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
-    margin-right: 10px;
-    border-radius: 4px;
-    font-size: 16px;
-    
+  background-color: rgba(217, 163, 106, 1);
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  margin-right: 10px;
+  border-radius: 4px;
+  font-size: 16px;
 }
 
 .actions button:hover {
-    opacity : 0.9;
+  opacity: 0.9;
 }
 
 .info-prix {
-    font-size: 18px;
-    color: #333;
+  font-size: 18px;
+  color: #333;
 }
 
 .info-prix .réduction {
-    font-size: 14px;
-    font-style: bold;
-    color: rgba(217, 163, 106, 1);
+  font-size: 14px;
+  font-style: bold;
+  color: rgba(217, 163, 106, 1);
 }
 
 .eco-info {
-    font-size: 14px;
-    color: #777;
+  font-size: 14px;
+  color: #777;
 }
 
 .details {
-    font-size: 14px;
-    color: #777;
-    margin-top: 20px;
+  font-size: 14px;
+  color: #777;
+  margin-top: 20px;
 }
 
-.details .publication, .details .livraison {
-    margin-bottom: 10px;
+.details .publication,
+.details .livraison {
+  margin-bottom: 10px;
 }
-
-
 
 @media screen and (max-width: 1080px) {
-    body {
-        overflow-x: hidden; /* Empêche le défilement horizontal */
-        margin: 0; /* Supprime les marges externes */
-        padding: 0;
-    }
+  body {
+    overflow-x: hidden; /* Empêche le défilement horizontal */
+    margin: 0; /* Supprime les marges externes */
+    padding: 0;
+  }
 
-    header {
-        display: none; /* Cache le header sur petits écrans */
-    }
+  main {
+    flex-direction: column; /* Empile les sections */
+    padding: 10px;
+    align-items: center; /* Centre les sections horizontalement */
+  }
 
-    main {
-        flex-direction: column; /* Empile les sections */
-        padding: 10px;
-        align-items: center; /* Centre les sections horizontalement */
-    }
+  .gauche,
+  .droite {
+    width: 90%; /* Sections prennent 90% de la largeur de l'écran */
+    margin-bottom: 1.5em;
+    margin-left: auto; /* Centre horizontalement */
+    margin-right: auto; /* Centre horizontalement */
+  }
 
-    .gauche,
-    .droite {
-        width: 90%; /* Sections prennent 90% de la largeur de l'écran */
-        margin-bottom: 1.5em;
-        margin-left: auto; /* Centre horizontalement */
-        margin-right: auto; /* Centre horizontalement */
-    }
+  .tableau-similaire {
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+  }
 
-    .tableau-similaire {
-        flex-wrap: wrap;
-        gap: 20px;
-        justify-content: center;
-    }
+  .tableau-similaire img {
+    width: 90%;
+    max-width: 100px;
+    margin: 5px;
+  }
 
-    .tableau-similaire img {
-        width: 90%;
-        max-width: 100px;
-        margin: 5px;
-    }
+  .prix {
+    font-size: 14px;
+  }
 
-    .prix {
-        font-size: 14px;
-    }
+  .actions button {
+    width: 100%; /* Boutons prennent toute la largeur */
+    margin-bottom: 10px;
+  }
 
-    .actions button {
-        width: 100%; /* Boutons prennent toute la largeur */
-        margin-bottom: 10px;
-    }
+  .carousel-fleche {
+    font-size: 1.2em;
+    padding: 0.5em;
+  }
 
-    .carousel-fleche {
-        font-size: 1.2em;
-        padding: 0.5em;
-    }
+  .carousel-fleche.gauche {
+    left: -2.5em;
+  }
 
-    .carousel-fleche.gauche {
-        left: -2.5em;
-    }
-
-    .carousel-fleche.droite {
-        right: -2.5em;
-    }
+  .carousel-fleche.droite {
+    right: -2.5em;
+  }
 }

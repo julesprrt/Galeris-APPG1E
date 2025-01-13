@@ -28,6 +28,17 @@
                 <li><a href="#">Plus</a></li>
             </ul>
         </nav>
+
+
+<!--        <nav>
+            <div class="ham-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+        </nav>
+-->
+
+
         <div class="barre_recherche">
             <input type="text" placeholder="Rechercher...">
             <div class="favori"><a href="favoris.html">❤️</a></div>

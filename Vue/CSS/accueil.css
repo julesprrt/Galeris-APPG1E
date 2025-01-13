@@ -1,242 +1,136 @@
 body {
-    font-family: Arial, Helvetica, sans-serif;
-    height: 100%;
+  font-family: Arial, Helvetica, sans-serif;
+  height: 100%;
 }
 
 .page-content {
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1; /* Utiliser tout l'espace disponible */
-    width: 100%; /* S'assurer que l'élément prend toute la largeur */
-    padding: 0; /* Supprimer le padding existant */
-    margin: 0; /* Supprimer les marges */
-    padding-top: 1.8em;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1; /* Utiliser tout l'espace disponible */
+  width: 100%; /* S'assurer que l'élément prend toute la largeur */
+  padding: 0; /* Supprimer le padding existant */
+  margin: 0; /* Supprimer les marges */
+  padding-top: 1.8em;
 }
 
 .description {
-    padding: 0em 12em 0em 12em;
+  padding: 0em 12em 0em 12em;
 }
 
 .contentbase {
-    text-align: center;
+  text-align: center;
 }
 
 .sellproduct {
-    border: none;
-    background-color: #D9A36A;
-    padding: 1.1em;
-    border-radius: 5px;
-    color: white;
-    cursor: pointer;
+  border: none;
+  background-color: #d9a36a;
+  padding: 1.1em;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
 }
 
 .demandeexpo {
-    border: none;
-    background-color: #D9A36A;
-    padding: 1.1em;
-    border-radius: 5px;
-    color: white;
-    cursor: pointer;
+  border: none;
+  background-color: #d9a36a;
+  padding: 1.1em;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
 }
 
 .sellproduct:hover {
-    opacity: 0.9;
+  opacity: 0.9;
 }
 
 .demandeexpo:hover {
-    opacity: 0.9;
+  opacity: 0.9;
 }
 
 .content-description {
-    padding-top: 0.8em;
+  padding-top: 0.8em;
 }
 
 .container {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 /* Section principale des œuvres */
 .oeuvres {
-    display: flex;
-    flex-wrap: wrap; /* Les éléments sautent à la ligne si besoin */
-    justify-content: space-evenly; /* Espacement uniforme des éléments */
-    gap: 20px; /* Espacement entre les cartes */
-    padding: 2em 5%; /* Espacement autour de la section */
-    background-color: #f9f9f9; /* Fond léger */
-    box-sizing: border-box; /* Inclut le padding dans la largeur totale */
-    max-width: 100%; /* Assure que ça ne dépasse pas la largeur de la page */
-    margin: 0 auto; /* Centre la section */
+  display: flex;
+  flex-wrap: wrap; /* Les éléments sautent à la ligne si besoin */
+  justify-content: space-evenly; /* Espacement uniforme des éléments */
+  gap: 20px; /* Espacement entre les cartes */
+  padding: 2em 5%; /* Espacement autour de la section */
+  background-color: #f9f9f9; /* Fond léger */
+  box-sizing: border-box; /* Inclut le padding dans la largeur totale */
+  max-width: 100%; /* Assure que ça ne dépasse pas la largeur de la page */
+  margin: 0 auto; /* Centre la section */
 }
 
 /* Carte individuelle pour chaque œuvre */
 .oeuvre {
-    background-color: #fff;
-    /* Fond blanc pour la carte */
-    border: 1px solid #ddd;
-    /* Bordure fine grise */
-    border-radius: 8px;
-    /* Coins arrondis */
-    width: 250px;
-    /* Taille fixe pour uniformité */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    /* Ombre légère */
-    transition: transform 0.3s ease-in-out;
-    /* Animation au survol */
-    text-align: center;
-    /* Contenu centré */
-    overflow: hidden;
-    /* Coupe le contenu dépassant */
+  background-color: #fff;
+  /* Fond blanc pour la carte */
+  border: 1px solid #ddd;
+  /* Bordure fine grise */
+  border-radius: 8px;
+  /* Coins arrondis */
+  width: 250px;
+  /* Taille fixe pour uniformité */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  /* Ombre légère */
+  transition: transform 0.3s ease-in-out;
+  /* Animation au survol */
+  text-align: center;
+  /* Contenu centré */
+  overflow: hidden;
+  /* Coupe le contenu dépassant */
 }
 
 .oeuvre:hover {
-    transform: translateY(-5px);
-    /* Effet d'élévation au survol */
+  transform: translateY(-5px);
+  /* Effet d'élévation au survol */
 }
 
 /* Image des œuvres */
 .oeuvre img {
-    width: 100%;
-    /* Image responsive */
-    height: 160px;
-    /* Hauteur fixe pour uniformité */
-    object-fit: cover;
-    /* Ajustement sans déformation */
-    border-bottom: 1px solid #ddd;
-    /* Séparation visuelle */
+  width: 100%;
+  /* Image responsive */
+  height: 160px;
+  /* Hauteur fixe pour uniformité */
+  object-fit: cover;
+  /* Ajustement sans déformation */
+  border-bottom: 1px solid #ddd;
+  /* Séparation visuelle */
 }
 
 /* Titre des œuvres */
 .oeuvre h3 {
-    font-size: 1.1em;
-    margin: 0.5em 0;
-    color: #333;
-    /* Couleur sobre */
+  font-size: 1.1em;
+  margin: 0.5em 0;
+  color: #333;
+  /* Couleur sobre */
 }
 
 /* Description des œuvres */
 .oeuvre p {
-    font-size: 0.9em;
-    color: #666;
-    /* Texte plus clair */
-    padding: 0em 0.5em 0.5em 0.5em;
-}
-/* Cacher le menu sur petits écrans */
-/* Responsive Adjustments */
-header {
-    display: none;
+  font-size: 0.9em;
+  color: #666;
+  /* Texte plus clair */
+  padding: 0em 0.5em 0.5em 0.5em;
 }
 
-@media screen and (min-width: 768px) {
-  
-    main {
-        flex-direction: column;
-        padding: 10px;
-    }
 
-    .gauche,
-    .droite {
-        margin-bottom: 1.5em;
-        width: 100%;
-    }
+@media (max-width: 768px) {
+  .description {
+    padding: 0px 10px 0px 10px;
+  }
 
-    .tableau-similaire {
-        flex-wrap: wrap;
-        gap: 20px;
-        justify-content: center;
-    }
-
-    .tableau-similaire img {
-        width: 90%;
-        max-width: 100px;
-        margin: 5px;
-    }
-
-    .prix {
-        font-size: 14px;
-    }
-
-    .actions button {
-        width: 100%;
-        margin-bottom: 10px;
-    }
-    .description {
-        padding: 0 5%; /* Utilise un pourcentage pour adapter l'espace */
-        margin: 0 auto; /* Centre le texte horizontalement */
-        max-width: 800px; /* Limite la largeur maximale pour éviter un texte trop étalé */
-        line-height: 1.6; /* Augmente l'interligne pour une meilleure lisibilité */
-        text-align: justify; /* Aligne le texte des deux côtés pour une présentation plus propre */
-        word-wrap: break-word; /* Évite les débordements */
-        white-space: normal; /* Permet les retours à la ligne naturels */
-    }
-}
-
-//burgerbar
-.off-screen-menu {
-    background-color: rgb(34,37,49);
-    height: 100vh;
-    width: 100%;
-    max-width: 450px;
-    position: fixed;
-    top: 0;
-    right: -450px;
+  footer {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    font-size: 3rem;
-    transition: .3s ease;
+  }
 }
-.off-screen-menu.active{
-    right: 0;
-}
-.off-screen-menu a {
-    text-decoration: none;
-    color: white;
-    font-weight: calibri;
-}
-
-.off-screen-menu a:hover {
-    opacity: 0.8;
-}
-nav{
-    padding: 1rem;
-    display: flex;
-    background-color: rgb(black);
-}
-.ham-menu{
-    height: 50px;
-    width: 50px;
-    margin-left: auto;
-    position: relative;
-}
-.ham-menu span {
-    height: 5px;
-    width: 100%;
-    background-color: #6f86ff;
-    border-radius: 25px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    transition: .3s ease;
-}
-.ham-menu span:nth-child(1) {
-    top: 25%;
-}
-.ham-menu span:nth-child(3) {
-    top: 75%;
-}
-.ham-menu.active span:nth-child(1) {
-    top: 50%;
-    transform: translate(-50%, -50%) rotate(45deg);
-}
-.ham-menu.active span:nth-child(2) {
-    opacity: 0;
-}
-.ham-menu.active span:nth-child(3) {
-    top: 50%;
-    transform: translate(-50%, -50%) rotate(-45deg);
-}
-

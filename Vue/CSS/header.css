@@ -1,51 +1,51 @@
 header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px;
-    background-color: #fff;
-    border-bottom: 1px solid #ccc;
-    font-family: Arial, Helvetica, sans-serif; 
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background-color: #fff;
+  border-bottom: 1px solid #ccc;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .logo img {
-    width: 100px;
-    height: auto;
+  width: 100px;
+  height: auto;
 }
 
 .menu ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
 }
 
 .menu ul li {
-    margin-right: 70px;
+  margin-right: 70px;
 }
 
 .menu ul li a {
-    text-decoration: none;
-    color: #333;
-    font-weight: bold;
-    font-size: 16px;
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
+  font-size: 16px;
 }
 
 .barre_recherche {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 .barre_recherche input[type="text"] {
-    padding: 5px 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+  padding: 5px 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
 }
 
 .barre_recherche a {
-    text-decoration: none;
-    font-size: 20px;
-    color: #333;
+  text-decoration: none;
+  font-size: 20px;
+  color: #333;
 }
 
 .favori {
@@ -55,56 +55,120 @@ header {
   padding-left: 1em;
 }
 
-.utilisateur{
+.utilisateur {
   padding-left: 1em;
 }
 
 .mainmenubtn {
-    color: white;
-    padding: 16px;
-    font-size: 16px;
-    border: none;
-    cursor: pointer;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+.mainmenubtn:hover {
+  opacity: 0.9;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-child {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  background-color: #f1f1f1;
+  left: -7em;
+  top: 1.3em;
+  text-align: center;
+}
+
+.dropdown-child a {
+  color: black;
+  padding: 0.5em 0.8em;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-child a:hover {
+  opacity: 0.4;
+}
+
+.dropdown:hover .dropdown-child {
+  display: block;
+}
+
+#deconnexion {
+  cursor: pointer;
+}
+
+
+
+.hamburger-container {
+  display: none;
+  position: relative;
+}
+
+.hamburger-image{
+  display: block;
+  width: 50px;
+  padding-left: 25px
+}
+
+.hamburgermenu {
+  position: absolute;  
+  display: none;
+  z-index: 10;
+}
+
+
+
+
+
+@media (max-width: 1050px) {
+  header {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    align-items: start;
   }
-  
-  .mainmenubtn:hover { 
-    opacity: 0.9;
+}
+
+@media (max-width: 600px) {
+  .menu ul li {
+    margin-right: 50px;
   }
-  
-  .dropdown {
-    position: relative; 
-    display: inline-block;
+}
+
+@media (max-width: 500px) {
+  .menu {
+    display: none;
   }
-  
-  .dropdown-child {
-    display: none; 
-    position: absolute; 
-    background-color: #f9f9f9; 
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); 
-    z-index: 1; 
-    background-color: #f1f1f1;
-    left: -7em;
-    top: 1.3em;
-    text-align: center;
+  .barre_recherche {
+    display: none;
   }
-  
-  .dropdown-child a {
-    color: black;
-    padding: 0.5em 0.8em;
-    text-decoration: none;
+
+  .hamburger-container {
     display: block;
   }
-  
-  .dropdown-child a:hover {
-   opacity: 0.4;
+
+  .hamburger-container :hover {
+    transform: scale(0.7)
   }
-  
-  .dropdown:hover .dropdown-child {
+
+
+  .hamburger-container:hover .hamburgermenu {
     display: block;
+
   }
+
   
 
-  #deconnexion {
-    cursor: pointer;
-  }
+  
+}

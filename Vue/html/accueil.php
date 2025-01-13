@@ -12,30 +12,21 @@
     <script src="https://galeris/Galeris-APPG1E/vue/JS/accueil.js" defer></script>
     <script src="https://galeris/Galeris-APPG1E/vue/JS/burgerbar.js" defer></script>
     <title>Accueil</title>
-    
+
 </head>
 <!-- Burgerbar -->
-<body>
-<div class="off-screen-menu">
-    <ul>
-        <ul><a href="/Galeris-APPG1E/">Accueil</a></ul>
-        <ul><a href="/Galeris-APPG1E/vente">Vente</a></ul>
-        <ul><a href="/Galeris-APPG1E/exposition">Exposition</a></ul>
-        <ul><a href="/Galeris-APPG1E/news">News</a></ul>
-        <ul><a href="/Galeris-APPG1E/plus">Plus</a></ul>
-    </ul>
-</div>
 
-<nav>
-    <div class="ham-menu">
-        <span></span>
-        <span></span>
-        <span></span>
-</nav>
+<body>
+
+
     <div class="container">
+
         <header>
-            <div class="logo"> <a href="https://galeris/Galeris-APPG1E/"><img src="../images/logo.png"></a></div>
-            <nav class="menu">
+        <div class="logo"> <a href="https://galeris/Galeris-APPG1E/"><img src="../images/logo.png"></a></div>
+
+        <div class="hamburger-container">
+            <img src="../images/hamMenu.png" alt="Menu hamburger" class="hamburger-image">
+            <nav class="hamburgermenu">
                 <ul>
                     <li><a href="https://galeris/Galeris-APPG1E/">Accueil</a></li>
                     <li><a href="https://galeris/Galeris-APPG1E/ventes">Vente</a></li>
@@ -44,30 +35,66 @@
                     <li><a href="#">Plus</a></li>
                 </ul>
             </nav>
+
             <div class="barre_recherche">
-                <!-- Barre de recherche, les emojis sont responsives si on clique dessus -->
-                <input type="text" placeholder="Rechercher...">
-                <div class="favori"> <a href="favoris.html">❤️ </a></div>
-                <div class="panier"> <a href="https://galeris/Galeris-APPG1E/panier"> 🛒 </a></div>
-                <?php
-                if ($connectUser === true) {
-                    echo '<div class="dropdown">
+            <!-- Barre de recherche, les emojis sont responsives si on clique dessus -->
+            <input type="text" placeholder="Rechercher...">
+            <div class="favori"> <a href="favoris.html">❤️ </a></div>
+            <div class="panier"> <a href="https://galeris/Galeris-APPG1E/panier"> 🛒 </a></div>
+            <?php
+            if ($connectUser === true) {
+                echo '<div class="dropdown">
                             <div class="utilisateur"> 👤 </div>
                             <div class="dropdown-child">
                                 <a href="https://galeris/Galeris-APPG1E/profil">Mon profil</a>
-                                <a href="#">Mon solde</a>'.
-                                (($userRole === true)?
-                                    '<a href="https://galeris/Galeris-APPG1E/listeoeuvreattente">Oeuvres en attente</a>
-                                    <a href="https://galeris/Galeris-APPG1E/listeexposeattente">Exposés en attente</a>':"").
-                                '<a id="deconnexion">Déconnexion</a>
+                                <a href="#">Mon solde</a>' .
+                    (($userRole === true) ?
+                        '<a href="https://galeris/Galeris-APPG1E/listeoeuvreattente">Oeuvres en attente</a>
+                                    <a href="https://galeris/Galeris-APPG1E/listeexposeattente">Exposés en attente</a>' : "") .
+                    '<a id="deconnexion">Déconnexion</a>
                             </div>
                            </div>';
-                } else {
-                    echo '<div class="utilisateur"><a href="https://galeris/Galeris-APPG1E/connexion"> 👤 </a></div>';
-                }
-                ?>
+            } else {
+                echo '<div class="utilisateur"><a href="https://galeris/Galeris-APPG1E/connexion"> 👤 </a></div>';
+            }
+            ?>
 
-            </div>
+        </div>
+        </div>
+
+        <nav class="menu">
+            <ul>
+                <li><a href="https://galeris/Galeris-APPG1E/">Accueil</a></li>
+                <li><a href="https://galeris/Galeris-APPG1E/ventes">Vente</a></li>
+                <li><a href="https://galeris/Galeris-APPG1E/exposes">Exposition</a></li>
+                <li><a href="#">News</a></li>
+                <li><a href="#">Plus</a></li>
+            </ul>
+        </nav>
+        <div class="barre_recherche">
+            <!-- Barre de recherche, les emojis sont responsives si on clique dessus -->
+            <input type="text" placeholder="Rechercher...">
+            <div class="favori"> <a href="favoris.html">❤️ </a></div>
+            <div class="panier"> <a href="https://galeris/Galeris-APPG1E/panier"> 🛒 </a></div>
+            <?php
+            if ($connectUser === true) {
+                echo '<div class="dropdown">
+                            <div class="utilisateur"> 👤 </div>
+                            <div class="dropdown-child">
+                                <a href="https://galeris/Galeris-APPG1E/profil">Mon profil</a>
+                                <a href="#">Mon solde</a>' .
+                    (($userRole === true) ?
+                        '<a href="https://galeris/Galeris-APPG1E/listeoeuvreattente">Oeuvres en attente</a>
+                                    <a href="https://galeris/Galeris-APPG1E/listeexposeattente">Exposés en attente</a>' : "") .
+                    '<a id="deconnexion">Déconnexion</a>
+                            </div>
+                           </div>';
+            } else {
+                echo '<div class="utilisateur"><a href="https://galeris/Galeris-APPG1E/connexion"> 👤 </a></div>';
+            }
+            ?>
+
+        </div>
         </header>
 
         <!-- Contenu de la page d'accueil -->
@@ -75,7 +102,7 @@
             <div class="contentbase">
                 <?php
                 if ($connectUser === true) {
-                    echo '<a href="https://galeris/Galeris-APPG1E/vente"><button type="button" class="sellproduct">Vendre une oeuvre</button></a> <a href="https://galeris/Galeris-APPG1E/exposition"><button type="button" class="demandeexpo">Demande exposition</button></a>';
+                    echo '<a href="https://galeris/Galeris-APPG1E/vente"><button type="button" class="sellproduct">Vendre une oeuvre</button> <br/> <br/> </a> <a href="https://galeris/Galeris-APPG1E/exposition"><button type="button" class="demandeexpo">Demande exposition</button></a>';
                 }
                 ?>
                 <div class="content-description">
@@ -96,13 +123,12 @@
                             echo '<h3>' . $oeuvre["Titre"] . '</h3>';
                             echo '<img src="../' . $oeuvre["chemin_image"] . '" alt="' . $oeuvre["Titre"] . '" />';
                             echo '<p class="temps-restant" data-fin="' . $oeuvre["Date_fin"] . '">' . '</p>';
-                            if($oeuvre["type_vente"] === "vente" || $oeuvre["prix_courant"] === null){
+                            if ($oeuvre["type_vente"] === "vente" || $oeuvre["prix_courant"] === null) {
                                 echo '<p>' . $oeuvre['Prix'] . ' €</p>';
-                            }
-                            else{
+                            } else {
                                 echo '<p>' . $oeuvre["prix_courant"] . ' €</p>';
                             }
-                            echo '<p>' . substr($oeuvre["Description"],0,250) . '(...)</p>';
+                            echo '<p>' . substr($oeuvre["Description"], 0, 250) . '(...)</p>';
                             echo '</div>';
                             echo '</a>';
                         }
