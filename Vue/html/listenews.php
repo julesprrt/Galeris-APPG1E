@@ -66,7 +66,7 @@
 
 
             </div>
-
+        </header>
             <!-- Contenu de la page d'accueil -->
             <div class="page-content">
                 <div class="contentbase">
