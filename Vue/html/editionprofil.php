@@ -46,7 +46,7 @@
                                 
                         ?>
                 </datalist>
-            <div class="favori"><a href="favoris.html">❤️</a></div>
+            <div class="favori"><a href="./favoris">❤️</a></div>
             <div class="panier"><a href="./panier">🛒</a></div>
             <?php
             if ($connectUser === true) {
@@ -80,7 +80,7 @@
                 </div>
             <?php endif; ?>
 
-            <form action="/Galeris-APPG1E/process-edition" method="POST" enctype="multipart/form-data" class="profil-form">
+            <form action="./process-edition" method="POST" enctype="multipart/form-data" class="profil-form">
                 <div class="profil-info">
                     <label for="photo-upload" class="profile-image-label">
                         <img id="preview-image" src="./<?php echo htmlspecialchars($user['photodeprofil'] ?? 'ImageBD/Profil/avatarbasique.jpg'); ?>" alt="Photo de profil" class="profile-image">
@@ -136,7 +136,7 @@
 
                 <div class="actions">
                     <button type="submit" class="btn">Enregistrer les modifications</button>
-                    <a href="/Galeris-APPG1E/profil" class="btn">Annuler</a>
+                    <a href="./profil" class="btn">Annuler</a>
                 </div>
             </form>
         </section>
@@ -173,7 +173,7 @@
         </div>
         <div class="container-footer">
             <a class="title-footer">Qui sommes-nous ?</a>
-            <a class="item-footer" href="#">NovArt</a>
+            <a class="item-footer" href="./novart">NovArt</a>
             <a class="item-footer" href="./galeris">Galeris</a>
         </div>
         <div class="container-footer">
@@ -184,7 +184,7 @@
         <div class="container-footer">
             <a class="title-footer">Informations légales</a>
             <a class="item-footer" href="./cgu">Conditions d'utilisations</a>
-            <a class="item-footer" href="#">Mentions légales</a>
+            <a class="item-footer" href="./mentionslegales">Mentions légales</a>
         </div>
 
     </footer>
