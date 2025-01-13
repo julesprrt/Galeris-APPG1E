@@ -124,10 +124,9 @@ async function saveIdOeuvre(id) {
 
 
 
-const hamburgerImage = document.getElementById("hamburger-image");
-const hamburgerMenu = document.getElementById("hamburgermenu");
+const hamburgerImage = document.getElementById("ham-img");
+const hamburgerMenu = document.getElementById("ham-menu");
 
-hamburgerImage.addEventListener("click", () => {
-   
+ham-img.addEventListener("click", () => {
     hamburgerMenu.classList.toggle("active");
 });

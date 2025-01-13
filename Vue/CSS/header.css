@@ -36,13 +36,30 @@ header {
   align-items: center;
 }
 
+.barre_recherche2 {
+  display: flex;
+  align-items: center;
+}
+
 .barre_recherche input[type="text"] {
   padding: 5px 10px;
   border: 1px solid #ccc;
   border-radius: 4px;
 }
 
+.barre_recherche2 input[type="text"] {
+  padding: 5px 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
 .barre_recherche a {
+  text-decoration: none;
+  font-size: 20px;
+  color: #333;
+}
+
+.barre_recherche2 a {
   text-decoration: none;
   font-size: 20px;
   color: #333;
@@ -108,13 +125,12 @@ header {
   cursor: pointer;
 }
 
-
-
 .hamburger-container {
+  display: none;
   position: relative;
 }
 
-.hamburger-image{
+.hamburger-image {
   display: block;
   width: 50px;
   padding-left: 25px;
@@ -122,18 +138,15 @@ header {
 }
 
 .hamburgermenu {
-  position: absolute;  
+  position: absolute;
   display: none;
-  z-index: 1000;
+  background-color: #fff;
   padding: 10px;
 }
-.hamburgermenu.active {
-  display: block;
+
+.ham-search-cote {
+  display: none;
 }
-
-
-
-
 
 @media (max-width: 1050px) {
   header {
@@ -155,6 +168,9 @@ header {
     display: none;
   }
   .barre_recherche {
+    display: flex;
+  }
+  .barre_recherche2 {
     display: none;
   }
 
@@ -162,17 +178,28 @@ header {
     display: block;
   }
 
-  .hamburger-container :hover {
-    transform: scale(0.7)
-  }
-
-
   .hamburger-container:hover .hamburgermenu {
     display: block;
-
   }
 
-  
+  .hamburgermenu.active {
+    display: block;
+  }
 
-  
+  .ham-search-cote {
+    display: flex;
+    flex-direction: row;
+    gap: 40px;
+    width: 100%;
+  }
+
+  .favori {
+    padding-left: 5px;
+  }
+  .panier {
+    padding-left: 5px;
+  }
+  .utilisateur {
+    padding-left: 5px;
+  }
 }
