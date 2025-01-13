@@ -37,11 +37,11 @@
                             <div class="utilisateur"> 👤 </div>
                             <div class="dropdown-child">
                                 <a href="https://galeris/Galeris-APPG1E/profil">Mon profil</a>
-                                <a href="https://galeris/Galeris-APPG1E/solde">Mon solde</a>'.
-                                (($userRole === true)?
-                                    '<a href="https://galeris/Galeris-APPG1E/listeoeuvreattente">Oeuvres en attente</a>
-                                    <a href="https://galeris/Galeris-APPG1E/listeexposeattente">Exposés en attente</a>':"").
-                                '<a id="deconnexion">Déconnexion</a>
+                                <a href="https://galeris/Galeris-APPG1E/solde">Mon solde</a>' .
+                        (($userRole === true) ?
+                            '<a href="https://galeris/Galeris-APPG1E/listeoeuvreattente">Oeuvres en attente</a>
+                                    <a href="https://galeris/Galeris-APPG1E/listeexposeattente">Exposés en attente</a>' : "") .
+                        '<a id="deconnexion">Déconnexion</a>
                             </div>
                            </div>';
                 } else {
@@ -59,9 +59,8 @@
                 if ($connectUser === true) {
                     echo '<a href="https://galeris/Galeris-APPG1E/vente"><button type="button" class="sellproduct">Vendre une oeuvre</button></a> <a href="https://galeris/Galeris-APPG1E/exposition"><button type="button" class="demandeexpo">Demande exposition</button></a>';
                 }
-                if($userRole === true){
+                if ($userRole === true) {
                     echo '<a href="https://galeris/Galeris-APPG1E/news"><button type="button" class="news">News</button></a>';
-
                 }
                 ?>
                 <div class="content-description">
@@ -82,13 +81,12 @@
                             echo '<h3>' . $oeuvre["Titre"] . '</h3>';
                             echo '<img src="../' . $oeuvre["chemin_image"] . '" alt="' . $oeuvre["Titre"] . '" />';
                             echo '<p class="temps-restant" data-fin="' . $oeuvre["Date_fin"] . '">' . '</p>';
-                            if($oeuvre["type_vente"] === "vente" || $oeuvre["prix_courant"] === null){
+                            if ($oeuvre["type_vente"] === "vente" || $oeuvre["prix_courant"] === null) {
                                 echo '<p>' . $oeuvre['Prix'] . ' €</p>';
-                            }
-                            else{
+                            } else {
                                 echo '<p>' . $oeuvre["prix_courant"] . ' €</p>';
                             }
-                            echo '<p>' . substr($oeuvre["Description"],0,250) . '(...)</p>';
+                            echo '<p>' . substr($oeuvre["Description"], 0, 250) . '(...)</p>';
                             echo '</div>';
                             echo '</a>';
                         }
