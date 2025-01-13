@@ -66,9 +66,9 @@ CREATE TABLE `code` (
 
 CREATE TABLE `enchere` (
   `id_enchere` int(11) NOT NULL,
-  `id_oeuvre_enchere` int(11) NOT NULL,
+  `id_oeuvre_enchere` int(11) NOT NULL REFERENCES oeuvre(id_oeuvre),
   `prix` decimal(10,2) DEFAULT NULL,
-  `id_offreur` int(11) DEFAULT NULL,
+  `id_offreur` int(11) DEFAULT NULL REFERENCES utilisateur(id_utilisateur),
   `date_enchere` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -113,7 +113,7 @@ CREATE TABLE `exposition` (
 CREATE TABLE `exposition_images` (
   `id_exposition_images` int(11) NOT NULL,
   `chemin_image` varchar(100) DEFAULT NULL,
-  `id_exposition` int(11) DEFAULT NULL
+  `id_exposition` int(11) DEFAULT NULL REFERENCES exposition(id_exhibition)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -135,7 +135,7 @@ INSERT INTO `exposition_images` (`id_exposition_images`, `chemin_image`, `id_exp
 (12, 'ImageBD/exposition/Les-Saisons-Giusepe-Arcimboldo.png', 12),
 (13, 'ImageBD/exposition/Les-Tournesols-Van-Gogh.png', 13),
 (14, 'ImageBD/exposition/Portrait-louis-XIV.png', 14),
-(15, 'ImageBD/exposition/Terrasse-du-cafe-le-soir-Van-Gogh.png', 15),
+(15, 'ImageBD/exposition/Terrasse-du-cafe-le-soir-Van-Gogh.png', 15);
 
 -- --------------------------------------------------------
 
@@ -184,7 +184,8 @@ CREATE TABLE `oeuvre` (
 --
 -- Déchargement des données de la table `oeuvre`
 --
-
+INSERT INTO `oeuvre` (`id_oeuvre`, `Titre`, `Description`,`eco_responsable`,`Date_debut`,`Date_fin`,`Prix`,`type_vente`,`est_vendu`,`auteur`,`id_utilisateur`,`id_categorie`) VALUES
+(1,"Arrangement en gris et noir n°1"," Réalisée en 1871 à Londres. Huile sur toile, mesurant 144,3 cm de hauteur et 163 cm de largeur, représentant la mère de l’artiste, Anna Mathilda Whistler, alors âgée de 67 ans. ",0,'2025-01-13','2025-01-25',50000,"Vente",0,"James Abbott McNeill Whistler",null,2);
 
 -- --------------------------------------------------------
 
@@ -195,7 +196,7 @@ CREATE TABLE `oeuvre` (
 CREATE TABLE `oeuvre_images` (
   `id_photo` int(11) NOT NULL,
   `chemin_image` varchar(100) DEFAULT NULL,
-  `id_oeuvre` int(11) NOT NULL
+  `id_oeuvre` int(11) NOT NULL REFERENCES oeuvre(id_oeuvre)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -217,7 +218,7 @@ INSERT INTO `oeuvre_images` (`id_photo`, `chemin_image`, `id_oeuvre`) VALUES
 (12, 'ImageBD/Oeuvre/La-Jeune-Fille-a-la-perle.png', 12),
 (13, 'ImageBD/Oeuvre/La-Liberte-guidant-le-peuple-Delacroix.png', 13),
 (14, 'ImageBD/Oeuvre/La-mort-de-Socrate-Jacques-Louis-David.png', 14),
-(15, 'ImageBD/Oeuvre/La-Nuit-etoilee-Van-Gogh-.png', 15),
+(15, 'ImageBD/Oeuvre/La-Nuit-etoilee-Van-Gogh-.png', 15);
 
 -- --------------------------------------------------------
 
@@ -460,32 +461,10 @@ ALTER TABLE `vente`
   MODIFY `id_vente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
 
 --
--- Contraintes pour les tables déchargées
---
-
---
 -- Contraintes pour la table `code`
 --
 ALTER TABLE `code`
   ADD CONSTRAINT `code_ibfk_1` FOREIGN KEY (`ID_user`) REFERENCES `utilisateur` (`id_utilisateur`);
-
---
--- Contraintes pour la table `enchere`
---
-ALTER TABLE `enchere`
-  ADD CONSTRAINT `FK_oeuvre_enchere` FOREIGN KEY (`id_oeuvre_enchere`) REFERENCES `oeuvre` (`id_oeuvre`) ON DELETE CASCADE ON UPDATE NO ACTION;
-
---
--- Contraintes pour la table `exposition_images`
---
-ALTER TABLE `exposition_images`
-  ADD CONSTRAINT `exposition_images_ibfk_1` FOREIGN KEY (`id_exposition`) REFERENCES `exposition` (`id_exhibition`);
-
---
--- Contraintes pour la table `oeuvre_images`
---
-ALTER TABLE `oeuvre_images`
-  ADD CONSTRAINT `FK_oeuvre_images` FOREIGN KEY (`id_oeuvre`) REFERENCES `oeuvre` (`id_oeuvre`) ON DELETE CASCADE ON UPDATE NO ACTION;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
