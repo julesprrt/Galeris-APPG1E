@@ -5,22 +5,20 @@
     <meta name="viewport">
     <meta name="description" content="Mentions légales de Galeris, la plateforme de vente et d'enchères d'œuvres d'art.">
     <title>Mentions Légales - Galeris</title>
-    <base href="/Galeris-APPG1E/Vue/">
-    <link rel="stylesheet" href="CSS/footer.css">
-    <link rel="stylesheet" href="CSS/header.css">
-    <link rel="stylesheet" href="CSS/mentionslegales.css">
-    <link rel="stylesheet" href="CSS/style.css">
+    <link rel="stylesheet" href="Vue/CSS/footer.css">
+    <link rel="stylesheet" href="Vue/CSS/header.css">
+    <link rel="stylesheet" href="Vue/CSS/mentionslegales.css">
+    <link rel="stylesheet" href="Vue/CSS/style.css">
 </head>
 <body>
 <header>
-            <div class="logo"> <a href="./"><img src="../images/logo.png"></a></div>
+            <div class="logo"> <a href="./"><img src="./images/logo.png"></a></div>
             <nav class="menu">
                 <ul>
                     <li><a href="./">Accueil</a></li>
                     <li><a href="./ventes">Vente</a></li>
                     <li><a href="./exposes">Exposition</a></li>
-                    <li><a href="#">News</a></li>
-                    <li><a href="#">Plus</a></li>
+                    <li><a href="./news">News</a></li>
                 </ul>
             </nav>
             <div class="barre_recherche">

@@ -15,8 +15,7 @@ header .logo {
 }
 header {
     position: relative;
-    background-color: #D9A36A;
-    color: white;
+    background-color: #ffff;
     padding: 1rem 2rem;
     text-align: center;
 }
