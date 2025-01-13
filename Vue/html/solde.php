@@ -25,7 +25,7 @@
                 <li><a href="./">Accueil</a></li>
                 <li><a href="./ventes">Vente</a></li>
                 <li><a href="./exposes">Exposition</a></li>
-                <li><a href="#">News</a></li>
+                <li><a href="./news">News</a></li>
                 
             </ul>
         </nav>

@@ -5,15 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tableau de bord Administrateur</title>
-    <base href="/Galeris-APPG1E/Vue/">
-    <link rel="stylesheet" href="CSS/dashboard.css">
+    <link rel="stylesheet" href="Vue/CSS/dashboard.css">
     <!-- Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
 <body>
     <header class="admin-header">
-        <div class="logo-link"> <a href="https://galeris/Galeris-APPG1E/"><img src="../images/logo.png" class="logo-img"></a></div>
+        <div class="logo-link"> <a href="./"><img src="images/logo.png" class="logo-img"></a></div>
         </a>
         <h1>Tableau de bord Administrateur Galeris</h1>
     </header>
