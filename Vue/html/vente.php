@@ -130,7 +130,7 @@
 
                 <div class="actions">
                     <a class="btn btn-vente">Confirmer</a>
-                    <a href="/Galeris-APPG1E/" class="btn">Annuler</a>
+                    <a href="./" class="btn">Annuler</a>
                     
                 
 

@@ -93,7 +93,7 @@
         </p>
         <div class="actions">
           <a class="btn btn-news">Confirmer</a>
-          <a href="/Galeris-APPG1E/" class="btn">Annuler</a>
+          <a href="./" class="btn">Annuler</a>
         </div>
       </form>
 

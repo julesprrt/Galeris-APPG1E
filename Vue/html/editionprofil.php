@@ -80,7 +80,7 @@
                 </div>
             <?php endif; ?>
 
-            <form action="/Galeris-APPG1E/process-edition" method="POST" enctype="multipart/form-data" class="profil-form">
+            <form action="./process-edition" method="POST" enctype="multipart/form-data" class="profil-form">
                 <div class="profil-info">
                     <label for="photo-upload" class="profile-image-label">
                         <img id="preview-image" src="./<?php echo htmlspecialchars($user['photodeprofil'] ?? 'ImageBD/Profil/avatarbasique.jpg'); ?>" alt="Photo de profil" class="profile-image">
@@ -136,7 +136,7 @@
 
                 <div class="actions">
                     <button type="submit" class="btn">Enregistrer les modifications</button>
-                    <a href="/Galeris-APPG1E/profil" class="btn">Annuler</a>
+                    <a href="./profil" class="btn">Annuler</a>
                 </div>
             </form>
         </section>

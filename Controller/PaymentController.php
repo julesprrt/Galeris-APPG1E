@@ -42,13 +42,13 @@ class PaymentController extends Controller
 
         if (!isset($_SESSION["payment"])) {
             http_response_code(404);
-            header("Location: /Galeris-APPG1E/");
+            header("Location: ./");
 
             exit();
         } else {
             if ($_SESSION["payment"] === false) {
                 http_response_code(404);
-                header("Location: /Galeris-APPG1E/");
+                header("Location: ./");
                 exit();
             } else {
                 $_SESSION["payment"] = false;
@@ -79,12 +79,12 @@ class PaymentController extends Controller
 
         if (!isset($_SESSION["payment"])) {
             http_response_code(404);
-            header("Location: /Galeris-APPG1E/");
+            header("Location: ./");
             exit();
         } else {
             if ($_SESSION["payment"] === false) {
                 http_response_code(404);
-                header("Location: /Galeris-APPG1E/");
+                header("Location: ./");
                 exit();
             } else {
                 $_SESSION["payment"] = false;
