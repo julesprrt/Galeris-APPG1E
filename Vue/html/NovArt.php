@@ -18,9 +18,9 @@
 </header>
 
 <nav>
-    <a href="https://galeris/Galeris-APPG1E/novart#about">À propos</a>
-    <a href="https://galeris/Galeris-APPG1E/novart#galeris">Galeris</a>
-    <a href="https://galeris/Galeris-APPG1E/novart#contact">Contact</a>
+    <a href="./novart#about">À propos</a>
+    <a href="./novart#galeris">Galeris</a>
+    <a href="./novart#contact">Contact</a>
 </nav>
 
 <div class="about" id="about">

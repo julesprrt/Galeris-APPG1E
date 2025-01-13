@@ -201,7 +201,7 @@
         <div class="container-footer">
             <a class="title-footer">Informations légales</a>
             <a class="item-footer" href="./cgu">Conditions d'utilisations</a>
-            <a class="item-footer" href="#">Mentions légales</a>
+            <a class="item-footer" href="./mentionslegales">Mentions légales</a>
         </div>
     </footer>
 </body>

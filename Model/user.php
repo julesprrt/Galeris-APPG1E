@@ -152,8 +152,8 @@ class User
         $stmt = $conn->prepare($sql);
         $stmt->bind_param("s", $this->email);
         $stmt->execute(); 
-        $stmt->close();
         $result = $stmt->get_result();
+        $stmt->close();
         $conn->close();
         if ($result->num_rows > 0) {
             $user = $result->fetch_assoc();
