@@ -1,0 +1,149 @@
+.Page-content {
+  display: flex;
+  align-items: center;
+}
+
+.infos-inscription {
+  display: flex;
+  padding-left: 90px;
+  padding-right: 30px;
+  width: 550px;
+  height: 350px;
+}
+
+.inscrivez-vous {
+  border-radius: 30px;
+  box-shadow: 2px 2px;
+  background: rgba(217, 217, 217, 0.8);
+}
+
+.checkbox-container {
+  width: 20em;
+}
+
+.inscription-content {
+  padding: 40px 75px 80px 75px;
+  opacity: 1;
+}
+
+.simpleBigText a {
+  text-decoration: none;
+  color: #d9a36a;
+  font-weight: 300;
+}
+
+.text-galeris {
+  color: black;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.form-inscription {
+  border-radius: 10px;
+  padding-left: 250px;
+  padding-right: 30px;
+  width: 600px;
+  height: 500px;
+  display: flex;
+  flex-direction: column;
+}
+
+.Title-inscription {
+  font-size: 30px;
+  font-weight: 600;
+  font-family: Arial, Helvetica, sans-serif;
+}
+input:-internal-autofill-selected {
+  appearance: menulist-button;
+  background-image: none !important;
+  background-color: rgba(217, 163, 106, 0.7);
+  color: fieldtext !important;
+}
+
+#showmdp {
+  width: 1.4rem;
+  height: 1.2rem;
+  cursor: pointer;
+}
+
+#hidemdp {
+  width: 1.4rem;
+  height: 1.2rem;
+  cursor: pointer;
+}
+
+#showmdp2 {
+  width: 1.4rem;
+  height: 1.2rem;
+  cursor: pointer;
+}
+
+#hidemdp2 {
+  width: 1.4rem;
+  height: 1.2rem;
+  cursor: pointer;
+}
+
+#diveye {
+  width: 1.4rem;
+  height: 1.2rem;
+}
+
+.submit-button {
+  background-color: #d9a36a;
+  border: none;
+  padding: 15px;
+  width: 45%;
+  border-radius: 5px;
+  margin-top: 20px;
+  cursor: pointer;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.logo-galeris {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+}
+
+@media (max-width: 1380px) {
+  .Page-content {
+    display: flex;
+    flex-direction: column;
+    
+  }
+
+  .infos-inscription {
+    display: flex;
+    justify-content: center;
+    padding-top: 10px;
+    width: 40%;
+    height: 40%;
+  }
+
+  .form-inscription {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-top: 50px;
+ 
+  }
+
+}
+
+@media (max-width: 450px) {
+  .infos-inscription {
+    display: flex;
+    justify-content: center;
+    padding-left: 0px;
+    padding-right: 0px;
+    width: 50%;
+    height: 40%;
+  }
+
+  footer {
+    display: flex;
+    flex-direction: column;
+  }
+}
