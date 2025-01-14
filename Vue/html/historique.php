@@ -16,7 +16,7 @@
     <header>
         <div class="logo">
             <a href="./">
-                <img width="150" height="150" src="../images/logo-sans-fond.png" alt="Logo Galeris">
+                <img width="150" height="150" src="images/logo-sans-fond.png" alt="Logo Galeris">
             </a>
         </div>
         <nav class="menu">
