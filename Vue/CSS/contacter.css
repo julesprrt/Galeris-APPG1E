@@ -1,0 +1,138 @@
+html {
+    height: 100%;
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    display: flex;
+    background-image: url("../html/images/tableau.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    color: #333;
+  
+  }
+  
+  ::placeholder {
+    color: black;
+    opacity: 0.7;
+  
+  }
+  
+  /*--- CONTACT SECTION ---*/
+  section#contact .container {
+    position: relative;
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.85);
+  
+    padding: 30px;
+    box-sizing: border-box;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  
+  }
+  
+  section#contact .container form {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 1em;
+    max-width: 600px;
+    width: 100%;
+  }
+  
+  section#contact .container form textarea,
+  section#contact .container form input,
+  #object-select {
+    margin: 10px 0;
+    padding: 12px;
+    width: 100%;
+    height: 80%;
+    box-sizing: border-box;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: rgba(217, 163, 106, 0.7);
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1em;
+    color: #333;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  section#contact .container form textarea:focus,
+  section#contact .container form input:focus,
+  #object-select:focus {
+    outline: none;
+    transform: scale(1.02);
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
+  }
+  
+  section#contact .container form textarea {
+    resize: none;
+    min-height: 100px;
+  }
+  
+  section#contact .container form button {
+    background-color: #D9A36A;
+    color: #FFF;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1em;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  section#contact .container form button:hover {
+    background-color: #BF8A58;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  }
+  
+  section#contact .container form button:active {
+    transform: translateY(1px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  #object-select {
+    padding: 15px;
+    width: calc(100% - 30px);
+  }
+  
+  /*--- INPUTS SIMPLIFIÉS ---*/
+  .simpleInput {
+    background-color: rgba(217, 163, 106, 0.7);
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1em;
+    color: #333;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+  }
+  
+  .simpleInput:focus {
+    outline: none;
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
+    transform: scale(1.02);
+  }
+  
+  .home-link {
+    color: #D9A36A;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease, transform 0.3s ease;
+  }
