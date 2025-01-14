@@ -25,7 +25,6 @@ Class Favoris{
     }
 
     public function ajoutFavoris(Database $db) {
-        session_start();
         $res = $this->existFavoris($db);
         if($res){
             return 401;
@@ -43,7 +42,6 @@ Class Favoris{
     }
 
     public function retirerFavoris(Database $db) {
-        session_start();
         $res = $this->existFavoris($db);
         if(!$res){
             return 401;

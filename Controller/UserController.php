@@ -401,11 +401,6 @@ class UserController extends Controller
     {
         session_start();
 
-        if (!isset($_SESSION['usersessionID'])) {
-            header('Location: ./connexion');
-            exit();
-        }
-
         $paramData = file_get_contents("php://input");
         $data = json_decode($paramData, true);
         if (isset($data['id'])) {
@@ -421,11 +416,6 @@ class UserController extends Controller
     {
         session_start();
         $role = isset($_SESSION["usersessionRole"]) === true && $_SESSION["usersessionRole"] === "Admin" ? true : false;
-
-        if (!isset($_SESSION['usersessionID'])) {
-            header('Location: ./connexion');
-            exit();
-        }
 
         $userId = $_SESSION['utilisateur_consultation_id'];
         $_SESSION["livraison"] = "profil";
