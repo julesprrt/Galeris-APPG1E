@@ -2,6 +2,10 @@ FROM ghcr.io/garage-isep/herogu-back/herogu-php-base
 
 USER root
 
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
+RUN composer require phpmailer/phpmailer
+
 COPY ./docker/nginx.conf /etc/nginx/nginx.conf
 
 COPY --chown=nginx:www-data --chmod=777 . /var/www/html
@@ -9,4 +13,5 @@ COPY --chown=nginx:www-data --chmod=777 . /var/www/html
 LABEL ORIGIN herogu.garageisep.com
 
 EXPOSE 80
+
 LABEL org.opencontainers.image.source https://github.com/julesprrt/galeris-appg1e
