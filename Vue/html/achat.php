@@ -158,8 +158,7 @@
                     <?php
                     if (new DateTime() < new DateTime($oeuvre["Date_fin"])) {
                         if ($user || $userRole) {
-                            echo '<button class="boutton-modifier">Modifier</button>
-                                  <button class="boutton-supprimer">Supprimer</button>';
+                            echo '<button class="boutton-supprimer">Supprimer</button>';
 
                         } else {
                             if ($panier === false) {
