@@ -86,9 +86,8 @@
                 </div>
             </div>
             <div class="actions">
-                <a href="./historique" class="btn">Historique de mes ventes</a>
+                <a href="./historique" class="btn">Historique</a>
                 <a href="./editionprofil" class="btn">Modifier mon profil</a>
-                <a href="./historique" class="btn">Historique de mes achats</a>
                 <a href="./livraison" class="btn">Livraison</a>
             </div>
         </section>
