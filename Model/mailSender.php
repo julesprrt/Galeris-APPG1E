@@ -1,9 +1,11 @@
 <?php
-require 'vendor/autoload.php';
 require_once('Database/Database.php');
-
 use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
 
+require 'src/Exception.php';
+require 'src/PHPMailer.php';
+require 'src/SMTP.php';
 
 class MailSender
 {
