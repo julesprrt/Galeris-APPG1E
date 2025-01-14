@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mot de Passe Oublié</title>
-    <link rel="stylesheet" href="Vue/CSS/motdepasseoublie.css">
+    <link rel="stylesheet" href="Vue/CSS/mdp.css">
     <link rel="stylesheet" href="Vue/CSS/style.css">
     <script src="Vue/JS/oublieMotDePasse.js" defer></script>
 </head>
