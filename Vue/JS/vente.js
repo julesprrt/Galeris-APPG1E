@@ -64,7 +64,7 @@ async function verificateAndSaveData() {
 
     const image1 = document.getElementById("image1").getAttribute("src") === null ? "" : document.getElementById("image1").getAttribute("src");
     const image2 = document.getElementById("image2").getAttribute("src") === null ? "" : document.getElementById("image2").getAttribute("src");
-    const image3 = document.getElementById("image3").getAttribute("src")  === null ? "" : document.getElementById("image2").getAttribute("src");
+    const image3 = document.getElementById("image3").getAttribute("src")  === null ? "" : document.getElementById("image3").getAttribute("src");
 
     if (verificationData(titre, categorie, type, prix, nbJours, description, image1) === false) {
         return;

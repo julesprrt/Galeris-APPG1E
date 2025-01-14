@@ -36,7 +36,8 @@ class PanierController extends Controller
         session_start();
 
         if (!isset($_SESSION['usersessionID'])) {
-            header('Location: ./connexion');
+            http_response_code(400);
+            echo json_encode(["redirection" => "redirection"]);
             exit();
         }
 
@@ -57,7 +58,8 @@ class PanierController extends Controller
         session_start();
 
         if (!isset($_SESSION['usersessionID'])) {
-            header('Location: ./connexion');
+            http_response_code(400);
+            echo json_encode(["redirection" => "redirection"]);
             exit();
         }
         

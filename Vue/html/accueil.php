@@ -42,7 +42,7 @@
                                     (($userRole === true) ?
                                         '<a href="./listeoeuvreattente">Oeuvres en attente</a>
                                         <a href="./listeexposeattente">Exposés en attente</a>' : "") .
-                                    '<a id="deconnexion">Déconnexion</a>
+                                    '<a class="deconnexion">Déconnexion</a>
                                 </div>
                             </div>';
                             } else {
