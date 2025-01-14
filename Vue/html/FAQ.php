@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Accueil</title>
-    <link rel="stylesheet" href="Vue/CSS/FAQ.css">
+    <link rel="stylesheet" href="Vue/CSS/foirequestion.css">
     <link rel="stylesheet" href="Vue/CSS/header.css">
     <link rel="stylesheet" href="Vue/CSS/footer.css">
     <script src="Vue/JS/header.js" defer></script>

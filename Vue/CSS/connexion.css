@@ -14,7 +14,8 @@
 .inscrivez-vous {
   border-radius: 30px;
   box-shadow: 2px 2px;
-  background: rgba(217, 217, 217, 0.8);
+  background: #ffff;
+  opacity: 0.95;
 }
 
 .connexion-content {
@@ -110,7 +111,7 @@ form {
 input:-internal-autofill-selected {
   appearance: menulist-button;
   background-image: none !important;
-  background-color: rgba(217, 163, 106, 0.7);
+  background-color: rgba(217, 163, 106, 0.95);
   color: fieldtext !important;
 }
 

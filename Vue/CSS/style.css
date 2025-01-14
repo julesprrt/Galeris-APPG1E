@@ -66,7 +66,7 @@ img {
 }
 
 .input-user {
-  background: rgba(217, 163, 106, 0.7);
+  background: rgba(217, 163, 106, 0.95);
   border: none;
   padding: 15px;
   width: 18em;
@@ -79,7 +79,7 @@ img {
   padding: 15px;
   width: 18em;
   border-radius: 5px;
-  background: rgba(217, 163, 106, 0.7);
+  background: rgba(217, 163, 106, 0.95);
 }
 
 .input-user-first::placeholder {
@@ -97,7 +97,7 @@ img {
   text-align: end;
   font-family: Arial, Helvetica, sans-serif;
   font-weight: 400;
-  font-size: 12px;
+  font-size: 15px;
   color: black;
   text-decoration: none;
   padding-top: 20px;
