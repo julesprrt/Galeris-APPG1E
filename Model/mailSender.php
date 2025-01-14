@@ -1,5 +1,9 @@
 <?php
+require 'vendor/autoload.php';
 require_once('Database/Database.php');
+
+use PHPMailer\PHPMailer\PHPMailer;
+
 
 class MailSender
 {
@@ -10,11 +14,25 @@ class MailSender
 
     public function sendMail($to, $subject, $message, $from)
     {
-        $headers = [
-            'From' => $from . '<' . $to . '>',
-            'Content-Type' => 'text/html; charset=UTF-8'
-        ];
-        if (mail($to, $subject, $message, $headers)) {
+        $mail = new PHPMailer(true);
+        $mail->IsSMTP();                    
+        $mail->Host = "smtp.gmail.com";
+        $mail->Port = 587;
+        $mail->SMTPAuth = true;            
+        $mail->Username = email_galeris;
+        $mail->Password = 'kwdo bkhh cfat bkbv';
+
+        $mail->setFrom(email_galeris, $from);  
+
+        $mail->AddAddress($to, '');
+
+        $mail->WordWrap = 50;               
+        $mail->Priority = 1;
+        $mail->Subject = $subject;
+        $mail->Body = $message;
+        $mail->IsHTML(true);
+
+        if ($mail->send()) {
             return true;
         } else {
             return false;
@@ -43,21 +61,36 @@ class MailSender
         </div>
     </div>';
 
-        $headers = [
-            'From' => email_galeris,
-            'Content-Type' => 'text/html; charset=UTF-8'
-        ];
+
 
         $subject = "Confirmation de Livraison";
 
-        if (mail($to, $subject, $message, $headers)) {
+        $mail = new PHPMailer(true);
+        $mail->IsSMTP();                    
+        $mail->Host = "smtp.gmail.com";
+        $mail->Port = 587;
+        $mail->SMTPAuth = true;             
+        $mail->Username = 'galeris2004@gmail.com';
+        $mail->Password = 'kwdo bkhh cfat bkbv';
+
+        $mail->From = email_galeris;
+
+        $mail->AddAddress($to, '');
+
+        $mail->WordWrap = 50;               
+        $mail->Priority = 1;
+        $mail->Subject = $subject;
+        $mail->Body = $message;
+        $mail->IsHTML(true);
+
+        if ($mail->send()) {
             return true;
         } else {
             return false;
         }
     }
 
-    public function signalement($oeuvreId, $raison,$titre,$nom,$prenom)
+    public function signalement($oeuvreId, $raison, $titre, $nom, $prenom)
     {
         $mail = $_SESSION['usersessionMail'];
         $user_id = $_SESSION["usersessionID"];
@@ -68,27 +101,39 @@ class MailSender
         <h2 style="color: #d9534f; font-size: 24px; margin-top: 0;">Signalement d œuvre</h2>
         <p style="margin: 16px 0;">
             L utilisateur 
-            <span style="font-weight: bold; color: #5bc0de;">'.$nom . ' ' . $prenom . '</span> 
-            (<a href="mailto:$mail" style="color: #5bc0de; text-decoration: none;">'. $mail .'</a>, id : 
-            <span style="font-weight: bold; color: #5bc0de;">' . $user_id .'</span>) a signalé l œuvre 
+            <span style="font-weight: bold; color: #5bc0de;">' . $nom . ' ' . $prenom . '</span> 
+            (<a href="mailto:$mail" style="color: #5bc0de; text-decoration: none;">' . $mail . '</a>, id : 
+            <span style="font-weight: bold; color: #5bc0de;">' . $user_id . '</span>) a signalé l œuvre 
             <span style="font-weight: bold; color: #d9534f;">#' . $oeuvreId . '</span> - 
             <span style="font-style: italic; color: #d9534f;">' . $titre . '</span> pour la raison suivante :
         </p>
         <blockquote style="margin: 20px 0; padding: 15px; border-left: 5px solid #d9534f; background-color: #f7f7f7; color: #555;">
-            <b>'.$raison.'</b>
+            <b>' . $raison . '</b>
         </blockquote>
     </div>
 </body>';
 
-        $headers = [
-            'From' => email_galeris,
-            'Content-Type' => 'text/html; charset=UTF-8'
-        ];
+        $mail = new PHPMailer(true);
+        $mail->IsSMTP();                    
+        $mail->Host = "smtp.gmail.com";
+        $mail->Port = 587;
+        $mail->SMTPAuth = true;             
+        $mail->Username = 'galeris2004@gmail.com';
+        $mail->Password = 'kwdo bkhh cfat bkbv';
 
-        if(mail($to, $subject, $message, $headers)){
+        $mail->From = email_galeris;
+
+        $mail->AddAddress($to, '');
+
+        $mail->WordWrap = 50;               
+        $mail->Priority = 1;
+        $mail->Subject = $subject;
+        $mail->Body = $message;
+        $mail->IsHTML(true);
+
+        if ($mail->send()) {
             return true;
-        }
-        else{
+        } else {
             return false;
         }
     }
