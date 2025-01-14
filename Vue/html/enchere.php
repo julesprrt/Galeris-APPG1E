@@ -167,8 +167,7 @@
 
                 <?php
                 if ($user || $userRole) {
-                    echo '<button class="boutton-modifier">Modifier</button>
-                        <button class="boutton-supprimer">Supprimer</button>';
+                    echo '<button class="boutton-supprimer">Supprimer</button>';
                     }
                     else{
                         echo '<button class="boutton-offre">Enchérir</button>';

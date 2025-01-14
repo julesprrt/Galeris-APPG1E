@@ -18,7 +18,7 @@ Class Favoris{
         $stmt->execute();
         $result = $stmt->get_result();
         $stmt->close();
-        if(mysqli_num_rows($result) > 0){
+        if($result->num_rows > 0){
             return true;
         }
         return false;
