@@ -2,8 +2,8 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Hôte : 127.0.0.1
--- Généré le : mar. 14 jan. 2025 à 17:50
+-- Hôte : 127.0.0.1:3306
+-- Généré le : jeu. 16 jan. 2025 à 22:28
 -- Version du serveur : 10.4.32-MariaDB
 -- Version de PHP : 8.2.12
 
@@ -231,6 +231,18 @@ INSERT INTO `oeuvre` (`id_oeuvre`, `Titre`, `Description`, `eco_responsable`, `D
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `oeuvre_file`
+--
+
+CREATE TABLE `oeuvre_file` (
+  `id_oeuvre_file` int(11) NOT NULL,
+  `chemin_fichier` text DEFAULT NULL,
+  `id_oeuvre` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `oeuvre_images`
 --
 
@@ -390,6 +402,12 @@ ALTER TABLE `oeuvre`
   ADD PRIMARY KEY (`id_oeuvre`);
 
 --
+-- Index pour la table `oeuvre_file`
+--
+ALTER TABLE `oeuvre_file`
+  ADD PRIMARY KEY (`id_oeuvre_file`);
+
+--
 -- Index pour la table `oeuvre_images`
 --
 ALTER TABLE `oeuvre_images`
@@ -485,6 +503,12 @@ ALTER TABLE `news_images`
 --
 ALTER TABLE `oeuvre`
   MODIFY `id_oeuvre` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=68;
+
+--
+-- AUTO_INCREMENT pour la table `oeuvre_file`
+--
+ALTER TABLE `oeuvre_file`
+  MODIFY `id_oeuvre_file` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT pour la table `oeuvre_images`
