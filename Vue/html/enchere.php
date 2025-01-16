@@ -157,6 +157,12 @@
                         echo "<p>Offreur : " . htmlspecialchars($oeuvre['nom_offreur']) . ' ' . htmlspecialchars($oeuvre['prenom_offreur']) . "</p>";
                     }
                     ?>
+                    <?php
+                        if($oeuvre["eco_responsable"] === 1){
+                            echo "<p><small class='eco'>Oeuvre éco-responsable</small></p>";
+                            echo "<a href=" .$oeuvre['oeuvre_file'] .  " download='fichier'>Fichier justificatif</a>";
+                        }
+                    ?>
 
 
                 </div>
