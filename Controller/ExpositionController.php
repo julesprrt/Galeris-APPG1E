@@ -41,7 +41,7 @@ class ExpositionController extends Controller{
             $result = $exposition->VerifyAndSaveExposition($db);
             if($result===200){
                 http_response_code(200);
-                echo json_encode(['Success' => "Votre demande est bien pris en compte, votre demande est mise en attente"]);
+                echo json_encode(['Success' => "Votre demande est bien prise en compte, votre demande est mise en attente"]);
             }
             else if($result===401){
                 http_response_code(401);
@@ -78,7 +78,7 @@ class ExpositionController extends Controller{
         }
         else{
             http_response_code(400);
-            echo json_encode(['Error' => "Votre demande d'exposition à bien été pris en compte"]);
+            echo json_encode(['Error' => "Votre demande d'exposition à bien été prise en compte"]);
         }
     }
 

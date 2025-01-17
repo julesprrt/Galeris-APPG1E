@@ -104,7 +104,7 @@ class UserController extends Controller
             $type = $_SESSION["usersessionType"];
             if ($response == 200 && $type === "") {
                 http_response_code(200);
-                echo json_encode(['Success' => "Inscription reussie"]);
+                echo json_encode(['Success' => "Inscription réussie"]);
             } else if ($response == 200 && $type === "password") {
                 http_response_code(200);
                 echo json_encode(['Success' => $type]);
@@ -340,7 +340,7 @@ class UserController extends Controller
 
             if ($code === 401) {
                 http_response_code(401);
-                echo json_encode(['Error' => 'La raison de votre signalement doit contenir plus que 25 caractères.']);
+                echo json_encode(['Error' => 'La raison de votre signalement doit contenir plus de 25 caractères.']);
             }
 
 
@@ -388,7 +388,7 @@ class UserController extends Controller
             }
             else{
                 http_response_code(200);
-                echo json_encode(['Success' => "La somme de " . $data["solde"] . " € à était envoyé sur votre compte Stripe."]);
+                echo json_encode(['Success' => "La somme de " . $data["solde"] . " € a été envoyé sur votre compte Stripe."]);
             }
         }
         else{

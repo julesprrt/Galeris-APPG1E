@@ -46,7 +46,7 @@ class LivraisonController extends Controller
             $statut = $livraison->saveLivraison($db);
             if($statut === 200){
                 http_response_code(200);
-                echo json_encode(["Success" => "Données bien enregistré"]);
+                echo json_encode(["Success" => "Données bien enregistrées"]);
             }
             else if($statut === 401){
                 http_response_code(401);

@@ -69,7 +69,7 @@ class PanierController extends Controller
         $result = $panier->retirerPanierID($db, $data["id"]);
         if ($result === 200) {
             http_response_code($result);
-            echo json_encode(["panier" => "Produit retirer du panier"]);
+            echo json_encode(["panier" => "Produit retiré du panier"]);
         } else {
             http_response_code($result);
             echo json_encode(["panier" => "Erreur panier"]);
@@ -90,7 +90,7 @@ class PanierController extends Controller
         $result = $panier->retirerPanier($db);
         if ($result === 200) {
             http_response_code($result);
-            echo json_encode(["panier" => "Produit retirer du panier"]);
+            echo json_encode(["panier" => "Produit retiré du panier"]);
         } else {
             http_response_code($result);
             echo json_encode(["panier" => "Erreur panier"]);

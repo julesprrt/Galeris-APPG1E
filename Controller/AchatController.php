@@ -96,7 +96,7 @@ class AchatController extends Controller
             echo json_encode(['Error' => "Veuillez renseigner vos données de livraison sur la page livraison avant d'enchérir sur une oeuvre"]);
         } else {
             http_response_code(200);
-            echo json_encode(['Success' => "Si vous remportez l'enchère votre commande sera livré à l'adresse suivante : " . $result["adresse"] . " " . $result["codepostale"] . ", " . $result["ville"] . " " . $result["pays"], 'prix' => number_format($result["prixCourant"], 2, '.', '')]);
+            echo json_encode(['Success' => "Si vous remportez l'enchère votre commande sera livrée à l'adresse suivante : " . $result["adresse"] . " " . $result["codepostale"] . ", " . $result["ville"] . " " . $result["pays"], 'prix' => number_format($result["prixCourant"], 2, '.', '')]);
         }
     }
 
@@ -145,6 +145,6 @@ class AchatController extends Controller
         $oeuvre = new Oeuvre($Titre = null, $Description = null, $eco_responsable = null, $Date_debut = null, $Date_fin = null, $Prix = null, $type_vente = null, $est_vendu = null, $auteur = null, $id_utilisateur = null, $id_categorie = null, $status = null, $nomvendeur = null, $prenomvendeur = null, $chemin_image = null, $prix_actuel = null, $id_offreur = null, $id_vente = null, $prix = null, $Date_vente = null);
         $oeuvre->supprimerOeuvre($db);
         http_response_code(200);
-        echo json_encode(["Success" => "Oeuvre supprimé"]);
+        echo json_encode(["Success" => "Oeuvre supprimée"]);
     }
 }

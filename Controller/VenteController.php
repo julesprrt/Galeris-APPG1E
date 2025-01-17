@@ -44,7 +44,7 @@ Class VenteController extends Controller{//Controlleur accueil
             $result = $vente->VerifyAndSaveProduct($db);
             if($result === 200){
                 http_response_code($result);
-                echo json_encode(['Success' => "Votre demande est bien pris en compte, votre demande est mise en attente"]);
+                echo json_encode(['Success' => "Votre demande est bien prise en compte, votre demande est mise en attente"]);
             }
             else{
                 http_response_code(400);

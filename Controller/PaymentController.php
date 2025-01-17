@@ -20,7 +20,7 @@ class PaymentController extends Controller
 
         if ($result === 401) {
             http_response_code(401);
-            echo json_encode(["payment" => "erreur paiement"]);
+            echo json_encode(["payment" => "Erreur lord du paiement"]);
             exit();
         }
 
