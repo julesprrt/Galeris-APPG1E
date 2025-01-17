@@ -217,6 +217,14 @@ textarea {
   font-size: 16px;
 }
 
+.signaler-close-button:hover {
+  opacity: 0.9;
+}
+
+#btnSignaler:hover {
+  opacity: 0.9;
+}
+
 .actions button:hover {
   opacity: 0.9;
 }
@@ -367,25 +375,6 @@ textarea {
   font-weight: bold;
   text-align: center;
   font-size: 1.5em;
-}
-
-.signaler-form {
-  position: absolute;
-  left: 20%;
-  z-index: 999;
-  background-color: #ffff;
-  padding: 20px 40px 40px 40px;
-  border-radius: 4px;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-  display: none;
-}
-
-.signaler-close-button:hover {
-  opacity: 0.9;
-}
-
-#btnSignaler:hover {
-  opacity: 0.9;
 }
 
 .btn-close-container {
