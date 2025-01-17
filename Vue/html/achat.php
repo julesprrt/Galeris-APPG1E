@@ -199,13 +199,6 @@
                                 alt="Image de <?php echo htmlspecialchars($oeuvre['Titre']); ?>">
                         <?php endforeach; ?>
                     </div>
-
-
-
-
-
-                    <!-- Flèche droite -->
-                    <button class="carousel-fleche droite cfd">&#10095;</button>
                 </div>
 
 

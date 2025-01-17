@@ -38,7 +38,6 @@ main {
 
 .art-image img {
   width: 100%;
-  display: none;
 }
 
 .art-image img.active {
@@ -241,6 +240,21 @@ main {
   }
 
   .carousel-fleche {
+
+    position: initial;
+    top: 50%;
+    background: none;
+    border: none;
+    font-size: 1.4em;
+    padding: 0.8em;
+    cursor: pointer;
+    color: #333;
+    
+    /* Box autour de la flèche, à changer peut-être. */
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+
     font-size: 1.2em;
     padding: 0.5em;
   }
