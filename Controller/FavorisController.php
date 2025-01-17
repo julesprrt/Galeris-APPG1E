@@ -35,6 +35,13 @@ class FavorisController extends Controller
 
     public function ajoutFavoris(Database $db)
     { 
+        session_start();
+        if(!isset($_SESSION["usersessionID"])){
+            http_response_code(400);
+            echo json_encode(["redirection" => "redirection"]);
+            exit();
+        }
+
         $favoris = new Favoris();
         $result = $favoris->ajoutFavoris($db);
         if($result === 200){
@@ -51,6 +58,13 @@ class FavorisController extends Controller
 
     public function retirerFavoris(Database $db)
     {   
+        session_start();
+        if(!isset($_SESSION["usersessionID"])){
+            http_response_code(400);
+            echo json_encode(["redirection" => "redirection"]);
+            exit();
+        }
+        
         $favoris = new Favoris();
         $result = $favoris->retirerFavoris($db);
         if($result === 200){

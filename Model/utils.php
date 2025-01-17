@@ -31,9 +31,9 @@ Class Utils {
         return getimagesize($image) ? true : false;
     }
 
-    public function human_filesize($base64Image){ //return memory size in B, KB, MB
+    public function human_filesize($file){ //return memory size in B, KB, MB
         try{
-            $size_in_bytes = (int) (strlen(rtrim($base64Image, '=')) * 3 / 4);
+            $size_in_bytes = (int) (strlen(rtrim($file, '=')) * 3 / 4);
             $size_in_kb    = $size_in_bytes / 1024;
             $size_in_mb    = $size_in_kb / 1024;
     
@@ -54,6 +54,20 @@ Class Utils {
 
 
         file_put_contents($filename, $base64Image);//enregistrer l'image dans le dossiser ImageBD/Ouevre
+        return $filename;
+    }
+
+    public function saveFileEco($file, $repository){;
+        preg_match('/^data:(.*?);base64/', $file, $type);
+        $fileBase = substr($file, strpos($file, ',') + 1);
+        $type = strtolower(explode("/", $type[1])[1]);//recuperer le type (exemple .png)
+        $fileBase = base64_decode($fileBase); //decodage image
+
+
+        $filename = "ImageBD/{$repository}" . '/' . uniqid('file_', true) . '.' . $type; //nom fichier unique
+
+
+        file_put_contents($filename, $fileBase);
         return $filename;
     }
 

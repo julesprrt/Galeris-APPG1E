@@ -19,7 +19,6 @@ require_once("./Controller/LivraisonController.php");
 require_once("./Controller/NewsController.php");
 require_once("./Controller/NovArtController.php");
 require_once("./Controller/MentionsLegalesController.php");
-require_once("./Controller/BurgerController.php");
 require_once("./Controller/DashBoardController.php");
 require_once("./Controller/HistoriqueController.php");
 
@@ -89,11 +88,8 @@ $router->addRoute('/favoris', FavorisController::class, 'favoris');
 $router->addRoute('/retirerfavorisid', FavorisController::class, 'retirerFavorisId');
 $router->addRoute('/saveiduser', UserController::class, 'consultation');
 $router->addRoute('/utilisateur', UserController::class, 'profil_consultation');
-
 $router->addRoute('/novart', NovArtController::class, 'novart');
 $router->addRoute('/mentionslegales', MentionsLegalesController::class, 'mentionslegales');
-$router->addRoute('/burgerbar', BurgerController::class, 'burgerMenu');
-
 $router->addRoute('/dashboard', DashBoardController::class, 'dashboard');
 $router->addRoute('/historique',HistoriqueController::class, 'historique');
 $router->addRoute('/saveidhistorique', HistoriqueController::class, 'saveidhistorique');

@@ -19,7 +19,7 @@ async function contact() {
         body: raw,
         redirect: "follow"
     };
-    const response = await fetch("./contact")
+    const response = await fetch("./contact",requestOptions)
     const statuscode = response.status;
     const result = await response.json();
     if (statuscode === 200) {

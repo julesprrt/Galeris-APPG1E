@@ -15,6 +15,10 @@ main {
 
 /* Section de gauche */
 
+.eco {
+    color : green
+}
+
 .gauche {
     flex: 2;
     background-color: #fff;

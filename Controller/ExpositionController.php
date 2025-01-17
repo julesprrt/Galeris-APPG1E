@@ -88,12 +88,6 @@ class ExpositionController extends Controller{
         $data = json_decode($paramData, true);
         if (isset($data['id'])) {
             session_start();
-
-            if (!isset($_SESSION['usersessionID'])) {
-                header('Location: ./connexion');
-                exit();
-            }
-
             $_SESSION['expose_id'] = (int)$data['id'];
             http_response_code(200);
         } else {
@@ -125,10 +119,6 @@ class ExpositionController extends Controller{
         $expose = new Exposition(null,null,null,null,null,null,null);
         session_start();
 
-        if (!isset($_SESSION['usersessionID'])) {
-            header('Location: ./connexion');
-            exit();
-        }
         $role = isset($_SESSION["usersessionRole"]) === true && $_SESSION["usersessionRole"] === "Admin" ? true : false;
         $id =  $_SESSION['expose_id'];
         

@@ -28,7 +28,21 @@
             </ul>
         </nav>
         <div class="barre_recherche">
-            <input type="text" placeholder="Rechercher...">
+        <input type="text" placeholder="Rechercher..." class="shearch">
+                <datalist id="galeris-list">
+                        <?php
+                            foreach($users as $user_barre){
+                                echo '<option data-value="utilisateur_' . $user_barre["id_utilisateur"] . '" value="' . $user_barre["nom"] . ' ' . $user_barre["prenom"] . ' ' . $user_barre["id_utilisateur"] .' (utilisateur)">';
+                            }
+                            foreach($exposes as $expose_barre){
+                                echo '<option data-value="expose_' . $expose_barre["id_exhibition"] . '" value="' . $expose_barre["titre"] . ' ' . $expose_barre["id_exhibition"] . ' (exposé)">';
+                            }
+                            foreach($oeuvres as $oeuvre_barre){
+                                echo '<option data-value="oeuvre_' . $oeuvre_barre["id_oeuvre"] . '" value="' . $oeuvre_barre["Titre"] . ' ' . $oeuvre_barre["auteur"] . ' ' . $oeuvre_barre["id_oeuvre"] . ' (Oeuvre)">';
+                            }
+                                
+                        ?>
+                </datalist>
             <div class="favori"> <a href="./favoris">❤️ </a></div>
             <div class="panier"> <a href="./panier"> 🛒 </a></div>
 
@@ -42,7 +56,7 @@
                     (($userRole === true) ?
                         '<a href="./listeoeuvreattente">Oeuvres en attente</a>
                                     <a href="./listeexposeattente">Exposés en attente</a>' : "") .
-                    '<a id="deconnexion">Déconnexion</a>
+                    '<a class="deconnexion">Déconnexion</a>
                             </div>
                            </div>';
             } else {
@@ -67,7 +81,7 @@
                             echo '<div class="oeuvre">';
                             echo '<input type="hidden" id="id_oeuvre_' . $his["id"] . '" name="id_oeuvre" value="' . $his["id"] . '">';
                             echo '<h3>' . $his["Titre"] . '</h3>';
-                            echo '<img src="../' . $his["image_path"] . '" alt="' . $his["Titre"] . '" />';
+                            echo '<img src="./' . $his["image_path"] . '" alt="' . $his["Titre"] . '" />';
                             echo '<p>' . substr($his["Description"], 0, 250) . '(...)</p>';
                             if ($his['statut'] == 'en attente de validation' or $his['statut'] == 'accepte'){
                                 echo '<p>' . $his['statut'] . '</p>';
@@ -97,7 +111,7 @@
                             echo '<div class="oeuvre">';
                             echo '<input type="hidden" id="id_oeuvre_' . $ach["id"] . '" name="id_oeuvre" value="' . $ach["id"] . '">';
                             echo '<h3>' . $ach["Titre"] . '</h3>';
-                            echo '<img src="../' . $ach["image_path"] . '" alt="' . $ach["Titre"] . '" />';
+                            echo '<img src="./' . $ach["image_path"] . '" alt="' . $ach["Titre"] . '" />';
                             echo '<p> Vendu pour ' . $ach['Prix'] . '€ le ' . $ach['Date_vente']. '</p>';
                             echo '</div>';
                             echo '</div>';
