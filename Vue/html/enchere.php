@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= htmlspecialchars($oeuvre['Titre']) ?> </title>
-    
+
     <link rel="stylesheet" href="Vue/CSS/enchere.css">
     <link rel="stylesheet" href="Vue/CSS/style.css">
     <link rel="stylesheet" href="Vue/CSS/header.css">
@@ -15,37 +15,120 @@
 </head>
 
 <header>
-    <a href="./">
-        <div class="logo"> <img src="images/logo.png"></div>
-    </a>
+    <div class="logo"> <a href="./"><img src="images/logo.png"></a></div>
+
+    <div class="ham-search-cote">
+        <div class="hamburger-container">
+            <img src="images/hamMenu.png" alt="Menu hamburger" id="ham-img" class="hamburger-image">
+            <nav id="ham-menu" class="hamburgermenu">
+                <ul class="ham-menu-resp">
+                    <li><a href="./">Accueil</a></li>
+                    <li><a href="./ventes">Vente</a></li>
+                    <li><a href="./exposes">Exposition</a></li>
+                    <li><a href="./listenews">News</a></li>
+                    <div class="favori2"> <a href="./favoris">❤️</a></div>
+                    <div class="panier2"> <a href="./panier">🛒</a></div>
+                    <?php
+                    if ($connectUser === true) {
+                        echo '<div class="dropdown2">
+                                <div class="utilisateur2"> 👤 </div>
+                                <div class="dropdown2-child">
+                                    <a href="./profil">Mon profil</a>
+                                    <a href="./solde">Mon solde</a>' .
+                            (($userRole === true) ?
+                                '<a href="./listeoeuvreattente">Oeuvres en attente</a>
+                                        <a href="./listeexposeattente">Exposés en attente</a>' : "") .
+                            '<a class="deconnexion">Déconnexion</a>
+                                </div>
+                            </div>';
+                    } else {
+                        echo '<div class="utilisateur2"><a href="./connexion"> 👤 </a></div>';
+                    }
+                    ?>
+
+                </ul>
+            </nav>
+        </div>
+
+        <nav class="menu">
+            <ul>
+                <li><a href="./">Accueil</a></li>
+                <li><a href="./ventes">Vente</a></li>
+                <li><a href="./exposes">Exposition</a></li>
+                <li><a href="./listenews">News</a></li>
+
+            </ul>
+        </nav>
+
+        <div class="barre_recherche">
+            <input type="text" placeholder="Rechercher..." class="shearch">
+            <datalist id="galeris-list">
+                <?php
+                foreach ($users as $user_barre) {
+                    echo '<option data-value="utilisateur_' . $user_barre["id_utilisateur"] . '" value="' . $user_barre["nom"] . ' ' . $user_barre["prenom"] . ' ' . $user_barre["id_utilisateur"] . ' (utilisateur)">';
+                }
+                foreach ($exposes as $expose_barre) {
+                    echo '<option data-value="expose_' . $expose_barre["id_exhibition"] . '" value="' . $expose_barre["titre"] . ' ' . $expose_barre["id_exhibition"] . ' (exposé)">';
+                }
+                foreach ($oeuvres as $oeuvre_barre) {
+                    echo '<option data-value="oeuvre_' . $oeuvre_barre["id_oeuvre"] . '" value="' . $oeuvre_barre["Titre"] . ' ' . $oeuvre_barre["auteur"] . ' ' . $oeuvre_barre["id_oeuvre"] . ' (Oeuvre)">';
+                }
+
+                ?>
+            </datalist>
+            <div class="favori"> <a href="./favoris">❤️</a></div>
+            <div class="panier"> <a href="./panier">🛒</a></div>
+
+            <?php
+            if ($connectUser === true) {
+                echo '<div class="dropdown">
+                                <div class="utilisateur"> 👤 </div>
+                                <div class="dropdown-child">
+                                    <a href="./profil">Mon profil</a>
+                                    <a href="./solde">Mon solde</a>' .
+                    (($userRole === true) ?
+                        '<a href="./listeoeuvreattente">Oeuvres en attente</a>
+                                        <a href="./listeexposeattente">Exposés en attente</a>' : "") .
+                    '<a class="deconnexion">Déconnexion</a>
+                                </div>
+                            </div>';
+            } else {
+                echo '<div class="utilisateur"><a href="./connexion"> 👤 </a></div>';
+            }
+            ?>
+
+
+        </div>
+    </div>
+
     <nav class="menu">
         <ul>
             <li><a href="./">Accueil</a></li>
             <li><a href="./ventes">Vente</a></li>
             <li><a href="./exposes">Exposition</a></li>
             <li><a href="./listenews">News</a></li>
-            
+
         </ul>
     </nav>
-    <div class="barre_recherche">
-        <!-- Barre de recherche, les emojis sont responsives si on clique dessus -->
+    <div class="barre_recherche2">
         <input type="text" placeholder="Rechercher..." class="shearch">
-                <datalist id="galeris-list">
-                        <?php
-                            foreach($users as $user_barre){
-                                echo '<option data-value="utilisateur_' . $user_barre["id_utilisateur"] . '" value="' . $user_barre["nom"] . ' ' . $user_barre["prenom"] . ' ' . $user_barre["id_utilisateur"] .' (utilisateur)">';
-                            }
-                            foreach($exposes as $expose_barre){
-                                echo '<option data-value="expose_' . $expose_barre["id_exhibition"] . '" value="' . $expose_barre["titre"] . ' ' . $expose_barre["id_exhibition"] . ' (exposé)">';
-                            }
-                            foreach($oeuvres as $oeuvre_barre){
-                                echo '<option data-value="oeuvre_' . $oeuvre_barre["id_oeuvre"] . '" value="' . $oeuvre_barre["Titre"] . ' ' . $oeuvre_barre["auteur"] . ' ' . $oeuvre_barre["id_oeuvre"] . ' (Oeuvre)">';
-                            }
-                                
-                        ?>
-                </datalist>
-        <div class="favori"> <a href="./favoris">❤️ </a></div>
-        <div class="panier"> <a href="./panier"> 🛒 </a></div>
+        <datalist id="galeris-list">
+            <?php
+            foreach ($users as $user_barre) {
+                echo '<option data-value="utilisateur_' . $user_barre["id_utilisateur"] . '" value="' . $user_barre["nom"] . ' ' . $user_barre["prenom"] . ' ' . $user_barre["id_utilisateur"] . ' (utilisateur)">';
+            }
+            foreach ($exposes as $expose_barre) {
+                echo '<option data-value="expose_' . $expose_barre["id_exhibition"] . '" value="' . $expose_barre["titre"] . ' ' . $expose_barre["id_exhibition"] . ' (exposé)">';
+            }
+            foreach ($oeuvres as $oeuvre_barre) {
+                echo '<option data-value="oeuvre_' . $oeuvre_barre["id_oeuvre"] . '" value="' . $oeuvre_barre["Titre"] . ' ' . $oeuvre_barre["auteur"] . ' ' . $oeuvre_barre["id_oeuvre"] . ' (Oeuvre)">';
+            }
+
+            ?>
+        </datalist>
+        <div class="favori"> <a href="./favoris">❤️</a></div>
+        <div class="panier"> <a href="./panier">🛒</a></div>
+
         <?php
         if ($connectUser === true) {
             echo '<div class="dropdown">
@@ -56,7 +139,7 @@
                 (($userRole === true) ?
                     '<a href="./listeoeuvreattente">Oeuvres en attente</a>
                                     <a href="./listeexposeattente">Exposés en attente</a>
-                                     <a href="./dashboard">Tableau de bord</a>' : "") .
+                                    <a href="./dashboard">Tableau de bord</a>' : "") .
                 '<a class="deconnexion">Déconnexion</a>
                             </div>
                            </div>';
@@ -89,7 +172,8 @@
             <button class="signaler-close-button" type="submit">X</button>
         </div>
         <p class="title-signaler">Signaler une oeuvre</p>
-        <textarea type="text" class="input-signalement" cols="30" rows="10" name="signalement" placeholder="Raison : 25 caractères minimum"></textarea>
+        <textarea type="text" class="input-signalement" cols="30" rows="10" name="signalement"
+            placeholder="Raison : 25 caractères minimum"></textarea>
         <br>
         <p class="error"></p>
         <br>
@@ -131,7 +215,8 @@
             <section class="profil-section">
                 <div class="profil-info">
                     <?php echo '<input type="hidden" id="id_utilisateur" name="id_utilisateur" value="' . $oeuvre["id_utilisateur"] . '">'; ?>
-                    <img src="./<?php echo $oeuvre['profil'] ?? 'ImageBD/Profil/avatarbasique.jpg'; ?>" alt="Photo de profil" class="photo-profil">
+                    <img src="./<?php echo $oeuvre['profil'] ?? 'ImageBD/Profil/avatarbasique.jpg'; ?>"
+                        alt="Photo de profil" class="photo-profil">
                     <div class="profil-nom">
                         <strong>Vendeur :
                             <?php echo htmlspecialchars($oeuvre['nom']) . " " . htmlspecialchars($oeuvre['prenom']); ?></strong>
@@ -158,10 +243,10 @@
                     }
                     ?>
                     <?php
-                        if($oeuvre["eco_responsable"] === 1){
-                            echo "<p><small class='eco'>Oeuvre éco-responsable</small></p>";
-                            echo "<a href=" .$oeuvre['oeuvre_file'] .  " download='fichier'>Fichier justificatif</a>";
-                        }
+                    if ($oeuvre["eco_responsable"] === 1) {
+                        echo "<p><small class='eco'>Oeuvre éco-responsable</small></p>";
+                        echo "<a href=" . $oeuvre['oeuvre_file'] . " download='fichier'>Fichier justificatif</a>";
+                    }
                     ?>
 
 
@@ -174,16 +259,14 @@
                 <?php
                 if ($user || $userRole) {
                     echo '<button class="boutton-supprimer">Supprimer</button>';
+                } else {
+                    echo '<button class="boutton-offre">Enchérir</button>';
+                    if ($favoris === false) {
+                        echo '<button class="boutton-favoris">Ajouter au favoris</button>';
+                    } else {
+                        echo '<button class="boutton-retirer-favoris">Retirer du Favoris</button>';
                     }
-                    else{
-                        echo '<button class="boutton-offre">Enchérir</button>';
-                        if($favoris === false){   
-                            echo '<button class="boutton-favoris">Ajouter au favoris</button>';
-                        }
-                        else{
-                            echo '<button class="boutton-retirer-favoris">Retirer du Favoris</button>';
-                        }
-                    }
+                }
                 ?>
                 <button id="btnSignaleropenform">Signaler cette œuvre</button>
             </section>
@@ -260,7 +343,7 @@
     <div class="container-footer">
         <a class="title-footer">Informations légales</a>
         <a class="item-footer" href="./cgu>Conditions d'utilisations</a>
-        <a class="item-footer" href="./mentionslegales">Mentions légales</a>
+        <a class=" item-footer" href="./mentionslegales">Mentions légales</a>
     </div>
 
 
