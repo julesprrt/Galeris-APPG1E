@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="Vue/CSS/header.css">
     <link rel="stylesheet" href="Vue/CSS/footer.css">
     <script src="Vue/JS/header.js" defer></script>
+    <script src="Vue/JS/deconnexion.js" defer></script>
     <title>galeris</title>
 </head>
 
@@ -21,27 +22,27 @@
                     <li><a href="./ventes">Vente</a></li>
                     <li><a href="./exposes">Exposition</a></li>
                     <li><a href="./listenews">News</a></li>
-                    
                 </ul>
             </nav>
             <div class="barre_recherche">
-                <!-- Barre de recherche, les emojis sont responsives si on clique dessus -->
                 <input type="text" placeholder="Rechercher..." class="shearch">
                 <datalist id="galeris-list">
-                        <?php
-                            foreach($users as $user_barre){
-                                echo '<option data-value="utilisateur_' . $user_barre["id_utilisateur"] . '" value="' . $user_barre["nom"] . ' ' . $user_barre["prenom"] . ' ' . $user_barre["id_utilisateur"] .' (utilisateur)">';
-                            }
-                            foreach($exposes as $expose_barre){
-                                echo '<option data-value="expose_' . $expose_barre["id_exhibition"] . '" value="' . $expose_barre["titre"] . ' ' . $expose_barre["id_exhibition"] . ' (exposé)">';
-                            }
-                            foreach($oeuvres as $oeuvre_barre){
-                                echo '<option data-value="oeuvre_' . $oeuvre_barre["id_oeuvre"] . '" value="' . $oeuvre_barre["Titre"] . ' ' . $oeuvre_barre["auteur"] . ' ' . $oeuvre_barre["id_oeuvre"] . ' (Oeuvre)">';
-                            }
-                                
-                        ?>
+                    <?php
+                    foreach ($users as $user_barre) {
+                        echo '<option data-value="utilisateur_' . $user_barre["id_utilisateur"] . '" value="'
+                            . $user_barre["nom"] . ' ' . $user_barre["prenom"] . ' ' . $user_barre["id_utilisateur"] . ' (utilisateur)">';
+                    }
+                    foreach ($exposes as $expose_barre) {
+                        echo '<option data-value="expose_' . $expose_barre["id_exhibition"] . '" value="'
+                            . $expose_barre["titre"] . ' ' . $expose_barre["id_exhibition"] . ' (exposé)">';
+                    }
+                    foreach ($oeuvres as $oeuvre_barre) {
+                        echo '<option data-value="oeuvre_' . $oeuvre_barre["id_oeuvre"] . '" value="'
+                            . $oeuvre_barre["Titre"] . ' ' . $oeuvre_barre["auteur"] . ' ' . $oeuvre_barre["id_oeuvre"] . ' (Oeuvre)">';
+                    }
+                    ?>
                 </datalist>
-                <div class="favori"> <a href="./favoris">❤️ </a></div>
+                <div class="favori"> <a href="./favoris">❤️</a></div>
                 <div class="panier"> <a href="./panier"> 🛒 </a></div>
                 <?php
                 if ($connectUser === true) {
@@ -64,12 +65,11 @@
             </div>
         </header>
 
-        <!-- Contenu -->
         <div class="page-galeris">
             <div class="contentbase">
                 <div class="content-description">
                     <p class="description">"Galeris est une plateforme en ligne qui permet aux artistes de présenter
-                        leurs œuvres à un public international, d’élargir leur notoriété et de valoriser leur travail. Grâce à galeris,
+                        leurs œuvres à un public international, d’élargir leur notoriété et de valoriser leur travail. Grâce à Galeris,
                         les artistes peuvent atteindre un marché bien plus vaste que les galeries physiques traditionnelles, tout en
                         limitant l’empreinte écologique et en offrant aux collectionneurs une expérience d’achat plus facile, personnalisée et responsable."
                     </p>
@@ -90,10 +90,7 @@
             </div>
         </div>
 
-
         <footer>
-
-            <!-- icones réseaux sociaux -->
             <div class="social-network">
                 <a href="#"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"
                         xmlns="http://www.w3.org/2000/svg">
@@ -123,8 +120,6 @@
                     </svg>
                 </a>
             </div>
-
-            <!-- infos footer (aide, contact ...) -->
             <div class="container-footer">
                 <a class="title-footer">Qui sommes nous</a>
                 <a class="item-footer" href="./novart">NovArt</a>
@@ -137,13 +132,11 @@
             </div>
             <div class="container-footer">
                 <a class="title-footer">Informations légales</a>
-                <a class="item-footer" href="./cgu">Conditions d'utilisations</a>
+                <a class="item-footer" href="./cgu">Conditions d'utilisation</a>
                 <a class="item-footer" href="./mentionslegales">Mentions légales</a>
             </div>
-
         </footer>
     </div>
 </body>
-
 
 </html>

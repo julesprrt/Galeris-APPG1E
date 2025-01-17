@@ -4,14 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <title>Modification de Profil</title>
-    
     <link rel="stylesheet" href="Vue/CSS/editionprofil.css">
     <link rel="stylesheet" href="Vue/CSS/header.css">
     <link rel="stylesheet" href="Vue/CSS/footer.css">
     <script src="Vue/JS/nominatim.js" defer></script>
     <script src="Vue/JS/header.js" defer></script>
     <script src="Vue/JS/editionprofil.js" defer></script>
-
 </head>
 
 <body>
@@ -27,25 +25,23 @@
                 <li><a href="./ventes">Vente</a></li>
                 <li><a href="./exposes">Exposition</a></li>
                 <li><a href="./listenews">News</a></li>
-                
             </ul>
         </nav>
         <div class="barre_recherche">
-        <input type="text" placeholder="Rechercher..." class="shearch">
-                <datalist id="galeris-list">
-                        <?php
-                            foreach($users as $user_barre){
-                                echo '<option data-value="utilisateur_' . $user_barre["id_utilisateur"] . '" value="' . $user_barre["nom"] . ' ' . $user_barre["prenom"] . ' ' . $user_barre["id_utilisateur"] .' (utilisateur)">';
-                            }
-                            foreach($exposes as $expose_barre){
-                                echo '<option data-value="expose_' . $expose_barre["id_exhibition"] . '" value="' . $expose_barre["titre"] . ' ' . $expose_barre["id_exhibition"] . ' (exposé)">';
-                            }
-                            foreach($oeuvres as $oeuvre_barre){
-                                echo '<option data-value="oeuvre_' . $oeuvre_barre["id_oeuvre"] . '" value="' . $oeuvre_barre["Titre"] . ' ' . $oeuvre_barre["auteur"] . ' ' . $oeuvre_barre["id_oeuvre"] . ' (Oeuvre)">';
-                            }
-                                
-                        ?>
-                </datalist>
+            <input type="text" placeholder="Rechercher..." class="shearch">
+            <datalist id="galeris-list">
+                <?php
+                foreach ($users as $user_barre) {
+                    echo '<option data-value="utilisateur_' . $user_barre["id_utilisateur"] . '" value="' . $user_barre["nom"] . ' ' . $user_barre["prenom"] . ' ' . $user_barre["id_utilisateur"] . ' (utilisateur)">';
+                }
+                foreach ($exposes as $expose_barre) {
+                    echo '<option data-value="expose_' . $expose_barre["id_exhibition"] . '" value="' . $expose_barre["titre"] . ' ' . $expose_barre["id_exhibition"] . ' (exposé)">';
+                }
+                foreach ($oeuvres as $oeuvre_barre) {
+                    echo '<option data-value="oeuvre_' . $oeuvre_barre["id_oeuvre"] . '" value="' . $oeuvre_barre["Titre"] . ' ' . $oeuvre_barre["auteur"] . ' ' . $oeuvre_barre["id_oeuvre"] . ' (Oeuvre)">';
+                }
+                ?>
+            </datalist>
             <div class="favori"><a href="./favoris">❤️</a></div>
             <div class="panier"><a href="./panier">🛒</a></div>
             <?php
@@ -66,22 +62,17 @@
                 echo '<div class="utilisateur"><a href="./connexion"> 👤 </a></div>';
             }
             ?>
-
-
         </div>
     </header>
 
     <main>
         <section class="profil">
             <h2>Modification de votre profil</h2>
-
-            <!-- Affichage d'un message d'erreur si nécessaire -->
             <?php if (isset($error) && !empty($error)) : ?>
                 <div class="error-message">
                     <?= htmlspecialchars($error) ?>
                 </div>
             <?php endif; ?>
-
             <form action="./process-edition" method="POST" enctype="multipart/form-data" class="profil-form">
                 <div class="profil-info">
                     <label for="photo-upload" class="profile-image-label">
@@ -185,10 +176,9 @@
         </div>
         <div class="container-footer">
             <a class="title-footer">Informations légales</a>
-            <a class="item-footer" href="./cgu">Conditions d'utilisations</a>
+            <a class="item-footer" href="./cgu">Conditions d'utilisation</a>
             <a class="item-footer" href="./mentionslegales">Mentions légales</a>
         </div>
-
     </footer>
     <script src="https://maps.googleapis.com/maps/api/js?key=VOTRE_CLE_API&libraries=places"></script>
 </body>

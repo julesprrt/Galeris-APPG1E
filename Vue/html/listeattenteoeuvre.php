@@ -4,13 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
     <link rel="stylesheet" href="Vue/CSS/listeattenteoeuvre.css">
     <link rel="stylesheet" href="Vue/CSS/header.css">
     <link rel="stylesheet" href="Vue/CSS/footer.css">
     <script src="Vue/JS/header.js" defer></script>
     <script src="Vue/JS/listeattenteoeuvre.js" defer></script>
-    <title>Liste des oeuvres en liste d'attente</title>
+    <title>Liste des œuvres en attente</title>
 </head>
 
 <body>
@@ -23,28 +22,28 @@
                     <li><a href="./ventes">Vente</a></li>
                     <li><a href="./exposes">Exposition</a></li>
                     <li><a href="./listenews">News</a></li>
-                    
                 </ul>
             </nav>
             <div class="barre_recherche">
-                <!-- Barre de recherche, les emojis sont responsives si on clique dessus -->
                 <input type="text" placeholder="Rechercher..." class="shearch">
                 <datalist id="galeris-list">
-                        <?php
-                            foreach($users as $user_barre){
-                                echo '<option data-value="utilisateur_' . $user_barre["id_utilisateur"] . '" value="' . $user_barre["nom"] . ' ' . $user_barre["prenom"] . ' ' . $user_barre["id_utilisateur"] .' (utilisateur)">';
-                            }
-                            foreach($exposes_barre as $expose_barre){
-                                echo '<option data-value="expose_' . $expose_barre["id_exhibition"] . '" value="' . $expose_barre["titre"] . ' ' . $expose_barre["id_exhibition"] . ' (exposé)">';
-                            }
-                            foreach($oeuvres_barre as $oeuvre_barre){
-                                echo '<option data-value="oeuvre_' . $oeuvre_barre["id_oeuvre"] . '" value="' . $oeuvre_barre["Titre"] . ' ' . $oeuvre_barre["auteur"] . ' ' . $oeuvre_barre["id_oeuvre"] . ' (Oeuvre)">';
-                            }
-                                
-                        ?>
+                    <?php
+                    foreach ($users as $user_barre) {
+                        echo '<option data-value="utilisateur_' . $user_barre["id_utilisateur"] . '" value="'
+                            . $user_barre["nom"] . ' ' . $user_barre["prenom"] . ' ' . $user_barre["id_utilisateur"] . ' (utilisateur)">';
+                    }
+                    foreach ($exposes_barre as $expose_barre) {
+                        echo '<option data-value="expose_' . $expose_barre["id_exhibition"] . '" value="'
+                            . $expose_barre["titre"] . ' ' . $expose_barre["id_exhibition"] . ' (exposé)">';
+                    }
+                    foreach ($oeuvres_barre as $oeuvre_barre) {
+                        echo '<option data-value="oeuvre_' . $oeuvre_barre["id_oeuvre"] . '" value="'
+                            . $oeuvre_barre["Titre"] . ' ' . $oeuvre_barre["auteur"] . ' ' . $oeuvre_barre["id_oeuvre"] . ' (Oeuvre)">';
+                    }
+                    ?>
                 </datalist>
-                <div class="favori"> <a href="./favoris">❤️ </a></div>
-                <div class="panier"> <a href="./panier"> 🛒 </a></div>
+                <div class="favori"> <a href="./favoris">❤️</a></div>
+                <div class="panier"> <a href="./panier">🛒</a></div>
                 <?php
                 if ($connectUser === true) {
                     echo '<div class="dropdown">
@@ -58,42 +57,35 @@
                                     <a href="./dashboard">Tableau de bord</a>' : "") .
                         '<a class="deconnexion">Déconnexion</a>
                             </div>
-                           </div>';
+                        </div>';
                 } else {
                     echo '<div class="utilisateur"><a href="./connexion"> 👤 </a></div>';
                 }
                 ?>
-
-
             </div>
         </header>
 
-        <!-- Contenu de la page d'accueil -->
         <div class="page-content">
             <div class="contentbase">
-            <h2 class="title-oeuvre">Liste des oeuvres d'arts en attente</h2>
-                    <div class="oeuvres">
-                        <?php
-                        foreach ($oeuvres as $oeuvre) {
-                            echo '<a class = "oeuvreOBJ" style="cursor:pointer" >';
-                            echo '<div class="oeuvre">';
-                            echo '<input type="hidden" id="id_oeuvre_' . $oeuvre["id_oeuvre"] . '" name="id_oeuvre" value="' . $oeuvre["id_oeuvre"] . '">';
-                            echo '<h3>' . $oeuvre["Titre"] . '</h3>';
-                            // Ajout de l'image
-                            echo '<img src="./' . $oeuvre["image_path"] . '" alt="' . $oeuvre["Titre"] . '" />';
-                            echo '<p>' . substr($oeuvre["Description"], 0, 250) . '(...)</p>';
-                            echo '</div>';
-                            echo '</a>';
-                        }
-                        ?>
-                    </div>
+                <h2 class="title-oeuvre">Liste des œuvres d'art en attente</h2>
+                <div class="oeuvres">
+                    <?php
+                    foreach ($oeuvres as $oeuvre) {
+                        echo '<a class="oeuvreOBJ" style="cursor:pointer">';
+                        echo '<div class="oeuvre">';
+                        echo '<input type="hidden" id="id_oeuvre_' . $oeuvre["id_oeuvre"] . '" name="id_oeuvre" value="' . $oeuvre["id_oeuvre"] . '">';
+                        echo '<h3>' . $oeuvre["Titre"] . '</h3>';
+                        echo '<img src="./' . $oeuvre["image_path"] . '" alt="' . $oeuvre["Titre"] . '" />';
+                        echo '<p>' . substr($oeuvre["Description"], 0, 250) . '(...)</p>';
+                        echo '</div>';
+                        echo '</a>';
+                    }
+                    ?>
+                </div>
+            </div>
         </div>
-        </div>
-
 
         <footer>
-
-            <!-- icones réseaux sociaux -->
             <div class="social-network">
                 <a href="#"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"
                         xmlns="http://www.w3.org/2000/svg">
@@ -124,7 +116,6 @@
                 </a>
             </div>
 
-            <!-- infos footer (aide, contact ...) -->
             <div class="container-footer">
                 <a class="title-footer">Qui sommes nous</a>
                 <a class="item-footer" href="./novart">NovArt</a>
@@ -137,13 +128,11 @@
             </div>
             <div class="container-footer">
                 <a class="title-footer">Informations légales</a>
-                <a class="item-footer" href="./cgu">Conditions d'utilisations</a>
+                <a class="item-footer" href="./cgu">Conditions d'utilisation</a>
                 <a class="item-footer" href="./mentionslegales">Mentions légales</a>
             </div>
-
         </footer>
     </div>
 </body>
-
 
 </html>

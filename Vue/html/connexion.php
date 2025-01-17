@@ -23,8 +23,8 @@
                     <div class="connexion-content">
                         <h1 class="bigTitle">Connectez-vous à</h1>
                         <h1 class="text-galeris">Galeris</h1>
-                        <p class="simpleBigText">Si vous n’avez pas de compte vous</p>
-                        <p class="simpleBigText">pouvez vous <a href="./inscription">Inscrire ici </a>! </p>
+                        <p class="simpleBigText">Si vous n’avez pas de compte, vous</p>
+                        <p class="simpleBigText">pouvez-vous <a href="./inscription">inscrire ici</a> ! </p>
                     </div>
                 </div>
             </div>
@@ -44,8 +44,6 @@
 
 
     <footer>
-
-        <!-- icones réseaux sociaux -->
         <div class="social-network">
             <a href="#"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path
@@ -72,7 +70,6 @@
             </a>
         </div>
 
-        <!-- infos footer (aide, contact ...) -->
         <div class="container-footer">
             <a class="title-footer">Qui sommes-nous ?</a>
             <a class="item-footer" href="./novart">NovArt</a>
@@ -85,13 +82,11 @@
         </div>
         <div class="container-footer">
             <a class="title-footer">Informations légales</a>
-            <a class="item-footer" href="./cgu">Conditions d'utilisations</a>
+            <a class="item-footer" href="./cgu">Conditions d'utilisation</a>
             <a class="item-footer" href="./mentionslegales">Mentions légales</a>
         </div>
-
     </footer>
 
 </body>
-
 
 </html>
