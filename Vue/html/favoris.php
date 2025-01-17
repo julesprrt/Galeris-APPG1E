@@ -25,7 +25,7 @@
                 <li><a href="./">Accueil</a></li>
                 <li><a href="./ventes">Vente</a></li>
                     <li><a href="./exposes">Exposition</a></li>
-                <li><a href="./news">News</a></li>
+                <li><a href="./listenews">News</a></li>
             </ul>
         </nav>
         <div class="barre_recherche">
@@ -51,8 +51,8 @@
                     echo '<div class="dropdown">
                             <div class="utilisateur"> 👤 </div>
                             <div class="dropdown-child">
-                                <a href=./profil">Mon profil</a>
-                                <a href="./solde>Mon solde</a>'.
+                                <a href="./profil">Mon profil</a>
+                                <a href="./solde">Mon solde</a>'.
                                 (($userRole === true)?
                                     '<a href=./listeoeuvreattente">Oeuvres en attente</a>
                                     <a href=./listeexposeattente">Exposés en attente</a>
@@ -150,7 +150,7 @@
             <div class="container-footer">
                 <a class="title-footer">Informations légales</a>
                 <a class="item-footer" href="./cgu">Conditions d'utilisations</a>
-                <a class="item-footer" href="./mentionslegales">Mentions légales</a>ions légales</a>
+                <a class="item-footer" href="./mentionslegales">Mentions légales</a>
             </div>
 
         </footer>
