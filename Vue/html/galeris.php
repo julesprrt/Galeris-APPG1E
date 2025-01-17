@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="Vue/CSS/header.css">
     <link rel="stylesheet" href="Vue/CSS/footer.css">
     <script src="Vue/JS/header.js" defer></script>
+    <script src="Vue/JS/deconnexion.js" defer></script>
     <title>galeris</title>
 </head>
 
@@ -106,7 +107,7 @@
                     <li><a href="./ventes">Vente</a></li>
                     <li><a href="./exposes">Exposition</a></li>
                     <li><a href="./listenews">News</a></li>
-
+                    
                 </ul>
             </nav>
             <div class="barre_recherche2">
@@ -151,17 +152,13 @@
             </div>
         </header>
 
-        <!-- Contenu -->
         <div class="page-galeris">
             <div class="contentbase">
                 <div class="content-description">
                     <p class="description">"Galeris est une plateforme en ligne qui permet aux artistes de présenter
-                        leurs œuvres à un public international, d’élargir leur notoriété et de valoriser leur travail.
-                        Grâce à galeris,
-                        les artistes peuvent atteindre un marché bien plus vaste que les galeries physiques
-                        traditionnelles, tout en
-                        limitant l’empreinte écologique et en offrant aux collectionneurs une expérience d’achat plus
-                        facile, personnalisée et responsable."
+                        leurs œuvres à un public international, d’élargir leur notoriété et de valoriser leur travail. Grâce à Galeris,
+                        les artistes peuvent atteindre un marché bien plus vaste que les galeries physiques traditionnelles, tout en
+                        limitant l’empreinte écologique et en offrant aux collectionneurs une expérience d’achat plus facile, personnalisée et responsable."
                     </p>
                 </div>
             </div>
@@ -180,10 +177,7 @@
             </div>
         </div>
 
-
         <footer>
-
-            <!-- icones réseaux sociaux -->
             <div class="social-network">
                 <a href="#"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"
                         xmlns="http://www.w3.org/2000/svg">
@@ -213,8 +207,6 @@
                     </svg>
                 </a>
             </div>
-
-            <!-- infos footer (aide, contact ...) -->
             <div class="container-footer">
                 <a class="title-footer">Qui sommes nous</a>
                 <a class="item-footer" href="./novart">NovArt</a>
@@ -227,13 +219,11 @@
             </div>
             <div class="container-footer">
                 <a class="title-footer">Informations légales</a>
-                <a class="item-footer" href="./cgu">Conditions d'utilisations</a>
+                <a class="item-footer" href="./cgu">Conditions d'utilisation</a>
                 <a class="item-footer" href="./mentionslegales">Mentions légales</a>
             </div>
-
         </footer>
     </div>
 </body>
-
 
 </html>

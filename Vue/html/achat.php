@@ -182,10 +182,6 @@
                         <?php endforeach; ?>
                     </div>
 
-
-
-
-
                     <!-- Flèche droite -->
                     <button class="carousel-fleche droite cfd">&#10095;</button>
                 </div>
@@ -208,7 +204,7 @@
                     <p><?php echo nl2br(htmlspecialchars($oeuvre['Description'])); ?></p>
                 </div>
             </section>
-         
+
         </section>
 
         <!-- Droite : Informations supplémentaires -->
@@ -239,10 +235,10 @@
                         <?php endif; ?>
                     <?php endif; ?>
                     <?php
-                        if($oeuvre["eco_responsable"] === 1){
-                            echo "<p><small class='eco'>Oeuvre éco-responsable</small></p>";
-                            echo "<a href=" .$oeuvre['oeuvre_file'] .  " download='fichier'>Fichier justificatif</a>";
-                        }
+                    if ($oeuvre["eco_responsable"] === 1) {
+                        echo "<p><small class='eco'>Oeuvre éco-responsable</small></p>";
+                        echo "<a href=" . $oeuvre['oeuvre_file'] .  " download='fichier'>Fichier justificatif</a>";
+                    }
                     ?>
                 </div>
             </section>
@@ -257,16 +253,20 @@
                     if (new DateTime() < new DateTime($oeuvre["Date_fin"])) {
                         if ($user || $userRole) {
                             echo '<button class="boutton-supprimer">Supprimer</button>';
-
                         } else {
                             if ($panier === false) {
                                 echo '<button class="boutton-panier">Ajouter au Panier</button>';
                             } else {
                                 echo '<button class="boutton-retirer-panier">Retirer du Panier</button>';
                             }
-                            echo '<button class="boutton-favoris">Ajouter au favoris</button>';
+                            if($favoris === false){
+                                echo '<button class="boutton-favoris">Ajouter au favoris</button>';
+                            }
+                            else{
+                                echo '<button class="boutton-retirer-favoris">Retirer favoris</button>';
+                            }
+                            
                         }
-                        
                     }
                     ?>
                 <?php endif; ?>
@@ -291,7 +291,8 @@
         </div>
         <div class="container-footer">
             <a class="title-footer">Informations légales</a>
-            <a class="item-footer" href="./cgu">Conditions d'utilisations</a>
+            <!-- Correction orthographique -->
+            <a class="item-footer" href="./cgu">Conditions d'utilisation</a>
             <a class="item-footer" href="./mentionslegales">Mentions légales</a>
         </div>
     </footer>

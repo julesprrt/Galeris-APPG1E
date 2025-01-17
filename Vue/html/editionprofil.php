@@ -4,14 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <title>Modification de Profil</title>
-
+    
     <link rel="stylesheet" href="Vue/CSS/editionprofil.css">
     <link rel="stylesheet" href="Vue/CSS/header.css">
     <link rel="stylesheet" href="Vue/CSS/footer.css">
     <script src="Vue/JS/nominatim.js" defer></script>
     <script src="Vue/JS/header.js" defer></script>
     <script src="Vue/JS/editionprofil.js" defer></script>
-
 </head>
 
 <body>
@@ -108,7 +107,7 @@
                 <li><a href="./ventes">Vente</a></li>
                 <li><a href="./exposes">Exposition</a></li>
                 <li><a href="./listenews">News</a></li>
-
+                
             </ul>
         </nav>
         <div class="barre_recherche2">
@@ -148,8 +147,6 @@
                 echo '<div class="utilisateur"><a href="./connexion"> 👤 </a></div>';
             }
             ?>
-
-
         </div>
     </header>
 
@@ -158,12 +155,11 @@
             <h2>Modification de votre profil</h2>
 
             <!-- Affichage d'un message d'erreur si nécessaire -->
-            <?php if (isset($error) && !empty($error)): ?>
+            <?php if (isset($error) && !empty($error)) : ?>
                 <div class="error-message">
                     <?= htmlspecialchars($error) ?>
                 </div>
             <?php endif; ?>
-
             <form action="./process-edition" method="POST" enctype="multipart/form-data" class="profil-form">
                 <div class="profil-info">
                     <label for="photo-upload" class="profile-image-label">
@@ -272,10 +268,9 @@
         </div>
         <div class="container-footer">
             <a class="title-footer">Informations légales</a>
-            <a class="item-footer" href="./cgu">Conditions d'utilisations</a>
+            <a class="item-footer" href="./cgu">Conditions d'utilisation</a>
             <a class="item-footer" href="./mentionslegales">Mentions légales</a>
         </div>
-
     </footer>
     <script src="https://maps.googleapis.com/maps/api/js?key=VOTRE_CLE_API&libraries=places"></script>
 </body>

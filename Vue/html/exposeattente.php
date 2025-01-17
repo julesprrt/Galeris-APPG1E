@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    
     <link rel="stylesheet" href="Vue/CSS/oeuvreExpose.css">
     <link rel="stylesheet" href="Vue/CSS/header.css">
     <link rel="stylesheet" href="Vue/CSS/footer.css">
@@ -113,7 +113,7 @@
                 <li><a href="./ventes">Vente</a></li>
                 <li><a href="./exposes">Exposition</a></li>
                 <li><a href="./listenews">News</a></li>
-
+                
             </ul>
         </nav>
         <div class="barre_recherche2">
@@ -138,23 +138,21 @@
             <?php
             if ($connectUser === true) {
                 echo '<div class="dropdown">
-                            <div class="utilisateur"> 👤 </div>
-                            <div class="dropdown-child">
-                                <a href="./profil">Mon profil</a>
-                                <a href="./solde">Mon solde</a>' .
+                    <div class="utilisateur"> 👤 </div>
+                    <div class="dropdown-child">
+                        <a href="./profil">Mon profil</a>
+                        <a href="./solde">Mon solde</a>' .
                     (($userRole === true) ?
                         '<a href="./listeoeuvreattente">Oeuvres en attente</a>
-                                    <a href="./listeexposeattente">Exposés en attente</a>
-                                    <a href="./dashboard">Tableau de bord</a>' : "") .
+                            <a href="./listeexposeattente">Exposés en attente</a>
+                            <a href="./dashboard">Tableau de bord</a>' : "") .
                     '<a class="deconnexion">Déconnexion</a>
-                            </div>
-                           </div>';
+                    </div>
+                </div>';
             } else {
                 echo '<div class="utilisateur"><a href="./connexion"> 👤 </a></div>';
             }
             ?>
-
-
         </div>
     </header>
 
@@ -162,9 +160,7 @@
         <section class="gauche">
             <section class="art-details">
                 <div class="carousel-container">
-                    <!-- Flèche gauche -->
                     <button class="carousel-fleche gauche cfg">&#10094;</button>
-
                     <div class="art-image">
                         <?php foreach ($expose['chemin_image'] as $index => $chemin): ?>
                             <img src="./<?php echo htmlspecialchars($chemin); ?>"
@@ -172,21 +168,13 @@
                                 alt="Image de <?php echo htmlspecialchars($expose['titre']); ?>">
                         <?php endforeach; ?>
                     </div>
-
-
-
-                    <!-- Flèche droite -->
                     <button class="carousel-fleche droite cfd">&#10095;</button>
                 </div>
-
-
                 <div class="art-info">
                     <h1><?php echo htmlspecialchars($expose['titre']); ?></h1>
                     <p><?php echo nl2br(htmlspecialchars($expose['desc'])); ?></p>
                 </div>
             </section>
-
-            <!-- Section : Œuvres similaires -->
             <section class="art-image-similaire">
                 <h2>Exposes similaires</h2>
                 <div class="tableau-similaire">
@@ -197,7 +185,6 @@
             </section>
         </section>
 
-        <!-- Droite : Informations supplémentaires -->
         <section class="droite">
             <section class="profil-section">
                 <div class="profil-info">
@@ -210,31 +197,24 @@
                     </div>
                 </div>
             </section>
-
             <section class="info-prix">
                 <div class="prix">
                     <p><small>Du <?php echo htmlspecialchars($expose['date_debut']); ?> au
                             <?php echo htmlspecialchars($expose['date_fin']); ?></small></p>
                 </div>
             </section>
-
-            <!-- Boutons d'actions -->
             <section class="actions">
                 <input type="hidden" id="id_expose" name="id_expose" value="<?php echo $expose["id_exhibition"] ?>">
                 <button class="boutton-valider">Accepter</button>
                 <button class="boutton-refuse">Refuser</button>
             </section>
-
             <div class="adresse">
                 <p><strong>Adresse : 10 Rue de Vanves, 92130 Vanves, France</strong></p>
             </div>
-            <div id="map">
-
-            </div>
+            <div id="map"></div>
         </section>
     </main>
 
-    <!-- FOOTER -->
     <footer>
         <div class="container-footer">
             <a class="title-footer">Qui sommes-nous ?</a>

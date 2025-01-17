@@ -5,12 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    
     <link rel="stylesheet" href="Vue/CSS/contacter.css">
     <link rel="stylesheet" href="Vue/CSS/style.css">
     <script src="Vue/JS/contact.js" defer></script>
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-
 </head>
 
 <body>
@@ -26,7 +24,7 @@
                 <input class="contact-input simpleInput" type="text" name="email" placeholder="Adresse mail" required>
 
                 <select name="subject" id="object-select" required>
-                    <option value="">--Choississez le sujet du message--</option>
+                    <option value="">--Choisissez le sujet du message--</option>
                     <option value="problem">J'ai un problème</option>
                     <option value="information">Je souhaite demander une information</option>
                     <option value="bug">Je souhaite remonter un bug</option>
@@ -41,9 +39,6 @@
             </form>
         </div>
     </section>
-
-
-
 </body>
 
 </html>

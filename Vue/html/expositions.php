@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+
     <link rel="stylesheet" href="Vue/CSS/listeattentexpose.css">
     <link rel="stylesheet" href="Vue/CSS/header.css">
     <link rel="stylesheet" href="Vue/CSS/footer.css">
@@ -127,9 +127,8 @@
 
                     ?>
                 </datalist>
-                <div class="favori"> <a href="./favoris">❤️</a></div>
-                <div class="panier"> <a href="./panier">🛒</a></div>
-
+                <div class="favori"><a href="./favoris">❤️</a></div>
+                <div class="panier"><a href="./panier">🛒</a></div>
                 <?php
                 if ($connectUser === true) {
                     echo '<div class="dropdown">
@@ -139,46 +138,40 @@
                                 <a href="./solde">Mon solde</a>' .
                         (($userRole === true) ?
                             '<a href="./listeoeuvreattente">Oeuvres en attente</a>
-                                    <a href="./listeexposeattente">Exposés en attente</a>
-                                    <a href="./dashboard">Tableau de bord</a>' : "") .
-                                '<a class="deconnexion">Déconnexion</a>
+                         <a href="./listeexposeattente">Exposés en attente</a>
+                         <a href="./dashboard">Tableau de bord</a>' : "") .
+                        '<a class="deconnexion">Déconnexion</a>
                             </div>
-                           </div>';
+                          </div>';
                 } else {
                     echo '<div class="utilisateur"><a href="./connexion"> 👤 </a></div>';
                 }
                 ?>
-
-
             </div>
         </header>
 
-        <!-- Contenu de la page d'accueil -->
         <div class="page-content">
             <div class="contentbase">
-            <h2 class="title-expose">Exposés</h2>
-                    <div class="exposes">
-                        <?php
-                        foreach ($exposes as $expose) {
-                            echo '<a class = "exposeOBJ" style="cursor:pointer" >';
-                            echo '<div class="expose">';
-                            echo '<input type="hidden" id="id_expose_' . $expose["id_exhibition"] . '" name="id_expose" value="' . $expose["id_exhibition"] . '">';
-                            echo '<h3>' . $expose["titre"] . '</h3>';
-                            // Ajout de l'image
-                            echo '<img src="./' . $expose["image_path"] . '" alt="' . $expose["titre"] . '" />';
-                            echo '<p>' . substr($expose["desc"],0,250) . '(...)</p>';
-                            echo '</div>';
-                            echo '</a>';
-                        }
-                        ?>
-                    </div>
+                <h2 class="title-expose">Exposés</h2>
+                <div class="exposes">
+                    <?php
+                    foreach ($exposes as $expose) {
+                        echo '<a class="exposeOBJ" style="cursor:pointer">';
+                        echo '<div class="expose">';
+                        echo '<input type="hidden" id="id_expose_' . $expose["id_exhibition"] .
+                            '" name="id_expose" value="' . $expose["id_exhibition"] . '">';
+                        echo '<h3>' . $expose["titre"] . '</h3>';
+                        echo '<img src="./' . $expose["image_path"] . '" alt="' . $expose["titre"] . '" />';
+                        echo '<p>' . substr($expose["desc"], 0, 250) . '(...)</p>';
+                        echo '</div>';
+                        echo '</a>';
+                    }
+                    ?>
+                </div>
+            </div>
         </div>
-        </div>
-
 
         <footer>
-
-            <!-- icones réseaux sociaux -->
             <div class="social-network">
                 <a href="#"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"
                         xmlns="http://www.w3.org/2000/svg">
@@ -208,8 +201,6 @@
                     </svg>
                 </a>
             </div>
-
-            <!-- infos footer (aide, contact ...) -->
             <div class="container-footer">
                 <a class="title-footer">Qui sommes nous</a>
                 <a class="item-footer" href="./novart">NovArt</a>
@@ -225,10 +216,8 @@
                 <a class="item-footer" href="./cgu">Conditions d'utilisations</a>
                 <a class="item-footer" href="./mentionslegales">Mentions légales</a>
             </div>
-
         </footer>
     </div>
 </body>
-
 
 </html>
