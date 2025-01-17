@@ -6,14 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tableau de bord Administrateur</title>
     <link rel="stylesheet" href="Vue/CSS/dashboard.css">
-    <!-- Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
 <body>
     <header class="admin-header">
         <div class="logo-link"> <a href="./"><img src="images/logo.png" class="logo-img"></a></div>
-        </a>
         <h1>Tableau de bord Administrateur Galeris</h1>
     </header>
     <div class="container">
@@ -46,18 +44,16 @@
             </div>
         </div>
 
-
         <div class="chart-row">
             <div class="chart-card">
                 <h2>Expositions</h2>
                 <canvas id="expositionStatus"></canvas>
             </div>
             <div class="chart-card">
-                <h2>Status des ventes</h2>
+                <h2>Statut des ventes</h2>
                 <canvas id="venteStatus"></canvas>
             </div>
         </div>
-
 
         <div class="chart-row">
             <div class="chart-card">
@@ -70,7 +66,6 @@
             </div>
         </div>
     </div>
-    <!-- Script Chart.js pour initialiser les 8 graphiques -->
     <script>
         const ventes30JoursCtx = document.getElementById('ventes30Jours').getContext('2d');
         new Chart(ventes30JoursCtx, {
@@ -94,7 +89,6 @@
             }
         });
 
-
         const topVendeursCtx = document.getElementById('topVendeurs').getContext('2d');
         new Chart(topVendeursCtx, {
             type: 'bar',
@@ -117,7 +111,6 @@
             }
         });
 
-
         const prix30VentesCtx = document.getElementById('prix30Ventes').getContext('2d');
         new Chart(prix30VentesCtx, {
             type: 'bar',
@@ -139,7 +132,6 @@
                 }
             }
         });
-
 
         const userInscriptionsCtx = document.getElementById('userInscriptions').getContext('2d');
         new Chart(userInscriptionsCtx, {
@@ -238,7 +230,6 @@
                         'rgba(255, 99, 132, 0.6)',
                         'rgba(54, 162, 235, 0.6)',
                         'rgba(255, 206, 86, 0.6)'
-
                     ],
                     borderColor: '#fff',
                     borderWidth: 1

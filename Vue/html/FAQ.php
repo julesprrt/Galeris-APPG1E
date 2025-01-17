@@ -14,90 +14,81 @@
 <body>
     <div class="container">
         <header>
-            <div class="logo"> <a href="./"><img src="images/logo.png"></a></div>
+            <div class="logo"><a href="./"><img src="images/logo.png"></a></div>
             <nav class="menu">
                 <ul>
                     <li><a href="./">Accueil</a></li>
                     <li><a href="./ventes">Vente</a></li>
                     <li><a href="./exposes">Exposition</a></li>
                     <li><a href="./listenews">News</a></li>
-                    
                 </ul>
             </nav>
             <div class="barre_recherche">
-                <!-- Barre de recherche, les emojis sont responsives si on clique dessus -->
                 <input type="text" placeholder="Rechercher..." class="shearch">
                 <datalist id="galeris-list">
-                        <?php
-                            foreach($users as $user_barre){
-                                echo '<option data-value="utilisateur_' . $user_barre["id_utilisateur"] . '" value="' . $user_barre["nom"] . ' ' . $user_barre["prenom"] . ' ' . $user_barre["id_utilisateur"] .' (utilisateur)">';
-                            }
-                            foreach($exposes as $expose_barre){
-                                echo '<option data-value="expose_' . $expose_barre["id_exhibition"] . '" value="' . $expose_barre["titre"] . ' ' . $expose_barre["id_exhibition"] . ' (exposé)">';
-                            }
-                            foreach($oeuvres as $oeuvre_barre){
-                                echo '<option data-value="oeuvre_' . $oeuvre_barre["id_oeuvre"] . '" value="' . $oeuvre_barre["Titre"] . ' ' . $oeuvre_barre["auteur"] . ' ' . $oeuvre_barre["id_oeuvre"] . ' (Oeuvre)">';
-                            }
-                                
-                        ?>
+                    <?php
+                    foreach ($users as $user_barre) {
+                        echo '<option data-value="utilisateur_' . $user_barre["id_utilisateur"] . '" value="'
+                            . $user_barre["nom"] . ' ' . $user_barre["prenom"] . ' ' . $user_barre["id_utilisateur"] . ' (utilisateur)">';
+                    }
+                    foreach ($exposes as $expose_barre) {
+                        echo '<option data-value="expose_' . $expose_barre["id_exhibition"] . '" value="'
+                            . $expose_barre["titre"] . ' ' . $expose_barre["id_exhibition"] . ' (exposé)">';
+                    }
+                    foreach ($oeuvres as $oeuvre_barre) {
+                        echo '<option data-value="oeuvre_' . $oeuvre_barre["id_oeuvre"] . '" value="'
+                            . $oeuvre_barre["Titre"] . ' ' . $oeuvre_barre["auteur"] . ' ' . $oeuvre_barre["id_oeuvre"] . ' (Oeuvre)">';
+                    }
+                    ?>
                 </datalist>
-                <div class="favori"> <a href="./favoris">❤️ </a></div>
-                <div class="panier"> <a href="./panier"> 🛒 </a></div>
+                <div class="favori"><a href="./favoris">❤️</a></div>
+                <div class="panier"><a href="./panier">🛒</a></div>
                 <?php
                 if ($connectUser === true) {
                     echo '<div class="dropdown">
-                            <div class="utilisateur"> 👤 </div>
-                            <div class="dropdown-child">
-                                <a href="./profil">Mon profil</a>
-                                <a href="./solde">Mon solde</a>'.
-                                (($userRole === true)?
-                                    '<a href="./listeoeuvreattente">Oeuvres en attente</a>
-                                    <a href="./listeexposeattente">Exposés en attente</a>
-                                    <a href="./dashboard">Tableau de bord</a>' : "") .
-                                '<a class="deconnexion">Déconnexion</a>
-                            </div>
-                           </div>';
+                        <div class="utilisateur"> 👤 </div>
+                        <div class="dropdown-child">
+                            <a href="./profil">Mon profil</a>
+                            <a href="./solde">Mon solde</a>' .
+                        (($userRole === true) ?
+                            '<a href="./listeoeuvreattente">Oeuvres en attente</a>
+                                <a href="./listeexposeattente">Exposés en attente</a>
+                                <a href="./dashboard">Tableau de bord</a>' : "") .
+                        '<a class="deconnexion">Déconnexion</a>
+                        </div>
+                    </div>';
                 } else {
                     echo '<div class="utilisateur"><a href="./connexion"> 👤 </a></div>';
                 }
                 ?>
-
             </div>
         </header>
 
-        <body>
-    <h1> Foire aux questions </h1>
-    <h2>Trouvez toutes les réponses à vos questions !</h2>
+        <h1>Foire aux questions</h1>
+        <h2>Trouvez toutes les réponses à vos questions !</h2>
         <p>
             <img src="images/tableau.png" class="tableau" />
             <img src="images/tableau2.png" class="tableau2" />
         </p>
-    <div class="Page">
-        <img src="images/sculpture2.png" class="image1" />
-
+        <div class="Page">
+            <img src="images/sculpture2.png" class="image1" />
             <il>Général</il><br>
-
             <details>
                 <summary>Mini-quiz</summary>
                 <p>Ceci est le texte qui se déroule lorsque vous cliquez sur le mot.</p>
             </details>
-
             <details>
                 <summary>Newsletters</summary>
                 <p>Ceci est le texte qui se déroule lorsque vous cliquez sur le mot.</p>
             </details>
-
             <details>
                 <summary>Eco-responsabilité</summary>
                 <p>Ceci est le texte qui se déroule lorsque vous cliquez sur le mot.</p>
             </details>
-
             <il>Compte</il><br>
-
             <details>
                 <summary>Quels sont les avantages de créer un compte Galeris ?</summary>
                 <p>Créer un compte Galeris vous donne accès à un monde d’art et d’objets extraordinaires. Dès que vous créez un compte, vous pouvez :
-
                 <ul>
                     <li>Enregistrer vos intérêts pour des recommandations personnalisées</li>
                     <li>Suivre les lots et les enchères</li>
@@ -113,87 +104,71 @@
             <details>
                 <summary>Comment réinitialiser mon mot de passe ?</summary>
                 <p>Cliquez ici et saisissez l'adresse e-mail associée à votre compte Galeris pour recevoir
-                    un lien de réinitialisation du mot de passe.
-                </p>
+                    un lien de réinitialisation du mot de passe.</p>
             </details>
-
-
-
-
             <il>Achat</il><br>
-
             <details>
                 <summary>Comment acheter des œuvres d'art via Galeris ?</summary>
                 <p>Il y a différentes méthodes d'achat chez Galeris. Il est possible d'acheter une œuvre lors d'une de nos ventes
                     aux enchères en direct ou en ligne qui se déroulent régulièrement. Voir le calendrier des ventes pour obtenir
-                    des informations sur les dates à venir. <br><br>Il est possible d'acquérir des œuvres d'art en utilisant notre site.
-                    Service de vente en ligne, offrant des œuvres à l'achat immédiat. Explorez les différentes catégories, explorez quelque
-                    chose de nouveau dans nos expositions de vente thématiques ou contactez un expert si vous avez une question particulière en tête.</p>
+                    des informations sur les dates à venir. Il est possible d'acquérir des œuvres d'art en utilisant notre site.
+                    Service de vente en ligne, offrant des œuvres à l'achat immédiat. Explorez les différentes catégories,
+                    explorez quelque chose de nouveau dans nos expositions de vente thématiques ou contactez un expert
+                    si vous avez une question particulière en tête.</p>
             </details>
-
             <details>
                 <summary>Comment m'inscrire à une vente aux enchères ?</summary>
                 <p>Il est nécessaire de créer un compte Galeris et de vérifier votre identité avant de vous inscrire.
-                    Après avoir accompli cette étape, vous avez la possibilité de vous inscrire pour participer à n'importe quelle vente aux enchères.<br><br>
-                    Pour participer aux enchères en ligne, veuillez vous connecter à votre compte, vous rendre sur la page de vente et cliquer sur le bouton « S'inscrire ».
+                    Après avoir accompli cette étape, vous avez la possibilité de vous inscrire pour participer à n'importe quelle vente aux enchères.
+                    Pour participer aux enchères en ligne, veuillez vous connecter à votre compte, vous rendre sur la page de vente et cliquer sur « S'inscrire ».
                     Certaines informations de votre compte, comme votre adresse de livraison préférée, seront nécessaires pour être confirmées.
                     Avant la vente aux enchères ou à tout moment pendant celle-ci, vous avez la possibilité de vous inscrire.</p>
             </details>
-
-        <details>
-            <summary>Comment payer mon achat ?</summary>
-            <p>Si vous remportez une enchère, vous trouverez toutes les informations relatives à votre achat sur votre compte
-                dans l'onglet « Acheter », puis « Finaliser ma commande ».<br><br>
-
-                Ici, vous pourrez consulter les factures de vos lots, payer et organiser l'expédition des commandes jusqu'à
-                100 000 USD / 100 000 £ / 100 000 € / 1 000 000 HK$ / 100 000 CHF. Veuillez noter qu'il peut s'écouler jusqu'à
-                48 heures avant que les lots soient disponibles pour le paiement en ligne. <br><br>Pour les lots supérieurs à ce montant
-                ou d'autres options de paiement, y compris le virement bancaire, veuillez vérifier le verso de votre facture.</p>
-        </details>
-
+            <details>
+                <summary>Comment payer mon achat ?</summary>
+                <p>Si vous remportez une enchère, vous trouverez toutes les informations relatives à votre achat sur votre compte
+                    dans l'onglet « Acheter », puis « Finaliser ma commande ».
+                    Ici, vous pourrez consulter les factures de vos lots, payer et organiser l'expédition des commandes jusqu'à
+                    100 000 USD / 100 000 £ / 100 000 € / 1 000 000 HK$ / 100 000 CHF. Veuillez noter qu'il peut s'écouler jusqu'à
+                    48 heures avant que les lots soient disponibles pour le paiement en ligne.
+                    Pour les lots supérieurs à ce montant ou d'autres options de paiement, y compris le virement bancaire,
+                    veuillez vérifier le verso de votre facture.</p>
+            </details>
             <details>
                 <summary>Comment suivre les articles qui m'intéressent ?</summary>
                 <p>Le moyen le plus simple de suivre les articles qui vous intéressent est de les suivre.
                     Vous pouvez trouver les articles que vous suivez en cliquant sur le bouton favoris.</p>
             </details>
-
             <il>Vente</il><br>
-
             <details>
                 <summary>Comment puis-je obtenir une estimation ?</summary>
                 <p>Essayez notre outil gratuit d'estimation d'enchères pour fournir des images et des informations supplémentaires
-                    pour chaque article. <br><br>Galeris fournit les estimations d'enchères dans un délai de 3 à 4 semaines concernant les articles pour lesquels elle a été sollicitée.
+                    pour chaque article. Galeris fournit les estimations d'enchères dans un délai de 3 à 4 semaines concernant les articles pour lesquels elle a été sollicitée.
                     Il existe une catégorie de vente qui correspond à notre valeur minimale de consignation.
                     Si vous disposez de plus de six articles à évaluer, nous vous prions de prendre contact avec nos services d'estimation et d'évaluation des successions.</p>
             </details>
-
             <details>
                 <summary>Combien coûte une vente avec Galeris ?</summary>
                 <p>Galeris facture un taux de commission vendeur unique pour les services que nous fournissons.
                     La commission est calculée sur chaque article sous forme de pourcentage fixe basé sur le prix d'adjudication
-                    final aux enchères. <br>
-                    <br>Ce taux comprend les frais de marketing et la couverture d'assurance. Si votre article se
-                    vend au-dessus de l'estimation haute que nous avons convenue avec vous, il y aura également une commission de
-                    performance supplémentaire de 2 %.
-                </p>
+                    final aux enchères. Ce taux comprend les frais de marketing et la couverture d'assurance.
+                    Si votre article se vend au-dessus de l'estimation haute que nous avons convenue avec vous,
+                    il y aura également une commission de performance supplémentaire de 2 %.</p>
             </details>
-
-        <details>
-            <summary>Comment vendre un article avec Galeris ?</summary>
-            <p>Merci d'avoir envisagé de confier la vente de votre article à Galeris. La première
-                étape consiste à demander une estimation gratuite de la vente aux enchères et à déterminer
-                si votre article convient à la vente aux enchères de Galeris.<br><br> Un spécialiste de Galeris vous
-                contactera ensuite pour discuter des estimations, vous conseiller sur les dates de vente aux
-                enchères et vous expliquer votre accord de vente ainsi que la structure de commission.<br><br>Après la vente
-                aux enchères, vous recevrez une notification vous informant du prix atteint par votre article.
-                À condition que nous ayons reçu le paiement intégral de l'acheteur, environ 35 jours après la
-                vente aux enchères, votre paiement sera envoyé sur votre compte désigné.</p>
-        </details>
-        
+            <details>
+                <summary>Comment vendre un article avec Galeris ?</summary>
+                <p>Merci d'avoir envisagé de confier la vente de votre article à Galeris. La première
+                    étape consiste à demander une estimation gratuite de la vente aux enchères et à déterminer
+                    si votre article convient à la vente aux enchères de Galeris. Un spécialiste de Galeris vous
+                    contactera ensuite pour discuter des estimations, vous conseiller sur les dates de vente aux
+                    enchères et vous expliquer votre accord de vente ainsi que la structure de commission.
+                    Après la vente aux enchères, vous recevrez une notification vous informant du prix atteint par votre article.
+                    À condition que nous ayons reçu le paiement intégral de l'acheteur, environ 35 jours après la
+                    vente aux enchères, votre paiement sera envoyé sur votre compte désigné.</p>
+            </details>
+        </div>
 
         <footer>
-
-            <!-- icones réseaux sociaux -->
             <div class="social-network">
                 <a href="#"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"
                         xmlns="http://www.w3.org/2000/svg">
@@ -223,8 +198,6 @@
                     </svg>
                 </a>
             </div>
-
-            <!-- infos footer (aide, contact ...) -->
             <div class="container-footer">
                 <a class="title-footer">Qui sommes-nous ?</a>
                 <a class="item-footer" href="./novart">NovArt</a>
@@ -240,10 +213,8 @@
                 <a class="item-footer" href="./cgu">Conditions d'utilisations</a>
                 <a class="item-footer" href="./mentionslegales">Mentions légales</a>
             </div>
-
         </footer>
     </div>
 </body>
-
 
 </html>
