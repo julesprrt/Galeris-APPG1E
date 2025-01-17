@@ -214,6 +214,15 @@ main {
     flex-wrap: wrap;
     gap: 20px;
     justify-content: center;
+  .eco {
+    color : green
+  }
+  
+  .carousel-container {
+    position: relative;
+    width: 100%;
+    max-width: 25em;
+    margin: 0 auto;
   }
 
   .tableau-similaire img {

@@ -78,6 +78,9 @@ async function ajoutpanier() {
         alert(text.panier);
         window.location.reload();
     }
+    else {
+        window.location.href = "./connexion"
+    }
 }
 
 async function retirerpanier() {
@@ -101,6 +104,9 @@ async function retirerpanier() {
         alert(text.panier);
         window.location.reload();
     }
+    else {
+        window.location.href = "./connexion"
+    }
 }
 
 document.querySelectorAll(".boutton-supprimer").forEach(item => {
@@ -123,7 +129,7 @@ async function supprimerOeuvre() {
             body: raw,
             redirect: "follow"
         };
-    
+
         const result = await fetch("./supprimeroeuvre", requestOptions);
         const statut = result.status;
         const text = await result.json();
@@ -189,11 +195,11 @@ document.querySelectorAll(".boutton-favoris").forEach(item => {
 
 document.querySelectorAll(".boutton-retirer-favoris").forEach(item => item.addEventListener("click", retirerfavoris));
 
-async function ajoutfavoris(){
+async function ajoutfavoris() {
     console.log("ok")
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
-    
+
     const raw = JSON.stringify({
     });
 
@@ -206,16 +212,19 @@ async function ajoutfavoris(){
     const result = await fetch("./ajoutfavoris", requestOptions);
     const statut = result.status;
     const text = await result.json();
-    if(statut === 200){
+    if (statut === 200) {
         alert(text.favoris);
         window.location.reload();
-   }
+    }
+    else {
+        window.location.href = "./connexion"
+    }
 }
 
-async function retirerfavoris(){
+async function retirerfavoris() {
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
-    
+
     const raw = JSON.stringify({
     });
 
@@ -229,10 +238,13 @@ async function retirerfavoris(){
     const result = await fetch("./retirerfavoris", requestOptions);
     const statut = result.status;
     const text = await result.json();
-    if(statut === 200){
+    if (statut === 200) {
         alert(text.favoris);
         window.location.reload();
-   }
+    }
+    else {
+        window.location.href = "./connexion"
+    }
 }
 
 

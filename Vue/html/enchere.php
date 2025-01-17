@@ -57,7 +57,7 @@
                     '<a href="./listeoeuvreattente">Oeuvres en attente</a>
                                     <a href="./listeexposeattente">Exposés en attente</a>
                                      <a href="./dashboard">Tableau de bord</a>' : "") .
-                '<a id="deconnexion">Déconnexion</a>
+                '<a class="deconnexion">Déconnexion</a>
                             </div>
                            </div>';
         } else {
@@ -157,6 +157,12 @@
                         echo "<p>Offreur : " . htmlspecialchars($oeuvre['nom_offreur']) . ' ' . htmlspecialchars($oeuvre['prenom_offreur']) . "</p>";
                     }
                     ?>
+                    <?php
+                        if($oeuvre["eco_responsable"] === 1){
+                            echo "<p><small class='eco'>Oeuvre éco-responsable</small></p>";
+                            echo "<a href=" .$oeuvre['oeuvre_file'] .  " download='fichier'>Fichier justificatif</a>";
+                        }
+                    ?>
 
 
                 </div>
@@ -167,8 +173,7 @@
 
                 <?php
                 if ($user || $userRole) {
-                    echo '<button class="boutton-modifier">Modifier</button>
-                        <button class="boutton-supprimer">Supprimer</button>';
+                    echo '<button class="boutton-supprimer">Supprimer</button>';
                     }
                     else{
                         echo '<button class="boutton-offre">Enchérir</button>';

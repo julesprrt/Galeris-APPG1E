@@ -140,8 +140,8 @@
                         (($userRole === true) ?
                             '<a href="./listeoeuvreattente">Oeuvres en attente</a>
                                     <a href="./listeexposeattente">Exposés en attente</a>
-                                    <a href="./dashboard">Tableau de bord</a>' : "") .
-                                '<a class="deconnexion">Déconnexion</a>
+                                     <a href="./dashboard">Tableau de bord</a>' : "") .
+                                    '<a class="deconnexion">Déconnexion</a>
                             </div>
                            </div>';
                 } else {
@@ -245,6 +245,12 @@
                             <p><small>Vendu le : <?php echo htmlspecialchars($oeuvre['Date_vente']); ?></small></p>
                         <?php endif; ?>
                     <?php endif; ?>
+                    <?php
+                        if($oeuvre["eco_responsable"] === 1){
+                            echo "<p><small class='eco'>Oeuvre éco-responsable</small></p>";
+                            echo "<a href=" .$oeuvre['oeuvre_file'] .  " download='fichier'>Fichier justificatif</a>";
+                        }
+                    ?>
                 </div>
             </section>
 
@@ -257,8 +263,7 @@
                     <?php
                     if (new DateTime() < new DateTime($oeuvre["Date_fin"])) {
                         if ($user || $userRole) {
-                            echo '<button class="boutton-modifier">Modifier</button>
-                                  <button class="boutton-supprimer">Supprimer</button>';
+                            echo '<button class="boutton-supprimer">Supprimer</button>';
 
                         } else {
                             if ($panier === false) {

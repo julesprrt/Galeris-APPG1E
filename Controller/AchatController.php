@@ -11,10 +11,6 @@ class AchatController extends Controller
     {
         session_start();
 
-        if (!isset($_SESSION['usersessionID'])) {
-            header('Location: ./connexion');
-            exit();
-        }
         // Récupérer l'œuvre depuis le modèle
         $oeuvre = new Oeuvre($Titre = null, $Description = null, $eco_responsable = null, $Date_debut = null, $Date_fin = null, $Prix = null, $type_vente = null, $est_vendu = null, $auteur = null, $id_utilisateur = null, $id_categorie = null, $status = null, $nomvendeur = null, $prenomvendeur = null, $chemin_image = [], $prix_actuel = null, $id_offreur = null, $id_vente = null, $prix = null, $Date_vente = null);
         $role = isset($_SESSION["usersessionRole"]) === true && $_SESSION["usersessionRole"] === "Admin" ? true : false;
@@ -22,10 +18,15 @@ class AchatController extends Controller
         $id =  $_SESSION['oeuvre_id'];
         $oeuvreid = $oeuvre->getOeuvreById($id, $db);
 
-        $panier = new Panier();
-        $panierExist = $panier->existPanier($db);
-        $favoris = new Favoris();
-        $favorisExist = $favoris->existFavoris($db);
+        $panierExist = false;
+        $favorisExist = false;
+
+        if(isset($_SESSION["usersessionID"])){
+            $panier = new Panier();
+            $panierExist = $panier->existPanier($db);
+            $favoris = new Favoris();
+            $favorisExist = $favoris->existFavoris($db);
+        }
     
 
         // Vérifier si l'œuvre existe
@@ -43,7 +44,11 @@ class AchatController extends Controller
         $user = new User(null,null,null,null,null,null,null,null,null,null);
         $users = $user->getAllUsers($db);
 
-        $user = $_SESSION["usersessionID"] === $oeuvreid["id_utilisateur"];
+        $user = false;
+
+        if(isset($_SESSION["usersessionID"])){
+            $user = $_SESSION["usersessionID"] === $oeuvreid["id_utilisateur"];
+        }
 
         $type =  $_SESSION['oeuvre_typevente'];
         if ($type === "Vente") {
@@ -60,11 +65,6 @@ class AchatController extends Controller
     public function saveid(Database $db)
     {
         session_start();
-
-        if (!isset($_SESSION['usersessionID'])) {
-            header('Location: ./connexion');
-            exit();
-        }
 
         $paramData = file_get_contents("php://input");
         $data = json_decode($paramData, true);

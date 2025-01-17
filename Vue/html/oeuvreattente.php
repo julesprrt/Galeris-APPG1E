@@ -59,7 +59,7 @@
                                     '<a href="./listeoeuvreattente">Oeuvres en attente</a>
                                     <a href="./listeexposeattente">Exposés en attente</a>
                                     <a href="./dashboard">Tableau de bord</a>' : "") .
-                                '<a id="deconnexion">Déconnexion</a>
+                                '<a class="deconnexion">Déconnexion</a>
                             </div>
                            </div>';
                 } else {
@@ -118,6 +118,12 @@
                     <span><strong>Auteur :</strong> <?php echo htmlspecialchars($oeuvre['auteur']) ?></span><br><br>
                     <span><strong>Prix :</strong> € <?php echo number_format($oeuvre['Prix'], 2, ',', ' '); ?></span>
                     <p><small>Publié le : <?php echo htmlspecialchars($oeuvre['Date_debut']); ?></small></p>
+                    <?php
+                        if($oeuvre["eco_responsable"] === 1){
+                            echo "<p><small class='eco'>Oeuvre éco-responsable</small></p>";
+                            echo "<a href=" .$oeuvre['oeuvre_file'] .  " download='fichier'>Fichier justificatif</a>";
+                        }
+                    ?>
                 </div>
             </section>
 

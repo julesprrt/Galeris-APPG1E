@@ -5,13 +5,13 @@ function onFileSelected(event) {
     var selectedFile = event.target.files[0];
     var reader = new FileReader();
 
-    if(!selectedFile.type.includes("image")){
+    if (!selectedFile.type.includes("image")) {
         alert("Type de fichier autorisé : image");
         return;
     }
 
-    if(selectedFile.size > 1000000){
-        alert("Fichier trop lourd, 1 MB maximum");
+    if (selectedFile.size > 2097152) {
+        alert("Fichier trop lourd, 2 MB maximum");
         return;
     }
 
@@ -51,6 +51,7 @@ async function verificateAndSaveData() {
     const nbJours = document.getElementsByName("nbjours")[0].value;
     const auteur = document.getElementsByName("auteur")[0].value;
     const description = document.getElementsByName("description")[0].value.trim();
+    const choixEcoResponsable = document.getElementsByName("ecoresponsable")[0].value;
 
     let options = document.querySelectorAll("#categorie-selec option");
     let categorieId;
@@ -60,13 +61,18 @@ async function verificateAndSaveData() {
         }
     })
 
-    console.log(document.getElementById("image1").getAttribute("src"))
-
     const image1 = document.getElementById("image1").getAttribute("src") === null ? "" : document.getElementById("image1").getAttribute("src");
     const image2 = document.getElementById("image2").getAttribute("src") === null ? "" : document.getElementById("image2").getAttribute("src");
-    const image3 = document.getElementById("image3").getAttribute("src")  === null ? "" : document.getElementById("image2").getAttribute("src");
+    const image3 = document.getElementById("image3").getAttribute("src") === null ? "" : document.getElementById("image3").getAttribute("src");
 
-    if (verificationData(titre, categorie, type, prix, nbJours, description, image1) === false) {
+    let file = null;
+
+    if (choixEcoResponsable === "Oui") {
+        file = await getFromFile(document.getElementById("upload-file").files[0])
+    }
+
+
+    if (verificationData(titre, categorie, type, prix, nbJours, description, image1, choixEcoResponsable, file) === false) {
         return;
     }
 
@@ -83,7 +89,9 @@ async function verificateAndSaveData() {
         "description": description,
         "image1": image1,
         "image2": image2,
-        "image3": image3
+        "image3": image3,
+        "eco-responsable": choixEcoResponsable,
+        "fichier-eco": file
     });
 
     const requestOptions = {
@@ -114,13 +122,13 @@ async function verificateAndSaveData() {
     }
 }
 
-function verificationData(titre, categorie, type, prix, nbJours, description, image1) {
+function verificationData(titre, categorie, type, prix, nbJours, description, image1, choix, file) {
     if (titre === "") {
         alert("Le titre est obligatoire");
         return false;
     }
 
-    if(description.length < 50) {
+    if (description.length < 50) {
         alert("La description est obligatoire et doit contenir plus de 50 caractères.");
         return false;
     }
@@ -145,8 +153,56 @@ function verificationData(titre, categorie, type, prix, nbJours, description, im
         return false;
     }
 
+    if (choix === "") {
+        alert("Eco-responsable");
+        return false;
+    }
+
+    if (choix === "Oui" && file === null) {
+        alert("Le fichier éco-responsable est obligatoire.");
+        return false;
+    }
+
     if (nbJours === "" || Number(nbJours) > 30) {
         alert("Le nombre de jours est obligatoire et doit être inférieur ou égal à 30 jours");
         return false;
     }
+}
+
+document.getElementById("upload-file").addEventListener("change", fileSize);
+
+function fileSize(event) {
+    var selectedFile = event.target.files[0];
+    if (selectedFile.size > 2097152) {
+        alert("Fichier trop lourd, 2 MB maximum");
+        event.target.value = "";
+        event.target.name = "";
+        return;
+    }
+};
+
+document.getElementById("ecoresponsable-select").addEventListener("change", displayEcoResponsable);
+
+function displayEcoResponsable(event) {
+    const value = event.target.value;
+    if (value === "Oui") {
+        document.querySelector(".justificatif").style.display = "block";
+    }
+    else {
+        document.querySelector(".justificatif").style.display = "none";
+        document.getElementById("upload-file").value = "";
+        document.getElementById("upload-file").name = "";
+    }
+}
+
+async function getFromFile(file) {
+    return new Promise((resolve, reject) => {
+        var reader = new FileReader();
+
+        reader.onload = (event) => {
+            var data = event.target.result;
+            resolve(data);
+        };
+        reader.readAsDataURL(file);
+    });
 }
