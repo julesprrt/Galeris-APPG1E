@@ -68,7 +68,7 @@ class NewsController extends Controller
         }
         else{
             http_response_code(400);
-            echo json_encode(['Error' => "Actualité non ajouté"]);
+            echo json_encode(['Error' => "Actualité non ajoutée"]);
         }
     }
 

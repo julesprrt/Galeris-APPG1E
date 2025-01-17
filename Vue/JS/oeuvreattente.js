@@ -33,7 +33,7 @@ document.querySelector(".boutton-valider").addEventListener('click', acceptOeuvr
 document.querySelector(".boutton-refuse").addEventListener('click', cancelOeuvre);
 
 async function acceptOeuvre() {
-    const responseUser = confirm("Etez-vous sûre de vouloir accepter cette oeuvre ?");
+    const responseUser = confirm("Êtes-vous sûre de vouloir accepter cette œuvre ?");
     if (responseUser === true) {
         const id = document.getElementById("id_oeuvre").value;
 
@@ -63,7 +63,7 @@ async function acceptOeuvre() {
 }
 
 async function cancelOeuvre() {
-    const responseUser = confirm("Etez-vous sûre de vouloir refuser cette oeuvre ?");
+    const responseUser = confirm("Êtes-vous sûre de vouloir refuser cette œuvre ?");
     if (responseUser === true) {
         const id = document.getElementById("id_oeuvre").value;
 

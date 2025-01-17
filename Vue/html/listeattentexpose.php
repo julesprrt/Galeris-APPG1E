@@ -144,8 +144,8 @@
                                 <a href="./solde">Mon solde</a>' .
                         (($userRole === true) ?
                             '<a href="./listeoeuvreattente">Oeuvres en attente</a>
-                         <a href="./listeexposeattente">Exposés en attente</a>
-                         <a href="./dashboard">Tableau de bord</a>' : "") .
+                                    <a href="./listeexposeattente">Expositions en attente</a> 
+                                    <a href="./dashboard">Tableau de bord</a>' : "") .
                         '<a class="deconnexion">Déconnexion</a>
                             </div>
                           </div>';
@@ -158,23 +158,23 @@
 
         <div class="page-content">
             <div class="contentbase">
-                <h2 class="title-expose">Liste des exposés en attente</h2>
-                <div class="exposes">
-                    <?php
-                    foreach ($exposes as $expose) {
-                        echo '<a class="exposeOBJ" style="cursor:pointer">';
-                        echo '<div class="expose">';
-                        echo '<input type="hidden" id="id_expose_' . $expose["id_exhibition"] .
-                            '" name="id_expose" value="' . $expose["id_exhibition"] . '">';
-                        echo '<h3>' . $expose["titre"] . '</h3>';
-                        echo '<img src="./' . $expose["image_path"] . '" alt="' . $expose["titre"] . '" />';
-                        echo '<p>' . substr($expose["desc"], 0, 250) . '(...)</p>';
-                        echo '</div>';
-                        echo '</a>';
-                    }
-                    ?>
-                </div>
-            </div>
+            <h2 class="title-expose">Liste des expositions en attente</h2>
+                    <div class="exposes">
+                        <?php
+                        foreach ($exposes as $expose) {
+                            echo '<a class = "exposeOBJ" style="cursor:pointer" >';
+                            echo '<div class="expose">';
+                            echo '<input type="hidden" id="id_expose_' . $expose["id_exhibition"] . '" name="id_expose" value="' . $expose["id_exhibition"] . '">';
+                            echo '<h3>' . $expose["titre"] . '</h3>';
+                            // Ajout de l'image
+                            echo '<img src="./' . $expose["image_path"] . '" alt="' . $expose["titre"] . '" />';
+                            echo '<p>' . substr($expose["desc"], 0, 250) . '(...)</p>';
+                            echo '</div>';
+                            echo '</a>';
+                        }
+                        ?>
+                    </div>
+        </div>
         </div>
 
         <footer>

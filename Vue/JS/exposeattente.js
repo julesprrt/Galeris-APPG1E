@@ -34,7 +34,7 @@ document.querySelector(".boutton-valider").addEventListener('click', acceptExpos
 document.querySelector(".boutton-refuse").addEventListener('click', cancelExpose);
 
 async function acceptExpose() {
-    const responseUser = confirm("Etez-vous sûre de vouloir accepter cette exposé ?");
+    const responseUser = confirm("Êtes-vous sûre de vouloir accepter cette exposition ?");
     if (responseUser === true) {
         const id = document.getElementById("id_expose").value;
 
@@ -64,7 +64,7 @@ async function acceptExpose() {
 }
 
 async function cancelExpose() {
-    const responseUser = confirm("Etez-vous sûre de vouloir refuser cette exposé ?");
+    const responseUser = confirm("Êtes-vous sûre de vouloir refuser cette exposition ?");
     if (responseUser === true) {
         const id = document.getElementById("id_expose").value;
 

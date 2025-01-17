@@ -136,6 +136,7 @@ body {
     /* Contenu centré */
     overflow: hidden;
     /* Coupe le contenu dépassant */
+    min-height: 460px;
 }
 
 .oeuvre:hover {

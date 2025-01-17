@@ -31,7 +31,7 @@ async function EnvoieSolde() {
         return;
     }
 
-    const confirmation = confirm("Etez vous-sure de vouloir transférer " + solde + " € à votre compte Stripe ?");
+    const confirmation = confirm("Êtes vous-sure de vouloir transférer " + solde + " € à votre compte Stripe ?");
 
     if (confirmation) {
 
