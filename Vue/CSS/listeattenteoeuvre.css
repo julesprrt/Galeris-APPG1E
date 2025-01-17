@@ -66,6 +66,7 @@ body {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     /* Ombre légère */
     transition: transform 0.3s ease-in-out;
+    min-height: 460px;
     /* Animation au survol */
     text-align: center;
     /* Contenu centré */
