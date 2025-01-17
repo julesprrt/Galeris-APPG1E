@@ -146,6 +146,12 @@
                             <p><small>Vendu le : <?php echo htmlspecialchars($oeuvre['Date_vente']); ?></small></p>
                         <?php endif; ?>
                     <?php endif; ?>
+                    <?php
+                        if($oeuvre["eco_responsable"] === 1){
+                            echo "<p><small class='eco'>Oeuvre éco-responsable</small></p>";
+                            echo "<a href=" .$oeuvre['oeuvre_file'] .  " download='fichier'>Fichier justificatif</a>";
+                        }
+                    ?>
                 </div>
             </section>
 

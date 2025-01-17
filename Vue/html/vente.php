@@ -127,6 +127,18 @@
                             </select>
                         </p>
                         <p>
+                            <strong>Oeuvre eco-responsable :</strong>
+                            <select name="ecoresponsable" id="ecoresponsable-select" class="input-ecoresponsable" required>
+                                <option value="">--Choix--</option>
+                                <option value="Oui">Oui</option>
+                                <option value="Non">Non</option>
+                            </select>
+                        </p>
+                        <p class="justificatif">
+                            <strong>Justificatif (composition de l'oeuvre), facture ...</strong>
+                            <input id="upload-file" type="file" accept="application/msword, text/plain, application/pdf, image/*" />
+                        </p>
+                        <p>
                             <strong>Prix :</strong>
                             <input class="input-vente" type="number" min="0.00" max="10000.00" step="0.01" name="prix" required />
                         </p>

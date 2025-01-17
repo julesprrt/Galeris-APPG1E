@@ -1,4 +1,4 @@
-input[type="file"] {
+#upload {
     display: none;
 }
 
@@ -106,7 +106,9 @@ main {
     background-color: #F9F9F9;
 }
 
-
+.justificatif{
+    display: none;
+}
 
 
 
