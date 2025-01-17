@@ -32,7 +32,7 @@ function onFileSelected(event) {
 }
 
 function eventExpo(event) {
-    var result = confirm("Etez-vous sûre de vouloir supprimer votre image ?");
+    var result = confirm("Êtes-vous sûre de vouloir supprimer votre image ?");
     if (result) {
         event.currentTarget.removeAttribute("src");
         event.currentTarget.removeAttribute("title");

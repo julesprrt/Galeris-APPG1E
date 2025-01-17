@@ -166,7 +166,7 @@ document.querySelectorAll(".boutton-supprimer").forEach(item => {
 })
 
 async function supprimerOeuvre() {
-    const reponse = confirm("Etez-vous sûre de vouloir supprimer cette oeuvre ?");
+    const reponse = confirm("Êtes-vous sûre de vouloir supprimer cette œuvre ?");
     if (reponse === true) {
         const myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
@@ -208,7 +208,7 @@ async function signaler() {
     const raison = document.querySelector(".input-signalement").value;
 
     if (raison.length < 25) {
-        alert("La raison de votre signalement doit contenir plus que 25 carctères.");
+        alert("La raison de votre signalement doit contenir plus de 25 caractères.");
         return;
     }
 

@@ -33,7 +33,7 @@ function onFileSelected(event) {
 }
 
 function eventOeuvre(event) {
-    var result = confirm("Etez-vous sûre de vouloir supprimer votre image ?");
+    var result = confirm("Êtes-vous sûre de vouloir supprimer votre image ?");
     if (result) {
         event.currentTarget.removeAttribute("src");
         event.currentTarget.removeAttribute("title");
@@ -131,7 +131,7 @@ function verificationData(titre, categorie, type, prix, nbJours, description, im
     }
 
     if (categorie === "") {
-        alert("La catégorie de l'oeuvre est obligatoire");
+        alert("La catégorie de l'œuvre est obligatoire");
         return false;
     }
 
