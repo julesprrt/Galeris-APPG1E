@@ -172,7 +172,7 @@
                             } else {
                                 echo '<button class="boutton-retirer-panier">Retirer du Panier</button>';
                             }
-                            echo '<button class="boutton-favoris">Ajouter au favoris</button>';
+                            echo '<button class="boutton-favoris">Ajouter aux favoris</button>';
                         }
                         
                     }

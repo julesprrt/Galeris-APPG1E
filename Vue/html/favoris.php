@@ -73,7 +73,7 @@
         <body> 
             <div class="container flex">
                 <div class="structure">
-                    <h1 class="panier">Votre favoris</h1>
+                    <h1 class="panier">Vos favoris</h1>
                     <table id="table">
                         <thead>
                             <tr>
