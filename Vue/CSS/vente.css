@@ -26,7 +26,7 @@ h2{
     justify-content: center;
 }
 
-img {
+.myimage {
     width: 25em;
     height: 100%;
     object-fit: cover;
