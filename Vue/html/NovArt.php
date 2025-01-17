@@ -41,7 +41,7 @@
 </div>
 
 <footer>
-    <p class="simpleText">&copy; 2024 Novart. Tous droits réservés.</p>
+    <p class="simpleText">&copy; 2025 Novart. Tous droits réservés.</p>
 </footer>
 
 </body>

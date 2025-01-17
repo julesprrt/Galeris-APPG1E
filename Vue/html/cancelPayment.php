@@ -1,6 +1,6 @@
 <html>
   <head>
-    <title>Paièment réussie</title>
+    <title>Paiement réussie</title>
     
     <link rel="stylesheet" href="Vue/CSS/cancelPayment.css">
     <script src="Vue/JS/cancelPayment.js" defer></script>

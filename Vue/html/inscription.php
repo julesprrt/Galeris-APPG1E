@@ -39,7 +39,7 @@
                 <input type="tel" class="input-user" name="telephone" placeholder="Numéro de téléphone"
                     title="exemple format : 0647892314" />
                 <input type="password" class="input-user" name="password" placeholder="Mot de passe"
-                    title="Veuillez rentrez un mot de passe contenant plus de 8 caractères avec au minumum une majucule, une minuscule, un chiffre et un caractère spéciale" />
+                    title="Veuillez rentrez un mot de passe contenant plus de 8 caractères avec au minumum une majucule, une minuscule, un chiffre et un caractère spécial" />
                 <input type="password" class="input-user" name="confirmPassword"
                     placeholder="Confirmer votre mot de passe" />
                 <button class="submit-button" type="submit">S'inscrire</button>
