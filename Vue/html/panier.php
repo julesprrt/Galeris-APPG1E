@@ -165,7 +165,7 @@
                     <?php
                     foreach ($panier as $pan) {
                         echo "<tr class='product' id='" . $pan["id_oeuvre"] . "'> 
-                    <td class='article--name'><img src='./" . $pan["chemin_image"] . "'>
+                    <td class='article--name'><img class='picture-oeuvre' src='./" . $pan["chemin_image"] . "'>
                       </td>
                       <td class='titre'><p class='titrestyle'>" . $pan["Titre"] . "</p><p class='vendue'> Vendue par " . $pan["nom"] . " " . $pan["prenom"] . "</p><p class='vendue'> Réalisé par " . $pan["auteur"] . "</p></td>
                       <td class='price-elmprice'>" . $pan["Prix"] . " € <div class='remove'><a class='remove-elm' id='" . $pan["id_panier"] . "'><button  type='button' class='btn-simple'>Supprimer</button></a></div></td>

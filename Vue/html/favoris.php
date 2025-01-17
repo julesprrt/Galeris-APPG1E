@@ -169,7 +169,7 @@
                     <?php
                     foreach ($favoris as $pan) {
                         echo "<tr class='product' id='" . $pan["id_oeuvre"] . "'>
-                                <td class='article--name'><img src='./" . $pan["chemin_image"] . "'></td>
+                                <td class='article--name'><img class='picture-oeuvre' src='./" . $pan["chemin_image"] . "'></td>
                                 <td class='titre'>
                                     <p class='titrestyle'>" . $pan["Titre"] . "</p>
                                     <p class='vendue'> Vendue par " . $pan["nom"] .  " " . $pan["prenom"] . "</p>

@@ -101,9 +101,6 @@
         </div>
     </div>
 
-    <a href="./">
-        <div class="logo"><img src="images/logo.png"></div>
-    </a>
     <nav class="menu">
         <ul>
             <li><a href="./">Accueil</a></li>
@@ -245,14 +242,6 @@
                 <?php
                 if ($user || $userRole) {
                     echo '<button class="boutton-supprimer">Supprimer</button>';
-                } else {
-                    echo '<button class="boutton-offre">Enchérir</button>';
-                    if ($favoris === false) {
-                        echo '<button class="boutton-favoris">Ajouter au favoris</button>';
-                    } else {
-                        echo '<button class="boutton-retirer-favoris">Retirer du Favoris</button>';
-                    }
-                }
                 } else {
                     echo '<button class="boutton-offre">Enchérir</button>';
                     if ($favoris === false) {
