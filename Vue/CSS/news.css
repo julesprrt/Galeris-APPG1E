@@ -27,7 +27,7 @@ h2{
     padding-bottom: 2em;
 }
 
-img {
+.myimage {
     width: 25em;
     height: 100%;
     object-fit: cover;
