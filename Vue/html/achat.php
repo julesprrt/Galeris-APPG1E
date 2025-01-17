@@ -27,24 +27,24 @@
                 <li><a href="./ventes">Vente</a></li>
                 <li><a href="./exposes">Exposition</a></li>
                 <li><a href="./listenews">News</a></li>
-                
+
             </ul>
         </nav>
         <div class="barre_recherche">
-        <input type="text" placeholder="Rechercher..." class="shearch">
+            <input type="text" placeholder="Rechercher..." class="shearch">
             <datalist id="galeris-list">
-                        <?php
-                            foreach($users as $user_barre){
-                                echo '<option data-value="utilisateur_' . $user_barre["id_utilisateur"] . '" value="' . $user_barre["nom"] . ' ' . $user_barre["prenom"] . ' ' . $user_barre["id_utilisateur"] .' (utilisateur)">';
-                            }
-                            foreach($exposes as $expose_barre){
-                                echo '<option data-value="expose_' . $expose_barre["id_exhibition"] . '" value="' . $expose_barre["titre"] . ' ' . $expose_barre["id_exhibition"] . ' (exposé)">';
-                            }
-                            foreach($oeuvres as $oeuvre_barre){
-                                echo '<option data-value="oeuvre_' . $oeuvre_barre["id_oeuvre"] . '" value="' . $oeuvre_barre["Titre"] . ' ' . $oeuvre_barre["auteur"] . ' ' . $oeuvre_barre["id_oeuvre"] . ' (Oeuvre)">';
-                            }
-                                
-                        ?>
+                <?php
+                foreach ($users as $user_barre) {
+                    echo '<option data-value="utilisateur_' . $user_barre["id_utilisateur"] . '" value="' . $user_barre["nom"] . ' ' . $user_barre["prenom"] . ' ' . $user_barre["id_utilisateur"] . ' (utilisateur)">';
+                }
+                foreach ($exposes as $expose_barre) {
+                    echo '<option data-value="expose_' . $expose_barre["id_exhibition"] . '" value="' . $expose_barre["titre"] . ' ' . $expose_barre["id_exhibition"] . ' (exposé)">';
+                }
+                foreach ($oeuvres as $oeuvre_barre) {
+                    echo '<option data-value="oeuvre_' . $oeuvre_barre["id_oeuvre"] . '" value="' . $oeuvre_barre["Titre"] . ' ' . $oeuvre_barre["auteur"] . ' ' . $oeuvre_barre["id_oeuvre"] . ' (Oeuvre)">';
+                }
+
+                ?>
             </datalist>
             <div class="favori"> <a href="./favoris">❤️</a></div>
             <div class="panier"> <a href="./panier">🛒</a></div>
@@ -101,10 +101,6 @@
                         <?php endforeach; ?>
                     </div>
 
-
-
-
-
                     <!-- Flèche droite -->
                     <button class="carousel-fleche droite cfd">&#10095;</button>
                 </div>
@@ -116,7 +112,7 @@
                     <p><?php echo nl2br(htmlspecialchars($oeuvre['Description'])); ?></p>
                 </div>
             </section>
-         
+
         </section>
 
         <!-- Droite : Informations supplémentaires -->
@@ -147,10 +143,10 @@
                         <?php endif; ?>
                     <?php endif; ?>
                     <?php
-                        if($oeuvre["eco_responsable"] === 1){
-                            echo "<p><small class='eco'>Oeuvre éco-responsable</small></p>";
-                            echo "<a href=" .$oeuvre['oeuvre_file'] .  " download='fichier'>Fichier justificatif</a>";
-                        }
+                    if ($oeuvre["eco_responsable"] === 1) {
+                        echo "<p><small class='eco'>Oeuvre éco-responsable</small></p>";
+                        echo "<a href=" . $oeuvre['oeuvre_file'] .  " download='fichier'>Fichier justificatif</a>";
+                    }
                     ?>
                 </div>
             </section>
@@ -165,7 +161,6 @@
                     if (new DateTime() < new DateTime($oeuvre["Date_fin"])) {
                         if ($user || $userRole) {
                             echo '<button class="boutton-supprimer">Supprimer</button>';
-
                         } else {
                             if ($panier === false) {
                                 echo '<button class="boutton-panier">Ajouter au Panier</button>';
@@ -174,7 +169,6 @@
                             }
                             echo '<button class="boutton-favoris">Ajouter au favoris</button>';
                         }
-                        
                     }
                     ?>
                 <?php endif; ?>
@@ -199,7 +193,8 @@
         </div>
         <div class="container-footer">
             <a class="title-footer">Informations légales</a>
-            <a class="item-footer" href="./cgu">Conditions d'utilisations</a>
+            <!-- Correction orthographique -->
+            <a class="item-footer" href="./cgu">Conditions d'utilisation</a>
             <a class="item-footer" href="./mentionslegales">Mentions légales</a>
         </div>
     </footer>
