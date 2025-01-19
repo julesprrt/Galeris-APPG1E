@@ -164,6 +164,10 @@
                         echo '<input type="hidden" id="id_oeuvre_' . $oeuvre["id_oeuvre"] . '" name="id_oeuvre" value="' . $oeuvre["id_oeuvre"] . '">';
                         echo '<h3>' . $oeuvre["Titre"] . '</h3>';
                         echo '<img src="./' . $oeuvre["image_path"] . '" alt="' . $oeuvre["Titre"] . '" />';
+                        if($oeuvre["eco_responsable"] === 1){
+                            echo '<small class="eco"> Oeuvre écoresponsable  </small>';
+
+                        }
                         echo '<p>' . substr($oeuvre["Description"], 0, 250) . '(...)</p>';
                         echo '</div>';
                         echo '</a>';

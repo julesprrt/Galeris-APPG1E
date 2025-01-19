@@ -226,6 +226,10 @@
                             echo '<h3>' . $oeuvre["Titre"] . '</h3>';
                             echo '<img src="./' . $oeuvre["chemin_image"] . '" alt="' . $oeuvre["Titre"] . '" />';
                             echo '<p class="temps-restant" data-fin="' . $oeuvre["Date_fin"] . '">' . '</p>';
+                            if($oeuvre["eco_responsable"] === 1){
+                                echo '<small class="eco"> Oeuvre écoresponsable  </small>';
+    
+                            }
                             if ($oeuvre["type_vente"] === "vente" || $oeuvre["prix_courant"] === null) {
                                 echo '<p>' . $oeuvre['Prix'] . ' €</p>';
                             } else {
