@@ -75,8 +75,6 @@ class PaymentController extends Controller
             exit;
         }
 
-        $this->render('cancelPayment', []);
-
         if (!isset($_SESSION["payment"])) {
             http_response_code(404);
             header("Location: ./");
