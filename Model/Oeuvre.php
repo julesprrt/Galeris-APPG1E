@@ -124,6 +124,34 @@ class Oeuvre
         WHERE o.est_vendu = ? AND o.statut = ? AND o.Date_fin >= ?
         GROUP BY o.id_oeuvre
         ORDER BY o.Date_fin 
+    ";
+        $stmt = $conn->prepare($query);
+        $est_vendu = 0;
+        $accept = "accepte";
+        $now = new DateTime();
+        $now = $now->format('Y-m-d H:i:s');
+        $stmt->bind_param('iss', $est_vendu, $accept, $now);
+        $stmt->execute();
+
+        $result = $stmt->get_result();
+
+        $stmt->close();
+        $conn->close();
+
+        return $result;
+    }
+
+    public static function getAllOeuvreHome(Database $db)
+    {
+        $conn = $db->connect();
+        $query = " SELECT o.*,c.Nom_categorie, oi.chemin_image, MAX(e.prix) as prix_courant
+        FROM oeuvre o
+        INNER JOIN oeuvre_images oi ON o.id_oeuvre = oi.id_oeuvre
+        Inner join categorie c on c.id_categorie = o.id_categorie
+        left JOIN enchere e on e.id_oeuvre_enchere = o.id_oeuvre 
+        WHERE o.est_vendu = ? AND o.statut = ? AND o.Date_fin >= ?
+        GROUP BY o.id_oeuvre
+        ORDER BY o.eco_responsable DESC ,o.Date_fin
         LIMIT 10
     ";
         $stmt = $conn->prepare($query);

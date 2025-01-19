@@ -43,7 +43,7 @@ class NewsController extends Controller
             $result = $news->VerifyAndSaveNews($db);
             if($result===200){
                 http_response_code(200);
-                echo json_encode(['Success' => "Actualité ajouté"]);
+                echo json_encode(['Success' => "Votre actualité a bien été ajoutée."]);
             }
             else if($result===401){
                 http_response_code(401);
@@ -55,15 +55,15 @@ class NewsController extends Controller
             }
             else if($result === 403){
                 http_response_code(403);
-                echo json_encode(['Error'=> "Une image obligatoire"]);
+                echo json_encode(['Error'=> "Votre actualité doit contenir au moin une image."]);
             }
             else if($result === 404){
                 http_response_code(404);
-                echo json_encode(['Error'=> "Type de fichier autorisé : image"]);
+                echo json_encode(['Error'=> "Les seuls type de fichier autorisé sont les images (JPG, PNG ...)."]);
             }
             else if($result === 405){
                 http_response_code(405);
-                echo json_encode(['Error'=> "Fichier trop lourd, 1 MB maximum"]);
+                echo json_encode(['Error'=> "Vos image sont trop lourd, uniquement 2 MB autorisées."]);
             }
         }
         else{

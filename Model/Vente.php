@@ -39,29 +39,29 @@ class Vente
     public function VerifyAndSaveProduct(Database $db)
     {
         if ($this->titre === "") {
-            return "Le titre est obligatoire";
+            return "Le titre est obligatoire.";
         } else if ($this->categorie === "") {
-            return "La categorie est obligatoire";
+            return "La catégorie est obligatoire.";
         } else if (strlen($this->description) < 50) {
             return "La description est obligatoire et doit contenir plus de 50 caractères.";
         } else if($this->choix_eco === ""){
-            return "Choix eco-responsable obligatoire";
+            return "Le choix écoresponsable obligatoire.";
         }else if($this->choix_eco === "Oui" && $this->file_eco === ""){
-            return "Le fichier éco-responsable est obligatoire"; 
+            return "Le fichier justificatif écoresponsable est obligatoire."; 
         } else if ($this->image1 === "") {
-            return "Vous devez ajouter au moins une image";
+            return "Vous devez ajouter au moins, une image a votre œuvre d'art.";
         } else if ($this->type_vente === "") {
-            return "Le type de vente est obligatoire";
+            return "Le type de vente est obligatoire.";
         } else if ($this->prix === "") {
-            return "Le prix est obligatoire";
+            return "Le prix est obligatoire.";
         } else if ($this->nbJours === "" || (int)$this->nbJours > 30) {
-            return "Le nombre de jours est obligatoire et doit être inférieur ou égal à 30 jours";
+            return "Le nombre de jours est obligatoire et doit être inférieur ou égal à 30 jours.";
         } else if ($this->image1 !== "" && !$this->utils->verifyImageAndSize($this->image1) || $this->image2 !== "" && !$this->utils->verifyImageAndSize($this->image2) || $this->image3 !== "" && !$this->utils->verifyImageAndSize($this->image3)) {
-            return "Type de fichier autorisé : image";
+            return "Les seuls type de fichier autorisé sont les images (JPG, PNG ...).";
         } else if ($this->image1 !== "" && $this->utils->human_filesize($this->image1) >= 2 || $this->image2 !== "" && $this->utils->human_filesize($this->image2) >= 2 || $this->image3 !== "" && $this->utils->human_filesize($this->image3) >= 2) {
-            return "Fichier trop lourd, 2 MB maximum";
+            return "Vos image sont trop lourd, uniquement 2 MB autorisées.";
         } else if($this->choix_eco === "Oui" && $this->utils->human_filesize($this->file_eco) >= 2){
-            return "Fichier trop lourd, 2 MB maximum";
+            return "Votre fichier écoresponsable est trop lourd, uniquement 2 MB autorisées.";
         }
         else {
             $eco_responsable = $this->choix_eco === "Oui" ? 1 : 0;

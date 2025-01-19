@@ -176,7 +176,7 @@
                     <!-- Flèche gauche -->
                     <button class="carousel-fleche gauche cfg">&#10094;</button>
 
-                    <div class="art-image">
+                    <div class="art-image" imageSize="<?php echo sizeof($oeuvre['chemin_image']) ?>">
                         <?php foreach ($oeuvre['chemin_image'] as $index => $chemin): ?>
                             <img src="./<?php echo htmlspecialchars($chemin); ?>"
                                 class="carousel-image <?php echo $index === 0 ? 'active' : ''; ?>"
@@ -186,17 +186,6 @@
 
                     <!-- Flèche droite -->
                     <button class="carousel-fleche droite cfd">&#10095;</button>
-                </div>
-
-                <div class="carousel-container2">
-
-                    <div class="art-image">
-                        <?php foreach ($oeuvre['chemin_image'] as $index => $chemin): ?>
-                            <img src="./<?php echo htmlspecialchars($chemin); ?>"
-                                class="carousel-image <?php echo $index === 0 ? 'active' : ''; ?>"
-                                alt="Image de <?php echo htmlspecialchars($oeuvre['Titre']); ?>">
-                        <?php endforeach; ?>
-                    </div>
                 </div>
 
 

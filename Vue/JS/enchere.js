@@ -81,7 +81,7 @@ async function verifyEnchere() {
             document.querySelector(".input-enchere").min = result.prix;
         }
         else {
-            alert("Vous pouvez modifier vos données de livraison sur la page livraison");
+            alert("Veuillez renseigner vos données de livraison avant d'enchérir sur une œuvre d'art.");
             window.location.href = "./livraison";
         }
     }
@@ -95,7 +95,7 @@ document.querySelector(".input-enchere").addEventListener('input', changeInput);
 
 function changeInput(e) {
     if (isNaN(parseFloat(e.target.value)) || parseFloat(e.target.value) < parseFloat(e.target.min)) {
-        document.querySelector(".error").innerHTML = "Le prix ne doit pas être inférieur à " + e.target.min + " €";
+        document.querySelector(".error").innerHTML = "L'offre ne doit pas être inférieur à " + e.target.min + " €";
     }
     else {
         document.querySelector(".error").innerHTML = "";
@@ -132,7 +132,7 @@ async function encherir() {
     const prixMin = document.querySelector(".input-enchere").min;
 
     if (isNaN(parseFloat(prix)) || parseFloat(prix) < parseFloat(prixMin)) {
-        alert("Le prix ne doit pas être inférieur à " + prixMin + " €")
+        alert("L'offre ne doit pas être inférieur à " + prixMin + " €")
         return;
     }
 

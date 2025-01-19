@@ -59,7 +59,6 @@ async function retirerpanier(e){
     const result = await fetch("./retirerpanierid", requestOptions);
     const statut = result.status;
     const text = await result.json();
-    console.log(text)
     if(statut === 200){
         alert(text.panier);
         window.location.reload();

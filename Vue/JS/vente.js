@@ -6,12 +6,12 @@ function onFileSelected(event) {
     var reader = new FileReader();
 
     if (!selectedFile.type.includes("image")) {
-        alert("Type de fichier autorisé : image");
+        alert("Les seuls type de fichier autorisé sont les images (JPG, PNG ...).");
         return;
     }
 
     if (selectedFile.size > 2097152) {
-        alert("Fichier trop lourd, 2 MB maximum");
+        alert("Vos image sont trop lourd, uniquement 2 MB autorisées.");
         return;
     }
 
@@ -124,7 +124,7 @@ async function verificateAndSaveData() {
 
 function verificationData(titre, categorie, type, prix, nbJours, description, image1, choix, file) {
     if (titre === "") {
-        alert("Le titre est obligatoire");
+        alert("Le titre est obligatoire et doit contenir moins de 50 caractères.");
         return false;
     }
 
@@ -134,7 +134,7 @@ function verificationData(titre, categorie, type, prix, nbJours, description, im
     }
 
     if (image1 === "") {
-        alert("Vous devez ajouter au moins une image");
+        alert("Votre œuvre  doit contenir au moin une image.");
         return false;
     }
 
@@ -144,22 +144,22 @@ function verificationData(titre, categorie, type, prix, nbJours, description, im
     }
 
     if (type === "") {
-        alert("Le type de vente est obligatoire");
+        alert("Le type de vente est obligatoire.");
         return false;
     }
 
     if (prix === "") {
-        alert("Le prix est obligatoire");
+        alert("Le prix de l'œuvre est obligatoire");
         return false;
     }
 
     if (choix === "") {
-        alert("Eco-responsable");
+        alert("Le choix écoresponsable obligatoire.");
         return false;
     }
 
     if (choix === "Oui" && file === null) {
-        alert("Le fichier éco-responsable est obligatoire.");
+        alert("Le fichier justificatif écoresponsable est obligatoire.");
         return false;
     }
 

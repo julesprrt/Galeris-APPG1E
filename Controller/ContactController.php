@@ -17,7 +17,7 @@ class ContactController extends Controller
         $resultContact = $contact->contactPlatformGaleris();
         if ($resultContact == true && gettype($resultContact) !== 'string') {
           http_response_code(200);
-          echo json_encode(['Success' => 'Un mail a bien été envoyé à notre service']);
+          echo json_encode(['Success' => 'Votre demande a été envoyée.']);
         } else {
           http_response_code(400);
           echo json_encode(['Error' => $resultContact]);

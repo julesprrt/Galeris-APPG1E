@@ -45,21 +45,21 @@ class User
     {
         $value = $this->VerifyExistMail($db);
         if ($this->name === "" || $this->firstName === "" || $this->email === "" || $this->telephone === "" || $this->password === "" || $this->confirmPassword === "") {
-            return "Vous devez remplir l'ensemble des champs du formulaire";
+            return "Vous devez remplir l'ensemble des champs du formulaire.";
         } else if ($this->cgu === false) {
-            return "Vous devez valider les conditions générales d'utilisation de Galeris";
+            return "Vous devez lire et valider les conditions générales d'utilisation de Galeris.";
         } else if (!$this->utilsUser->emailComposition($this->email)) {
-            return "Mail invalide";
+            return "Votre adresse mail est invalide.";
         } else if (!$this->telComposition($this->telephone)) {
-            return "Format invalide. Exemple : 0689213474";
+            return "Le format de votre numéro de téléphone est invalide. Exemple : 0689213474";
         } else if (!$this->passwordComposition($this->password)) {
-            return "Votre mot de passe doit contenir une minuscule, une majucule, un nombre et un caractère spécial et plus que 8 caractères.";
+            return "Votre mot de passe doit contenir au moins une minuscule, une majucule, un nombre et un caractère spécial et plus que 8 caractères.";
         } else if ($this->password !== $this->confirmPassword) {
-            return "Les deux mots de passe ne sont pas identiques";
+            return "Les deux mots de passe ne sont pas identiques.";
         } else if ($value === false) {
-            return "Vous avez déja un compte";
+            return "Vous avez déja un compte.";
         } else  if ($this->utilsUser->verifyCaptcha($this->captcha) == false) {
-            return "Veuillez valider le Captcha";
+            return "La validation du captcha est obligatoire.";
         } else {
             if ($value === true) {
                 $this->saveUser($db);
@@ -73,7 +73,7 @@ class User
     public function connectUser(Database $db)
     {
         if ($this->utilsUser->verifyCaptcha($this->captcha) == false) {
-            return "Veuillez valider le Captcha";
+            return "La validation du captcha est obligatoire.";
         }
         $database = $db->connect();
         // Interroger les données utilisateur dans la base de données
@@ -97,10 +97,10 @@ class User
             } else if ($user["actif"] === 0) {
                 return "Utilisateur non valide";
             } else {
-                return "Votre mail/mot de passe est incorrect";
+                return "Identifiant ou mot de passe invalide";
             }
         } else {
-            return "Vous n'avez pas de compte";
+            return "Vous n'avez pas de compte Galeris";
         }
     }
 
@@ -315,14 +315,14 @@ class User
         $conn->close();
         return $result;
     }
-    public function updateUser($id, $nom, $prenom, $email, $description, $adresse, $newsletter, $newPassword, Database $db)
+    public function updateUser($id, $nom, $prenom, $description, $adresse, $newsletter, $newPassword, Database $db)
     {
         $conn = $db->connect();
 
         // Prépare la requête SQL de base
-        $sql = "UPDATE utilisateur SET nom = ?, prenom = ?, email = ?, description = ?, adresse = ?, newsletter = ?";
-        $types = "sssssi"; // Types pour bind_param
-        $params = [$nom, $prenom, $email, $description, $adresse, $newsletter];
+        $sql = "UPDATE utilisateur SET nom = ?, prenom = ?, description = ?, adresse = ?, newsletter = ?";
+        $types = "ssssi"; // Types pour bind_param
+        $params = [$nom, $prenom, $description, $adresse, $newsletter];
 
         // Si un nouveau mot de passe est fourni, on l'ajoute à la requête
         if (!empty($newPassword)) {

@@ -46,7 +46,7 @@ class FavorisController extends Controller
         $result = $favoris->ajoutFavoris($db);
         if($result === 200){
             http_response_code($result);
-            echo json_encode(["favoris" => "Produit ajouté aux favoris"]);
+            echo json_encode(["favoris" => "L'œuvre a été ajoutée à votre favoris."]);
         }
         else{
             http_response_code($result);
@@ -69,7 +69,7 @@ class FavorisController extends Controller
         $result = $favoris->retirerFavoris($db);
         if($result === 200){
             http_response_code($result);
-            echo json_encode(["favoris" => "Produit retiré du favoris"]);
+            echo json_encode(["favoris" => "L'œuvre a été retirée de votre favoris."]);
         }
         else{
             http_response_code($result);
@@ -85,7 +85,7 @@ class FavorisController extends Controller
         $result = $favoris->retirerFavorisId($db, $data["id"]);
         if($result === 200){
             http_response_code($result);
-            echo json_encode(["favoris" => "Produit retiré du favoris"]);
+            echo json_encode(["favoris" => "L'œuvre a été retirée de votre favoris."]);
         }
         else{
             http_response_code($result);

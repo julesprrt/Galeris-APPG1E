@@ -46,28 +46,28 @@ class LivraisonController extends Controller
             $statut = $livraison->saveLivraison($db);
             if($statut === 200){
                 http_response_code(200);
-                echo json_encode(["Success" => "Données bien enregistrées"]);
+                echo json_encode(["Success" => "Vos données de livraison ont bien été enregistrées."]);
             }
             else if($statut === 401){
                 http_response_code(401);
-                echo json_encode(["Error" => "Erreur nom"]);
+                echo json_encode(["Error" => "Le nom ne doit contenir que des lettres."]);
             }
             else if($statut === 402){
                 http_response_code(402);
-                echo json_encode(["Error" => "Erreur prénom"]);
+                echo json_encode(["Error" => "Le prénom ne doit contenir que des lettres."]);
             }
             else if($statut === 403){
                 http_response_code(403);
-                echo json_encode(["Error" => "Erreur pays"]);
+                echo json_encode(["Error" => "Le nom du pays ne doit contenir que des lettres."]);
             }
             else if($statut === 404){
                 http_response_code(404);
-                echo json_encode(["Error" => "Erreur ville"]);
+                echo json_encode(["Error" => "Le nom de la ville ne doit contenir que des lettres."]);
             }
         } 
         else {
             http_response_code(400);
-            echo json_encode(["Error" => "Veuillez remplir l'ensemble des champs du formulaire"]);
+            echo json_encode(["Error" => "Veuillez remplir l'ensemble des champs du formulaire."]);
         }
     }
 }

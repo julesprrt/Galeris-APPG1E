@@ -125,7 +125,7 @@
                     foreach ($exposes as $expose_barre) {
                         echo '<option data-value="expose_' . $expose_barre["id_exhibition"] . '" value="' . $expose_barre["titre"] . ' ' . $expose_barre["id_exhibition"] . ' (exposé)">';
                     }
-                    foreach ($oeuvres as $oeuvre_barre) {
+                    foreach ($oeuvre_barres as $oeuvre_barre) {
                         echo '<option data-value="oeuvre_' . $oeuvre_barre["id_oeuvre"] . '" value="' . $oeuvre_barre["Titre"] . ' ' . $oeuvre_barre["auteur"] . ' ' . $oeuvre_barre["id_oeuvre"] . ' (Oeuvre)">';
                     }
 
@@ -198,6 +198,10 @@
                         echo '<h3>' . $oeuvre["Titre"] . '</h3>';
                         echo '<img src="./' . $oeuvre["chemin_image"] . '" alt="' . $oeuvre["Titre"] . '" />';
                         echo '<p class="temps-restant" data-fin="' . $oeuvre["Date_fin"] . '">' . '</p>';
+                        if($oeuvre["eco_responsable"] === 1){
+                            echo '<small class="eco"> Oeuvre écoresponsable  </small>';
+
+                        }
                         if ($oeuvre["type_vente"] === "vente" || $oeuvre["prix_courant"] === null) {
                             echo '<p>' . $oeuvre['Prix'] . ' €</p>';
                         } else {

@@ -21,6 +21,10 @@ body {
     padding: 2em 0; /* Ajuster le padding selon les besoins */
 }
 
+.eco{
+    color : green
+  }
+
 
 .title-oeuvre {
     margin-bottom: 10px; 
