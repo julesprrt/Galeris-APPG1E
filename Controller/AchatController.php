@@ -93,10 +93,10 @@ class AchatController extends Controller
         $result = $oeuvre->verifyEnchere($db);
         if ($result === 401) {
             http_response_code(401);
-            echo json_encode(['Error' => "Veuillez renseigner vos données de livraison sur la page livraison avant d'enchérir sur une oeuvre"]);
+            echo json_encode(['Error' => "Veuillez renseigner vos données de livraison avant d'enchérir sur une œuvre d'art."]);
         } else {
             http_response_code(200);
-            echo json_encode(['Success' => "Si vous remportez l'enchère votre commande sera livrée à l'adresse suivante : " . $result["adresse"] . " " . $result["codepostale"] . ", " . $result["ville"] . " " . $result["pays"], 'prix' => number_format($result["prixCourant"], 2, '.', '')]);
+            echo json_encode(['Success' => "Si vous remportez l'enchère, votre commande sera livrée à l'adresse suivante : " . $result["adresse"] . " " . $result["codepostale"] . ", " . $result["ville"] . " " . $result["pays"], 'prix' => number_format($result["prixCourant"], 2, '.', '')]);
         }
     }
 
@@ -117,7 +117,7 @@ class AchatController extends Controller
         
         if($result["statut"] === 401){
             http_response_code(401);
-            echo json_encode(['Error' => "Le prix ne doit pas être inférieur à " . $result["prixCourant"] . " €", 'prix' => number_format($result["prixCourant"], 2, '.', '')]);
+            echo json_encode(['Error' => "L'offre ne doit pas être inférieur à " . $result["prixCourant"] . " €", 'prix' => number_format($result["prixCourant"], 2, '.', '')]);
         } else {
             http_response_code(200);
             echo json_encode(["payment" => $result["url"]]);
@@ -145,6 +145,6 @@ class AchatController extends Controller
         $oeuvre = new Oeuvre($Titre = null, $Description = null, $eco_responsable = null, $Date_debut = null, $Date_fin = null, $Prix = null, $type_vente = null, $est_vendu = null, $auteur = null, $id_utilisateur = null, $id_categorie = null, $status = null, $nomvendeur = null, $prenomvendeur = null, $chemin_image = null, $prix_actuel = null, $id_offreur = null, $id_vente = null, $prix = null, $Date_vente = null);
         $oeuvre->supprimerOeuvre($db);
         http_response_code(200);
-        echo json_encode(["Success" => "Oeuvre supprimée"]);
+        echo json_encode(["Success" => "Œuvre supprimée avec succès."]);
     }
 }

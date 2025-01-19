@@ -115,7 +115,7 @@ function verificationData(title, description, image1, date_debut, date_fin){
         return false;
     }
     if (image1 === "") {
-        alert("Vous devez ajouter au moins une image")
+        alert("Votre exposition doit contenir au moin une image.")
         return false;
     }
     if (date_debut === "" || isDateBeforeToday(date_debut) == false) {

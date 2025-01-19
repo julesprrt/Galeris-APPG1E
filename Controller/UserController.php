@@ -19,10 +19,10 @@ class UserController extends Controller
             $result = $user->registerVerification($db); //Verifier les données d'inscription
             if ($result === true) { //Si les données sont correct alors envoie du code a usage unique + redirection vers la page  avec le code à usage unique
                 http_response_code(200);
-                echo json_encode(['Success' => "Un code vous à été envoyé sur votre adresse mail pour confirmer votre identité"]);
+                echo json_encode(['Success' => "Un code vous à été envoyé sur votre adresse mail pour confirmer votre identité."]);
             } else if ($result === "code") {
                 http_response_code(200);
-                echo json_encode(['Success' => "Un code vous à été envoyé sur votre adresse mail pour confirmer votre identité"]);
+                echo json_encode(['Success' => "Un code vous à été envoyé sur votre adresse mail pour confirmer votre identité."]);
             } else { //Sinon affiché le message d'erreur sur la vue
                 http_response_code(400);
                 echo json_encode(['Error' => $result]);
@@ -46,7 +46,7 @@ class UserController extends Controller
                 echo json_encode(['Success' => "Connexion réussie"]);
             } else if ($result === "Utilisateur non valide") {
                 http_response_code(401);
-                echo json_encode(['Information' => "Veuillez vous inscrire"]);
+                echo json_encode(['Information' => "Votre compte n'est pas actif, veuillez completer votre inscription."]);
             } else {
                 http_response_code(400);
                 echo json_encode(['Error' => $result]);
@@ -76,14 +76,14 @@ class UserController extends Controller
             $user = new User("", "", $data["email"], "", "", "", "", null, null, null);
             if ($user->verifyEmailForPassword($db)) {
                 http_response_code(200);
-                echo json_encode(['Success' => "Un code vous à été envoyé sur votre adresse mail pour confirmer votre identité"]);
+                echo json_encode(['Success' => "Un code vous à été envoyé sur votre adresse mail pour confirmer votre identité."]);
             } else {
                 http_response_code(400);
-                echo json_encode(['Error' => "Mail invalide"]);
+                echo json_encode(['Error' => "Votre adresse mail est invalide."]);
             }
         } else {
             http_response_code(400);
-            echo json_encode(['Error' => "Entrez votre mail"]);
+            echo json_encode(['Error' => "Veuillez renseigner votre adresse mail."]);
         }
     }
 
@@ -104,13 +104,13 @@ class UserController extends Controller
             $type = $_SESSION["usersessionType"];
             if ($response == 200 && $type === "") {
                 http_response_code(200);
-                echo json_encode(['Success' => "Inscription réussie"]);
+                echo json_encode(['Success' => "Votre inscription est réussie."]);
             } else if ($response == 200 && $type === "password") {
                 http_response_code(200);
                 echo json_encode(['Success' => $type]);
             } else {
                 http_response_code(400);
-                echo json_encode(['Error' => "Code incorrect"]);
+                echo json_encode(['Error' => "Le code que vous avez entré est incorrect."]);
             }
         } else {
             $this->render('codeunique', ['message' => '']);
@@ -249,7 +249,7 @@ class UserController extends Controller
         }
 
         // Mise à jour des données
-        $updated = $userModel->updateUser($userId, $nom, $prenom, $email, $description, $adresse, $newsletter, $newPassword, $db);
+        $updated = $userModel->updateUser($userId, $nom, $prenom, $description, $adresse, $newsletter, $newPassword, $db);
         $userModel->SuppresionAnciennePDP($userId, $db);
         $userModel->updatePhoto($userId, $photoPath, $db);
 
@@ -310,7 +310,7 @@ class UserController extends Controller
             $result = $user->changePassword($db);
             if ($result === true) {
                 http_response_code(200);
-                echo json_encode(["Success" => "Mot de passe modifié"]);
+                echo json_encode(["Success" => "Votre mot de passe a bien été modifié."]);
                 session_destroy();
             } else {
                 http_response_code(400);
@@ -345,10 +345,10 @@ class UserController extends Controller
 
 
             http_response_code(200);
-            echo json_encode(['Success' => 'Signalement envoyé avec succès.']);
+            echo json_encode(['Success' => 'Votre signalement à bien été envoyé avec succès a notre service.']);
         } else {
             http_response_code(400);
-            echo json_encode(['Error' => "Données invalides pour le signalement (oeuvre_id, raison)."]);
+            echo json_encode(['Error' => "Données invalides pour le signalement."]);
         }
     }
 
@@ -384,7 +384,7 @@ class UserController extends Controller
             $response = $user->createTransfert($data["solde"], $userAccount["solde"], $db);
             if($response === 401){
                 http_response_code(401);
-                echo json_encode(['Error' => "Le solde ne doit pas être supérieur à " . $userAccount["solde"] . " €"]);
+                echo json_encode(['Error' => "Le montant ne doit pas être supérieur à votre solde actuel : " . $userAccount["solde"] . " €"]);
             }
             else{
                 http_response_code(200);
@@ -393,7 +393,7 @@ class UserController extends Controller
         }
         else{
             http_response_code(400);
-            echo json_encode(['Error' => "Veuillez remplir l'ensemble des champs."]);
+            echo json_encode(['Error' => "Veuillez remplir l'ensemble des champs du formulaire."]);
         }
     }
 

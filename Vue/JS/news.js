@@ -104,7 +104,7 @@ function verificationData(title, description, image1){
         return false;
     }
     if (image1 === "") {
-        alert("Vous devez ajouter au moins une image")
+        alert("Votre actualité doit contenir au moin une image.")
         return false;
     }
 }

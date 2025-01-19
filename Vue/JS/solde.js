@@ -22,12 +22,12 @@ async function EnvoieSolde() {
     const soldeMax = document.querySelector(".input-solde").max;
 
     if(solde.trim() === ""){
-        alert("Veuillez remplir l'ensemble des champs.")
+        alert("Veuillez remplir l'ensemble des champs du formulaire.")
         return;
     }
 
     if (isNaN(parseFloat(solde)) || parseFloat(solde) > parseFloat(soldeMax) || parseFloat(solde) < 1) {
-        alert("Le solde ne doit pas être supérieur à " + soldeMax + " €")
+        alert("L'offre ne doit pas être inférieur à  " + soldeMax + " €")
         return;
     }
 

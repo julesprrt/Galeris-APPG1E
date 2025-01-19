@@ -37,7 +37,7 @@ async function confpassword (){
     myHeaders.append("Content-Type", "application/json");
 
     if (passWord !== confPassWord) {
-        alert("Les mots de passe ne correspondent pas !");
+        alert("Les deux mots de passe ne sont pas identiques.");
         return;
     }
 

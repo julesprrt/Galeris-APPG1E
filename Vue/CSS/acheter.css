@@ -88,16 +88,11 @@ textarea {
   max-width: 25em;
   margin: 0 auto;
 }
-.carousel-container2 {
-  display: none;
-  position: relative;
-  width: 100%;
-  max-width: 25em;
-  margin: 0 auto;
-}
+
 
 .art-image img {
   width: 100%;
+  display: none;
 }
 
 .art-image img.active {
@@ -141,6 +136,7 @@ textarea {
 .art-info p {
   font-size: 14px;
   color: #777;
+  overflow-wrap: break-word;
 }
 
 .art-image-similaire {
@@ -221,6 +217,10 @@ textarea {
   opacity: 0.9;
 }
 
+.eco {
+  color : green
+}
+
 #btnSignaler:hover {
   opacity: 0.9;
 }
@@ -281,8 +281,6 @@ textarea {
     flex-wrap: wrap;
     gap: 20px;
     justify-content: center;
-  .eco {
-    color : green
   }
   
   .carousel-container {
@@ -308,23 +306,7 @@ textarea {
   }
 
   .carousel-fleche {
-
-    position: initial;
-    top: 50%;
-    background: none;
-    border: none;
-    font-size: 1.4em;
-    padding: 0.8em;
-    cursor: pointer;
-    color: #333;
-    
-    /* Box autour de la flèche, à changer peut-être. */
-    background-color: #fff;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-
-    font-size: 1.2em;
-    padding: 0.5em;
+    display: none;
   }
 
   .carousel-fleche.gauche {
@@ -447,13 +429,4 @@ textarea {
     margin-bottom: 10px;
   }
 
-  .carousel-container {
-    display: none;
-  }
-
-  .carousel-container2 {
-    display: flex;
-    flex-direction: column;
-  }
-}
 }
