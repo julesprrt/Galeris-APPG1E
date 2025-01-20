@@ -184,9 +184,6 @@
                                         </a>
                                     </div>
                                 </td>
-                                <td class='titre'><p class='titrestyle'>" . $pan["Titre"] . "</p><p class='vendue'> Vendue par " . $pan["nom"] . " " . $pan["prenom"] . "</p><p class='vendue'> Réalisé par " . $pan["auteur"] . "</p></td>
-                                <td class='price-elmprice'>" . $pan["Prix"] . " € <div class='remove'><a class='remove-elm' id='" . $pan["id_favoris"] . "'><button  type='button' class='btn-simple'>Supprimer</button></a></div></td>
-                                <td></td>
                             </tr>
                             <tr class='spacer'></tr>";
                     }

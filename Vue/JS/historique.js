@@ -21,11 +21,11 @@ async function saveId(event) {
         body: raw,
         redirect: "follow"
     };
-    const response = await fetch("https://galeris/Galeris-APPG1E/saveidhistorique", requestOptions)
+    const response = await fetch("./saveidhistorique", requestOptions)
     const statuscode = response.status;
     const text = await response.json();
     if (statuscode === 200) {
-        window.location.href = "https://galeris/Galeris-APPG1E/achat";
+        window.location.href = "./achat";
         }
     }
 
