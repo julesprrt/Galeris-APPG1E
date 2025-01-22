@@ -5,13 +5,13 @@ function onFileSelected(event) {
     var selectedFile = event.target.files[0];
     var reader = new FileReader();
 
-    if(!selectedFile.type.includes("image")){
-        alert("Type de fichier autorisé : image");
+    if (!selectedFile.type.includes("image")) {
+        alert("Les seuls type de fichier autorisé sont les images (JPG, PNG ...).");
         return;
     }
 
-    if(selectedFile.size > 1000000){
-        alert("Fichier trop lourd, 1 MB maximum");
+    if (selectedFile.size > 2097152) {
+        alert("Vos image sont trop lourd, uniquement 2 MB autorisées.");
         return;
     }
 
@@ -33,7 +33,7 @@ function onFileSelected(event) {
 }
 
 function eventOeuvre(event) {
-    var result = confirm("Etez-vous sûre de vouloir supprimer votre image ?");
+    var result = confirm("Êtes-vous sûre de vouloir supprimer votre image ?");
     if (result) {
         event.currentTarget.removeAttribute("src");
         event.currentTarget.removeAttribute("title");
@@ -51,6 +51,7 @@ async function verificateAndSaveData() {
     const nbJours = document.getElementsByName("nbjours")[0].value;
     const auteur = document.getElementsByName("auteur")[0].value;
     const description = document.getElementsByName("description")[0].value.trim();
+    const choixEcoResponsable = document.getElementsByName("ecoresponsable")[0].value;
 
     let options = document.querySelectorAll("#categorie-selec option");
     let categorieId;
@@ -60,12 +61,18 @@ async function verificateAndSaveData() {
         }
     })
 
+    const image1 = document.getElementById("image1").getAttribute("src") === null ? "" : document.getElementById("image1").getAttribute("src");
+    const image2 = document.getElementById("image2").getAttribute("src") === null ? "" : document.getElementById("image2").getAttribute("src");
+    const image3 = document.getElementById("image3").getAttribute("src") === null ? "" : document.getElementById("image3").getAttribute("src");
 
-    const image1 = document.getElementById("image1").attributes[5] === undefined ? "" : document.getElementById("image1").attributes[5].value;
-    const image2 = document.getElementById("image2").attributes[5] === undefined ? "" : document.getElementById("image2").attributes[5].value;
-    const image3 = document.getElementById("image3").attributes[5] === undefined ? "" : document.getElementById("image3").attributes[5].value;
+    let file = null;
 
-    if (verificationData(titre, categorie, type, prix, nbJours, description, image1) === false) {
+    if (choixEcoResponsable === "Oui") {
+        file = await getFromFile(document.getElementById("upload-file").files[0])
+    }
+
+
+    if (verificationData(titre, categorie, type, prix, nbJours, description, image1, choixEcoResponsable, file) === false) {
         return;
     }
 
@@ -82,7 +89,9 @@ async function verificateAndSaveData() {
         "description": description,
         "image1": image1,
         "image2": image2,
-        "image3": image3
+        "image3": image3,
+        "eco-responsable": choixEcoResponsable,
+        "fichier-eco": file
     });
 
     const requestOptions = {
@@ -91,7 +100,7 @@ async function verificateAndSaveData() {
         body: raw,
         redirect: "follow"
     };
-    const response = await fetch("https://galeris/Galeris-APPG1E/createvente", requestOptions)
+    const response = await fetch("./createvente", requestOptions)
     const statuscode = response.status;
     const result = await response.json();
 
@@ -106,41 +115,51 @@ async function verificateAndSaveData() {
             item.src = "";
             item.title = "";
         })
-        window.location.href = "https://galeris/Galeris-APPG1E";
+        window.location.href = "./";
     }
     else {
         alert(result.Error);
     }
 }
 
-function verificationData(titre, categorie, type, prix, nbJours, description, image1) {
+function verificationData(titre, categorie, type, prix, nbJours, description, image1, choix, file) {
     if (titre === "") {
-        alert("Le titre est obligatoire");
+        alert("Le titre est obligatoire et doit contenir moins de 50 caractères.");
         return false;
     }
 
-    if(description.length < 50) {
+    if (description.length < 50) {
         alert("La description est obligatoire et doit contenir plus de 50 caractères.");
         return false;
     }
 
     if (image1 === "") {
-        alert("Vous devez ajouter au moins une image");
+        alert("Votre œuvre  doit contenir au moin une image.");
         return false;
     }
 
     if (categorie === "") {
-        alert("La catégorie de l'oeuvre est obligatoire");
+        alert("La catégorie de l'œuvre est obligatoire");
         return false;
     }
 
     if (type === "") {
-        alert("Le type de vente est obligatoire");
+        alert("Le type de vente est obligatoire.");
         return false;
     }
 
     if (prix === "") {
-        alert("Le prix est obligatoire");
+        alert("Le prix de l'œuvre est obligatoire");
+        return false;
+    }
+
+    if (choix === "") {
+        alert("Le choix écoresponsable obligatoire.");
+        return false;
+    }
+
+    if (choix === "Oui" && file === null) {
+        alert("Le fichier justificatif écoresponsable est obligatoire.");
         return false;
     }
 
@@ -148,4 +167,42 @@ function verificationData(titre, categorie, type, prix, nbJours, description, im
         alert("Le nombre de jours est obligatoire et doit être inférieur ou égal à 30 jours");
         return false;
     }
+}
+
+document.getElementById("upload-file").addEventListener("change", fileSize);
+
+function fileSize(event) {
+    var selectedFile = event.target.files[0];
+    if (selectedFile.size > 2097152) {
+        alert("Fichier trop lourd, 2 MB maximum");
+        event.target.value = "";
+        event.target.name = "";
+        return;
+    }
+};
+
+document.getElementById("ecoresponsable-select").addEventListener("change", displayEcoResponsable);
+
+function displayEcoResponsable(event) {
+    const value = event.target.value;
+    if (value === "Oui") {
+        document.querySelector(".justificatif").style.display = "block";
+    }
+    else {
+        document.querySelector(".justificatif").style.display = "none";
+        document.getElementById("upload-file").value = "";
+        document.getElementById("upload-file").name = "";
+    }
+}
+
+async function getFromFile(file) {
+    return new Promise((resolve, reject) => {
+        var reader = new FileReader();
+
+        reader.onload = (event) => {
+            var data = event.target.result;
+            resolve(data);
+        };
+        reader.readAsDataURL(file);
+    });
 }

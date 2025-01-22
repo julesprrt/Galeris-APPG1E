@@ -27,6 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
         // Ajouter la classe active à la nouvelle image
         images[currentIndex].classList.add('active');
     }
+
 });
 
 setInterval(tempsRestants, 1000);
@@ -51,16 +52,16 @@ function tempsRestants() {
 
             el.textContent = `${jours}j ${heures}h ${minutes}m ${secondes}s restant`;
         } else {
-            window.location.href = "https://galeris/Galeris-APPG1E/";
+            window.location.href = "./";
         }
     });
 }
 
 
-async function ajoutpanier(){
+async function ajoutpanier() {
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
-    
+
     const raw = JSON.stringify({
     });
 
@@ -70,19 +71,22 @@ async function ajoutpanier(){
         body: raw,
         redirect: "follow"
     };
-    const result = await fetch("https://galeris/Galeris-APPG1E/ajoutpanier", requestOptions);
+    const result = await fetch("./ajoutpanier", requestOptions);
     const statut = result.status;
     const text = await result.json();
-    if(statut === 200){
+    if (statut === 200) {
         alert(text.panier);
         window.location.reload();
-   }
+    }
+    else {
+        window.location.href = "./connexion"
+    }
 }
 
-async function retirerpanier(){
+async function retirerpanier() {
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
-    
+
     const raw = JSON.stringify({
     });
 
@@ -93,43 +97,179 @@ async function retirerpanier(){
         redirect: "follow"
     };
 
-    const result = await fetch("https://galeris/Galeris-APPG1E/retirerpanier", requestOptions);
+    const result = await fetch("./retirerpanier", requestOptions);
     const statut = result.status;
     const text = await result.json();
-    if(statut === 200){
+    if (statut === 200) {
         alert(text.panier);
         window.location.reload();
-   }
+    }
+    else {
+        window.location.href = "./connexion"
+    }
 }
 
 document.querySelectorAll(".boutton-supprimer").forEach(item => {
     item.addEventListener("click", supprimerOeuvre)
 })
 
-async function supprimerOeuvre(){
-    const reponse = confirm("Etez-vous sûre de vouloir supprimer cette oeuvre ?");
-    if(reponse === true){
+async function supprimerOeuvre() {
+    const reponse = confirm("Êtes-vous sûre de vouloir supprimer cette œuvre ?");
+    if (reponse === true) {
         const myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
-    
-        
+
+
         const raw = JSON.stringify({
         });
-    
+
         const requestOptions = {
             method: "POST",
             headers: myHeaders,
             body: raw,
             redirect: "follow"
         };
-    
-        const result = await fetch("https://galeris/Galeris-APPG1E/supprimeroeuvre", requestOptions);
+
+        const result = await fetch("./supprimeroeuvre", requestOptions);
         const statut = result.status;
         const text = await result.json();
-        
-        if(statut === 200){
+
+        if (statut === 200) {
             alert(text.Success);
-            window.location.href = "https://galeris/Galeris-APPG1E/";
+            window.location.href = "./";
         }
+    }
+}
+
+
+document.getElementById("btnSignaleropenform").addEventListener("click", openFormSignaler)
+
+async function openFormSignaler() {
+    document.querySelector(".signaler-form").style.display = "block";
+}
+
+document.getElementById("btnSignaler").addEventListener("click", signaler)
+
+async function signaler() {
+    document.getElementById("btnSignaler").disabled = true;
+    const raison = document.querySelector(".input-signalement").value;
+
+    if (raison.length < 25) {
+        alert("La raison de votre signalement doit contenir plus de 25 caractères.");
+        return;
+    }
+
+
+    const resp = await fetch("./signaleroeuvre", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ raison: raison })
+    });
+    const data = await resp.json();
+    if (resp.status === 200) {
+        alert(data.Success);
+        signalercloseForm()
+        document.getElementById("btnSignaler").disabled = false;
+    } else {
+        alert(data.Error);
+    }
+}
+
+document.querySelector(".signaler-close-button").addEventListener("click", signalercloseForm);
+
+function closeForm() {
+    document.querySelector(".enchere-form").style.display = "none";
+    document.querySelector(".input-enchere").value = "";
+    document.querySelector(".input-enchere").min = "";
+}
+
+function signalercloseForm() {
+    document.querySelector(".signaler-form").style.display = "none";
+    document.querySelector(".input-signalement").value = "";
+}
+
+
+document.querySelectorAll(".boutton-favoris").forEach(item => {
+    item.addEventListener("click", ajoutfavoris);
+});
+
+document.querySelectorAll(".boutton-retirer-favoris").forEach(item => item.addEventListener("click", retirerfavoris));
+
+async function ajoutfavoris() {
+    console.log("ok")
+    const myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+
+    const raw = JSON.stringify({
+    });
+
+    const requestOptions = {
+        method: "POST",
+        headers: myHeaders,
+        body: raw,
+        redirect: "follow"
+    };
+    const result = await fetch("./ajoutfavoris", requestOptions);
+    const statut = result.status;
+    const text = await result.json();
+    if (statut === 200) {
+        alert(text.favoris);
+        window.location.reload();
+    }
+    else {
+        window.location.href = "./connexion"
+    }
+}
+
+async function retirerfavoris() {
+    const myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+
+    const raw = JSON.stringify({
+    });
+
+    const requestOptions = {
+        method: "POST",
+        headers: myHeaders,
+        body: raw,
+        redirect: "follow"
+    };
+
+    const result = await fetch("./retirerfavoris", requestOptions);
+    const statut = result.status;
+    const text = await result.json();
+    if (statut === 200) {
+        alert(text.favoris);
+        window.location.reload();
+    }
+    else {
+        window.location.href = "./connexion"
+    }
+}
+
+
+
+document.querySelector(".profil-section").addEventListener('click', saveUserid)
+
+async function saveUserid() {
+    const id_utilisateur = document.getElementById("id_utilisateur").value;
+
+    const myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+
+    const raw = JSON.stringify({
+        "id": id_utilisateur
+    });
+
+    const requestOptions = {
+        method: "POST",
+        headers: myHeaders,
+        body: raw,
+        redirect: "follow"
+    };
+    const response = await fetch("./saveiduser", requestOptions)
+    const statuscode = response.status;
+    if (statuscode === 200) {
+        window.location.href = "./utilisateur";
     }
 }

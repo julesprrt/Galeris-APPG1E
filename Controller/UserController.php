@@ -3,6 +3,8 @@ require_once('Model/user.php');
 require_once('Model/code.php');
 require_once('Database/Database.php');
 require_once('Controller.php');
+require_once('Model/exposition.php');
+require_once('Model/Oeuvre.php');
 
 //Controller utilisateur
 class UserController extends Controller
@@ -12,15 +14,15 @@ class UserController extends Controller
     {
         $paramData = file_get_contents("php://input");
         $data = json_decode($paramData, true);
-        if (isset($data['name']) && isset($data['firstName']) &&  isset($data['email']) && isset($data['telephone']) && isset($data['password']) && isset($data['confirmPassword']) && isset($data['cgu'])) { //Verification données entré dans le formulaire
-            $user = new User($data["name"], $data["firstName"],  $data["email"], $data["telephone"], $data["password"], $data["confirmPassword"], $data["cgu"], null, null);
+        if (isset($data['name']) && isset($data['firstName']) &&  isset($data['email']) && isset($data['telephone']) && isset($data['password']) && isset($data['confirmPassword']) && isset($data['cgu']) && isset($data['g-recaptcha-response'])) { //Verification données entré dans le formulaire
+            $user = new User($data["name"], $data["firstName"],  $data["email"], $data["telephone"], $data["password"], $data["confirmPassword"], $data["cgu"], null, null, $data['g-recaptcha-response']);
             $result = $user->registerVerification($db); //Verifier les données d'inscription
             if ($result === true) { //Si les données sont correct alors envoie du code a usage unique + redirection vers la page  avec le code à usage unique
                 http_response_code(200);
-                echo json_encode(['Success' => "Un code vous à été envoyé sur votre adresse mail pour confirmer votre identité"]);
+                echo json_encode(['Success' => "Un code vous à été envoyé sur votre adresse mail pour confirmer votre identité."]);
             } else if ($result === "code") {
                 http_response_code(200);
-                echo json_encode(['Success' => "Un code vous à été envoyé sur votre adresse mail pour confirmer votre identité"]);
+                echo json_encode(['Success' => "Un code vous à été envoyé sur votre adresse mail pour confirmer votre identité."]);
             } else { //Sinon affiché le message d'erreur sur la vue
                 http_response_code(400);
                 echo json_encode(['Error' => $result]);
@@ -35,8 +37,8 @@ class UserController extends Controller
     {
         $paramData = file_get_contents("php://input");
         $data = json_decode($paramData, true);
-        if (isset($data['email']) && isset($data['password'])) {
-            $user = new User(null, null, $data['email'], null, $data['password'], null, null, null, null);
+        if (isset($data['email']) && isset($data['password']) && isset($data['g-recaptcha-response'])) {
+            $user = new User(null, null, $data['email'], null, $data['password'], null, null, null, null, $data['g-recaptcha-response']);
             // Obtenir une connexion à la base de données
             $result = $user->connectUser($db);
             if ($result === true) {
@@ -44,7 +46,7 @@ class UserController extends Controller
                 echo json_encode(['Success' => "Connexion réussie"]);
             } else if ($result === "Utilisateur non valide") {
                 http_response_code(401);
-                echo json_encode(['Information' => "Veuillez vous inscrire"]);
+                echo json_encode(['Information' => "Votre compte n'est pas actif, veuillez completer votre inscription."]);
             } else {
                 http_response_code(400);
                 echo json_encode(['Error' => $result]);
@@ -59,45 +61,56 @@ class UserController extends Controller
         $this->render('motdepasseoublie', ['message' => '']);
     }
 
-    public function PässwordMail(Database $db){
+    public function PässwordMail(Database $db)
+    {
+        session_start();
+
+        if (!isset($_SESSION['usersessionID'])) {
+            header('Location: ./connexion');
+            exit();
+        }
+
         $paramData = file_get_contents("php://input");
         $data = json_decode($paramData, true);
-        if(isset($data["email"]) && trim($data["email"]) !== ""){
-            $user = new User("","", $data["email"], "","","","", null, null);
-            if($user->verifyEmailForPassword($db)){
+        if (isset($data["email"]) && trim($data["email"]) !== "") {
+            $user = new User("", "", $data["email"], "", "", "", "", null, null, null);
+            if ($user->verifyEmailForPassword($db)) {
                 http_response_code(200);
-                echo json_encode(['Success' => "Un code vous à été envoyé sur votre adresse mail pour confirmer votre identité"]);
-            }
-            else{
+                echo json_encode(['Success' => "Un code vous à été envoyé sur votre adresse mail pour confirmer votre identité."]);
+            } else {
                 http_response_code(400);
-                echo json_encode(['Error' => "Mail invalide"]);
+                echo json_encode(['Error' => "Votre adresse mail est invalide."]);
             }
-        }
-        else{
+        } else {
             http_response_code(400);
-            echo json_encode(['Error' => "Entrez votre mail"]);
+            echo json_encode(['Error' => "Veuillez renseigner votre adresse mail."]);
         }
     }
 
-    public function code(Database $db) {
+    public function code(Database $db)
+    {
         session_start();
+
+        if (!isset($_SESSION['usersessionID'])) {
+            header('Location: ./connexion');
+            exit();
+        }
+
         $paramData = file_get_contents("php://input");
         $data = json_decode($paramData, true);
         if (isset($data['code'])) {
-            $user = new User(null,null,null,null,null,null,null, null, null);
-            $response = $user->verifyCode($data['code'],$db);
+            $user = new User(null, null, null, null, null, null, null, null, null, null);
+            $response = $user->verifyCode($data['code'], $db);
             $type = $_SESSION["usersessionType"];
-            if ($response == 200 && $type === ""){
+            if ($response == 200 && $type === "") {
                 http_response_code(200);
-                echo json_encode(['Success' => "Inscription reussie"]);
-            }
-            else if($response == 200 && $type === "password"){
+                echo json_encode(['Success' => "Votre inscription est réussie."]);
+            } else if ($response == 200 && $type === "password") {
                 http_response_code(200);
                 echo json_encode(['Success' => $type]);
-            }
-            else { 
+            } else {
                 http_response_code(400);
-                echo json_encode(['Error' => "Code incorrect"]);
+                echo json_encode(['Error' => "Le code que vous avez entré est incorrect."]);
             }
         } else {
             $this->render('codeunique', ['message' => '']);
@@ -110,14 +123,14 @@ class UserController extends Controller
         $role = isset($_SESSION["usersessionRole"]) === true && $_SESSION["usersessionRole"] === "Admin" ? true : false;
 
         if (!isset($_SESSION['usersessionID'])) {
-            header('Location: /Galeris-APPG1E/connexion');
+            header('Location: ./connexion');
             exit();
         }
 
         $userId = $_SESSION['usersessionID'];
         $_SESSION["livraison"] = "profil";
 
-        $user = new User(null, null,  null, null, null, null, null, null, null);
+        $user = new User(null, null,  null, null, null, null, null, null, null, null);
         $userData = $user->getUserById($userId, $db);
 
         if (!$userData) {
@@ -125,8 +138,14 @@ class UserController extends Controller
             exit();
         }
 
+        $oeuvre = new Oeuvre($Titre = null, $Description = null, $eco_responsable = null, $Date_debut = null, $Date_fin = null, $Prix = null, $type_vente = null, $est_vendu = null, $auteur = null, $id_utilisateur = null, $id_categorie = null, $status = null, $nomvendeur = null, $prenomvendeur = null, $chemin_image = null, $prix_actuel = null, $id_offreur = null);
+        $oeuvres = $oeuvre->getAllOeuvre($db);
+        $expose = new Exposition(null,null,null,null,null,null,null);
+        $exposes = $expose->getExposes($db);
+        $users = $user->getAllUsers($db);
+
         // Transmet les données utilisateur à la vue
-        $this->render('profil', ['user' => $userData, "connectUser" =>  isset($_SESSION["usersessionID"]), "userRole" => $role]);
+        $this->render('profil', ['user' => $userData, "connectUser" => isset($_SESSION["usersessionID"]), "userRole" => $role, "oeuvres" => $oeuvres, "exposes" => $exposes, "users" => $users]);
     }
     public function editionprofil(Database $db)
     {
@@ -134,12 +153,12 @@ class UserController extends Controller
         $role = isset($_SESSION["usersessionRole"]) === true && $_SESSION["usersessionRole"] === "Admin" ? true : false;
 
         if (!isset($_SESSION['usersessionID'])) {
-            header('Location: /Galeris-APPG1E/connexion');
+            header('Location: ./connexion');
             exit();
         }
 
         $userId = $_SESSION['usersessionID'];
-        $userModel = new User(null, null,  null, null, null, null, null, null, null); 
+        $userModel = new User(null, null,  null, null, null, null, null, null, null, null);
         $user = $userModel->getUserById($userId, $db);
 
         if (!$user) {
@@ -147,7 +166,13 @@ class UserController extends Controller
             exit();
         }
 
-        $this->render('editionprofil', ['user' => $user, "connectUser" =>  isset($_SESSION["usersessionID"]), "userRole" => $role]);
+        $oeuvre = new Oeuvre($Titre = null, $Description = null, $eco_responsable = null, $Date_debut = null, $Date_fin = null, $Prix = null, $type_vente = null, $est_vendu = null, $auteur = null, $id_utilisateur = null, $id_categorie = null, $status = null, $nomvendeur = null, $prenomvendeur = null, $chemin_image = null, $prix_actuel = null, $id_offreur = null);
+        $oeuvres = $oeuvre->getAllOeuvre($db);
+        $expose = new Exposition(null,null,null,null,null,null,null);
+        $exposes = $expose->getExposes($db);
+        $users = $userModel->getAllUsers($db);
+
+        $this->render('editionprofil', ['user' => $user, "connectUser" => isset($_SESSION["usersessionID"]), "userRole" => $role,"oeuvres" => $oeuvres, "exposes" => $exposes, "users" => $users]);
     }
 
     public function processEdition(Database $db)
@@ -155,12 +180,12 @@ class UserController extends Controller
         session_start();
 
         if (!isset($_SESSION['usersessionID'])) {
-            header('Location: /Galeris-APPG1E/connexion');
+            header('Location: ./connexion');
             exit();
         }
 
         $userId = $_SESSION['usersessionID'];
-        
+
 
         // Récupération des données du formulaire
         $nom = $_POST['nom'];
@@ -168,29 +193,29 @@ class UserController extends Controller
         $email = $_POST['email'];
         $description = $_POST['description'];
         $adresse = $_POST['adresse'];
-        $newsletter = isset($_POST['newsletter']) ? 1 : 0; 
+        $newsletter = isset($_POST['newsletter']) ? 1 : 0;
         $oldPassword = $_POST['old_password'];
         $newPassword = $_POST['new_password'];
         $confirmPassword = $_POST['confirm_password'];
-        
+
         $photoFile = $_FILES['profile_photo'];
-        $photoPath = null;  
+        $photoPath = null;
         if ($photoFile && $photoFile['error'] === UPLOAD_ERR_OK) {
-    
+
             // Génération d'un nom de fichier unique
             $uploadDir = 'ImageBD/Profil/';
             $fileName = uniqid('profile_', true) . '.' . pathinfo($photoFile['name'], PATHINFO_EXTENSION);
-    
+
             // Déplacement du fichier vers le dossier `ImageBD/Profil`
             if (!move_uploaded_file($photoFile['tmp_name'], $uploadDir . $fileName)) {
                 $this->render('editionprofil', ['error' => "Erreur lors du téléchargement de la photo."]);
                 return;
             }
-    
+
             // Stockage du chemin relatif
             $photoPath = $uploadDir . $fileName;
         }
-        $userModel = new User(null, null,  null, null, null, null, null, null, null);
+        $userModel = new User(null, null,  null, null, null, null, null, null, null, null);
         $user = $userModel->getUserById($userId, $db);
 
 
@@ -224,12 +249,12 @@ class UserController extends Controller
         }
 
         // Mise à jour des données
-        $updated = $userModel->updateUser($userId, $nom, $prenom, $email, $description, $adresse, $newsletter, $newPassword, $db);
+        $updated = $userModel->updateUser($userId, $nom, $prenom, $description, $adresse, $newsletter, $newPassword, $db);
         $userModel->SuppresionAnciennePDP($userId, $db);
-        $photoupdated = $userModel->updatePhoto($userId, $photoPath, $db);
+        $userModel->updatePhoto($userId, $photoPath, $db);
 
         if ($updated) {
-            header('Location: /Galeris-APPG1E/profil');
+            header('Location: ./profil');
             exit();
         } else {
             $this->render('editionprofil', ['user' => $user, 'error' => "Une erreur est survenue lors de la mise à jour."]);
@@ -238,43 +263,178 @@ class UserController extends Controller
 
     public function resendcode(Database $db)
     {
-        $code = new Code();
         session_start();
+
+        if (!isset($_SESSION['usersessionID'])) {
+            header('Location: ./connexion');
+            exit();
+        }
+
+        $code = new Code();
+
         $code->sendCode($_SESSION["usersessionMail"], $db);
 
-        $code->sendCode($_SESSION["usersessionMail"],$db);
         http_response_code(200);
         echo json_encode(['Success' => "Code envoyé"]);
     }
 
-    public function Deconnexion(){
+    public function Deconnexion()
+    {
         session_start();
+
+        if (!isset($_SESSION['usersessionID'])) {
+            header('Location: ./connexion');
+            exit();
+        }
+
         session_destroy();
 
         http_response_code(200);
         echo json_encode(['Success' => "Déconnexion réussie"]);
     }
 
-    public function confirmationMDP(Database $db){
+    public function confirmationMDP(Database $db)
+    {
         session_start();
+
+        if(!isset($_SESSION["usersessionID"])){
+            header('Location: ./connexion');
+            exit;
+        }
+
         $paramData = file_get_contents("php://input");
         $data = json_decode($paramData, true);
         if (isset($data['password']) && isset($data['confirmPassword'])) {
-            $user = new User(null, null,  null, null, $data['password'], $data['confirmPassword'],null, null, null);
+            $user = new User(null, null,  null, null, $data['password'], $data['confirmPassword'], null, null, null, null);
             $result = $user->changePassword($db);
-            if($result === true){
+            if ($result === true) {
                 http_response_code(200);
-                echo json_encode(["Success" => "Mot de passe modifié"]);
+                echo json_encode(["Success" => "Votre mot de passe a bien été modifié."]);
                 session_destroy();
-            }
-            else{
+            } else {
                 http_response_code(400);
                 echo json_encode(["Error" => $result]);
             }
-            
-        }
-        else{
+        } else {
             $this->render('confirmationMDP', []);
         }
+    }
+
+    public function signalerOeuvre(Database $db)
+    {
+        session_start();
+
+        if (!isset($_SESSION['usersessionID'])) {
+            header('Location: ./connexion');
+            exit();
+        }
+
+        // Récupération des données POST (JSON)
+        $paramData = file_get_contents("php://input");
+        $data = json_decode($paramData, true);
+
+        if (isset($data['raison']) && trim($data['raison']) !== '') {
+            $user = new User(null, null, null, null, null, null, null, null, null, null);
+            $code = $user->signaler($data['raison'], $db);
+
+            if ($code === 401) {
+                http_response_code(401);
+                echo json_encode(['Error' => 'La raison de votre signalement doit contenir plus de 25 caractères.']);
+            }
+
+
+            http_response_code(200);
+            echo json_encode(['Success' => 'Votre signalement à bien été envoyé avec succès a notre service.']);
+        } else {
+            http_response_code(400);
+            echo json_encode(['Error' => "Données invalides pour le signalement."]);
+        }
+    }
+
+    public function solde(Database $db)
+    {
+        session_start();
+
+        if(!isset($_SESSION["usersessionID"])){
+            header('Location: ./connexion');
+            return;
+        }
+
+        $user = new User(null,null,null,null,null,null,null,null,null,null);
+        $userAccount = $user->getUserById($_SESSION["usersessionID"], $db);
+        $role = isset($_SESSION["usersessionRole"]) === true && $_SESSION["usersessionRole"] === "Admin" ? true : false;
+
+        $oeuvre = new Oeuvre($Titre = null, $Description = null, $eco_responsable = null, $Date_debut = null, $Date_fin = null, $Prix = null, $type_vente = null, $est_vendu = null, $auteur = null, $id_utilisateur = null, $id_categorie = null, $status = null, $nomvendeur = null, $prenomvendeur = null, $chemin_image = null, $prix_actuel = null, $id_offreur = null);
+        $oeuvres = $oeuvre->getAllOeuvre($db);
+        $expose = new Exposition(null,null,null,null,null,null,null);
+        $exposes = $expose->getExposes($db);
+        $users = $user->getAllUsers($db);
+
+        $this->render('solde', ["connectUser" =>  isset($_SESSION["usersessionID"]), "userRole" => $role, "solde" => $userAccount["solde"], "oeuvres" => $oeuvres, "exposes" => $exposes, "users" => $users]);
+    }
+
+    public function envoiesolde(Database $db){
+        session_start();
+        $paramData = file_get_contents("php://input");
+        $data = json_decode($paramData, true);
+        if(isset($data["solde"])){
+            $user = new User(null,null,null,null,null,null,null,null,null,null);
+            $userAccount = $user->getUserById($_SESSION["usersessionID"], $db);
+            $response = $user->createTransfert($data["solde"], $userAccount["solde"], $db);
+            if($response === 401){
+                http_response_code(401);
+                echo json_encode(['Error' => "Le montant ne doit pas être supérieur à votre solde actuel : " . $userAccount["solde"] . " €"]);
+            }
+            else{
+                http_response_code(200);
+                echo json_encode(['Success' => "La somme de " . $data["solde"] . " € a été envoyé sur votre compte Stripe."]);
+            }
+        }
+        else{
+            http_response_code(400);
+            echo json_encode(['Error' => "Veuillez remplir l'ensemble des champs du formulaire."]);
+        }
+    }
+
+    public function consultation(Database $db)
+    {
+        session_start();
+
+        $paramData = file_get_contents("php://input");
+        $data = json_decode($paramData, true);
+        if (isset($data['id'])) {
+            $_SESSION['utilisateur_consultation_id'] = (int)$data['id'];
+            http_response_code(200);
+        } else {
+            http_response_code(400);
+            echo json_encode(['Error' => "ID incorrect"]);
+        }
+    }
+
+    public function profil_consultation(Database $db)
+    {
+        session_start();
+        $role = isset($_SESSION["usersessionRole"]) === true && $_SESSION["usersessionRole"] === "Admin" ? true : false;
+
+        $userId = $_SESSION['utilisateur_consultation_id'];
+        $_SESSION["livraison"] = "profil";
+
+        $user = new User(null, null,  null, null, null, null, null, null, null, null);
+        $userData = $user->getUserById($userId, $db);
+        $oeuvres = $user->getAllOeuvreSoldByUser($userId, $db);
+
+        if (!$userData) {
+            echo "Utilisateur introuvable.";
+            exit();
+        }
+
+        $oeuvre = new Oeuvre($Titre = null, $Description = null, $eco_responsable = null, $Date_debut = null, $Date_fin = null, $Prix = null, $type_vente = null, $est_vendu = null, $auteur = null, $id_utilisateur = null, $id_categorie = null, $status = null, $nomvendeur = null, $prenomvendeur = null, $chemin_image = null, $prix_actuel = null, $id_offreur = null);
+        $oeuvres_barre = $oeuvre->getAllOeuvre($db);
+        $expose = new Exposition(null,null,null,null,null,null,null);
+        $exposes = $expose->getExposes($db);
+        $users = $user->getAllUsers($db);
+
+        // Transmet les données utilisateur à la vue
+        $this->render('profil_utilisateur', ['user' => $userData, "connectUser" => isset($_SESSION["usersessionID"]), "userRole" => $role,"oeuvres_barre" => $oeuvres_barre, "exposes" => $exposes, "users" => $users, "oeuvres" => $oeuvres]);
     }
 }

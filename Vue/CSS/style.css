@@ -1,121 +1,146 @@
 body {
-    font-family: Arial, Helvetica, sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .Page-User {
-    background: url('../../images/fondecran3.jpg') no-repeat center center;
-    display: flex;
-    background-size: cover;
-    /* Fait en sorte que l'image couvre toute la page */
-    min-height: 120vh;
-    color: #333;
-    justify-content: center;
+  background: url("../../images/fondecran3.jpg") no-repeat center center;
+  display: flex;
+  background-size: cover;
+  /* Fait en sorte que l'image couvre toute la page */
+  min-height: 120vh;
+  color: #333;
+  justify-content: center;
 }
 
 .error-message {
-    color: red;
-    font-size: 16px;
+  color: red;
+  font-size: 16px;
 }
 
 .simpleText {
-    font-size: 12;
-    font-family: Arial, Helvetica, sans-serif;
+  font-size: 12;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .simpleBigText {
-    font-Size: 16;
-    font-family: Arial, Helvetica, sans-serif;
+  font-size: 16;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .bigTitle {
-    font-weight: bold;
-    font-size: 50px;
-    color: black;
-    font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  font-size: 50px;
+  color: black;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .bigTitle3 {
-    font-size: 2.2em;
-    font-weight: bold;
-    color: black;
-    font-family: Arial, Helvetica, sans-serif;
+  font-size: 2.2em;
+  font-weight: bold;
+  color: black;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .bigTitle6 {
-    font-size: 1em;
-    font-weight: bold;
-    color: black;
-    font-family: Arial, Helvetica, sans-serif;
+  font-size: 1em;
+  font-weight: bold;
+  color: black;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 img {
-    width: 100px;
-    height: auto;
+  width: 100px;
+  height: auto;
 }
 
 .simpleTitle {
-    font-family: Arial, Helvetica, sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .simpleButtonHover:hover {
-    opacity: 0.9;
+  opacity: 0.9;
 }
 
 .submit-button:hover {
-    opacity: 0.9;
+  opacity: 0.9;
 }
 
 .input-user {
-    background: rgba(217, 163, 106, 0.7);
-    border: none;
-    padding: 15px;
-    width: 18em;
-    border-radius: 5px;
-    margin-top: 7px;
+  background: rgba(217, 163, 106, 0.95);
+  border: none;
+  padding: 15px;
+  width: 18em;
+  border-radius: 5px;
+  margin-top: 7px;
 }
 
 .input-user-first {
-    border: none;
-    padding: 15px;
-    width: 18em;
-    border-radius: 5px;
-    background: rgba(217, 163, 106, 0.7);
+  border: none;
+  padding: 15px;
+  width: 18em;
+  border-radius: 5px;
+  background: rgba(217, 163, 106, 0.95);
 }
 
 .input-user-first::placeholder {
-    color: black;
-    opacity: 1;
+  color: black;
+  opacity: 1;
 }
 
 .input-user::placeholder {
-    color: black;
-    opacity: 1;
+  color: black;
+  opacity: 1;
 }
 
 .link {
-    width: 275px;
-    text-align: end;
-    font-family: Arial, Helvetica, sans-serif;
-    font-weight: 400;
-    font-size: 12px;
-    color: black;
-    text-decoration: none;
-    padding-top: 20px;
-    opacity: 100%;
+  width: 275px;
+  text-align: end;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 400;
+  font-size: 15px;
+  color: black;
+  text-decoration: none;
+  padding-top: 20px;
+  opacity: 100%;
 }
 
 .smallButton {
-    background-color: #D9A36A;
-    width: 8em;
-    border-radius: 1em;
-    border: none;
+  background-color: #d9a36a;
+  width: 8em;
+  border-radius: 1em;
+  border: none;
 }
 
 .simpleInput {
-    border: none;
-    padding: 15px;
-    width: 18em;
-    border-radius: 5px;
-    margin-top: 7px;
+  border: none;
+  padding: 15px;
+  width: 18em;
+  border-radius: 5px;
+  margin-top: 7px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+
+
+@media (max-width: 1050px) {
+    header {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      align-items: start;
+    }
+  
+    .menu ul li {
+      margin-right: 20px;
+    }
+  }
+
+
+@media (max-width: 450px) {
+  .bigTitle {
+    font-weight: bold;
+    font-size: 30px;
+    color: black;
     font-family: Arial, Helvetica, sans-serif;
+  }
 }

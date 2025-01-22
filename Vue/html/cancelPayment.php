@@ -1,9 +1,9 @@
 <html>
   <head>
-    <title>Paièment réussie</title>
-    <base href="/Galeris-APPG1E/Vue/">
-    <link rel="stylesheet" href="CSS/cancelPayment.css">
-    <script src="https://galeris/Galeris-APPG1E/vue/JS/cancelPayment.js" defer></script>
+    <title>Paiement réussie</title>
+    
+    <link rel="stylesheet" href="Vue/CSS/cancelPayment.css">
+    <script src="Vue/JS/cancelPayment.js" defer></script>
   </head>
     <body>
       <div class="card">
@@ -11,7 +11,7 @@
         <i class="cancelmark">✘</i>
       </div>
         <h1>Echec, réessayer plus tard</h1> 
-        <a href="https://galeris/Galeris-APPG1E"><button class="btn-accueil">Accueil</button></a>
+        <a href="./"><button class="btn-accueil">Accueil</button></a>
       </div>
     </body>
 </html>

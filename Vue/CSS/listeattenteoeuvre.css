@@ -21,6 +21,10 @@ body {
     padding: 2em 0; /* Ajuster le padding selon les besoins */
 }
 
+.eco{
+    color : green
+  }
+
 
 .title-oeuvre {
     margin-bottom: 10px; 
@@ -66,6 +70,7 @@ body {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     /* Ombre légère */
     transition: transform 0.3s ease-in-out;
+    min-height: 460px;
     /* Animation au survol */
     text-align: center;
     /* Contenu centré */
@@ -102,6 +107,8 @@ body {
 .oeuvre p {
     font-size: 0.9em;
     color: #666;
+    overflow-wrap: break-word;
     /* Texte plus clair */
     padding: 0.5em;
+    overflow-wrap: break-word;
 }

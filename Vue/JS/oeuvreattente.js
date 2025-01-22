@@ -33,7 +33,7 @@ document.querySelector(".boutton-valider").addEventListener('click', acceptOeuvr
 document.querySelector(".boutton-refuse").addEventListener('click', cancelOeuvre);
 
 async function acceptOeuvre() {
-    const responseUser = confirm("Etez-vous sûre de vouloir accepter cette oeuvre ?");
+    const responseUser = confirm("Êtes-vous sûre de vouloir accepter cette œuvre ?");
     if (responseUser === true) {
         const id = document.getElementById("id_oeuvre").value;
 
@@ -51,10 +51,10 @@ async function acceptOeuvre() {
             body: raw,
             redirect: "follow"
         };
-        const response = await fetch("https://galeris/Galeris-APPG1E/statutoeuvre", requestOptions)
+        const response = await fetch("./statutoeuvre", requestOptions)
         const statuscode = response.status;
         if (statuscode === 200) {
-            window.location.href = "https://galeris/Galeris-APPG1E/listeoeuvreattente";
+            window.location.href = "./listeoeuvreattente";
         }
     }
     else {
@@ -63,7 +63,7 @@ async function acceptOeuvre() {
 }
 
 async function cancelOeuvre() {
-    const responseUser = confirm("Etez-vous sûre de vouloir refuser cette oeuvre ?");
+    const responseUser = confirm("Êtes-vous sûre de vouloir refuser cette œuvre ?");
     if (responseUser === true) {
         const id = document.getElementById("id_oeuvre").value;
 
@@ -81,13 +81,38 @@ async function cancelOeuvre() {
             body: raw,
             redirect: "follow"
         };
-        const response = await fetch("https://galeris/Galeris-APPG1E/statutoeuvre", requestOptions)
+        const response = await fetch("./statutoeuvre", requestOptions)
         const statuscode = response.status;
         if (statuscode === 200) {
-            window.location.href = "https://galeris/Galeris-APPG1E/listeoeuvreattente";
+            window.location.href = "./listeoeuvreattente";
         }
     }
     else {
         return;
+    }
+}
+
+document.querySelector(".profil-section").addEventListener('click', saveUserid)
+
+async function saveUserid() {
+    const id_utilisateur = document.getElementById("id_utilisateur").value;
+
+    const myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+
+    const raw = JSON.stringify({
+        "id": id_utilisateur
+    });
+
+    const requestOptions = {
+        method: "POST",
+        headers: myHeaders,
+        body: raw,
+        redirect: "follow"
+    };
+    const response = await fetch("./saveiduser", requestOptions)
+    const statuscode = response.status;
+    if (statuscode === 200) {
+        window.location.href = "./utilisateur";
     }
 }

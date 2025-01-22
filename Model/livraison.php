@@ -23,21 +23,20 @@ Class Livraison{
 
 
     public function saveLivraison(Database $db){
-        session_start();
 
-        if(!ctype_alpha($this->nom)){
+        if(!preg_match('/^[a-zA-Z]+$/', $this->nom)){
             return 401;
         }
 
-        if(!ctype_alpha($this->prenom)){
+        if(!preg_match('/^[a-zA-Z]+$/', $this->prenom)){
             return 402;
         }
 
-        if(!ctype_alpha($this->pays)){
+        if(!preg_match('/^[a-zA-Z]+$/', $this->pays)){
             return 403;
         }
 
-        if(!ctype_alpha($this->ville)){
+        if(!preg_match('/^[a-zA-Z]+$/', $this->ville)){
             return 404;
         }
 
@@ -62,7 +61,7 @@ Class Livraison{
         $stmt->close();
         $conn->close();
 
-        if(mysqli_num_rows($result) > 0){
+        if($result->num_rows > 0){
             return true;
         }
         else{

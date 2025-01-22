@@ -5,9 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <base href="/Galeris-APPG1E/Vue/">
-    <link rel="stylesheet" href="CSS/cgu.css">
-    <link rel="stylesheet" href="CSS/style.css">
+    <link rel="stylesheet" href="Vue/CSS/conditiongen.css">
+    <link rel="stylesheet" href="Vue/CSS/style.css">
 </head>
 
 <body>
@@ -19,7 +18,7 @@
     <main>
         <h1 class="titre">
             <span>Conditions Générales d'Utilisation</span>
-            <a href="https://galeris/Galeris-APPG1E/"><img src="../images/logo-sans-fond.png" alt="Langue" class="photo"></a>
+            <a href="./"><img src="images/logo-sans-fond.png" alt="Langue" class="photo"></a>
         </h1>
         
         <br>
@@ -29,20 +28,20 @@
         <div class="conteneur">
 
             <div class="gauche">
-                <a href="#section1">Présentation du site <span class="fleche"></span></a>
-                <a href="#section2">Définitions <span class="fleche"></span></a>
-                <a href="#section3">Objet <span class="fleche"></span></a>
-                <a href="#section4">Acceptation des CGU <span class="fleche"></span></a>
-                <a href="#section5">Accès au site <span class="fleche"></span></a>
-                <a href="#section6">Inscription et Compte Utilisateur <span class="fleche"></span></a>
-                <a href="#section7">Rôles des Utilisateurs <span class="fleche"></span></a>
-                <a href="#section8">Fonctionnalités <span class="fleche"></span></a>
-                <a href="#section9">Responsabilités des utilisateurs <span class="fleche"></span></a>
-                <a href="#section10">Propriété intellectuelle <span class="fleche"></span></a>
-                <a href="#section11">Sécurité et Protection des données <span class="fleche"></span></a>
-                <a href="#section12">Droit de rétractation <span class="fleche"></span></a>
-                <a href="#section13">Modifications des CGU <span class="fleche"></span></a>
-                <a href="#section14">Loi applicable et juridiction compétente <span class="fleche"></span></a>
+                <a href="#section1">Présentation du site</a>
+                <a href="#section2">Définitions</a>
+                <a href="#section3">Objet</a>
+                <a href="#section4">Acceptation des CGU</a>
+                <a href="#section5">Accès au site</a>
+                <a href="#section6">Inscription et Compte Utilisateur</a>
+                <a href="#section7">Rôles des utilisateurs</a>
+                <a href="#section8">Fonctionnalités</a>
+                <a href="#section9">Responsabilités des utilisateurs</a>
+                <a href="#section10">Propriété intellectuelle</a>
+                <a href="#section11">Sécurité et Protection des données</a>
+                <a href="#section12">Droit de rétractation</a>
+                <a href="#section13">Modifications des CGU</a>
+                <a href="#section14">Loi applicable et juridiction compétente</a>
             </div>
             
 
@@ -142,7 +141,7 @@
         </div>
 
         <div class="bas">
-            <p class="haut"> <a href="https://galeris/Galeris-APPG1E/cgu#revenirenhaut">Revenir en haut</a> </p>
+            <p class="haut"> <a href="./cgu#revenirenhaut">Revenir en haut</a> </p>
         
         </div>
         

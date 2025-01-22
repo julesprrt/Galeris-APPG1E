@@ -149,10 +149,15 @@ main {
     border: none;
     padding: 10px 20px;
     cursor: pointer;
-    margin-right: 10px;
+    margin-top: 0.3em;
     border-radius: 4px;
+    margin-left: 0.3em;
     font-size: 16px;
 
+}
+
+.eco {
+    color : green
 }
 
 .actions button:hover {
@@ -219,12 +224,29 @@ main {
     display: none;
 }
 
+.signaler-form {
+    position: absolute; 
+    left: 20%; 
+    z-index: 999; 
+    background-color: #ffff; 
+    padding: 20px 40px 40px 40px; 
+    border-radius: 4px; 
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); 
+    display: none;
+}
+
 .error {
     color: red;
     font-size: 16px;
 }
 
 .title-enchere{
+    font-weight: bold;
+    text-align: center;
+    font-size: 1.5em;
+}
+
+.title-signaler{
     font-weight: bold;
     text-align: center;
     font-size: 1.5em;
@@ -265,10 +287,45 @@ main {
     border: none;
 }
 
+.signaler-close-button{
+    margin-top: 1em;
+    background-color: #D9A36A;
+    color: white;
+    padding: 0.5em 1em 0.5em 1em;
+    border-radius: 0.5em;
+    border: none;
+}
+
+.signaler-close-button:hover{
+    opacity: 0.9;
+}
+
 .close-button:hover{
     opacity: 0.9;
 }
 
 .btn-close-container{
     text-align: right;
+}
+
+#btnSignaler{
+    margin-top: 1em;
+    background-color: #D9A36A;
+    color: white;
+    padding: 0.8em;
+    border-radius: 0.5em;
+    border: none;
+}
+
+#btnSignaler:hover{
+   opacity: 0.9;
+}
+
+textarea{
+    background: rgba(217, 163, 106, 0.7);
+    border: none;
+    padding: 15px;
+    width: 18em;
+    border-radius: 5px;
+    margin-top: 7px;
 }

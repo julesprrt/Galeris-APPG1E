@@ -14,9 +14,10 @@ class Contact
     private $message;
     private $subject;
     private $utilsContact;
+    private $recaptcha;
 
-    public function __construct($firstName, $name, $email, $message, $subject)
-    {//Constructeur -> Initialisation des données
+    public function __construct($firstName, $name, $email, $message, $subject, $recaptcha)
+    { //Constructeur -> Initialisation des données
         $this->sendMail = new MailSender();
         $this->name = $name;
         $this->firstName = $firstName;
@@ -24,10 +25,12 @@ class Contact
         $this->message = $message;
         $this->subject = $subject;
         $this->utilsContact = new Utils();
+        $this->recaptcha = $recaptcha;
     }
 
     public function verifyAllInput()
     {
+
         if ($this->email == '' || $this->name == '' || $this->firstName == '' || $this->message == '' || $this->subject == '') {
             return false;
         } else {
@@ -44,18 +47,18 @@ class Contact
         }
     }
 
-    public function LimitLengthFirstName()
+    public function NameContainOnlyCaracter()
     {
-        if (strlen($this->name) <= 1) {
+        if (!preg_match('/^[a-zA-Z]+$/', $this->name)) {
             return false;
         } else {
             return true;
         }
     }
 
-    public function LimitLengthName()
+    public function FirstNameContainOnlyCaracter()
     {
-        if (strlen($this->firstName) <= 1) {
+        if (!preg_match('/^[a-zA-Z]+$/', $this->firstName)) {
             return false;
         } else {
             return true;
@@ -64,20 +67,23 @@ class Contact
 
     public function contactPlatformGaleris()
     {
+        if ($this->utilsContact->verifyCaptcha($this->recaptcha) == false) {
+            return "La validation du captcha est obligatoire.";
+        }
         if ($this->verifyAllInput() == false) {
-            return "Veuillez remplir l'ensemble des champs du formulaire";
+            return "Veuillez remplir l'ensemble des champs du formulaire.";
         }
-        if ($this->LimitLengthFirstName() == false) {
-            return "Nombre de caractère minimale pour le champ Prénom est de 2 caractères";
+        if ($this->NameContainOnlyCaracter() == false) {
+            return "Le nom ne doit contenir que des lettres.";
         }
-        if ($this->LimitLengthName() == false) {
-            return "Nombre de caractère minimale pour le champs nom est de 2 caractères";
+        if ($this->FirstNameContainOnlyCaracter() == false) {
+            return "Le prénom ne doit contenir que des lettres.";
         }
         if ($this->LimitLengthMessage() == false) {
-            return "Nombre de caractère minimale pour le champs message est de 15 caractères";
+            return "Le nombre de caractère minimale pour le message est de 15 caractères.";
         }
         if ($this->utilsContact->emailComposition($this->email) == false) {
-            return "Email invalide";
+            return "Votre email est invalide.";
         }
         $subject_options = [
             'problem' => '[Probleme]',
@@ -90,5 +96,4 @@ class Contact
 
         return $this->sendMail->sendMailContact(email_galeris, $subject_label, $this->message, $this->email);
     }
-
 }

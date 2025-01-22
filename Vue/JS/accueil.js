@@ -4,14 +4,14 @@ const cbox = document.querySelectorAll(".oeuvreOBJ");
 setInterval(tempsRestants, 1000);
 
 
- for (let i = 0; i < cbox.length; i++) {
-     cbox[i].addEventListener("click", saveId);
- }
+for (let i = 0; i < cbox.length; i++) {
+    cbox[i].addEventListener("click", saveId);
+}
 
 async function saveId(event) {
     const divParent = event.currentTarget.querySelector(".oeuvre");
     const inputCache = divParent.querySelector("input[type='hidden']");
-    
+
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
 
@@ -25,10 +25,10 @@ async function saveId(event) {
         body: raw,
         redirect: "follow"
     };
-    const response = await fetch("https://galeris/Galeris-APPG1E/saveid", requestOptions)
+    const response = await fetch("./saveid", requestOptions)
     const statuscode = response.status;
     if (statuscode === 200) {
-       window.location.href = "https://galeris/Galeris-APPG1E/achat";
+       window.location.href = "./achat";
     }
 }
 
@@ -51,6 +51,9 @@ function tempsRestants() {
         } else {
             el.parentNode.style.display = 'none';
         }
-    });
-}
+        
+    }
+    );
+};
+
 

@@ -2,7 +2,7 @@
 require_once('Database/Database.php');
 require_once('Model/code.php');
 require_once('Model/utils.php');
-
+require_once('Model/mailSender.php');
 class User
 {
     private $name;
@@ -13,12 +13,14 @@ class User
     private $confirmPassword;
     private $sendCode;
     private $utilsUser;
+    private MailSender $sendMail;
     private $cgu;
     private $newsletter;
     private $photodeprofil;
     private Utils $utils;
+    private $captcha;
 
-    public function __construct($name, $firstName, $email, $telephone, $password, $confirmPassword, $cgu, $newsletter, $photodeprofil)
+    public function __construct($name, $firstName, $email, $telephone, $password, $confirmPassword, $cgu, $newsletter, $photodeprofil, $captcha)
     { //Constructeur -> Initialisation des données
         $this->name = $name;
         $this->firstName = $firstName;
@@ -31,6 +33,8 @@ class User
         $this->cgu = $cgu;
         $this->newsletter = 0;
         $this->photodeprofil = $photodeprofil;
+        $this->captcha = $captcha;
+        $this->sendMail = new MailSender();
     }
     /**
      * Summary of registerVerification
@@ -41,19 +45,21 @@ class User
     {
         $value = $this->VerifyExistMail($db);
         if ($this->name === "" || $this->firstName === "" || $this->email === "" || $this->telephone === "" || $this->password === "" || $this->confirmPassword === "") {
-            return "Vous devez remplir l'ensemble des champs du formulaire";
+            return "Vous devez remplir l'ensemble des champs du formulaire.";
         } else if ($this->cgu === false) {
-            return "Vous devez valider les conditions générales d'utilisation de Galeris";
+            return "Vous devez lire et valider les conditions générales d'utilisation de Galeris.";
         } else if (!$this->utilsUser->emailComposition($this->email)) {
-            return "Mail invalide";
+            return "Votre adresse mail est invalide.";
         } else if (!$this->telComposition($this->telephone)) {
-            return "Format invalide. Exemple : 0689213474";
+            return "Le format de votre numéro de téléphone est invalide. Exemple : 0689213474";
         } else if (!$this->passwordComposition($this->password)) {
-            return "Votre mot de passe doit contenir une minuscule, une majucule, un nombre et un caractère spécial et plus que 8 caractères.";
+            return "Votre mot de passe doit contenir au moins une minuscule, une majucule, un nombre et un caractère spécial et plus que 8 caractères.";
         } else if ($this->password !== $this->confirmPassword) {
-            return "Les deux mots de passe ne sont pas identiques";
+            return "Les deux mots de passe ne sont pas identiques.";
         } else if ($value === false) {
-            return "Vous avez déja un compte";
+            return "Vous avez déja un compte.";
+        } else  if ($this->utilsUser->verifyCaptcha($this->captcha) == false) {
+            return "La validation du captcha est obligatoire.";
         } else {
             if ($value === true) {
                 $this->saveUser($db);
@@ -66,14 +72,21 @@ class User
 
     public function connectUser(Database $db)
     {
+        if ($this->utilsUser->verifyCaptcha($this->captcha) == false) {
+            return "La validation du captcha est obligatoire.";
+        }
         $database = $db->connect();
         // Interroger les données utilisateur dans la base de données
-        $query = "SELECT * FROM utilisateur WHERE email = '$this->email'";
-        $result = $database->execute_query($query);
+        $query = "SELECT * FROM utilisateur WHERE email = ?";
+        $stmt = $database->prepare($query);
+        $stmt->bind_param("s", $this->email);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $stmt->close();
         $database->close();
-        if (mysqli_num_rows($result) > 0) {
+        if ($result->num_rows > 0) {
             // Obtenir les données utilisateur
-            $user = mysqli_fetch_assoc($result);
+            $user = $result->fetch_assoc();
             // Vérifier le mot de passe
             if (password_verify($this->password, $user['mot_de_passe']) && $user["actif"] === 1) {
                 session_start();
@@ -84,10 +97,10 @@ class User
             } else if ($user["actif"] === 0) {
                 return "Utilisateur non valide";
             } else {
-                return "Votre mail/mot de passe est incorrect";
+                return "Identifiant ou mot de passe invalide";
             }
         } else {
-            return "Vous n'avez pas de compte";
+            return "Vous n'avez pas de compte Galeris";
         }
     }
 
@@ -135,11 +148,15 @@ class User
     public function VerifyExistMail(Database $db)
     {
         $conn = $db->connect();
-        $sql = "SELECT * FROM utilisateur where email = '$this->email'";
-        $result = $conn->execute_query($sql);
+        $sql = "SELECT * FROM utilisateur where email = ?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("s", $this->email);
+        $stmt->execute(); 
+        $result = $stmt->get_result();
+        $stmt->close();
         $conn->close();
-        if (mysqli_num_rows($result) > 0) {
-            $user = mysqli_fetch_assoc($result);
+        if ($result->num_rows > 0) {
+            $user = $result->fetch_assoc();
             if ($user["actif"] === 0) {
                 session_start();
                 $_SESSION["usersessionID"] = $user["id_utilisateur"];
@@ -203,7 +220,16 @@ class User
         return 200;
     }
 
-
+    public function getAllUsers(Database $db){
+        $conn = $db->connect();
+        $sql= "select nom, prenom, id_utilisateur from utilisateur";
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $stmt->close();
+        $conn->close();
+        return $result;
+    }   
 
     public function verifyCode($code, Database $db)
     {
@@ -262,28 +288,41 @@ class User
 
 
         $stmt = $conn->prepare($sql);
-        $stmt->bind_param('i', $id); 
+        $stmt->bind_param('i', $id);
         $stmt->execute();
         $result = $stmt->get_result();
-        if ($result->num_rows > 0) {   
-            $user = $result->fetch_assoc(); 
+        if ($result->num_rows > 0) {
+            $user = $result->fetch_assoc();
             $stmt->close();
             $conn->close();
-            return $user; 
+            return $user;
         }
 
         $stmt->close();
         $conn->close();
-        return null; 
+        return null;
     }
-    public function updateUser($id, $nom, $prenom, $email, $description, $adresse, $newsletter, $newPassword, Database $db)
+
+    public function getAllOeuvreSoldByUser($id, Database $db){
+        $conn = $db->connect();
+        $sql = "SELECT o.*, COALESCE(oi.image_path, 'Aucune image') AS image_path  from oeuvre o LEFT JOIN ( SELECT id_oeuvre, MIN(chemin_image) AS image_path FROM oeuvre_images GROUP BY id_oeuvre ) oi ON oi.id_oeuvre = o.id_oeuvre where id_utilisateur = ? and est_vendu = ?";
+        $stmt = $conn->prepare($sql);
+        $estVendue = 1;
+        $stmt->bind_param('ii', $id, $estVendue);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $stmt->close();
+        $conn->close();
+        return $result;
+    }
+    public function updateUser($id, $nom, $prenom, $description, $adresse, $newsletter, $newPassword, Database $db)
     {
         $conn = $db->connect();
 
         // Prépare la requête SQL de base
-        $sql = "UPDATE utilisateur SET nom = ?, prenom = ?, email = ?, description = ?, adresse = ?, newsletter = ?";
-        $types = "sssssi"; // Types pour bind_param
-        $params = [$nom, $prenom, $email, $description, $adresse, $newsletter];
+        $sql = "UPDATE utilisateur SET nom = ?, prenom = ?, description = ?, adresse = ?, newsletter = ?";
+        $types = "ssssi"; // Types pour bind_param
+        $params = [$nom, $prenom, $description, $adresse, $newsletter];
 
         // Si un nouveau mot de passe est fourni, on l'ajoute à la requête
         if (!empty($newPassword)) {
@@ -310,7 +349,6 @@ class User
 
     public function verifyEmailForPassword(Database $db)
     {
-        session_start();
         $conn = $db->connect();
         $sql = "select * from utilisateur where email = ?";
         $stmt = $conn->prepare($sql);
@@ -318,7 +356,7 @@ class User
         $stmt->execute();
         $result = $stmt->get_result();
         $user = $result->fetch_assoc();
-        $stmt->close(); 
+        $stmt->close();
         $conn->close();
         if ($result->num_rows > 0) {
             $email = $this->email;
@@ -364,30 +402,94 @@ class User
     }
 
     public function SuppresionAnciennePDP($userId, Database $db)
-{
-    $conn = $db->connect();
+    {
+        $conn = $db->connect();
 
-    $sql = "SELECT chemin_image FROM utilisateur_image WHERE id_utilisateur = ?";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param('i', $userId);
-    $stmt->execute();
-    $stmt->bind_result($currentPhotoPath);
-    $stmt->fetch();
-    $stmt->close();
+        $sql = "SELECT chemin_image FROM utilisateur_image WHERE id_utilisateur = ?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param('i', $userId);
+        $stmt->execute();
+        $stmt->bind_result($currentPhotoPath);
+        $stmt->fetch();
+        $stmt->close();
 
-    if ($currentPhotoPath && file_exists($currentPhotoPath)) {
-        unlink($currentPhotoPath);
+        if ($currentPhotoPath && file_exists($currentPhotoPath)) {
+            unlink($currentPhotoPath);
+        }
+
+        $sqlDelete = "DELETE FROM utilisateur_image WHERE id_utilisateur = ?";
+        $stmtDelete = $conn->prepare($sqlDelete);
+        $stmtDelete->bind_param('i', $userId);
+        $stmtDelete->execute();
+        $stmtDelete->close();
+
+        $conn->close();
     }
 
-    $sqlDelete = "DELETE FROM utilisateur_image WHERE id_utilisateur = ?";
-    $stmtDelete = $conn->prepare($sqlDelete);
-    $stmtDelete->bind_param('i', $userId);
-    $stmtDelete->execute();
-    $stmtDelete->close();
+    public function signaler($raison, Database $db)
+    {
+        if (strlen(trim($raison)) < 25) {
+            return 401;
+        }
 
-    $conn->close();
-}
+        $oeuvre = new Oeuvre(null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
+        $oeuvreInfo = $oeuvre->getOeuvreById($_SESSION["oeuvre_id"], $db);
+        $userInfo = $this->getUserById($_SESSION["usersessionID"], $db);
+        $this->sendMail->signalement($_SESSION["oeuvre_id"], $raison, $oeuvreInfo["Titre"], $userInfo["nom"], $userInfo["prenom"]);
+    }
 
-    
-    
+    public function createTransfert($montant, $userSolde, Database $db)
+    {
+        if (floatval($montant) > $userSolde || floatval($montant) < 1.0) {
+            return 401;
+        } else {
+            $this->transfert(floatval($montant), $_SESSION["usersessionID"], $db);
+            return 200;
+        }
+    }
+
+    public function transfert($montant, $id, Database $db){
+        $conn = $db->connect();
+        $sql = "update utilisateur set solde = solde - ? where id_utilisateur = ?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param('di',$montant, $id);
+        $stmt->execute();
+        $stmt->close();
+        $conn->close();
+    }
+    public function getPublicUserById($id, Database $db)
+    {
+        $conn = $db->connect();
+        $sql = "SELECT id_utilisateur, nom, prenom, email, description, photodeprofil 
+            FROM utilisateur 
+            LEFT JOIN utilisateur_image ON utilisateur.id_utilisateur = utilisateur_image.id_utilisateur
+            WHERE utilisateur.id_utilisateur = ?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param('i', $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $user = $result->fetch_assoc();
+        $stmt->close();
+        $conn->close();
+        return $user;
+    }
+
+    public function getOeuvresByUserId($id, Database $db)
+    {
+        $conn = $db->connect();
+        $sql = "SELECT o.id_oeuvre, o.Titre, o.Description, o.Prix, o.auteur, oi.chemin_image
+            FROM oeuvre as o JOIN oeuvre_images as oi ON o.id_oeuvre = oi.id_oeuvre
+            WHERE O.id_utilisateur = ?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param('i', $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $oeuvres = [];
+        while ($row = $result->fetch_assoc()) {
+            $oeuvres[] = $row;
+        }
+        $stmt->close();
+        $conn->close();
+        return $oeuvres;
+    }
 }

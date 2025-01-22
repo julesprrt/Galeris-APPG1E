@@ -19,14 +19,13 @@ Class Panier{
         $stmt->execute();
         $result = $stmt->get_result();
         $stmt->close();
-        if(mysqli_num_rows($result) > 0){
+        if($result->num_rows > 0){
             return true;
         }
         return false;
     }
 
     public function ajoutPanier(Database $db) {
-        session_start();
         $res = $this->existPanier($db);
         if($res){
             return 401;
@@ -44,7 +43,6 @@ Class Panier{
     }
 
     public function retirerPanier(Database $db) {
-        session_start();
         $res = $this->existPanier($db);
         if(!$res){
             return 401;

@@ -5,12 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Code Unique</title>
-    <base href="/Galeris-APPG1E/Vue/"> 
-    <link rel="stylesheet" href="CSS/codeunique.css">
+    <link rel="stylesheet" href="Vue/CSS/codeunique.css">
 </head>
 
 <body>
-
     <div class="container">
         <h1>Entrez le code à 6 chiffres</h1>
         <form>
@@ -29,7 +27,7 @@
         </div>
     </div>
 
-    <script src="https://galeris/Galeris-APPG1E/vue/JS/codeunique.js"></script>
+    <script src="Vue/JS/codeunique.js"></script>
 </body>
 
 </html>

@@ -3,17 +3,24 @@
 require_once('Database/Database.php');
 require_once('Controller.php');
 require_once('Model/payment.php');
+
 class PaymentController extends Controller
-{ 
+{
 
     public function payment(Database $db)
-    { 
+    {
+        session_start();
+
+        if (!isset($_SESSION['usersessionID'])) {
+            header('Location: ./connexion');
+            exit();
+        }
         $payment = new Payment();
         $result = $payment->createObject($db);
 
-        if($result === 401){
+        if ($result === 401) {
             http_response_code(401);
-            echo json_encode(["payment" => "erreur paiement"]);
+            echo json_encode(["payment" => "Une erreur s'est produite lors du paièment."]);
             exit();
         }
 
@@ -24,28 +31,31 @@ class PaymentController extends Controller
         echo json_encode(["payment" => $urlPayment]);
     }
 
-    public function successPayment(Database $db){
+    public function successPayment(Database $db)
+    {
         session_start();
 
-        if(!isset($_SESSION["payment"])){
+        if (!isset($_SESSION["usersessionID"])) {
+            header('Location: ./connexion');
+            exit;
+        }
+
+        if (!isset($_SESSION["payment"])) {
             http_response_code(404);
-            header("Location: /Galeris-APPG1E/");
+            header("Location: ./");
 
             exit();
-        }
-        else{
-            if($_SESSION["payment"] === false){
+        } else {
+            if ($_SESSION["payment"] === false) {
                 http_response_code(404);
-                header("Location: /Galeris-APPG1E/");
+                header("Location: ./");
                 exit();
-            }
-            else{
+            } else {
                 $_SESSION["payment"] = false;
-                if($_SESSION["type_payment"] === "panier"){
+                if ($_SESSION["type_payment"] === "panier") {
                     $payment = new Payment();
                     $payment->concludePayment($db);
-                }
-                else{
+                } else {
                     $payment = new Payment();
                     $payment->concludePaymentAuction($db);
                 }
@@ -53,30 +63,33 @@ class PaymentController extends Controller
             }
         }
 
-        
+
     }
 
-    public function cancelPayment(Database $db){
+    public function cancelPayment(Database $db)
+    {
         session_start();
-        $this->render('cancelPayment', []);
 
-      if(!isset($_SESSION["payment"])){
-            http_response_code(404);
-            header("Location: /Galeris-APPG1E/");
-            exit();
+        if (!isset($_SESSION["usersessionID"])) {
+            header('Location: ./connexion');
+            exit;
         }
-        else{
-            if($_SESSION["payment"] === false){
+
+        if (!isset($_SESSION["payment"])) {
+            http_response_code(404);
+            header("Location: ./");
+            exit();
+        } else {
+            if ($_SESSION["payment"] === false) {
                 http_response_code(404);
-                header("Location: /Galeris-APPG1E/");
+                header("Location: ./");
                 exit();
-            }
-            else{
+            } else {
                 $_SESSION["payment"] = false;
                 $this->render('cancelPayment', []);
             }
         }
 
-        
+
     }
 }

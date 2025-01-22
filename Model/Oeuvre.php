@@ -67,7 +67,7 @@ class Oeuvre
     public static function getOeuvreById($id, Database $db)
     {
         $conn = $db->connect();
-        $query = "SELECT o.*, u.nom, u.prenom, Max(e.prix) AS prix_courant, e.date_enchere, ut.nom AS nom_offreur, ut.prenom AS prenom_offreur FROM oeuvre o INNER JOIN utilisateur u ON u.id_utilisateur = o.id_utilisateur left JOIN enchere e on e.id_oeuvre_enchere = o.id_oeuvre left join utilisateur ut on ut.id_utilisateur = e.id_offreur LEFT JOIN panier p ON p.id_utilisateur = u.id_utilisateur WHERE o.id_oeuvre = ?;";
+        $query = "SELECT o.*, u.nom, u.prenom, Max(e.prix) AS prix_courant, e.date_enchere, ut.nom AS nom_offreur, ut.prenom AS prenom_offreur, ui.chemin_image as profil, of.chemin_fichier as oeuvre_file, v.prix as prix, v.Date_vente FROM oeuvre o INNER JOIN utilisateur u ON u.id_utilisateur = o.id_utilisateur left JOIN enchere e on e.id_oeuvre_enchere = o.id_oeuvre left join utilisateur ut on ut.id_utilisateur = e.id_offreur LEFT join vente v on v.id_oeuvre = o.id_oeuvre LEFT JOIN panier p ON p.id_utilisateur = u.id_utilisateur LEFT JOIN utilisateur_image ui on ui.id_utilisateur = u.id_utilisateur LEFT JOIN oeuvre_file of on of.id_oeuvre = o.id_oeuvre WHERE o.id_oeuvre = ?;";
 
         $stmt = $conn->prepare($query);
         $stmt->bind_param('i', $id);
@@ -96,6 +96,20 @@ class Oeuvre
         // Ajouter les chemins des images à l'œuvre
         $oeuvre['chemin_image'] = $chemin_image;
 
+          // Récupérer le prix de vente si l'œuvre est vendue et de type vente
+          if ($oeuvre['est_vendu'] == 1 && $oeuvre['type_vente'] == 'vente') {
+            $queryVente = "SELECT prix FROM vente WHERE id_vente = ?";
+            $stmtVente = $conn->prepare($queryVente);
+            $stmtVente->bind_param('i', $id);
+            $stmtVente->execute();
+
+            $resultVente = $stmtVente->get_result();
+            $vente = $resultVente->fetch_assoc();
+            $oeuvre['prix'] = $vente['prix'];
+
+            $stmtVente->close();
+        }
+
 
         return $oeuvre;
     }
@@ -110,6 +124,34 @@ class Oeuvre
         WHERE o.est_vendu = ? AND o.statut = ? AND o.Date_fin >= ?
         GROUP BY o.id_oeuvre
         ORDER BY o.Date_fin 
+    ";
+        $stmt = $conn->prepare($query);
+        $est_vendu = 0;
+        $accept = "accepte";
+        $now = new DateTime();
+        $now = $now->format('Y-m-d H:i:s');
+        $stmt->bind_param('iss', $est_vendu, $accept, $now);
+        $stmt->execute();
+
+        $result = $stmt->get_result();
+
+        $stmt->close();
+        $conn->close();
+
+        return $result;
+    }
+
+    public static function getAllOeuvreHome(Database $db)
+    {
+        $conn = $db->connect();
+        $query = " SELECT o.*,c.Nom_categorie, oi.chemin_image, MAX(e.prix) as prix_courant
+        FROM oeuvre o
+        INNER JOIN oeuvre_images oi ON o.id_oeuvre = oi.id_oeuvre
+        Inner join categorie c on c.id_categorie = o.id_categorie
+        left JOIN enchere e on e.id_oeuvre_enchere = o.id_oeuvre 
+        WHERE o.est_vendu = ? AND o.statut = ? AND o.Date_fin >= ?
+        GROUP BY o.id_oeuvre
+        ORDER BY o.eco_responsable DESC ,o.Date_fin
         LIMIT 10
     ";
         $stmt = $conn->prepare($query);
@@ -174,12 +216,12 @@ class Oeuvre
 
     public function verifyEnchere(Database $db)
     {
-        $user = new User(null, null, null, null, null, null, null);
+        $user = new User(null, null,  null, null, null, null, null, null, null, null);
         $userLivraison = $user->getUserById($_SESSION["usersessionID"], $db);
 
         $_SESSION["livraison"] = "enchere";
 
-        if ($userLivraison === null) {
+        if ($userLivraison["adresse_livraison"] === null) {
             return 401;
         }
 
@@ -228,7 +270,7 @@ class Oeuvre
     public function CreateSaveEnchere(Database $db)
     {
         $oeuvresEncheres = $this->getAllEnchereForUpdate($db);
-        if (mysqli_num_rows($oeuvresEncheres) > 0) {
+        if ($oeuvresEncheres->num_rows > 0) {
             $this->updateUserSoldAndVenteTable($db, $oeuvresEncheres);
             $this->updateOeuvreEnchere($db, $oeuvresEncheres);
             $this->sendMailForUser($db, $oeuvresEncheres);
@@ -334,4 +376,25 @@ class Oeuvre
         $Database->close();
         return 200;
     }
+
+    public function supprimerOeuvreParId(Database $db, $idOeuvre)
+    {
+        $conn = $db->connect();
+
+        $sql = "DELETE FROM oeuvre WHERE id_oeuvre = ?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("i", $idOeuvre);
+        $stmt->execute();
+        $affectedRows = $stmt->affected_rows;
+        
+        $stmt->close();
+        $conn->close();
+
+        if ($affectedRows > 0) {
+            return 200;
+        } else {
+            return 500; 
+        }
+    }
+
 }
