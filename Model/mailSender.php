@@ -176,4 +176,32 @@ class MailSender
         }
     }
 
+    public function sendMailContact($to, $subject, $message, $from)
+    {
+        $mail = new PHPMailer(true);
+        $mail->IsSMTP();                    
+        $mail->Host = "smtp.gmail.com";
+        $mail->Port = 587;
+        $mail->SMTPAuth = true;             
+        $mail->Username = 'galeris2004@gmail.com';
+        $mail->Password = 'kwdo bkhh cfat bkbv';
+
+        $mail->From = email_galeris;
+
+        $mail->AddAddress($to, '');
+
+        $mail->WordWrap = 50;               
+        $mail->Priority = 1;
+        $mail->Subject = $subject;
+        $mail->Body = $message;
+        $mail->IsHTML(true);
+        $mail->CharSet = "UTF-8";
+
+        if ($mail->send()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 }
