@@ -94,6 +94,6 @@ class Contact
 
         $subject_label = isset($subject_options[$this->subject]) ? $subject_options[$this->subject] : '[Autres]';
 
-        return $this->sendMail->sendMail(email_galeris, $subject_label, $this->message, $this->email);
+        return $this->sendMail->sendMailContact(email_galeris, $subject_label, $this->message, $this->email);
     }
 }

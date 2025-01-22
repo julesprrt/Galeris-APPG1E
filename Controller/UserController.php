@@ -274,7 +274,6 @@ class UserController extends Controller
 
         $code->sendCode($_SESSION["usersessionMail"], $db);
 
-        $code->sendCode($_SESSION["usersessionMail"], $db);
         http_response_code(200);
         echo json_encode(['Success' => "Code envoyé"]);
     }

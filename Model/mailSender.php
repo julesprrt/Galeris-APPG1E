@@ -14,8 +14,40 @@ class MailSender
 
     }
 
-    public function sendMail($to, $subject, $message, $from)
+    public function sendMail($to, $subject, $code, $from)
     {
+        $message = '
+        <html>
+        <head>
+          <style>
+            body { font-family: Arial, sans-serif; line-height: 1.6; margin: 0; padding: 0; background-color: #f0da8c; color: #4C4241 ; border-radius: 20px; }
+            .header { text-align: center; font-family: mono; padding: 10px 0; }
+            .footer { text-align: center; padding: 10px 0; font-size: 12px; }
+            .content { padding: 20px; }
+            .codeUnique { font-weight: bold; font-size: 20px }
+            img { }
+          </style>
+        </head>
+        <body>
+          <div class="header">
+            <h1> Galeris </h1>
+          </div>
+          <div class="content">
+            <p>Bonjour,</p>
+            <p>Bienvenue chez Galeris,</p>
+            <p>Nous vous prions de bien vouloir trouver ci-dessous votre code à usage unique,</p>
+            <p>celui-ci est indispensable pour finaliser votre inscription :</p>
+            <p class="codeUnique"> ' . $code . ' </p>
+            <p>Bien cordialement,</p>
+            <p>L équipe Galeris</p>
+          </div>
+          <div class="footer">
+            <p>© 2024 Galeris. Tous droits réservés.</p>
+          </div>
+        </body>
+      </html>
+        ';
+
         $mail = new PHPMailer(true);
         $mail->IsSMTP();                    
         $mail->Host = "smtp.gmail.com";
@@ -27,6 +59,8 @@ class MailSender
         $mail->setFrom(email_galeris, $from);  
 
         $mail->AddAddress($to, '');
+
+        $mail->CharSet = "UTF-8";
 
         $mail->WordWrap = 50;               
         $mail->Priority = 1;
@@ -84,6 +118,7 @@ class MailSender
         $mail->Subject = $subject;
         $mail->Body = $message;
         $mail->IsHTML(true);
+        $mail->CharSet = "UTF-8";
 
         if ($mail->send()) {
             return true;
@@ -127,11 +162,40 @@ class MailSender
 
         $mail->AddAddress($to, '');
 
+        $mail->CharSet = "UTF-8";
         $mail->WordWrap = 50;               
         $mail->Priority = 1;
         $mail->Subject = $subject;
         $mail->Body = $message;
         $mail->IsHTML(true);
+
+        if ($mail->send()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function sendMailContact($to, $subject, $message, $from)
+    {
+        $mail = new PHPMailer(true);
+        $mail->IsSMTP();                    
+        $mail->Host = "smtp.gmail.com";
+        $mail->Port = 587;
+        $mail->SMTPAuth = true;             
+        $mail->Username = 'galeris2004@gmail.com';
+        $mail->Password = 'kwdo bkhh cfat bkbv';
+
+        $mail->From = email_galeris;
+
+        $mail->AddAddress($to, '');
+
+        $mail->WordWrap = 50;               
+        $mail->Priority = 1;
+        $mail->Subject = $subject;
+        $mail->Body = $message;
+        $mail->IsHTML(true);
+        $mail->CharSet = "UTF-8";
 
         if ($mail->send()) {
             return true;
