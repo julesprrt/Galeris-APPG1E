@@ -129,11 +129,25 @@ class MailSender
 
     public function signalement($oeuvreId, $raison, $titre, $nom, $prenom)
     {
-        $mail = $_SESSION['usersessionMail'];
-        $user_id = $_SESSION["usersessionID"];
-        $to = "galeris2004@gmail.com";
-        $subject = "[Signalement Œuvre #$oeuvreId - $titre]";
+        $mail = null;
+        $user_id = null;
         $message = '<body style="font-family: Arial, sans-serif; line-height: 1.6; color: #333; background-color: #f9f9f9; padding: 20px;">
+    <div style="background-color: #fff; border: 1px solid #ddd; border-radius: 8px; padding: 20px; max-width: 600px; margin: auto; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+        <h2 style="color: #d9534f; font-size: 24px; margin-top: 0;">Signalement d œuvre</h2>
+        <p style="margin: 16px 0;">
+            Un utilisateur a signalé l œuvre 
+            <span style="font-weight: bold; color: #d9534f;">#' . $oeuvreId . '</span> - 
+            <span style="font-style: italic; color: #d9534f;">' . $titre . '</span> pour la raison suivante :
+        </p>
+        <blockquote style="margin: 20px 0; padding: 15px; border-left: 5px solid #d9534f; background-color: #f7f7f7; color: #555;">
+            <b>' . $raison . '</b>
+        </blockquote>
+    </div>
+</body>';
+        if(isset($_SESSION['usersessionMail']) && isset($_SESSION['usersessionID'])){
+            $mail = $_SESSION['usersessionMail'];
+            $user_id = $_SESSION["usersessionID"];
+            $message = '<body style="font-family: Arial, sans-serif; line-height: 1.6; color: #333; background-color: #f9f9f9; padding: 20px;">
     <div style="background-color: #fff; border: 1px solid #ddd; border-radius: 8px; padding: 20px; max-width: 600px; margin: auto; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
         <h2 style="color: #d9534f; font-size: 24px; margin-top: 0;">Signalement d œuvre</h2>
         <p style="margin: 16px 0;">
@@ -149,6 +163,11 @@ class MailSender
         </blockquote>
     </div>
 </body>';
+        }
+        $to = "galeris2004@gmail.com";
+        $subject = "[Signalement Œuvre #$oeuvreId - $titre]";
+
+        
 
         $mail = new PHPMailer(true);
         $mail->IsSMTP();                    

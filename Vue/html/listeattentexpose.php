@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="Vue/CSS/footer.css">
     <script src="Vue/JS/header.js" defer></script>
     <script src="Vue/JS/listeattenteexpose.js" defer></script>
-    <title>Liste des exposés en attente</title>
+    <title>Expositions en attente</title>
 </head>
 
 <body>
@@ -38,7 +38,7 @@
                                     <a href="./solde">Mon solde</a>' .
                                     (($userRole === true) ?
                                         '<a href="./listeoeuvreattente">Oeuvres en attente</a>
-                                        <a href="./listeexposeattente">Exposés en attente</a>' : "") .
+                                        <a href="./listeexposeattente">Expositions en attente</a>' : "") .
                                     '<a class="deconnexion">Déconnexion</a>
                                 </div>
                             </div>';
@@ -89,7 +89,7 @@
                                     <a href="./solde">Mon solde</a>' .
                             (($userRole === true) ?
                                 '<a href="./listeoeuvreattente">Oeuvres en attente</a>
-                                        <a href="./listeexposeattente">Exposés en attente</a> 
+                                        <a href="./listeexposeattente">Expositions en attente</a> 
                                         <a href="./dashboard">Tableau de bord</a>' : "") .
                             '<a class="deconnexion">Déconnexion</a>
                                 </div>
@@ -158,7 +158,7 @@
 
         <div class="page-content">
             <div class="contentbase">
-            <h2 class="title-expose">Liste des expositions en attente</h2>
+            <h2 class="title-expose">Expositions en attente</h2>
                     <div class="exposes">
                         <?php
                         foreach ($exposes as $expose) {

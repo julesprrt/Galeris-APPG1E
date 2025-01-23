@@ -28,7 +28,6 @@ body h1 {
     margin-bottom: 10px;
     transition: all 0.3s ease;
     max-width: 500px;
-    margin-left: 550px;
 }
 body h2 {
     margin: 0;
@@ -155,4 +154,8 @@ br {
         font-size: 1rem;
     }
 }
+
+
+
+
 

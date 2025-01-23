@@ -324,11 +324,6 @@ class UserController extends Controller
     {
         session_start();
 
-        if (!isset($_SESSION['usersessionID'])) {
-            header('Location: ./connexion');
-            exit();
-        }
-
         // Récupération des données POST (JSON)
         $paramData = file_get_contents("php://input");
         $data = json_decode($paramData, true);

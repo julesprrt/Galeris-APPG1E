@@ -11,12 +11,19 @@ body {
     padding-bottom: 100px;
 }
 
+.first-content{
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+
 header {
     text-align: center;
     background-color: #ffffff; /* Fond blanc */
     color: #000000; /* Écriture noire */
     padding: 20px;
 }
+
 
 body h1 {
     margin: 0;
@@ -28,7 +35,6 @@ body h1 {
     margin-bottom: 10px;
     transition: all 0.3s ease;
     max-width: 500px;
-    margin-left: 550px;
 }
 body h2 {
     margin: 0;
@@ -36,9 +42,7 @@ body h2 {
     color: #000000; /* Écriture noire */
     background-color: #fff;
     border-radius: 20px; /* Réduction du rayon des bords arrondis */
-    padding-left: 450px; /* Réduction de l'espace intérieur */
     max-width: 440px; /* Réduction de la largeur maximale */
-    margin-left: 80px; /* Réduction de la marge gauche */
     position: relative;
     top: -20px; 
 }
@@ -89,7 +93,6 @@ il {
     font-weight: bold;
     color: #000000; /* Écriture noire */
     margin: 20px 0 10px;
-    padding-left: 440px;
 }
 
 /* Style des détails et questions */
@@ -101,7 +104,7 @@ details {
     margin-bottom: 10px;
     transition: all 0.3s ease;
     max-width: 550px;
-    margin-left: 440px;
+    width: 60%;
 }
 
 summary {
@@ -153,6 +156,21 @@ br {
 
     summary {
         font-size: 1rem;
+    }
+}
+
+
+@media (max-width: 1420px) {
+    .tableau {
+        display: none;
+    }
+
+    .tableau2 {
+        display: none;
+    }
+
+    .image1 {
+       display: none;
     }
 }
 

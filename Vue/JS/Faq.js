@@ -1,5 +1,5 @@
 window.onscroll = ()=>{
-    MovePicture() //FAQ
+    //MovePicture() //FAQ
 }
 
 // Fonction simple pour déplacer l'image au scroll

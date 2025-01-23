@@ -36,7 +36,7 @@
                                     <a href="./solde">Mon solde</a>' .
                                     (($userRole === true) ?
                                         '<a href="./listeoeuvreattente">Oeuvres en attente</a>
-                                        <a href="./listeexposeattente">Exposés en attente</a>
+                                        <a href="./listeexposeattente">Expositions en attente</a>
                                         <a href="./dashboard">Tableau de bord</a>' : '') .
                                     '<a class="deconnexion">Déconnexion</a>
                                 </div>
@@ -88,7 +88,7 @@
                                     <a href="./solde">Mon solde</a>' .
                             (($userRole === true) ?
                                 '<a href="./listeoeuvreattente">Oeuvres en attente</a>
-                                        <a href="./listeexposeattente">Exposés en attente</a>
+                                        <a href="./listeexposeattente">Expositions en attente</a>
                                         <a href="./dashboard">Tableau de bord</a>' : '') .
                             '<a class="deconnexion">Déconnexion</a>
                                 </div>
@@ -151,15 +151,18 @@
                 ?>
             </div>
         </header>
-
-        <h1>Foire aux questions</h1>
-        <h2>Trouvez toutes les réponses à vos questions !</h2>
         <p>
             <img src="images/tableau.png" class="tableau" />
             <img src="images/tableau2.png" class="tableau2" />
         </p>
         <div class="Page">
+            <div class="secondContent">
             <img src="images/sculpture2.png" class="image1" />
+            </div>
+            <div class="first-content">
+            <h1>Foire aux questions</h1>
+            <h2>Trouvez toutes les réponses à vos questions !</h2>
+            <!--<img src="images/sculpture2.png" class="image1" />-->
             <il>Général</il><br>
             <details>
                 <summary>Mini-quiz</summary>
@@ -254,6 +257,7 @@
                     À condition que nous ayons reçu le paiement intégral de l'acheteur, environ 35 jours après la
                     vente aux enchères, votre paiement sera envoyé sur votre compte désigné.</p>
             </details>
+            </div>
         </div>
 
                 <footer>

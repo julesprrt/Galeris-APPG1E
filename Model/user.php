@@ -434,8 +434,11 @@ class User
 
         $oeuvre = new Oeuvre(null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
         $oeuvreInfo = $oeuvre->getOeuvreById($_SESSION["oeuvre_id"], $db);
-        $userInfo = $this->getUserById($_SESSION["usersessionID"], $db);
-        $this->sendMail->signalement($_SESSION["oeuvre_id"], $raison, $oeuvreInfo["Titre"], $userInfo["nom"], $userInfo["prenom"]);
+        $userInfo = null;
+        if(isset($_SESSION["usersessionID"])){
+            $userInfo = $this->getUserById($_SESSION["usersessionID"], $db);
+        }
+        $this->sendMail->signalement($_SESSION["oeuvre_id"], $raison, $oeuvreInfo["Titre"], $userInfo !== null ? $userInfo["nom"] : null, $userInfo !== null ?  $userInfo["prenom"] : null);
     }
 
     public function createTransfert($montant, $userSolde, Database $db)
