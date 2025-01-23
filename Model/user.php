@@ -151,7 +151,7 @@ class User
         $sql = "SELECT * FROM utilisateur where email = ?";
         $stmt = $conn->prepare($sql);
         $stmt->bind_param("s", $this->email);
-        $stmt->execute(); 
+        $stmt->execute();
         $result = $stmt->get_result();
         $stmt->close();
         $conn->close();
@@ -220,16 +220,17 @@ class User
         return 200;
     }
 
-    public function getAllUsers(Database $db){
+    public function getAllUsers(Database $db)
+    {
         $conn = $db->connect();
-        $sql= "select nom, prenom, id_utilisateur from utilisateur";
+        $sql = "select nom, prenom, id_utilisateur from utilisateur";
         $stmt = $conn->prepare($sql);
         $stmt->execute();
         $result = $stmt->get_result();
         $stmt->close();
         $conn->close();
         return $result;
-    }   
+    }
 
     public function verifyCode($code, Database $db)
     {
@@ -303,11 +304,12 @@ class User
         return null;
     }
 
-    public function getAllOeuvreSoldByUser($id, Database $db){
+    public function getAllOeuvreSoldByUser($id, Database $db)
+    {
         $conn = $db->connect();
         $sql = "SELECT o.*, COALESCE(oi.image_path, 'Aucune image') AS image_path  from oeuvre o LEFT JOIN ( SELECT id_oeuvre, MIN(chemin_image) AS image_path FROM oeuvre_images GROUP BY id_oeuvre ) oi ON oi.id_oeuvre = o.id_oeuvre where id_utilisateur = ? and est_vendu = ?";
         $stmt = $conn->prepare($sql);
-        $estVendue = 1;
+        $estVendue = 0;
         $stmt->bind_param('ii', $id, $estVendue);
         $stmt->execute();
         $result = $stmt->get_result();
@@ -435,7 +437,7 @@ class User
         $oeuvre = new Oeuvre(null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
         $oeuvreInfo = $oeuvre->getOeuvreById($_SESSION["oeuvre_id"], $db);
         $userInfo = null;
-        if(isset($_SESSION["usersessionID"])){
+        if (isset($_SESSION["usersessionID"])) {
             $userInfo = $this->getUserById($_SESSION["usersessionID"], $db);
         }
         $this->sendMail->signalement($_SESSION["oeuvre_id"], $raison, $oeuvreInfo["Titre"], $userInfo !== null ? $userInfo["nom"] : null, $userInfo !== null ?  $userInfo["prenom"] : null);
@@ -451,11 +453,12 @@ class User
         }
     }
 
-    public function transfert($montant, $id, Database $db){
+    public function transfert($montant, $id, Database $db)
+    {
         $conn = $db->connect();
         $sql = "update utilisateur set solde = solde - ? where id_utilisateur = ?";
         $stmt = $conn->prepare($sql);
-        $stmt->bind_param('di',$montant, $id);
+        $stmt->bind_param('di', $montant, $id);
         $stmt->execute();
         $stmt->close();
         $conn->close();
