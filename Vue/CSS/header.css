@@ -121,6 +121,14 @@ header {
   display: block;
 }
 
+.favori2 a{
+  text-decoration: none;
+}
+
+.panier2 a{
+  text-decoration: none;
+}
+
 .dropdown2 {
   position: relative;
   display: inline-block;
