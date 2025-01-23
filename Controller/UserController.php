@@ -218,6 +218,14 @@ class UserController extends Controller
         $userModel = new User(null, null,  null, null, null, null, null, null, null, null);
         $user = $userModel->getUserById($userId, $db);
 
+        $role = isset($_SESSION["usersessionRole"]) === true && $_SESSION["usersessionRole"] === "Admin" ? true : false;
+
+        $oeuvre = new Oeuvre($Titre = null, $Description = null, $eco_responsable = null, $Date_debut = null, $Date_fin = null, $Prix = null, $type_vente = null, $est_vendu = null, $auteur = null, $id_utilisateur = null, $id_categorie = null, $status = null, $nomvendeur = null, $prenomvendeur = null, $chemin_image = null, $prix_actuel = null, $id_offreur = null);
+        $oeuvres = $oeuvre->getAllOeuvre($db);
+        $expose = new Exposition(null,null,null,null,null,null,null);
+        $exposes = $expose->getExposes($db);
+        $users = $userModel->getAllUsers($db);
+
 
         if (!$user) {
             echo "Utilisateur introuvable.";
@@ -225,26 +233,26 @@ class UserController extends Controller
         }
         // Validation de l'ancien mot de passe
         if (strlen($oldPassword) > 0 && !password_verify($oldPassword, $user['mot_de_passe'])) {
-            $this->render('editionprofil', ['user' => $user, 'error' => "L'ancien mot de passe est incorrect."]);
+            $this->render('editionprofil', ['user' => $user, 'error' => "L'ancien mot de passe est incorrect.", "connectUser" => isset($_SESSION["usersessionID"]), "userRole" => $role,"oeuvres" => $oeuvres, "exposes" => $exposes, "users" => $users]);
             return;
         }
         // Validation des nouvelles données
         if (empty($nom) || empty($prenom) || empty($email)) {
-            $this->render('editionprofil', ['user' => $user, 'error' => "Tous les champs obligatoires doivent être remplis."]);
+            $this->render('editionprofil', ['user' => $user, 'error' => "Tous les champs obligatoires doivent être remplis.", "connectUser" => isset($_SESSION["usersessionID"]), "userRole" => $role,"oeuvres" => $oeuvres, "exposes" => $exposes, "users" => $users]);
             return;
         }
 
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            $this->render('editionprofil', ['user' => $user, 'error' => "L'adresse email est invalide."]);
+            $this->render('editionprofil', ['user' => $user, 'error' => "L'adresse email est invalide.", "connectUser" => isset($_SESSION["usersessionID"]), "userRole" => $role,"oeuvres" => $oeuvres, "exposes" => $exposes, "users" => $users]);
             return;
         }
 
         if (strlen($oldPassword) > 0 && !empty($newPassword) && $newPassword !== $confirmPassword) {
-            $this->render('editionprofil', ['user' => $user, 'error' => "Les nouveaux mots de passe ne correspondent pas."]);
+            $this->render('editionprofil', ['user' => $user, 'error' => "Les nouveaux mots de passe ne correspondent pas.", "connectUser" => isset($_SESSION["usersessionID"]), "userRole" => $role,"oeuvres" => $oeuvres, "exposes" => $exposes, "users" => $users]);
             return;
         }
         if (strlen($oldPassword) > 0 && !$userModel->passwordComposition($newPassword)) {
-            $this->render('editionprofil', ['user' => $user, 'error' => "Le mot de passe doit contenir au moins 8 caractères, une majuscule, un chiffre et un caractère spécial."]);
+            $this->render('editionprofil', ['user' => $user, 'error' => "Le mot de passe doit contenir au moins 8 caractères, une majuscule, un chiffre et un caractère spécial.", "connectUser" => isset($_SESSION["usersessionID"]), "userRole" => $role,"oeuvres" => $oeuvres, "exposes" => $exposes, "users" => $users]);
             return;
         }
 
@@ -257,7 +265,7 @@ class UserController extends Controller
             header('Location: ./profil');
             exit();
         } else {
-            $this->render('editionprofil', ['user' => $user, 'error' => "Une erreur est survenue lors de la mise à jour."]);
+            $this->render('editionprofil', ['user' => $user, 'error' => "Une erreur est survenue lors de la mise à jour.",  "connectUser" => isset($_SESSION["usersessionID"]), "userRole" => $role,"oeuvres" => $oeuvres, "exposes" => $exposes, "users" => $users]);
         }
     }
 

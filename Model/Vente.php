@@ -75,7 +75,7 @@ class Vente
             if ($this->image3 !== "") {
                 $this->saveImage($db, $this->image3);
             }
-            if($this->file_eco !== ""){
+            if($this->file_eco !== null){
                 $this->savePdfFile($db, $this->file_eco);
             }
             return 200;
