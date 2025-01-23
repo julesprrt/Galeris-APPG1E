@@ -68,7 +68,7 @@
                         foreach ($users as $user_barre) {
                             echo '<option data-value="utilisateur_' . $user_barre["id_utilisateur"] . '" value="' . $user_barre["nom"] . ' ' . $user_barre["prenom"] . ' ' . $user_barre["id_utilisateur"] . ' (utilisateur)">';
                         }
-                        foreach ($exposes as $expose_barre) {
+                        foreach ($exposes_barre as $expose_barre) {
                             echo '<option data-value="expose_' . $expose_barre["id_exhibition"] . '" value="' . $expose_barre["titre"] . ' ' . $expose_barre["id_exhibition"] . ' (exposé)">';
                         }
                         foreach ($oeuvres as $oeuvre_barre) {
