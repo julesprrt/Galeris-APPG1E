@@ -24,19 +24,19 @@ Class Livraison{
 
     public function saveLivraison(Database $db){
 
-        if(!preg_match('/^[a-zA-Z]+$/', $this->nom)){
+        if(preg_match('~[0-9]+~', $this->nom)){
             return 401;
         }
 
-        if(!preg_match('/^[a-zA-Z]+$/', $this->prenom)){
+        if(preg_match('~[0-9]+~', $this->prenom)){
             return 402;
         }
 
-        if(!preg_match('/^[a-zA-Z]+$/', $this->pays)){
+        if(preg_match('~[0-9]+~', $this->pays)){
             return 403;
         }
 
-        if(!preg_match('/^[a-zA-Z]+$/', $this->ville)){
+        if(preg_match('~[0-9]+~', $this->ville)){
             return 404;
         }
 
