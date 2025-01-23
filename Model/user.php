@@ -307,7 +307,7 @@ class User
         $conn = $db->connect();
         $sql = "SELECT o.*, COALESCE(oi.image_path, 'Aucune image') AS image_path  from oeuvre o LEFT JOIN ( SELECT id_oeuvre, MIN(chemin_image) AS image_path FROM oeuvre_images GROUP BY id_oeuvre ) oi ON oi.id_oeuvre = o.id_oeuvre where id_utilisateur = ? and est_vendu = ?";
         $stmt = $conn->prepare($sql);
-        $estVendue = 1;
+        $estVendue = 0;
         $stmt->bind_param('ii', $id, $estVendue);
         $stmt->execute();
         $result = $stmt->get_result();
